@@ -2248,9 +2248,9 @@
   ],
   "reports": [
     {
-      "milestone": "M65\u2013M67 \u2014 OpenAI Redesign & SFX Normalization",
+      "milestone": "M79 \u2014 OpenAI Redesign & SFX Normalization",
       "date": "2026-04-14",
-      "url": "m65-redesign-report.html",
+      "url": "m79-redesign-report.html",
       "summary": "Full character roster regenerated via OpenAI gpt-image-1 with combat animation states (attack/spell/death), party facing reworked to east, HP bars raised, and all SFX loudness-normalized to -16 LUFS.",
       "changes": [
         "Regenerated all ~68 characters (heroes, companions, enemies, bosses) via OpenAI gpt-image-1 at 1024\u00d71024, rendered at 50% for crisp high-DPI",
