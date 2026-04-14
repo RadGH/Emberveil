@@ -634,6 +634,7 @@ const REPORT_HTML_MAP = {
 };
 
 function reportHtmlFile(r) {
+  if (r.url) return r.url;
   const name = (r.milestone || '').toLowerCase();
   for (const key of Object.keys(REPORT_HTML_MAP)) {
     if (name.startsWith(key)) return REPORT_HTML_MAP[key];
