@@ -41,10 +41,12 @@
       children: [
         { href: ASSETS + '#main', label: 'Images' },
         { href: ASSETS + '#audio-section', label: 'Audio' },
-        { href: ASSETS + '#reports-section', label: 'Reports' }
+        { href: ASSETS + '#reports-section', label: 'Reports' },
+        { href: ASSETS + 'rebalance.html', label: 'Rebalance' }
       ]
     },
-    { href: GAME_INFO, label: 'Game Info' }
+    { href: GAME_INFO, label: 'Game Info' },
+    { href: 'https://docs.google.com/forms/d/e/1FAIpQLScWHFEQ8Kbxvsxg5nKerJOPqkYntAkRLCihqQchypNdqayvmA/viewform?usp=publish-editor', label: 'Send Feedback', external: true }
   ];
 
   function buildNav() {
@@ -57,7 +59,8 @@
         }).join('');
         return '<li class="has-sub"><a href="' + m.href + '">' + m.label + ' \u25BE</a><ul class="sub-menu">' + sub + '</ul></li>';
       }
-      return '<li><a href="' + m.href + '">' + m.label + '</a></li>';
+      var attrs = m.external ? ' target="_blank" rel="noopener"' : '';
+      return '<li><a href="' + m.href + '"' + attrs + '>' + m.label + '</a></li>';
     }).join('');
     nav.innerHTML =
       '<div class="nav-inner">' +
