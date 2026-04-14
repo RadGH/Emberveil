@@ -98,52 +98,6 @@
       height: 52px;
     }
 
-    .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 17px;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-      margin-right: 16px;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 4px;
-      list-style: none;
-      overflow-x: auto;
-      scrollbar-width: none;
-      flex: 1;
-    }
-    .nav-links::-webkit-scrollbar { display: none; }
-
-    .nav-links a {
-      color: var(--text-dim);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 6px 10px;
-      border-radius: 4px;
-      white-space: nowrap;
-      transition: color 0.2s, background 0.2s;
-    }
-    .nav-links a:hover { color: var(--gold); background: rgba(232,160,32,0.08); }
-
-    .nav-play {
-      margin-left: auto;
-      background: var(--gold);
-      color: #1a0e08 !important;
-      font-weight: 700 !important;
-      border-radius: 6px !important;
-      padding: 7px 16px !important;
-      font-size: 12px !important;
-      letter-spacing: 0.08em;
-      white-space: nowrap;
-    }
-    .nav-play:hover { background: var(--gold-bright) !important; }
-
     /* ── HERO ── */
     #hero {
       position: relative;
@@ -1154,7 +1108,6 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 480px) {
       .classes-grid { grid-template-columns: repeat(2, 1fr); }
-      .nav-links { display: none; }
       .party-slots { grid-template-columns: repeat(4, 50px); }
       .party-slot { width: 50px; height: 50px; }
     }
