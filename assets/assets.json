@@ -2080,16 +2080,171 @@
       "prompt": "retro SNES 16-bit chiptune wolf howl sound effect",
       "notes": "ElevenLabs Sound Generation (M64)"
     },
-    { "id": "dragon_reach_bg", "name": "Dragon's Reach Background", "category": "background", "source": "openai", "file": "../images/dragon_expansion/dragon_reach_bg.jpg", "prompt": "Dragon's Reach: volcanic dragon mountain range, red dragons circling, lava cracks, painterly digital art, atmospheric, no text no UI, wide cinematic", "notes": "M68: Replaced placeholder SVG with painterly OpenAI gpt-image-1 render (1536x1024)." },
-    { "id": "dragon_throne_bg", "name": "Dragon Throne Background", "category": "background", "source": "openai", "file": "../images/dragon_expansion/dragon_throne_bg.jpg", "prompt": "Dragon Throne Room: massive dragon skull throne in obsidian hall, glowing runes, dragon banners, painterly digital art, atmospheric, no text no UI, wide cinematic", "notes": "M68: Replaced placeholder SVG with painterly OpenAI gpt-image-1 render (1536x1024)." },
-    { "id": "dragon_sprite", "name": "Dragon Sprite", "category": "sprite", "source": "pixellab", "file": "../images/dragon_expansion/dragon_sprite.png", "prompt": "fierce red dragon, wings spread, glowing yellow eyes, fantasy RPG enemy", "notes": "M68: Replaced SVG with PixelLab quadruped (lion template) pixel-art render." },
-    { "id": "dragon_knight_icon", "name": "Dragon Knight Icon", "category": "icon", "source": "pixellab", "file": "../images/dragon_expansion/dragon_knight_icon.png", "prompt": "dragon knight hero in red dragon-scale armor with horned helm, holding sword, fantasy RPG hero", "notes": "M68: Replaced SVG with PixelLab humanoid pixel-art render." },
-    { "id": "sfx_dragon_roar", "name": "SFX \u2014 dragon roar", "category": "other", "source": "other", "file": "../../sfx/dragon_roar.ogg", "notes": "M65 Dragon Expansion. Procedurally generated WAV placeholder (low-freq sine decay)." },
-    { "id": "sfx_dragon_breath_fire", "name": "SFX \u2014 dragon fire breath", "category": "other", "source": "other", "file": "../../sfx/dragon_breath_fire.ogg", "notes": "M65 Dragon Expansion. Procedural WAV." },
-    { "id": "sfx_dragon_breath_ice", "name": "SFX \u2014 dragon ice breath", "category": "other", "source": "other", "file": "../../sfx/dragon_breath_ice.ogg", "notes": "M65 Dragon Expansion. Procedural WAV." },
-    { "id": "sfx_dragon_wing_flap", "name": "SFX \u2014 dragon wing flap", "category": "other", "source": "other", "file": "../../sfx/dragon_wing_flap.ogg", "notes": "M65 Dragon Expansion. Procedural WAV." },
-    { "id": "sfx_dragon_claw", "name": "SFX \u2014 dragon claw strike", "category": "other", "source": "other", "file": "../../sfx/dragon_claw.ogg", "notes": "M65 Dragon Expansion. Procedural WAV." },
-    { "id": "sfx_dragon_death", "name": "SFX \u2014 dragon death", "category": "other", "source": "other", "file": "../../sfx/dragon_death.ogg", "notes": "M65 Dragon Expansion. Procedural WAV." }
+    {
+      "id": "dragon_reach_bg",
+      "name": "Dragon's Reach Background",
+      "category": "background",
+      "source": "openai",
+      "file": "../images/dragon_expansion/dragon_reach_bg.jpg",
+      "prompt": "Dragon's Reach: volcanic dragon mountain range, red dragons circling, lava cracks, painterly digital art, atmospheric, no text no UI, wide cinematic",
+      "notes": "M68: Replaced placeholder SVG with painterly OpenAI gpt-image-1 render (1536x1024)."
+    },
+    {
+      "id": "dragon_throne_bg",
+      "name": "Dragon Throne Background",
+      "category": "background",
+      "source": "openai",
+      "file": "../images/dragon_expansion/dragon_throne_bg.jpg",
+      "prompt": "Dragon Throne Room: massive dragon skull throne in obsidian hall, glowing runes, dragon banners, painterly digital art, atmospheric, no text no UI, wide cinematic",
+      "notes": "M68: Replaced placeholder SVG with painterly OpenAI gpt-image-1 render (1536x1024)."
+    },
+    {
+      "id": "dragon_sprite",
+      "name": "Dragon Sprite",
+      "category": "sprite",
+      "source": "pixellab",
+      "file": "../images/dragon_expansion/dragon_sprite.png",
+      "prompt": "fierce red dragon, wings spread, glowing yellow eyes, fantasy RPG enemy",
+      "notes": "M68: Replaced SVG with PixelLab quadruped (lion template) pixel-art render."
+    },
+    {
+      "id": "dragon_knight_icon",
+      "name": "Dragon Knight Icon",
+      "category": "icon",
+      "source": "pixellab",
+      "file": "../images/dragon_expansion/dragon_knight_icon.png",
+      "prompt": "dragon knight hero in red dragon-scale armor with horned helm, holding sword, fantasy RPG hero",
+      "notes": "M68: Replaced SVG with PixelLab humanoid pixel-art render."
+    },
+    {
+      "id": "sfx_dragon_roar",
+      "name": "SFX \u2014 dragon roar",
+      "category": "other",
+      "source": "other",
+      "file": "../../sfx/dragon_roar.ogg",
+      "notes": "M65 Dragon Expansion. Procedurally generated WAV placeholder (low-freq sine decay)."
+    },
+    {
+      "id": "sfx_dragon_breath_fire",
+      "name": "SFX \u2014 dragon fire breath",
+      "category": "other",
+      "source": "other",
+      "file": "../../sfx/dragon_breath_fire.ogg",
+      "notes": "M65 Dragon Expansion. Procedural WAV."
+    },
+    {
+      "id": "sfx_dragon_breath_ice",
+      "name": "SFX \u2014 dragon ice breath",
+      "category": "other",
+      "source": "other",
+      "file": "../../sfx/dragon_breath_ice.ogg",
+      "notes": "M65 Dragon Expansion. Procedural WAV."
+    },
+    {
+      "id": "sfx_dragon_wing_flap",
+      "name": "SFX \u2014 dragon wing flap",
+      "category": "other",
+      "source": "other",
+      "file": "../../sfx/dragon_wing_flap.ogg",
+      "notes": "M65 Dragon Expansion. Procedural WAV."
+    },
+    {
+      "id": "sfx_dragon_claw",
+      "name": "SFX \u2014 dragon claw strike",
+      "category": "other",
+      "source": "other",
+      "file": "../../sfx/dragon_claw.ogg",
+      "notes": "M65 Dragon Expansion. Procedural WAV."
+    },
+    {
+      "id": "sfx_dragon_death",
+      "name": "SFX \u2014 dragon death",
+      "category": "other",
+      "source": "other",
+      "file": "../../sfx/dragon_death.ogg",
+      "notes": "M65 Dragon Expansion. Procedural WAV."
+    },
+    {
+      "id": "tap_fx_blade",
+      "name": "Tap FX Blade",
+      "category": "sprite",
+      "source": "pixellab",
+      "file": "../images/tap_fx/blade.png",
+      "prompt": "sword slash arc, pixel art",
+      "notes": "M78 tap weapon effect sprite"
+    },
+    {
+      "id": "tap_fx_bow",
+      "name": "Tap FX Bow",
+      "category": "sprite",
+      "source": "pixellab",
+      "file": "../images/tap_fx/bow.png",
+      "prompt": "flying arrow, pixel art",
+      "notes": "M78 tap weapon effect sprite"
+    },
+    {
+      "id": "tap_fx_catapult",
+      "name": "Tap FX Boulder",
+      "category": "sprite",
+      "source": "pixellab",
+      "file": "../images/tap_fx/catapult.png",
+      "prompt": "boulder projectile, pixel art",
+      "notes": "M78 tap weapon effect sprite"
+    },
+    {
+      "id": "tap_fx_star_caller",
+      "name": "Tap FX Star",
+      "category": "sprite",
+      "source": "pixellab",
+      "file": "../images/tap_fx/star_caller.png",
+      "prompt": "falling star, pixel art",
+      "notes": "M78 tap weapon effect sprite"
+    },
+    {
+      "id": "tap_fx_ninja_stars",
+      "name": "Tap FX Throwing Knives",
+      "category": "sprite",
+      "source": "pixellab",
+      "file": "../images/tap_fx/ninja_stars.png",
+      "prompt": "three throwing knives, pixel art",
+      "notes": "M78 tap weapon effect sprite"
+    },
+    {
+      "id": "tap_fx_fireball",
+      "name": "Tap FX Fireball",
+      "category": "sprite",
+      "source": "pixellab",
+      "file": "../images/tap_fx/fireball.png",
+      "prompt": "flaming fireball, pixel art",
+      "notes": "M78 tap weapon effect sprite"
+    },
+    {
+      "id": "tap_fx_dragon_call",
+      "name": "Tap FX Dragon",
+      "category": "sprite",
+      "source": "pixellab",
+      "file": "../images/tap_fx/dragon_call.png",
+      "prompt": "red dragon breathing fire, pixel art",
+      "notes": "M78 tap weapon effect sprite"
+    },
+    {
+      "id": "tap_fx_spirit_hammer",
+      "name": "Tap FX Spirit Hammer",
+      "category": "sprite",
+      "source": "pixellab",
+      "file": "../images/tap_fx/spirit_hammer.png",
+      "prompt": "glowing blue spectral hammer, pixel art",
+      "notes": "M78 tap weapon effect sprite"
+    },
+    {
+      "id": "tap_fx_void_lance",
+      "name": "Tap FX Void Lance",
+      "category": "sprite",
+      "source": "pixellab",
+      "file": "../images/tap_fx/void_lance.png",
+      "prompt": "purple void energy lance, pixel art",
+      "notes": "M78 tap weapon effect sprite"
+    }
   ],
   "reports": [
     {
@@ -2145,7 +2300,7 @@
         "Added 7 dragon weapon bases (dragonfang_dagger, dragonfang_sword, dragonfang_greatsword, wyrmscale_bow, dragonbone_staff, drakehammer, dragontooth_wand) and 8 dragon armor pieces (dragonscale_cloth, wyrmscale_helm, wyrmscale_chest, dragonsteel_chest, dragonhide_legs, dragonclaw_gauntlets, dragonheart_ring, dragontooth_amulet)",
         "Confirmed the existing Dragon Knight hero class (id: dragon_knight) and its 4 skills (dragon_claw, breath_weapon, dragon_scales, draconic_fury) each ship with 2 talents matching the rest of the game",
         "Added Drakehold as the Act VI town with full service slate (merchant, tavern, cleric, blacksmith, enchanter, forge, blackmarket)",
-        "Generated 4 dragon assets under public/images/dragon_expansion/ (M68 upgrade: backgrounds via OpenAI gpt-image-1 painterly, sprite + icon via PixelLab pixel art — replaced original SVG placeholders).",
+        "Generated 4 dragon assets under public/images/dragon_expansion/ (M68 upgrade: backgrounds via OpenAI gpt-image-1 painterly, sprite + icon via PixelLab pixel art \u2014 replaced original SVG placeholders).",
         "Generated 6 dragon SFX placeholder WAVs (dragon_roar, dragon_breath_fire, dragon_breath_ice, dragon_wing_flap, dragon_claw, dragon_death) under public/sfx/",
         "Cataloged all new assets in demo-assets/assets.json",
         "Added a standalone dragon_expansion.html release page under public/demo-assets/",
@@ -2708,6 +2863,24 @@
         "Passive trees unlock 'capstone' visual effects on the character's combat sprite at max rank (aura, particles)."
       ],
       "notes": "The honest story of this milestone: in M46\u2013M53 a long feedback list was handed to Claude, and instead of either implementing or explicitly deferring each item, several large features (Black Market, passive trees, parallax, branching dialog, travel animations, talent content, 14px floor, Attack/Spell stats, Hire Custom level selector, boss sprite scaling, the GameMenuScreen blank-screen bug) got silently shelved into changelog lines that said 'deferred'. The user caught this, pushed back hard, and added a NO SILENT SHELVING clause to both CLAUDE.md files that explicitly calls out the failure mode by name. This milestone is the resolution pass \u2014 every single one of those shelved items was implemented in a single coordinated session using 7 parallel sub-agents (one per major feature) plus inline work on bug fixes and UX polish. The meta bit: the fix for 'Claude silently shelves work' had to itself be a written instruction inside Claude's own operating manual, because the behavior was emerging from a soft tendency to reduce scope under pressure \u2014 it needed a hard constraint to push against. It worked. Build is green, nothing was deferred, and the user trust debt from the original fiasco is paid back with interest."
+    },
+    {
+      "milestone": "Rebalance Survey \u2014 M77",
+      "date": "2026-04-13",
+      "summary": "First full-suite simulation snapshot (24 scenarios x 200 runs) covering all 19 hero classes, 10 companions, 10 tap weapons, and 10 tap utilities, with auto-computed outliers feeding the M78 rebalance pass.",
+      "changes": [
+        "Captured m77.json snapshot from the rebalance harness",
+        "Added rebalance-survey.html with Chart.js visualizations for hero DPS/HPS, companions, taps, utilities, outliers, and a drift placeholder",
+        "Wired the report into Featured Reports via REPORT_HTML_MAP"
+      ],
+      "bugs": [],
+      "suggestions": [
+        "Capture additional milestone snapshots so the drift line chart becomes meaningful"
+      ],
+      "recommendations": [
+        "Use the auto-computed outliers as the starting list for the M78 rebalance pass"
+      ],
+      "notes": "Loads ./rebalance_snapshots/m77.json at runtime; snapshot file already lives in the assets directory."
     }
   ]
 }
