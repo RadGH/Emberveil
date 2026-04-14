@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="rsg-game" content="Emberveil · M72 — Tap Weapons">
+<title>Tap Weapons — Emberveil M72</title>
+<script src="./_header.js" defer></script>
+<style>
+  :root {
+    --bg0: #080507;
+    --bg1: #120a0e;
+    --ink: #f0e8d0;
+    --muted: #9a8a70;
+    --gold: #e8a040;
+    --gold-glow: #ffc060;
+    --ember: #ff7030;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg0); color: var(--ink); font-family: Inter, system-ui, sans-serif; }
+  body {
+    background:
+      radial-gradient(ellipse at top, #1a0a10 0%, #080507 60%),
+      radial-gradient(ellipse at bottom, #200810 0%, transparent 70%);
+    min-height: 100vh;
+  }
+  main { max-width: 980px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+  h2 { font-family: Cinzel, serif; color: var(--gold); font-size: 1.4rem; letter-spacing: 0.08em; border-bottom: 1px solid rgba(232,160,64,0.25); padding-bottom: 0.4rem; margin-top: 2.5rem; }
+  p { color: #d8ccb0; line-height: 1.55; font-size: 0.95rem; }
+  .muted { color: var(--muted); }
+
+  /* Hero */
+  .hero {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 2.5rem 1rem 3rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: radial-gradient(ellipse at center, rgba(232,160,64,0.12), transparent 65%);
+    border: 1px solid rgba(232,160,64,0.2);
+  }
+  .hero::before {
+    content:''; position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,192,96,0.15) 50%, transparent 70%);
+    transform: translateX(-100%);
+    animation: swipe 4.5s ease-in-out infinite;
+  }
+  @keyframes swipe { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+  .hero h1 {
+    font-family: Cinzel, serif;
+    font-size: clamp(2.2rem, 7vw, 4.2rem);
+    margin: 0;
+    letter-spacing: 0.14em;
+    color: var(--gold-glow);
+    text-shadow: 0 0 16px rgba(255,192,96,0.7), 0 0 30px rgba(255,112,48,0.4);
+    animation: pulse 2.4s ease-in-out infinite;
+    position: relative;
+  }
+  @keyframes pulse { 0%,100% { text-shadow: 0 0 16px rgba(255,192,96,0.55), 0 0 30px rgba(255,112,48,0.3);} 50% { text-shadow: 0 0 24px rgba(255,224,128,0.9), 0 0 48px rgba(255,112,48,0.6);} }
+  .hero .tag { display: block; margin-top: 0.6rem; color: #c9b893; letter-spacing: 0.3em; font-size: 0.75rem; text-transform: uppercase; }
+
+  /* sections fade in */
+  section { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  section.visible { opacity: 1; transform: none; }
+
+  .grid { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+  .card {
+    background: linear-gradient(180deg, rgba(40,20,20,0.55), rgba(20,10,14,0.7));
+    border: 1px solid rgba(232,160,64,0.18);
+    border-radius: 12px;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s, border-color .25s, box-shadow .25s;
+  }
+  .card:hover { transform: translateY(-3px); border-color: rgba(232,160,64,0.5); box-shadow: 0 6px 24px rgba(255,112,48,0.15); }
+  .card h3 { margin: 0 0 0.2rem; font-size: 0.98rem; color: var(--gold-glow); font-family: Cinzel, serif; }
+  .card .sub { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .card .desc { font-size: 0.8rem; color: #d8ccb0; margin-top: 0.6rem; line-height: 1.45; }
+  .card .meta { font-size: 0.7rem; color: #bfa470; margin-top: 0.5rem; }
+  .icon {
+    width: 72px; height: 72px; margin: 0 auto 0.6rem; display: block;
+  }
+  .icon svg { width: 100%; height: 100%; }
+
+  /* per-icon animations */
+  .swipe { animation: iconSwipe 1.8s ease-in-out infinite; transform-origin: center; }
+  @keyframes iconSwipe { 0%,100% { transform: rotate(-12deg); } 50% { transform: rotate(18deg); } }
+  .bob { animation: iconBob 2.4s ease-in-out infinite; }
+  @keyframes iconBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .spin { animation: iconSpin 3s linear infinite; transform-origin: center; }
+  @keyframes iconSpin { to { transform: rotate(360deg); } }
+  .pulseIcon { animation: iconPulse 1.6s ease-in-out infinite; transform-origin: center; }
+  @keyframes iconPulse { 0%,100% { transform: scale(1); filter: drop-shadow(0 0 4px #ff7030);} 50% { transform: scale(1.12); filter: drop-shadow(0 0 12px #ffc060);} }
+  .flicker { animation: flicker 1.2s ease-in-out infinite; }
+  @keyframes flicker { 0%,100% { opacity: 1; } 30% { opacity: 0.4; } 50% { opacity: 1; } 70% { opacity: 0.55; } }
+  .rise { animation: rise 2.6s ease-in-out infinite; }
+  @keyframes rise { 0%,100% { transform: translateY(4px); } 50% { transform: translateY(-6px); } }
+
+  .unlock-list { display: grid; grid-template-columns: 1fr; gap: 0.35rem; list-style: none; padding: 0; }
+  .unlock-list li {
+    background: rgba(30,18,18,0.5);
+    border-left: 3px solid var(--gold);
+    padding: 0.6rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+  .unlock-list strong { color: var(--gold-glow); }
+</style>
+</head>
+<body>
+<main>
+
+<div class="hero">
+  <h1>TAP WEAPONS</h1>
+  <span class="tag">Milestone 72 · single-tap combat tools</span>
+</div>
+
+<section>
+  <h2>How it works</h2>
+  <p>Every party carries a <strong style="color:var(--gold-glow)">Tap Weapon</strong> and a <strong style="color:var(--gold-glow)">Tap Utility</strong>. In battle, as long as your tap cooldown has reached zero, you can click anywhere on the combat screen — <em>once per turn</em>. The game looks at what you tapped closest to: land near an enemy and your weapon fires; land near an ally and your utility triggers. Weapons and utilities share a single tap budget, so every click is a real decision.</p>
+  <p>Small weapons (Blade, Bow, Fireball) run on <strong>turn cooldowns</strong> — you can tap rapidly across the round. Heavy abilities (Dragon Call, Catapult, Phoenix Feather) use <strong>round cooldowns</strong>, making you commit and let the enemy have their turn before you can tap again.</p>
+</section>
+
+<section>
+  <h2>Weapons (10)</h2>
+  <div class="grid" id="weapons-grid"></div>
+</section>
+
+<section>
+  <h2>Utilities (10)</h2>
+  <div class="grid" id="utilities-grid"></div>
+</section>
+
+<section>
+  <h2>How to unlock</h2>
+  <ul class="unlock-list">
+    <li><strong>Blade</strong> — starting item, equipped by default.</li>
+    <li><strong>Rejuvenate / Barrier / Enchant</strong> — for sale at the Tap Weapons vendor in any town.</li>
+    <li><strong>Bow</strong> — dropped by the Act I boss in Thornwood.</li>
+    <li><strong>Fireball</strong> — dropped by the Act II boss on the Ember Plateau.</li>
+    <li><strong>Catapult</strong> — dropped by the Act III boss in the Shattered Core.</li>
+    <li><strong>Star Caller</strong> — dropped by the Act IV boss in the Eternal Void.</li>
+    <li><strong>Spirit Hammer</strong> — dropped by the Act V boss in the Primordial Nexus.</li>
+    <li><strong>Dragon Call</strong> — dropped by the Dragon King in Act VI.</li>
+    <li><strong>Ninja Stars / Chain Lightning / Void Lance</strong> — rotating mini-boss drops.</li>
+    <li><strong>Group Heal</strong> — pass the hermit healer's INT 10 oath encounter.</li>
+    <li><strong>Cleanse / Phoenix Feather</strong> — the Ancient Runestones circle (INT 13 decipher / STR 14 smash).</li>
+    <li><strong>Haste / Rally</strong> — the Wind-Dancer's DEX 13 match or INT 12 talk-down.</li>
+    <li><strong>Deflect / Taunt Totem</strong> — the Silent Shield's STR 13 / CON 12 ritual.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Tips &amp; strategy</h2>
+  <p>• Keep a fast utility (Rejuvenate, Enchant) equipped early — low cooldowns mean constant value across a fight.</p>
+  <p>• Catapult and Star Caller can one-shot trash mobs if you pick a dense group — always tap the middle of a cluster.</p>
+  <p>• Dragon Call's 8-round cooldown means you'll usually get it off <em>once</em> in a boss fight. Save it for the second phase.</p>
+  <p>• Deflect is a single-hit absorb — use it on your tank the instant a boss charges their big move.</p>
+  <p>• Phoenix Feather has the longest cooldown in the game. Don't waste it on a fight you could have finished.</p>
+</section>
+
+</main>
+
+<script>
+// Tap weapon gallery data + animated SVG icons
+const WEAPONS = [
+  { id:'blade', name:'Tap Blade', cd:'No cooldown', power:'8–14', desc:'A quick slash on the tapped enemy.', color:'#d8d8e0', svg:`<svg viewBox="0 0 48 48"><g class="swipe"><line x1="10" y1="38" x2="38" y2="10" stroke="#d8d8e0" stroke-width="4" stroke-linecap="round"/><line x1="14" y1="14" x2="22" y2="22" stroke="#b8a060" stroke-width="2"/></g></svg>` },
+  { id:'bow', name:"Hunter's Bow", cd:'CD 2 turns', power:'25–40', desc:'Arrow arcs in from off-screen.', color:'#d8c890', svg:`<svg viewBox="0 0 48 48"><path d="M16 10 A16 16 0 0 1 16 38" stroke="#a86840" stroke-width="3" fill="none"/><line x1="28" y1="6" x2="28" y2="42" stroke="#e0d8c0" stroke-width="1.5"/><line class="swipe" x1="12" y1="24" x2="36" y2="24" stroke="#f0e8d0" stroke-width="2.5"/></svg>` },
+  { id:'catapult', name:'Field Catapult', cd:'CD 5 rounds', power:'35–55', desc:'Boulder lands on an enemy group.', color:'#a08060', svg:`<svg viewBox="0 0 48 48"><line x1="8" y1="36" x2="40" y2="12" stroke="#8a6a40" stroke-width="3"/><line x1="8" y1="36" x2="32" y2="36" stroke="#8a6a40" stroke-width="3"/><circle class="rise" cx="38" cy="12" r="6" fill="#6a4a30"/></svg>` },
+  { id:'star_caller', name:'Star Caller', cd:'CD 4 rounds', power:'45–65', desc:'Burning star falls and explodes.', color:'#ffe080', svg:`<svg viewBox="0 0 48 48"><polygon class="pulseIcon" points="24,6 28,20 42,20 30,28 34,42 24,34 14,42 18,28 6,20 20,20" fill="#ffe080"/></svg>` },
+  { id:'ninja_stars', name:'Ninja Stars', cd:'CD 2 turns', power:'12–18', desc:'Three shuriken fan out.', color:'#b0b8c0', svg:`<svg viewBox="0 0 48 48"><g class="spin" style="transform-origin:24px 24px"><polygon points="24,8 28,20 40,24 28,28 24,40 20,28 8,24 20,20" fill="#9098a8"/></g></svg>` },
+  { id:'fireball', name:'Fireball', cd:'CD 3 turns', power:'30–45', desc:'Explodes with splash damage.', color:'#ff8030', svg:`<svg viewBox="0 0 48 48"><defs><radialGradient id="fbg"><stop offset="0%" stop-color="#fff0a0"/><stop offset="50%" stop-color="#f08020"/><stop offset="100%" stop-color="#601010"/></radialGradient></defs><circle class="pulseIcon" cx="24" cy="24" r="16" fill="url(#fbg)"/></svg>` },
+  { id:'dragon_call', name:'Dragon Call', cd:'CD 8 rounds', power:'30–50', desc:'Dragon breathes across ALL enemies.', color:'#e85020', svg:`<svg viewBox="0 0 48 48"><path class="bob" d="M6 28 Q14 12 24 22 Q34 32 42 16" stroke="#c04040" stroke-width="3" fill="none" stroke-linecap="round"/><circle class="flicker" cx="42" cy="16" r="3" fill="#e85020"/></svg>` },
+  { id:'chain_lightning', name:'Chain Lightning', cd:'CD 3 turns', power:'18–28', desc:'Zaps then chains to 2 more enemies.', color:'#80d0ff', svg:`<svg viewBox="0 0 48 48"><polyline class="flicker" points="10,8 24,22 18,26 36,42" stroke="#80d0ff" stroke-width="4" fill="none" stroke-linecap="round"/></svg>` },
+  { id:'spirit_hammer', name:'Spirit Hammer', cd:'CD 4 rounds', power:'40–60', desc:'Spectral hammer slams down.', color:'#c0d8ff', svg:`<svg viewBox="0 0 48 48"><g class="bob"><rect x="10" y="10" width="28" height="12" fill="rgba(200,220,255,0.75)" stroke="#a0c0e0"/><rect x="22" y="20" width="4" height="20" fill="#8090a8"/></g></svg>` },
+  { id:'void_lance', name:'Void Lance', cd:'CD 3 rounds', power:'25–40', desc:'Pierces in a line through every enemy.', color:'#a060e0', svg:`<svg viewBox="0 0 48 48"><line class="swipe" x1="8" y1="40" x2="40" y2="8" stroke="#a060e0" stroke-width="4" stroke-linecap="round"/><polygon points="40,8 32,12 34,16" fill="#c080ff"/></svg>` },
+];
+
+const UTILITIES = [
+  { id:'rejuvenate', name:'Rejuvenate', cd:'CD 3 turns', desc:'HoT on the ally nearest the tap.', color:'#60e080', svg:`<svg viewBox="0 0 48 48"><circle class="pulseIcon" cx="24" cy="24" r="14" stroke="#60e080" stroke-width="3" fill="none"/><circle cx="24" cy="24" r="4" fill="#a0ffa0"/></svg>` },
+  { id:'heal', name:'Group Heal', cd:'CD 4 rounds', desc:'50 HP split across up to 3 allies.', color:'#a0ffa0', svg:`<svg viewBox="0 0 48 48"><g class="pulseIcon" style="transform-origin:24px 24px"><rect x="20" y="8" width="8" height="32" fill="#60e060"/><rect x="8" y="20" width="32" height="8" fill="#60e060"/></g></svg>` },
+  { id:'shield', name:'Barrier', cd:'CD 3 rounds', desc:'25 barrier HP on up to 3 allies.', color:'#4080c0', svg:`<svg viewBox="0 0 48 48"><path class="bob" d="M24 6 L40 14 L38 34 L24 42 L10 34 L8 14 Z" fill="#4080c0" stroke="#a0d0ff" stroke-width="1.5"/></svg>` },
+  { id:'deflect', name:'Deflect', cd:'CD 5 rounds', desc:'Absorbs the next incoming hit in full.', color:'#c0d8ff', svg:`<svg viewBox="0 0 48 48"><path class="spin" style="transform-origin:24px 24px" d="M24 10 A14 14 0 0 1 38 24" stroke="#c0d8ff" stroke-width="4" fill="none"/><path class="spin" style="transform-origin:24px 24px" d="M24 38 A14 14 0 0 1 10 24" stroke="#c0d8ff" stroke-width="4" fill="none"/></svg>` },
+  { id:'enchant', name:'Enchant Weapon', cd:'CD 2 turns', desc:'Bonus damage on an ally until replaced.', color:'#e0a0ff', svg:`<svg viewBox="0 0 48 48"><g class="spin" style="transform-origin:24px 24px"><circle cx="24" cy="10" r="3" fill="#e0a0ff"/><circle cx="37" cy="20" r="3" fill="#e0a0ff"/><circle cx="32" cy="36" r="3" fill="#e0a0ff"/><circle cx="16" cy="36" r="3" fill="#e0a0ff"/><circle cx="11" cy="20" r="3" fill="#e0a0ff"/></g><circle cx="24" cy="24" r="4" fill="#ffe0ff"/></svg>` },
+  { id:'cleanse', name:'Cleanse', cd:'CD 3 rounds', desc:'Removes all debuffs and heals 15.', color:'#ffffff', svg:`<svg viewBox="0 0 48 48"><circle class="pulseIcon" cx="24" cy="24" r="14" stroke="#ffffff" stroke-width="3" fill="none"/><polyline points="16,26 22,32 34,18" stroke="#e0f0ff" stroke-width="3" fill="none" stroke-linecap="round"/></svg>` },
+  { id:'rally', name:'Rally', cd:'CD 6 rounds', desc:'Party-wide +15% damage for 2 rounds.', color:'#ffc040', svg:`<svg viewBox="0 0 48 48"><g class="rise"><polyline points="10,32 24,10 38,32" stroke="#ffc040" stroke-width="4" fill="none" stroke-linecap="round"/><line x1="10" y1="38" x2="38" y2="38" stroke="#ffc040" stroke-width="3" stroke-linecap="round"/></g></svg>` },
+  { id:'haste', name:'Haste', cd:'CD 5 rounds', desc:'Tapped ally acts twice next turn.', color:'#80ffc0', svg:`<svg viewBox="0 0 48 48"><g class="swipe"><polyline points="10,16 28,16 20,24 38,24" stroke="#80ffc0" stroke-width="3" fill="none" stroke-linecap="round"/><polyline points="10,32 28,32 20,40 38,40" stroke="#80ffc0" stroke-width="3" fill="none" stroke-linecap="round"/></g></svg>` },
+  { id:'taunt_totem', name:'Taunt Totem', cd:'CD 6 rounds', desc:'Totem draws enemy attacks for 2 rounds.', color:'#c08040', svg:`<svg viewBox="0 0 48 48"><rect class="bob" x="18" y="8" width="12" height="32" fill="#c08040"/><circle cx="24" cy="18" r="4" fill="#e8c060"/></svg>` },
+  { id:'phoenix_feather', name:'Phoenix Feather', cd:'CD 10 rounds', desc:'Revive a fallen ally at 30% HP.', color:'#ff8040', svg:`<svg viewBox="0 0 48 48"><path class="rise" d="M12 40 Q24 8 40 18" stroke="#ff8040" stroke-width="4" fill="none" stroke-linecap="round"/><path class="flicker" d="M14 38 Q22 16 36 22 Q30 30 26 34 Q20 38 14 38Z" fill="rgba(255,160,60,0.55)"/></svg>` },
+];
+
+function renderCards(list, targetId) {
+  const el = document.getElementById(targetId);
+  el.innerHTML = list.map(w => `
+    <div class="card">
+      <div class="icon">${w.svg}</div>
+      <h3 style="color:${w.color}">${w.name}</h3>
+      <div class="sub">${w.cd}${w.power ? ' · ' + w.power : ''}</div>
+      <div class="desc">${w.desc}</div>
+    </div>
+  `).join('');
+}
+renderCards(WEAPONS, 'weapons-grid');
+renderCards(UTILITIES, 'utilities-grid');
+
+// Fade sections in on scroll
+const io = new IntersectionObserver((entries) => {
+  for (const e of entries) if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+}, { threshold: 0.12 });
+document.querySelectorAll('section').forEach(s => io.observe(s));
+</script>
+</body>
+</html>

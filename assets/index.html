@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emberveil — Assets</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+    :root {
+      --bg:        #0a0608;
+      --surface:   #12090d;
+      --card:      #1a1218;
+      --card-h:    #241a20;
+      --accent:    #e8a020;
+      --accent-b:  #f0c060;
+      --ember1:    #c04030;
+      --gold:      #e8a020;
+      --gold-bright:#f8d880;
+      --text:      #f0e8d8;
+      --muted:     #8a7a6a;
+      --border:    rgba(232,160,32,0.2);
+      --radius:    10px;
+      --font-display:'Cinzel',Georgia,serif;
+      --font-ui:'Inter','Segoe UI',sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    h1, h2, h3, .display { font-family: var(--font-display); }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 40%, var(--ember1) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .feature-reports { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .feature-report {
+      display: block;
+      background: linear-gradient(135deg, rgba(232,160,32,0.08), rgba(192,64,48,0.06));
+      border: 1px solid rgba(232,160,32,0.3);
+      border-radius: 12px;
+      padding: 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .feature-report:hover { transform: translateY(-2px); border-color: rgba(232,160,32,0.6); box-shadow: 0 8px 24px rgba(232,160,32,0.12); }
+    .feature-report .fr-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+    .feature-report .fr-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; margin: 6px 0 8px; color: var(--gold-bright); }
+    .feature-report .fr-summary { font-size: 13px; color: var(--text); opacity: 0.85; line-height: 1.5; }
+    .feature-report .fr-date { font-size: 11px; color: var(--muted); margin-top: 10px; }
+
+    header {
+      max-width: 1200px;
+      margin: 24px auto 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    header h1 { font-size: 20px; font-weight: 700; color: var(--accent-b); }
+    header .sub { font-size: 13px; color: var(--muted); }
+
+    .toolbar {
+      max-width: 1200px;
+      margin: 0 auto 20px;
+      padding: 14px 24px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+    main { margin-top: 0 !important; }
+    #audio-section, #reports-section { margin-top: 24px !important; }
+    .filter-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(232,160,32,0.04), rgba(192,64,48,0.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--muted);
+    }
+    .empty-state h2 { font-size: 18px; margin-bottom: 8px; color: var(--text); }
+    .empty-state p { font-size: 13px; max-width: 400px; margin: 0 auto; }
+    .empty-state code {
+      display: inline-block;
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--accent-b);
+    }
+
+    .section { margin-bottom: 40px; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title span {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      margin-left: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .asset-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .asset-card:hover { background: var(--card-h); border-color: var(--accent); }
+
+    .thumb, #modal-img {
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+    }
+    .thumb {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: var(--surface);
+    }
+    .thumb-missing {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 28px;
+    }
+
+    .card-body { padding: 10px 12px; }
+    .card-name { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-meta { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+    .badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .badge-openai  { background: #1a3a2a; color: #5cbf7f; border: 1px solid #2a5a3a; }
+    .badge-pixellab{ background: #2a1a3a; color: #bf80ff; border: 1px solid #4a2a6a; }
+    .badge-svg     { background: #1a2a3a; color: #60aaee; border: 1px solid #2a4a6a; }
+    .badge-manual  { background: #2a2a1a; color: #ccbb60; border: 1px solid #4a4a2a; }
+    .badge-other   { background: #2a1a1a; color: #cc7777; border: 1px solid #4a2a2a; }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-img { width: 100%; max-height: 400px; object-fit: contain; background: var(--surface); border-radius: 12px 12px 0 0; }
+    .modal-body { padding: 20px; }
+    .modal-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .modal-row { margin-bottom: 10px; }
+    .modal-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+    .modal-value { font-size: 13px; color: var(--text); }
+    .modal-prompt { font-family: monospace; font-size: 12px; background: var(--surface); padding: 10px 12px; border-radius: 6px; border: 1px solid var(--border); white-space: pre-wrap; word-break: break-word; }
+    .modal-close {
+      float: right;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    #total-count { color: var(--muted); font-size: 13px; }
+
+    /* Reports */
+    #audio-section {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(232,160,32,0.04), rgba(192,64,48,0.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    #audio-section .audio-h {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--gold-bright);
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .audio-toolbar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .audio-filter {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-size: 13px;
+    }
+    .audio-filter.active { background: var(--gold); color: #1a0a05; border-color: var(--gold-bright); font-weight: 600; }
+    .audio-group-title { font-family: var(--font-display); color: var(--accent-b); font-size: 1.05rem; margin: 18px 0 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .audio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+    .audio-row {
+      display: flex; flex-direction: column; gap: 6px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .audio-row .audio-name { font-size: 12px; color: var(--text); font-family: monospace; word-break: break-all; }
+    .audio-row audio, #modal-audio {
+      width: 100%;
+      height: 32px;
+      color-scheme: dark;
+      border-radius: 6px;
+    }
+    #reports-section {
+      max-width: 1200px;
+      margin: 0 auto 48px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(232,160,32,0.04), rgba(192,64,48,0.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      scroll-margin-top: 72px;
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    #reports-section h2 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .report-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .report-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .report-header:hover { background: var(--card-h); }
+    .report-milestone {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-b);
+    }
+    .report-date { font-size: 12px; color: var(--muted); }
+    .report-summary { font-size: 12px; color: var(--text); flex: 1; opacity: 0.8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .report-toggle { font-size: 11px; color: var(--muted); margin-left: auto; flex-shrink: 0; }
+    .report-body {
+      display: none;
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .report-body.open { display: block; }
+    .report-section-heading {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 14px 0 6px;
+    }
+    .report-text {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .report-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .report-list li {
+      font-size: 13px;
+      color: var(--text);
+      padding: 3px 0;
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .report-list li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    .reports-empty {
+      color: var(--muted);
+      font-size: 13px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<script src="./_header.js?v=3" data-base="assets"></script>
+
+<header>
+  <h1 id="game-title" class="page-title">Emberveil</h1>
+  <div class="sub">— Assets</div>
+  <div id="total-count" style="margin-left:auto;"></div>
+</header>
+
+<div class="toolbar" id="toolbar">
+  <button class="filter-btn active" data-cat="all">All</button>
+</div>
+
+<main id="main"></main>
+
+<section id="audio-section">
+  <h2 class="audio-h">Audio Library <span id="audio-count"></span></h2>
+  <div class="audio-toolbar">
+    <button class="audio-filter active" data-atype="all">All</button>
+    <button class="audio-filter" data-atype="music">Music</button>
+    <button class="audio-filter" data-atype="sfx">SFX</button>
+  </div>
+  <div id="audio-list"></div>
+</section>
+
+<section id="reports-section">
+  <h2>Milestone Reports <span id="report-count"></span></h2>
+  <div id="reports-list"><p class="reports-empty">No reports yet. Reports are added after each major milestone.</p></div>
+</section>
+
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-body" style="padding-bottom:4px;">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+    </div>
+    <img id="modal-img" class="modal-img" src="" alt="">
+    <div class="modal-body" id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+const BADGE_CLASSES = {
+  openai:   'badge-openai',
+  pixellab: 'badge-pixellab',
+  svg:      'badge-svg',
+  manual:   'badge-manual',
+};
+
+function badgeClass(source) {
+  return BADGE_CLASSES[source?.toLowerCase()] ?? 'badge-other';
+}
+
+function sourceLabel(source) {
+  const map = { openai: 'OpenAI', pixellab: 'PixelLab', svg: 'SVG', manual: 'Manual' };
+  return map[source?.toLowerCase()] ?? (source || 'Other');
+}
+
+let allAssets = [];
+let activeFilter = 'all';
+
+const HERO_CLASSES = new Set([
+  'warrior','mage','cleric','rogue','ranger','paladin','bard','druid','monk',
+  'warlock','pyromancer','demon_hunter','scavenger','swashbuckler','dragon_knight','necromancer'
+]);
+const COMPANION_IDS = new Set([
+  'war_dog','corrupted_wolf','giant_spider'
+]);
+const BOSS_IDS = new Set([
+  'emberveil_sovereign','archfiend_malgrath','star_horror','cosmic_titan',
+  'void_wraith','void_prophet','the_unraveler','primordial_elemental',
+  'abyssal_knight','reality_shard','genesis_worm','the_architect',
+  'grax_veil_touched','lava_titan','goblin_warlord','bandit_captain',
+  'veil_warden','veil_sorcerer'
+]);
+
+function refineCategory(asset) {
+  const cat = asset.category || 'other';
+  if (cat !== 'sprite' && cat !== 'icon' && cat !== 'portrait') return cat;
+  const id = (asset.id || '').replace(/^sprite_/, '').replace(/_(south|north|east|west|icon|portrait)(_flipped)?$/, '');
+  if (HERO_CLASSES.has(id)) return 'heroes';
+  if (COMPANION_IDS.has(id)) return 'companions';
+  if (BOSS_IDS.has(id)) return 'bosses';
+  // default remaining sprites to enemies
+  return 'enemies';
+}
+
+function groupByCategory(assets) {
+  const groups = {};
+  for (const a of assets) {
+    const cat = refineCategory(a);
+    if (!groups[cat]) groups[cat] = [];
+    groups[cat].push(a);
+  }
+  return groups;
+}
+
+const CATEGORY_ORDER = ['heroes','companions','enemies','bosses','background','portrait','icon','ui','sprite','other'];
+function sortedCategoryEntries(groups) {
+  return Object.entries(groups).sort((a, b) => {
+    const ia = CATEGORY_ORDER.indexOf(a[0]); const ib = CATEGORY_ORDER.indexOf(b[0]);
+    return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+  });
+}
+
+function renderCard(asset) {
+  const card = document.createElement('div');
+  card.className = 'asset-card';
+  card.title = asset.name;
+
+  const thumbSrc = asset.file ? asset.file : null;
+  const thumbHtml = thumbSrc
+    ? `<img class="thumb" src="${thumbSrc}" alt="${asset.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+      + `<div class="thumb-missing" style="display:none">🖼</div>`
+    : `<div class="thumb-missing">🖼</div>`;
+
+  card.innerHTML = `
+    ${thumbHtml}
+    <div class="card-body">
+      <div class="card-name">${asset.name}</div>
+      <div class="card-meta">
+        <span class="badge ${badgeClass(asset.source)}">${sourceLabel(asset.source)}</span>
+        ${asset.category ? `<span class="badge badge-manual" style="background:#1e1e2a;color:var(--muted);border-color:var(--border)">${asset.category}</span>` : ''}
+      </div>
+    </div>`;
+
+  card.addEventListener('click', () => openModal(asset));
+  return card;
+}
+
+function isAudioFile(f) { return /\.(mp3|wav|ogg|m4a)$/i.test(f || ''); }
+function openModal(asset) {
+  const modal = document.getElementById('modal');
+  const img = document.getElementById('modal-img');
+  const audio = isAudioFile(asset.file);
+  img.src = audio ? '' : (asset.file || '');
+  img.alt = asset.name;
+  img.style.display = (asset.file && !audio) ? 'block' : 'none';
+  let existingAudio = document.getElementById('modal-audio');
+  if (existingAudio) existingAudio.remove();
+  if (audio) {
+    const el = document.createElement('audio');
+    el.id = 'modal-audio';
+    el.controls = true;
+    el.src = asset.file;
+    el.style.cssText = 'width:100%;margin:12px 0;';
+    img.parentNode.insertBefore(el, img.nextSibling);
+  }
+
+  let html = `<div class="modal-title">${asset.name}</div>`;
+
+  if (asset.source) {
+    html += `<div class="modal-row">
+      <div class="modal-label">Source</div>
+      <div class="modal-value"><span class="badge ${badgeClass(asset.source)}">${sourceLabel(asset.source)}</span></div>
+    </div>`;
+  }
+  if (asset.category) {
+    html += `<div class="modal-row">
+      <div class="modal-label">Category</div>
+      <div class="modal-value">${asset.category}</div>
+    </div>`;
+  }
+  if (asset.prompt) {
+    html += `<div class="modal-row">
+      <div class="modal-label">Prompt</div>
+      <div class="modal-prompt">${asset.prompt}</div>
+    </div>`;
+  }
+  if (asset.notes) {
+    html += `<div class="modal-row">
+      <div class="modal-label">Notes</div>
+      <div class="modal-value">${asset.notes}</div>
+    </div>`;
+  }
+  if (asset.file) {
+    html += `<div class="modal-row">
+      <div class="modal-label">File</div>
+      <div class="modal-value" style="font-family:monospace;font-size:12px;color:var(--muted)">${asset.file}</div>
+    </div>`;
+  }
+
+  document.getElementById('modal-content').innerHTML = html;
+  modal.classList.add('open');
+}
+
+document.getElementById('modal-close').addEventListener('click', () => {
+  document.getElementById('modal').classList.remove('open');
+});
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('modal').classList.remove('open');
+});
+
+function render(assets) {
+  const main = document.getElementById('main');
+  main.innerHTML = '';
+
+  if (!assets.length) {
+    main.innerHTML = `
+      <div class="empty-state">
+        <h2>No assets yet</h2>
+        <p>Generated images will appear here. Add entries to <strong>public/demo-assets/assets.json</strong> as you create assets.</p>
+        <code>{ "id": "...", "name": "...", "category": "...", "source": "openai|pixellab|svg", "file": "path.png", "prompt": "..." }</code>
+      </div>`;
+    return;
+  }
+
+  const groups = groupByCategory(assets);
+  for (const [cat, items] of sortedCategoryEntries(groups)) {
+    const section = document.createElement('div');
+    section.className = 'section';
+    section.innerHTML = `<div class="section-title">${cat} <span>${items.length}</span></div>`;
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    items.forEach(a => grid.appendChild(renderCard(a)));
+    section.appendChild(grid);
+    main.appendChild(section);
+  }
+}
+
+function applyFilter(cat) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+  const filtered = cat === 'all' ? allAssets : allAssets.filter(a => refineCategory(a) === cat);
+  render(filtered);
+}
+
+const REPORT_HTML_MAP = {
+  'pre-game design report': 'pre-game-report.html',
+  'milestone 53': 'milestone-53-report.html',
+  'milestone 65': 'dragon_expansion.html',
+  'milestone 72': 'tap-weapons.html'
+};
+
+function reportHtmlFile(r) {
+  const name = (r.milestone || '').toLowerCase();
+  for (const key of Object.keys(REPORT_HTML_MAP)) {
+    if (name.startsWith(key)) return REPORT_HTML_MAP[key];
+  }
+  return null;
+}
+
+function milestoneSortKey(r) {
+  const name = (r.milestone || '').toLowerCase();
+  if (name.startsWith('pre-game')) return -1;
+  const m = name.match(/milestone\s*(\d+)/);
+  return m ? parseInt(m[1], 10) : 9999;
+}
+
+function renderReports(reports) {
+  const container = document.getElementById('reports-list');
+  const countEl = document.getElementById('report-count');
+  if (!reports || !reports.length) {
+    container.innerHTML = '<p class="reports-empty">No reports yet. Reports are added after each major milestone.</p>';
+    return;
+  }
+  countEl.textContent = `(${reports.length})`;
+  container.innerHTML = '';
+
+  // Split: feature reports (have dedicated HTML) vs accordion
+  const featured = [];
+  const accordion = [];
+  reports.forEach(r => {
+    if (reportHtmlFile(r)) featured.push(r); else accordion.push(r);
+  });
+  featured.sort((a, b) => milestoneSortKey(a) - milestoneSortKey(b));
+  accordion.sort((a, b) => milestoneSortKey(a) - milestoneSortKey(b));
+
+  if (featured.length) {
+    const wrap = document.createElement('div');
+    wrap.className = 'feature-reports';
+    featured.forEach(r => {
+      const href = reportHtmlFile(r);
+      const a = document.createElement('a');
+      a.className = 'feature-report';
+      a.href = href;
+      a.innerHTML = `
+        <div class="fr-label">Featured Report</div>
+        <div class="fr-title">${r.milestone || 'Report'}</div>
+        <div class="fr-summary">${r.summary || ''}</div>
+        <div class="fr-date">${r.date || ''}</div>`;
+      wrap.appendChild(a);
+    });
+    container.appendChild(wrap);
+  }
+
+  accordion.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'report-card';
+
+    function listHtml(items) {
+      if (!items || !items.length) return '';
+      return '<ul class="report-list">' + items.map(i => `<li>${i}</li>`).join('') + '</ul>';
+    }
+    function textHtml(val) {
+      return val ? `<div class="report-text">${val}</div>` : '';
+    }
+
+    const sections = [
+      { key: 'changes',        label: 'Recent Changes' },
+      { key: 'bugs',           label: 'Known Bugs' },
+      { key: 'suggestions',    label: 'Suggestions' },
+      { key: 'recommendations',label: 'Recommendations' },
+      { key: 'ideas',          label: 'Ideas' },
+      { key: 'notes',          label: 'Notes' },
+    ];
+
+    let bodyHtml = '';
+    for (const { key, label } of sections) {
+      const val = r[key];
+      if (!val || (Array.isArray(val) && !val.length)) continue;
+      bodyHtml += `<div class="report-section-heading">${label}</div>`;
+      bodyHtml += Array.isArray(val) ? listHtml(val) : textHtml(val);
+    }
+
+    card.innerHTML = `
+      <div class="report-header" role="button" tabindex="0" aria-expanded="false">
+        <span class="report-milestone">${r.milestone || 'Milestone'}</span>
+        <span class="report-date">${r.date || ''}</span>
+        <span class="report-summary">${r.summary || ''}</span>
+        <span class="report-toggle">▸ expand</span>
+      </div>
+      <div class="report-body">${bodyHtml || '<span style="color:var(--muted);font-size:13px">No details recorded.</span>'}</div>`;
+
+    const header = card.querySelector('.report-header');
+    const body = card.querySelector('.report-body');
+    const toggle = card.querySelector('.report-toggle');
+    function toggleReport() {
+      const open = body.classList.toggle('open');
+      toggle.textContent = open ? '▾ collapse' : '▸ expand';
+      header.setAttribute('aria-expanded', open);
+    }
+    header.addEventListener('click', toggleReport);
+    header.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleReport(); } });
+
+    container.appendChild(card);
+  });
+}
+
+async function init() {
+  let data;
+  try {
+    const res = await fetch('assets.json?v=' + Date.now());
+    data = await res.json();
+  } catch {
+    render([]);
+    return;
+  }
+
+  if (data.game) document.getElementById('game-title').textContent = data.game;
+  document.title = `${data.game || 'game13'} — Assets`;
+
+  allAssets = (data.assets || []).filter(a => !isAudioFile(a.file));
+  document.getElementById('total-count').textContent = allAssets.length
+    ? `${allAssets.length} asset${allAssets.length !== 1 ? 's' : ''}`
+    : '';
+
+  renderReports(data.reports || []);
+  renderAudio();
+
+  // Build filter buttons
+  const catSet = new Set(allAssets.map(refineCategory));
+  const cats = CATEGORY_ORDER.filter(c => catSet.has(c));
+  [...catSet].forEach(c => { if (!cats.includes(c)) cats.push(c); });
+  const toolbar = document.getElementById('toolbar');
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.dataset.cat = cat;
+    btn.textContent = cat;
+    btn.addEventListener('click', () => applyFilter(cat));
+    toolbar.appendChild(btn);
+  });
+  document.querySelector('[data-cat="all"]').addEventListener('click', () => applyFilter('all'));
+
+  render(allAssets);
+}
+
+const AUDIO_FILES = {
+  music: ["boss_theme.ogg","combat_calm_01.ogg","combat_calm_02.ogg","combat_calm_03.ogg","combat_theme.ogg","intro_theme.ogg","overworld_act1.ogg","overworld_act2.ogg","overworld_act3.ogg","overworld_act4.ogg","overworld_act5.ogg","overworld_act6.ogg","title_theme.ogg"],
+  sfx: ["arrow_hit.mp3","arrow_shoot.mp3","axe_chop.mp3","block_shield.mp3","boss_roar.mp3","chest_open.mp3","crit_cue.mp3","crit_slash.mp3","dagger_stab.mp3","defeat.mp3","door_open.mp3","dragon_breath_fire.ogg","dragon_breath_ice.ogg","dragon_claw.ogg","dragon_death.ogg","dragon_roar.ogg","dragon_wing_flap.ogg","drake_screech.mp3","enemy_death.mp3","enemy_die.mp3","enemy_growl.mp3","fire_crackle.mp3","gold_gain.mp3","hero_death.mp3","hero_hurt.mp3","hero_hurt_f.mp3","hit_arrow.mp3","hit_blunt.mp3","hit_sword.mp3","item_pickup.mp3","level_up.mp3","melee_crit.mp3","melee_hit_heavy.mp3","melee_hit_light.mp3","melee_miss.mp3","melee_slash.mp3","owl_hoot.mp3","parry.mp3","portal_warp.mp3","potion_drink.mp3","potion_heal_cue.mp3","punch.mp3","quest_complete.mp3","rest_heal.mp3","shield_block.mp3","shrine_pray.mp3","spell_arcane.mp3","spell_buff.mp3","spell_dark.mp3","spell_debuff.mp3","spell_explode.mp3","spell_fire.mp3","spell_heal.mp3","spell_holy.mp3","spell_ice.mp3","spell_lightning.mp3","spell_shadow.mp3","spell_summon.mp3","status_burn.mp3","status_freeze.mp3","status_poison.mp3","status_stun.mp3","thunder_rumble.mp3","torch_lit.mp3","trap_spring.mp3","unlock.mp3","victory_fanfare.mp3","wind_gust.mp3","wolf_howl.mp3"],
+};
+let audioFilter = 'all';
+function renderAudio() {
+  const list = document.getElementById('audio-list');
+  const total = AUDIO_FILES.music.length + AUDIO_FILES.sfx.length;
+  document.getElementById('audio-count').textContent = `(${total})`;
+  function group(label, type, files) {
+    if (audioFilter !== 'all' && audioFilter !== type) return '';
+    const rows = files.map(f => `
+      <div class="audio-row">
+        <div class="audio-name">${f}</div>
+        <audio controls preload="none" src="../${type}/${f}"></audio>
+      </div>`).join('');
+    return `<div class="audio-group-title">${label} (${files.length})</div><div class="audio-grid">${rows}</div>`;
+  }
+  list.innerHTML = group('Music', 'music', AUDIO_FILES.music) + group('SFX', 'sfx', AUDIO_FILES.sfx);
+}
+document.querySelectorAll('.audio-filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    audioFilter = btn.dataset.atype;
+    document.querySelectorAll('.audio-filter').forEach(b => b.classList.toggle('active', b === btn));
+    renderAudio();
+  });
+});
+
+init();
+</script>
+</body>
+</html>
