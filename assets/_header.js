@@ -39,9 +39,9 @@
       href: ASSETS,
       label: 'Assets',
       children: [
+        { href: ASSETS + '#reports-section', label: 'Reports' },
         { href: ASSETS + '#main', label: 'Images' },
         { href: ASSETS + '#audio-section', label: 'Audio' },
-        { href: ASSETS + '#reports-section', label: 'Reports' },
         { href: ASSETS + 'rebalance.html', label: 'Rebalance' }
       ]
     },
