@@ -93,7 +93,8 @@
         'nav.rsg-shared-nav .nav-links{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;gap:1rem;padding:0.15rem 0.25rem 0.35rem;scrollbar-width:none}' +
         'nav.rsg-shared-nav .nav-links::-webkit-scrollbar{display:none}' +
         'nav.rsg-shared-nav .nav-links li{flex:0 0 auto}' +
-        'nav.rsg-shared-nav .sub-menu{position:static;display:block;background:transparent;border:none;box-shadow:none;padding:0;margin:0}' +
+        'nav.rsg-shared-nav .sub-menu{position:static;display:none;background:transparent;border:none;box-shadow:none;padding:0;margin:0}' +
+        'nav.rsg-shared-nav .has-sub.open .sub-menu{display:block}' +
         'nav.rsg-shared-nav .sub-menu a{padding:0.2rem 0.5rem;font-size:0.65rem;opacity:0.85}' +
         'body.rsg-nav-padded{padding-top:78px}' +
       '}';
