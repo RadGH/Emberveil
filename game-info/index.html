@@ -1111,6 +1111,158 @@
       .party-slots { grid-template-columns: repeat(4, 50px); }
       .party-slot { width: 50px; height: 50px; }
     }
+
+    /* ── M78 ADDITIONS ── */
+    .stat-counters {
+      display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: center;
+      margin-top: 36px; padding-top: 28px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .stat-counter { display: flex; flex-direction: column; align-items: center; min-width: 78px; }
+    .sc-num {
+      font-family: 'Cinzel', serif; font-weight: 900; font-size: 32px;
+      background: linear-gradient(180deg, var(--gold-bright), var(--ember1));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1;
+    }
+    .sc-lbl {
+      font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--text-muted); margin-top: 6px;
+    }
+
+    /* sticky sub-nav */
+    .subnav {
+      position: sticky; top: 52px; z-index: 90;
+      background: rgba(10,6,8,0.92);
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      padding: 10px 16px; overflow-x: auto; white-space: nowrap;
+      text-align: center;
+    }
+    .subnav a {
+      display: inline-block; font-family: 'Cinzel', serif; font-size: 11px;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text-dim); padding: 6px 14px; margin: 0 4px;
+      border-radius: 999px; border: 1px solid transparent; transition: all .2s;
+    }
+    .subnav a:hover { color: var(--gold-bright); border-color: var(--border); background: rgba(232,160,32,0.06); }
+
+    /* parallax section header */
+    .section-header.parallax-head { will-change: transform; transition: transform .1s linear; }
+
+    /* class flip cards */
+    .classes-grid-v2 {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px; margin-top: 24px;
+    }
+    .flip-card {
+      perspective: 1000px; height: 230px; cursor: pointer;
+    }
+    .flip-inner {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d; transition: transform .6s;
+    }
+    .flip-card.flipped .flip-inner,
+    .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+    .flip-face {
+      position: absolute; inset: 0;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 16px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .flip-face.back {
+      transform: rotateY(180deg);
+      background: linear-gradient(160deg, var(--card-h), var(--surface));
+      align-items: stretch; justify-content: flex-start; text-align: left;
+      overflow: auto;
+    }
+    .flip-face .fc-icon { width: 52px; height: 52px; color: var(--gold-bright); margin-bottom: 8px; }
+    .flip-face .fc-name {
+      font-family: 'Cinzel', serif; font-size: 17px; font-weight: 700;
+      color: var(--gold-bright); letter-spacing: 0.06em;
+    }
+    .flip-face .fc-role {
+      font-size: 11px; color: var(--text-muted); margin-top: 4px;
+      text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    .fc-attr {
+      display: inline-block; margin-top: 8px; padding: 2px 10px;
+      font-size: 10px; font-family: 'Cinzel', serif; letter-spacing: 0.14em;
+      border: 1px solid var(--border); border-radius: 999px; color: var(--gold);
+    }
+    .fc-attr.STR { color: #e8704a; border-color: rgba(232,112,74,0.35); }
+    .fc-attr.DEX { color: #6acc70; border-color: rgba(106,204,112,0.35); }
+    .fc-attr.INT { color: #6ab4ff; border-color: rgba(106,180,255,0.35); }
+    .fc-stat-bars { width: 100%; margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+    .fc-bar { display: flex; align-items: center; gap: 6px; font-size: 9px; color: var(--text-muted); font-family: 'Cinzel', serif; letter-spacing: 0.1em; }
+    .fc-bar .bar-track { flex: 1; height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+    .fc-bar .bar-fill { height: 100%; width: 0; transition: width 1.2s cubic-bezier(.2,.7,.3,1); border-radius: 3px; }
+    .flip-card.in-view .bar-fill { width: var(--w, 0%); }
+    .flip-face.back h4 {
+      font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold-bright);
+      margin-bottom: 6px; letter-spacing: 0.08em;
+    }
+    .flip-face.back .hook { font-size: 11px; color: var(--text-dim); font-style: italic; margin-bottom: 8px; line-height: 1.45; }
+    .flip-face.back ul { list-style: none; padding: 0; }
+    .flip-face.back li {
+      font-size: 11px; color: var(--text); padding: 3px 0;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+    .flip-face.back li:last-child { border-bottom: none; }
+
+    /* tap weapons */
+    .tap-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px; margin-top: 24px;
+    }
+    .tap-card {
+      position: relative; padding: 16px; border-radius: var(--radius-lg);
+      background: var(--card); border: 1px solid var(--border);
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      overflow: hidden;
+    }
+    .tap-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: inherit;
+      background: radial-gradient(ellipse at 50% 0%, var(--glow, transparent) 0%, transparent 60%);
+      opacity: 0; transition: opacity .3s; pointer-events: none;
+    }
+    .tap-card:hover { transform: translateY(-4px); border-color: var(--glow, var(--gold)); box-shadow: 0 10px 28px rgba(0,0,0,0.45), 0 0 24px var(--glow, transparent); }
+    .tap-card:hover::before { opacity: 0.18; }
+    .tap-name { font-family: 'Cinzel', serif; font-size: 15px; color: var(--gold-bright); letter-spacing: 0.04em; margin-bottom: 4px; position: relative; }
+    .tap-meta { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 8px; position: relative; }
+    .tap-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; position: relative; }
+    .tap-cd {
+      display: inline-block; padding: 2px 8px; font-size: 10px; font-family: 'Cinzel', serif;
+      letter-spacing: 0.1em; border-radius: 999px; border: 1px solid var(--border);
+      color: var(--text); margin-left: 6px;
+    }
+    .tap-section-split {
+      margin-top: 36px; padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .tap-section-split h3 {
+      font-family: 'Cinzel', serif; color: var(--gold-bright);
+      font-size: 18px; letter-spacing: 0.1em; margin-bottom: 6px;
+    }
+    .tap-mech {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px; margin-top: 18px;
+    }
+    .tap-mech-card {
+      padding: 14px; background: var(--surface2); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius); font-size: 12px; color: var(--text-dim); line-height: 1.55;
+    }
+    .tap-mech-card strong { color: var(--gold); display: block; font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.1em; margin-bottom: 4px; text-transform: uppercase; }
+
+    /* pulsing CTA */
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(232,160,32,0.55), 0 8px 32px rgba(232,160,32,0.4); }
+      50%      { box-shadow: 0 0 0 14px rgba(232,160,32,0), 0 8px 32px rgba(232,160,32,0.55); }
+    }
+    .btn-primary { animation: pulse-glow 2.6s ease-in-out infinite; }
+
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5H26ZXKBCL"></script>
@@ -1126,6 +1278,19 @@
 <!-- ── SHARED NAV ── -->
 <script src="../assets/_header.js?v=3" data-base="game-info"></script>
 
+<!-- ── STICKY SUB-NAV ── -->
+<nav class="subnav" aria-label="Section navigation">
+  <a href="#story">Story</a>
+  <a href="#classes">Classes</a>
+  <a href="#tap-weapons">Tap Weapons</a>
+  <a href="#combat">Combat</a>
+  <a href="#journey">Journey</a>
+  <a href="#equipment">Gear</a>
+  <a href="#companions">Companions</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#gallery">Gallery</a>
+</nav>
+
 <!-- ── HERO ── -->
 <section id="hero">
   <div class="hero-bg"></div>
@@ -1135,7 +1300,14 @@
     <p class="hero-eyebrow">✦ A Dark Fantasy RPG ✦</p>
     <h1 class="hero-title">EMBERVEIL</h1>
     <p class="hero-tagline">The veil between worlds has shattered. The embers of civilization are dying.</p>
-    <p class="hero-sub">14 Classes &nbsp;·&nbsp; 4 Acts &nbsp;·&nbsp; 8 Zones &nbsp;·&nbsp; Endless Depth</p>
+    <p class="hero-sub">20 Classes &nbsp;·&nbsp; 6 Acts &nbsp;·&nbsp; Tap Weapons &nbsp;·&nbsp; Endless Depth</p>
+    <div class="stat-counters" id="statCounters" aria-hidden="true">
+      <div class="stat-counter"><span class="sc-num" data-target="20">0</span><span class="sc-lbl">Classes</span></div>
+      <div class="stat-counter"><span class="sc-num" data-target="10">0</span><span class="sc-lbl">Companions</span></div>
+      <div class="stat-counter"><span class="sc-num" data-target="10">0</span><span class="sc-lbl">Tap Weapons</span></div>
+      <div class="stat-counter"><span class="sc-num" data-target="10">0</span><span class="sc-lbl">Tap Utilities</span></div>
+      <div class="stat-counter"><span class="sc-num" data-target="6">0</span><span class="sc-lbl">Acts</span></div>
+    </div>
     <div class="hero-cta-group">
       <a href="../../index.html" class="btn-primary">▶ Play Now</a>
       <a href="#story" class="btn-secondary">Discover the World</a>
@@ -1189,130 +1361,55 @@
 <div class="divider"></div>
 <div class="divider-glow"></div>
 
-<!-- ── CLASSES ── -->
+<!-- ── CLASSES (M78) ── -->
 <section id="classes">
   <div class="section">
-    <div class="section-header fade-in">
+    <div class="section-header fade-in parallax-head">
       <p class="section-eyebrow">Roster</p>
-      <h2 class="section-title">14 Classes</h2>
-      <p class="section-lead">From stalwart Warrior to Void-touched Warlock — every class offers a distinct playstyle and party role.</p>
+      <h2 class="section-title">20 Classes</h2>
+      <p class="section-lead">From stalwart Warrior to time-bending Chronomancer — twenty distinct paths of power, each with signature skills and party roles. Hover or tap a card to flip and see signature abilities.</p>
     </div>
 
     <div class="role-filter fade-in">
       <button class="role-btn active" data-role="all">All Classes</button>
-      <button class="role-btn" data-role="tank">⚔ Tank</button>
-      <button class="role-btn" data-role="dps">◆ DPS</button>
-      <button class="role-btn" data-role="healer">✦ Healer</button>
-      <button class="role-btn" data-role="support">♪ Support</button>
+      <button class="role-btn" data-role="STR">⚔ STR</button>
+      <button class="role-btn" data-role="DEX">↗ DEX</button>
+      <button class="role-btn" data-role="INT">◈ INT</button>
     </div>
 
-    <div class="classes-grid fade-in" id="classesGrid">
-      <!-- Warrior -->
-      <div class="class-card" data-role="tank">
-        <img class="class-sprite" src="../images/sprites/warrior_south.png" alt="Warrior sprite" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="class-sprite-placeholder" style="display:none">†</div>
-        <div class="class-name">Warrior</div>
-        <div class="class-desc">Iron-willed frontliner who absorbs punishment and holds the line for allies.</div>
-        <span class="role-badge role-tank">Tank</span>
-      </div>
-      <!-- Paladin -->
-      <div class="class-card" data-role="tank">
-        <img class="class-sprite" src="../images/sprites/paladin_south.png" alt="Paladin sprite" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="class-sprite-placeholder" style="display:none">◇</div>
-        <div class="class-name">Paladin</div>
-        <div class="class-desc">Divine champion — blends heavy defense with sacred healing auras and smite damage.</div>
-        <span class="role-badge role-tank">Tank</span>
-      </div>
-      <!-- Ranger -->
-      <div class="class-card" data-role="dps">
-        <img class="class-sprite" src="../images/sprites/ranger_south.png" alt="Ranger sprite" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="class-sprite-placeholder" style="display:none">↗</div>
-        <div class="class-name">Ranger</div>
-        <div class="class-desc">Swift archer who excels at picking off distant threats, trapping, and nature magic.</div>
-        <span class="role-badge role-dps">DPS</span>
-      </div>
-      <!-- Rogue -->
-      <div class="class-card" data-role="dps">
-        <img class="class-sprite" src="../images/sprites/rogue_south.png" alt="Rogue sprite" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="class-sprite-placeholder" style="display:none">†</div>
-        <div class="class-name">Rogue</div>
-        <div class="class-desc">Shadow-dancer who strikes from flanking positions and applies lethal Bleed stacks.</div>
-        <span class="role-badge role-dps">DPS</span>
-      </div>
-      <!-- Cleric -->
-      <div class="class-card" data-role="healer">
-        <img class="class-sprite" src="../images/sprites/cleric_south.png" alt="Cleric sprite" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="class-sprite-placeholder" style="display:none">✦</div>
-        <div class="class-name">Cleric</div>
-        <div class="class-desc">Devoted healer channeling divine energy — revives fallen allies and cleanses status effects.</div>
-        <span class="role-badge role-healer">Healer</span>
-      </div>
-      <!-- Bard -->
-      <div class="class-card" data-role="support">
-        <img class="class-sprite" src="../images/sprites/bard_south.png" alt="Bard sprite" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="class-sprite-placeholder" style="display:none">🎸</div>
-        <div class="class-name">Bard</div>
-        <div class="class-desc">Melodic enchanter who inspires allies with stat buffs and demoralizes enemies with hexsongs.</div>
-        <span class="role-badge role-support">Support</span>
-      </div>
-      <!-- Mage -->
-      <div class="class-card" data-role="dps">
-        <img class="class-sprite" src="../images/sprites/mage_south.png" alt="Mage sprite" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="class-sprite-placeholder" style="display:none">◈</div>
-        <div class="class-name">Mage</div>
-        <div class="class-desc">Arcane devastator unleashing multi-element AoE blasts at the cost of fragile defense.</div>
-        <span class="role-badge role-dps">DPS</span>
-      </div>
-      <!-- Necromancer -->
-      <div class="class-card" data-role="support">
-        <img class="class-sprite" src="../images/sprites/necromancer_south.png" alt="Necromancer sprite" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="class-sprite-placeholder" style="display:none">☩</div>
-        <div class="class-name">Necromancer</div>
-        <div class="class-desc">Death-weaver who summons fallen enemies as minions and drains life force from foes.</div>
-        <span class="role-badge role-support">Support</span>
-      </div>
-      <!-- Warlock -->
-      <div class="class-card" data-role="dps">
-        <div class="class-sprite-placeholder">●</div>
-        <div class="class-name">Warlock</div>
-        <div class="class-desc">Void-pact wielder trading HP for overwhelming dark energy bursts and curse chains.</div>
-        <span class="role-badge role-dps">DPS</span>
-      </div>
-      <!-- Demon Hunter -->
-      <div class="class-card" data-role="dps">
-        <div class="class-sprite-placeholder">◆</div>
-        <div class="class-name">Demon Hunter</div>
-        <div class="class-desc">Driven by vengeance — dual-wields enchanted pistols and crossbows with explosive rune traps.</div>
-        <span class="role-badge role-dps">DPS</span>
-      </div>
-      <!-- Scavenger -->
-      <div class="class-card" data-role="support">
-        <div class="class-sprite-placeholder">🔧</div>
-        <div class="class-name">Scavenger</div>
-        <div class="class-desc">Resourceful survivor who repurposes enemy loot mid-combat and lays improvised traps.</div>
-        <span class="role-badge role-support">Support</span>
-      </div>
-      <!-- Swashbuckler -->
-      <div class="class-card" data-role="dps">
-        <div class="class-sprite-placeholder">϶</div>
-        <div class="class-name">Swashbuckler</div>
-        <div class="class-desc">High-DEX duelist who builds momentum — each consecutive hit amplifies the next strike's damage.</div>
-        <span class="role-badge role-dps">DPS</span>
-      </div>
-      <!-- Dragon Knight -->
-      <div class="class-card" data-role="tank">
-        <div class="class-sprite-placeholder">∆</div>
-        <div class="class-name">Dragon Knight</div>
-        <div class="class-desc">Bonded with draconic essence — breathes elemental fire and weathers hits like scaled plate.</div>
-        <span class="role-badge role-tank">Tank</span>
-      </div>
-      <!-- Pyromancer -->
-      <div class="class-card" data-role="dps">
-        <div class="class-sprite-placeholder">△</div>
-        <div class="class-name">Pyromancer</div>
-        <div class="class-desc">Burn-specialist who stacks flame DoT across entire enemy rows — but risks igniting the battlefield.</div>
-        <span class="role-badge role-dps">DPS</span>
-      </div>
+    <div class="classes-grid-v2 fade-in" id="classesGridV2"><!-- populated by JS --></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+<div class="divider-glow"></div>
+
+<!-- ── TAP WEAPONS (M78) ── -->
+<section id="tap-weapons">
+  <div class="section">
+    <div class="section-header fade-in parallax-head">
+      <p class="section-eyebrow">M72+ System</p>
+      <h2 class="section-title">Tap Weapons &amp; Utilities</h2>
+      <p class="section-lead">Party-shared tap items layer over normal turn-based combat. While your heroes auto-resolve their actions, tap an enemy to fire your equipped Tap Weapon — or tap an ally to channel a Tap Utility. Twenty items in all, each on its own cooldown.</p>
+    </div>
+
+    <div class="tap-mech fade-in">
+      <div class="tap-mech-card"><strong>Turn vs Round Cooldowns</strong>Some items refresh every few <em>turns</em> (an individual unit's action) and can fire several times per round. Heavy hitters use <em>round</em> cooldowns and fire only once per full battle round — Dragon Call sits at 8 rounds.</div>
+      <div class="tap-mech-card"><strong>Equip from Tap Inventory</strong>Open the Tap Inventory from the party screen, drag a weapon and a utility into the active slots. Find new items in chests, vendors, or as boss drops throughout the campaign.</div>
+      <div class="tap-mech-card"><strong>Layered Combat</strong>Tap items don't replace your skills — they augment them. Save Phoenix Feather for a wipe, fire Star Caller during boss adds, keep Rejuvenate ticking on your tank.</div>
+      <div class="tap-mech-card"><strong>Full report</strong><a href="../assets/tap-weapons.html">Read the detailed Tap Weapons report →</a></div>
+    </div>
+
+    <div class="tap-section-split">
+      <h3>10 Tap Weapons</h3>
+      <p style="font-size:12px;color:var(--text-muted)">Tap any enemy on screen to trigger.</p>
+      <div class="tap-grid" id="tapWeaponsGrid"></div>
+    </div>
+
+    <div class="tap-section-split">
+      <h3>10 Tap Utilities</h3>
+      <p style="font-size:12px;color:var(--text-muted)">Tap any ally on screen to channel.</p>
+      <div class="tap-grid" id="tapUtilitiesGrid"></div>
     </div>
   </div>
 </section>
@@ -1997,6 +2094,164 @@
         });
       });
     });
+  })();
+
+  // ── M78: CLASSES DATA + FLIP CARDS ──
+  const CLASSES_DATA = [
+    { id:'warrior', name:'Warrior', role:'Frontline Tank', attr:'STR', hook:'Shield Bash stuns enemies. Whirlwind hits all adjacent foes. Unbreakable when outnumbered.', skills:['Shield Bash','Battle Cry','Whirlwind','Unbreakable'], icon:'M18 4L8 14v8l10 10 10-10v-8L18 4z M18 4v28 M8 14h20' },
+    { id:'fighter', name:'Fighter', role:'Disciplined Duelist', attr:'STR', hook:'Riposte counters parries. Tactical stances swap between offense and defense. Precise Strike never misses.', skills:['Precise Strike','Defensive Stance','Offensive Stance','Riposte','Second Wind','Sunder Armor'], icon:'M18 3v26 M14 7l4-4 4 4 M10 29h16 M6 18l6-3 6 3 6-3 6 3' },
+    { id:'paladin', name:'Paladin', role:'Holy Warrior', attr:'STR', hook:'Holy Strike crits vs demons. Lay on Hands keeps allies alive. Consecration sustains long fights.', skills:['Holy Strike','Lay on Hands','Divine Shield','Consecration'], icon:'M18 3l-14 6v9c0 8 7 14 14 16 7-2 14-8 14-16V9L18 3z M12 18l4 4 8-8' },
+    { id:'ranger', name:'Ranger', role:'Precision Ranged', attr:'DEX', hook:'Aimed Shot ignores armor. Rain of Arrows blankets the entire enemy field for 3 rounds.', skills:['Aimed Shot','Multi Shot','Smoke Trap','Rain of Arrows'], icon:'M5 5l26 26 M5 5l8 2-2-8' },
+    { id:'rogue', name:'Rogue', role:'Burst Assassin', attr:'DEX', hook:'200% Backstab on stunned targets. Death Mark makes enemies take 50% more damage from all sources.', skills:['Backstab','Poison Blade','Shadow Step','Death Mark'], icon:'M10 26L26 10 M18 10l8-2-2 8' },
+    { id:'cleric', name:'Cleric', role:'Primary Healer', attr:'INT', hook:'Mass Resurrection can auto-trigger on wipe. Sanctuary makes an ally temporarily untargetable.', skills:['Heal','Smite','Sanctuary','Mass Resurrection'], icon:'M18 4v28 M4 18h28' },
+    { id:'bard', name:'Bard', role:'Support Maestro', attr:'INT', hook:'Ballad of Valor gives one hero two turns per round. Song of Ruin strips all enemy buffs at once.', skills:['Inspiring Tune','Discordant Wail','Ballad of Valor','Song of Ruin'], icon:'M8 28c0-3 3-5 8-5s8 2 8 5 M14 23V10l12-3v13' },
+    { id:'mage', name:'Mage', role:'AoE Glass Cannon', attr:'INT', hook:'Fireball torches entire enemy packs. Blizzard hits all enemies for 3 rounds. Arcane Surge: 400% INT.', skills:['Magic Missile','Fireball','Blizzard','Arcane Surge'], icon:'M18 4l3 10h10l-8 6 3 10-8-6-8 6 3-10-8-6h10z' },
+    { id:'necromancer', name:'Necromancer', role:'Army Builder', attr:'INT', hook:'Raise Dead turns corpses into skeleton allies. Death Coil applies Poison AND Bleed to all enemies.', skills:['Bone Spike','Bone Spear','Life Drain','Death Coil'], icon:'M10 28c0-5 4-9 8-9s8 4 8 9' },
+    { id:'warlock', name:'Warlock', role:'Chaos Dealer', attr:'INT', hook:'Corruption spreads on enemy death. Soul Pact doubles all DoT at cost of own HP.', skills:['Corruption','Hellfire','Soul Pact','Void Rift'], icon:'M18 4c-4 6-8 8-8 14a8 8 0 0016 0c0-6-4-8-8-14z' },
+    { id:'demon_hunter', name:'Demon Hunter', role:'Specialist Killer', attr:'DEX', hook:'+50% damage vs demons. Vengeance stacks from fallen allies then unleashes devastating burst.', skills:['Demon Bolt','Glaive Toss','Fel Sight','Vengeance'], icon:'M6 30L18 6l12 24 M11 22h14' },
+    { id:'scavenger', name:'Scavenger', role:'Resource Specialist', attr:'DEX', hook:'Scrounge finds items mid-combat. Jackpot has 20% chance to loot Magic+ gear from each kill.', skills:['Scrounge','Thrown Junk','Makeshift Bomb','Jackpot'], icon:'M10 16h16v14H10z M6 16h24' },
+    { id:'swashbuckler', name:'Swashbuckler', role:'Flashy Duelist', attr:'DEX', hook:'Build Flair stacks with Flourish. Grandeur releases all stacks in one legendary strike.', skills:['Riposte','Flourish','Taunt','Grandeur'], icon:'M6 30L30 6 M22 6l8-2-2 8' },
+    { id:'dragon_knight', name:'Dragon Knight', role:'Draconic Warrior', attr:'STR', hook:'Choose fire/ice/lightning. Draconic Fury turns all attacks into group AoE for 2 rounds.', skills:['Dragon Claw','Breath Weapon','Dragon Scales','Draconic Fury'], icon:'M18 4c6 4 12 10 12 16s-6 12-12 12S6 26 6 20c0-6 6-12 12-16z' },
+    { id:'pyromancer', name:'Pyromancer', role:'Fire Specialist', attr:'INT', hook:'Stack Burn on multiple groups. Meteor ignites every enemy group simultaneously.', skills:['Flame Lance','Ignite','Pyroclasm','Meteor'], icon:'M18 4c-2 8 6 10 2 18a8 8 0 01-8-8c0-2 1-4 2-5' },
+    { id:'stormcaller', name:'Stormcaller', role:'Chain Lightning Mage', attr:'INT', hook:'Chain Lightning jumps between enemies. Thunder Ring zones the battlefield.', skills:['Chain Lightning','Static Field','Thunder Ring','Tempest'], icon:'M20 3L8 20h8l-4 13 16-19h-8l4-11z' },
+    { id:'druid', name:'Druid', role:'Shapeshifting Healer', attr:'INT', hook:'Rejuvenation HoTs. Wild Shape for raw damage. Nature\u2019s Wrath in the late game.', skills:['Rejuvenation','Entangle','Wild Shape','Nature\u2019s Wrath'], icon:'M18 4c-8 6-8 18 0 26 8-8 8-20 0-26z M18 10v20' },
+    { id:'oracle', name:'Oracle', role:'Predictive Protector', attr:'INT', hook:'Foresight pre-shields allies against incoming damage. Prophecy reveals enemy intents.', skills:['Foresight','Prophecy','Fate Weave','Ascendance'], icon:'M18 4a14 14 0 100 28 14 14 0 000-28z M18 14a4 4 0 100 8 4 4 0 000-8z' },
+    { id:'tactician', name:'Tactician', role:'Turn-Order Manipulator', attr:'INT', hook:'Grants extra actions, repositions allies, reshuffles enemy turn order.', skills:['Rally Action','Feint','Reposition','Masterstroke'], icon:'M5 5h26v26H5z M5 13h26 M5 22h26 M14 5v26 M23 5v26' },
+    { id:'chronomancer', name:'Chronomancer', role:'Time Mage', attr:'INT', hook:'Haste allies, slow enemies, rewind HP, freeze the battlefield in Time Stop.', skills:['Haste','Slow Time','Rewind','Time Stop'], icon:'M18 4a14 14 0 100 28 14 14 0 000-28z M18 8v10l7 4' },
+  ];
+  const ATTR_BARS = { STR:{STR:90,DEX:40,INT:25}, DEX:{STR:35,DEX:90,INT:35}, INT:{STR:25,DEX:35,INT:90} };
+
+  (function buildClasses(){
+    const grid = document.getElementById('classesGridV2');
+    if (!grid) return;
+    CLASSES_DATA.forEach(c => {
+      const bars = ATTR_BARS[c.attr];
+      const card = document.createElement('div');
+      card.className = 'flip-card';
+      card.dataset.role = c.attr;
+      card.innerHTML = `
+        <div class="flip-inner">
+          <div class="flip-face front">
+            <svg class="fc-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="${c.icon}"/></svg>
+            <div class="fc-name">${c.name}</div>
+            <div class="fc-role">${c.role}</div>
+            <span class="fc-attr ${c.attr}">${c.attr}</span>
+            <div class="fc-stat-bars">
+              <div class="fc-bar">STR<div class="bar-track"><div class="bar-fill" style="--w:${bars.STR}%;background:#e8704a"></div></div></div>
+              <div class="fc-bar">DEX<div class="bar-track"><div class="bar-fill" style="--w:${bars.DEX}%;background:#6acc70"></div></div></div>
+              <div class="fc-bar">INT<div class="bar-track"><div class="bar-fill" style="--w:${bars.INT}%;background:#6ab4ff"></div></div></div>
+            </div>
+          </div>
+          <div class="flip-face back">
+            <h4>${c.name}</h4>
+            <div class="hook">${c.hook}</div>
+            <ul>${c.skills.map(s => `<li>◆ ${s}</li>`).join('')}</ul>
+          </div>
+        </div>`;
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+      grid.appendChild(card);
+    });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    grid.querySelectorAll('.flip-card').forEach(c => io.observe(c));
+
+    const btns = document.querySelectorAll('#classes .role-btn');
+    btns.forEach(btn => btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const r = btn.dataset.role;
+      grid.querySelectorAll('.flip-card').forEach(c => {
+        c.style.display = (r === 'all' || c.dataset.role === r) ? '' : 'none';
+      });
+    }));
+  })();
+
+  // ── M78: TAP WEAPONS / UTILITIES ──
+  const TAP_WEAPONS_DATA = [
+    { name:'Tap Blade', cd:'Every turn', desc:'A quick slash on the tapped enemy. No cooldown — tap every turn.', color:'#d8d8e0' },
+    { name:'Hunter\u2019s Bow', cd:'2 turns', desc:'Arc-shot arrow from off-screen. Solid single-target damage.', color:'#d8c890' },
+    { name:'Field Catapult', cd:'5 rounds', desc:'Boulder lands on an enemy group. Hits everyone in that group.', color:'#a08060' },
+    { name:'Star Caller', cd:'4 rounds', desc:'A burning star falls on the tap point. Massive AoE.', color:'#ffe080' },
+    { name:'Throwing Knives', cd:'2 turns', desc:'Three throwing knives fan out and strike up to three enemies.', color:'#b0b8c0' },
+    { name:'Fireball', cd:'3 turns', desc:'A rolling ball of flame explodes on impact with splash damage.', color:'#ff8030' },
+    { name:'Dragon Call', cd:'8 rounds', desc:'Summon a dragon that breathes across ALL enemies. Signature weapon.', color:'#e85020' },
+    { name:'Chain Lightning', cd:'3 turns', desc:'Lightning zaps the tapped enemy then arcs to two more.', color:'#80d0ff' },
+    { name:'Spirit Hammer', cd:'4 rounds', desc:'A colossal spectral hammer slams down. Heavy damage + stagger.', color:'#c0d8ff' },
+    { name:'Void Lance', cd:'3 rounds', desc:'Pierces in a line through every enemy in the tapped group.', color:'#a060e0' },
+  ];
+  const TAP_UTILS_DATA = [
+    { name:'Rejuvenate', cd:'3 turns', desc:'Heal-over-time on the ally nearest the tap (prefers lowest HP).', color:'#60e080' },
+    { name:'Group Heal', cd:'4 rounds', desc:'50 HP split across up to 3 allies near the tap.', color:'#a0ffa0' },
+    { name:'Barrier', cd:'3 rounds', desc:'25 barrier HP on up to 3 allies near the tap.', color:'#4080c0' },
+    { name:'Deflect', cd:'5 rounds', desc:'Absorbs the next incoming hit on the tapped ally in full.', color:'#c0d8ff' },
+    { name:'Enchant Weapon', cd:'2 turns', desc:'Bonus damage buff on the tapped ally until replaced.', color:'#e0a0ff' },
+    { name:'Cleanse', cd:'3 rounds', desc:'Removes all debuffs from the tapped ally and heals 15.', color:'#ffffff' },
+    { name:'Rally', cd:'6 rounds', desc:'Party-wide +15% damage for 2 rounds.', color:'#ffc040' },
+    { name:'Haste', cd:'5 rounds', desc:'Tapped ally acts twice on their next turn.', color:'#80ffc0' },
+    { name:'Taunt Totem', cd:'6 rounds', desc:'A totem that draws enemy attacks for 2 rounds.', color:'#c08040' },
+    { name:'Phoenix Feather', cd:'10 rounds', desc:'Revive a fallen ally near the tap at 30% HP.', color:'#ff8040' },
+  ];
+  function buildTapGrid(targetId, items) {
+    const grid = document.getElementById(targetId);
+    if (!grid) return;
+    items.forEach(it => {
+      const card = document.createElement('div');
+      card.className = 'tap-card';
+      card.style.setProperty('--glow', it.color);
+      card.innerHTML = `
+        <div class="tap-name">${it.name}<span class="tap-cd">${it.cd}</span></div>
+        <div class="tap-meta" style="color:${it.color}">◆ Tap Item</div>
+        <div class="tap-desc">${it.desc}</div>`;
+      grid.appendChild(card);
+    });
+  }
+  buildTapGrid('tapWeaponsGrid', TAP_WEAPONS_DATA);
+  buildTapGrid('tapUtilitiesGrid', TAP_UTILS_DATA);
+
+  // ── M78: COUNTER ANIMATION ──
+  (function(){
+    const wrap = document.getElementById('statCounters');
+    if (!wrap) return;
+    const nums = wrap.querySelectorAll('.sc-num');
+    let fired = false;
+    function run() {
+      if (fired) return; fired = true;
+      nums.forEach(el => {
+        const target = +el.dataset.target;
+        const dur = 1400; const start = performance.now();
+        function tick(t) {
+          const p = Math.min(1, (t - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased);
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { run(); io.disconnect(); } });
+    }, { threshold: 0.4 });
+    io.observe(wrap);
+  })();
+
+  // ── M78: PARALLAX SECTION HEADERS ──
+  (function(){
+    const heads = document.querySelectorAll('.parallax-head');
+    if (!heads.length) return;
+    function update() {
+      const vh = window.innerHeight;
+      heads.forEach(h => {
+        const r = h.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        const center = r.top + r.height / 2;
+        const offset = (center - vh / 2) * 0.06;
+        h.style.transform = `translateY(${offset}px)`;
+      });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   })();
 
   // ── SMOOTH SCROLL FOR NAV LINKS ──
