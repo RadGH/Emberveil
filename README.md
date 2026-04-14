@@ -4,6 +4,8 @@ A dark-fantasy party RPG — hire heroes, explore a branching world map, fight t
 
 **Play: https://emberveil.radgh.com/**
 
+**Send feedback:** https://docs.google.com/forms/d/e/1FAIpQLScWHFEQ8Kbxvsxg5nKerJOPqkYntAkRLCihqQchypNdqayvmA/viewform?usp=publish-editor
+
 ---
 
 ## About
