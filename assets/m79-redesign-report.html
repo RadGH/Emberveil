@@ -126,19 +126,19 @@
   .variants .imgBox { aspect-ratio: 1; padding: 4px; }
   .variants .lbl { position: absolute; bottom: 4px; font-size: 9px; color: var(--muted); }
   .prompt {
-    margin-top: 12px;
     font-size: 11px;
     color: var(--muted);
     background: #0a0504;
     border-radius: 6px;
-    padding: 8px 10px;
     font-family: ui-monospace, monospace;
     line-height: 1.5;
     max-height: 0;
+    margin-top: 0;
+    padding: 0 12px;
     overflow: hidden;
-    transition: max-height .4s, padding .4s;
+    transition: max-height .4s, padding .4s, margin-top .4s;
   }
-  .char.open .prompt { max-height: 400px; padding: 10px 12px; }
+  .char.open .prompt { max-height: 400px; padding: 10px 12px; margin-top: 12px; }
   .toggle {
     margin-top: 10px;
     background: none; border: 1px solid var(--border); color: var(--accent);
