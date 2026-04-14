@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>M65–M67 Redesign: OpenAI Sprites & SFX Normalization</title>
+<script src="./_header.js" defer></script>
+<style>
+  :root {
+    --bg: #0b0815;
+    --card: #151028;
+    --border: #2a1e4a;
+    --accent: #b088ff;
+    --accent2: #ffb347;
+    --ok: #5ef2a8;
+    --fg: #e8e0ff;
+    --muted: #8b7fb3;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, system-ui, sans-serif;
+    background: radial-gradient(ellipse at top, #1a0f35 0%, #0b0815 60%);
+    color: var(--fg); min-height: 100vh;
+  }
+  .hero {
+    padding: 60px 24px 40px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(176,136,255,0.15), transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero h1 {
+    font-size: clamp(28px, 6vw, 52px);
+    margin: 0 0 12px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  @keyframes shimmer { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.3); } }
+  .hero p { color: var(--muted); max-width: 680px; margin: 0 auto; font-size: 16px; line-height: 1.6; }
+  .stats {
+    display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
+    margin: 32px auto 0; max-width: 900px;
+  }
+  .stat {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 16px 24px; border-radius: 12px; min-width: 140px;
+  }
+  .stat .num { font-size: 28px; font-weight: 700; color: var(--accent); }
+  .stat .lbl { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  main { max-width: 1280px; margin: 0 auto; padding: 40px 20px 80px; }
+  section { margin-bottom: 64px; }
+  h2 {
+    font-size: 24px; margin-bottom: 8px;
+    border-left: 4px solid var(--accent); padding-left: 14px;
+  }
+  .sectionDesc { color: var(--muted); margin-bottom: 24px; max-width: 720px; }
+
+  .roster {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+  .char {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: rise .5s ease forwards;
+  }
+  .char:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 32px rgba(176,136,255,0.2);
+  }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+  .char h3 { margin: 0 0 12px; font-size: 18px; text-transform: capitalize; }
+  .compareGrid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  .imgBox {
+    background: linear-gradient(135deg, #1e1838, #0f0a22);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .imgBox img {
+    max-width: 100%; max-height: 100%;
+    image-rendering: pixelated;
+    transition: transform .4s;
+  }
+  .imgBox:hover img { transform: scale(1.15); }
+  .imgBox .tag {
+    position: absolute; top: 6px; left: 6px;
+    font-size: 10px; padding: 2px 6px;
+    border-radius: 4px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .tag.old { background: #4a2e1a; color: #ffb347; }
+  .tag.new { background: #2a1e4a; color: var(--accent); }
+  .missing {
+    color: var(--muted); font-size: 12px; text-align: center;
+  }
+  .variants {
+    margin-top: 12px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+  }
+  .variants .imgBox { aspect-ratio: 1; padding: 4px; }
+  .variants .lbl { position: absolute; bottom: 4px; font-size: 9px; color: var(--muted); }
+  .prompt {
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--muted);
+    background: #0f0a22;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-family: ui-monospace, monospace;
+    line-height: 1.5;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s, padding .4s;
+  }
+  .char.open .prompt { max-height: 400px; padding: 10px 12px; }
+  .toggle {
+    margin-top: 10px;
+    background: none; border: 1px solid var(--border); color: var(--accent);
+    padding: 6px 12px; border-radius: 6px; cursor: pointer;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .toggle:hover { background: var(--border); }
+
+  /* SFX table */
+  .sfxTable { width: 100%; border-collapse: collapse; }
+  .sfxTable th, .sfxTable td {
+    padding: 10px; text-align: left; border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .sfxTable th { color: var(--accent); font-size: 11px; text-transform: uppercase; }
+  .sfxTable audio { width: 100%; max-width: 220px; height: 32px; }
+
+  .note {
+    background: rgba(176,136,255,0.08);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .roster { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>The Emberveil Redesign</h1>
+  <p>Milestones M65–M67 swap the entire character roster from PixelLab to OpenAI
+     <code>gpt-image-1</code> pixel art, add full combat animation states
+     (idle / attack / spell / death), rework the party facing in combat, and
+     loudness-normalize every sound effect. Compare them below.</p>
+  <div class="stats">
+    <div class="stat"><div class="num" id="statChars">—</div><div class="lbl">Characters</div></div>
+    <div class="stat"><div class="num" id="statImages">—</div><div class="lbl">Images generated</div></div>
+    <div class="stat"><div class="num" id="statSfx">—</div><div class="lbl">SFX normalized</div></div>
+    <div class="stat"><div class="num">-16 LUFS</div><div class="lbl">Target loudness</div></div>
+  </div>
+</div>
+
+<main>
+  <section>
+    <h2>Fighter — the baseline</h2>
+    <p class="sectionDesc">The fighter was our first test. The OpenAI version was generated at 1024×1024 and rendered at
+    50% scale for crisp high-DPI display. After seeing the result we committed to regenerating the full
+    roster. Shown here: a retroactive PixelLab fighter generated for comparison, against the live OpenAI
+    sprite.</p>
+    <div class="roster" style="grid-template-columns: minmax(340px, 500px);">
+      <div class="char" style="animation-delay: .05s">
+        <h3>Fighter</h3>
+        <div class="compareGrid">
+          <div class="imgBox"><span class="tag old">PixelLab</span><img src="./pixellab_fighter_south.png" alt="PixelLab fighter"></div>
+          <div class="imgBox"><span class="tag new">OpenAI</span><img src="../images/sprites/fighter_south.png" alt="OpenAI fighter"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Full Roster Comparison</h2>
+    <p class="sectionDesc">Every hero, companion, enemy, and boss — old PixelLab sprite (archived from the
+    M64 build) next to its new OpenAI counterpart. Click <em>Show prompt</em> under each card to see the
+    exact prompt used. The bottom strip shows the four new combat animation variants: portrait,
+    east-facing attack, east-facing spell, and death.</p>
+    <div id="roster" class="roster"></div>
+  </section>
+
+  <section>
+    <h2>SFX Loudness Normalization</h2>
+    <p class="sectionDesc">Every sound effect was run through <code>ffmpeg loudnorm</code> targeting
+    EBU R128 <strong>-16 LUFS</strong> with -1.5 dB true peak ceiling. The chain lightning was no longer
+    eardrum-punishing and the weapon swings were no longer whispers.</p>
+    <div class="note">Before = preserved in <code>public/sfx_original/</code>, After = live <code>public/sfx/</code>.
+      Play both and listen for the volume consistency.</div>
+    <table class="sfxTable" id="sfxTable">
+      <thead><tr><th>Effect</th><th>Before (raw)</th><th>After (-16 LUFS)</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Combat facing rework</h2>
+    <p class="sectionDesc">Party members now face <strong>east</strong> (toward the enemy line) in
+    combat instead of <strong>south</strong> (toward the camera). When a party member performs a
+    melee attack, the sprite briefly swaps to its <code>east_attack</code> variant; spell casts swap
+    to <code>east_spell</code>; incapacitated members swap to <code>death</code>. Transitions revert
+    to idle after ~300–400ms via the existing stance state machine.</p>
+    <p class="sectionDesc">HP bars were also raised by ~<strong>18px</strong> so they no longer overlap the
+    sprite's head — a long-standing visual bug from the M64 build.</p>
+  </section>
+</main>
+
+<script>
+const ROSTER = [{"name": "fighter", "desc": "human male fighter in plate armor with steel sword and shield"}, {"name": "mage", "desc": "human male mage in blue robes with wooden staff"}, {"name": "cleric", "desc": "human female cleric in white and gold vestments with holy mace"}, {"name": "rogue", "desc": "human female rogue in black leather with twin daggers, hood up"}, {"name": "ranger", "desc": "human male ranger in green leather with longbow and quiver"}, {"name": "paladin", "desc": "human male paladin in gleaming silver plate with greatsword"}, {"name": "warlock", "desc": "human female warlock in dark purple robes with eldritch tome"}, {"name": "bard", "desc": "human male bard in colorful tunic with lute"}, {"name": "druid", "desc": "human female druid in earthy robes with wooden staff wrapped in vines"}, {"name": "necromancer", "desc": "human male necromancer in black robes with bone staff"}, {"name": "pyromancer", "desc": "human female pyromancer in red-orange robes with fire conjured in hand"}, {"name": "stormcaller", "desc": "human male stormcaller in blue robes crackling with lightning"}, {"name": "oracle", "desc": "human female oracle in white robes with glowing blue eyes"}, {"name": "swashbuckler", "desc": "human male swashbuckler in red coat with rapier"}, {"name": "warrior", "desc": "barbarian warrior in furs with great axe"}, {"name": "demon_hunter", "desc": "demon hunter in leather with twin crossbows, crimson cloak"}, {"name": "dragon_knight", "desc": "dragon knight in scaled armor with draconic greatsword"}, {"name": "dire_wolf", "desc": "large grey dire wolf facing forward, fierce eyes"}, {"name": "forest_owl", "desc": "mystical brown forest owl with wings slightly spread"}, {"name": "ember_drake", "desc": "small red ember drake dragon with tiny wings"}, {"name": "shadow_cat", "desc": "sleek black shadow cat with glowing purple eyes and wispy tail"}, {"name": "crystal_golem", "desc": "small crystal golem with blue crystalline limbs and glowing core"}, {"name": "spirit_wisp", "desc": "floating blue-white spirit wisp, ethereal glow"}, {"name": "bone_hound", "desc": "skeletal bone hound with greenish necromantic glow"}, {"name": "ice_sprite", "desc": "small cyan ice sprite with icicle wings, crystalline form"}, {"name": "swamp_frog", "desc": "large mossy swamp frog with dripping slime"}, {"name": "void_moth", "desc": "large void moth with purple starry cosmic wings"}, {"name": "war_dog", "desc": "armored war mastiff with spiked collar"}, {"name": "scavenger", "desc": "scrappy small hyena-like scavenger"}, {"name": "goblin_scout", "desc": "small green goblin scout with dagger and leather tunic"}, {"name": "goblin_warrior", "desc": "green goblin warrior with rusted sword and shield"}, {"name": "goblin_shaman", "desc": "green goblin shaman in hide robes with bone totem staff"}, {"name": "goblin_warlord", "desc": "large green goblin warlord in crude plate with battle axe"}, {"name": "bandit", "desc": "human bandit in brown leather with short sword, face scarf"}, {"name": "bandit_captain", "desc": "human bandit captain in studded leather with cutlass and pistol"}, {"name": "imp", "desc": "small red demonic imp with bat wings and forked tail"}, {"name": "giant_spider", "desc": "large black giant spider with glinting red eyes"}, {"name": "corrupted_wolf", "desc": "corrupted wolf with glowing red eyes and black oozing fur"}, {"name": "corrupted_bear", "desc": "corrupted bear with glowing red eyes and black oozing fur"}, {"name": "cinder_hound", "desc": "fiery cinder hound with glowing ember cracks along its back"}, {"name": "veil_cultist", "desc": "hooded veil cultist in dark purple robes holding a curved dagger"}, {"name": "veil_sorcerer", "desc": "veil sorcerer in violet robes channeling void energy"}, {"name": "veil_warden", "desc": "veil warden in dark plate armor with halberd"}, {"name": "ash_wraith", "desc": "ghostly ash wraith with hollow white eyes and drifting ash robe"}, {"name": "void_shade", "desc": "dark purple void shade with starfield body"}, {"name": "void_wraith", "desc": "wispy void wraith with cosmic energy and glowing eyes"}, {"name": "demon_brute", "desc": "hulking red demon brute with horns and massive club"}, {"name": "hell_knight", "desc": "hell knight in blackened spiked armor with flaming sword"}, {"name": "abyssal_knight", "desc": "abyssal knight in deep blue void-marked armor with black blade"}, {"name": "dragon_whelp", "desc": "small red dragon whelp hatchling"}, {"name": "dragon_hatchling", "desc": "tiny green dragon hatchling"}, {"name": "frost_wyrmling", "desc": "small pale blue frost wyrmling dragon"}, {"name": "storm_drake", "desc": "medium storm drake with crackling blue lightning along its wings"}, {"name": "molten_golem", "desc": "molten stone golem with lava cracks and burning core"}, {"name": "lava_titan", "desc": "massive lava titan with obsidian plates and glowing magma"}, {"name": "primordial_elemental", "desc": "primordial elemental of swirling earth, water, fire, and air"}, {"name": "wyrm_warrior", "desc": "lizardfolk wyrm warrior in scaled armor with spear"}, {"name": "shadow_wyrm", "desc": "massive shadow wyrm dragon, black scales, purple void breath"}, {"name": "star_horror", "desc": "cosmic star horror, eldritch being of stars and tentacles"}, {"name": "void_prophet", "desc": "void prophet in star-studded robes with glowing third eye"}, {"name": "grax_veil_touched", "desc": "Grax the veil-touched, a hulking humanoid with purple crystal growths"}, {"name": "archfiend_malgrath", "desc": "Archfiend Malgrath, towering winged demon lord with hellfire greatsword"}, {"name": "emberveil_sovereign", "desc": "the Emberveil Sovereign, regal flame-crowned monarch wreathed in ember mist"}, {"name": "cosmic_titan", "desc": "cosmic titan colossus of stars and nebulae"}, {"name": "genesis_worm", "desc": "massive genesis worm, ancient purple wyrm with glowing segmented body"}, {"name": "reality_shard", "desc": "floating reality shard, a crystalline geometric entity with prismatic energy"}, {"name": "the_unraveler", "desc": "the Unraveler, a robed faceless entity pulling threads of reality"}, {"name": "the_architect", "desc": "the Architect, an ancient robed figure with glowing blueprints of reality"}];
+
+const roster = document.getElementById('roster');
+let charCount = 0, imageCount = 0;
+
+ROSTER.forEach((entry, i) => {
+  const name = entry.name;
+  const pretty = name.replace(/_/g, ' ');
+  const card = document.createElement('div');
+  card.className = 'char';
+  card.style.animationDelay = (i * 0.02) + 's';
+  card.innerHTML = `
+    <h3>${pretty}</h3>
+    <div class="compareGrid">
+      <div class="imgBox"><span class="tag old">PixelLab</span><img src="../images/sprites_pixellab_archive/${name}_south.png" alt="old" onerror="this.parentElement.innerHTML='<span class=missing>no archive</span>'"></div>
+      <div class="imgBox"><span class="tag new">OpenAI</span><img src="../images/sprites/${name}_south.png" alt="new" onerror="this.parentElement.innerHTML='<span class=missing>missing</span>'"></div>
+    </div>
+    <div class="variants">
+      <div class="imgBox" title="portrait"><img src="../images/portraits/${name}.png" onerror="this.remove()"></div>
+      <div class="imgBox" title="attack"><img src="../images/sprites/${name}_east_attack.png" onerror="this.remove()"></div>
+      <div class="imgBox" title="spell"><img src="../images/sprites/${name}_east_spell.png" onerror="this.remove()"></div>
+      <div class="imgBox" title="death"><img src="../images/sprites/${name}_death.png" onerror="this.remove()"></div>
+    </div>
+    <button class="toggle">Show prompt</button>
+    <div class="prompt">${entry.desc}</div>
+  `;
+  card.querySelector('.toggle').addEventListener('click', () => {
+    card.classList.toggle('open');
+    card.querySelector('.toggle').textContent = card.classList.contains('open') ? 'Hide prompt' : 'Show prompt';
+  });
+  roster.appendChild(card);
+  charCount++;
+  imageCount += 5;
+});
+
+document.getElementById('statChars').textContent = charCount;
+document.getElementById('statImages').textContent = imageCount;
+
+// SFX table
+fetch('./sfx_manifest.json').then(r => r.ok ? r.json() : []).then(list => {
+  const tbody = document.querySelector('#sfxTable tbody');
+  document.getElementById('statSfx').textContent = list.length;
+  list.forEach(f => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${f}</td>
+      <td><audio controls preload="none" src="../sfx_original/${f}"></audio></td>
+      <td><audio controls preload="none" src="../sfx/${f}"></audio></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}).catch(() => {});
+</script>
+</body>
+</html>

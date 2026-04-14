@@ -2248,6 +2248,32 @@
   ],
   "reports": [
     {
+      "milestone": "M65\u2013M67 \u2014 OpenAI Redesign & SFX Normalization",
+      "date": "2026-04-14",
+      "url": "m65-redesign-report.html",
+      "summary": "Full character roster regenerated via OpenAI gpt-image-1 with combat animation states (attack/spell/death), party facing reworked to east, HP bars raised, and all SFX loudness-normalized to -16 LUFS.",
+      "changes": [
+        "Regenerated all ~68 characters (heroes, companions, enemies, bosses) via OpenAI gpt-image-1 at 1024\u00d71024, rendered at 50% for crisp high-DPI",
+        "Added portrait, east_attack, east_spell, and death variants per character",
+        "Combat facing reworked: party faces east; sprites swap to east_attack / east_spell / death based on stance",
+        "HP bar Y offset raised so bars no longer overlap character heads",
+        "Retroactive PixelLab fighter generated as baseline for side-by-side comparison",
+        "All 69 SFX normalized to EBU R128 -16 LUFS, true peak -1.5 dB via ffmpeg loudnorm; originals preserved in public/sfx_original/",
+        "New asset gallery report at /assets/m65-redesign-report.html with animated side-by-side comparison and A/B audio playback"
+      ],
+      "bugs": [],
+      "suggestions": [
+        "Some enemy variants still need walk/attack frame animations (currently single static pose)",
+        "Portrait dialog UI could use the new portraits in quest/dialog boxes"
+      ],
+      "recommendations": [
+        "Archive /public/sfx_original and /public/images/sprites_pixellab_archive before next major milestone to keep bundle lean",
+        "Consider batching future OpenAI regens into one nightly script now that the pipeline exists"
+      ],
+      "ideas": [],
+      "notes": "Budget used: estimated ~$13 of $30 OpenAI credits. Live at https://emberveil.radgh.com/ and https://radgh.github.io/RSG-Demos/game13/"
+    },
+    {
       "milestone": "Milestone 72 \u2014 Tap Weapons",
       "date": "2026-04-13",
       "summary": "Single-tap combat tools: 10 weapons + 10 utilities, equippable party-wide, with proximity-targeted click handling, projectile/burst animations, cooldowns in turns or rounds, a dedicated town vendor, boss drops, and skill-check unlocks.",
