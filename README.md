@@ -2,9 +2,7 @@
 
 A dark-fantasy party RPG — hire heroes, explore a branching world map, fight turn-based battles, unlock tap weapons, and chase the dragon through six acts.
 
-**▶ Play: https://emberveil.radgh.com/**
-
-Also mirrored on GitHub Pages: https://radgh.github.io/RSG-Demos/game13/
+**Play: https://emberveil.radgh.com/**
 
 ---
 
