@@ -117,9 +117,13 @@
   var TOOLS = TOOLS_BY_GAME[GAME_KEY] || [];
   var NEWS = NEWS_BY_GAME[GAME_KEY] || [];
 
+  // Order: Play Game (button) -> News -> Contact -> Send Feedback -> Tools -> Assets
+  // Game Info is appended after Assets if it exists in the game's structure.
+  var PLAY_HREF = GAME_ROOT + 'play.html';
   var MENU = [
-    { href: GAME_ROOT, label: 'Play Game' },
-    { href: GAME_INFO, label: 'Game Info' },
+    { href: PLAY_HREF, label: 'Play Game', primary: true },
+    { href: GAME_ROOT + 'contact.html', label: 'Contact' },
+    { href: 'https://docs.google.com/forms/d/e/1FAIpQLScWHFEQ8Kbxvsxg5nKerJOPqkYntAkRLCihqQchypNdqayvmA/viewform?usp=publish-editor', label: 'Send Feedback', external: true },
     {
       href: ASSETS,
       label: 'Assets',
@@ -129,27 +133,27 @@
         { href: ASSETS + '#reports-section', label: 'Milestones' }
       ]
     },
-    { href: GAME_ROOT + 'contact.html', label: 'Contact' },
-    { href: 'https://docs.google.com/forms/d/e/1FAIpQLScWHFEQ8Kbxvsxg5nKerJOPqkYntAkRLCihqQchypNdqayvmA/viewform?usp=publish-editor', label: 'Send Feedback', external: true }
+    { href: GAME_INFO, label: 'Game Info' }
   ];
-  if (TOOLS.length) {
-    MENU.splice(MENU.length - 1, 0, {
-      href: TOOLS[0].href,
-      label: 'Tools',
-      children: TOOLS.slice()
-    });
-  }
-  // News dropdown: articles only (no "All News" entry). Date-prefixed,
-  // newest first. Default to 2026-04-14 if a date is somehow missing.
+  // News dropdown — insert after Play Game (index 1), before Contact.
   if (NEWS.length) {
     var newsChildren = NEWS.map(function (n) {
       var d = n.date || '2026-04-14';
       return { href: n.href, label: d + ' \u2014 ' + n.label };
     });
-    MENU.splice(MENU.length - 1, 0, {
+    MENU.splice(1, 0, {
       href: newsChildren[0].href,
       label: 'News',
       children: newsChildren
+    });
+  }
+  // Tools dropdown — insert just before Assets.
+  if (TOOLS.length) {
+    var assetsIdx = MENU.findIndex(function (m) { return m.label === 'Assets'; });
+    MENU.splice(assetsIdx, 0, {
+      href: TOOLS[0].href,
+      label: 'Tools',
+      children: TOOLS.slice()
     });
   }
 
@@ -167,7 +171,8 @@
         return '<li class="has-sub"><a href="' + m.href + '">' + m.label + ' \u25BE</a><ul class="sub-menu">' + sub + '</ul></li>';
       }
       var attrs = m.external ? ' target="_blank" rel="noopener"' : '';
-      return '<li><a href="' + m.href + '"' + attrs + '>' + m.label + '</a></li>';
+      var cls = m.primary ? ' class="nav-btn"' : '';
+      return '<li><a href="' + m.href + '"' + attrs + cls + '>' + m.label + '</a></li>';
     }).join('');
     nav.innerHTML =
       '<div class="nav-inner">' +
@@ -182,12 +187,14 @@
     var css =
       '@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap");' +
       'nav.rsg-shared-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,6,8,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,160,32,0.2);height:52px;display:flex;align-items:center;padding:0 2rem;font-family:"Inter","Segoe UI",sans-serif}' +
-      'nav.rsg-shared-nav .nav-inner{display:flex;align-items:center;gap:1.5rem;width:100%;max-width:1400px;margin:0 auto;min-width:0}' +
+      'nav.rsg-shared-nav .nav-inner{display:flex;align-items:center;gap:1.25rem;width:100%;max-width:840px;margin:0 auto;min-width:0}' +
       'nav.rsg-shared-nav .nav-logo{font-family:"Cinzel",Georgia,serif;font-size:1rem;font-weight:900;letter-spacing:0.15em;background:linear-gradient(180deg,#f8d880 0%,#e8a020 40%,#c04030 100%);-webkit-background-clip:text;background-clip:text;color:transparent;flex-shrink:0;text-decoration:none;text-transform:uppercase}' +
       'nav.rsg-shared-nav .nav-links{display:flex;gap:1.25rem;list-style:none;margin:0;padding:0;flex-wrap:nowrap;min-width:0}' +
       'nav.rsg-shared-nav .nav-links > li{position:relative}' +
       'nav.rsg-shared-nav .nav-links a{color:#8a7a6a;text-decoration:none;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s;white-space:nowrap;display:block}' +
       'nav.rsg-shared-nav .nav-links a:hover{color:#e8a020}' +
+      'nav.rsg-shared-nav .nav-links a.nav-btn{color:#ffd078;background:linear-gradient(135deg,#c04030 0%,#8a1a0a 100%);padding:0.35rem 0.9rem;border-radius:4px;border:1px solid rgba(192,64,48,0.55);font-weight:700;letter-spacing:0.08em}' +
+      'nav.rsg-shared-nav .nav-links a.nav-btn:hover{background:linear-gradient(135deg,#d05040,#c04030);color:#fff}' +
       'nav.rsg-shared-nav .has-sub{padding-bottom:0.6rem;margin-bottom:-0.6rem}' +
       'nav.rsg-shared-nav .sub-menu{display:none;position:absolute;top:100%;left:0;background:rgba(10,6,8,0.98);border:1px solid rgba(232,160,32,0.25);border-radius:6px;padding:0.4rem 0;list-style:none;margin:0;min-width:140px;box-shadow:0 8px 24px rgba(0,0,0,0.5)}' +
       'nav.rsg-shared-nav .has-sub:hover .sub-menu,nav.rsg-shared-nav .has-sub:focus-within .sub-menu,nav.rsg-shared-nav .has-sub.open .sub-menu{display:block}' +

@@ -1,4 +1,4 @@
-# Emberveil — A Dark-Fantasy Party RPG
+# Emberveil - A Dark-Fantasy Party RPG
 
 > An atmospheric dark-fantasy party RPG built in the browser. 20 hero classes, 84 skills, turn-based tactical combat. Free to play.
 
@@ -23,4 +23,4 @@ Emberveil is developed by Radley Sustaire (Veneta, OR) with AI assistance via Cl
 JavaScript, Vite, HTML5 Canvas. Art generated via OpenAI, SpriteCook, PixelLab. Audio via ElevenLabs.
 
 ## Rights
-© 2026 Radley Sustaire. Free to play in browser.
+(c) 2026 Radley Sustaire. Free to play in browser.

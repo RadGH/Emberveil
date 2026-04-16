@@ -93,7 +93,13 @@
   .tag.todo{background:#2a1a08;color:var(--muted)}
   .variants{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(50px,1fr));gap:6px}
   .variants .imgBox{aspect-ratio:1;padding:4px}
-  .variants .lbl{position:absolute;bottom:2px;font-size:9px;color:var(--muted)}
+  .variants .lbl{position:absolute;left:0;right:0;bottom:2px;font-size:9px;color:var(--muted);text-align:center}
+  /* Combat background thumbnails — larger so 3 fit per row */
+  .bg-variants{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .bg-variants .imgBox{aspect-ratio:3/4;padding:4px}
+  .bg-variants .lbl{position:absolute;left:0;right:0;bottom:4px;font-size:10px;color:var(--muted);text-align:center}
+  @media (max-width:600px){.bg-variants{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:400px){.bg-variants{grid-template-columns:1fr}}
   .placeholder{color:var(--muted);font-size:11px;text-align:center}
 
   .callout{background:rgba(192,64,48,0.08);border-left:3px solid var(--ember1);
@@ -226,7 +232,6 @@
         <div class="imgBox"><span class="tag new">New</span><img src="../images/spritecook/warrior_portrait.png" alt="Warrior SpriteCook portrait"></div>
       </div>
       <div class="variants">
-        <div class="imgBox"><span class="lbl">portrait</span><img src="../images/spritecook/warrior_portrait.png" alt="portrait"></div>
         <div class="imgBox"><span class="lbl">south</span><img src="../images/spritecook/warrior_south.png" alt="south idle"></div>
         <div class="imgBox"><span class="lbl">east</span><img src="../images/spritecook/warrior_east.png" alt="east idle"></div>
         <div class="imgBox"><span class="lbl">atk</span><img src="../images/spritecook/warrior_east_attack.png" alt="east attack"></div>
@@ -253,7 +258,6 @@
         <div class="imgBox"><span class="tag new">New</span><img src="../images/spritecook/fighter_portrait.png" alt="Fighter SpriteCook portrait"></div>
       </div>
       <div class="variants">
-        <div class="imgBox"><span class="lbl">portrait</span><img src="../images/spritecook/fighter_portrait.png" alt="portrait"></div>
         <div class="imgBox"><span class="lbl">south</span><img src="../images/spritecook/fighter_south.png" alt="south idle"></div>
         <div class="imgBox"><span class="lbl">east</span><img src="../images/spritecook/fighter_east.png" alt="east idle"></div>
         <div class="imgBox"><span class="lbl">atk</span><img src="../images/spritecook/fighter_east_attack.png" alt="east attack"></div>
@@ -280,7 +284,6 @@
         <div class="imgBox"><span class="tag new">New</span><img src="../images/spritecook/ranger_portrait.png" alt="Ranger SpriteCook portrait"></div>
       </div>
       <div class="variants">
-        <div class="imgBox"><span class="lbl">portrait</span><img src="../images/spritecook/ranger_portrait.png" alt="portrait"></div>
         <div class="imgBox"><span class="lbl">south</span><img src="../images/spritecook/ranger_south.png" alt="south idle"></div>
         <div class="imgBox"><span class="lbl">east</span><img src="../images/spritecook/ranger_east.png" alt="east idle"></div>
         <div class="imgBox"><span class="lbl">atk</span><img src="../images/spritecook/ranger_east_attack.png" alt="east attack"></div>
@@ -307,7 +310,6 @@
         <div class="imgBox"><span class="tag new">New</span><img src="../images/spritecook/rogue_portrait.png" alt="Rogue SpriteCook portrait"></div>
       </div>
       <div class="variants">
-        <div class="imgBox"><span class="lbl">portrait</span><img src="../images/spritecook/rogue_portrait.png" alt="portrait"></div>
         <div class="imgBox"><span class="lbl">south</span><img src="../images/spritecook/rogue_south.png" alt="south idle"></div>
         <div class="imgBox"><span class="lbl">east</span><img src="../images/spritecook/rogue_east.png" alt="east idle"></div>
         <div class="imgBox"><span class="lbl">atk</span><img src="../images/spritecook/rogue_east_attack.png" alt="east attack"></div>
@@ -334,7 +336,6 @@
         <div class="imgBox"><span class="tag new">New</span><img src="../images/spritecook/mage_portrait.png" alt="Mage SpriteCook portrait"></div>
       </div>
       <div class="variants">
-        <div class="imgBox"><span class="lbl">portrait</span><img src="../images/spritecook/mage_portrait.png" alt="portrait"></div>
         <div class="imgBox"><span class="lbl">south</span><img src="../images/spritecook/mage_south.png" alt="south idle"></div>
         <div class="imgBox"><span class="lbl">east</span><img src="../images/spritecook/mage_east.png" alt="east idle"></div>
         <div class="imgBox"><span class="lbl">atk</span><img src="../images/spritecook/mage_east_attack.png" alt="east attack"></div>
@@ -938,14 +939,14 @@
   <p class="sectionDesc">26 painted zone backgrounds now replace the procedural sky + parallax during combat. Wired into <code>CombatScreen._drawBackground()</code> and gated by the "Disable Backgrounds" setting. Style prompt: <b>dark fantasy painterly matte, portrait aspect, 16-bit-inspired palette, dramatic horizon.</b></p>
   <div class="reredesign-grid">
     <div class="reredesign-card"><h3>Border Roads (Act 1)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/border_roads_1.png" alt="border roads"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/border_roads_2.png" alt="border roads"></div>
       </div>
       <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px"><b>Prompt:</b> Twilight mountain pass, dust-blown wagon ruts, distant watchtower, storm clouds on the horizon.</p>
     </div>
     <div class="reredesign-card"><h3>Thornwood (Act 1)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/thornwood_1.png" alt="thornwood"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/thornwood_2.png" alt="thornwood"></div>
         <div class="imgBox"><span class="lbl">3</span><img src="../images/combat_bg/thornwood_3.png" alt="thornwood"></div>
@@ -953,14 +954,14 @@
       <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px"><b>Prompt:</b> Dense cursed forest with thorny undergrowth, crooked silhouettes, emerald fog creeping between trunks.</p>
     </div>
     <div class="reredesign-card"><h3>Dust Roads (Act 2)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/dust_roads_1.png" alt="dust roads"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/dust_roads_2.png" alt="dust roads"></div>
       </div>
       <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px"><b>Prompt:</b> Arid caravan trail, cracked earth, scorched mesas on the skyline, burnt-orange sunset.</p>
     </div>
     <div class="reredesign-card"><h3>Ember Plateau (Act 2)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/ember_plateau_1.png" alt="ember plateau"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/ember_plateau_2.png" alt="ember plateau"></div>
         <div class="imgBox"><span class="lbl">3</span><img src="../images/combat_bg/ember_plateau_3.png" alt="ember plateau"></div>
@@ -968,56 +969,56 @@
       <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px"><b>Prompt:</b> Volcanic tableland, drifting embers, lava-veined basalt cliffs, brooding red sky.</p>
     </div>
     <div class="reredesign-card"><h3>Hell Breach (Act 3)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/hell_breach_1.png" alt="hell breach"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/hell_breach_2.png" alt="hell breach"></div>
       </div>
       <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px"><b>Prompt:</b> Cracked battlefield with a glowing rift to the underworld, lava geysers, infernal haze.</p>
     </div>
     <div class="reredesign-card"><h3>Shattered Core (Act 3)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/shattered_core_1.png" alt="shattered core"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/shattered_core_2.png" alt="shattered core"></div>
       </div>
       <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px"><b>Prompt:</b> Broken ley-line crystals, violet arcane lightning arcing between shards, floating debris.</p>
     </div>
     <div class="reredesign-card"><h3>Cosmic Rift (Act 4)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/cosmic_rift_1.png" alt="cosmic rift"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/cosmic_rift_2.png" alt="cosmic rift"></div>
       </div>
       <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px"><b>Prompt:</b> Deep-space tear overlaid on a shattered battlefield, swirling nebulae, gravity-warped stars.</p>
     </div>
     <div class="reredesign-card"><h3>Eternal Void (Act 4)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/eternal_void_1.png" alt="eternal void"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/eternal_void_2.png" alt="eternal void"></div>
       </div>
       <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px"><b>Prompt:</b> Pitch-black abyss with faint violet constellations, floating ruins, endless silence.</p>
     </div>
     <div class="reredesign-card"><h3>Abyssal Depths (Act 5)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/abyssal_depths_1.png" alt="abyssal depths"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/abyssal_depths_2.png" alt="abyssal depths"></div>
       </div>
       <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px"><b>Prompt:</b> Sunken trench with bioluminescent kelp, leviathan silhouettes, pressure-crushed ruins.</p>
     </div>
     <div class="reredesign-card"><h3>Primordial Nexus (Act 5)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/primordial_nexus_1.png" alt="primordial nexus"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/primordial_nexus_2.png" alt="primordial nexus"></div>
       </div>
       <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px"><b>Prompt:</b> Magenta arcane confluence, swirling birth-of-creation energies, concentric runic rings.</p>
     </div>
     <div class="reredesign-card"><h3>Dragon's Reach (Act 6)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/dragons_reach_1.png" alt="dragons reach"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/dragons_reach_2.png" alt="dragons reach"></div>
       </div>
       <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px"><b>Prompt:</b> Towering spires with wyrm scales embedded in stone, sulfurous red clouds, dragonfire glow on the horizon.</p>
     </div>
     <div class="reredesign-card"><h3>Dragon Throne (Act 6)</h3>
-      <div class="variants">
+      <div class="bg-variants">
         <div class="imgBox"><span class="lbl">1</span><img src="../images/combat_bg/dragon_throne_1.png" alt="dragon throne"></div>
         <div class="imgBox"><span class="lbl">2</span><img src="../images/combat_bg/dragon_throne_2.png" alt="dragon throne"></div>
       </div>

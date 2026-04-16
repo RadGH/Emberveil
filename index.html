@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emberveil — A Dark-Fantasy Party RPG</title>
+  <meta name="rsg-game" content="Emberveil">
+  <script src="./assets/_header.js" defer></script>
   <meta name="description" content="Emberveil is an atmospheric dark-fantasy party RPG. Assemble your party, master 84 skills across 20 classes, and conquer a world of shadow and ember." />
   <link rel="canonical" href="https://emberveil.radgh.com/" />
   <meta property="og:title" content="Emberveil — A Dark-Fantasy Party RPG" />
@@ -124,20 +126,27 @@
         rgba(8,5,8,0.4) 65%,
         rgba(8,5,8,0.95) 100%);
     }
-    /* Cloud parallax layers */
+    /* Cloud parallax layers — all reference the single transparent PNG.
+       Animate transform on an inner 200%-wide strip so the loop is seamless and
+       purely GPU-composited; no pointer interaction or layout touches it. */
     .cloud-layer {
-      position: absolute; inset: 0; pointer-events: none;
-      background-repeat: repeat-x;
-      background-size: auto 40%;
-      background-position: 0 20%;
-      opacity: 0.25;
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
     }
-    .cloud-layer-1 { background-image: url('images/menu_bg/clouds_01.jpg'); animation: cloudDrift1 60s linear infinite; }
-    .cloud-layer-2 { background-image: url('images/menu_bg/clouds_02.jpg'); animation: cloudDrift2 90s linear infinite; opacity: 0.18; background-position: 0 30%; }
-    .cloud-layer-3 { background-image: url('images/menu_bg/clouds_03.jpg'); animation: cloudDrift3 120s linear infinite; opacity: 0.12; background-position: 0 15%; }
-    @keyframes cloudDrift1 { from { background-position: 0 20%; } to { background-position: 2000px 20%; } }
-    @keyframes cloudDrift2 { from { background-position: 0 30%; } to { background-position: 2000px 30%; } }
-    @keyframes cloudDrift3 { from { background-position: 0 15%; } to { background-position: -2000px 15%; } }
+    .cloud-layer .cloud-strip {
+      position: absolute; top: 0; left: 0; height: 100%; width: 200%;
+      background-image: url('images/menu_bg/clouds_02.png');
+      background-repeat: repeat-x;
+      background-size: auto 100%;
+      will-change: transform;
+    }
+    .cloud-layer-1 { opacity: 0.45; }
+    .cloud-layer-1 .cloud-strip { top: 4%;  height: 40%; animation: cloudDrift 90s linear infinite; }
+    .cloud-layer-2 { opacity: 0.3; }
+    .cloud-layer-2 .cloud-strip { top: 18%; height: 46%; animation: cloudDrift 160s linear infinite; }
+    .cloud-layer-3 { opacity: 0.2; }
+    .cloud-layer-3 .cloud-strip { top: 0;   height: 34%; animation: cloudDriftRev 230s linear infinite; }
+    @keyframes cloudDrift    { from { transform: translate3d(0, 0, 0); }    to { transform: translate3d(-50%, 0, 0); } }
+    @keyframes cloudDriftRev { from { transform: translate3d(-50%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
 
     .hero-content { position: relative; z-index: 1; }
     .hero-logo {
@@ -149,7 +158,11 @@
       background: linear-gradient(180deg, #ff4428 0%, var(--gold) 45%, #e8c060 75%, var(--ember) 100%);
       -webkit-background-clip: text; background-clip: text; color: transparent;
       text-shadow: none;
-      filter: drop-shadow(0 0 40px rgba(232,160,32,0.35)) drop-shadow(0 0 80px rgba(192,64,48,0.2));
+      filter:
+        drop-shadow(0 4px 12px #4a0f0c)
+        drop-shadow(0 2px 4px #6a1a14)
+        drop-shadow(0 0 40px rgba(232,160,32,0.35))
+        drop-shadow(0 0 80px rgba(192,64,48,0.25));
       opacity: 0; animation: heroFadeUp 1.2s 0.3s ease-out forwards;
     }
     .hero-sub {
@@ -203,9 +216,9 @@
     }
     .scroll-arrow {
       width: 20px; height: 20px; border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
-      transform: rotate(45deg); animation: scrollBounce 1.5s ease-in-out infinite;
+      transform: rotate(45deg); transition: transform 0.25s ease;
     }
-    @keyframes scrollBounce { 0%,100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(4px); } }
+    .scroll-indicator:hover .scroll-arrow { transform: rotate(45deg) translate(4.24px, 4.24px); }
 
     /* ── Section Common ──────────────────────────────────────────────── */
     section { padding: var(--section-pad); }
@@ -290,6 +303,8 @@
       transition: border-color 0.25s;
     }
     .chart-card:hover { border-color: var(--border-hover); }
+    .chart-wrap { position: relative; height: 260px; width: 100%; }
+    .chart-wrap canvas { width: 100% !important; height: 100% !important; display: block; }
     .chart-caption {
       font-size: 0.8rem; color: var(--muted);
       text-align: center; margin-top: 0.75rem; letter-spacing: 0.04em;
@@ -542,23 +557,16 @@
 <body>
 
   <!-- ── Top Navigation ──────────────────────────────────────────── -->
-  <nav class="top-nav" role="navigation" aria-label="Main navigation">
-    <a href="./" class="nav-logo" aria-label="Emberveil home">EMBERVEIL</a>
-    <div class="nav-links">
-      <a href="./play.html" class="nav-play-btn">Play</a>
-      <a href="./news/index.html">News</a>
-      <a href="./assets/index.html">Tools</a>
-      <a href="./assets/">Art Gallery</a>
-      <a href="./contact.html">Contact</a>
-    </div>
-  </nav>
+  <!-- Injected by /home/radgh/claude/shared/nav-header.js (copied to ./assets/_header.js by release.sh). -->
+  <!-- Do not add an inline nav here; the shared script removes any legacy nav on mount. -->
+
 
   <!-- ── Hero ────────────────────────────────────────────────────── -->
   <section class="hero" aria-label="Hero banner">
     <div class="hero-bg" aria-hidden="true"></div>
-    <div class="cloud-layer cloud-layer-1" aria-hidden="true"></div>
-    <div class="cloud-layer cloud-layer-2" aria-hidden="true"></div>
-    <div class="cloud-layer cloud-layer-3" aria-hidden="true"></div>
+    <div class="cloud-layer cloud-layer-1" aria-hidden="true"><div class="cloud-strip"></div></div>
+    <div class="cloud-layer cloud-layer-2" aria-hidden="true"><div class="cloud-strip"></div></div>
+    <div class="cloud-layer cloud-layer-3" aria-hidden="true"><div class="cloud-strip"></div></div>
     <div class="hero-content">
       <h1 class="hero-logo">Emberveil</h1>
       <p class="hero-sub">A Dark-Fantasy Party RPG</p>
@@ -629,27 +637,27 @@
         <!-- CLAUDE: Formula from formulas.js: maxHp = 50 + CON*10, maxMp = 30 + INT*8 -->
         <div class="chart-card reveal">
           <div class="chart-title">HP &amp; MP by Attribute</div>
-          <canvas id="chart-hpmp" height="180"></canvas>
+          <div class="chart-wrap"><canvas id="chart-hpmp"></canvas></div>
           <div class="chart-caption">Max HP scales with CON (50 + CON × 10) · Max MP scales with INT (30 + INT × 8)</div>
         </div>
         <!-- Enemies per Act -->
         <!-- CLAUDE: Counted unique enemy IDs per act from src/maps/mapData.js -->
         <div class="chart-card reveal">
           <div class="chart-title">Enemies per Act</div>
-          <canvas id="chart-enemies" height="180"></canvas>
+          <div class="chart-wrap"><canvas id="chart-enemies"></canvas></div>
           <div class="chart-caption">Unique enemy types introduced per act</div>
         </div>
         <!-- Skills per class -->
         <!-- CLAUDE: Skill counts per class from src/game/classes.js skills[] arrays -->
         <div class="chart-card reveal">
           <div class="chart-title">Skills per Class</div>
-          <canvas id="chart-skills" height="180"></canvas>
+          <div class="chart-wrap"><canvas id="chart-skills"></canvas></div>
           <div class="chart-caption">Active combat skills per hero class (excluding talent upgrades)</div>
         </div>
         <!-- Class archetype distribution -->
         <div class="chart-card reveal">
           <div class="chart-title">Class Archetypes</div>
-          <canvas id="chart-archetypes" height="180"></canvas>
+          <div class="chart-wrap"><canvas id="chart-archetypes"></canvas></div>
           <div class="chart-caption">Party role distribution across all 20 classes</div>
         </div>
       </div>
@@ -814,16 +822,16 @@
 
   // CLAUDE: companion data from src/game/companions.js
   const COMPANIONS = [
-    { id:'pet_skeletal_warrior', name:'Skeletal Warrior' },
-    { id:'pet_bone_golem',       name:'Bone Golem' },
-    { id:'pet_wolf',             name:'Forest Wolf' },
-    { id:'pet_bear',             name:'Cave Bear' },
-    { id:'pet_imp',              name:'Bound Imp' },
-    { id:'pet_demon',            name:'Infernal Hound' },
-    { id:'pet_war_hound',        name:'Trained War Hound' },
-    { id:'pet_fire_elemental',   name:'Fire Elemental' },
+    { id:'pet_familiar',            name:'Arcane Familiar' },
+    { id:'pet_imp',                 name:'Imp' },
+    { id:'pet_wolf',                name:'Wolf' },
+    { id:'pet_bear',                name:'Bear' },
+    { id:'pet_fire_elemental',      name:'Fire Elemental' },
+    { id:'pet_demon',               name:'Demon' },
+    { id:'pet_war_hound',           name:'War Hound' },
     { id:'pet_lightning_elemental', name:'Lightning Elemental' },
-    { id:'pet_familiar',         name:'Arcane Familiar' },
+    { id:'pet_skeletal_warrior',    name:'Skeletal Warrior' },
+    { id:'pet_bone_golem',          name:'Bone Golem' },
   ];
 
   // CLAUDE: Boss and enemy lists from public/images/portraits/ directory
@@ -870,24 +878,36 @@
   let assetManifest = {};
 
   // ── Asset Manifest Loading ─────────────────────────────────────────────
+  // Primary source: prompts-master.json (authoritative prompt database).
+  // Fallbacks: assets.json + spritecook-assets.json for entries not yet in master.
   async function loadAssetManifest() {
     try {
-      // Load public/assets/assets.json
+      const r0 = await fetch('./assets/prompts-master.json');
+      if (r0.ok) {
+        const m = await r0.json();
+        Object.entries(m).forEach(([k, v]) => {
+          assetManifest[k] = { id: k, prompt: v.prompt || '', source: v.source || 'other', file: v.file };
+        });
+      }
+    } catch(e) { /* offline ok */ }
+    try {
       const r1 = await fetch('./assets/assets.json');
       if (r1.ok) {
         const d = await r1.json();
         const imgs = d.images || [];
-        imgs.forEach(item => { assetManifest[item.id] = item; });
+        imgs.forEach(item => {
+          if (!assetManifest[item.id]) assetManifest[item.id] = item;
+          else if (!assetManifest[item.id].prompt && item.prompt) assetManifest[item.id].prompt = item.prompt;
+        });
       }
     } catch(e) { /* offline ok */ }
     try {
-      // Load spritecook-assets.json (different structure — nested by character id)
       const r2 = await fetch('./images/spritecook/spritecook-assets.json');
       if (r2.ok) {
         const sc = await r2.json();
         Object.entries(sc).forEach(([key, val]) => {
           if (!assetManifest[key] && val.portrait) {
-            assetManifest[key] = { id: key, prompt: val.portrait.prompt || null, source: 'spritecook' };
+            assetManifest[key] = { id: key, prompt: val.portrait.prompt || '', source: 'spritecook' };
           }
         });
       }
@@ -1102,7 +1122,7 @@
       const grid = document.getElementById('news-grid');
       grid.innerHTML = top5.map(a => `
         <a href="./news/${a.slug}.html" class="news-card" style="text-decoration:none;">
-          <img class="news-card-img" src="${a.featured_image || ''}" alt=""
+          <img class="news-card-img" src="${(a.featured_image || '').replace(/^\.\.\//, './')}" alt=""
             onerror="this.style.display='none'">
           <div class="news-card-body">
             <div class="news-date">${a.date}</div>

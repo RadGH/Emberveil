@@ -289,6 +289,24 @@ async function boot() {
     const res = await fetch(MANIFEST_URL, { cache: 'no-cache' });
     manifest = await res.json();
     entries = manifest.entries || [];
+    // Merge prompts from prompts-master.json. Match by entry.group (e.g. 'warrior')
+    // or by filename basename (e.g. 'ember_plateau_1'). prompts-master is the
+    // authoritative source for prompts — if an entry has no prompt but the master
+    // does, we copy it in.
+    try {
+      const pmRes = await fetch('./prompts-master.json', { cache: 'no-cache' });
+      if (pmRes.ok) {
+        const pm = await pmRes.json();
+        entries.forEach(e => {
+          if (e.prompt) return;
+          const byGroup = pm[e.group];
+          if (byGroup && byGroup.prompt) { e.prompt = byGroup.prompt; return; }
+          const base = (e.file || '').split('/').pop().replace(/\.[a-z]+$/i, '');
+          const byBase = pm[base];
+          if (byBase && byBase.prompt) e.prompt = byBase.prompt;
+        });
+      }
+    } catch (_) { /* master optional */ }
   } catch (e) {
     document.getElementById('summary').textContent =
       'Failed to load image-review-manifest.json — run `node scripts/build-image-review-manifest.cjs` first.';
