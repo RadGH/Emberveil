@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "seo-update",
+    "title": "Site SEO & Restructure",
+    "date": "2026-04-16",
+    "summary": "Game moved to /play.html, new marketing homepage, canonical URLs, sitemap, llms.txt, OG/Twitter cards, and schema.org VideoGame markup.",
+    "featured_image": "../images/combat_bg/ember_plateau_1.png"
+  },
+  {
+    "slug": "milestone-report",
+    "title": "Emberveil Major Milestone Report",
+    "date": "2026-04-15",
+    "summary": "20 hero classes, 84 skills, 10 companions, combat rebalance, 60+ SFX — a comprehensive look at the Emberveil journey so far.",
+    "featured_image": "../images/combat_bg/hell_breach_1.png"
+  },
+  {
+    "slug": "re-redesign",
+    "title": "Re-redesign — SpriteCook",
+    "date": "2026-04-14",
+    "summary": "Full visual overhaul using SpriteCook's HD portrait and sprite pipeline — 20 hero classes, 10 companions, and boss art all regenerated.",
+    "featured_image": "../images/combat_bg/ember_plateau_1.png"
+  },
+  {
+    "slug": "m79-redesign",
+    "title": "M79 Redesign Report",
+    "date": "2026-04-14",
+    "summary": "Milestone 79 brought a sweeping UI redesign, refined combat feedback, and the new portrait-based character display system.",
+    "featured_image": "../images/map_bg/border_roads_1.png"
+  },
+  {
+    "slug": "balance-report",
+    "title": "Balance Report",
+    "date": "2026-04-14",
+    "summary": "Community survey on the M77 combat rebalance — burst vs sustain, target falloff, affix reshuffle.",
+    "featured_image": "../images/combat_bg/dust_roads_1.png"
+  },
+  {
+    "slug": "tap-weapons",
+    "title": "Tap Weapons Design",
+    "date": "2026-04-13",
+    "summary": "Design document for the tap-to-attack weapons system — how real-time input layers on top of the turn-based combat loop.",
+    "featured_image": "../images/combat_bg/abyssal_depths_1.png"
+  },
+  {
+    "slug": "simulation-overhaul",
+    "title": "Simulation Overhaul",
+    "date": "2026-04-13",
+    "summary": "Complete rewrite of the combat simulator with formula transparency, skill coverage, and statistical charting.",
+    "featured_image": "../images/combat_bg/cosmic_rift_1.png"
+  },
+  {
+    "slug": "dragon-expansion",
+    "title": "Dragon Expansion",
+    "date": "2026-04-13",
+    "summary": "Act 6 Dragon's Reach expansion — new zones, boss encounters, and the Dragon Knight unlock chain.",
+    "featured_image": "../images/combat_bg/dragons_reach_1.png"
+  },
+  {
+    "slug": "milestone-53",
+    "title": "Milestone 53 Report",
+    "date": "2026-04-11",
+    "summary": "Blacksmith merge, UI overhaul, combat rebalance, simulation parity, and the new survey tool.",
+    "featured_image": "../images/map_bg/ember_plateau_1.png"
+  },
+  {
+    "slug": "pre-game",
+    "title": "Pre-Game Brainstorm",
+    "date": "2026-04-10",
+    "summary": "The original design document — party-based RPG with mobile-first combat and an atmospheric dark-fantasy world.",
+    "featured_image": "../images/map_bg/dust_roads_1.png"
+  }
+]

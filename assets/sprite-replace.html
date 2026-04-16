@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="_tool-styles.css">
+<title>Sprite Replacement Tool</title>
+<style>
+  .summary-bar {
+    display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:12px 16px; margin-bottom:16px; font-size:13px;
+  }
+  .summary-bar .stat { font-weight:700; color:var(--accent-b); }
+  .summary-bar .stat-bad { font-weight:700; color:#f0a090; }
+
+  .controls {
+    position:sticky; top:0; background:var(--bg); padding:10px 0; z-index:10;
+    display:flex; gap:8px; flex-wrap:wrap; border-bottom:1px solid var(--border);
+    align-items:center; margin-bottom:12px;
+  }
+  .controls input[type=search] { flex:1; min-width:140px; margin-top:0; }
+  .controls select { width:auto; flex:0 0 auto; margin-top:0; }
+  .controls button { margin-top:0; padding:8px 14px; }
+
+  .char-group { margin-bottom:28px; }
+  .char-group-header {
+    font-family:var(--font-display); font-size:15px; color:var(--accent-b);
+    border-bottom:1px solid var(--border); padding-bottom:4px; margin:0 0 10px;
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .char-group-header .char-stats { font-family:var(--font-ui); font-size:11px; color:var(--muted); }
+
+  .pose-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:8px;
+  }
+  .pose-card {
+    background:var(--card); border:2px solid var(--border); border-radius:8px;
+    padding:6px; cursor:pointer; user-select:none; transition:border-color .15s;
+    text-align:center; position:relative;
+  }
+  .pose-card:hover { border-color:var(--border-hi); }
+  .pose-card.flagged { border-color:#e85020; background:rgba(232,80,32,0.08); }
+  .pose-card.missing { border-color:rgba(180,60,60,0.5); background:rgba(100,30,30,0.15); }
+  .pose-card.missing.flagged { border-color:#e85020; }
+
+  .pose-card img {
+    width:100%; height:100px; object-fit:contain; image-rendering:pixelated;
+    background:#050308; border-radius:4px; display:block;
+  }
+  .pose-card .placeholder {
+    width:100%; height:100px; background:#0a0608; border-radius:4px;
+    display:flex; align-items:center; justify-content:center;
+    color:#4a3a3a; font-size:11px; font-weight:600;
+  }
+  .pose-card .pose-label {
+    font-size:10px; color:var(--muted); margin-top:4px; line-height:1.2;
+  }
+  .pose-card .dim-label {
+    font-size:9px; color:var(--muted); margin-top:2px;
+  }
+  .pose-card .dim-label.bad { color:#f0a090; font-weight:700; }
+  .pose-card .missing-tag {
+    position:absolute; top:4px; right:4px; font-size:9px; font-weight:700;
+    color:#f0a090; background:rgba(10,6,8,0.85); padding:1px 5px; border-radius:3px;
+  }
+  .pose-card .flagged-tag {
+    position:absolute; top:4px; left:4px; font-size:9px; font-weight:700;
+    color:#e85020; background:rgba(10,6,8,0.85); padding:1px 5px; border-radius:3px;
+  }
+  .pose-card .source-tag {
+    position:absolute; bottom:26px; right:6px; font-size:8px; font-weight:600;
+    padding:1px 4px; border-radius:2px; background:rgba(10,6,8,0.7);
+  }
+  .pose-card .source-tag.spritecook { color:#80d0a0; }
+  .pose-card .source-tag.legacy { color:#8a7a6a; }
+
+  .output-area {
+    position:fixed; left:0; right:0; bottom:0; background:#050308;
+    border-top:2px solid var(--accent); padding:10px 16px; max-height:45vh; overflow:auto; z-index:20;
+  }
+  .output-area textarea {
+    width:100%; min-height:80px; background:var(--surface); color:var(--text);
+    border:1px solid var(--border); border-radius:4px;
+    font-family:ui-monospace,Menlo,monospace; font-size:11px; padding:8px;
+    box-sizing:border-box; resize:vertical;
+  }
+  .output-area .output-header {
+    display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;
+  }
+  .output-area .output-header span { font-size:12px; color:var(--muted); }
+
+  .hidden { display:none !important; }
+</style>
+</head>
+<body>
+
+<h1>Sprite Replacement Tool</h1>
+<div class="intro">
+  Review all character sprites across the project. Click any sprite to flag it for regeneration.
+  Use "Generate Prompt" to produce a SpriteCook prompt for all flagged sprites, with proper
+  reference_asset_id linking and character descriptions from the redesign plan.
+  Missing sprites are shown as placeholders and auto-flagged.
+</div>
+
+<div class="summary-bar" id="summary">Loading...</div>
+
+<div class="controls">
+  <input type="search" id="filter" placeholder="Filter by character name...">
+  <select id="category-filter">
+    <option value="all">All categories</option>
+    <option value="hero">Heroes</option>
+    <option value="companion">Companions</option>
+    <option value="enemy">Enemies</option>
+  </select>
+  <select id="show-filter">
+    <option value="all">Show all</option>
+    <option value="flagged">Flagged only</option>
+    <option value="missing">Missing only</option>
+    <option value="present">Present only</option>
+  </select>
+  <button class="secondary" id="clear-btn">Clear flags</button>
+  <button id="generate-btn">Generate Prompt</button>
+</div>
+
+<div id="characters"></div>
+
+<div class="output-area" id="output-area" style="display:none">
+  <div class="output-header">
+    <span>SpriteCook generation prompt (flagged: <strong id="flag-count">0</strong>)</span>
+    <div>
+      <button class="secondary" style="padding:6px 12px;font-size:11px" id="close-output">Close</button>
+      <button style="padding:6px 12px;font-size:11px" id="copy-btn">Copy</button>
+    </div>
+  </div>
+  <textarea id="prompt-output" readonly></textarea>
+</div>
+
+<script>
+// ── Character data ──────────────────────────────────────────────────────────
+const POSES = ['portrait','south','east','east_attack','east_spell','east_ko','east_block'];
+
+const CHARACTERS = {
+  // ── Heroes (20) ──
+  warrior: { cat:'hero', desc:'heavy plate armor, broad-shouldered, stern face, iron helm with visor', weapon:'greatsword', block:'raising heavy shield', palette:'steel and iron palette with crimson accents', skin:'tan weathered skin', element:null, type:'melee' },
+  fighter: { cat:'hero', desc:'chain mail armor, athletic build, battle-scarred, leather bracers', weapon:'longsword and shield', block:'shield raised high', palette:'silver chainmail palette with brown leather accents', skin:'fair skin with battle scars', element:null, type:'melee' },
+  ranger: { cat:'hero', desc:'green leather armor, hooded cloak, quiver on back, lean build', weapon:'bow drawn with arrow', block:'dodging sideways with cloak flowing', palette:'forest green and brown palette with silver accents', skin:'tanned skin', element:null, type:'ranged' },
+  rogue: { cat:'hero', desc:'dark leather armor, masked face, twin daggers at belt, agile', weapon:'dual daggers slashing', block:'crossing daggers in X block', palette:'dark grey and black palette with crimson accents', skin:'pale skin', element:null, type:'melee' },
+  mage: { cat:'hero', desc:'blue robes with silver trim, pointed hat, ancient tome', weapon:null, block:'magical barrier shield of light', palette:'deep blue and silver palette with arcane purple accents', skin:'pale skin', element:'arcane energy', type:'caster' },
+  paladin: { cat:'hero', desc:'white and gold plate armor, holy symbol on chest, cape', weapon:'holy-infused warhammer', block:'golden divine shield barrier', palette:'warm gold and white palette with divine light accents', skin:'warm peach skin tone', element:'holy light', type:'melee' },
+  cleric: { cat:'hero', desc:'white robes with gold accents, prayer beads, gentle face', weapon:null, block:'hands clasped in prayer ward', palette:'white and gold palette with soft radiant accents', skin:'warm skin tone', element:'divine light beam', type:'caster' },
+  necromancer: { cat:'hero', desc:'tattered black robes, pale skin, skull staff, sunken eyes', weapon:null, block:'bone shield barrier', palette:'dark desaturated palette with sickly green accents', skin:'pale ashen skin', element:'dark necrotic energy', type:'caster' },
+  bard: { cat:'hero', desc:'colorful traveling clothes, lute on back, feathered cap', weapon:null, block:'melodic defensive ward', palette:'vibrant warm palette with musical note gold accents', skin:'warm skin tone', element:'sound wave from instrument', type:'caster' },
+  druid: { cat:'hero', desc:'nature-worn robes, antler crown, bark-textured staff', weapon:null, block:'thorny vine barrier', palette:'earthy green and brown palette with nature glow accents', skin:'sun-kissed skin', element:'nature vine magic', type:'caster' },
+  demon_hunter: { cat:'hero', desc:'dark red leather, crossbow, demon-bone trophies on belt', weapon:'crossbow bolt with holy fire', block:'demon-ward sigil barrier', palette:'dark red and black palette with holy fire accents', skin:'scarred tan skin', element:null, type:'ranged' },
+  tactician: { cat:'hero', desc:'military officer uniform, map scroll, strategic medals', weapon:null, block:'tactical shield formation', palette:'navy and brass palette with commanding gold accents', skin:'fair skin', element:'command aura energy', type:'caster' },
+  chronomancer: { cat:'hero', desc:'shimmering time-distorted robes, clock motifs, hourglass staff', weapon:null, block:'time-freeze bubble', palette:'iridescent blue-violet palette with clockwork gold accents', skin:'ageless pale skin', element:'temporal distortion energy', type:'caster' },
+  oracle: { cat:'hero', desc:'flowing white hooded robes, golden diadem circlet, glowing cyan eyes, wavy golden-brown hair', weapon:null, block:'arms raised channeling protective vision', palette:'cool-toned palette with cyan and gold accents', skin:'warm peach skin tone', element:'cyan magical energy orb', type:'caster' },
+  stormcaller: { cat:'hero', desc:'storm-grey armor with lightning motifs, crackling eyes', weapon:null, block:'wind barrier vortex', palette:'storm grey and electric blue palette with lightning accents', skin:'tan skin', element:'lightning bolt', type:'caster' },
+  dragon_knight: { cat:'hero', desc:'dragon-scale armor, dragon helm, massive build', weapon:'fire-wreathed greataxe', block:'dragon-scale shield wall', palette:'dark red and bronze palette with fire accents', skin:'weathered dark skin', element:null, type:'melee' },
+  swashbuckler: { cat:'hero', desc:'pirate-style coat, wide-brimmed hat, confident grin', weapon:'rapier flourish', block:'parrying with rapier', palette:'crimson and navy palette with gold trim accents', skin:'tanned skin', element:null, type:'melee' },
+  scavenger: { cat:'hero', desc:'patchwork leather, many pouches and belts, resourceful look', weapon:'thrown knife or improvised weapon', block:'ducking behind makeshift cover', palette:'dusty brown and grey palette with scrap metal accents', skin:'dirty tan skin', element:null, type:'ranged' },
+  pyromancer: { cat:'hero', desc:'fire-themed robes, ember-glowing eyes, flame-licked staff', weapon:null, block:'flame curtain barrier', palette:'warm orange and red palette with ember glow accents', skin:'warm reddish skin', element:'fireball', type:'caster' },
+  warlock: { cat:'hero', desc:'dark purple robes, demonic runes on skin, sinister aura', weapon:null, block:'dark magical ward', palette:'dark purple and black palette with demonic rune accents', skin:'pale greyish skin with rune markings', element:'shadow bolt energy', type:'caster' },
+
+  // ── Companions (15) ──
+  war_dog: { cat:'companion', desc:'armored war hound, spiked collar, muscular', attack:'lunging bite attack', palette:'brown and iron palette with spiked metal accents', skin:null },
+  dire_wolf: { cat:'companion', desc:'massive grey wolf, glowing amber eyes', attack:'snapping jaw lunge', palette:'grey fur palette with amber glow accents', skin:null },
+  forest_owl: { cat:'companion', desc:'large tawny owl, spread wings, sharp talons', attack:'diving talon strike', palette:'tawny brown and cream palette with golden eye accents', skin:null },
+  ember_drake: { cat:'companion', desc:'small fire-breathing drake, scaled, bat-winged', attack:'breathing fire blast', palette:'red-orange scaled palette with ember glow accents', skin:null },
+  shadow_cat: { cat:'companion', desc:'sleek black panther, glowing purple eyes', attack:'pouncing claw swipe', palette:'black fur palette with purple glow accents', skin:null },
+  crystal_golem: { cat:'companion', desc:'translucent crystalline humanoid, glowing core', attack:'smashing crystal fist', palette:'translucent crystal palette with inner glow accents', skin:null },
+  spirit_wisp: { cat:'companion', desc:'ethereal floating orb of light, trailing wisps', attack:'energy pulse blast', palette:'ethereal white-blue palette with trailing glow accents', skin:null },
+  bone_hound: { cat:'companion', desc:'skeletal dog, glowing eye sockets, exposed ribs', attack:'biting with skeletal jaw', palette:'bone white and shadow palette with green glow accents', skin:null },
+  ice_sprite: { cat:'companion', desc:'tiny frost fairy, icicle wings, blue glow', attack:'frost shard projectile', palette:'icy blue and white palette with frost crystal accents', skin:null },
+  swamp_frog: { cat:'companion', desc:'oversized toad, mossy back, toxic markings', attack:'tongue lash attack', palette:'murky green palette with toxic yellow accents', skin:null },
+  void_moth: { cat:'companion', desc:'large dark moth, void-purple wings, star patterns', attack:'wing dust burst', palette:'void purple and black palette with starfield accents', skin:null },
+  dragon_whelp: { cat:'companion', desc:'baby dragon, stubby wings, curious expression', attack:'small flame breath', palette:'warm red-gold scaled palette with fire accents', skin:null },
+  storm_drake: { cat:'companion', desc:'electric-blue drake, crackling scales', attack:'lightning breath', palette:'electric blue and silver palette with lightning accents', skin:null },
+  corrupted_wolf: { cat:'companion', desc:'dark matted fur, red glowing eyes, shadow aura', attack:'shadow-infused bite', palette:'dark matted palette with red corruption accents', skin:null },
+  corrupted_bear: { cat:'companion', desc:'massive bear with dark corruption veins, red eyes', attack:'heavy claw slam', palette:'dark brown palette with red corruption vein accents', skin:null },
+
+  // ── Enemies (38) ──
+  goblin_warrior: { cat:'enemy', desc:'small green-skinned goblin in crude iron armor', weapon:'rusty sword', block:'iron shield raised', palette:'green skin and rusty iron palette', skin:'green skin', element:null, type:'melee' },
+  goblin_scout: { cat:'enemy', desc:'lean goblin with leather cap and shortbow', weapon:'shortbow shot', block:'ducking behind rock', palette:'green skin and brown leather palette', skin:'green skin', element:null, type:'ranged' },
+  goblin_shaman: { cat:'enemy', desc:'goblin in feathered robes with glowing staff', weapon:null, block:'spirit ward barrier', palette:'green skin with mystical feather accents', skin:'green skin', element:'shamanic fire magic', type:'caster' },
+  goblin_warlord: { cat:'enemy', desc:'large armored goblin chief with battle standard', weapon:'massive cleaver', block:'banner shield wall', palette:'green skin and dark iron palette with war paint accents', skin:'green skin', element:null, type:'melee' },
+  bandit: { cat:'enemy', desc:'rough human in patched leather, scarred face', weapon:'crude sword', block:'leather buckler raised', palette:'brown leather and dirt palette', skin:'scarred tan skin', element:null, type:'melee' },
+  bandit_captain: { cat:'enemy', desc:'bandit in studded leather with commanding presence', weapon:'dual swords', block:'parrying with blade', palette:'dark leather and steel stud palette', skin:'weathered skin', element:null, type:'melee' },
+  imp: { cat:'enemy', desc:'small red-skinned demon, bat wings, mischievous', weapon:null, block:'wing shield wrap', palette:'red skin and dark palette with fire accents', skin:'red skin', element:'fire bolt', type:'caster' },
+  demon_brute: { cat:'enemy', desc:'hulking red demon, horned, massive fists', weapon:'massive fists smashing', block:'crossed arm block', palette:'dark red and black palette with infernal accents', skin:'dark red skin', element:null, type:'melee' },
+  cinder_hound: { cat:'enemy', desc:'fire-wreathed wolf, magma dripping from jaws', attack:'fire bite lunge', palette:'magma and ember palette with flame accents', skin:null },
+  molten_golem: { cat:'enemy', desc:'lava-rock humanoid, glowing cracks, massive', weapon:'molten fist slam', block:'hardened lava shell', palette:'dark rock and magma palette with lava glow accents', skin:null, element:null, type:'melee' },
+  lava_titan: { cat:'enemy', desc:'enormous magma giant, volcanic shoulder vents', weapon:'volcanic fist slam', block:'magma shell defense', palette:'volcanic rock and lava palette with eruption accents', skin:null, element:null, type:'melee' },
+  ash_wraith: { cat:'enemy', desc:'ghostly smoke figure, ember-glowing eyes', weapon:null, block:'smoke dispersal dodge', palette:'grey smoke and ember palette with ghostly accents', skin:null, element:'ember ghost fire', type:'caster' },
+  void_wraith: { cat:'enemy', desc:'dark spectral being, tattered shadow cloak', weapon:null, block:'phasing through attack', palette:'dark void and purple palette with spectral accents', skin:null, element:'void energy blast', type:'caster' },
+  void_shade: { cat:'enemy', desc:'wispy shadow entity, barely corporeal', weapon:null, block:'fading to shadow', palette:'transparent shadow and dark purple palette', skin:null, element:'shadow bolt', type:'caster' },
+  void_prophet: { cat:'enemy', desc:'robed void cultist, glowing void sigils', weapon:null, block:'sigil barrier ward', palette:'dark robes with void purple sigil accents', skin:'pale skin with void markings', element:'void sigil magic', type:'caster' },
+  veil_cultist: { cat:'enemy', desc:'hooded cultist, purple robes, ritual dagger', weapon:'ritual dagger stab', block:'ward gesture', palette:'purple robes and dark palette with ritual accents', skin:'hidden face, pale hands', element:null, type:'melee' },
+  veil_sorcerer: { cat:'enemy', desc:'elite cultist, powerful magical aura', weapon:null, block:'magical barrier', palette:'deep purple and gold palette with arcane accents', skin:'pale skin with glowing eyes', element:'veil magic blast', type:'caster' },
+  veil_warden: { cat:'enemy', desc:'armored veil guardian, tower shield', weapon:'shield bash and spear', block:'tower shield wall', palette:'dark purple armor and black palette with veil accents', skin:null, element:null, type:'melee' },
+  giant_spider: { cat:'enemy', desc:'massive arachnid, venomous fangs, hairy', attack:'venomous fang lunge', palette:'dark brown and green palette with venom accents', skin:null },
+  frost_wyrm: { cat:'enemy', desc:'ice dragon, crystalline scales, frost breath', attack:'frost breath blast', palette:'icy blue and white crystalline palette', skin:null },
+  frost_wyrmling: { cat:'enemy', desc:'young ice dragon, smaller, icy blue', attack:'ice shard spit', palette:'light blue and frost white palette', skin:null },
+  wyrm_warrior: { cat:'enemy', desc:'dragonborn warrior in scale armor', weapon:'scale-forged axe', block:'scale shield raised', palette:'bronze scale and dark iron palette', skin:'scaled reptilian skin', element:null, type:'melee' },
+  dragon_cultist: { cat:'enemy', desc:'dragon-worshipping cultist, dragon tattoos', weapon:null, block:'dragon sigil ward', palette:'red and gold palette with dragon tattoo accents', skin:'tattooed skin', element:'dragon fire magic', type:'caster' },
+  dragon_hatchling: { cat:'enemy', desc:'newly hatched dragon, small and fierce', attack:'small flame spit', palette:'warm red and gold palette with tiny scale accents', skin:null },
+  storm_dragon: { cat:'enemy', desc:'adult lightning dragon, crackling scales', attack:'lightning breath blast', palette:'electric blue and silver palette with storm accents', skin:null },
+  dragon_king: { cat:'enemy', desc:'ancient dragon, massive, crown of horns', attack:'devastating fire breath', palette:'dark gold and crimson palette with ancient power accents', skin:null },
+  abyssal_knight: { cat:'enemy', desc:'dark armor consumed by void energy', weapon:'void-infused greatsword', block:'void barrier', palette:'black armor with void purple energy accents', skin:null, element:null, type:'melee' },
+  hell_knight: { cat:'enemy', desc:'demon in full infernal plate armor', weapon:'infernal flaming sword', block:'infernal shield', palette:'dark iron and hellfire palette with demonic accents', skin:null, element:null, type:'melee' },
+  star_horror: { cat:'enemy', desc:'cosmic aberration, tentacles, many eyes', attack:'tentacle lash', palette:'dark cosmic palette with starfield and eye accents', skin:null },
+  reality_shard: { cat:'enemy', desc:'geometric crystal entity, reality-warping', attack:'reality fracture blast', palette:'prismatic crystal palette with reality-distortion accents', skin:null },
+  primordial_elemental: { cat:'enemy', desc:'raw elemental force, shifting elements', attack:'elemental surge blast', palette:'shifting multi-element palette with primal energy accents', skin:null },
+  cosmic_titan: { cat:'enemy', desc:'planet-scale entity, star-studded body', attack:'cosmic energy slam', palette:'dark void palette with starfield and nebula accents', skin:null },
+  grax_veil_touched: { cat:'enemy', desc:'named NPC boss, veil-corrupted warrior', weapon:'corrupted greatsword', block:'veil barrier', palette:'corrupted dark palette with veil purple accents', skin:'corrupted pale skin', element:null, type:'melee' },
+  archfiend_malgrath: { cat:'enemy', desc:'named demon lord boss, massive horned', weapon:'infernal claws', block:'demonic ward', palette:'deep red and black palette with hellfire accents', skin:'dark red demonic skin', element:null, type:'melee' },
+  the_architect: { cat:'enemy', desc:'named final boss, reality-manipulating entity', weapon:null, block:'reality fold barrier', palette:'reality-warping prismatic palette with cosmic accents', skin:null, element:'reality distortion beam', type:'caster' },
+  the_unraveler: { cat:'enemy', desc:'named void boss, reality-tearing presence', weapon:null, block:'void rift shield', palette:'void black palette with reality-tear accents', skin:null, element:'void tear beam', type:'caster' },
+  emberveil_sovereign: { cat:'enemy', desc:'ultimate boss, fusion of ember and void', weapon:null, block:'ember-void fusion barrier', palette:'ember orange and void purple fusion palette', skin:null, element:'ember-void fusion blast', type:'caster' },
+  genesis_worm: { cat:'enemy', desc:'enormous primordial worm, cosmic devourer', attack:'cosmic devour lunge', palette:'cosmic dark palette with primordial energy accents', skin:null },
+};
+
+// Additional characters found in sprites/ but not in redesign plan
+const EXTRA_SPRITE_IDS = ['ancient_dragon','shadow_wyrm','tactician'];
+// Add them with minimal data
+if (!CHARACTERS.ancient_dragon) CHARACTERS.ancient_dragon = { cat:'enemy', desc:'ancient dragon, massive scaled beast', attack:'devastating fire breath', palette:'dark gold and crimson palette', skin:null };
+if (!CHARACTERS.shadow_wyrm) CHARACTERS.shadow_wyrm = { cat:'enemy', desc:'shadow dragon, dark scales with void energy', attack:'shadow breath blast', palette:'dark shadow and purple palette', skin:null };
+if (!CHARACTERS.tactician) CHARACTERS.tactician = { cat:'hero', desc:'military officer uniform, map scroll, strategic medals', weapon:null, block:'tactical shield formation', palette:'navy and brass palette with commanding gold accents', skin:'fair skin', element:'command aura energy', type:'caster' };
+
+// ── SpriteCook asset manifest (asset_ids for references) ──
+const SPRITECOOK_ASSETS = {
+  oracle: {
+    portrait: '5bf384b9-a663-4d62-be8b-20b77db7a166',
+    south: '0825cb75-ad56-4110-a874-6b93918d329a',
+    east: '6a11bdd2-16b1-4637-aa8c-74a76e95f719',
+    east_attack: '74f3ddc0-52ea-4e65-995d-037df53cb22f',
+    east_spell: '0fbaf2ea-832b-4fa1-9c54-0700c158a842',
+    east_ko: 'a37ea3b9-9285-4cb2-8bf1-3daa2bfb150c'
+  },
+  paladin: {
+    portrait: '4b7220f1-a3a1-41a2-a47b-1d8e48f2d205',
+    south: '23e184c1-19d6-42d7-bb5a-dab82a995c59',
+    east: 'e3ebe81d-39e0-4d88-85e2-a4391b21935b',
+    east_attack: '30e6329c-a5e9-46a4-8b49-ea52f7e14e57',
+    east_spell: '5e378c85-0b61-4fbe-9987-4bc08f3c106f',
+    east_ko: '85f892a9-d27b-4f6e-913b-0ff39627dbeb',
+    east_block: 'f78e5610-15cc-4fe3-baf7-f5c36a637644'
+  },
+  warrior: { portrait: '13c446e3-2c51-41b5-97d7-3169fa9e5bc7' },
+  fighter: { portrait: 'eaa95a48-5fe1-4579-9243-c8d101d57583' },
+  ranger: { portrait: '6e256f9c-87e7-48da-8514-6eedddab2aa1' },
+  rogue: { portrait: '83783e34-3dfb-4f3a-af8f-3a1528028707' },
+  mage: { portrait: '04800b33-afd3-4b81-83dd-c2ff3f1091bb' }
+};
+
+// ── State ──
+const STORAGE_KEY = 'sprite_replace_flagged_v2';
+let flagged = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
+let fileExistence = {}; // key: "id_pose" -> { spritecook:bool, sprites:bool, portraits:bool }
+let imageDims = {};     // key: "id_pose" -> "WxH"
+let filterText = '';
+let categoryFilter = 'all';
+let showFilter = 'all';
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...flagged]));
+}
+
+// ── Scan filesystem for existing sprites ──
+async function scanFiles() {
+  const ids = Object.keys(CHARACTERS);
+  const checks = [];
+
+  for (const id of ids) {
+    for (const pose of POSES) {
+      const key = id + '_' + pose;
+
+      // Check spritecook directory
+      checks.push(probeImage('../images/spritecook/' + key + '.png', key, 'spritecook'));
+
+      // Check sprites directory (different naming for some poses)
+      if (pose === 'portrait') {
+        checks.push(probeImage('../images/portraits/' + id + '.png', key, 'portraits'));
+      } else if (pose === 'east_ko') {
+        // sprites/ uses "death" instead of "east_ko"
+        checks.push(probeImage('../images/sprites/' + id + '_death.png', key, 'sprites'));
+      } else {
+        checks.push(probeImage('../images/sprites/' + key + '.png', key, 'sprites'));
+      }
+    }
+  }
+
+  await Promise.all(checks);
+}
+
+function probeImage(src, key, source) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      if (!fileExistence[key]) fileExistence[key] = {};
+      fileExistence[key][source] = true;
+      fileExistence[key][source + '_src'] = src;
+      imageDims[key + '_' + source] = img.naturalWidth + 'x' + img.naturalHeight;
+      resolve();
+    };
+    img.onerror = () => resolve();
+    img.src = src;
+  });
+}
+
+function getImageSrc(id, pose) {
+  const key = id + '_' + pose;
+  const ex = fileExistence[key];
+  if (!ex) return null;
+  // Prefer spritecook, then sprites/portraits
+  if (ex.spritecook) return ex.spritecook_src;
+  if (ex.sprites) return ex.sprites_src;
+  if (ex.portraits) return ex.portraits_src;
+  return null;
+}
+
+function getImageSource(id, pose) {
+  const key = id + '_' + pose;
+  const ex = fileExistence[key];
+  if (!ex) return null;
+  if (ex.spritecook) return 'spritecook';
+  return 'legacy';
+}
+
+function getImageDims(id, pose) {
+  const key = id + '_' + pose;
+  const ex = fileExistence[key];
+  if (!ex) return null;
+  if (ex.spritecook) return imageDims[key + '_spritecook'];
+  if (ex.sprites) return imageDims[key + '_sprites'];
+  if (ex.portraits) return imageDims[key + '_portraits'];
+  return null;
+}
+
+function isPresent(id, pose) {
+  return !!getImageSrc(id, pose);
+}
+
+// ── Auto-flag missing sprites ──
+function autoFlagMissing() {
+  for (const id of Object.keys(CHARACTERS)) {
+    for (const pose of POSES) {
+      const key = id + '_' + pose;
+      if (!isPresent(id, pose) && !flagged.has(key)) {
+        flagged.add(key);
+      }
+    }
+  }
+  save();
+}
+
+// ── Render ──
+function render() {
+  const charDiv = document.getElementById('characters');
+
+  // Group by category
+  const groups = { hero: [], companion: [], enemy: [] };
+  for (const [id, data] of Object.entries(CHARACTERS)) {
+    groups[data.cat].push(id);
+  }
+  for (const cat of Object.keys(groups)) groups[cat].sort();
+
+  const categoryOrder = [
+    { key:'hero', label:'Heroes' },
+    { key:'companion', label:'Companions' },
+    { key:'enemy', label:'Enemies / Bosses' }
+  ];
+
+  let totalChars = 0, completeChars = 0, totalSprites = 0, presentSprites = 0, missingSprites = 0, flaggedCount = flagged.size;
+  // Count
+  for (const id of Object.keys(CHARACTERS)) {
+    totalChars++;
+    let allPresent = true;
+    for (const pose of POSES) {
+      totalSprites++;
+      if (isPresent(id, pose)) presentSprites++;
+      else { missingSprites++; allPresent = false; }
+    }
+    if (allPresent) completeChars++;
+  }
+
+  document.getElementById('summary').innerHTML =
+    `<span><span class="stat">${completeChars}/${totalChars}</span> characters complete</span>` +
+    `<span><span class="stat">${presentSprites}</span> sprites found</span>` +
+    `<span><span class="stat-bad">${missingSprites}</span> missing</span>` +
+    `<span><span class="stat">${flaggedCount}</span> flagged for regen</span>`;
+
+  let html = '';
+  for (const { key: catKey, label: catLabel } of categoryOrder) {
+    if (categoryFilter !== 'all' && categoryFilter !== catKey) continue;
+
+    const ids = groups[catKey].filter(id => {
+      if (filterText && !id.includes(filterText)) return false;
+      if (showFilter === 'flagged') return POSES.some(p => flagged.has(id + '_' + p));
+      if (showFilter === 'missing') return POSES.some(p => !isPresent(id, p));
+      if (showFilter === 'present') return POSES.some(p => isPresent(id, p));
+      return true;
+    });
+    if (ids.length === 0) continue;
+
+    html += `<h2>${catLabel}</h2>`;
+
+    for (const id of ids) {
+      const data = CHARACTERS[id];
+      const charPresent = POSES.filter(p => isPresent(id, p)).length;
+      const charFlagged = POSES.filter(p => flagged.has(id + '_' + p)).length;
+
+      // Filter individual poses for show filter
+      let visiblePoses = POSES;
+      if (showFilter === 'flagged') visiblePoses = POSES.filter(p => flagged.has(id + '_' + p));
+      else if (showFilter === 'missing') visiblePoses = POSES.filter(p => !isPresent(id, p));
+      else if (showFilter === 'present') visiblePoses = POSES.filter(p => isPresent(id, p));
+      if (visiblePoses.length === 0) continue;
+
+      html += `<div class="char-group">`;
+      html += `<div class="char-group-header">
+        <span>${id.replace(/_/g,' ')}</span>
+        <span class="char-stats">${charPresent}/${POSES.length} sprites | ${charFlagged} flagged</span>
+      </div>`;
+      html += `<div class="pose-grid">`;
+
+      for (const pose of visiblePoses) {
+        const key = id + '_' + pose;
+        const src = getImageSrc(id, pose);
+        const source = getImageSource(id, pose);
+        const dims = getImageDims(id, pose);
+        const missing = !src;
+        const isFlagged = flagged.has(key);
+        const badDims = dims && dims !== '256x256';
+
+        let cls = 'pose-card';
+        if (isFlagged) cls += ' flagged';
+        if (missing) cls += ' missing';
+
+        html += `<div class="${cls}" data-key="${key}">`;
+        if (isFlagged) html += `<span class="flagged-tag">REGEN</span>`;
+        if (missing) html += `<span class="missing-tag">MISSING</span>`;
+        if (source) html += `<span class="source-tag ${source}">${source}</span>`;
+
+        if (src) {
+          html += `<img src="${src}" loading="lazy" alt="${key}">`;
+        } else {
+          html += `<div class="placeholder">No file</div>`;
+        }
+        html += `<div class="pose-label">${pose}</div>`;
+        if (dims) {
+          html += `<div class="dim-label${badDims ? ' bad' : ''}">${dims}</div>`;
+        }
+        html += `</div>`;
+      }
+
+      html += `</div></div>`;
+    }
+  }
+
+  charDiv.innerHTML = html;
+
+  // Attach click handlers
+  charDiv.querySelectorAll('.pose-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.dataset.key;
+      if (flagged.has(key)) flagged.delete(key); else flagged.add(key);
+      save();
+      render();
+    });
+  });
+
+  document.getElementById('flag-count').textContent = flagged.size;
+}
+
+// ── Generate prompt ──
+function generatePrompt() {
+  const flaggedList = [...flagged].sort();
+  if (flaggedList.length === 0) return '(No sprites flagged. Click sprites to flag them for regeneration.)';
+
+  // Group by character
+  const byChar = {};
+  for (const key of flaggedList) {
+    const parts = key.split('_');
+    // Find the character id — it could be multi-word like "dragon_knight"
+    let charId = null, pose = null;
+    for (const id of Object.keys(CHARACTERS)) {
+      for (const p of POSES) {
+        if (id + '_' + p === key) { charId = id; pose = p; break; }
+      }
+      if (charId) break;
+    }
+    if (!charId) continue;
+    if (!byChar[charId]) byChar[charId] = [];
+    byChar[charId].push(pose);
+  }
+
+  let out = `# SpriteCook Regeneration Batch\n\n`;
+  out += `Generated: ${new Date().toISOString().split('T')[0]}\n`;
+  out += `Total sprites to generate: ${flaggedList.length}\n`;
+  out += `Characters affected: ${Object.keys(byChar).length}\n\n`;
+  out += `## Generation settings (all poses)\n\n`;
+  out += `\`\`\`\nwidth: 256\nheight: 256\npixel: true\nbg_mode: "transparent"\ntheme: "dark fantasy medieval"\nmodel: "gemini-2.5-flash-image"\n\`\`\`\n\n`;
+
+  for (const [charId, poses] of Object.entries(byChar)) {
+    const data = CHARACTERS[charId];
+    if (!data) continue;
+
+    const styleStr = `16-bit SNES RPG style, ${data.palette}`;
+    const skinStr = data.skin ? `, ${data.skin}` : '';
+
+    // Determine reference asset_id
+    const scAssets = SPRITECOOK_ASSETS[charId];
+    const portraitAssetId = scAssets?.portrait || null;
+
+    out += `---\n\n### ${charId.replace(/_/g,' ')} (${data.cat})\n\n`;
+    out += `**Style:** \`${styleStr}\`\n`;
+    out += `**Description:** ${data.desc}${skinStr}\n`;
+    if (portraitAssetId) {
+      out += `**Portrait asset_id:** \`${portraitAssetId}\`\n`;
+    }
+    out += `**Poses to generate:** ${poses.join(', ')}\n\n`;
+
+    for (const pose of poses) {
+      // Determine reference_asset_id for this pose
+      let refId = null;
+      let refNote = '';
+      if (pose === 'portrait') {
+        // For portraits, use south pose as reference if available
+        const southId = scAssets?.south || null;
+        if (southId) { refId = southId; refNote = ' (south pose as reference)'; }
+        else refNote = ' (no reference -- generate fresh)';
+      } else {
+        // For all other poses, use portrait as reference
+        if (portraitAssetId) { refId = portraitAssetId; refNote = ' (portrait as reference)'; }
+        else refNote = ' (no portrait asset_id available -- generate portrait first)';
+      }
+
+      out += `#### ${pose}\n\n`;
+      if (refId) out += `- **reference_asset_id:** \`${refId}\`${refNote}\n`;
+      else out += `- **reference_asset_id:** none${refNote}\n`;
+
+      // Build the prompt text
+      const prompt = buildPosePrompt(charId, data, pose);
+      out += `- **prompt:** \`${prompt}\`\n`;
+      out += `- **style:** \`${styleStr}\`\n`;
+      out += `- **output:** \`${charId}_${pose}.png\`\n\n`;
+    }
+  }
+
+  return out;
+}
+
+function buildPosePrompt(charId, data, pose) {
+  const isCompanion = data.cat === 'companion';
+  const isCreature = !data.type || isCompanion || ['cinder_hound','giant_spider','frost_wyrm','frost_wyrmling','dragon_hatchling','storm_dragon','dragon_king','star_horror','reality_shard','primordial_elemental','cosmic_titan','genesis_worm'].includes(charId);
+  const skinStr = data.skin ? `, ${data.skin}` : '';
+  const bgSuffix = ', clean transparent background, no background elements';
+
+  const className = charId.replace(/_/g, ' ');
+
+  if (isCreature || isCompanion) {
+    switch (pose) {
+      case 'portrait':
+        return `${className}, ${data.desc}${skinStr}, dark fantasy creature portrait, front-facing${bgSuffix}`;
+      case 'south':
+        return `${className} full body sprite, south-facing idle stance, ${data.desc}${skinStr}, standing pose facing camera, dark fantasy RPG creature sprite${bgSuffix}`;
+      case 'east':
+        return `${className} full body sprite, east-facing side view idle stance, ${data.desc}${skinStr}, standing in profile facing right, dark fantasy RPG creature sprite${bgSuffix}`;
+      case 'east_attack':
+        return `${className} full body sprite, east-facing attack pose, ${data.desc}${skinStr}, ${data.attack || 'aggressive lunge attack'}, aggressive action pose, dark fantasy RPG creature sprite${bgSuffix}`;
+      case 'east_spell':
+        return `${className} full body sprite, east-facing special attack pose, ${data.desc}${skinStr}, ${data.attack || 'energy burst'}, powerful action pose, dark fantasy RPG creature sprite${bgSuffix}`;
+      case 'east_ko':
+        return `${className} full body sprite, east-facing fallen unconscious pose, ${data.desc}${skinStr}, collapsed on ground, defeated and limp, dark fantasy RPG creature sprite${bgSuffix}`;
+      case 'east_block':
+        return `${className} full body sprite, east-facing defensive pose, ${data.desc}${skinStr}, braced defensive stance, dark fantasy RPG creature sprite${bgSuffix}`;
+    }
+  } else {
+    // Hero / humanoid enemy
+    const isCaster = data.type === 'caster';
+    switch (pose) {
+      case 'portrait':
+        return `${className} character portrait, ${data.desc}${skinStr}, dark fantasy RPG character, front-facing bust portrait${bgSuffix}`;
+      case 'south':
+        return `${className} character full body sprite, south-facing idle stance, ${data.desc}${skinStr}, arms relaxed at sides, standing pose facing camera, dark fantasy RPG character sprite${bgSuffix}`;
+      case 'east':
+        return `${className} character full body sprite, east-facing side view idle stance, ${data.desc}${skinStr}, standing in profile facing right, arms relaxed, dark fantasy RPG character sprite${bgSuffix}`;
+      case 'east_attack':
+        if (isCaster) {
+          return `${className} character full body sprite, east-facing attack pose, ${data.desc}${skinStr}, right hand extended forward casting ${data.element || 'magical'} magic, glowing magical energy in hand, action pose, dark fantasy RPG character sprite${bgSuffix}`;
+        } else {
+          return `${className} character full body sprite, east-facing attack pose, ${data.desc}${skinStr}, swinging ${data.weapon || 'weapon'} forward in aggressive strike, action pose leaning forward, dark fantasy RPG character sprite${bgSuffix}`;
+        }
+      case 'east_spell':
+        return `${className} character full body sprite, east-facing spellcasting pose, ${data.desc}${skinStr}, both hands raised channeling a large glowing ${data.element || 'magical'} aura, mystical energy around hands, powerful channeling stance, dark fantasy RPG character sprite${bgSuffix}`;
+      case 'east_ko':
+        return `${className} character full body sprite, east-facing fallen unconscious pose, ${data.desc}${skinStr}, collapsed on ground face down, defeated and limp, dark fantasy RPG character sprite${bgSuffix}`;
+      case 'east_block':
+        return `${className} character full body sprite, east-facing defensive block pose, ${data.desc}${skinStr}, ${data.block || 'braced defensive stance'}, braced defensive stance, dark fantasy RPG character sprite${bgSuffix}`;
+    }
+  }
+  return '';
+}
+
+// ── Event handlers ──
+document.getElementById('filter').addEventListener('input', e => {
+  filterText = e.target.value.toLowerCase().replace(/\s+/g, '_');
+  render();
+});
+
+document.getElementById('category-filter').addEventListener('change', e => {
+  categoryFilter = e.target.value;
+  render();
+});
+
+document.getElementById('show-filter').addEventListener('change', e => {
+  showFilter = e.target.value;
+  render();
+});
+
+document.getElementById('clear-btn').addEventListener('click', () => {
+  if (!confirm('Clear all flags? Missing sprites will be re-flagged.')) return;
+  flagged.clear();
+  save();
+  autoFlagMissing();
+  render();
+});
+
+document.getElementById('generate-btn').addEventListener('click', () => {
+  const area = document.getElementById('output-area');
+  const textarea = document.getElementById('prompt-output');
+  textarea.value = generatePrompt();
+  area.style.display = 'block';
+});
+
+document.getElementById('close-output').addEventListener('click', () => {
+  document.getElementById('output-area').style.display = 'none';
+});
+
+document.getElementById('copy-btn').addEventListener('click', async () => {
+  const text = document.getElementById('prompt-output').value;
+  try { await navigator.clipboard.writeText(text); alert('Copied to clipboard!'); }
+  catch { document.getElementById('prompt-output').select(); document.execCommand('copy'); alert('Copied!'); }
+});
+
+// ── Init ──
+(async function init() {
+  await scanFiles();
+  autoFlagMissing();
+  render();
+})();
+</script>
+</body>
+</html>

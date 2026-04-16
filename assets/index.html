@@ -167,9 +167,304 @@
       cursor: pointer;
       transition: border-color 0.15s, background 0.15s;
     }
+
+    /* Character blocks styling */
+    .character-roster {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .character-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+
+    .character-block:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(232,160,32,0.18);
+    }
+
+    .character-block h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      text-transform: capitalize;
+      color: var(--accent-b);
+      font-family: var(--font-display);
+    }
+
+    /* M79 Report style - larger portraits + smaller attack frames */
+    .characters-section {
+      margin-bottom: 40px;
+    }
+
+    .char-m79-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 24px;
+    }
+
+    .char-m79-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+
+    .char-m79-block:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px rgba(232,160,32,0.15);
+    }
+
+    .char-m79-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .char-m79-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent-b);
+      font-family: var(--font-display);
+      text-transform: capitalize;
+    }
+
+    .char-m79-type {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .char-m79-content {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .char-m79-portrait {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+      transition: border-color .3s;
+    }
+
+    .char-m79-portrait:hover {
+      border-color: var(--accent);
+    }
+
+    .char-m79-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .char-m79-portrait .portrait-missing {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 24px;
+      background: rgba(232,160,32,0.05);
+    }
+
+    .char-m79-frames {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+      gap: 8px;
+      max-width: 200px;
+    }
+
+    .char-m79-frame {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+      transition: border-color .3s, transform .2s;
+    }
+
+    .char-m79-frame:hover {
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .char-m79-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .char-m79-frame .frame-missing {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+      background: rgba(232,160,32,0.03);
+    }
+
+    .char-m79-frame .frame-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 8px;
+      text-align: center;
+      padding: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .char-m79-info {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Background graphics section */
+    .bg-section {
+      margin-bottom: 40px;
+    }
+
+    .bg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .bg-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .3s, border-color .3s;
+    }
+
+    .bg-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .bg-preview {
+      width: 100%;
+      height: 120px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .bg-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bg-info {
+      padding: 12px;
+    }
+
+    .bg-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .bg-usage {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .character-variants {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 8px;
+    }
+
+    .variant-box {
+      background: linear-gradient(135deg, #1a0f08, #0a0504);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .variant-box:hover {
+      transform: scale(1.05);
+    }
+
+    .variant-box img {
+      max-width: 100%;
+      max-height: 100%;
+      image-rendering: pixelated;
+      transition: transform .3s;
+    }
+
+    .variant-box .variant-label {
+      position: absolute;
+      bottom: 2px;
+      left: 2px;
+      right: 2px;
+      font-size: 8px;
+      color: var(--muted);
+      text-align: center;
+      background: rgba(0,0,0,0.7);
+      border-radius: 3px;
+      padding: 1px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .variant-missing {
+      color: var(--muted);
+      font-size: 10px;
+      text-align: center;
+      opacity: 0.5;
+    }
     .asset-card:hover { background: var(--card-h); border-color: var(--accent); }
 
-    .thumb, #modal-img {
+    .thumb, #modal-img,
+    .bg-preview img, .char-m79-portrait img, .char-m79-frame img {
       image-rendering: pixelated;
       image-rendering: -moz-crisp-edges;
       image-rendering: crisp-edges;
@@ -405,11 +700,6 @@
   <div id="total-count" style="margin-left:auto;"></div>
 </header>
 
-<section id="reports-section">
-  <h2>Milestone Reports <span id="report-count"></span></h2>
-  <div id="reports-list"><p class="reports-empty">No reports yet. Reports are added after each major milestone.</p></div>
-</section>
-
 <div class="toolbar" id="toolbar">
   <button class="filter-btn active" data-cat="all">All</button>
 </div>
@@ -425,6 +715,11 @@
   </div>
   <div id="audio-list"></div>
 </section>
+<section id="reports-section">
+  <h2>Milestone Reports <span id="report-count"></span></h2>
+  <div id="reports-list"><p class="reports-empty">No reports yet. Reports are added after each major milestone.</p></div>
+</section>
+
 
 <div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
   <div class="modal">
@@ -444,6 +739,22 @@ const BADGE_CLASSES = {
   manual:   'badge-manual',
 };
 
+// Rewrite a source image path to its 256x256 nearest-neighbor thumb under
+// public/images/_thumbs/. Generated at build time by scripts/generate_thumbnails.js.
+// Falls back to the original file via <img onerror> if a thumb is missing.
+function thumbPath(file) {
+  if (!file) return file;
+  const m = file.match(/^(\.\.\/)(images\/)(.+)$/);
+  if (!m) return file;
+  const rel = m[3].replace(/\.(jpe?g|png|webp)$/i, '.png');
+  return `${m[1]}${m[2]}_thumbs/${rel}`;
+}
+function thumbOnError(origFile) {
+  // On first error, swap to the original. Clear the handler so a broken
+  // original doesn't loop. Callers also append their own missing-state markup.
+  return `this.onerror=null;this.src='${origFile.replace(/'/g, "\\'")}'`;
+}
+
 function badgeClass(source) {
   return BADGE_CLASSES[source?.toLowerCase()] ?? 'badge-other';
 }
@@ -456,30 +767,81 @@ function sourceLabel(source) {
 let allAssets = [];
 let activeFilter = 'all';
 
-const HERO_CLASSES = new Set([
-  'warrior','mage','cleric','rogue','ranger','paladin','bard','druid','monk',
-  'warlock','pyromancer','demon_hunter','scavenger','swashbuckler','dragon_knight','necromancer'
-]);
-const COMPANION_IDS = new Set([
-  'war_dog','corrupted_wolf','giant_spider'
-]);
-const BOSS_IDS = new Set([
-  'emberveil_sovereign','archfiend_malgrath','star_horror','cosmic_titan',
-  'void_wraith','void_prophet','the_unraveler','primordial_elemental',
-  'abyssal_knight','reality_shard','genesis_worm','the_architect',
-  'grax_veil_touched','lava_titan','goblin_warlord','bandit_captain',
-  'veil_warden','veil_sorcerer'
-]);
+// Canonical list of 20 playable hero classes (from src/game/classes.js)
+const HERO_LIST = [
+  { id: 'warrior', name: 'Warrior' },
+  { id: 'fighter', name: 'Fighter' },
+  { id: 'paladin', name: 'Paladin' },
+  { id: 'ranger', name: 'Ranger' },
+  { id: 'rogue', name: 'Rogue' },
+  { id: 'cleric', name: 'Cleric' },
+  { id: 'bard', name: 'Bard' },
+  { id: 'mage', name: 'Mage' },
+  { id: 'necromancer', name: 'Necromancer' },
+  { id: 'warlock', name: 'Warlock' },
+  { id: 'demon_hunter', name: 'Demon Hunter' },
+  { id: 'scavenger', name: 'Scavenger' },
+  { id: 'swashbuckler', name: 'Swashbuckler' },
+  { id: 'dragon_knight', name: 'Dragon Knight' },
+  { id: 'pyromancer', name: 'Pyromancer' },
+  { id: 'stormcaller', name: 'Stormcaller' },
+  { id: 'druid', name: 'Druid' },
+  { id: 'oracle', name: 'Oracle' },
+  { id: 'tactician', name: 'Tactician' },
+  { id: 'chronomancer', name: 'Chronomancer' },
+];
+
+// Canonical companion list (from TownScreen.js + randomEvents.js M56/M64)
+const COMPANION_LIST = [
+  { id: 'war_dog', name: 'War Dog' },
+  { id: 'dragon_hatchling', name: 'Crimson Dragon Hatchling' },
+  { id: 'frost_wyrmling', name: 'Frost Wyrmling' },
+  { id: 'storm_drake', name: 'Storm Drake' },
+  { id: 'shadow_wyrm', name: 'Shadow Wyrm' },
+  { id: 'dire_wolf', name: 'Dire Wolf' },
+  { id: 'forest_owl', name: 'Forest Owl' },
+  { id: 'ember_drake', name: 'Ember Drake' },
+  { id: 'shadow_cat', name: 'Shadow Cat' },
+  { id: 'crystal_golem', name: 'Crystal Golem' },
+  { id: 'spirit_wisp', name: 'Spirit Wisp' },
+  { id: 'bone_hound', name: 'Bone Hound' },
+  { id: 'ice_sprite', name: 'Ice Sprite' },
+  { id: 'swamp_frog', name: 'Swamp Frog' },
+  { id: 'void_moth', name: 'Void Moth' },
+];
+
+const HERO_IDS = new Set(HERO_LIST.map(h => h.id));
+const COMPANION_IDS = new Set(COMPANION_LIST.map(c => c.id));
+
+// Strip known variant suffixes to extract a character base id from an asset id
+const VARIANT_SUFFIX_RE = /_(north|south|east|west|attack|spell|death|idle|down|flipped|alpha)$/;
+function baseIdFromAsset(asset) {
+  let id = (asset.id || '').replace(/^(sprite_|portrait_|icon_)/, '');
+  // Strip chained suffixes: e.g. warrior_east_attack_alpha -> warrior
+  let prev;
+  do {
+    prev = id;
+    id = id.replace(VARIANT_SUFFIX_RE, '');
+  } while (id !== prev);
+  return id;
+}
+function isPortraitAsset(asset) {
+  return (asset.file || '').includes('/portraits/');
+}
+function isSpriteAsset(asset) {
+  return (asset.file || '').includes('/sprites');
+}
 
 function refineCategory(asset) {
-  const cat = asset.category || 'other';
-  if (cat !== 'sprite' && cat !== 'icon' && cat !== 'portrait') return cat;
-  const id = (asset.id || '').replace(/^sprite_/, '').replace(/_(south|north|east|west|icon|portrait)(_flipped)?$/, '');
-  if (HERO_CLASSES.has(id)) return 'heroes';
-  if (COMPANION_IDS.has(id)) return 'companions';
-  if (BOSS_IDS.has(id)) return 'bosses';
-  // default remaining sprites to enemies
-  return 'enemies';
+  // Prefer JSON category; re-classify companion_sprites + sprites_pixelengine.
+  const base = baseIdFromAsset(asset);
+  if (HERO_IDS.has(base)) return 'heroes';
+  if (COMPANION_IDS.has(base)) return 'companions';
+  const cat = (asset.category || 'other').toLowerCase();
+  if (cat === 'companion_sprites') return 'companions';
+  if (cat === 'heroes' || cat === 'companions' || cat === 'bosses' || cat === 'enemies') return cat;
+  if (cat === 'backgrounds' || cat === 'background') return 'backgrounds';
+  return cat || 'other';
 }
 
 function groupByCategory(assets) {
@@ -492,11 +854,323 @@ function groupByCategory(assets) {
   return groups;
 }
 
-const CATEGORY_ORDER = ['heroes','companions','enemies','bosses','background','portrait','icon','ui','sprite','other'];
+function extractCharacterName(asset) {
+  // Extract character name from asset id, name, or file path
+  const id = asset.id || '';
+  const name = asset.name || '';
+  const file = asset.file || '';
+
+  // Try to extract from id first
+  if (id) {
+    let charName = id.replace(/^(sprite_|portrait_|icon_)/, '');
+    charName = charName.replace(/_(north|south|east|west|attack|spell|death|idle|down)(_flipped|_alpha)?$/, '');
+    if (charName) return charName;
+  }
+
+  // Try to extract from file path
+  if (file) {
+    const filename = file.split('/').pop().replace(/\.[^.]+$/, '');
+    let charName = filename.replace(/_(north|south|east|west|attack|spell|death|idle|down)(_flipped|_alpha)?$/, '');
+    if (charName) return charName;
+  }
+
+  // Fallback to name
+  return name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+}
+
+function groupAssetsByCharacter(assets) {
+  const characters = {};
+  for (const asset of assets) {
+    const charName = extractCharacterName(asset);
+    if (!characters[charName]) {
+      characters[charName] = [];
+    }
+    characters[charName].push(asset);
+  }
+  return characters;
+}
+
+function detectVariantType(asset) {
+  const id = asset.id || '';
+  const file = asset.file || '';
+  const combined = id + ' ' + file;
+
+  if (combined.includes('portrait')) return 'portrait';
+  if (combined.includes('_attack')) return 'attack';
+  if (combined.includes('_spell')) return 'spell';
+  if (combined.includes('_death') || combined.includes('_down')) return 'death';
+  if (combined.includes('_south')) return 'south';
+  if (combined.includes('_east')) return 'east';
+  if (combined.includes('_north')) return 'north';
+  if (combined.includes('_west')) return 'west';
+  if (combined.includes('_idle')) return 'idle';
+
+  return 'default';
+}
+
+function renderCharacterBlock(charName, assets) {
+  const block = document.createElement('div');
+  block.className = 'character-block';
+
+  const displayName = charName.replace(/_/g, ' ');
+
+  // Group assets by variant type
+  const variants = {};
+  assets.forEach(asset => {
+    const varType = detectVariantType(asset);
+    if (!variants[varType]) variants[varType] = [];
+    variants[varType].push(asset);
+  });
+
+  // Define preferred order of variants
+  const variantOrder = ['portrait', 'south', 'north', 'east', 'west', 'idle', 'attack', 'spell', 'death', 'default'];
+
+  let variantsHtml = '';
+  variantOrder.forEach(varType => {
+    if (variants[varType]) {
+      variants[varType].forEach(asset => {
+        const thumbSrc = asset.file ? asset.file : null;
+        const label = varType === 'default' ? 'main' : varType;
+
+        if (thumbSrc) {
+          variantsHtml += `
+            <div class="variant-box" onclick="openModal(${JSON.stringify(asset).replace(/"/g, '&quot;')})">
+              <img src="${thumbPath(thumbSrc)}" data-orig="${thumbSrc}" alt="${asset.name || charName}" loading="lazy"
+                   onerror="if(this.dataset.fallback){this.parentElement.innerHTML='<div class=variant-missing>${label}</div>'}else{this.dataset.fallback=1;this.src=this.dataset.orig}">
+              <div class="variant-label">${label}</div>
+            </div>`;
+        } else {
+          variantsHtml += `<div class="variant-box"><div class="variant-missing">${label}</div></div>`;
+        }
+      });
+    }
+  });
+
+  block.innerHTML = `
+    <h3>${displayName}</h3>
+    <div class="character-variants">${variantsHtml}</div>
+  `;
+
+  return block;
+}
+
+const CATEGORY_ORDER = ['characters','heroes','companions','enemies','bosses','backgrounds','background','portrait','icon','ui','sprite','other'];
 function sortedCategoryEntries(groups) {
   return Object.entries(groups).sort((a, b) => {
     const ia = CATEGORY_ORDER.indexOf(a[0]); const ib = CATEGORY_ORDER.indexOf(b[0]);
     return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+  });
+}
+
+// Build a { baseId -> {portrait, frames:[], all:[]} } index from assets.
+// Matches by EXACT base id (no substring regex — that was the Mage/Warrior bug).
+function indexAssetsByCharacter(assets) {
+  const idx = {};
+  for (const a of assets) {
+    const base = baseIdFromAsset(a);
+    if (!base) continue;
+    if (!idx[base]) idx[base] = { portrait: null, frames: [], all: [] };
+    idx[base].all.push(a);
+    if (isPortraitAsset(a) && !idx[base].portrait) {
+      idx[base].portrait = a;
+    } else if (isSpriteAsset(a)) {
+      idx[base].frames.push(a);
+    }
+  }
+  // Dedup + sort frames: attack, spell, directions, death.
+  const order = ['east_attack','east_spell','south','east','west','north','death'];
+  for (const k of Object.keys(idx)) {
+    const seen = new Set();
+    idx[k].frames = idx[k].frames.filter(f => {
+      const key = (f.file || '').split('/').pop();
+      if (seen.has(key)) return false;
+      seen.add(key); return true;
+    }).sort((a, b) => {
+      const ka = order.findIndex(s => (a.id || '').endsWith('_' + s));
+      const kb = order.findIndex(s => (b.id || '').endsWith('_' + s));
+      return (ka === -1 ? 99 : ka) - (kb === -1 ? 99 : kb);
+    });
+  }
+  return idx;
+}
+
+function renderM79CharacterBlock(character, bundle) {
+  const block = document.createElement('div');
+  block.className = 'char-m79-block';
+  const portrait = bundle && bundle.portrait;
+  const frames = (bundle && bundle.frames) ? bundle.frames.slice(0, 6) : [];
+  const total = bundle ? bundle.all.length : 0;
+
+  const portraitHtml = portrait && portrait.file
+    ? `<img src="${thumbPath(portrait.file)}" data-orig="${portrait.file}" alt="${character.name}" loading="lazy" onerror="if(this.dataset.fallback){this.style.display='none';this.nextElementSibling.style.display='flex'}else{this.dataset.fallback=1;this.src=this.dataset.orig}">`
+      + `<div class="portrait-missing" style="display:none">?</div>`
+    : `<div class="portrait-missing">?</div>`;
+
+  const framesHtml = frames.map(frame => {
+    const frameType = getFrameType(frame);
+    const thumbHtml = frame.file
+      ? `<img src="${thumbPath(frame.file)}" data-orig="${frame.file}" alt="${frameType}" loading="lazy" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src=this.dataset.orig}">`
+      : `<div class="frame-missing">.</div>`;
+    return `<div class="char-m79-frame" onclick="openModal(${JSON.stringify(frame).replace(/"/g, '&quot;')})">
+      ${thumbHtml}
+      <div class="frame-label">${frameType}</div>
+    </div>`;
+  }).join('');
+
+  const portraitClick = portrait ? `onclick="openModal(${JSON.stringify(portrait).replace(/"/g, '&quot;')})"` : '';
+
+  block.innerHTML = `
+    <div class="char-m79-header">
+      <div class="char-m79-name">${character.name}</div>
+      <div class="char-m79-type">${character.type || ''}</div>
+    </div>
+    <div class="char-m79-content">
+      <div class="char-m79-portrait" ${portraitClick}>
+        ${portraitHtml}
+      </div>
+      <div class="char-m79-frames">
+        ${framesHtml || '<div style="font-size:11px;color:var(--muted)">no frames</div>'}
+      </div>
+    </div>
+    <div class="char-m79-info">
+      <span>${total} assets</span>
+      <span>${character.className || ''}</span>
+    </div>
+  `;
+  return block;
+}
+
+function getFrameType(asset) {
+  const id = (asset.id || '').toLowerCase();
+  if (id.endsWith('_east_attack')) return 'attack';
+  if (id.endsWith('_east_spell')) return 'spell';
+  if (id.endsWith('_death')) return 'death';
+  if (id.endsWith('_north')) return 'N';
+  if (id.endsWith('_south')) return 'S';
+  if (id.endsWith('_east')) return 'E';
+  if (id.endsWith('_west')) return 'W';
+  if (id.endsWith('_east_flipped')) return 'E-flip';
+  return 'frame';
+}
+
+// Background file lists — these dirs are not fully indexed in assets.json,
+// so we hardcode the directory listings here so the gallery always shows them.
+const DIALOG_BG_FILES = [
+  'blacksmith.jpg','cave.jpg','dark_alley.jpg','dungeon.jpg','forest.jpg',
+  'graveyard.jpg','harbor.jpg','library.jpg','market.jpg','mountain_pass.jpg',
+  'ruins.jpg','snowy_peak.jpg','swamp.jpg','tavern.jpg','temple.jpg','throne_room.jpg',
+];
+const MAP_BG_FILES = [
+  'abyssal_depths.jpg','border_roads.jpg','cosmic_rift.jpg','dust_roads.jpg',
+  'ember_plateau.jpg','eternal_void.jpg','hell_breach.jpg','primordial_nexus.jpg',
+  'shattered_core.jpg','thornwood.jpg',
+];
+
+function buildBgAsset(file, dir, label) {
+  const bare = file.replace(/\.[^.]+$/, '').replace(/_/g, ' ');
+  return {
+    id: `${dir}_${file}`,
+    name: bare.replace(/\b\w/g, c => c.toUpperCase()),
+    category: 'backgrounds',
+    source: 'openai',
+    file: `../images/${dir}/${file}`,
+    notes: label,
+  };
+}
+
+function renderBackgroundsSection(assets) {
+  const section = document.createElement('div');
+  section.className = 'section bg-section';
+  section.dataset.sectionKey = 'backgrounds';
+
+  const dialogAssets = DIALOG_BG_FILES.map(f => buildBgAsset(f, 'dialog_bg', 'Dialog scene'));
+  const mapAssets = MAP_BG_FILES.map(f => buildBgAsset(f, 'map_bg', 'World map zone'));
+  // Also pull any assets categorized as background from JSON (e.g. menu_bg).
+  const jsonBgs = assets.filter(a => {
+    const c = (a.category || '').toLowerCase();
+    const f = (a.file || '').toLowerCase();
+    return c === 'backgrounds' || c === 'background' || f.includes('/menu_bg/');
+  });
+
+  const total = dialogAssets.length + mapAssets.length + jsonBgs.length;
+  section.innerHTML = `<div class="section-title">Backgrounds <span>${total}</span></div>`;
+
+  function appendGroup(title, items) {
+    if (!items.length) return;
+    const h = document.createElement('div');
+    h.className = 'audio-group-title';
+    h.textContent = `${title} (${items.length})`;
+    section.appendChild(h);
+    const grid = document.createElement('div');
+    grid.className = 'bg-grid';
+    items.forEach(asset => {
+      const card = document.createElement('div');
+      card.className = 'bg-card';
+      card.onclick = () => openModal(asset);
+      card.innerHTML = `
+        <div class="bg-preview">
+          <img src="${thumbPath(asset.file)}" data-orig="${asset.file}" alt="${asset.name}" loading="lazy" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src=this.dataset.orig}">
+        </div>
+        <div class="bg-info">
+          <div class="bg-name">${asset.name}</div>
+          <div class="bg-usage">${asset.notes || ''}</div>
+        </div>`;
+      grid.appendChild(card);
+    });
+    section.appendChild(grid);
+  }
+  appendGroup('Dialog Backgrounds', dialogAssets);
+  appendGroup('World Map Backgrounds', mapAssets);
+  if (jsonBgs.length) appendGroup('Other Backgrounds', jsonBgs);
+
+  return section;
+}
+
+function inferBackgroundUsage(asset) {
+  const name = (asset.name || '').toLowerCase();
+  const file = (asset.file || '').toLowerCase();
+
+  if (name.includes('forest') || file.includes('forest')) return 'Forest areas';
+  if (name.includes('desert') || file.includes('desert')) return 'Desert zones';
+  if (name.includes('cave') || file.includes('cave')) return 'Underground areas';
+  if (name.includes('town') || file.includes('town')) return 'Town/settlement';
+  if (name.includes('menu') || file.includes('menu')) return 'Menu background';
+  if (name.includes('map') || file.includes('map')) return 'World map';
+  return 'Game background';
+}
+
+function detectUnusedAssets(assets) {
+  // More sophisticated heuristic for detecting potentially unused assets
+  return assets.filter(asset => {
+    const name = (asset.name || '').toLowerCase();
+    const file = (asset.file || '').toLowerCase();
+    const id = (asset.id || '').toLowerCase();
+
+    // Skip if it has clear usage patterns
+    if (asset.category && ['heroes', 'companions', 'enemies', 'bosses', 'background', 'ui', 'icon'].includes(asset.category)) return false;
+
+    // Skip character-related assets
+    if (name.includes('portrait') || name.includes('attack') || name.includes('spell') || name.includes('death')) return false;
+
+    // Skip background assets
+    if (file.includes('bg_') || file.includes('background') || file.includes('map_bg') || file.includes('menu_bg')) return false;
+
+    // Skip UI and icon assets
+    if (file.includes('icon') || file.includes('ui') || name.includes('icon') || name.includes('ui')) return false;
+
+    // Skip system assets
+    if (file.includes('font') || file.includes('system') || name.includes('font') || name.includes('system')) return false;
+
+    // Flag potential unused assets
+    const suspiciousPatterns = [
+      'test', 'unused', 'old', 'temp', 'draft', 'backup', 'copy', 'duplicate',
+      'experimental', 'wip', 'work_in_progress', 'sample', 'placeholder'
+    ];
+
+    const textToSearch = [name, file, id, asset.notes || ''].join(' ').toLowerCase();
+    return suspiciousPatterns.some(pattern => textToSearch.includes(pattern)) ||
+           (asset.notes && asset.notes.toLowerCase().includes('unused')) ||
+           (asset.notes && asset.notes.toLowerCase().includes('deprecated'));
   });
 }
 
@@ -507,7 +1181,7 @@ function renderCard(asset) {
 
   const thumbSrc = asset.file ? asset.file : null;
   const thumbHtml = thumbSrc
-    ? `<img class="thumb" src="${thumbSrc}" alt="${asset.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+    ? `<img class="thumb" src="${thumbPath(thumbSrc)}" data-orig="${thumbSrc}" alt="${asset.name}" loading="lazy" onerror="if(this.dataset.fallback){this.style.display='none';this.nextElementSibling.style.display='flex'}else{this.dataset.fallback=1;this.src=this.dataset.orig}">`
       + `<div class="thumb-missing" style="display:none">🖼</div>`
     : `<div class="thumb-missing">🖼</div>`;
 
@@ -591,28 +1265,92 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') document.getElementById('modal').classList.remove('open');
 });
 
-function render(assets) {
+function renderCharacterGroup(title, list, idx, key) {
+  const section = document.createElement('div');
+  section.className = 'section characters-section';
+  section.dataset.sectionKey = key;
+  const present = list.filter(c => idx[c.id]).length;
+  section.innerHTML = `<div class="section-title">${title} <span>${list.length} (${present} with art)</span></div>`;
+  const grid = document.createElement('div');
+  grid.className = 'char-m79-grid';
+  list.forEach(ch => {
+    ch.type = title.replace(/s$/, '').toLowerCase();
+    ch.className = ch.className || ch.name;
+    const bundle = idx[ch.id] || { portrait: null, frames: [], all: [] };
+    grid.appendChild(renderM79CharacterBlock(ch, bundle));
+  });
+  section.appendChild(grid);
+  return section;
+}
+
+// Derive boss + enemy character lists from whatever JSON assets show up.
+function deriveCharactersFromCategory(assets, category, excludeIds) {
+  const seen = new Map();
+  for (const a of assets) {
+    if ((a.category || '').toLowerCase() !== category) continue;
+    const base = baseIdFromAsset(a);
+    if (!base || excludeIds.has(base)) continue;
+    if (!seen.has(base)) {
+      const name = base.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      seen.set(base, { id: base, name });
+    }
+  }
+  return [...seen.values()].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+async function render(assets) {
   const main = document.getElementById('main');
   main.innerHTML = '';
 
   if (!assets.length) {
-    main.innerHTML = `
-      <div class="empty-state">
-        <h2>No assets yet</h2>
-        <p>Generated images will appear here. Add entries to <strong>public/demo-assets/assets.json</strong> as you create assets.</p>
-        <code>{ "id": "...", "name": "...", "category": "...", "source": "openai|pixellab|svg", "file": "path.png", "prompt": "..." }</code>
-      </div>`;
+    main.innerHTML = `<div class="empty-state"><h2>No assets yet</h2><p>Add entries to <strong>public/assets/assets.json</strong>.</p></div>`;
     return;
   }
 
-  const groups = groupByCategory(assets);
-  for (const [cat, items] of sortedCategoryEntries(groups)) {
+  const idx = indexAssetsByCharacter(assets);
+
+  // 1. Heroes
+  const heroesSection = renderCharacterGroup('Heroes', HERO_LIST, idx, 'heroes');
+  main.appendChild(heroesSection);
+
+  // 2. Companions
+  const compSection = renderCharacterGroup('Companions', COMPANION_LIST, idx, 'companions');
+  main.appendChild(compSection);
+
+  // 3. Bosses (derived from category=bosses)
+  const exclude = new Set([...HERO_IDS, ...COMPANION_IDS]);
+  const bosses = deriveCharactersFromCategory(assets, 'bosses', exclude);
+  if (bosses.length) {
+    main.appendChild(renderCharacterGroup('Bosses', bosses, idx, 'bosses'));
+  }
+
+  // 4. Enemies (derived from category=enemies)
+  const enemies = deriveCharactersFromCategory(assets, 'enemies', exclude);
+  if (enemies.length) {
+    main.appendChild(renderCharacterGroup('Enemies', enemies, idx, 'enemies'));
+  }
+
+  // 5. Backgrounds
+  const bgSection = renderBackgroundsSection(assets);
+  if (bgSection) main.appendChild(bgSection);
+
+  // 6. Other (anything not heroes/companions/bosses/enemies/backgrounds)
+  const handledCats = new Set(['heroes','companions','bosses','enemies','backgrounds','background','companion_sprites']);
+  const otherAssets = assets.filter(a => {
+    const c = (a.category || 'other').toLowerCase();
+    if (handledCats.has(c)) return false;
+    const f = (a.file || '').toLowerCase();
+    if (f.includes('/menu_bg/') || f.includes('/map_bg/') || f.includes('/dialog_bg/')) return false;
+    return true;
+  });
+  if (otherAssets.length) {
     const section = document.createElement('div');
     section.className = 'section';
-    section.innerHTML = `<div class="section-title">${cat} <span>${items.length}</span></div>`;
+    section.dataset.sectionKey = 'other';
+    section.innerHTML = `<div class="section-title">Other <span>${otherAssets.length}</span></div>`;
     const grid = document.createElement('div');
     grid.className = 'grid';
-    items.forEach(a => grid.appendChild(renderCard(a)));
+    otherAssets.forEach(a => grid.appendChild(renderCard(a)));
     section.appendChild(grid);
     main.appendChild(section);
   }
@@ -621,8 +1359,11 @@ function render(assets) {
 function applyFilter(cat) {
   activeFilter = cat;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
-  const filtered = cat === 'all' ? allAssets : allAssets.filter(a => refineCategory(a) === cat);
-  render(filtered);
+  // Show/hide sections by data-section-key rather than re-rendering.
+  document.querySelectorAll('#main > .section').forEach(sec => {
+    if (cat === 'all') { sec.style.display = ''; return; }
+    sec.style.display = (sec.dataset.sectionKey === cat) ? '' : 'none';
+  });
 }
 
 const REPORT_HTML_MAP = {
@@ -630,7 +1371,8 @@ const REPORT_HTML_MAP = {
   'milestone 53': 'milestone-53-report.html',
   'milestone 65': 'dragon_expansion.html',
   'milestone 72': 'tap-weapons.html',
-  'rebalance survey': 'rebalance-survey.html'
+  'rebalance survey': '../news/balance-report.html',
+  'balance report': '../news/balance-report.html'
 };
 
 function reportHtmlFile(r) {
@@ -663,7 +1405,7 @@ function renderReports(reports) {
   const featured = [];
   const accordion = [];
   reports.forEach(r => {
-    if (reportHtmlFile(r)) featured.push(r); else accordion.push(r);
+    accordion.push(r);
   });
   featured.sort((a, b) => milestoneSortKey(a) - milestoneSortKey(b));
   accordion.sort((a, b) => milestoneSortKey(a) - milestoneSortKey(b));
@@ -752,7 +1494,7 @@ async function init() {
   if (data.game) document.getElementById('game-title').textContent = data.game;
   document.title = `${data.game || 'game13'} — Assets`;
 
-  allAssets = (data.assets || []).filter(a => !isAudioFile(a.file));
+  allAssets = (data.images || []).filter(a => !isAudioFile(a.file));
   document.getElementById('total-count').textContent = allAssets.length
     ? `${allAssets.length} asset${allAssets.length !== 1 ? 's' : ''}`
     : '';
@@ -760,22 +1502,24 @@ async function init() {
   renderReports(data.reports || []);
   renderAudio();
 
-  // Build filter buttons
-  const catSet = new Set(allAssets.map(refineCategory));
-  const cats = CATEGORY_ORDER.filter(c => catSet.has(c));
-  [...catSet].forEach(c => { if (!cats.includes(c)) cats.push(c); });
+  // Build filter buttons — fixed set matching the section keys.
+  const FILTER_CATS = ['heroes','companions','bosses','enemies','backgrounds','other'];
   const toolbar = document.getElementById('toolbar');
-  cats.forEach(cat => {
+  FILTER_CATS.forEach(cat => {
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
     btn.dataset.cat = cat;
-    btn.textContent = cat;
+    btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
     btn.addEventListener('click', () => applyFilter(cat));
     toolbar.appendChild(btn);
   });
   document.querySelector('[data-cat="all"]').addEventListener('click', () => applyFilter('all'));
 
-  render(allAssets);
+  render(allAssets).catch(error => {
+    console.error('Failed to render assets:', error);
+    // Fallback to basic rendering if advanced features fail
+    document.getElementById('main').innerHTML = '<div class="empty-state"><h2>Rendering Error</h2><p>Assets could not be displayed. Check console for details.</p></div>';
+  });
 }
 
 const AUDIO_FILES = {

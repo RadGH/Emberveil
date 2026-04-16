@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="game13">
+<title>Enemy Audit — game13</title>
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_tool-styles.css">
+<style>
+  .intro { background:#181a22; border:1px solid #333a4a; padding:12px 14px; border-radius:8px; margin-bottom:14px; line-height:1.45; }
+  .status { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; letter-spacing:0.5px; margin-left:4px; }
+  .status.balanced { background:#1e4b2b; color:#8bffb0; }
+  .status.overtuned { background:#4b1e1e; color:#ff9e9e; }
+  .status.undertuned { background:#4b421e; color:#ffe48b; }
+  .status.unset { background:#2a2f3e; color:#8b93a8; }
+  .filter-bar { background:#0e1018; border:1px solid #333a4a; border-radius:8px; padding:10px 12px; margin-bottom:14px; display:flex; flex-wrap:wrap; gap:8px; }
+  .filter-bar label { font-size:11px; color:#8b93a8; display:flex; flex-direction:column; gap:2px; }
+  .filter-bar input, .filter-bar select { background:#181a22; color:#e6e8ee; border:1px solid #3a4050; border-radius:4px; padding:4px 6px; font-size:12px; min-width:100px; }
+  .aggregate { background:#131620; border:1px solid #333a4a; border-radius:8px; padding:12px; margin-bottom:14px; }
+  .aggregate h3 { margin:0 0 6px 0; font-size:13px; color:#ffcf7a; letter-spacing:0.5px; }
+  .chart-row { display:flex; gap:16px; flex-wrap:wrap; }
+  .chart-block { flex:1 1 260px; min-width:220px; }
+  .chart-block svg { width:100%; height:auto; display:block; }
+  .enemy { background:#161924; border:1px solid #2d3445; border-radius:8px; padding:12px; margin-bottom:12px; }
+  .enemy-head { display:flex; gap:12px; align-items:flex-start; }
+  .sprite { width:64px; height:64px; border-radius:6px; background:#0b0d14; border:1px solid #3a4050; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:700; color:#6c7a95; flex-shrink:0; overflow:hidden; image-rendering:pixelated; }
+  .sprite img { width:100%; height:100%; object-fit:cover; }
+  .enemy-title { flex:1; min-width:0; }
+  .enemy-title h3 { margin:0 0 2px 0; font-size:15px; color:#ffd98b; }
+  .enemy-meta { font-size:11px; color:#8b93a8; }
+  .enemy-meta code { color:#c9d2e3; background:#0b0d14; padding:1px 4px; border-radius:3px; }
+  .stat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px 10px; margin-top:10px; }
+  .stat-grid label { font-size:10px; color:#8b93a8; display:flex; flex-direction:column; gap:2px; }
+  .stat-grid input, .stat-grid select { background:#0e1018; color:#e6e8ee; border:1px solid #3a4050; border-radius:4px; padding:4px 6px; font-size:12px; width:100%; box-sizing:border-box; }
+  .decision-row { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:8px; }
+  .tag-picker { display:flex; flex-wrap:wrap; gap:4px; margin-top:4px; }
+  .tag-picker label { background:#0e1018; border:1px solid #3a4050; border-radius:12px; padding:3px 8px; font-size:11px; cursor:pointer; color:#c9d2e3; }
+  .tag-picker input { display:none; }
+  .tag-picker input:checked + span { color:#ffcf7a; font-weight:700; }
+  .tag-picker label:has(input:checked) { border-color:#ffcf7a; background:#1c1810; }
+  textarea.notes { width:100%; box-sizing:border-box; background:#0e1018; color:#e6e8ee; border:1px solid #3a4050; border-radius:4px; padding:6px; font-size:12px; min-height:44px; margin-top:6px; }
+  .appearance { width:100%; box-sizing:border-box; background:#0e1018; color:#e6e8ee; border:1px solid #3a4050; border-radius:4px; padding:6px; font-size:12px; margin-top:6px; }
+  .btn-row { display:flex; gap:8px; flex-wrap:wrap; margin:16px 0; }
+  button, .fakebtn { background:#2a3148; color:#ffd98b; border:1px solid #4a5270; border-radius:6px; padding:8px 14px; font-size:13px; font-weight:600; cursor:pointer; }
+  button.primary { background:#3a2e14; border-color:#ffcf7a; color:#ffcf7a; }
+  button.secondary { background:#1a1d28; }
+  button:hover { filter:brightness(1.2); }
+  pre#output { background:#0b0d14; color:#dce3f0; border:1px solid #333a4a; border-radius:6px; padding:12px; max-height:420px; overflow:auto; font-size:11px; white-space:pre-wrap; display:none; }
+  .count-summary { color:#ffcf7a; font-size:12px; margin-bottom:8px; }
+  /* Bulk Adjust */
+  .bulk-adjust { background:#131620; border:1px solid #3a4050; border-radius:8px; padding:14px; margin-bottom:14px; }
+  .bulk-adjust h3 { margin:0 0 10px 0; font-size:14px; color:#ffcf7a; letter-spacing:0.5px; }
+  .bulk-adjust-row { display:flex; flex-wrap:wrap; gap:8px; align-items:flex-end; }
+  .bulk-adjust-row label { font-size:11px; color:#8b93a8; display:flex; flex-direction:column; gap:2px; }
+  .bulk-adjust-row input, .bulk-adjust-row select { background:#0e1018; color:#e6e8ee; border:1px solid #3a4050; border-radius:4px; padding:5px 7px; font-size:12px; min-width:90px; }
+  .bulk-adjust-row input[type="number"] { width:80px; min-width:60px; }
+  .bulk-adjust-row input[type="text"] { width:200px; min-width:140px; }
+  .bulk-adjust-actions { display:flex; gap:6px; align-items:flex-end; padding-bottom:1px; }
+  .bulk-adjust-actions button { padding:5px 12px; font-size:12px; }
+  .bulk-adjust-log { margin-top:8px; font-size:11px; color:#c9d2e3; line-height:1.5; }
+  .bulk-adjust-log .adj-entry { background:#1a1d28; border:1px solid #2d3445; border-radius:4px; padding:4px 8px; margin-top:4px; display:flex; justify-content:space-between; align-items:center; }
+  .bulk-adjust-log .adj-entry button { padding:2px 8px; font-size:10px; background:#2a1a1a; border-color:#8b4040; color:#ff9e9e; }
+  @media (min-width:768px) {
+    .bulk-adjust { position:sticky; top:52px; z-index:40; }
+  }
+  @media (min-width:720px) {
+    .enemy-head { align-items:center; }
+    .sprite { width:80px; height:80px; }
+    .stat-grid { grid-template-columns:repeat(6,1fr); }
+  }
+</style>
+</head>
+<body>
+<h1>Enemy Audit</h1>
+<div class="intro">
+<strong>How to use:</strong> Review every enemy in game13 and mark whether their current stats feel <em>balanced</em>, <em>overtuned</em>, or <em>undertuned</em>. Edit any field that needs to change, add notes, and optionally describe a visual rework. When finished, click <em>Generate Prompt</em> to produce a paste-back instruction Claude will use to apply the changes via <code>src/maps/mapData.js</code>.
+<br><br>
+<strong>Status legend:</strong>
+<span class="status balanced">BALANCED</span>
+<span class="status overtuned">OVERTUNED</span>
+<span class="status undertuned">UNDERTUNED</span>
+<span class="status unset">UNSET</span>
+<br><br>
+<strong>Note:</strong> Enemy stats are currently authored raw in <code>mapData.js</code> (not formula-derived). Once the <code>formulas.js</code> refactor lands, role+tier curves will compute most of these. This survey is the input that drives the curve calibration.
+</div>
+
+<div class="filter-bar">
+  <label>Search<input type="text" id="f_search" placeholder="name or id"></label>
+  <label>Zone<select id="f_zone"><option value="">(all)</option></select></label>
+  <label>Role<select id="f_role"><option value="">(all)</option><option>trash</option><option>elite</option><option>miniboss</option><option>boss</option></select></label>
+  <label>Boss?<select id="f_boss"><option value="">(all)</option><option value="yes">Boss only</option><option value="no">Non-boss</option></select></label>
+  <label>Decision<select id="f_decision"><option value="">(all)</option><option>keep</option><option>retune</option><option>remove</option><option>split</option></select></label>
+  <label>Sort<select id="f_sort"><option value="zone">zone</option><option value="id">id</option><option value="name">name</option><option value="hp">hp</option><option value="level">level</option></select></label>
+</div>
+
+<div class="aggregate">
+  <h3>Distribution</h3>
+  <div class="chart-row">
+    <div class="chart-block"><strong style="font-size:11px;color:#8b93a8;">by zone</strong><svg id="chart_zone" viewBox="0 0 300 180"></svg></div>
+    <div class="chart-block"><strong style="font-size:11px;color:#8b93a8;">by role</strong><svg id="chart_role" viewBox="0 0 300 120"></svg></div>
+    <div class="chart-block"><strong style="font-size:11px;color:#8b93a8;">by tier</strong><svg id="chart_tier" viewBox="0 0 300 120"></svg></div>
+  </div>
+</div>
+
+<div class="bulk-adjust" id="bulkAdjust">
+  <h3>Bulk Adjust</h3>
+  <div class="bulk-adjust-row">
+    <label>Filter by
+      <select id="ba_filterKey">
+        <option value="">All enemies</option>
+        <option value="zone">Zone</option>
+        <option value="role">Role</option>
+        <option value="tier">Tier</option>
+        <option value="isBoss">Boss</option>
+        <option value="tag">Tag</option>
+      </select>
+    </label>
+    <label>Value
+      <select id="ba_filterVal" disabled><option value="">(select filter first)</option></select>
+    </label>
+    <label>Property
+      <select id="ba_prop">
+        <option value="hp">HP</option>
+        <option value="dmgMin">Dmg Min</option>
+        <option value="dmgMax">Dmg Max</option>
+        <option value="armor">Armor</option>
+        <option value="hit">Hit</option>
+        <option value="dodge">Dodge</option>
+        <option value="magicResist">Magic Resist</option>
+        <option value="xpValue">XP Reward</option>
+        <option value="level">Level</option>
+      </select>
+    </label>
+    <label>Mode
+      <select id="ba_mode">
+        <option value="pct">Percentage (+/- %)</option>
+        <option value="flat">Flat amount (+/- N)</option>
+        <option value="formula">Formula</option>
+      </select>
+    </label>
+    <label id="ba_amountLabel">Amount
+      <input type="number" id="ba_amount" value="10" step="any">
+    </label>
+    <label id="ba_formulaLabel" style="display:none">Formula
+      <input type="text" id="ba_formula" placeholder="1.5 * level" title="Variables: hp, dmgMin, dmgMax, armor, hit, dodge, magicResist, xpValue, level, tier, act">
+    </label>
+    <div class="bulk-adjust-actions">
+      <button type="button" class="primary" onclick="applyBulkAdjust()">Apply</button>
+      <button type="button" class="secondary" onclick="resetBulkAdjust()">Reset All</button>
+    </div>
+  </div>
+  <div class="bulk-adjust-log" id="ba_log"></div>
+</div>
+
+<div class="count-summary" id="countSummary"></div>
+<div id="enemyList"></div>
+
+<h2>General notes</h2>
+<textarea id="generalNotes" class="notes" placeholder="Overall pacing, TTK targets per act, bosses feeling spongy, etc."></textarea>
+
+<div class="btn-row">
+  <button type="button" class="primary" onclick="generatePrompt()">Generate Prompt</button>
+  <button type="button" class="secondary" onclick="copyPrompt()">Copy to clipboard</button>
+  <button type="button" class="secondary" onclick="exportState()">Export JSON</button>
+  <button type="button" class="secondary" onclick="document.getElementById('importFile').click()">Import JSON</button>
+  <input type="file" id="importFile" accept="application/json" style="display:none" onchange="importState(event)">
+  <button type="button" class="secondary" onclick="if(confirm('Clear all survey data?')){localStorage.removeItem(LS_KEY);location.reload();}">Reset</button>
+</div>
+<pre id="output"></pre>
+
+<script>
+const LS_KEY = 'game13_enemy_survey';
+const SCHEMA_VERSION = 1;
+const SPRITE_BASE = '../images/portraits/';
+
+// Zone = which act/region the enemy appears in (derived from mapData.js ENCOUNTERS + comments).
+// Enemies sourced from src/maps/mapData.js as of 2026-04-14.
+const ENEMIES = [
+  // --- Act 1: Border Roads / Thornwood ---
+  { id:'goblin_scout', name:'Goblin Scout', zone:'Act1 Border Roads', hp:22, dmgMin:4, dmgMax:8, armor:2, hit:72, dodge:15, magicResist:0, xpValue:15, level:2, isBoss:false, role:'trash', tier:1, tags:['physical','fast'] },
+  { id:'goblin_warrior', name:'Goblin Warrior', zone:'Act1 Border Roads', hp:38, dmgMin:7, dmgMax:14, armor:5, hit:68, dodge:8, magicResist:0, xpValue:25, level:3, isBoss:false, role:'trash', tier:1, tags:['physical'] },
+  { id:'goblin_shaman', name:'Goblin Shaman', zone:'Act1 Thornwood', hp:28, dmgMin:6, dmgMax:12, armor:1, hit:74, dodge:10, magicResist:0, xpValue:30, level:3, isBoss:false, role:'elite', tier:2, tags:['caster'] },
+  { id:'goblin_warlord', name:'Goblin Warlord', zone:'Act1 Border Roads', hp:65, dmgMin:10, dmgMax:18, armor:7, hit:70, dodge:6, magicResist:0, xpValue:55, level:4, isBoss:false, role:'miniboss', tier:2, tags:['physical','tank'] },
+  { id:'corrupted_wolf', name:'Corrupted Wolf', zone:'Act1 Thornwood', hp:30, dmgMin:8, dmgMax:14, armor:1, hit:76, dodge:18, magicResist:0, xpValue:22, level:3, isBoss:false, role:'trash', tier:1, tags:['physical','fast'] },
+  { id:'corrupted_bear', name:'Corrupted Bear', zone:'Act1 Thornwood', hp:70, dmgMin:12, dmgMax:20, armor:4, hit:65, dodge:5, magicResist:0, xpValue:50, level:4, isBoss:false, role:'elite', tier:2, tags:['physical','tank'] },
+  { id:'bandit', name:'Bandit', zone:'Act1 Border Roads', hp:28, dmgMin:6, dmgMax:11, armor:3, hit:70, dodge:10, magicResist:0, xpValue:20, level:2, isBoss:false, role:'trash', tier:1, tags:['physical'] },
+  { id:'bandit_captain', name:'Bandit Captain', zone:'Act1 Border Roads', hp:55, dmgMin:10, dmgMax:16, armor:5, hit:72, dodge:12, magicResist:0, xpValue:45, level:4, isBoss:false, role:'elite', tier:2, tags:['physical'] },
+  { id:'giant_spider', name:'Giant Spider', zone:'Act1 Thornwood', hp:18, dmgMin:5, dmgMax:10, armor:1, hit:75, dodge:14, magicResist:0, xpValue:18, level:2, isBoss:false, role:'trash', tier:1, tags:['fast'] },
+  { id:'veil_warden', name:'Veil Warden', zone:'Act1 Thornwood', hp:90, dmgMin:10, dmgMax:16, armor:6, hit:70, dodge:12, magicResist:0, xpValue:80, level:5, isBoss:false, role:'elite', tier:3, tags:['caster'] },
+  { id:'grax_veil_touched', name:'Grax the Veil-Touched', zone:'Act1 Finale', hp:200, dmgMin:14, dmgMax:24, armor:10, hit:78, dodge:8, magicResist:0, xpValue:250, level:6, isBoss:true, role:'boss', tier:3, tags:['physical','tank'] },
+
+  // --- Act 2: Ashen Wastes ---
+  { id:'ash_wraith', name:'Ash Wraith', zone:'Act2 Ashen Wastes', hp:42, dmgMin:8, dmgMax:14, armor:0, hit:78, dodge:20, magicResist:0, xpValue:32, level:5, isBoss:false, role:'trash', tier:2, tags:['caster','fast'] },
+  { id:'cinder_hound', name:'Cinder Hound', zone:'Act2 Ashen Wastes', hp:35, dmgMin:10, dmgMax:16, armor:2, hit:80, dodge:16, magicResist:0, xpValue:28, level:5, isBoss:false, role:'trash', tier:2, tags:['physical','fast'] },
+  { id:'molten_golem', name:'Molten Golem', zone:'Act2 Ashen Wastes', hp:90, dmgMin:14, dmgMax:22, armor:10, hit:62, dodge:4, magicResist:0, xpValue:65, level:6, isBoss:false, role:'elite', tier:3, tags:['tank','physical'] },
+  { id:'veil_cultist', name:'Veil Cultist', zone:'Act2 Ashen Wastes', hp:45, dmgMin:9, dmgMax:15, armor:2, hit:72, dodge:12, magicResist:0, xpValue:35, level:5, isBoss:false, role:'trash', tier:2, tags:['caster'] },
+  { id:'veil_sorcerer', name:'Veil Sorcerer', zone:'Act2 Ashen Wastes', hp:55, dmgMin:14, dmgMax:22, armor:1, hit:76, dodge:14, magicResist:0, xpValue:60, level:6, isBoss:false, role:'elite', tier:3, tags:['caster'] },
+  { id:'lava_titan', name:'The Lava Titan', zone:'Act2 Finale', hp:280, dmgMin:20, dmgMax:32, armor:14, hit:70, dodge:4, magicResist:0, xpValue:350, level:8, isBoss:true, role:'boss', tier:4, tags:['tank','physical'] },
+
+  // --- Act 3: Shattered Hell ---
+  { id:'imp', name:'Imp', zone:'Act3 Shattered Hell', hp:28, dmgMin:7, dmgMax:12, armor:0, hit:82, dodge:22, magicResist:0, xpValue:28, level:7, isBoss:false, role:'trash', tier:2, tags:['fast','caster'] },
+  { id:'hell_knight', name:'Hell Knight', zone:'Act3 Shattered Hell', hp:80, dmgMin:16, dmgMax:26, armor:12, hit:70, dodge:8, magicResist:0, xpValue:72, level:8, isBoss:false, role:'elite', tier:3, tags:['physical','tank'] },
+  { id:'void_shade', name:'Void Shade', zone:'Act3 Shattered Hell', hp:50, dmgMin:14, dmgMax:20, armor:0, hit:85, dodge:28, magicResist:0, xpValue:55, level:8, isBoss:false, role:'elite', tier:3, tags:['caster','fast'] },
+  { id:'demon_brute', name:'Demon Brute', zone:'Act3 Shattered Hell', hp:120, dmgMin:20, dmgMax:32, armor:8, hit:65, dodge:5, magicResist:0, xpValue:90, level:9, isBoss:false, role:'miniboss', tier:3, tags:['physical','tank'] },
+  { id:'archfiend_malgrath', name:'Archfiend Malgrath', zone:'Act3 Finale', hp:380, dmgMin:24, dmgMax:38, armor:16, hit:75, dodge:10, magicResist:0, xpValue:450, level:10, isBoss:true, role:'boss', tier:4, tags:['physical','caster'] },
+  { id:'emberveil_sovereign', name:'The Emberveil Sovereign', zone:'Act3 Finale', hp:600, dmgMin:30, dmgMax:50, armor:20, hit:78, dodge:12, magicResist:0, xpValue:800, level:12, isBoss:true, role:'boss', tier:5, tags:['caster','physical'] },
+
+  // --- Act 4: Void ---
+  { id:'void_wraith', name:'Void Wraith', zone:'Act4 Void', hp:90, dmgMin:22, dmgMax:38, armor:8, hit:82, dodge:22, magicResist:0, xpValue:120, level:11, isBoss:false, role:'trash', tier:3, tags:['caster','fast'] },
+  { id:'star_horror', name:'Star Horror', zone:'Act4 Void', hp:110, dmgMin:18, dmgMax:32, armor:5, hit:78, dodge:18, magicResist:0, xpValue:130, level:11, isBoss:false, role:'elite', tier:3, tags:['caster'] },
+  { id:'cosmic_titan', name:'Cosmic Titan', zone:'Act4 Void', hp:200, dmgMin:30, dmgMax:50, armor:18, hit:72, dodge:8, magicResist:0, xpValue:200, level:12, isBoss:false, role:'miniboss', tier:4, tags:['tank','physical'] },
+  { id:'the_unraveler', name:'The Unraveler', zone:'Act4 Finale', hp:600, dmgMin:45, dmgMax:80, armor:25, hit:88, dodge:12, magicResist:0, xpValue:800, level:14, isBoss:true, role:'boss', tier:5, tags:['caster','physical'] },
+
+  // --- Act 5: Primordial ---
+  { id:'primordial_elemental', name:'Primordial Elemental', zone:'Act5 Primordial', hp:130, dmgMin:28, dmgMax:48, armor:12, hit:80, dodge:15, magicResist:0, xpValue:180, level:13, isBoss:false, role:'elite', tier:4, tags:['caster'] },
+  { id:'abyssal_knight', name:'Abyssal Knight', zone:'Act5 Primordial', hp:160, dmgMin:32, dmgMax:55, armor:20, hit:78, dodge:10, magicResist:0, xpValue:200, level:13, isBoss:false, role:'elite', tier:4, tags:['tank','physical'] },
+  { id:'reality_shard', name:'Reality Shard', zone:'Act5 Primordial', hp:80, dmgMin:35, dmgMax:60, armor:3, hit:90, dodge:30, magicResist:0, xpValue:150, level:13, isBoss:false, role:'trash', tier:4, tags:['fast','caster'] },
+  { id:'genesis_worm', name:'Genesis Worm', zone:'Act5 Primordial', hp:250, dmgMin:25, dmgMax:45, armor:15, hit:75, dodge:5, magicResist:0, xpValue:220, level:14, isBoss:false, role:'miniboss', tier:4, tags:['tank'] },
+  { id:'the_architect', name:'The Architect', zone:'Act5 Finale', hp:900, dmgMin:55, dmgMax:100, armor:30, hit:90, dodge:15, magicResist:0, xpValue:1200, level:16, isBoss:true, role:'boss', tier:5, tags:['caster','physical'] },
+
+  // --- Act 6: Dragon Expansion ---
+  { id:'dragon_whelp', name:'Dragon Whelp', zone:'Act6 Dragon Expansion', hp:120, dmgMin:30, dmgMax:52, armor:14, hit:82, dodge:18, magicResist:0, xpValue:220, level:15, isBoss:false, role:'trash', tier:4, tags:['fast','caster'] },
+  { id:'dragon_cultist', name:'Dragon Cultist', zone:'Act6 Dragon Expansion', hp:140, dmgMin:36, dmgMax:58, armor:8, hit:85, dodge:20, magicResist:0, xpValue:230, level:15, isBoss:false, role:'elite', tier:4, tags:['caster'] },
+  { id:'wyrm_warrior', name:'Wyrm Warrior', zone:'Act6 Dragon Expansion', hp:180, dmgMin:40, dmgMax:64, armor:22, hit:80, dodge:10, magicResist:0, xpValue:260, level:16, isBoss:false, role:'elite', tier:4, tags:['tank','physical'] },
+  { id:'frost_wyrm', name:'Frost Wyrm', zone:'Act6 Dragon Expansion', hp:220, dmgMin:42, dmgMax:70, armor:18, hit:80, dodge:12, magicResist:0, xpValue:300, level:16, isBoss:false, role:'miniboss', tier:5, tags:['caster','physical'] },
+  { id:'storm_dragon', name:'Storm Dragon', zone:'Act6 Dragon Expansion', hp:260, dmgMin:48, dmgMax:78, armor:16, hit:86, dodge:16, magicResist:0, xpValue:340, level:17, isBoss:false, role:'miniboss', tier:5, tags:['caster','fast'] },
+  { id:'ancient_dragon', name:'Ancient Dragon', zone:'Act6 Finale', hp:520, dmgMin:60, dmgMax:100, armor:28, hit:88, dodge:12, magicResist:0, xpValue:600, level:18, isBoss:true, role:'boss', tier:5, tags:['tank','caster','physical'] },
+  { id:'dragon_king', name:'Bahamorth, the Dragon King', zone:'Act6 Finale', hp:1200, dmgMin:70, dmgMax:120, armor:34, hit:92, dodge:14, magicResist:0, xpValue:1600, level:20, isBoss:true, role:'boss', tier:5, tags:['tank','caster','physical'] },
+];
+
+const TAG_OPTIONS = ['physical','caster','tank','fast','healer','summoner'];
+const ROLE_OPTIONS = ['trash','elite','miniboss','boss'];
+
+// ── State management ─────────────────────────────────────────────────────────
+let state = loadState();
+
+function defaultEntry(e) {
+  return {
+    status: 'unset',
+    decision: 'keep',
+    hp: e.hp, dmgMin: e.dmgMin, dmgMax: e.dmgMax, armor: e.armor,
+    hit: e.hit, dodge: e.dodge, magicResist: e.magicResist, level: e.level,
+    role: e.role, tier: e.tier, tags: [...e.tags],
+    notes: '', appearance: '',
+  };
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return initState();
+    const parsed = JSON.parse(raw);
+    if (parsed.version !== SCHEMA_VERSION) return initState();
+    // Fill in any missing enemies (schema grew)
+    for (const e of ENEMIES) {
+      if (!parsed.entries[e.id]) parsed.entries[e.id] = defaultEntry(e);
+    }
+    return parsed;
+  } catch (err) {
+    console.warn('loadState failed', err);
+    return initState();
+  }
+}
+function initState() {
+  const entries = {};
+  for (const e of ENEMIES) entries[e.id] = defaultEntry(e);
+  return { version: SCHEMA_VERSION, entries, generalNotes: '' };
+}
+function saveState() {
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {}
+}
+
+// ── Rendering ───────────────────────────────────────────────────────────────
+const listEl = document.getElementById('enemyList');
+const countEl = document.getElementById('countSummary');
+
+function spriteHtml(e) {
+  const src = SPRITE_BASE + e.id + '.png';
+  return `<img src="${src}" alt="${e.name}" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${e.name[0]}'}));">`;
+}
+
+function tagCheckboxes(eid, selected) {
+  return TAG_OPTIONS.map(t =>
+    `<label><input type="checkbox" data-field="tag" data-eid="${eid}" data-tag="${t}" ${selected.includes(t)?'checked':''}><span>${t}</span></label>`
+  ).join('');
+}
+
+function render() {
+  const q = document.getElementById('f_search').value.toLowerCase().trim();
+  const fZone = document.getElementById('f_zone').value;
+  const fRole = document.getElementById('f_role').value;
+  const fBoss = document.getElementById('f_boss').value;
+  const fDec = document.getElementById('f_decision').value;
+  const sort = document.getElementById('f_sort').value;
+
+  let list = ENEMIES.filter(e => {
+    const st = state.entries[e.id];
+    if (q && !(e.name.toLowerCase().includes(q) || e.id.includes(q))) return false;
+    if (fZone && e.zone !== fZone) return false;
+    if (fRole && st.role !== fRole) return false;
+    if (fBoss === 'yes' && !e.isBoss) return false;
+    if (fBoss === 'no' && e.isBoss) return false;
+    if (fDec && st.decision !== fDec) return false;
+    return true;
+  });
+
+  list.sort((a,b) => {
+    if (sort === 'hp') return (state.entries[b.id].hp) - (state.entries[a.id].hp);
+    if (sort === 'level') return (state.entries[b.id].level||0) - (state.entries[a.id].level||0);
+    if (sort === 'id') return a.id.localeCompare(b.id);
+    if (sort === 'name') return a.name.localeCompare(b.name);
+    // zone default
+    return a.zone.localeCompare(b.zone) || a.level - b.level;
+  });
+
+  countEl.textContent = `Showing ${list.length} of ${ENEMIES.length} enemies`;
+
+  listEl.innerHTML = list.map(e => {
+    const s = state.entries[e.id];
+    return `
+    <div class="enemy" data-eid="${e.id}">
+      <div class="enemy-head">
+        <div class="sprite">${spriteHtml(e)}</div>
+        <div class="enemy-title">
+          <h3>${e.name} <span class="status ${s.status}">${s.status.toUpperCase()}</span>${e.isBoss?' <span class="status overtuned">BOSS</span>':''}</h3>
+          <div class="enemy-meta">id: <code>${e.id}</code> · zone: <code>${e.zone}</code> · orig HP ${e.hp} · dmg ${e.dmgMin}-${e.dmgMax} · armor ${e.armor} · hit ${e.hit} · dodge ${e.dodge}</div>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <label>HP<input type="number" data-field="hp" data-eid="${e.id}" value="${s.hp}"></label>
+        <label>Dmg min<input type="number" data-field="dmgMin" data-eid="${e.id}" value="${s.dmgMin}"></label>
+        <label>Dmg max<input type="number" data-field="dmgMax" data-eid="${e.id}" value="${s.dmgMax}"></label>
+        <label>Armor<input type="number" data-field="armor" data-eid="${e.id}" value="${s.armor}"></label>
+        <label>Hit<input type="number" data-field="hit" data-eid="${e.id}" value="${s.hit}"></label>
+        <label>Dodge<input type="number" data-field="dodge" data-eid="${e.id}" value="${s.dodge}"></label>
+        <label>Magic Res<input type="number" data-field="magicResist" data-eid="${e.id}" value="${s.magicResist}"></label>
+        <label>Level<input type="number" data-field="level" data-eid="${e.id}" value="${s.level}"></label>
+        <label>Tier<select data-field="tier" data-eid="${e.id}">${[1,2,3,4,5].map(n=>`<option value="${n}" ${s.tier===n?'selected':''}>${n}</option>`).join('')}</select></label>
+        <label>Role<select data-field="role" data-eid="${e.id}">${ROLE_OPTIONS.map(r=>`<option ${s.role===r?'selected':''}>${r}</option>`).join('')}</select></label>
+        <label>Status<select data-field="status" data-eid="${e.id}">${['unset','balanced','overtuned','undertuned'].map(st=>`<option ${s.status===st?'selected':''}>${st}</option>`).join('')}</select></label>
+        <label>Decision<select data-field="decision" data-eid="${e.id}">${['keep','retune','remove','split'].map(d=>`<option ${s.decision===d?'selected':''}>${d}</option>`).join('')}</select></label>
+      </div>
+      <div style="margin-top:8px;font-size:10px;color:#8b93a8;">Tags</div>
+      <div class="tag-picker">${tagCheckboxes(e.id, s.tags)}</div>
+      <textarea class="notes" data-field="notes" data-eid="${e.id}" placeholder="Balance / flavor / role notes...">${s.notes}</textarea>
+      <input class="appearance" type="text" data-field="appearance" data-eid="${e.id}" placeholder="Appearance change (e.g. 'make this look more like a wraith' or sprite URL)" value="${s.appearance.replace(/"/g,'&quot;')}">
+    </div>`;
+  }).join('');
+
+  wireInputs();
+  renderCharts();
+}
+
+function wireInputs() {
+  listEl.querySelectorAll('[data-field]').forEach(el => {
+    const handler = () => {
+      const eid = el.dataset.eid;
+      const f = el.dataset.field;
+      const entry = state.entries[eid];
+      if (f === 'tag') {
+        const tag = el.dataset.tag;
+        if (el.checked && !entry.tags.includes(tag)) entry.tags.push(tag);
+        else if (!el.checked) entry.tags = entry.tags.filter(t => t !== tag);
+      } else if (el.type === 'number') {
+        entry[f] = parseFloat(el.value) || 0;
+      } else {
+        entry[f] = el.value;
+      }
+      saveState();
+      // Lightweight re-render only for the affected card's header badges
+      if (f === 'status' || f === 'decision') render();
+      else renderCharts();
+    };
+    el.addEventListener('change', handler);
+    if (el.tagName === 'INPUT' && el.type !== 'checkbox') el.addEventListener('input', handler);
+  });
+}
+
+// ── Charts (inline SVG bar charts) ───────────────────────────────────────────
+function countBy(list, fn) {
+  const m = new Map();
+  for (const x of list) { const k = fn(x); m.set(k, (m.get(k)||0)+1); }
+  return [...m.entries()].sort((a,b) => a[0].localeCompare?.(a[0]) ? 0 : b[1]-a[1]);
+}
+function barSvg(svgId, data, color) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+  const max = Math.max(1, ...data.map(d => d[1]));
+  const rowH = 18, pad = 4, labelW = 130;
+  const h = data.length * rowH + pad*2;
+  const w = 300;
+  svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  svg.innerHTML = data.map((d,i) => {
+    const y = pad + i*rowH;
+    const bw = Math.round((w - labelW - 30) * d[1] / max);
+    return `
+      <text x="4" y="${y+13}" fill="#c9d2e3" font-size="11" font-family="system-ui">${String(d[0]).slice(0,18)}</text>
+      <rect x="${labelW}" y="${y+3}" width="${bw}" height="${rowH-6}" fill="${color}" rx="2"></rect>
+      <text x="${labelW+bw+4}" y="${y+13}" fill="#ffcf7a" font-size="11" font-family="system-ui">${d[1]}</text>
+    `;
+  }).join('');
+}
+function renderCharts() {
+  const byZone = [...ENEMIES.reduce((m,e)=>m.set(e.zone,(m.get(e.zone)||0)+1),new Map()).entries()].sort((a,b)=>a[0].localeCompare(b[0]));
+  const byRole = ROLE_OPTIONS.map(r => [r, ENEMIES.filter(e=>state.entries[e.id].role===r).length]);
+  const byTier = [1,2,3,4,5].map(t => ['tier '+t, ENEMIES.filter(e=>state.entries[e.id].tier===t).length]);
+  barSvg('chart_zone', byZone, '#5a7fd6');
+  barSvg('chart_role', byRole, '#d68f5a');
+  barSvg('chart_tier', byTier, '#8fd65a');
+}
+
+// ── Populate zone filter ─────────────────────────────────────────────────────
+(function fillZones() {
+  const zones = [...new Set(ENEMIES.map(e => e.zone))].sort();
+  const sel = document.getElementById('f_zone');
+  for (const z of zones) sel.insertAdjacentHTML('beforeend', `<option>${z}</option>`);
+})();
+
+// ── Filter bar wiring ────────────────────────────────────────────────────────
+['f_search','f_zone','f_role','f_boss','f_decision','f_sort'].forEach(id => {
+  document.getElementById(id).addEventListener('input', render);
+  document.getElementById(id).addEventListener('change', render);
+});
+
+// ── General notes ───────────────────────────────────────────────────────────
+const genEl = document.getElementById('generalNotes');
+genEl.value = state.generalNotes || '';
+genEl.addEventListener('input', () => { state.generalNotes = genEl.value; saveState(); });
+
+// ── Prompt generation ───────────────────────────────────────────────────────
+function hasChanges(e, s) {
+  if (s.status !== 'unset') return true;
+  if (s.decision !== 'keep') return true;
+  if (s.notes.trim() || s.appearance.trim()) return true;
+  const fields = ['hp','dmgMin','dmgMax','armor','hit','dodge','magicResist','level','role','tier'];
+  for (const f of fields) if (s[f] !== e[f]) return true;
+  if (s.tags.join(',') !== e.tags.join(',')) return true;
+  return false;
+}
+
+function generatePrompt() {
+  const lines = [
+    '# Enemy Rebalance Plan',
+    '',
+    '_Survey results from enemy-audit.html. Apply these changes to `src/maps/mapData.js` (ENEMIES + ENEMIES_ACT5 + any inline encounter overrides in ENCOUNTERS)._',
+    '',
+    'Instructions for Claude:',
+    '1. For each enemy listed below, update the template in `src/maps/mapData.js`. Inline stat blocks inside ENCOUNTERS (e.g. Act 4/6 dragons) must be updated alongside the base template.',
+    '2. If role+tier curves changed materially, also update the enemy-scaling helpers in `src/game/formulas.js` so derived curves match the new authored numbers.',
+    '3. For appearance changes, add/queue a PixelLab portrait regeneration or swap sprite paths; mention any TODO sprites explicitly in the milestone report.',
+    '4. For `remove` decisions, also purge references from ENCOUNTERS and any quest/dialog hooks.',
+    '5. For `split` decisions, create the new variant templates and wire them into the relevant encounter tables.',
+    '6. Follow **NO SILENT SHELVING** from `CLAUDE.md` — implement every item in this list or explicitly flag deferrals up front before starting work.',
+    '',
+    '---',
+    '',
+  ];
+  let touched = 0;
+  for (const e of ENEMIES) {
+    const s = state.entries[e.id];
+    if (!hasChanges(e, s)) continue;
+    touched++;
+    lines.push(`## ${e.name} \`${e.id}\``);
+    lines.push(`- Zone: ${e.zone}${e.isBoss?' (BOSS)':''}`);
+    lines.push(`- Status: **${s.status.toUpperCase()}** · Decision: **${s.decision}**`);
+    const diffs = [];
+    const pushDiff = (k, cur, was) => { if (cur !== was) diffs.push(`${k}: ${was} → ${cur}`); };
+    pushDiff('hp', s.hp, e.hp);
+    pushDiff('dmg', `${s.dmgMin}-${s.dmgMax}`, `${e.dmgMin}-${e.dmgMax}`);
+    pushDiff('armor', s.armor, e.armor);
+    pushDiff('hit', s.hit, e.hit);
+    pushDiff('dodge', s.dodge, e.dodge);
+    pushDiff('magicResist', s.magicResist, e.magicResist);
+    pushDiff('level', s.level, e.level);
+    pushDiff('role', s.role, e.role);
+    pushDiff('tier', s.tier, e.tier);
+    if (s.tags.join(',') !== e.tags.join(',')) diffs.push(`tags: [${e.tags.join(',')}] → [${s.tags.join(',')}]`);
+    if (diffs.length) { lines.push('- Stat changes:'); for (const d of diffs) lines.push(`  - ${d}`); }
+    if (s.notes.trim()) lines.push(`- Notes: ${s.notes.trim()}`);
+    if (s.appearance.trim()) lines.push(`- Appearance: ${s.appearance.trim()}`);
+    lines.push('');
+  }
+  if (!touched) lines.push('_(no changes yet — fill in the survey above)_', '');
+  if (state.generalNotes.trim()) {
+    lines.push('## General notes', '', state.generalNotes.trim(), '');
+  }
+  lines.push('---', '', `Total enemies flagged: ${touched} / ${ENEMIES.length}`);
+  const out = document.getElementById('output');
+  out.textContent = lines.join('\n');
+  out.style.display = 'block';
+  out.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function copyPrompt() {
+  let t = document.getElementById('output').textContent;
+  if (!t) { generatePrompt(); t = document.getElementById('output').textContent; }
+  navigator.clipboard.writeText(t);
+}
+
+function exportState() {
+  // Export in a format compatible with Combat Simulator import (SettingsScreen._applySimData)
+  // The simulator expects { ENEMIES: { id: { name, hp, dmg, armor, ... } } } or an array with id fields
+  const enemies = {};
+  for (const e of ENEMIES) {
+    const s = state.entries[e.id];
+    enemies[e.id] = {
+      name: e.name, hp: s.hp, dmg: [s.dmgMin, s.dmgMax], armor: s.armor,
+      hit: s.hit, dodge: s.dodge, magicResist: s.magicResist, xpValue: e.xpValue,
+      level: s.level, isBoss: e.isBoss, role: s.role, tier: s.tier, tags: s.tags,
+      zone: e.zone
+    };
+  }
+  const exportData = {
+    _source: 'enemy-audit',
+    _version: SCHEMA_VERSION,
+    _auditState: state,
+    ENEMIES: enemies
+  };
+  const blob = new Blob([JSON.stringify(exportData, null, 2)], { type:'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `game13-enemy-audit-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importState(ev) {
+  const file = ev.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const parsed = JSON.parse(reader.result);
+      // Support new export format with _auditState
+      const auditData = parsed._auditState || parsed;
+      if (auditData.version !== SCHEMA_VERSION) {
+        if (!confirm(`Schema mismatch (file v${auditData.version}, current v${SCHEMA_VERSION}). Import anyway?`)) return;
+      }
+      state = auditData;
+      for (const e of ENEMIES) if (!state.entries[e.id]) state.entries[e.id] = defaultEntry(e);
+      saveState();
+      genEl.value = state.generalNotes || '';
+      render();
+    } catch (err) {
+      alert('Import failed: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+// ── Bulk Adjust ──────────────────────────────────────────────────────────────
+const bulkAdjustments = []; // {label, filterKey, filterVal, prop, mode, amount, formula}
+const ADJUSTABLE_PROPS = ['hp','dmgMin','dmgMax','armor','hit','dodge','magicResist','xpValue','level'];
+
+// Wire filter-key → filter-value dropdown
+document.getElementById('ba_filterKey').addEventListener('change', function() {
+  const valSel = document.getElementById('ba_filterVal');
+  valSel.innerHTML = '';
+  const key = this.value;
+  if (!key) { valSel.disabled = true; valSel.innerHTML = '<option value="">(all)</option>'; return; }
+  valSel.disabled = false;
+  let options = [];
+  if (key === 'zone') options = [...new Set(ENEMIES.map(e => e.zone))].sort();
+  else if (key === 'role') options = ROLE_OPTIONS;
+  else if (key === 'tier') options = ['1','2','3','4','5'];
+  else if (key === 'isBoss') options = ['true','false'];
+  else if (key === 'tag') options = TAG_OPTIONS;
+  for (const o of options) valSel.insertAdjacentHTML('beforeend', `<option value="${o}">${o}</option>`);
+});
+
+// Wire mode toggle between amount and formula inputs
+document.getElementById('ba_mode').addEventListener('change', function() {
+  document.getElementById('ba_amountLabel').style.display = this.value === 'formula' ? 'none' : '';
+  document.getElementById('ba_formulaLabel').style.display = this.value === 'formula' ? '' : 'none';
+});
+
+function matchesBulkFilter(enemy, filterKey, filterVal) {
+  if (!filterKey) return true;
+  if (filterKey === 'zone') return enemy.zone === filterVal;
+  if (filterKey === 'role') return enemy.role === filterVal;
+  if (filterKey === 'tier') return String(enemy.tier) === filterVal;
+  if (filterKey === 'isBoss') return String(enemy.isBoss) === filterVal;
+  if (filterKey === 'tag') return enemy.tags.includes(filterVal);
+  return true;
+}
+
+function getActFromZone(zone) {
+  const m = zone.match(/Act(\d+)/);
+  return m ? parseInt(m[1]) : 1;
+}
+
+function applyBulkAdjust() {
+  const filterKey = document.getElementById('ba_filterKey').value;
+  const filterVal = document.getElementById('ba_filterVal').value;
+  const prop = document.getElementById('ba_prop').value;
+  const mode = document.getElementById('ba_mode').value;
+  const amount = parseFloat(document.getElementById('ba_amount').value) || 0;
+  const formula = document.getElementById('ba_formula').value.trim();
+
+  if (mode === 'formula' && !formula) { alert('Enter a formula.'); return; }
+  if (mode !== 'formula' && amount === 0) { alert('Enter a non-zero amount.'); return; }
+
+  // Build label
+  const propLabel = document.getElementById('ba_prop').selectedOptions[0].textContent;
+  let filterLabel = 'all enemies';
+  if (filterKey) {
+    filterLabel = filterKey === 'isBoss' ? (filterVal === 'true' ? 'bosses' : 'non-bosses') : filterVal + ' enemies';
+  }
+  let modeLabel;
+  if (mode === 'pct') modeLabel = (amount > 0 ? '+' : '') + amount + '%';
+  else if (mode === 'flat') modeLabel = (amount > 0 ? '+' : '') + amount;
+  else modeLabel = '= ' + formula;
+
+  const adj = { filterKey, filterVal, prop, mode, amount, formula, label: `${propLabel}: ${modeLabel} to ${filterLabel}` };
+  bulkAdjustments.push(adj);
+
+  // Apply to state
+  applyOneAdjustment(adj);
+  renderBulkLog();
+  render();
+}
+
+function applyOneAdjustment(adj) {
+  for (const e of ENEMIES) {
+    if (!matchesBulkFilter(e, adj.filterKey, adj.filterVal)) continue;
+    const entry = state.entries[e.id];
+    const oldVal = entry[adj.prop] ?? e[adj.prop] ?? 0;
+    let newVal;
+    if (adj.mode === 'pct') {
+      newVal = oldVal * (1 + adj.amount / 100);
+    } else if (adj.mode === 'flat') {
+      newVal = oldVal + adj.amount;
+    } else {
+      // Formula mode — expose enemy stats as variables
+      try {
+        const vars = { hp: entry.hp, dmgMin: entry.dmgMin, dmgMax: entry.dmgMax, armor: entry.armor,
+          hit: entry.hit, dodge: entry.dodge, magicResist: entry.magicResist, xpValue: e.xpValue,
+          level: entry.level, tier: entry.tier, act: getActFromZone(e.zone) };
+        const fn = new Function(...Object.keys(vars), 'return ' + adj.formula);
+        newVal = fn(...Object.values(vars));
+      } catch (err) {
+        console.warn('Formula error for', e.id, err);
+        return;
+      }
+    }
+    entry[adj.prop] = Math.round(newVal);
+  }
+  saveState();
+}
+
+function removeBulkAdjustment(index) {
+  bulkAdjustments.splice(index, 1);
+  // Reset to original values then replay remaining adjustments
+  for (const e of ENEMIES) {
+    const entry = state.entries[e.id];
+    for (const p of ADJUSTABLE_PROPS) {
+      entry[p] = e[p] ?? 0;
+    }
+  }
+  for (const adj of bulkAdjustments) applyOneAdjustment(adj);
+  saveState();
+  renderBulkLog();
+  render();
+}
+
+function resetBulkAdjust() {
+  bulkAdjustments.length = 0;
+  for (const e of ENEMIES) {
+    const entry = state.entries[e.id];
+    for (const p of ADJUSTABLE_PROPS) {
+      entry[p] = e[p] ?? 0;
+    }
+  }
+  saveState();
+  renderBulkLog();
+  render();
+}
+
+function renderBulkLog() {
+  const logEl = document.getElementById('ba_log');
+  if (!bulkAdjustments.length) { logEl.innerHTML = ''; return; }
+  const count = bulkAdjustments.length;
+  const collapsed = count > 5;
+  logEl.innerHTML = `<div style="display:flex;align-items:center;gap:8px;"><strong style="color:#8b93a8;">Applied Adjustments (${count})</strong><button type="button" class="secondary" style="padding:2px 8px;font-size:10px;" onclick="toggleAdjList()">` +
+    (collapsed ? 'Expand' : 'Collapse') + `</button></div>` +
+    `<div id="ba_list" style="${collapsed ? 'display:none' : ''}">` +
+    bulkAdjustments.map((a, i) =>
+      `<div class="adj-entry"><span>${a.label}</span><button type="button" onclick="removeBulkAdjustment(${i})">Remove</button></div>`
+    ).join('') + '</div>';
+}
+
+function toggleAdjList() {
+  const list = document.getElementById('ba_list');
+  if (!list) return;
+  const hidden = list.style.display === 'none';
+  list.style.display = hidden ? '' : 'none';
+  const btn = list.previousElementSibling.querySelector('button');
+  if (btn) btn.textContent = hidden ? 'Collapse' : 'Expand';
+}
+
+render();
+</script>
+</body>
+</html>

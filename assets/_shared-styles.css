@@ -1,0 +1,286 @@
+/* Emberveil Shared Page Styles
+ * Based on news/tap-weapons.html template
+ * Used across all HTML pages for consistent layout
+ */
+
+:root {
+  /* Core colors */
+  --bg0: #080507;
+  --bg1: #120a0e;
+  --ink: #f0e8d0;
+  --muted: #9a8a70;
+  --gold: #e8a040;
+  --gold-glow: #ffc060;
+  --ember: #ff7030;
+
+  /* Extended color palette */
+  --surface: #1a1218;
+  --card: #221520;
+  --card-h: #2e1c2a;
+  --border: rgba(232,160,64,0.2);
+  --border-subtle: rgba(232,160,64,0.1);
+
+  /* Typography */
+  --font-display: 'Cinzel', Georgia, serif;
+  --font-ui: 'Inter', system-ui, sans-serif;
+
+  /* Layout */
+  --max-width: 980px;
+  --radius: 8px;
+  --radius-lg: 14px;
+}
+
+/* Reset and base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg0);
+  background-image:
+    radial-gradient(ellipse at top, #1a0a10 0%, #080507 60%),
+    radial-gradient(ellipse at bottom, #200810 0%, transparent 70%);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--gold);
+}
+
+h1 {
+  font-size: clamp(2.2rem, 7vw, 4.2rem);
+  letter-spacing: 0.14em;
+  color: var(--gold-glow);
+  text-shadow: 0 0 16px rgba(255,192,96,0.7), 0 0 30px rgba(255,112,48,0.4);
+}
+
+h2 {
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid rgba(232,160,64,0.25);
+  padding-bottom: 0.4rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+p {
+  color: #d8ccb0;
+  margin-bottom: 1rem;
+}
+
+/* Layout containers */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+.hero {
+  margin-top: 2rem;
+  text-align: center;
+  padding: 2.5rem 1rem 3rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: radial-gradient(ellipse at center, rgba(232,160,64,0.12), transparent 65%);
+  border: 1px solid var(--border);
+  margin-bottom: 3rem;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,192,96,0.15) 50%, transparent 70%);
+  transform: translateX(-100%);
+  animation: swipe 4.5s ease-in-out infinite;
+}
+
+@keyframes swipe {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+.hero h1 {
+  margin: 0;
+  animation: pulse 2.4s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    text-shadow: 0 0 16px rgba(255,192,96,0.55), 0 0 30px rgba(255,112,48,0.3);
+  }
+  50% {
+    text-shadow: 0 0 24px rgba(255,224,128,0.9), 0 0 48px rgba(255,112,48,0.6);
+  }
+}
+
+.hero .tag {
+  display: block;
+  margin-top: 0.6rem;
+  color: #c9b893;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+/* Sections */
+section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s ease, transform .7s ease;
+  margin-bottom: 3rem;
+}
+
+section.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Common components */
+.grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(40,20,20,0.55), rgba(20,10,14,0.7));
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(232,160,64,0.5);
+  box-shadow: 0 6px 24px rgba(255,112,48,0.15);
+}
+
+.card h3 {
+  margin: 0 0 0.2rem;
+  font-size: 0.98rem;
+  color: var(--gold-glow);
+}
+
+.card .sub {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.card .desc {
+  font-size: 0.8rem;
+  color: #d8ccb0;
+  margin-top: 0.6rem;
+  line-height: 1.45;
+}
+
+/* Utility classes */
+.muted {
+  color: var(--muted);
+}
+
+.intro {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+/* Form elements */
+button {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: var(--card-h);
+  border-color: var(--gold);
+  color: var(--gold-glow);
+}
+
+button.primary {
+  background: var(--gold);
+  color: var(--bg0);
+  border-color: var(--gold);
+}
+
+button.primary:hover {
+  background: var(--gold-glow);
+}
+
+/* Animation helpers */
+.fade-in-sections section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in-sections section.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  main {
+    padding: 1rem 0.75rem 2rem;
+  }
+
+  .hero {
+    margin-top: 1rem;
+    padding: 2rem 0.75rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Print styles */
+@media print {
+  .hero::before,
+  .hero h1 {
+    animation: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}

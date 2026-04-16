@@ -24,30 +24,134 @@
     document.title.split(/[—|-]/)[0].trim() ||
     'RSG GAME HUB';
 
-  // Figure out where we are so relative links resolve cleanly.
-  // Pages live under /<gameKey>/assets/… or /<gameKey>/game-info/…
+  // ---------------------------------------------------------------------------
+  // GAME ROOT DERIVATION — READ BEFORE EDITING
+  // ---------------------------------------------------------------------------
+  // Failure mode (has bitten TWICE — M79 News restructure, then again):
+  //   Previous logic used a relative GAME_ROOT ("./" or "../") based on whether
+  //   the URL contained "/assets/" or "/game-info/". This broke for any page
+  //   under "/news/" (or any new subdirectory) because GAME_ROOT defaulted to
+  //   "./", so clicking "Assets" from /game13/news/foo.html resolved to
+  //   /game13/news/assets/ (404) — the /news/ segment got doubled into every
+  //   subsequent menu href.
+  //
+  // Fix: anchor GAME_ROOT to an ABSOLUTE path derived from the /<gameKey>/
+  //   segment in location.pathname. Every menu link then becomes
+  //   "/<gameKey>/<target>" regardless of how deep the current page is, so no
+  //   double-prefixing is possible for ANY subdirectory, present or future.
+  //
+  // If the path does not contain /<gameKey>/ (e.g. loaded from a bare file://
+  // preview), fall back to the old relative heuristic as a last resort.
+  // ---------------------------------------------------------------------------
   var path = window.location.pathname;
-  var inAssets = /\/assets\//.test(path);
-  var inGameInfo = /\/game-info\//.test(path);
-  var GAME_ROOT = inAssets || inGameInfo ? '../' : './';
+  var gameKeyMatch = path.match(/\/(game[0-9a-z_]+)\//i);
+  var GAME_KEY = gameKeyMatch ? gameKeyMatch[1].toLowerCase() : '';
+  var GAME_ROOT;
+  if (gameKeyMatch) {
+    // Absolute anchor: everything up to and including /<gameKey>/
+    GAME_ROOT = path.slice(0, path.indexOf('/' + gameKeyMatch[1] + '/') + gameKeyMatch[1].length + 2);
+  } else {
+    var inAssetsFb = /\/assets\//.test(path);
+    var inGameInfoFb = /\/game-info\//.test(path);
+    var inNewsFb = /\/news\//.test(path);
+    GAME_ROOT = (inAssetsFb || inGameInfoFb || inNewsFb) ? '../' : './';
+  }
   var ASSETS = GAME_ROOT + 'assets/';
   var GAME_INFO = GAME_ROOT + 'game-info/';
 
+  // Per-game tool lists. Keyed by the game key derived from the URL path
+  // (/gameNN/...). Keep hardcoded for now; generalize later.
+  var TOOLS_BY_GAME = {
+    game13: [
+      { href: ASSETS + 'affix-survey.html', label: 'Affix Survey' },
+      { href: ASSETS + 'enemy-audit.html', label: 'Enemy Audit' },
+      { href: ASSETS + 'skill-audit.html', label: 'Skill Audit' },
+      { href: ASSETS + 'sprite-flip-review.html', label: 'Sprite Flip Review' },
+      { href: ASSETS + 'redesign-survey.html', label: 'Redesign Survey' },
+      { href: ASSETS + 'image-review.html', label: 'Image Review' },
+      { separator: true, label: 'Archived' },
+      { href: ASSETS + 'rebalance.html', label: 'Rebalance' }
+    ]
+  };
+  // News registry — populated by the migration pass. Sorted newest first.
+  var NEWS_ROOT = GAME_ROOT + 'news/';
+  var NEWS_BY_GAME = {
+    game8: [
+      { href: NEWS_ROOT + 'report-5.html', label: 'Milestone Report 5', date: '2025-06-01' },
+      { href: NEWS_ROOT + 'report-4.html', label: 'Milestone Report 4', date: '2025-05-01' },
+      { href: NEWS_ROOT + 'report-3.html', label: 'Milestone Report 3', date: '2025-04-01' },
+      { href: NEWS_ROOT + 'report-2.html', label: 'Milestone Report 2', date: '2025-03-01' },
+      { href: NEWS_ROOT + 'report-1.html', label: 'Milestone Report 1', date: '2025-02-01' }
+    ],
+    game11: [
+      { href: NEWS_ROOT + 'post-m25.html',    label: 'Post-M25 Report',        date: '2025-10-15' },
+      { href: NEWS_ROOT + 'pre-m21.html',     label: 'Pre-M21 Planning',       date: '2025-09-20' },
+      { href: NEWS_ROOT + 'final-m20.html',   label: 'M20 Final Report',       date: '2025-09-15' },
+      { href: NEWS_ROOT + 'pre-m12.html',     label: 'Pre-M12 Planning',       date: '2025-08-05' },
+      { href: NEWS_ROOT + 'post-m11.html',    label: 'Post-M11 Report',        date: '2025-08-01' },
+      { href: NEWS_ROOT + 'pre-m7.html',      label: 'Pre-M7 Planning',        date: '2025-07-05' },
+      { href: NEWS_ROOT + 'post-m6.html',     label: 'Post-M6 Report',         date: '2025-07-01' },
+      { href: NEWS_ROOT + 'pre-m2.html',      label: 'Pre-M2 Planning',        date: '2025-06-10' },
+      { href: NEWS_ROOT + 'pre-creation.html',label: 'Pre-Creation Brainstorm',date: '2025-06-01' }
+    ],
+    game12: [
+      { href: NEWS_ROOT + 'pre-release.html', label: 'Pre-Release Report',  date: '2026-02-15' },
+      { href: NEWS_ROOT + 'm25.html',         label: 'Milestone 25 Report', date: '2026-02-01' },
+      { href: NEWS_ROOT + 'm20.html',         label: 'Milestone 20 Report', date: '2026-01-01' },
+      { href: NEWS_ROOT + 'm15.html',         label: 'Milestone 15 Report', date: '2025-12-01' },
+      { href: NEWS_ROOT + 'm10.html',         label: 'Milestone 10 Report', date: '2025-11-01' },
+      { href: NEWS_ROOT + 'm5.html',          label: 'Milestone 5 Report',  date: '2025-10-01' }
+    ],
+    game13: [
+      { href: NEWS_ROOT + 'milestone-report.html',   label: 'Major Milestone Report',date: '2026-04-15' },
+      { href: NEWS_ROOT + 're-redesign.html',        label: 'Re-redesign — SpriteCook', date: '2026-04-14' },
+      { href: NEWS_ROOT + 'm79-redesign.html',       label: 'M79 Redesign Report',   date: '2026-04-14' },
+      { href: NEWS_ROOT + 'balance-report.html',     label: 'Balance Report',        date: '2026-04-14' },
+      { href: NEWS_ROOT + 'tap-weapons.html',        label: 'Tap Weapons Design',    date: '2026-04-13' },
+      { href: NEWS_ROOT + 'simulation-overhaul.html',label: 'Simulation Overhaul',   date: '2026-04-13' },
+      { href: NEWS_ROOT + 'dragon-expansion.html',   label: 'Dragon Expansion',      date: '2026-04-13' },
+      { href: NEWS_ROOT + 'milestone-53.html',       label: 'Milestone 53 Report',   date: '2026-04-11' },
+      { href: NEWS_ROOT + 'pre-game.html',           label: 'Pre-Game Brainstorm',   date: '2026-04-10' }
+    ]
+  };
+  var TOOLS = TOOLS_BY_GAME[GAME_KEY] || [];
+  var NEWS = NEWS_BY_GAME[GAME_KEY] || [];
+
   var MENU = [
     { href: GAME_ROOT, label: 'Play Game' },
+    { href: GAME_INFO, label: 'Game Info' },
     {
       href: ASSETS,
       label: 'Assets',
       children: [
-        { href: ASSETS + '#reports-section', label: 'Reports' },
         { href: ASSETS + '#main', label: 'Images' },
         { href: ASSETS + '#audio-section', label: 'Audio' },
-        { href: ASSETS + 'rebalance.html', label: 'Rebalance' }
+        { href: ASSETS + '#reports-section', label: 'Milestones' }
       ]
     },
-    { href: GAME_INFO, label: 'Game Info' },
+    { href: GAME_ROOT + 'contact.html', label: 'Contact' },
     { href: 'https://docs.google.com/forms/d/e/1FAIpQLScWHFEQ8Kbxvsxg5nKerJOPqkYntAkRLCihqQchypNdqayvmA/viewform?usp=publish-editor', label: 'Send Feedback', external: true }
   ];
+  if (TOOLS.length) {
+    MENU.splice(MENU.length - 1, 0, {
+      href: TOOLS[0].href,
+      label: 'Tools',
+      children: TOOLS.slice()
+    });
+  }
+  // News dropdown: articles only (no "All News" entry). Date-prefixed,
+  // newest first. Default to 2026-04-14 if a date is somehow missing.
+  if (NEWS.length) {
+    var newsChildren = NEWS.map(function (n) {
+      var d = n.date || '2026-04-14';
+      return { href: n.href, label: d + ' \u2014 ' + n.label };
+    });
+    MENU.splice(MENU.length - 1, 0, {
+      href: newsChildren[0].href,
+      label: 'News',
+      children: newsChildren
+    });
+  }
 
   function buildNav() {
     var nav = document.createElement('nav');
@@ -55,6 +159,9 @@
     var links = MENU.map(function (m) {
       if (m.children) {
         var sub = m.children.map(function (c) {
+          if (c.separator) {
+            return '<li class="sub-sep"><span>' + c.label + '</span></li>';
+          }
           return '<li><a href="' + c.href + '">' + c.label + '</a></li>';
         }).join('');
         return '<li class="has-sub"><a href="' + m.href + '">' + m.label + ' \u25BE</a><ul class="sub-menu">' + sub + '</ul></li>';
@@ -85,6 +192,8 @@
       'nav.rsg-shared-nav .sub-menu{display:none;position:absolute;top:100%;left:0;background:rgba(10,6,8,0.98);border:1px solid rgba(232,160,32,0.25);border-radius:6px;padding:0.4rem 0;list-style:none;margin:0;min-width:140px;box-shadow:0 8px 24px rgba(0,0,0,0.5)}' +
       'nav.rsg-shared-nav .has-sub:hover .sub-menu,nav.rsg-shared-nav .has-sub:focus-within .sub-menu,nav.rsg-shared-nav .has-sub.open .sub-menu{display:block}' +
       'nav.rsg-shared-nav .sub-menu a{padding:0.4rem 0.9rem;font-size:0.7rem}' +
+      'nav.rsg-shared-nav .sub-menu .sub-sep{padding:0.45rem 0.9rem 0.2rem;margin-top:0.25rem;border-top:1px solid rgba(232,160,32,0.2)}' +
+      'nav.rsg-shared-nav .sub-menu .sub-sep span{color:#e8a020;font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;opacity:0.8}' +
       'body.rsg-nav-padded{padding-top:52px}' +
       '@media (max-width:720px){' +
         'nav.rsg-shared-nav{height:auto;padding:0.4rem 0.75rem;align-items:stretch}' +

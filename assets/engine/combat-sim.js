@@ -111,6 +111,13 @@ export const TAP_UTILITIES = [
 // changes the canonical formulas, update this comment block too.
 export function computeMaxHp(attrs, passiveHp = 0) { return 50 + attrs.CON * 10 + passiveHp; }
 export function computeAttack(attrs, level, gear = 0) { return attrs.STR * 2 + level * 3 + gear; }
+// M95: Three weapon categories drive basic-attack damage via different stats.
+//   heavy → STR, light → DEX, magic → INT (+ wand spell-power kicker).
+export function computeAttackByCategory(attrs, level, gear = 0, weaponCategory = 'heavy') {
+  if (weaponCategory === 'light') return attrs.DEX * 2 + level * 3 + gear;
+  if (weaponCategory === 'magic') return attrs.INT * 2 + level * 3 + gear + Math.round(attrs.INT * 0.5);
+  return attrs.STR * 2 + level * 3 + gear;
+}
 export function computeSpell(attrs, level, gear = 0)  { return attrs.INT * 2 + level * 3 + gear; }
 export function computeDefense(attrs, level, armor = 0) { return attrs.CON + level + armor; }
 

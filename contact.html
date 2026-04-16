@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Emberveil</title>
+  <meta name="description" content="Contact Radley Sustaire, the developer of Emberveil. Send feedback, ask questions, or just say hello." />
+  <link rel="canonical" href="https://emberveil.radgh.com/contact.html" />
+  <meta property="og:title" content="Contact — Emberveil" />
+  <meta property="og:description" content="Contact Radley Sustaire, the developer of Emberveil." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://emberveil.radgh.com/contact.html" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5H26ZXKBCL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-5H26ZXKBCL");
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080508;
+      --bg2: #110810;
+      --gold: #e8a020;
+      --gold-bright: #ffd078;
+      --crimson: #c04030;
+      --ember: #ff6040;
+      --text: #f0e8d8;
+      --muted: #8a7a6a;
+      --panel: rgba(16,8,16,0.88);
+      --border: rgba(232,160,32,0.22);
+      --border-hover: rgba(232,160,32,0.6);
+      --font-display: 'Cinzel', Georgia, serif;
+      --font-body: 'Inter', 'Segoe UI', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.65; overflow-x: hidden; }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { color: var(--gold-bright); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ── Top Nav ── */
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+      background: rgba(8,5,8,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display); font-weight: 900; font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      background: linear-gradient(135deg, var(--crimson) 0%, var(--gold) 60%, var(--ember) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-transform: uppercase;
+    }
+    .nav-links { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+    .nav-links a { font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-play-btn {
+      background: linear-gradient(135deg, var(--crimson), #8a1a0a);
+      color: var(--gold-bright) !important;
+      padding: 0.4rem 1rem; border-radius: 4px;
+      border: 1px solid rgba(192,64,48,0.5); font-weight: 600;
+    }
+    .nav-play-btn:hover { background: linear-gradient(135deg, #d05040, var(--crimson)); color: #fff !important; }
+
+    /* ── Hero (smaller than front page) ── */
+    .hero {
+      position: relative; min-height: 42svh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      overflow: hidden; text-align: center; padding: 6rem 1.5rem 3rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('images/menu_bg/menu_wide.jpg') center 30% / cover no-repeat;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(8,5,8,0.6) 0%, rgba(8,5,8,0.35) 40%, rgba(8,5,8,0.95) 100%);
+    }
+    .cloud-layer {
+      position: absolute; inset: 0; pointer-events: none;
+      background-repeat: repeat-x; background-size: auto 35%; background-position: 0 25%; opacity: 0.2;
+    }
+    .cloud-layer-1 { background-image: url('images/menu_bg/clouds_01.jpg'); animation: cloudDrift1 60s linear infinite; }
+    .cloud-layer-2 { background-image: url('images/menu_bg/clouds_02.jpg'); animation: cloudDrift2 90s linear infinite; opacity: 0.14; background-position: 0 35%; }
+    @keyframes cloudDrift1 { from { background-position: 0 25%; } to { background-position: 2000px 25%; } }
+    @keyframes cloudDrift2 { from { background-position: 0 35%; } to { background-position: 2000px 35%; } }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 60%, var(--ember) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      opacity: 0; animation: fadeUp 1s 0.3s ease-out forwards;
+    }
+    .hero-sub {
+      font-family: var(--font-display); font-size: clamp(0.8rem, 2.5vw, 1rem);
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+      margin-top: 0.6rem;
+      opacity: 0; animation: fadeUp 1s 0.7s ease-out forwards;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+
+    /* ── Main content ── */
+    .main { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+    .card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 10px; padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .card-title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--gold-bright); margin-bottom: 1rem;
+    }
+    p { margin-bottom: 0.75rem; }
+    p:last-child { margin-bottom: 0; }
+    .form-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--crimson) 0%, #8a1a0a 100%);
+      color: var(--gold-bright);
+      padding: 0.85rem 2rem; border-radius: 5px;
+      font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      border: 1px solid rgba(192,64,48,0.5);
+      transition: transform 0.2s, filter 0.2s;
+      margin-top: 1rem;
+    }
+    .form-btn:hover { transform: translateY(-2px); filter: brightness(1.2); color: #fff; }
+    .contact-info { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .contact-info li { font-size: 0.9rem; }
+    .contact-info a { color: var(--gold); }
+    .contact-info a:hover { color: var(--gold-bright); }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 2rem 0; }
+
+    /* ── Footer ── */
+    .site-footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem; text-align: center;
+    }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .footer-links a { font-size: 0.82rem; color: var(--muted); }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.72rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- ── Top Nav ── -->
+  <nav class="top-nav" role="navigation" aria-label="Main navigation">
+    <a href="./" class="nav-logo" aria-label="Emberveil home">EMBERVEIL</a>
+    <div class="nav-links">
+      <a href="./play.html" class="nav-play-btn">Play</a>
+      <a href="./news/index.html">News</a>
+      <a href="./assets/index.html">Tools</a>
+      <a href="./assets/">Art Gallery</a>
+      <a href="./contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero" aria-label="Page header">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="cloud-layer cloud-layer-1" aria-hidden="true"></div>
+    <div class="cloud-layer cloud-layer-2" aria-hidden="true"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Contact</h1>
+      <p class="hero-sub">Get in Touch</p>
+    </div>
+  </section>
+
+  <!-- ── Main ── -->
+  <main class="main">
+
+    <!-- Feedback Form -->
+    <div class="card">
+      <div class="card-title">Send Feedback</div>
+      <p>Enjoying Emberveil? Found a bug? Have a suggestion or just want to share your experience? Use the form below to get in touch — all feedback is read and appreciated.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHFEQ8Kbxvsxg5nKerJOPqkYntAkRLCihqQchypNdqayvmA/viewform?usp=publish-editor"
+         target="_blank" rel="noopener" class="form-btn">
+        Open Feedback Form &rarr;
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Creator info -->
+    <div class="card">
+      <div class="card-title">About the Creator</div>
+      <p>
+        <strong style="color:var(--gold-bright);">Radley Sustaire</strong> is a developer based in Veneta, OR who has been building web applications for over a decade.
+        Emberveil began as an experiment in AI-assisted game development — using Claude Code (Anthropic) to design, implement, and iterate on a full-featured party RPG across dozens of milestones.
+        The project spans custom combat systems, procedural loot, an original dark-fantasy world, and 20 playable hero classes, all created collaboratively with AI tooling.
+      </p>
+      <div class="divider" style="margin:1.25rem 0;"></div>
+      <ul class="contact-info">
+        <li><strong>Email:</strong> <a href="mailto:radleygh@gmail.com">radleygh@gmail.com</a></li>
+        <li><strong>Location:</strong> Veneta, OR</li>
+        <li><strong>GitHub:</strong> <a href="https://github.com/RadGH/claude-game-workspace" target="_blank" rel="noopener">RadGH/claude-game-workspace</a></li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Quick links -->
+    <div class="card">
+      <div class="card-title">More Links</div>
+      <ul class="contact-info">
+        <li><a href="./play.html">Play Emberveil</a> — Launch the game in your browser</li>
+        <li><a href="./news/index.html">Development News</a> — Milestone reports and updates</li>
+        <li><a href="./assets/">Art Gallery</a> — View all generated assets and prompts</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="./">Home</a>
+      <a href="./play.html">Play Game</a>
+      <a href="./news/index.html">News</a>
+      <a href="./assets/">Art Gallery</a>
+      <a href="https://github.com/RadGH/claude-game-workspace" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Radley Sustaire &middot; Emberveil</div>
+  </footer>
+
+</body>
+</html>

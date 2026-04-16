@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="rsg-game" content="Emberveil">
 <title>EMBERVEIL — M46–M53 Shelved Items Audit</title>
+<script src="../assets/_header.js" defer></script>
+<link rel="stylesheet" href="../assets/_shared-styles.css">
 <style>
+/* Tool-specific styles */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Inter:wght@300;400;500;600&display=swap');
 :root {
   --bg:#0a0608; --surface:#1a1218; --card:#221520; --card-h:#2e1c2a;
@@ -43,10 +46,18 @@ button.sec:hover{color:var(--text);border-color:var(--gold)}
   gtag("config", "G-5H26ZXKBCL");
 </script>
 </head>
-<body>
+<body class="fade-in-sections">
+<main>
+
+<div class="hero">
+  <h1>AUDIT REPORT</h1>
+  <span class="tag">M46–M53 Shelved Items Review</span>
+</div>
+
+<section class="visible">
 <div class="wrap">
-<h1>M46–M53 Shelved Items Audit</h1>
-<p class="sub">Items from the M46–M53 batch that were silently deferred into changelog notes instead of being implemented.</p>
+
+<p class="muted">Items from the M46–M53 batch that were silently deferred into changelog notes instead of being implemented.</p>
 <div class="intro">
 Check the items you want implemented, then click <strong>Copy Prompt</strong> and paste into a new Claude Code session. Each item links back to its original milestone context.
 </div>
@@ -107,6 +118,19 @@ function copyPrompt(){
 }
 render();
 </script>
-<script src="../assets/_header.js?v=3" data-base="game-info" defer></script>
+
+</div>
+</section>
+</main>
+
+<script>
+// Fade in sections on load
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('section');
+  sections.forEach((section, i) => {
+    setTimeout(() => section.classList.add('visible'), i * 200);
+  });
+});
+</script>
 </body>
 </html>

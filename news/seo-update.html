@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="rsg-featured-image" content="../images/combat_bg/ember_plateau_1.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>Site SEO & Restructure — Emberveil</title>
+<meta name="description" content="Marketing site restructure with SEO implementation: canonical URLs, sitemap, llms.txt, Open Graph tags, and schema.org VideoGame markup.">
+<link rel="canonical" href="https://emberveil.radgh.com/news/seo-update.html">
+<meta property="og:title" content="Site SEO & Restructure — Emberveil">
+<meta property="og:description" content="Emberveil site redesign with SEO best practices: sitemap, robots.txt, canonical URLs, Open Graph tags, and schema.org markup.">
+<meta property="og:image" content="https://emberveil.radgh.com/images/combat_bg/ember_plateau_1.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<script src="../assets/_header.js" defer></script>
+<style>
+  :root {
+    --bg:#0a0608; --card:#1a1218; --border:rgba(232,160,32,0.2);
+    --accent:#e8a020; --accent2:#f0c060; --fg:#f0e8d8; --muted:#8a7a6a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',sans-serif;background:radial-gradient(ellipse at top,#1a0b07 0%,var(--bg) 60%);color:var(--fg);min-height:100vh}
+  h1,h2{font-family:'Cinzel',Georgia,serif}
+  .hero{position:relative;padding:80px 24px 60px;text-align:center;border-bottom:1px solid var(--border);background-size:cover;background-position:center}
+  .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,6,8,0.65) 0%,rgba(10,6,8,0.4) 40%,rgba(10,6,8,0.9) 100%);pointer-events:none}
+  .hero > *{position:relative;z-index:1}
+  .hero h1{font-size:clamp(28px,6vw,52px);margin:0 0 12px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .date{color:var(--muted);font-size:14px;letter-spacing:0.1em;text-transform:uppercase}
+  .hero p.lead{max-width:680px;margin:16px auto 0;font-size:16px;line-height:1.6;color:var(--fg)}
+  main{max-width:820px;margin:0 auto;padding:40px 20px 80px}
+  section{margin-bottom:48px}
+  h2{font-size:24px;margin:32px 0 12px;border-left:4px solid var(--accent);padding-left:14px}
+  p,li{font-size:15px;line-height:1.75;color:var(--fg)}
+  ul,ol{padding-left:24px}
+  li{margin-bottom:8px}
+  code{background:rgba(232,160,32,0.12);padding:2px 6px;border-radius:3px;font-family:monospace;font-size:0.9em;color:var(--accent2)}
+  .stats{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+  .stat{background:var(--card);border:1px solid var(--border);padding:12px 16px;border-radius:6px}
+  .stat-num{font-size:22px;font-weight:700;color:var(--accent)}
+  .stat-lbl{font-size:11px;color:var(--muted);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="date">April 16, 2026</div>
+  <h1>Site SEO & Restructure</h1>
+  <p class="lead">A behind-the-scenes look at the site overhaul: game moved to <code>/play.html</code>, new marketing homepage, and a full SEO pass with sitemap, llms.txt, canonical URLs, and structured data.</p>
+</div>
+<main>
+<section>
+<h2>What Changed</h2>
+<ul>
+  <li><strong>Architecture:</strong> Game moved to <code>/play.html</code>, marketing page now at <code>/</code>, new <code>/contact.html</code>, and news at <code>/news/*.html</code>.</li>
+  <li><strong>Canonical URLs:</strong> All pages point to <code>https://emberveil.radgh.com/</code> — important because the site also deploys to a GitHub Pages subpath.</li>
+  <li><strong>Social cards:</strong> Open Graph + Twitter Card metadata on every public page, plus featured images wired into each news article as the hero background.</li>
+  <li><strong>Crawler infrastructure:</strong> <code>sitemap.xml</code>, <code>robots.txt</code>, and an <code>llms.txt</code> (per the emerging llmstxt.org spec).</li>
+  <li><strong>Structured data:</strong> schema.org <code>VideoGame</code> JSON-LD on the homepage so search engines understand what kind of site this is.</li>
+  <li><strong>News auto-loading:</strong> The homepage's "Latest News" section fetches <code>news.json</code> at runtime, so new articles appear automatically without editing the front page.</li>
+</ul>
+</section>
+<section>
+<h2>Key Learnings</h2>
+<ol>
+  <li><strong>Single-page game apps need explicit routing to be crawlable.</strong> When the game is the homepage, crawlers can't distinguish what's game vs what's content. Splitting to <code>/play.html</code> made room for real, indexable landing content.</li>
+  <li><strong>llms.txt is worth adopting early.</strong> Cheap to write, and it's starting to appear in AI retrieval pipelines. Low downside, likely upside.</li>
+  <li><strong>Featured images dramatically improve share quality.</strong> A news article with a strong OG image gets far more click-through than a link-preview with placeholder text.</li>
+  <li><strong>Canonicals matter when you deploy to multiple hosts.</strong> Emberveil lives on both GitHub Pages and <code>emberveil.radgh.com</code>; without canonicals, duplicate-content penalties were a real risk.</li>
+</ol>
+</section>
+<section>
+<h2>Suggestions Going Forward</h2>
+<ul>
+  <li>Wire GA4 event tracking on gameplay funnel events (class select, first combat, act complete) — pageview-only analytics undersell engagement.</li>
+  <li>Add image <code>loading="lazy"</code> to the homepage portrait grids. Currently ~60 images load up front; LCP will improve.</li>
+  <li>Add Lighthouse CI to the release pipeline — target Core Web Vitals green on every commit.</li>
+  <li>Consider JSON-LD <code>BlogPosting</code> schema on each news article for richer search results.</li>
+</ul>
+</section>
+<section>
+<h2>By the Numbers</h2>
+<div class="stats">
+  <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">New SEO files</div></div>
+  <div class="stat"><div class="stat-num">15</div><div class="stat-lbl">URLs in sitemap</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">Pages with OG tags</div></div>
+  <div class="stat"><div class="stat-num">1</div><div class="stat-lbl">VideoGame schema</div></div>
+</div>
+</section>
+</main>
+<script>
+(function(){
+  var m=document.querySelector("meta[name='rsg-featured-image']");
+  if(!m) return;
+  var hero=document.querySelector(".hero");
+  if(!hero) return;
+  hero.style.backgroundImage="url("+JSON.stringify(m.content)+")";
+})();
+</script>
+</body>
+</html>

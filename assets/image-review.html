@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="game13">
+<script src="./_header.js" defer></script>
+<title>Image Review — RSG</title>
+<style>
+  :root {
+    --bg: #0b0810;
+    --panel: #1a1220;
+    --panel-alt: #12101a;
+    --border: #2a1f30;
+    --gold: #e8a020;
+    --gold-dim: #a67818;
+    --crimson: #c04030;
+    --parchment: #e8d8b8;
+    --muted: #8a7a6a;
+    --accent: #60a0e0;
+    --warn: #e85020;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--parchment);
+    font-family: 'Inter','Segoe UI',system-ui,sans-serif;
+    padding: 1rem 1rem 6rem;
+    line-height: 1.4;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  h1 {
+    font-family: 'Cinzel',Georgia,serif;
+    color: var(--gold); font-size: 1.4rem; margin: 0 0 0.25rem;
+    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+    background: linear-gradient(180deg,#f8d880 0%,#e8a020 40%,#c04030 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  p.sub { color: var(--muted); font-size: 0.8rem; margin: 0 0 1rem; }
+  h2 {
+    font-family: 'Cinzel',Georgia,serif;
+    color: var(--gold); font-size: 1rem; margin: 1.75rem 0 0.6rem;
+    border-bottom: 1px solid var(--border); padding-bottom: 0.3rem;
+    letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700;
+  }
+  h2 .count {
+    color: var(--muted); font-size: 0.75rem; font-weight: 400;
+    margin-left: 0.5rem; letter-spacing: 0;
+  }
+  h3 {
+    font-family: 'Cinzel',Georgia,serif;
+    color: var(--parchment); font-size: 0.85rem; margin: 0.75rem 0 0.3rem;
+    font-weight: 600; letter-spacing: 0.04em;
+  }
+  .summary {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.5rem 0.8rem; margin: 0.5rem 0 1rem;
+    font-size: 0.72rem;
+  }
+  .summary span { padding: 0 0.3rem; }
+  .summary b { color: var(--gold); font-weight: 700; }
+
+  /* Card-row (hero/boss/companion groupings) */
+  .group {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem 0.8rem;
+    margin: 0.5rem 0;
+  }
+  .group-title {
+    font-family: 'Cinzel',Georgia,serif;
+    color: var(--gold); font-size: 0.85rem; margin: 0 0 0.5rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .poses {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(90px, 1fr));
+    gap: 0.4rem;
+  }
+  @media (max-width: 720px) {
+    .poses { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .img-card {
+    background: var(--panel-alt);
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    padding: 0.35rem;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    transition: border-color 0.12s, transform 0.08s;
+  }
+  .img-card:hover { border-color: var(--gold-dim); }
+  .img-card.active { border-color: var(--gold); }
+  .img-card.selected { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .img-card.has-action { border-color: var(--accent); }
+  .img-card.status-pending { opacity: 0.55; }
+  .img-card.status-pending img { filter: grayscale(1); }
+  .img-card.status-orphaned { border-color: var(--warn); }
+  .img-card img {
+    width: 100%; height: 92px; object-fit: contain;
+    image-rendering: pixelated;
+    background: #050308; border-radius: 3px;
+  }
+  .img-card .placeholder {
+    width: 100%; height: 92px; background: #050308; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 0.65rem;
+  }
+  .img-card .lbl {
+    font-size: 0.6rem; color: var(--muted); margin-top: 0.2rem;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .img-card .status-dot {
+    position: absolute; top: 3px; right: 3px;
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+  .status-dot.ready     { background: #40a060; }
+  .status-dot.pending   { background: #888; }
+  .status-dot.orphaned  { background: var(--warn); }
+  .status-dot.in_progress { background: var(--accent); }
+
+  /* Backgrounds gallery grid */
+  .bg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.5rem;
+  }
+  .bg-grid .img-card img { height: 110px; image-rendering: auto; }
+
+  /* Editor panel appended under the clicked card's row */
+  .editor {
+    grid-column: 1 / -1;
+    background: #050308;
+    border: 1px solid var(--gold-dim);
+    border-radius: 5px;
+    padding: 0.7rem 0.8rem;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+  }
+  .editor .eid {
+    font-family: ui-monospace,monospace; color: var(--gold);
+    font-size: 0.72rem; margin-bottom: 0.5rem;
+  }
+  .editor label {
+    display: block; margin: 0.3rem 0;
+    color: var(--parchment); font-size: 0.74rem;
+  }
+  .editor label.inline { display: inline-block; margin-right: 0.75rem; }
+  .editor input[type=text], .editor textarea, .editor select {
+    width: 100%; background: #0b0810; color: var(--parchment);
+    border: 1px solid var(--border); border-radius: 3px;
+    padding: 0.35rem 0.45rem; font: inherit;
+    font-family: ui-monospace,monospace; font-size: 0.72rem;
+  }
+  .editor textarea { min-height: 54px; resize: vertical; }
+  .editor .sub-panel {
+    border-left: 2px solid var(--border);
+    padding: 0.3rem 0 0.3rem 0.6rem;
+    margin: 0.3rem 0 0.3rem 1.1rem;
+  }
+  .editor .row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+
+  /* Footer (prompt output) */
+  .footer-bar {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    background: #050308;
+    border-top: 2px solid var(--gold);
+    padding: 0.55rem 1rem;
+    z-index: 50;
+    display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;
+    box-shadow: 0 -6px 24px rgba(0,0,0,0.5);
+  }
+  .footer-bar button {
+    background: var(--panel); color: var(--parchment);
+    border: 1px solid var(--border); border-radius: 3px;
+    padding: 0.4rem 0.7rem; cursor: pointer; font-size: 0.75rem;
+    font-family: inherit; font-weight: 600; letter-spacing: 0.04em;
+  }
+  .footer-bar button.primary {
+    background: var(--gold); color: #0b0810; border-color: var(--gold);
+  }
+  .footer-bar button.danger {
+    background: transparent; color: var(--warn); border-color: var(--warn);
+  }
+  .footer-bar .count-wrap {
+    font-size: 0.72rem; color: var(--muted);
+    margin-left: auto;
+  }
+  .footer-bar .count-wrap b { color: var(--gold); }
+
+  dialog.prompt-out {
+    background: #0b0810; color: var(--parchment);
+    border: 2px solid var(--gold); border-radius: 8px;
+    padding: 1rem; max-width: 900px; width: 90vw; max-height: 85vh;
+  }
+  dialog.prompt-out::backdrop { background: rgba(0,0,0,0.7); }
+  dialog.prompt-out textarea {
+    width: 100%; min-height: 420px;
+    background: #050308; color: var(--parchment);
+    border: 1px solid var(--border); border-radius: 3px;
+    font-family: ui-monospace,monospace; font-size: 0.72rem;
+    padding: 0.5rem; box-sizing: border-box;
+  }
+  dialog.prompt-out .actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
+  dialog.prompt-out button {
+    background: var(--panel); color: var(--parchment);
+    border: 1px solid var(--border); border-radius: 3px;
+    padding: 0.4rem 0.7rem; cursor: pointer; font-size: 0.75rem;
+  }
+  dialog.prompt-out button.primary {
+    background: var(--gold); color: #0b0810; border-color: var(--gold);
+  }
+
+  details.collapsible > summary {
+    cursor: pointer; list-style: none; padding: 0.3rem 0;
+  }
+  details.collapsible > summary::-webkit-details-marker { display: none; }
+  details.collapsible > summary::before {
+    content: '▸ '; color: var(--gold); display: inline-block; width: 1em;
+    transition: transform 0.15s;
+  }
+  details.collapsible[open] > summary::before { transform: rotate(90deg); }
+
+  .empty-note {
+    color: var(--muted); font-size: 0.75rem; font-style: italic;
+    padding: 0.5rem 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Image Review</h1>
+  <p class="sub">
+    Audit every image in the project — heroes, companions, bosses, enemies, and backgrounds.
+    Click any image to flag it for a Flip, Remove-Background, Re-Generate, Generate, or Delete action.
+    When you're done, hit <b>Generate Prompt</b> to produce a paste-ready instruction block for Claude.
+  </p>
+
+  <div class="summary" id="summary">Loading manifest…</div>
+
+  <div id="sections"></div>
+</div>
+
+<div class="footer-bar">
+  <button id="btn-reset" class="danger">Reset</button>
+  <button id="btn-only-flagged">Show flagged only</button>
+  <span class="count-wrap">Actions: <b id="action-count">0</b> &middot; Ready: <b id="ready-count">0</b> &middot; Pending: <b id="pending-count">0</b> &middot; Orphaned: <b id="orphaned-count">0</b></span>
+  <button id="btn-generate" class="primary">Generate Prompt</button>
+</div>
+
+<dialog class="prompt-out" id="prompt-dialog">
+  <textarea id="prompt-text" readonly></textarea>
+  <div class="actions">
+    <button class="primary" id="btn-copy">Copy to Clipboard</button>
+    <button id="btn-download">Download .txt</button>
+    <button id="btn-close">Close</button>
+  </div>
+</dialog>
+
+<script>
+// ============================================================================
+// Image Review tool
+// ============================================================================
+const STORAGE_KEY = 'rsg.imageReview.v1';
+const MANIFEST_URL = './image-review-manifest.json';
+
+let manifest = null;
+let entries = [];
+let state = {};   // keyed by entry id → action state
+let onlyFlagged = false;
+
+function loadState() {
+  try { state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') || {}; }
+  catch { state = {}; }
+}
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+async function boot() {
+  loadState();
+  try {
+    const res = await fetch(MANIFEST_URL, { cache: 'no-cache' });
+    manifest = await res.json();
+    entries = manifest.entries || [];
+  } catch (e) {
+    document.getElementById('summary').textContent =
+      'Failed to load image-review-manifest.json — run `node scripts/build-image-review-manifest.cjs` first.';
+    return;
+  }
+  renderSummary();
+  renderSections();
+  updateCounts();
+}
+
+function renderSummary() {
+  const m = manifest._meta || {};
+  const c = m.counts || {};
+  const sum = document.getElementById('summary');
+  sum.innerHTML = `
+    <span><b>${c.total ?? entries.length}</b> images total</span>
+    <span>Ready: <b>${c.by_status?.ready ?? 0}</b></span>
+    <span>Pending: <b>${c.by_status?.pending ?? 0}</b></span>
+    <span>Orphaned: <b>${c.by_status?.orphaned ?? 0}</b></span>
+    <span style="opacity:0.6">Generated ${m.generated ? m.generated.slice(0,10) : '?'}</span>`;
+}
+
+// Group heroes / companions / bosses / enemies by `group`.
+function groupBy(cat, list) {
+  const by = new Map();
+  for (const e of list) {
+    if (e.category !== cat) continue;
+    if (!by.has(e.group)) by.set(e.group, []);
+    by.get(e.group).push(e);
+  }
+  return by;
+}
+
+function isFlagged(e) {
+  const s = state[e.id];
+  return !!(s && s.action && s.action !== 'none');
+}
+
+function filterEntries(list) {
+  if (!onlyFlagged) return list;
+  return list.filter(isFlagged);
+}
+
+const POSE_ORDER = ['portrait','south','east','east_attack','east_spell','east_block','east_ko'];
+function sortPoses(arr) {
+  return arr.slice().sort((a,b) => {
+    const ia = POSE_ORDER.indexOf(a.pose); const ib = POSE_ORDER.indexOf(b.pose);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+  });
+}
+
+function esc(s) { return String(s == null ? '' : s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+function renderSections() {
+  const host = document.getElementById('sections');
+  const html = [];
+
+  // 1) In-progress
+  const inProg = filterEntries(entries.filter(e => e.status === 'in_progress'));
+  if (inProg.length) {
+    html.push(`<details class="collapsible" open><summary><h2 style="display:inline-block">In Progress <span class="count">${inProg.length}</span></h2></summary>`);
+    html.push(renderFlatGrid(inProg));
+    html.push(`</details>`);
+  }
+
+  // 2) Heroes
+  html.push(renderGroupedSection('Heroes', 'hero', entries));
+  // 3) Companions
+  html.push(renderGroupedSection('Companions', 'companion', entries));
+  // 4) Bosses
+  html.push(renderGroupedSection('Bosses', 'boss', entries));
+  // 5) Enemies (flat grid — only portraits)
+  const enemies = filterEntries(entries.filter(e => e.category === 'enemy'));
+  html.push(`<h2>Enemies <span class="count">${enemies.length}</span></h2>`);
+  html.push(enemies.length
+    ? `<div class="bg-grid">${enemies.map(renderCard).join('')}</div>`
+    : `<div class="empty-note">No enemies matched the current filter.</div>`);
+
+  // 6) Backgrounds
+  const bgs = filterEntries(entries.filter(e => e.category === 'background'));
+  html.push(`<h2>Backgrounds <span class="count">${bgs.length}</span></h2>`);
+  html.push(bgs.length
+    ? `<div class="bg-grid">${bgs.map(renderCard).join('')}</div>`
+    : `<div class="empty-note">No backgrounds matched the current filter.</div>`);
+
+  // 7) Pending Generation — pulled from any category with status === pending
+  const pending = filterEntries(entries.filter(e => e.status === 'pending'));
+  html.push(`<h2>Pending Generation <span class="count">${pending.length}</span></h2>`);
+  html.push(pending.length
+    ? `<div class="bg-grid">${pending.map(renderCard).join('')}</div>`
+    : `<div class="empty-note">No pending images.</div>`);
+
+  // 8) Orphaned
+  const orphans = filterEntries(entries.filter(e => e.status === 'orphaned'));
+  html.push(`<h2>Orphaned Images <span class="count">${orphans.length}</span></h2>`);
+  html.push(orphans.length
+    ? `<div class="bg-grid">${orphans.map(renderCard).join('')}</div>`
+    : `<div class="empty-note">No orphaned files detected.</div>`);
+
+  host.innerHTML = html.join('');
+  wireCards(host);
+}
+
+function renderGroupedSection(title, cat, list) {
+  const by = groupBy(cat, list);
+  const groups = [...by.keys()].sort();
+  const totalCount = [...by.values()].reduce((n, arr) => n + arr.length, 0);
+  const out = [`<h2>${title} <span class="count">${groups.length} ${cat === 'hero' ? 'classes' : 'groups'} · ${totalCount} poses</span></h2>`];
+  if (!groups.length) { out.push(`<div class="empty-note">No ${title.toLowerCase()} found.</div>`); return out.join(''); }
+  for (const g of groups) {
+    const items = sortPoses(by.get(g));
+    const filtered = onlyFlagged ? items.filter(isFlagged) : items;
+    if (onlyFlagged && !filtered.length) continue;
+    out.push(`<div class="group">
+      <div class="group-title">${esc(g)}</div>
+      <div class="poses">${filtered.map(renderCard).join('')}</div>
+    </div>`);
+  }
+  return out.join('');
+}
+
+function renderFlatGrid(list) {
+  return `<div class="bg-grid">${list.map(renderCard).join('')}</div>`;
+}
+
+function renderCard(e) {
+  const s = state[e.id] || {};
+  const flagged = !!(s.action && s.action !== 'none');
+  const img = e.status === 'pending'
+    ? `<div class="placeholder">[pending]</div>`
+    : `<img src="${esc(e.file)}" loading="lazy" alt="">`;
+  const cls = `img-card status-${e.status}${flagged ? ' has-action' : ''}`;
+  const label = e.pose ? `${e.pose}` : e.id.replace(/^bg_[^_]+_/, '');
+  return `<div class="${cls}" data-id="${esc(e.id)}">
+    <span class="status-dot ${e.status}" title="${e.status}"></span>
+    ${img}
+    <div class="lbl">${esc(label)}</div>
+  </div>`;
+}
+
+const selection = new Set();
+
+function wireCards(host) {
+  host.querySelectorAll('.img-card').forEach(el => {
+    el.addEventListener('click', (ev) => {
+      if (ev.target.closest('.editor')) return;
+      const id = el.dataset.id;
+      toggleSelection(id, el);
+    });
+  });
+}
+
+function toggleSelection(id, cardEl) {
+  if (selection.has(id)) {
+    selection.delete(id);
+    cardEl.classList.remove('selected');
+  } else {
+    selection.add(id);
+    cardEl.classList.add('selected');
+  }
+  renderSelectionEditor();
+}
+
+function renderSelectionEditor() {
+  // Remove any existing editor
+  const existing = document.querySelector('.editor');
+  if (existing) existing.remove();
+  if (selection.size === 0) return;
+
+  // Use the first selected entry as template for the editor (prompt line, refs, status)
+  const firstId = [...selection][0];
+  const templateEntry = entries.find(e => e.id === firstId);
+  if (!templateEntry) return;
+
+  // Append editor after the last selected card's containing row
+  const lastId = [...selection][selection.size - 1];
+  const lastCard = document.querySelector(`.img-card[data-id="${CSS.escape(lastId)}"]`);
+  const parent = lastCard ? lastCard.parentElement : document.body;
+
+  const editor = document.createElement('div');
+  editor.className = 'editor';
+  editor.dataset.id = firstId;
+  editor.dataset.multi = '1';
+  const banner = selection.size > 1
+    ? `<div style="color:var(--gold);font-size:0.75rem;margin-bottom:0.4rem">Editing ${selection.size} selected images — same action applies to all. <a href="#" data-act="clear-sel" style="color:var(--accent);margin-left:0.5rem">Clear selection</a></div>`
+    : `<div style="color:var(--muted);font-size:0.7rem;margin-bottom:0.4rem">Tip: click more cards to apply the same action to multiple images. <a href="#" data-act="clear-sel" style="color:var(--accent);margin-left:0.5rem">Clear</a></div>`;
+  editor.innerHTML = banner + renderEditor(templateEntry);
+  parent.appendChild(editor);
+  wireEditor(editor, templateEntry);
+  editor.addEventListener('click', (ev) => {
+    const a = ev.target.closest('[data-act="clear-sel"]');
+    if (!a) return;
+    ev.preventDefault();
+    selection.forEach(id => {
+      const c = document.querySelector(`.img-card[data-id="${CSS.escape(id)}"]`);
+      if (c) c.classList.remove('selected');
+    });
+    selection.clear();
+    renderSelectionEditor();
+  });
+  editor.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+function sameGroupRefs(entry) {
+  return entries
+    .filter(e => e.category === entry.category && e.group === entry.group && e.id !== entry.id && e.status === 'ready')
+    .map(e => ({ id: e.id, label: e.pose || e.id }));
+}
+
+function renderEditor(entry) {
+  const s = state[entry.id] || {};
+  const cat = entry.category;
+  const refs = sameGroupRefs(entry);
+  const refOptions = ['<option value="">-- none --</option>']
+    .concat(refs.map(r => `<option value="${esc(r.id)}"${s.reference === r.id ? ' selected' : ''}>${esc(r.label)}</option>`))
+    .join('');
+  const promptLine = entry.prompt
+    ? `<div style="color:var(--muted);font-size:0.7rem;margin-bottom:0.3rem">Known prompt: <span style="color:var(--parchment)">${esc(entry.prompt.slice(0,160))}${entry.prompt.length>160?'…':''}</span></div>`
+    : `<div style="color:var(--muted);font-size:0.7rem;margin-bottom:0.3rem">No prompt recorded in assets.json.</div>`;
+
+  if (entry.status === 'orphaned') {
+    return `<div class="eid">${esc(entry.id)} — ${esc(entry.file)}</div>
+      <label class="inline"><input type="radio" name="a-${entry.id}" value="none" ${!s.action || s.action==='none' ? 'checked':''}> No action</label>
+      <label class="inline"><input type="radio" name="a-${entry.id}" value="delete" ${s.action==='delete'?'checked':''}> Delete</label>
+      <label class="inline"><input type="radio" name="a-${entry.id}" value="other" ${s.action==='other'?'checked':''}> Other</label>
+      <label>Details <textarea data-field="details">${esc(s.details || '')}</textarea></label>`;
+  }
+
+  if (entry.status === 'pending') {
+    return `<div class="eid">${esc(entry.id)} — ${esc(entry.file)}</div>
+      ${promptLine}
+      <label>Reference sprite
+        <select data-field="reference">${refOptions}</select>
+      </label>
+      <label><input type="checkbox" data-field="includePrev" ${s.includePrev !== false ? 'checked' : ''}> Include previous prompt (if any)</label>
+      <label>Details / new prompt<textarea data-field="details" placeholder="Additional instructions or full new prompt">${esc(s.details || '')}</textarea></label>
+      <input type="hidden" data-field="action" value="generate">`;
+  }
+
+  // Ready (hero/companion/boss/enemy/background)
+  const isBg = cat === 'background';
+  const removeBgAllowed = !isBg;
+
+  return `<div class="eid">${esc(entry.id)} — ${esc(entry.file)}</div>
+    ${promptLine}
+    <label class="inline"><input type="radio" name="a-${entry.id}" value="none" ${!s.action || s.action==='none' ? 'checked':''}> No action</label>
+    <label class="inline"><input type="radio" name="a-${entry.id}" value="flip" ${s.action==='flip'?'checked':''}> Flip</label>
+    ${removeBgAllowed ? `<label class="inline"><input type="radio" name="a-${entry.id}" value="remove_bg" ${s.action==='remove_bg'?'checked':''}> Remove Background</label>` : ''}
+    <label class="inline"><input type="radio" name="a-${entry.id}" value="regenerate" ${s.action==='regenerate' || (isBg && !s.action) ? 'checked':''}> Re-Generate</label>
+
+    <div class="sub-panel" data-sub="flip" style="${s.action==='flip'?'':'display:none'}">
+      <label class="inline"><input type="radio" name="flip-${entry.id}" value="horizontal" ${s.flipDir!=='vertical'?'checked':''}> Horizontal</label>
+      <label class="inline"><input type="radio" name="flip-${entry.id}" value="vertical" ${s.flipDir==='vertical'?'checked':''}> Vertical</label>
+    </div>
+
+    ${removeBgAllowed ? `<div class="sub-panel" data-sub="remove_bg" style="${s.action==='remove_bg'?'':'display:none'}">
+      <label>Background color (hex, optional)<input type="text" data-field="bgColor" value="${esc(s.bgColor || '')}" placeholder="#4b5d5c"></label>
+    </div>` : ''}
+
+    <div class="sub-panel" data-sub="regenerate" style="${s.action==='regenerate' || (isBg && s.action==='regenerate') ?'':'display:none'}">
+      <label>Reference sprite
+        <select data-field="reference">${refOptions}</select>
+      </label>
+    </div>
+
+    <label><input type="checkbox" data-field="includePrev" ${s.includePrev !== false ? 'checked' : ''}> Include previous prompt (default on; uncheck to use Details as the full prompt)</label>
+    <label>Details<textarea data-field="details" placeholder="Additional instructions">${esc(s.details || '')}</textarea></label>`;
+}
+
+function wireEditor(editor, entry) {
+  function snap() {
+    const s = {};
+    const actionEl = editor.querySelector('input[name^="a-"]:checked') || editor.querySelector('[data-field="action"]');
+    s.action = actionEl ? actionEl.value : 'none';
+    const flipEl = editor.querySelector('input[name^="flip-"]:checked');
+    if (flipEl) s.flipDir = flipEl.value;
+    editor.querySelectorAll('[data-field]').forEach(el => {
+      const f = el.dataset.field;
+      if (f === 'action') return; // handled
+      if (el.type === 'checkbox') s[f] = el.checked;
+      else s[f] = el.value;
+    });
+    const targets = selection.size > 0 ? [...selection] : [entry.id];
+    targets.forEach(tid => {
+      if (!s.action || s.action === 'none') delete state[tid];
+      else state[tid] = { ...s };
+      updateCardAction(tid);
+    });
+    saveState();
+    updateCounts();
+    // Toggle sub-panels
+    editor.querySelectorAll('.sub-panel').forEach(sp => {
+      sp.style.display = sp.dataset.sub === s.action ? '' : 'none';
+    });
+  }
+  editor.addEventListener('change', snap);
+  editor.addEventListener('input', snap);
+}
+
+function updateCardAction(id) {
+  const card = document.querySelector(`.img-card[data-id="${CSS.escape(id)}"]`);
+  if (!card) return;
+  const s = state[id];
+  if (s && s.action && s.action !== 'none') card.classList.add('has-action');
+  else card.classList.remove('has-action');
+}
+
+function updateCounts() {
+  const actions = Object.keys(state).filter(k => state[k].action && state[k].action !== 'none').length;
+  document.getElementById('action-count').textContent = actions;
+  const byStatus = entries.reduce((a,e)=>{a[e.status]=(a[e.status]||0)+1;return a;},{});
+  document.getElementById('ready-count').textContent = byStatus.ready || 0;
+  document.getElementById('pending-count').textContent = byStatus.pending || 0;
+  document.getElementById('orphaned-count').textContent = byStatus.orphaned || 0;
+}
+
+// ---------- Prompt generation ----------
+function buildPrompt() {
+  const items = Object.entries(state)
+    .filter(([,v]) => v && v.action && v.action !== 'none')
+    .map(([id, v]) => ({ entry: entries.find(e => e.id === id), ...v }))
+    .filter(it => it.entry);
+
+  if (!items.length) return 'Image Review Tool — no actions selected.';
+
+  const byAction = { flip: [], remove_bg: [], regenerate: [], generate: [], delete: [], other: [] };
+  for (const it of items) {
+    if (byAction[it.action]) byAction[it.action].push(it);
+  }
+
+  const lines = [`Image Review Tool — requested actions (${items.length} items)`, ''];
+  function section(title, arr, fmt) {
+    if (!arr.length) return;
+    lines.push(title + ':');
+    for (const it of arr) lines.push('  - ' + fmt(it));
+    lines.push('');
+  }
+  section('FLIP', byAction.flip, it => {
+    const parts = [it.entry.id, (it.flipDir || 'horizontal')];
+    if (it.details) parts.push(`(details: ${it.details})`);
+    return parts.join(' — ');
+  });
+  section('REMOVE BACKGROUND', byAction.remove_bg, it => {
+    const parts = [it.entry.id];
+    if (it.bgColor) parts.push(`color ${it.bgColor}`);
+    if (it.details) parts.push(`(details: ${it.details})`);
+    return parts.join(' — ');
+  });
+  section('RE-GENERATE', byAction.regenerate, it => {
+    const include = it.includePrev !== false;
+    const ref = it.reference || 'none';
+    let line = `${it.entry.id} — reference: ${ref}, include previous prompt: ${include ? 'yes' : 'no'}`;
+    if (include && it.entry.prompt) line += `\n    Previous prompt: ${JSON.stringify(it.entry.prompt)}`;
+    if (it.details) line += `\n    Additional: ${it.details}`;
+    return line;
+  });
+  section('GENERATE', byAction.generate, it => {
+    const include = it.includePrev !== false;
+    const ref = it.reference || 'none';
+    let line = `${it.entry.id} — reference: ${ref}, include previous prompt: ${include ? 'yes' : 'no'}`;
+    if (include && it.entry.prompt) line += `\n    Previous prompt: ${JSON.stringify(it.entry.prompt)}`;
+    if (it.details) line += `\n    New prompt / details: ${it.details}`;
+    return line;
+  });
+  section('DELETE', byAction.delete, it => it.entry.file.replace(/^\.\.\//,''));
+  section('OTHER', byAction.other, it => {
+    const parts = [it.entry.file.replace(/^\.\.\//,'')];
+    if (it.details) parts.push(`details: ${it.details}`);
+    return parts.join(' — ');
+  });
+
+  return lines.join('\n');
+}
+
+// ---------- Footer controls ----------
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('btn-only-flagged').addEventListener('click', (ev) => {
+    onlyFlagged = !onlyFlagged;
+    ev.target.textContent = onlyFlagged ? 'Show all' : 'Show flagged only';
+    renderSections();
+  });
+  document.getElementById('btn-reset').addEventListener('click', () => {
+    if (!confirm('Clear all selected actions?')) return;
+    state = {}; saveState(); renderSections(); updateCounts();
+  });
+  document.getElementById('btn-generate').addEventListener('click', () => {
+    const txt = buildPrompt();
+    const dlg = document.getElementById('prompt-dialog');
+    document.getElementById('prompt-text').value = txt;
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open','');
+  });
+  document.getElementById('btn-close').addEventListener('click', () => {
+    document.getElementById('prompt-dialog').close();
+  });
+  document.getElementById('btn-copy').addEventListener('click', async () => {
+    const ta = document.getElementById('prompt-text');
+    try { await navigator.clipboard.writeText(ta.value); alert('Copied.'); }
+    catch { ta.select(); document.execCommand('copy'); alert('Copied.'); }
+  });
+  document.getElementById('btn-download').addEventListener('click', () => {
+    const blob = new Blob([document.getElementById('prompt-text').value], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'image-review-prompt.txt'; a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 500);
+  });
+  boot();
+});
+</script>
+</body>
+</html>

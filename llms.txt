@@ -1,0 +1,26 @@
+# Emberveil — A Dark-Fantasy Party RPG
+
+> An atmospheric dark-fantasy party RPG built in the browser. 20 hero classes, 84 skills, turn-based tactical combat. Free to play.
+
+## About
+Emberveil is developed by Radley Sustaire (Veneta, OR) with AI assistance via Claude Code. Started as an experiment, the project spans 120+ development milestones documented publicly.
+
+## Key URLs
+- [Home](https://emberveil.radgh.com/): Marketing page with stats and hero roster
+- [Play](https://emberveil.radgh.com/play.html): Playable game
+- [News](https://emberveil.radgh.com/news/): Development milestones and devlog
+- [Contact](https://emberveil.radgh.com/contact.html): Feedback and contact info
+- [Art Gallery](https://emberveil.radgh.com/assets/): Generation prompts and art manifest
+
+## Core Stats
+- 20 playable hero classes (5 starter, 15 unlockable)
+- 84 combat skills with talent upgrades
+- 28+ unique enemy types across 6 acts
+- 10 companion pets
+- 46 base items with procedural affixes
+
+## Technology
+JavaScript, Vite, HTML5 Canvas. Art generated via OpenAI, SpriteCook, PixelLab. Audio via ElevenLabs.
+
+## Rights
+© 2026 Radley Sustaire. Free to play in browser.

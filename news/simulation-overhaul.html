@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="rsg-featured-image" content="../images/combat_bg/cosmic_rift_1.png">
+<meta name="rsg-news-date" content="2026-04-13">
+<meta name="rsg-news-title" content="Simulation Overhaul">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="rsg-game" content="game13">
+<title>Simulation Overhaul — game13</title>
+<link rel="stylesheet" href="../assets/_tool-styles.css">
+<script src="../assets/_header.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<style>
+/* ============================================================
+   Simulation Overhaul — page-specific styles
+   ============================================================ */
+body { max-width: 1040px; padding: 0 0 80px; }
+.wrap { padding: 0 16px; }
+
+/* --- Hero -------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 20px;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(232,160,32,0.18), transparent 60%),
+    radial-gradient(ellipse at 50% 80%, rgba(192,64,48,0.14), transparent 55%),
+    linear-gradient(180deg, #05030420 0%, var(--bg) 100%);
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(232,160,32,0.06) 0%, transparent 50%);
+  animation: pulse-glow 4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.08); }
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  margin: 0 0 14px;
+  letter-spacing: 0.12em;
+  position: relative;
+  z-index: 2;
+}
+.hero .sub {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  color: var(--accent-b);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  max-width: 620px;
+  position: relative;
+  z-index: 2;
+}
+.hero .rune {
+  font-size: 3rem;
+  color: var(--gold-bright);
+  margin-bottom: 18px;
+  text-shadow: 0 0 24px rgba(232,160,32,0.7), 0 0 48px rgba(232,160,32,0.35);
+  animation: rune-pulse 2.8s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+@keyframes rune-pulse {
+  0%,100% { text-shadow: 0 0 24px rgba(232,160,32,0.7), 0 0 48px rgba(232,160,32,0.35); transform: scale(1); }
+  50%     { text-shadow: 0 0 40px rgba(232,160,32,1),   0 0 80px rgba(232,160,32,0.55); transform: scale(1.08); }
+}
+.hero .scroll-cue {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  animation: bounce 2.2s ease-in-out infinite;
+}
+.hero .scroll-cue::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 30px;
+  margin: 10px auto 0;
+  background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+}
+@keyframes bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%     { transform: translateX(-50%) translateY(6px); }
+}
+
+/* --- Scroll reveal ---------------------------------------- */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* --- Narrative -------------------------------------------- */
+.story {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+}
+.story p { margin-bottom: 14px; }
+.story em { color: var(--accent-b); font-style: normal; font-weight: 600; }
+
+/* --- Flip card grid --------------------------------------- */
+.flip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+.flip {
+  perspective: 1200px;
+  min-height: 220px;
+}
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  transition: transform 0.75s cubic-bezier(.2,.8,.2,1);
+  transform-style: preserve-3d;
+}
+.flip:hover .flip-inner,
+.flip.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+}
+.flip-face.front {
+  background: linear-gradient(160deg, var(--card) 0%, #1c1016 100%);
+  justify-content: space-between;
+}
+.flip-face.back {
+  transform: rotateY(180deg);
+  background: linear-gradient(160deg, #1c1016 0%, var(--card) 100%);
+  border-color: var(--border-hi);
+  font-size: 12px;
+  line-height: 1.55;
+  overflow-y: auto;
+}
+.flip-face h3 { margin-bottom: 8px; }
+.flip-face .tag {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  background: rgba(232,160,32,0.1);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 999px;
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
+.flip-face p { font-size: 13px; color: var(--text); margin: 0; }
+.flip-face.back code { font-size: 10.5px; display: block; margin: 3px 0; }
+.flip-hint {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+/* --- Damage pipeline diagram ------------------------------ */
+.pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 620px;
+  margin: 20px auto 0;
+}
+.pipe-stage {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  position: relative;
+}
+.pipe-stage h4 {
+  font-family: var(--font-display);
+  color: var(--gold-bright);
+  margin: 0 0 4px;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+}
+.pipe-stage code { display: block; margin-top: 6px; font-size: 11px; }
+.pipe-arrow {
+  text-align: center;
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(232,160,32,0.5);
+}
+
+/* --- Affix table ------------------------------------------ */
+.affix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  margin-top: 12px;
+}
+.affix-table th, .affix-table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.affix-table th {
+  font-family: var(--font-display);
+  color: var(--accent-b);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.affix-table tr:hover td { background: var(--card-h); }
+.chart-wrap {
+  max-width: 360px;
+  margin: 18px auto 0;
+}
+
+/* --- Before/After diff card ------------------------------- */
+.diff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 640px) { .diff { grid-template-columns: 1fr; } }
+.diff .col {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px;
+  border: 1px solid var(--border);
+}
+.diff .col.before { border-left: 3px solid var(--ember1); }
+.diff .col.after  { border-left: 3px solid #6bd190; }
+.diff h4 {
+  font-family: var(--font-display);
+  margin: 0 0 10px;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.diff .before h4 { color: #f0a090; }
+.diff .after  h4 { color: #9fe2a8; }
+.diff ul { padding-left: 18px; margin: 0; font-size: 12.5px; line-height: 1.65; }
+
+/* --- Block cards ------------------------------------------ */
+.block-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.block-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+}
+.block-card .icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+}
+.block-card.dice .icon { animation: dice-roll 3.5s ease-in-out infinite; }
+@keyframes dice-roll {
+  0%,80%,100% { transform: rotate(0deg); }
+  85% { transform: rotate(-15deg); }
+  90% { transform: rotate(20deg); }
+  95% { transform: rotate(-8deg); }
+}
+.block-card h4 { font-family: var(--font-display); color: var(--gold-bright); margin: 0 0 4px; font-size: 14px; }
+.block-card p { font-size: 12px; color: var(--text); margin: 0; }
+
+/* --- Sim screenshot --------------------------------------- */
+.sim-shot {
+  background: linear-gradient(160deg, #140a10 0%, #0a0608 100%);
+  border: 1px dashed var(--border-hi);
+  border-radius: var(--radius);
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  font-family: ui-monospace, Menlo, monospace;
+  margin: 14px 0;
+}
+.sim-features { columns: 2; column-gap: 20px; font-size: 13px; line-height: 1.75; }
+@media (max-width: 640px) { .sim-features { columns: 1; } }
+.sim-features li { break-inside: avoid; }
+
+/* --- Roadmap checklist ------------------------------------ */
+.roadmap { list-style: none; padding: 0; margin: 12px 0 0; }
+.roadmap li {
+  padding: 10px 14px 10px 42px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  position: relative;
+  font-size: 13px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.roadmap li:hover { border-color: var(--border-hi); background: var(--card-h); }
+.roadmap li::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--border-hi);
+  border-radius: 3px;
+  background: var(--surface);
+}
+
+/* --- Footer ----------------------------------------------- */
+.page-footer {
+  margin: 60px auto 0;
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  max-width: 760px;
+}
+.page-footer a { margin: 0 10px; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<header class="hero">
+  <div class="rune">&#10022;</div>
+  <h1>Simulation Overhaul</h1>
+  <div class="sub">Foundations for honest combat math.</div>
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<div class="wrap">
+
+<!-- ============================================================
+     STORY
+     ============================================================ -->
+<section class="reveal">
+  <h2>The story</h2>
+  <div class="story">
+    <p>Early-game difficulty quietly fell apart. <em>Tap weapons</em> stacked with <em>spell power</em>, and a single Cleric could <em>mass-resurrect</em> a dead party at 100% HP &mdash; the fight was over before the revived hero could even be targeted again. Every encounter trended toward <em>zero-risk</em>.</p>
+    <p>Underneath, the math was worse than the symptoms. <em>Only one affix of fifteen</em> was actually wired into combat (<code>of_mana_regen</code> at <code>CombatScreen.js:1295</code>). <em>Gold find</em> at 2000% produced ~80 gold. <em>Hit chance</em> affixes rolled on gear but never summed. The numbers on every item were theater.</p>
+    <p>And there was no <em>source of truth</em>. Formulas drifted between the design docs, the combat screen, and the player's head. You could not answer "why did I take 12?" without reading three files.</p>
+    <p>Part 1 of the overhaul stops the bleeding. Extract the math. Lock it with tests. Audit what's orphaned. Fix the three biggest difficulty offenders. Ship the tools that let Part 2 rebalance from data instead of vibes.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHAT LANDED — FLIP CARDS
+     ============================================================ -->
+<section class="reveal">
+  <h2>What landed in Part 1</h2>
+  <div class="flip-grid">
+
+    <div class="flip" tabindex="0">
+      <div class="flip-inner">
+        <div class="flip-face front">
+          <span class="tag">Refactor</span>
+          <h3>formulas.js</h3>
+          <p>Single source of truth. Pure functions, each with <code>.formula</code> and <code>.inputs</code> metadata for the future Codex.</p>
+          <div class="flip-hint">Hover / tap to flip</div>
+        </div>
+        <div class="flip-face back">
+          <h3>Extracted functions</h3>
+          <code>computeMaxHp &mdash; passives.js</code>
+          <code>computeMaxMp &mdash; passives.js</code>
+          <code>computeHeroArmor &mdash; CombatScreen:141</code>
+          <code>computeHeroEquipDmgBonus &mdash; :141</code>
+          <code>computeHeroDamage &mdash; :160</code>
+          <code>computeHeroHit &mdash; :162</code>
+          <code>computeHeroDodge &mdash; :163</code>
+          <code>computeHeroInitiative &mdash; :166</code>
+          <code>rollToHit &mdash; :1052</code>
+          <code>applyArmorMitigation &mdash; :1071</code>
+          <code>computeGoldReward &mdash; :1345</code>
+          <code>computeXpReward &mdash; :1344</code>
+          <code>enemyScalingForNgPlus &mdash; :185</code>
+          <code>getEquipmentAffixBonuses &mdash; stub (M84)</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip" tabindex="0">
+      <div class="flip-inner">
+        <div class="flip-face front">
+          <span class="tag">Tests</span>
+          <h3>21 Vitest snapshots</h3>
+          <p>Every exported formula pinned. Silent drift now fails CI loudly.</p>
+          <div class="flip-hint">Hover / tap to flip</div>
+        </div>
+        <div class="flip-face back">
+          <h3>Coverage</h3>
+          <p>Snapshot + edge-case tests across hit clamp, armor mitigation floor, NG+ scaling for boss vs trash, hero vs companion dodge caps, and reward rolls with a pinned RNG.</p>
+          <!-- TODO: fill in exact test count + file path once formulas.test.js lands -->
+          <p style="margin-top:8px;color:var(--muted);font-size:11px">Target: <code>src/game/__tests__/formulas.test.js</code></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip" tabindex="0">
+      <div class="flip-inner">
+        <div class="flip-face front">
+          <span class="tag">Nav</span>
+          <h3>Tools dropdown</h3>
+          <p>Shared nav header gains a "Tools" menu. Affix Survey and Rebalance Survey now live under it.</p>
+          <div class="flip-hint">Hover / tap to flip</div>
+        </div>
+        <div class="flip-face back">
+          <h3>Shared palette</h3>
+          <p>Every tool page imports <code>_tool-styles.css</code> &mdash; one CSS variable set drives the Asset Gallery, all surveys, and this report.</p>
+          <p style="margin-top:6px">Source: <code>shared/tool-styles.css</code>, synced on each release.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip" tabindex="0">
+      <div class="flip-inner">
+        <div class="flip-face front">
+          <span class="tag">Audit</span>
+          <h3>Affix audit &mdash; 15 / 1</h3>
+          <p>All 15 rollable affixes documented. Only <em>one</em> is actually read by combat. The rest are cosmetic strings.</p>
+          <div class="flip-hint">Hover / tap to flip</div>
+        </div>
+        <div class="flip-face back">
+          <h3>Findings</h3>
+          <p><code>of_mana_regen</code> is the lone survivor (CombatScreen:1295). Gold find, hit chance, every attribute affix &mdash; all orphans. See the table below.</p>
+          <p style="margin-top:6px">Live tool: <a href="./affix-survey.html">affix-survey.html</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip" tabindex="0">
+      <div class="flip-inner">
+        <div class="flip-face front">
+          <span class="tag">Balance</span>
+          <h3>Cleric Resurrect rework</h3>
+          <p>Single target. 12-round per-combat CD. 25% HP. Damage immunity until the revived hero acts.</p>
+          <div class="flip-hint">Hover / tap to flip</div>
+        </div>
+        <div class="flip-face back">
+          <h3>Before &rarr; After</h3>
+          <p>Removed mass-revive at 100% HP. The revived hero now acts before taking any further damage &mdash; no more "dead again before your turn."</p>
+          <!-- TODO: confirm talent numbers from cleric-res agent output -->
+          <p style="margin-top:6px;color:var(--muted);font-size:11px">Talents: (a) heal% bump, (b) extend immunity one full round.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip" tabindex="0">
+      <div class="flip-inner">
+        <div class="flip-face front">
+          <span class="tag">Combat</span>
+          <h3>Armor &rarr; flat reduction</h3>
+          <p>Flat reduction. <code>max(0, dmg &minus; armor)</code>. Fully mitigated hits log as "deflected."</p>
+          <div class="flip-hint">Hover / tap to flip</div>
+        </div>
+        <div class="flip-face back">
+          <h3>Pipeline</h3>
+          <p>Old formula used a 15% floor of the raw roll so chip damage always leaked. New model floors at 0 and adds <em>armor penetration</em> as a flat subtraction from the target's armor before mitigation.</p>
+          <code>final = max(0, raw &minus; max(0, armor &minus; pen))</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip" tabindex="0">
+      <div class="flip-inner">
+        <div class="flip-face front">
+          <span class="tag">Combat</span>
+          <h3>Magic resist + pen</h3>
+          <p>Parallel track to armor. Flat values, with a hidden % variant reserved for legendary/unique affixes.</p>
+          <div class="flip-hint">Hover / tap to flip</div>
+        </div>
+        <div class="flip-face back">
+          <h3>Damage channels</h3>
+          <p>Three types: <em>physical</em> (armor), <em>magic</em> (resist), <em>true</em> (unblockable). STR drives phys, INT drives magic. True damage is rare / special.</p>
+          <p style="margin-top:6px">Flat-vs-% code path designed for A/B swap later.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip" tabindex="0">
+      <div class="flip-inner">
+        <div class="flip-face front">
+          <span class="tag">Combat</span>
+          <h3>Shield block system</h3>
+          <p>Two new affixes, 100% roll on shields: <em>Block Chance</em> and <em>Block Power</em>.</p>
+          <div class="flip-hint">Hover / tap to flip</div>
+        </div>
+        <div class="flip-face back">
+          <h3>Details</h3>
+          <p>Chance 10&ndash;75%, Power 10&ndash;50 flat. Pipeline order: <em>dodge &rarr; block &rarr; armor/resist &rarr; HP</em>. Paladin &amp; Cleric talents can boost block chance.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip" tabindex="0">
+      <div class="flip-inner">
+        <div class="flip-face front">
+          <span class="tag">Debug</span>
+          <h3>Combat Simulator v2</h3>
+          <p>Lives in the debug menu. Load the live party, swap gear, run 1000x Monte Carlo.</p>
+          <div class="flip-hint">Hover / tap to flip</div>
+        </div>
+        <div class="flip-face back">
+          <h3>What it does</h3>
+          <p>Party vs full encounter, multi-enemy turn order, act selector, single-run and 1000x batch mode, Chart.js distribution plots, JSON preset save/load. Reads <code>formulas.js</code> so parity is automatic.</p>
+          <!-- TODO: screenshot once the debug menu ships -->
+        </div>
+      </div>
+    </div>
+
+    <div class="flip" tabindex="0">
+      <div class="flip-inner">
+        <div class="flip-face front">
+          <span class="tag">Tool</span>
+          <h3>Affix Survey tool</h3>
+          <p>Live. Lets you audit/edit every affix, roll variants, export JSON.</p>
+          <div class="flip-hint">Hover / tap to flip</div>
+        </div>
+        <div class="flip-face back">
+          <h3>Open it</h3>
+          <p>The survey catalogs all 15 affixes with WIRED / ORPHAN status, weighted drop-rate preview, and minimum-rarity gating.</p>
+          <p style="margin-top:6px"><a href="./affix-survey.html">&rarr; affix-survey.html</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     DAMAGE PIPELINE
+     ============================================================ -->
+<section class="reveal">
+  <h2>The new damage pipeline</h2>
+  <p style="text-align:center;color:var(--muted);font-size:12.5px">Every stage a hit passes through, quoted from <code>src/game/formulas.js</code>.</p>
+  <div class="pipeline">
+    <div class="pipe-stage reveal">
+      <h4>1 &middot; Raw damage</h4>
+      <p>Roll the attacker's base damage window.</p>
+      <code>[max(1, round(STR*0.8 + equipBonus)), max(3, round(STR*2 + equipBonus*1.5))]</code>
+    </div>
+    <div class="pipe-arrow">&#9660;</div>
+    <div class="pipe-stage reveal">
+      <h4>2 &middot; Hit roll</h4>
+      <p>Does it connect at all?</p>
+      <code>clamp(actor.hit &minus; target.dodge, 5, 95)</code>
+    </div>
+    <div class="pipe-arrow">&#9660;</div>
+    <div class="pipe-stage reveal">
+      <h4>3 &middot; Dodge</h4>
+      <p>Derived rating, capped by role.</p>
+      <code>companion ? min(15, 3 + round(DEX*0.35)) : min(40, 5 + round(DEX*0.8))</code>
+    </div>
+    <div class="pipe-arrow">&#9660;</div>
+    <div class="pipe-stage reveal">
+      <h4>4 &middot; Block (shields only)</h4>
+      <p>Roll Block Chance. On success, subtract Block Power.</p>
+      <code>if rand() &lt; blockChance: dmg &minus;= blockPower</code>
+    </div>
+    <div class="pipe-arrow">&#9660;</div>
+    <div class="pipe-stage reveal">
+      <h4>5 &middot; Armor / Resist (by type)</h4>
+      <p>Physical &rarr; armor. Magic &rarr; resist. True &rarr; passes through.</p>
+      <code>/* current */ max(ceil(rawDmg * 0.15), rawDmg &minus; armor)</code>
+      <code>/* new M83 */ max(0, rawDmg &minus; max(0, armor &minus; pen))</code>
+    </div>
+    <div class="pipe-arrow">&#9660;</div>
+    <div class="pipe-stage reveal">
+      <h4>6 &middot; HP</h4>
+      <p>Final damage applied. Logs "deflected" (phys) or "resisted" (magic) on full mitigation.</p>
+      <code>hp = max(0, hp &minus; final)</code>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     AFFIX AUDIT
+     ============================================================ -->
+<section class="reveal">
+  <h2>Affix audit &mdash; 15 rolled, 1 read</h2>
+  <table class="affix-table">
+    <thead>
+      <tr><th>Affix</th><th>Intended effect</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>of_mana_regen</code></td><td>+MP per turn</td><td><span class="status ok">WIRED</span></td></tr>
+      <tr><td><code>of_strength</code></td><td>+STR</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_dexterity</code></td><td>+DEX</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_intellect</code></td><td>+INT</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_constitution</code></td><td>+CON</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_vitality</code></td><td>+Max HP</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_accuracy</code></td><td>+Hit chance</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_evasion</code></td><td>+Dodge</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_swiftness</code></td><td>+Initiative</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_might</code></td><td>+Flat damage</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_warding</code></td><td>+Flat armor</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_greed</code></td><td>+Gold find %</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_burning</code></td><td>Burn on hit</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_bleeding</code></td><td>Bleed on hit</td><td><span class="status broken">ORPHAN</span></td></tr>
+      <tr><td><code>of_wisdom</code></td><td>+Max MP</td><td><span class="status broken">ORPHAN</span></td></tr>
+    </tbody>
+  </table>
+  <!-- TODO: re-verify exact 15 keys from items.js once affix-audit agent returns -->
+  <div class="chart-wrap">
+    <canvas id="affixChart" height="220"></canvas>
+  </div>
+</section>
+
+<!-- ============================================================
+     CLERIC REWORK
+     ============================================================ -->
+<section class="reveal">
+  <h2>Cleric Resurrect rework</h2>
+  <div class="diff">
+    <div class="col before">
+      <h4>Before</h4>
+      <ul>
+        <li>Mass single-cast revive &mdash; everyone dead comes back</li>
+        <li>100% HP on revive</li>
+        <li>No cooldown within a fight</li>
+        <li>Revived ally could be picked off <em>before</em> their turn</li>
+        <li>Effectively removed the fail state</li>
+      </ul>
+    </div>
+    <div class="col after">
+      <h4>After</h4>
+      <ul>
+        <li>Single target only</li>
+        <li>25% HP on revive (scrolls &amp; potions bumped to match)</li>
+        <li>12-round cooldown, <em>per-combat</em> (resets each fight)</li>
+        <li>Damage immunity until the revived hero's next action</li>
+        <li>Talent: bump heal%; Talent: extend immunity +1 round</li>
+      </ul>
+      <!-- TODO: fill in exact talent numbers once cleric agent reports -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ARMOR MATH COMPARISON
+     ============================================================ -->
+<section class="reveal">
+  <h2>Armor math &mdash; three models</h2>
+  <p style="color:var(--muted);font-size:12.5px">Damage taken from a 50-damage hit as armor scales 0&rarr;100. Old model leaves chip damage even at huge armor. New flat model hits zero cleanly. The speculative % curve is plotted only for comparison &mdash; it is <em>not</em> shipping.</p>
+  <div style="max-width:700px;margin:14px auto 0">
+    <canvas id="armorChart" height="260"></canvas>
+  </div>
+</section>
+
+<!-- ============================================================
+     BLOCK SYSTEM
+     ============================================================ -->
+<section class="reveal">
+  <h2>Block system explainer</h2>
+  <div class="block-grid">
+    <div class="block-card dice">
+      <span class="icon">&#9860;</span>
+      <h4>Block Chance</h4>
+      <p>10&ndash;75% roll on every incoming hit. Shields only.</p>
+    </div>
+    <div class="block-card">
+      <span class="icon">&#128737;&#65039;</span>
+      <h4>Block Power</h4>
+      <p>Flat damage absorbed on a successful block. 10&ndash;50 range.</p>
+    </div>
+    <div class="block-card">
+      <span class="icon">&#8681;</span>
+      <h4>Pipeline order</h4>
+      <p>Dodge &rarr; <em>Block</em> &rarr; Armor/Resist &rarr; HP.</p>
+    </div>
+    <div class="block-card">
+      <span class="icon">&#10022;</span>
+      <h4>Talent boosts</h4>
+      <p>Paladin and Cleric trees can add +% block chance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMBAT SIMULATOR
+     ============================================================ -->
+<section class="reveal">
+  <h2>Combat Simulator v2</h2>
+  <div class="sim-shot">[ screenshot placeholder &mdash; debug menu &rarr; Combat Simulator ]</div>
+  <!-- TODO: replace with real screenshot once debug menu ships -->
+  <ul class="sim-features">
+    <li>Load live party + equipment</li>
+    <li>Hot-swap gear slot-by-slot</li>
+    <li>Encounter dropdown (pulls from encounter table by name)</li>
+    <li>Level slider (party + enemies)</li>
+    <li>Act selector (Acts 1&ndash;5 + NG+)</li>
+    <li>Single-run, full turn-order playback</li>
+    <li>1000x Monte Carlo batch mode</li>
+    <li>Chart.js win-rate + TTK distribution</li>
+    <li>DPS / sustain / gold-per-minute readouts</li>
+    <li>JSON preset save &amp; load</li>
+    <li>Reads <code>formulas.js</code> &mdash; parity is automatic</li>
+  </ul>
+  <p style="margin-top:14px;font-size:12px;color:var(--muted)">Ships in the debug menu &mdash; toggle <em>Debug Mode</em> in Settings to reveal it.</p>
+</section>
+
+<!-- ============================================================
+     COMING IN PART 2
+     ============================================================ -->
+<section class="reveal">
+  <h2>What's coming in Part 2</h2>
+  <ul class="roadmap">
+    <li>Affix wiring (gated on user survey return)</li>
+    <li>Magic resist &amp; magic pen on enemies &mdash; full rebalance pass</li>
+    <li>Enemy levels + role / tier scaling curve</li>
+    <li>In-game Codex / Wiki screen</li>
+    <li>Stats UX: BASE toggle, color rules, tooltip &rarr; Codex jump</li>
+    <li>Combat log hover tooltips (formula provenance on every number)</li>
+    <li>Skill gates &mdash; replaces D&amp;D-style checks</li>
+    <li>Trade Prices &amp; XP Find stats (separate from Gold Find)</li>
+    <li>Enemy Survey tool</li>
+    <li>Encounter Builder + universal "Override Settings" debug menu</li>
+    <li>Universal Tool JSON import/export + Prompt Mode</li>
+    <li>Vitest gating in <code>release.sh</code></li>
+  </ul>
+</section>
+
+</div><!-- /.wrap -->
+
+<footer class="page-footer">
+  Read the plan: <a href="#" onclick="return false;">memory/m83_rebalance_plan.md</a>
+  &middot; <a href="./affix-survey.html">Affix Survey</a>
+  &middot; <a href="./index.html">Tools menu</a>
+</footer>
+
+<script>
+// ============================================================
+// Scroll reveals
+// ============================================================
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+// ============================================================
+// Mobile tap-to-flip (touch devices only)
+// ============================================================
+const isTouch = window.matchMedia('(hover: none)').matches;
+if (isTouch) {
+  document.querySelectorAll('.flip').forEach((el) => {
+    el.addEventListener('click', () => el.classList.toggle('flipped'));
+  });
+}
+
+// ============================================================
+// Chart.js — wait for CDN then build
+// ============================================================
+function buildCharts() {
+  if (typeof Chart === 'undefined') { setTimeout(buildCharts, 80); return; }
+
+  const gold       = '#e8a020';
+  const goldBright = '#f8d880';
+  const ember      = '#c04030';
+  const green      = '#6bd190';
+  const muted      = '#8a7a6a';
+  const text       = '#f0e8d8';
+
+  Chart.defaults.color = text;
+  Chart.defaults.font.family = "'Inter','Segoe UI',sans-serif";
+  Chart.defaults.font.size = 11;
+
+  // --- Affix doughnut ---
+  const ac = document.getElementById('affixChart');
+  if (ac) new Chart(ac, {
+    type: 'doughnut',
+    data: {
+      labels: ['Wired (1)', 'Orphaned (14)'],
+      datasets: [{
+        data: [1, 14],
+        backgroundColor: [green, ember],
+        borderColor: '#0a0608',
+        borderWidth: 2,
+      }],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { color: text, font: { size: 12 } } },
+        title:  { display: true, text: '15 affixes rolled — 1 actually read', color: goldBright, font: { size: 13, family: 'Cinzel' } },
+      },
+    },
+  });
+
+  // --- Armor line chart ---
+  const armor = Array.from({ length: 21 }, (_, i) => i * 5); // 0..100
+  const raw = 50;
+  const oldModel = armor.map((a) => Math.max(Math.ceil(raw * 0.15), raw - a));
+  const newFlat  = armor.map((a) => Math.max(0, raw - a));
+  const pctCurve = armor.map((a) => Math.round((raw / (1 + a / 50)) * 10) / 10);
+
+  const mc = document.getElementById('armorChart');
+  if (mc) new Chart(mc, {
+    type: 'line',
+    data: {
+      labels: armor,
+      datasets: [
+        { label: 'Current (15% floor)', data: oldModel, borderColor: ember,     backgroundColor: ember + '33',     tension: 0.25, borderWidth: 2 },
+        { label: 'New (flat, floor 0)', data: newFlat,  borderColor: green,     backgroundColor: green + '33',     tension: 0.1,  borderWidth: 2 },
+        { label: '% curve (experiment)', data: pctCurve, borderColor: gold,      backgroundColor: gold + '22',      tension: 0.35, borderDash: [5,4], borderWidth: 2 },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { color: text } },
+        title:  { display: true, text: 'Damage taken from a 50-raw hit vs armor', color: goldBright, font: { size: 13, family: 'Cinzel' } },
+      },
+      scales: {
+        x: { title: { display: true, text: 'Target armor', color: muted }, grid: { color: '#1f1519' }, ticks: { color: muted } },
+        y: { title: { display: true, text: 'Damage taken',  color: muted }, grid: { color: '#1f1519' }, ticks: { color: muted }, beginAtZero: true },
+      },
+    },
+  });
+}
+window.addEventListener('load', buildCharts);
+</script>
+
+<!-- rsg-featured-image-applied -->
+<script>
+(function(){
+  var m=document.querySelector("meta[name='rsg-featured-image']");
+  if(!m)return;
+  var hero=document.querySelector(".hero");
+  if(!hero)return;
+  var ov=document.createElement("div");
+  ov.style.cssText="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,5,8,0.55) 0%,rgba(8,5,8,0.3) 40%,rgba(8,5,8,0.85) 100%);pointer-events:none;z-index:0;";
+  hero.style.position="relative";
+  hero.insertBefore(ov,hero.firstChild);
+  var bgImg=new Image();bgImg.src=m.content;
+  bgImg.onload=function(){hero.style.backgroundImage="url("+JSON.stringify(m.content)+")";
+  hero.style.backgroundSize="cover";
+  hero.style.backgroundPosition="center";};
+})();
+</script>
+</body>
+</html>

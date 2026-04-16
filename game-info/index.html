@@ -33,6 +33,16 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
+    /* M84 — pull hero up under fixed nav + subnav (uses :has() in modern browsers) */
+    html:has(nav.rsg-shared-nav) { --top-bar-height: 52px; }
+    html:has(nav.subnav) { --subnav-height: 52px; }
+    section#hero { margin-top: calc(-1 * (var(--top-bar-height, 0px) + var(--subnav-height, 0px))); }
+    .hero-cta-group { margin-top: 36px; }
+    /* Fallback for browsers without :has() support — assume both bars are present */
+    @supports not selector(html:has(*)) {
+      section#hero { margin-top: -104px; }
+    }
+
     body {
       background: var(--bg);
       color: var(--text);
@@ -1156,7 +1166,7 @@
       gap: 16px; margin-top: 24px;
     }
     .flip-card {
-      perspective: 1000px; height: 230px; cursor: pointer;
+      perspective: 1000px; height: 270px; cursor: pointer;
     }
     .flip-inner {
       position: relative; width: 100%; height: 100%;
@@ -1263,6 +1273,85 @@
     }
     .btn-primary { animation: pulse-glow 2.6s ease-in-out infinite; }
 
+    /* ── M84: Portrait mode for class flip cards ── */
+    .fc-portrait {
+      width: 96px; height: 96px; object-fit: contain;
+      image-rendering: pixelated; image-rendering: crisp-edges;
+      margin-bottom: 8px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.55));
+      display: none;
+    }
+    .classes-grid-v2.portraits-on .flip-face .fc-icon { display: none; }
+    .classes-grid-v2.portraits-on .flip-face .fc-portrait { display: block; }
+    @media (max-width: 480px) {
+      .fc-portrait { width: 64px; height: 64px; }
+    }
+    .portrait-toggle {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin: 18px 0 4px; padding: 8px 16px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 999px; cursor: pointer;
+      font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold-bright);
+      user-select: none;
+    }
+    .portrait-toggle input { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
+
+    /* ── M84: Roster section (heroes, companions, enemies, bosses) ── */
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 14px; margin-top: 20px;
+    }
+    .roster-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 12px 10px;
+      text-align: center; transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+    .roster-card:hover {
+      transform: translateY(-3px); border-color: var(--gold-dim);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+    }
+    .roster-card.boss { border-color: rgba(232,80,64,0.45); }
+    .roster-card.boss:hover { border-color: var(--red-bright); box-shadow: 0 8px 22px rgba(192,64,48,0.35); }
+    .roster-portrait {
+      width: 96px; height: 96px; object-fit: contain;
+      image-rendering: pixelated; image-rendering: crisp-edges;
+      margin: 0 auto 8px; display: block;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+    }
+    @media (max-width: 480px) {
+      .roster-portrait { width: 64px; height: 64px; }
+      .roster-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+    }
+    .roster-name {
+      font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700;
+      color: var(--gold-bright); letter-spacing: 0.04em; line-height: 1.25;
+    }
+    .roster-sub {
+      font-size: 10px; color: var(--text-muted); margin-top: 3px;
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .roster-desc {
+      font-size: 11px; color: var(--text-dim); margin-top: 6px;
+      line-height: 1.4;
+    }
+    .roster-tabs {
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+      margin-top: 20px;
+    }
+    .roster-tab {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text-dim); padding: 8px 16px; border-radius: 999px;
+      font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.12em;
+      text-transform: uppercase; cursor: pointer; transition: all .2s;
+    }
+    .roster-tab:hover { color: var(--gold-bright); border-color: var(--gold-dim); }
+    .roster-tab.active { background: var(--gold-dim); color: #1a0808; border-color: var(--gold); }
+
+    /* inline combat SVG icon replacements */
+    .inline-svg-icon { width: 1em; height: 1em; vertical-align: -0.15em; display: inline-block; }
+    .combat-icon svg { width: 22px; height: 22px; }
+
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5H26ZXKBCL"></script>
@@ -1282,6 +1371,7 @@
 <nav class="subnav" aria-label="Section navigation">
   <a href="#story">Story</a>
   <a href="#classes">Classes</a>
+  <a href="#roster">Roster</a>
   <a href="#tap-weapons">Tap Weapons</a>
   <a href="#combat">Combat</a>
   <a href="#journey">Journey</a>
@@ -1367,17 +1457,45 @@
     <div class="section-header fade-in parallax-head">
       <p class="section-eyebrow">Roster</p>
       <h2 class="section-title">20 Classes</h2>
-      <p class="section-lead">From stalwart Warrior to time-bending Chronomancer — twenty distinct paths of power, each with signature skills and party roles. Hover or tap a card to flip and see signature abilities.</p>
+      <p class="section-lead">From stalwart Warrior to time-bending Chronomancer — twenty distinct paths of power, each with signature skills and party roles. You start with the <strong>five starter classes</strong> (Warrior, Fighter, Ranger, Rogue, Mage — no starting healers); the remaining fifteen unlock as you progress through the acts and complete milestones. Attack damage now branches by weapon category — <strong>Heavy</strong> weapons scale with STR, <strong>Light</strong> weapons with DEX, and <strong>Magic</strong> weapons with INT — so gear choice, not just class, determines your stat priorities. Hover or tap a card to flip and see signature abilities.</p>
     </div>
 
     <div class="role-filter fade-in">
       <button class="role-btn active" data-role="all">All Classes</button>
-      <button class="role-btn" data-role="STR">⚔ STR</button>
-      <button class="role-btn" data-role="DEX">↗ DEX</button>
-      <button class="role-btn" data-role="INT">◈ INT</button>
+      <button class="role-btn" data-role="STR"><svg class="inline-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/></svg> STR</button>
+      <button class="role-btn" data-role="DEX"><svg class="inline-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M17 17V7H7"/></svg> DEX</button>
+      <button class="role-btn" data-role="INT"><svg class="inline-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 7h7l-6 4.5 2.5 7-6-4.5-6 4.5 2.5-7-6-4.5h7z"/></svg> INT</button>
     </div>
 
-    <div class="classes-grid-v2 fade-in" id="classesGridV2"><!-- populated by JS --></div>
+    <label class="portrait-toggle fade-in" for="portraitToggle">
+      <input type="checkbox" id="portraitToggle" checked>
+      <span>Show Portraits</span>
+    </label>
+
+    <div class="classes-grid-v2 fade-in portraits-on" id="classesGridV2"><!-- populated by JS --></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+<div class="divider-glow"></div>
+
+<!-- ── M84: FULL ROSTER (heroes, companions, enemies, bosses) ── -->
+<section id="roster">
+  <div class="section">
+    <div class="section-header fade-in">
+      <p class="section-eyebrow">Full Bestiary</p>
+      <h2 class="section-title">The Roster of Emberveil</h2>
+      <p class="section-lead">Every hireable hero, companion, enemy, and boss in the game — pulled live from the portrait catalog.</p>
+    </div>
+
+    <div class="roster-tabs fade-in">
+      <button class="roster-tab active" data-roster="heroes">Hireable Heroes</button>
+      <button class="roster-tab" data-roster="companions">Companions</button>
+      <button class="roster-tab" data-roster="enemies">Enemies</button>
+      <button class="roster-tab" data-roster="bosses">Bosses</button>
+    </div>
+
+    <div class="roster-grid fade-in" id="rosterGrid"><!-- populated by JS --></div>
   </div>
 </section>
 
@@ -1431,32 +1549,32 @@
       <h3>Turn Order — DEX + 1d10 Roll</h3>
       <div class="turn-track">
         <div class="turn-unit">
-          <div class="turn-avatar hero-unit active-unit">⚔</div>
+          <div class="turn-avatar hero-unit active-unit"><img src="../images/portraits/warrior.png" alt="Warrior" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
           <div class="turn-dex">Warrior<br>DEX 18</div>
         </div>
         <div class="turn-arrow">→</div>
         <div class="turn-unit">
-          <div class="turn-avatar enemy-unit">👹</div>
+          <div class="turn-avatar enemy-unit"><img src="../images/portraits/goblin_scout.png" alt="Goblin" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
           <div class="turn-dex">Goblin<br>DEX 15</div>
         </div>
         <div class="turn-arrow">→</div>
         <div class="turn-unit">
-          <div class="turn-avatar hero-unit">◈</div>
+          <div class="turn-avatar hero-unit"><img src="../images/portraits/mage.png" alt="Mage" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
           <div class="turn-dex">Mage<br>DEX 12</div>
         </div>
         <div class="turn-arrow">→</div>
         <div class="turn-unit">
-          <div class="turn-avatar enemy-unit">◆</div>
+          <div class="turn-avatar enemy-unit"><img src="../images/portraits/corrupted_wolf.png" alt="Wolf" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
           <div class="turn-dex">Wolf<br>DEX 11</div>
         </div>
         <div class="turn-arrow">→</div>
         <div class="turn-unit">
-          <div class="turn-avatar hero-unit">✦</div>
+          <div class="turn-avatar hero-unit"><img src="../images/portraits/cleric.png" alt="Cleric" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
           <div class="turn-dex">Cleric<br>DEX 8</div>
         </div>
         <div class="turn-arrow">→</div>
         <div class="turn-unit">
-          <div class="turn-avatar enemy-unit">☩</div>
+          <div class="turn-avatar enemy-unit"><img src="../images/portraits/goblin_shaman.png" alt="Shaman" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
           <div class="turn-dex">Shaman<br>DEX 7</div>
         </div>
       </div>
@@ -1464,7 +1582,7 @@
 
     <div class="combat-grid fade-in">
       <div class="combat-block">
-        <h3><div class="combat-icon">⚔</div> Auto-Combat Loop</h3>
+        <h3><div class="combat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/><path d="M21 3v3l-11.5 11.5"/><path d="M9.5 14.5L3 21"/></svg></div> Auto-Combat Loop</h3>
         <ul>
           <li>Combat resolves in real-time at configurable speed (0.5s–2s per turn)</li>
           <li>Each unit acts in DEX + 1d10 initiative order, re-rolled every round</li>
@@ -1475,7 +1593,7 @@
         </ul>
       </div>
       <div class="combat-block">
-        <h3><div class="combat-icon">✦</div> Skill System</h3>
+        <h3><div class="combat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 7h7l-6 4.5 2.5 7-6-4.5-6 4.5 2.5-7-6-4.5h7z"/></svg></div> Skill System</h3>
         <ul>
           <li>Each class has 4 skills unlocked at levels 1, 5, 10, and 15</li>
           <li>Talent tree upgrades branch off each skill — amplify damage, add effects, reduce cooldown</li>
@@ -1697,8 +1815,8 @@
     </div>
     <div class="services-grid fade-in">
       <div class="service-card">
-        <h3>🔨 Forge</h3>
-        <p>Combine two items of the same type to craft a higher-quality result. The output inherits the best affix from each input — a risky but powerful gamble for late-game upgrades.</p>
+        <h3>🔨 Crafting</h3>
+        <p>Combine two items of the same type to craft a higher-quality result. The output inherits the best affix from each input — a risky but powerful gamble for late-game upgrades. (Formerly the Forge.)</p>
       </div>
       <div class="service-card">
         <h3>✦ Enchanter</h3>
@@ -1729,18 +1847,18 @@
       <div class="party-section">
         <div class="party-section-label">Heroes (Main Party)</div>
         <div class="party-slots">
-          <div class="party-slot filled">⚔</div>
-          <div class="party-slot filled">◈</div>
-          <div class="party-slot filled">✦</div>
-          <div class="party-slot filled">↗</div>
+          <div class="party-slot filled"><img src="../images/portraits/warrior.png" alt="Warrior" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
+          <div class="party-slot filled"><img src="../images/portraits/mage.png" alt="Mage" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
+          <div class="party-slot filled"><img src="../images/portraits/cleric.png" alt="Cleric" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
+          <div class="party-slot filled"><img src="../images/portraits/ranger.png" alt="Ranger" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
         </div>
       </div>
       <div class="party-vs">+</div>
       <div class="party-section">
         <div class="party-section-label">Companions (Hired)</div>
         <div class="party-slots">
-          <div class="party-slot companion-filled">🗡</div>
-          <div class="party-slot companion-filled">☩</div>
+          <div class="party-slot companion-filled"><img src="../images/portraits/war_dog.png" alt="War Dog" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
+          <div class="party-slot companion-filled"><img src="../images/portraits/dragon_hatchling.png" alt="Dragon Hatchling" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated"></div>
           <div class="party-slot" style="font-size:14px;color:var(--text-muted)">+</div>
           <div class="party-slot" style="font-size:14px;color:var(--text-muted)">+</div>
         </div>
@@ -1876,7 +1994,7 @@
       </div>
 
       <div class="timeline-phase">
-        <div class="phase-label">Phase 10 — Deep Systems &amp; Polish (M46–M62)</div>
+        <div class="phase-label">Phase 10 — Deep Systems &amp; Polish (M46–M62 · of M1–M84)</div>
         <div class="milestones-row">
           <div class="milestone-chip"><span class="chip-num">M46</span> Combat Foundation &amp; Crits</div>
           <div class="milestone-chip"><span class="chip-num">M47</span> Affix Pool Expansion</div>
@@ -1898,6 +2016,34 @@
         </div>
       </div>
 
+      <div class="timeline-phase">
+        <div class="phase-label">Phase 11 — Expansion &amp; Simulation (M63–M84)</div>
+        <div class="milestones-row">
+          <div class="milestone-chip"><span class="chip-num">M63</span> Portal Polish</div>
+          <div class="milestone-chip"><span class="chip-num">M64</span> Roster &amp; Audio Expansion</div>
+          <div class="milestone-chip"><span class="chip-num">M65</span> Forge Town Service</div>
+          <div class="milestone-chip"><span class="chip-num">M66</span> Achievements Rename</div>
+          <div class="milestone-chip"><span class="chip-num">M67</span> Weapon Variety</div>
+          <div class="milestone-chip"><span class="chip-num">M68</span> Starting Equipment Preview</div>
+          <div class="milestone-chip"><span class="chip-num">M69</span> Settings Toggles Split</div>
+          <div class="milestone-chip"><span class="chip-num">M70</span> Level-Up Summary</div>
+          <div class="milestone-chip"><span class="chip-num">M71</span> Merchant &amp; Guild Stock</div>
+          <div class="milestone-chip"><span class="chip-num">M72</span> Tavern Rosters / Tap Weapons</div>
+          <div class="milestone-chip"><span class="chip-num">M73</span> Dragon Expansion Mercs</div>
+          <div class="milestone-chip"><span class="chip-num">M74</span> Tap Inventory</div>
+          <div class="milestone-chip"><span class="chip-num">M75</span> Dragon Bestiary</div>
+          <div class="milestone-chip"><span class="chip-num">M76</span> Endgame Acts 5–6</div>
+          <div class="milestone-chip"><span class="chip-num">M77</span> Parallax Backgrounds</div>
+          <div class="milestone-chip"><span class="chip-num">M78</span> Game-Info SPA v2</div>
+          <div class="milestone-chip"><span class="chip-num">M79</span> OpenAI Portrait Roster</div>
+          <div class="milestone-chip"><span class="chip-num">M80</span> Branching Dialog</div>
+          <div class="milestone-chip"><span class="chip-num">M81</span> Passive Talent Trees</div>
+          <div class="milestone-chip"><span class="chip-num">M82</span> Travel Animations</div>
+          <div class="milestone-chip"><span class="chip-num">M83</span> Black Market Vendor</div>
+          <div class="milestone-chip"><span class="chip-num">M84</span> Simulation Overhaul Pt. 1</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1905,12 +2051,12 @@
 <div class="divider"></div>
 <div class="divider-glow"></div>
 
-<!-- ── RECENT ADDITIONS (M46–M56) ── -->
+<!-- ── RECENT ADDITIONS (M46–M84) ── -->
 <section id="recent">
   <div class="section">
     <div class="section-header fade-in">
       <p class="section-eyebrow">What's New</p>
-      <h2 class="section-title">Recent Additions (M46–M56)</h2>
+      <h2 class="section-title">Recent Additions (M46–M84)</h2>
       <p class="section-lead">The last batch of milestones focused on combat depth, party/companion systems, and UI polish.</p>
     </div>
     <div class="grid-3" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem">
@@ -1926,6 +2072,7 @@
       <div class="card"><h3 style="font-family:var(--font-display);color:var(--gold-bright);margin-bottom:.5rem">Town Portals &amp; Maps</h3><p>Back-to-Town gated on zone start nodes; portal-return only available on portal tiles. Stale nodeIds no longer break inter-map travel.</p></div>
       <div class="card"><h3 style="font-family:var(--font-display);color:var(--gold-bright);margin-bottom:.5rem">New Sprites</h3><p>War dog companion wired in combat, plus new boss/enemy sprites and the categorized /demo-assets/ gallery (Heroes, Companions, Enemies, Bosses).</p></div>
       <div class="card"><h3 style="font-family:var(--font-display);color:var(--gold-bright);margin-bottom:.5rem">Shared Navigation</h3><p>Unified header across Game Info, Asset Gallery, and milestone reports — single source of truth in <code>_header.js</code>.</p></div>
+      <div class="card"><h3 style="font-family:var(--font-display);color:var(--gold-bright);margin-bottom:.5rem">M84 · Simulation Overhaul Pt. 1</h3><p>Formulas refactor, armor / resist / block layering, cleric rework, and a new combat simulator for balance tuning.</p></div>
     </div>
   </div>
 </section>
@@ -2098,7 +2245,7 @@
 
   // ── M78: CLASSES DATA + FLIP CARDS ──
   const CLASSES_DATA = [
-    { id:'warrior', name:'Warrior', role:'Frontline Tank', attr:'STR', hook:'Shield Bash stuns enemies. Whirlwind hits all adjacent foes. Unbreakable when outnumbered.', skills:['Shield Bash','Battle Cry','Whirlwind','Unbreakable'], icon:'M18 4L8 14v8l10 10 10-10v-8L18 4z M18 4v28 M8 14h20' },
+    { id:'warrior', portrait:'warrior', name:'Warrior', role:'Frontline Tank', attr:'STR', hook:'Shield Bash stuns enemies. Whirlwind hits all adjacent foes. Unbreakable when outnumbered.', skills:['Shield Bash','Battle Cry','Whirlwind','Unbreakable'], icon:'M18 4L8 14v8l10 10 10-10v-8L18 4z M18 4v28 M8 14h20' },
     { id:'fighter', name:'Fighter', role:'Disciplined Duelist', attr:'STR', hook:'Riposte counters parries. Tactical stances swap between offense and defense. Precise Strike never misses.', skills:['Precise Strike','Defensive Stance','Offensive Stance','Riposte','Second Wind','Sunder Armor'], icon:'M18 3v26 M14 7l4-4 4 4 M10 29h16 M6 18l6-3 6 3 6-3 6 3' },
     { id:'paladin', name:'Paladin', role:'Holy Warrior', attr:'STR', hook:'Holy Strike crits vs demons. Lay on Hands keeps allies alive. Consecration sustains long fights.', skills:['Holy Strike','Lay on Hands','Divine Shield','Consecration'], icon:'M18 3l-14 6v9c0 8 7 14 14 16 7-2 14-8 14-16V9L18 3z M12 18l4 4 8-8' },
     { id:'ranger', name:'Ranger', role:'Precision Ranged', attr:'DEX', hook:'Aimed Shot ignores armor. Rain of Arrows blankets the entire enemy field for 3 rounds.', skills:['Aimed Shot','Multi Shot','Smoke Trap','Rain of Arrows'], icon:'M5 5l26 26 M5 5l8 2-2-8' },
@@ -2129,9 +2276,11 @@
       const card = document.createElement('div');
       card.className = 'flip-card';
       card.dataset.role = c.attr;
+      const portraitFile = c.id; // canonical match for files in public/images/portraits/
       card.innerHTML = `
         <div class="flip-inner">
           <div class="flip-face front">
+            <img class="fc-portrait" src="../images/portraits/${portraitFile}.png" alt="${c.name}" onerror="this.style.display='none'; const s=this.nextElementSibling; if(s) s.style.display='block';">
             <svg class="fc-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="${c.icon}"/></svg>
             <div class="fc-name">${c.name}</div>
             <div class="fc-role">${c.role}</div>
@@ -2165,6 +2314,127 @@
         c.style.display = (r === 'all' || c.dataset.role === r) ? '' : 'none';
       });
     }));
+
+    // ── M84: Portrait toggle (persisted) ──
+    const toggle = document.getElementById('portraitToggle');
+    if (toggle) {
+      const saved = localStorage.getItem('emberveil.portraitsOn');
+      const on = saved === null ? true : saved === '1';
+      toggle.checked = on;
+      grid.classList.toggle('portraits-on', on);
+      toggle.addEventListener('change', () => {
+        grid.classList.toggle('portraits-on', toggle.checked);
+        localStorage.setItem('emberveil.portraitsOn', toggle.checked ? '1' : '0');
+      });
+    }
+  })();
+
+  // ── M84: ROSTER (heroes, companions, enemies, bosses) ──
+  (function buildRoster(){
+    const grid = document.getElementById('rosterGrid');
+    if (!grid) return;
+
+    const P = id => `../images/portraits/${id}.png`;
+
+    const HEROES = [
+      { id:'ranger', name:'Aela', sub:'Ranger · Lv 1', desc:'Quiet eastern-border ranger. Waits for the perfect shot.' },
+      { id:'warrior', name:'Borin', sub:'Warrior · Lv 1', desc:'Retired soldier — bored, wants one last fight.' },
+      { id:'cleric', name:'Lysa', sub:'Cleric · Lv 2', desc:'Young cleric of the Light. Eager to prove herself.' },
+      { id:'rogue', name:'Rekk', sub:'Rogue · Lv 1', desc:'Says he\'s not a thief. Has three knives.' },
+      { id:'dragon_knight', name:'Kaldrek the Dragonborn', sub:'Dragon Knight · Lv 6', desc:'Dragon-scale plate, dragon-fang greatsword. Dragon-slayer.' },
+      { id:'dragon_knight', name:'Syra Wyrmsworn', sub:'Dragon Knight · Lv 7', desc:'Sworn to the old dragon-oaths. Dragon-breath melts armor.' },
+      { id:'dragon_knight', name:'Vorin Emberjaw', sub:'Dragon Knight · Lv 8', desc:'Raised in a red dragon\'s hoard. Believes he IS a dragon.' },
+      { id:'dragon_knight', name:'Maelis Drakeblood', sub:'Dragon Knight · Lv 9', desc:'Dragon-cult defector. Dragon-tooth daggers as backup.' },
+    ];
+
+    const COMPANIONS = [
+      { id:'war_dog', name:'War Dog', sub:'Companion · Lv 1', desc:'Loyal, fierce, surprisingly effective against goblins.' },
+      { id:'dragon_hatchling', name:'Crimson Hatchling', sub:'Dragon · Lv 5', desc:'Tiny crimson dragon. Dragon-fire grows hotter as it matures.' },
+      { id:'frost_wyrmling', name:'Frost Wyrmling', sub:'Dragon · Lv 5', desc:'Young frost dragon. Dragon-breath freezes foes solid.' },
+      { id:'storm_drake', name:'Storm Drake', sub:'Dragon · Lv 6', desc:'Lightning-winged dragon. Dragon-thunder crackles in its wake.' },
+      { id:'shadow_wyrm', name:'Shadow Wyrm', sub:'Dragon · Lv 7', desc:'Dragon born of eclipse-fire. Dragon-shadow answers it.' },
+      { id:'dire_wolf', name:'Dire Wolf', sub:'Wilderness', desc:'Massive pack predator. Found in northern forests.' },
+      { id:'forest_owl', name:'Forest Owl', sub:'Wilderness', desc:'Silent, sharp-eyed scout. Spots traps before you do.' },
+      { id:'ember_drake', name:'Ember Drake', sub:'Wilderness', desc:'Smaller cousin to the storm drake. Breathes embers.' },
+      { id:'shadow_cat', name:'Shadow Cat', sub:'Wilderness', desc:'Prowling shadow-hunter. Strikes from ambush.' },
+      { id:'crystal_golem', name:'Crystal Golem', sub:'Wilderness', desc:'Elemental construct that bonded to your party.' },
+      { id:'spirit_wisp', name:'Spirit Wisp', sub:'Wilderness', desc:'Fragile spirit guide. Restores mana to nearby allies.' },
+      { id:'bone_hound', name:'Bone Hound', sub:'Wilderness', desc:'Undead mastiff. Immune to poison and bleed.' },
+      { id:'ice_sprite', name:'Ice Sprite', sub:'Wilderness', desc:'Flickering frost elemental. Slows enemy attacks.' },
+      { id:'swamp_frog', name:'Swamp Frog', sub:'Wilderness', desc:'Giant venomous frog. Poisons enemies on tongue-strike.' },
+      { id:'void_moth', name:'Void Moth', sub:'Wilderness', desc:'Moth born of a rift. Drains magic from foes.' },
+    ];
+
+    const ENEMIES = [
+      { id:'goblin_scout',   name:'Goblin Scout',   sub:'Act I' },
+      { id:'goblin_warrior', name:'Goblin Warrior', sub:'Act I' },
+      { id:'goblin_shaman',  name:'Goblin Shaman',  sub:'Act I' },
+      { id:'corrupted_wolf', name:'Corrupted Wolf', sub:'Act I' },
+      { id:'corrupted_bear', name:'Corrupted Bear', sub:'Act I' },
+      { id:'bandit',         name:'Bandit',         sub:'Act I' },
+      { id:'bandit_captain', name:'Bandit Captain', sub:'Act I' },
+      { id:'giant_spider',   name:'Giant Spider',   sub:'Act I' },
+      { id:'ash_wraith',     name:'Ash Wraith',     sub:'Act II' },
+      { id:'cinder_hound',   name:'Cinder Hound',   sub:'Act II' },
+      { id:'molten_golem',   name:'Molten Golem',   sub:'Act II' },
+      { id:'veil_cultist',   name:'Veil Cultist',   sub:'Act II' },
+      { id:'veil_sorcerer',  name:'Veil Sorcerer',  sub:'Act II' },
+      { id:'veil_warden',    name:'Veil Warden',    sub:'Act II' },
+      { id:'imp',            name:'Imp',            sub:'Act III' },
+      { id:'hell_knight',    name:'Hell Knight',    sub:'Act III' },
+      { id:'void_shade',     name:'Void Shade',     sub:'Act III' },
+      { id:'demon_brute',    name:'Demon Brute',    sub:'Act III' },
+      { id:'void_wraith',    name:'Void Wraith',    sub:'Act IV' },
+      { id:'star_horror',    name:'Star Horror',    sub:'Act IV' },
+      { id:'cosmic_titan',   name:'Cosmic Titan',   sub:'Act IV' },
+      { id:'abyssal_knight', name:'Abyssal Knight', sub:'Act V' },
+      { id:'reality_shard',  name:'Reality Shard',  sub:'Act V' },
+      { id:'primordial_elemental', name:'Primordial Elemental', sub:'Act V' },
+      { id:'genesis_worm',   name:'Genesis Worm',   sub:'Act V' },
+      { id:'dragon_whelp',   name:'Dragon Whelp',   sub:'Act VI' },
+      { id:'dragon_cultist', name:'Dragon Cultist', sub:'Act VI' },
+      { id:'wyrm_warrior',   name:'Wyrm Warrior',   sub:'Act VI' },
+      { id:'frost_wyrm',     name:'Frost Wyrm',     sub:'Act VI' },
+      { id:'storm_dragon',   name:'Storm Dragon',   sub:'Act VI' },
+      { id:'void_prophet',   name:'Void Prophet',   sub:'Endgame' },
+    ];
+
+    const BOSSES = [
+      { id:'grax_veil_touched', name:'Grax the Veil-Touched', sub:'Act I Boss', desc:'The frontier warlord twisted by the Veil\'s whispers.' },
+      { id:'lava_titan', name:'The Lava Titan', sub:'Act II Boss', desc:'A mountain-sized elemental of molten stone and obsidian.' },
+      { id:'archfiend_malgrath', name:'Archfiend Malgrath', sub:'Act III Boss', desc:'Hell-lord who commands the legions of the Shattered Hell.' },
+      { id:'emberveil_sovereign', name:'The Emberveil Sovereign', sub:'Act IV Boss', desc:'Ancient ruler who first forged — and first broke — the Veil.' },
+      { id:'the_architect', name:'The Architect', sub:'Act V Boss', desc:'Builder of the Veil itself. Rewrites reality in its own image.' },
+      { id:'the_unraveler', name:'The Unraveler', sub:'Act V Boss', desc:'A cosmic horror that undoes existence one strand at a time.' },
+      { id:'ancient_dragon', name:'Ancient Dragon', sub:'Act VI Boss', desc:'Eldest dragon — primal dragon-wrath older than the Veil.' },
+      { id:'dragon_king', name:'The Dragon King', sub:'Act VI Boss', desc:'Sovereign of every dragon. Dragon-crown forged of dragon-bone.' },
+      { id:'shadow_wyrm', name:'Shadow Wyrm Ancient', sub:'Endgame Boss', desc:'Elder dragon born in the eclipse between worlds.' },
+      { id:'frost_wyrm', name:'Frost Wyrm Matriarch', sub:'Endgame Boss', desc:'Mother of the frost dragons. Dragon-ice never melts.' },
+      { id:'storm_dragon', name:'Storm Dragon Tyrant', sub:'Endgame Boss', desc:'Dragon-storm incarnate — her dragon-thunder levels cities.' },
+    ];
+
+    const ROSTERS = { heroes: HEROES, companions: COMPANIONS, enemies: ENEMIES, bosses: BOSSES };
+
+    function render(key) {
+      const items = ROSTERS[key] || [];
+      grid.innerHTML = items.map(x => `
+        <div class="roster-card ${key === 'bosses' ? 'boss' : ''}">
+          <img class="roster-portrait" src="${P(x.id)}" alt="${x.name}" onerror="this.style.visibility='hidden'">
+          <div class="roster-name">${x.name}</div>
+          <div class="roster-sub">${x.sub || ''}</div>
+          ${x.desc ? `<div class="roster-desc">${x.desc}</div>` : ''}
+        </div>
+      `).join('');
+    }
+    render('heroes');
+
+    document.querySelectorAll('.roster-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.roster-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        render(tab.dataset.roster);
+      });
+    });
   })();
 
   // ── M78: TAP WEAPONS / UTILITIES ──
