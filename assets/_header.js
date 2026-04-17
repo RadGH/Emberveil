@@ -45,7 +45,11 @@
   // ---------------------------------------------------------------------------
   var path = window.location.pathname;
   var gameKeyMatch = path.match(/\/(game[0-9a-z_]+)\//i);
-  var GAME_KEY = gameKeyMatch ? gameKeyMatch[1].toLowerCase() : '';
+  // Fallback: map rsg-game meta → game key so bare-domain hosts (e.g. emberveil.radgh.com)
+  // still populate Tools/News dropdowns.
+  var LABEL_TO_KEY = { 'emberveil': 'game13' };
+  var metaKey = LABEL_TO_KEY[String(GAME_LABEL).toLowerCase()] || '';
+  var GAME_KEY = gameKeyMatch ? gameKeyMatch[1].toLowerCase() : metaKey;
   var GAME_ROOT;
   if (gameKeyMatch) {
     // Absolute anchor: everything up to and including /<gameKey>/
@@ -117,45 +121,38 @@
   var TOOLS = TOOLS_BY_GAME[GAME_KEY] || [];
   var NEWS = NEWS_BY_GAME[GAME_KEY] || [];
 
-  // Order: Play Game (button) -> News -> Contact -> Send Feedback -> Tools -> Assets
-  // Game Info is appended after Assets if it exists in the game's structure.
+  // Order: Play Game / Game Info / Assets / Tools / News / Send Feedback / Contact
   var PLAY_HREF = GAME_ROOT + 'play.html';
-  var MENU = [
-    { href: PLAY_HREF, label: 'Play Game', primary: true },
-    { href: GAME_ROOT + 'contact.html', label: 'Contact' },
-    { href: 'https://docs.google.com/forms/d/e/1FAIpQLScWHFEQ8Kbxvsxg5nKerJOPqkYntAkRLCihqQchypNdqayvmA/viewform?usp=publish-editor', label: 'Send Feedback', external: true },
-    {
-      href: ASSETS,
-      label: 'Assets',
-      children: [
-        { href: ASSETS + '#main', label: 'Images' },
-        { href: ASSETS + '#audio-section', label: 'Audio' },
-        { href: ASSETS + '#reports-section', label: 'Milestones' }
-      ]
-    },
-    { href: GAME_INFO, label: 'Game Info' }
-  ];
-  // News dropdown — insert after Play Game (index 1), before Contact.
-  if (NEWS.length) {
-    var newsChildren = NEWS.map(function (n) {
+  var assetsItem = {
+    href: ASSETS,
+    label: 'Assets',
+    children: [
+      { href: ASSETS + '#main', label: 'Images' },
+      { href: ASSETS + '#audio-section', label: 'Audio' },
+      { href: ASSETS + '#reports-section', label: 'Milestones' }
+    ]
+  };
+  var toolsItem = TOOLS.length ? {
+    href: TOOLS[0].href,
+    label: 'Tools',
+    children: TOOLS.slice()
+  } : null;
+  var newsItem = NEWS.length ? (function () {
+    var children = NEWS.map(function (n) {
       var d = n.date || '2026-04-14';
       return { href: n.href, label: d + ' \u2014 ' + n.label };
     });
-    MENU.splice(1, 0, {
-      href: newsChildren[0].href,
-      label: 'News',
-      children: newsChildren
-    });
-  }
-  // Tools dropdown — insert just before Assets.
-  if (TOOLS.length) {
-    var assetsIdx = MENU.findIndex(function (m) { return m.label === 'Assets'; });
-    MENU.splice(assetsIdx, 0, {
-      href: TOOLS[0].href,
-      label: 'Tools',
-      children: TOOLS.slice()
-    });
-  }
+    return { href: children[0].href, label: 'News', children: children };
+  })() : null;
+  var MENU = [
+    { href: PLAY_HREF, label: 'Play Game', primary: true },
+    { href: GAME_INFO, label: 'Game Info' },
+    assetsItem
+  ];
+  if (toolsItem) MENU.push(toolsItem);
+  if (newsItem) MENU.push(newsItem);
+  MENU.push({ href: 'https://docs.google.com/forms/d/e/1FAIpQLScWHFEQ8Kbxvsxg5nKerJOPqkYntAkRLCihqQchypNdqayvmA/viewform?usp=publish-editor', label: 'Send Feedback', external: true });
+  MENU.push({ href: GAME_ROOT + 'contact.html', label: 'Contact' });
 
   function buildNav() {
     var nav = document.createElement('nav');

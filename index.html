@@ -413,7 +413,11 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
       gap: 0.75rem;
-      max-width: 1100px; margin: 0 auto;
+    }
+    #companions-grid, #bosses-grid {
+      grid-template-columns: repeat(5, minmax(110px, 1fr));
+      max-width: 640px;
+      margin: 0 auto;
     }
     .sprite-card {
       background: var(--panel);
@@ -642,13 +646,6 @@
           <div class="chart-wrap"><canvas id="chart-enemies"></canvas></div>
           <div class="chart-caption">Unique enemy types introduced per act</div>
         </div>
-        <!-- Skills per class -->
-        <!-- CLAUDE: Skill counts per class from src/game/classes.js skills[] arrays -->
-        <div class="chart-card reveal">
-          <div class="chart-title">Skills per Class</div>
-          <div class="chart-wrap"><canvas id="chart-skills"></canvas></div>
-          <div class="chart-caption">Active combat skills per hero class (excluding talent upgrades)</div>
-        </div>
         <!-- Class archetype distribution -->
         <div class="chart-card reveal">
           <div class="chart-title">Class Archetypes</div>
@@ -757,10 +754,12 @@
   <footer class="site-footer">
     <div class="footer-links">
       <a href="./play.html">Play Game</a>
+      <a href="./game-info/">Game Info</a>
+      <a href="./assets/">Assets</a>
+      <a href="./assets/#tools">Tools</a>
       <a href="./news/index.html">News</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHFEQ8Kbxvsxg5nKerJOPqkYntAkRLCihqQchypNdqayvmA/viewform?usp=publish-editor" target="_blank" rel="noopener">Send Feedback</a>
       <a href="./contact.html">Contact</a>
-      <a href="./assets/">Art Gallery</a>
-      <a href="https://github.com/RadGH/claude-game-workspace" target="_blank" rel="noopener">GitHub</a>
     </div>
     <div class="footer-copy">&copy; 2026 Radley Sustaire &middot; Emberveil</div>
   </footer>
@@ -976,21 +975,7 @@
       options: CHART_DEFAULTS
     });
 
-    // 3. Skills per class — CLAUDE: from classes.js skills[] arrays
-    const classSkillCounts = [
-      ['Warrior',4],['Fighter',6],['Paladin',4],['Ranger',4],['Rogue',4],
-      ['Cleric',4],['Bard',4],['Mage',4],['Necromancer',4],['Warlock',4],
-    ];
-    new Chart(document.getElementById('chart-skills'), {
-      type: 'bar',
-      data: {
-        labels: classSkillCounts.map(r=>r[0]),
-        datasets: [{ label:'Skills', data: classSkillCounts.map(r=>r[1]), backgroundColor:'rgba(232,160,32,0.65)', borderColor:'#e8a020', borderWidth:1 }]
-      },
-      options: { ...CHART_DEFAULTS, indexAxis: 'y' }
-    });
-
-    // 4. Class archetypes
+    // 3. Class archetypes
     new Chart(document.getElementById('chart-archetypes'), {
       type: 'doughnut',
       data: {
