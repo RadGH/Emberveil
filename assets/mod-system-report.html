@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>Emberveil — Mod System Design Quiz</title>
+<script src="./_header.js" defer></script>
+<style>
+  :root{
+    --bg:#0e0b1a; --panel:#171232; --panel2:#1f1942; --ink:#ece7ff; --dim:#9a8fc7;
+    --gold:#ffcc66; --ember:#ff7b3d; --veil:#9a6bff; --good:#6be7a4; --warn:#ffb347;
+    --bad:#ff6b8a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+  .wrap{max-width:960px;margin:0 auto;padding:24px 18px 120px}
+  .hero{background:linear-gradient(135deg,#2a1b5c,#0e0b1a);border:1px solid #3a2a7a;border-radius:18px;padding:28px;margin:18px 0;position:relative;overflow:hidden}
+  .hero h1{margin:0 0 6px;font-size:34px;letter-spacing:.5px;background:linear-gradient(90deg,var(--gold),var(--ember),var(--veil));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{margin:0;color:var(--dim);max-width:620px}
+  .hero .portraits{display:flex;gap:6px;margin-top:16px;flex-wrap:wrap}
+  .hero .portraits img{width:54px;height:54px;border-radius:10px;border:1px solid #3a2a7a;object-fit:cover}
+  h2{margin-top:40px;border-bottom:1px solid #2a2152;padding-bottom:8px;font-size:22px}
+  h3{font-size:17px;color:var(--gold);margin-top:24px}
+  .card{background:var(--panel);border:1px solid #2a2152;border-radius:14px;padding:18px;margin:14px 0}
+  .card.quiz{background:linear-gradient(180deg,var(--panel),var(--panel2))}
+  .tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;background:#2a1b5c;color:var(--veil);margin-right:6px;border:1px solid #3a2a7a}
+  .tag.good{background:#0e3a24;color:var(--good);border-color:#1e5a3a}
+  .tag.warn{background:#3a2a0e;color:var(--warn);border-color:#5a4a1e}
+  .tag.bad{background:#3a0e1e;color:var(--bad);border-color:#5a1e2e}
+  code,pre{font-family:'SF Mono',Menlo,monospace;background:#0a0818;padding:2px 6px;border-radius:4px;font-size:13px;border:1px solid #241b4a}
+  pre{padding:12px;overflow-x:auto;line-height:1.45}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{padding:8px 10px;border-bottom:1px solid #2a2152;text-align:left;vertical-align:top}
+  th{color:var(--gold);font-weight:600}
+  .option{display:block;background:#0a0818;border:1px solid #241b4a;border-radius:10px;padding:12px 14px;margin:8px 0;cursor:pointer;transition:.15s;position:relative}
+  .option:hover{border-color:var(--veil);transform:translateY(-1px)}
+  .option input{margin-right:10px;vertical-align:top;margin-top:4px}
+  .option.rec{border-color:var(--gold);box-shadow:inset 3px 0 0 var(--gold)}
+  .option .rec-badge{position:absolute;top:10px;right:10px;font-size:10px;color:var(--gold);letter-spacing:1px}
+  .option .sub{color:var(--dim);font-size:13px;margin-top:4px;margin-left:22px}
+  textarea{width:100%;background:#0a0818;border:1px solid #241b4a;border-radius:8px;padding:10px;color:var(--ink);font-family:inherit;font-size:13px;resize:vertical;min-height:60px}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row > *{flex:1;min-width:250px}
+  .bug{background:#2a0e1e;border:1px solid #5a1e2e;color:#ffb8c8;padding:10px 14px;border-radius:8px;margin:10px 0}
+  .good-box{background:#0e2a1e;border:1px solid #1e5a3e;color:#b8ffd4;padding:10px 14px;border-radius:8px;margin:10px 0}
+  .portrait-mixer{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px;margin-top:10px}
+  .portrait-mixer .p{border:2px solid transparent;border-radius:8px;overflow:hidden;cursor:pointer;position:relative;aspect-ratio:1}
+  .portrait-mixer .p img{width:100%;height:100%;object-fit:cover;display:block}
+  .portrait-mixer .p.sel{border-color:var(--gold)}
+  .portrait-mixer .p .lbl{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.7);font-size:9px;text-align:center;padding:2px}
+  .mix-result{display:flex;gap:14px;align-items:center;margin-top:12px;padding:12px;background:#0a0818;border-radius:10px}
+  .mix-result .halves{position:relative;width:100px;height:100px;border-radius:10px;overflow:hidden;border:1px solid #3a2a7a}
+  .mix-result .halves img{position:absolute;width:100%;height:100%;object-fit:cover}
+  .mix-result .halves img.face{clip-path:inset(0 0 50% 0)}
+  .mix-result .halves img.body{clip-path:inset(50% 0 0 0)}
+  .btn{background:linear-gradient(135deg,var(--ember),var(--veil));color:#fff;border:none;padding:12px 22px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.3px}
+  .btn:hover{filter:brightness(1.1)}
+  .btn.sec{background:#241b4a;color:var(--ink)}
+  .sticky{position:sticky;bottom:0;background:linear-gradient(180deg,transparent,var(--bg) 40%);padding:20px 0 10px;margin-top:30px;text-align:center}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--ember),var(--veil));width:0%;z-index:100;transition:.3s}
+  details summary{cursor:pointer;padding:10px;color:var(--gold)}
+  .spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-top:12px}
+  .spell{background:#0a0818;border:1px solid #241b4a;border-radius:8px;padding:10px;font-size:13px;position:relative}
+  .spell .n{color:var(--gold);font-weight:600;display:block;margin-bottom:4px}
+  .spell input{position:absolute;top:8px;right:8px}
+  .muted{color:var(--dim);font-size:13px}
+  .callout{border-left:3px solid var(--veil);padding:8px 14px;background:rgba(154,107,255,.08);border-radius:0 8px 8px 0;margin:12px 0}
+  .event-chain{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px;background:#0a0818;border-radius:8px;margin:8px 0;font-size:13px}
+  .event-chain .step{background:#241b4a;padding:6px 10px;border-radius:6px}
+  .event-chain .arrow{color:var(--veil)}
+  .prompt-output{background:#000;border:1px solid var(--gold);border-radius:10px;padding:16px;white-space:pre-wrap;font-family:monospace;font-size:12px;line-height:1.5;max-height:400px;overflow-y:auto}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="wrap">
+
+<div class="hero">
+  <h1>Emberveil: Mod System Design Quiz</h1>
+  <p>A tour of the combat engine and data structures as they stand today, paired with a live quiz that captures your choices and spits out a copy-paste prompt for Claude to generate mod content against a schema that actually validates.</p>
+  <div class="portraits" id="heroPortraits"></div>
+  <p class="muted" style="margin-top:14px">Report generated 2026-04-16. Backing docs live at <a href="https://github.com/RadGH/claude-game-workspace/tree/main/game13/docs/mod-system" style="color:var(--gold)">docs/mod-system/</a> on GitHub.</p>
+</div>
+
+<!-- ============ SECTION 1: CURRENT STATE ============ -->
+
+<h2>Act I — What the Engine Does Today</h2>
+
+<div class="card">
+  <h3>The combat round, in one picture</h3>
+  <pre>build turn order → tick statuses → regen MP → for each unit { skip-if-dead → tick CD → stun? → AI → extraAction? } → check victory/defeat</pre>
+  <p class="muted">Main loop: <code>CombatScreen.js:990-1052</code>. Headless twin: <code>simulator.js:391-525</code>. Any change to one must port to the other or the simulator stops predicting the UI.</p>
+</div>
+
+<div class="card">
+  <h3>Damage pipeline</h3>
+  <pre>raw → hit → block → mitigation → AoE falloff → crit → dmgReduct → dmgBuff → steal → final</pre>
+  <p><strong>Hit:</strong> <code>clamp(actor.hit − target.dodge, 5, 95)</code> &nbsp; <strong>Crit:</strong> <code>min(75, 5 + critPct + critChance×100)</code> at <code>1.5 + critDamage</code>×</p>
+  <p><strong>Mitigation (M84):</strong> <code>dmg = max(0, raw − armor)</code> &nbsp; — flat, not percentile. True damage skips entirely.</p>
+  <p><strong>AoE falloff:</strong> 1→100%, 2→80%, 3→60%, 4+→50%.</p>
+</div>
+
+<div class="card">
+  <h3 style="color:var(--bad)">The bug class we want to kill</h3>
+  <div class="bug">
+    <strong>Strength is spelled four different ways depending on where you're reading from.</strong> If a mod author ships <code>{ stat: "strength", value: 2 }</code> it silently deals 0 damage bonus because the affix loader expects <code>"str"</code>. We can fix this once with a normalizing loader and schema validation.
+  </div>
+  <table>
+    <tr><th>Where</th><th>Spelling</th><th>File</th></tr>
+    <tr><td>base attributes on a unit</td><td><code>STR</code></td><td><code>classes.js</code></td></tr>
+    <tr><td>skill <code>damageStat</code></td><td><code>'str'</code></td><td><code>skills.js</code></td></tr>
+    <tr><td>affix <code>stat</code></td><td><code>'str'</code></td><td><code>items.js</code></td></tr>
+    <tr><td>passive output</td><td><code>STR</code></td><td><code>passives.js</code></td></tr>
+    <tr><td>skill-check in events</td><td><code>'INT'</code></td><td><code>randomEvents.js</code></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>Status effects: the dual model</h3>
+  <p>DoTs/CC live in <code>unit.statuses[]</code> as <code>{ type, duration, power }</code>. Buffs like <code>dmgBuff</code>, <code>critBonus</code>, <code>armor</code>, <code>magicResist</code> live as <strong>top-level fields</strong> with paired <code>*Rounds</code> counters. Two code paths, two tick sites, one source of confusion.</p>
+</div>
+
+<!-- ============ SECTION 2: QUIZ ============ -->
+
+<h2>Act II — The Quiz: Design Your Mod System</h2>
+<p class="muted">Every choice feeds the prompt at the bottom. Starred ⭐ options are my recommendation for shipping soon without rewriting the engine.</p>
+
+<!-- Q1 -->
+<div class="card quiz">
+  <h3>Q1 — Canonical stat spelling</h3>
+  <p class="muted">Which spelling becomes the One True form that the loader normalizes everything else into?</p>
+  <label class="option rec" data-q="stat_naming" data-v="full_lowercase">
+    <span class="rec-badge">⭐ RECOMMENDED</span>
+    <input type="radio" name="stat_naming" value="full_lowercase" checked>
+    <strong>Full lowercase:</strong> <code>strength</code>, <code>dexterity</code>, <code>intelligence</code>, <code>constitution</code>
+    <div class="sub">Unambiguous, self-documenting, familiar to RPG players. Loader accepts <code>str</code>/<code>STR</code> as aliases but warns.</div>
+  </label>
+  <label class="option" data-q="stat_naming" data-v="short_lower">
+    <input type="radio" name="stat_naming" value="short_lower">
+    <strong>Short lowercase:</strong> <code>str</code>, <code>dex</code>, <code>int</code>, <code>con</code>
+    <div class="sub">Matches current affix/skill naming — least code to touch, but ambiguous for new readers.</div>
+  </label>
+  <label class="option" data-q="stat_naming" data-v="short_upper">
+    <input type="radio" name="stat_naming" value="short_upper">
+    <strong>Short uppercase:</strong> <code>STR</code>, <code>DEX</code>, <code>INT</code>, <code>CON</code>
+    <div class="sub">Matches current base-attr naming. Worst readability for JSON.</div>
+  </label>
+  <textarea data-note="stat_naming" placeholder="Notes or overrides…"></textarea>
+</div>
+
+<!-- Q2 -->
+<div class="card quiz">
+  <h3>Q2 — How strict is the loader?</h3>
+  <label class="option rec" data-q="validation" data-v="schema_warn">
+    <span class="rec-badge">⭐ RECOMMENDED</span>
+    <input type="radio" name="validation" value="schema_warn" checked>
+    <strong>JSON-Schema + warn-mode</strong>
+    <div class="sub">Ajv validation at load; unknown/legacy keys normalized with a console warning. Mod Manager page surfaces warnings in UI. Doesn't break old saves.</div>
+  </label>
+  <label class="option" data-q="validation" data-v="schema_hard">
+    <input type="radio" name="validation" value="schema_hard">
+    <strong>JSON-Schema hard-fail</strong>
+    <div class="sub">Any unknown key = load refused. Cleaner long-term but migration hurts.</div>
+  </label>
+  <label class="option" data-q="validation" data-v="none">
+    <input type="radio" name="validation" value="none">
+    <strong>No validation</strong>
+    <div class="sub">Status quo. Silent undefineds. Not recommended.</div>
+  </label>
+  <textarea data-note="validation" placeholder="Notes…"></textarea>
+</div>
+
+<!-- Q3 -->
+<div class="card quiz">
+  <h3>Q3 — Effect model for spells</h3>
+  <p class="muted">The 50 new spells in Act IV need <em>some</em> way to be expressed. Pick one.</p>
+  <label class="option rec" data-q="effects" data-v="dsl">
+    <span class="rec-badge">⭐ RECOMMENDED</span>
+    <input type="radio" name="effects" value="dsl" checked>
+    <strong>Tiny effect DSL (~14 ops)</strong>
+    <div class="sub">Each spell compiles to ≤4 ops like <code>damage</code>, <code>applyStatus</code>, <code>setFlag</code>, <code>onHit</code>, <code>echo</code>. One dispatcher, infinite spells. All 50 brainstorm ideas fit.</div>
+  </label>
+  <label class="option" data-q="effects" data-v="script">
+    <input type="radio" name="effects" value="script">
+    <strong>Sandboxed JS function per spell</strong>
+    <div class="sub">Maximum power but ships arbitrary code — security headache for shared mods.</div>
+  </label>
+  <label class="option" data-q="effects" data-v="flags">
+    <input type="radio" name="effects" value="flags">
+    <strong>Keep adding hand-coded fields</strong>
+    <div class="sub">What the engine does now. Every new mechanic = new engine code. Doesn't scale to 50.</div>
+  </label>
+  <textarea data-note="effects" placeholder="Notes…"></textarea>
+</div>
+
+<!-- Q4 Portrait mixer -->
+<div class="card quiz">
+  <h3>Q4 — Portrait mix-and-match</h3>
+  <p class="muted">You specified: choose <strong>any</strong> class's portrait as base, any class's face as overlay. Custom portraits are future-only, never defaults. Try it below (click to choose):</p>
+  <div class="row">
+    <div>
+      <strong>Body / Base:</strong>
+      <div class="portrait-mixer" id="bodyPicker"></div>
+    </div>
+    <div>
+      <strong>Face overlay:</strong>
+      <div class="portrait-mixer" id="facePicker"></div>
+    </div>
+  </div>
+  <div class="mix-result">
+    <div class="halves" id="mixPreview">
+      <img class="body" id="mixBody" src="../images/portraits/warrior.png" alt="body">
+      <img class="face" id="mixFace" src="../images/portraits/mage.png" alt="face">
+    </div>
+    <div>
+      <div><strong>Your pick:</strong> <span id="mixLabel">warrior body + mage face</span></div>
+      <div class="muted" style="margin-top:6px">In the schema: <code>{ "portrait": { "base": "<span id='mixBaseV'>warrior</span>", "face": "<span id='mixFaceV'>mage</span>" } }</code></div>
+    </div>
+  </div>
+  <label class="option rec" style="margin-top:14px" data-q="portrait" data-v="base_face">
+    <span class="rec-badge">⭐ RECOMMENDED</span>
+    <input type="radio" name="portrait" value="base_face" checked>
+    <strong>Base + face composite (shipped above)</strong>
+    <div class="sub">Two fields, any class for each, trivial to extend with "extras" later.</div>
+  </label>
+  <label class="option" data-q="portrait" data-v="single_override">
+    <input type="radio" name="portrait" value="single_override">
+    <strong>Single override only</strong>
+    <div class="sub">Simpler but gives up the remix joy.</div>
+  </label>
+  <textarea data-note="portrait" placeholder="Notes…"></textarea>
+</div>
+
+<!-- Q5 Events -->
+<div class="card quiz">
+  <h3>Q5 — Cross-event memory</h3>
+  <p class="muted">Your ask: rescue person A → later A finds you and gifts you. Pick how the system tracks it:</p>
+  <label class="option rec" data-q="events" data-v="flag_ledger">
+    <span class="rec-badge">⭐ RECOMMENDED</span>
+    <input type="radio" name="events" value="flag_ledger" checked>
+    <strong>Flag ledger (<code>GameState.flags</code>)</strong>
+    <div class="sub">Flat map of flag→value. Events declare <code>requires</code>, <code>setFlags</code>, <code>consumesFlag</code>, <code>incrementFlag</code>. Three primitives express every chain.</div>
+  </label>
+  <label class="option" data-q="events" data-v="quest_state">
+    <input type="radio" name="events" value="quest_state">
+    <strong>Full quest-state machine</strong>
+    <div class="sub">More power — named quests with stages. More scaffolding to build first.</div>
+  </label>
+  <textarea data-note="events" placeholder="Notes…"></textarea>
+
+  <h4 style="margin-top:18px">Example chains to ship first:</h4>
+  <div class="event-chain"><span class="step">Rescue Bessa</span><span class="arrow">→</span><span class="step">She hunts you down</span><span class="arrow">→</span><span class="step">Gives rare ring</span><span class="arrow">→</span><span class="step">Later: rescue her AGAIN</span></div>
+  <div class="event-chain"><span class="step">Spare bandit Grenn</span><span class="arrow">→</span><span class="step">Warns of ambush</span><span class="arrow">→</span><span class="step">Joins party at L10</span></div>
+  <div class="event-chain"><span class="step">Cursed Coin (pickup)</span><span class="arrow">→</span><span class="step">Whispers offer rewards for corruption</span><span class="arrow">→</span><span class="step">Boss spawns at corruption ≥ 5</span></div>
+  <div class="event-chain"><span class="step">Spare dragon whelp</span><span class="arrow">→</span><span class="step">Circles in act 3</span><span class="arrow">→</span><span class="step">Allied in act 5 boss</span></div>
+  <div class="event-chain"><span class="step">Rival adventurer</span><span class="arrow">→</span><span class="step">3-way branch: ally / neutral / boss</span></div>
+</div>
+
+<!-- Q6 Custom content manager -->
+<div class="card quiz">
+  <h3>Q6 — Custom Content Manager page</h3>
+  <label class="option rec" data-q="manager" data-v="page">
+    <span class="rec-badge">⭐ RECOMMENDED</span>
+    <input type="radio" name="manager" value="page" checked>
+    <strong>Dedicated <code>/assets/custom-content.html</code> page (unlisted)</strong>
+    <div class="sub">Tabs: Characters | Spells | Items | Events | Portraits. Per-row ✅/⚠️/❌ status, inline errors, Import/Export JSON, "Copy prompt for Claude" button. Stores in <code>localStorage.game13_mods_v1</code>.</div>
+  </label>
+  <label class="option" data-q="manager" data-v="inline">
+    <input type="radio" name="manager" value="inline">
+    <strong>Inline in Settings</strong>
+    <div class="sub">Tighter but cramped when mod counts grow.</div>
+  </label>
+  <textarea data-note="manager" placeholder="Notes…"></textarea>
+</div>
+
+<!-- Q7 Spells to ship -->
+<div class="card quiz">
+  <h3>Q7 — Which of the 50 new spells should we ship first?</h3>
+  <p class="muted">All are mechanically distinct from existing ones. Tick any that interest you — your picks populate the prompt.</p>
+  <div class="spell-grid" id="spellGrid"></div>
+</div>
+
+<!-- Q8 Free text -->
+<div class="card quiz">
+  <h3>Q8 — Anything else?</h3>
+  <textarea data-note="freeform" placeholder="Free-form notes, constraints, vibes. All of this gets folded into the Claude prompt." style="min-height:100px"></textarea>
+</div>
+
+<!-- ============ ACT III — BONUS IDEAS ============ -->
+<h2>Act III — Opportunities</h2>
+<div class="card">
+  <h3>Adaptable spell/effect ideas the current engine can already support</h3>
+  <p class="muted">Every one of these is a net-new mechanic — not a re-skin.</p>
+  <details open><summary>Show all 50</summary>
+    <ol id="ideaList" style="columns:2;column-gap:30px;font-size:14px"></ol>
+  </details>
+</div>
+
+<div class="card">
+  <h3>Other suggestions</h3>
+  <ul>
+    <li><strong>Unify the status model.</strong> Move <code>dmgBuff</code>, <code>critBonus</code>, etc. into <code>statuses[]</code> so there's one tick site, one serialization path.</li>
+    <li><strong>Per-skill cooldown map.</strong> <code>actor.cooldowns[skillId]</code> replaces the single <code>skillCooldown</code> slot — unlocks mod-authored characters with 4+ active skills.</li>
+    <li><strong>Schema files live under <code>/schemas/v1/</code></strong> and are loaded by the Custom Content page via <code>$schema</code> URLs — mods become portable across versions.</li>
+    <li><strong>Seeded RNG for combat</strong> — the simulator already supports it; expose the seed so mod authors can share reproducible "tricky encounter" bug reports.</li>
+    <li><strong>Telemetry of shim hits</strong> — every time the legacy-name loader fires, count it; dashboard shows which mods need cleanup.</li>
+    <li><strong>Diff-view for balance</strong> — when a mod character/spell is loaded, Combat Simulator shows side-by-side DPS vs. nearest vanilla equivalent so you can flag outliers.</li>
+  </ul>
+</div>
+
+<!-- ============ ACT IV — THE PROMPT ============ -->
+<h2>Act IV — Your Claude Prompt</h2>
+<div class="card">
+  <p class="muted">Based on your quiz answers, this is what to paste into Claude (Opus) to generate mod content against the schema we just defined.</p>
+  <div class="prompt-output" id="promptOut">…answer the quiz above…</div>
+  <div style="margin-top:14px;text-align:center">
+    <button class="btn" onclick="copyPrompt()">Copy prompt</button>
+    <button class="btn sec" onclick="window.print()">Print</button>
+  </div>
+</div>
+
+<div class="sticky"><span class="muted">Quiz complete. Scroll up to tweak answers — the prompt updates live.</span></div>
+
+</div>
+
+<script>
+// --- spell ideas (mirror of docs/mod-system/spells-and-skills.md) ---
+const IDEAS = [
+  "Active reflect (next hit on ally returns 200%)",
+  "Damage-on-dodge trigger",
+  "Lifesteal reversal (target heals YOU when it hits)",
+  "Cooldown reset on kill",
+  "Conditional crit (vs marked/bleeding/stunned)",
+  "Resource swap (HP↔MP)",
+  "Delayed payload (detonate in N rounds)",
+  "Chain-link buffs (stack rewards stacking)",
+  "Turn-order hijack",
+  "Dispel + steal buff",
+  "Persistent AoE aura",
+  "Soulbind (split ally damage)",
+  "Echo (next skill repeats at 50%)",
+  "Pact (cost max HP for burst)",
+  "Momentum (scale with unique hits)",
+  "Ward-break (ignore barriers, bonus if broken)",
+  "Displace (swap positions w/ ally)",
+  "Counter-stance (150% back to attackers)",
+  "Targeted silence",
+  "Bleed detonate",
+  "Mark-and-chain",
+  "Soul tether (mutual revive)",
+  "Inverse heal (dmg taken heals ally)",
+  "Second wind (auto-revive at 1 HP)",
+  "Channel ramp (+25%/round idle)",
+  "Conditional multi (+1 target per status)",
+  "Armor-shred stacking",
+  "MR-shred stacking",
+  "Healing-flip (anti-heal)",
+  "Sacrifice companion",
+  "Bounty (killing gives party bonus)",
+  "Scaling taunt (less dmg per threat)",
+  "Burst-at-threshold (stored spell)",
+  "Stolen turn (enemy hits own side)",
+  "Ritual (multi-round, interruptible)",
+  "Overload (scales off current MP)",
+  "Parity (equalize HP%)",
+  "Dash-strike (hit back row)",
+  "Empowered on-crit (stacking buff)",
+  "Resource drain (MP → stun)",
+  "Phase (untargetable, can't act)",
+  "Inherited status (copy from ally)",
+  "Delay heal (50% now, 50% over time)",
+  "Guard link (redirect 1-round)",
+  "Overheal → barrier",
+  "Counter-magic screen",
+  "Punish buff (HP% per enemy buff gained)",
+  "Prophecy / precommit",
+  "Momentum-burn (consume buffs for burst)",
+  "Scrying attack (see + double next hit)"
+];
+
+// Hero classes with portraits (from assets.json)
+const HERO_CLASSES = ['warrior','fighter','ranger','rogue','mage','paladin','cleric','bard','necromancer','warlock','demon_hunter','druid','oracle','pyromancer','stormcaller','swashbuckler','scavenger','dragon_knight'];
+const HERO_PORTRAIT = id => `../images/portraits/${id}.png`;
+
+// Hero top-strip
+const heroStrip = document.getElementById('heroPortraits');
+['warrior','mage','necromancer','druid','dragon_knight','warlock','oracle','pyromancer'].forEach(c=>{
+  const i=document.createElement('img'); i.src=HERO_PORTRAIT(c); i.alt=c; i.title=c; heroStrip.appendChild(i);
+});
+
+// Portrait mixer
+let mixBase='warrior', mixFace='mage';
+function buildPicker(id, which){
+  const el=document.getElementById(id);
+  el.innerHTML='';
+  HERO_CLASSES.forEach(c=>{
+    const d=document.createElement('div'); d.className='p'+( (which==='body'&&c===mixBase) || (which==='face'&&c===mixFace) ? ' sel':'');
+    d.innerHTML=`<img src="${HERO_PORTRAIT(c)}" alt="${c}" onerror="this.style.opacity=.3"><div class="lbl">${c}</div>`;
+    d.onclick=()=>{
+      if(which==='body') mixBase=c; else mixFace=c;
+      document.getElementById('mixBody').src=HERO_PORTRAIT(mixBase);
+      document.getElementById('mixFace').src=HERO_PORTRAIT(mixFace);
+      document.getElementById('mixLabel').textContent=`${mixBase} body + ${mixFace} face`;
+      document.getElementById('mixBaseV').textContent=mixBase;
+      document.getElementById('mixFaceV').textContent=mixFace;
+      buildPicker('bodyPicker','body'); buildPicker('facePicker','face');
+      updatePrompt();
+    };
+    el.appendChild(d);
+  });
+}
+document.getElementById('bodyPicker').innerHTML='';
+document.getElementById('facePicker').innerHTML='';
+buildPicker('bodyPicker','body');
+buildPicker('facePicker','face');
+
+// Spell grid
+const sg=document.getElementById('spellGrid');
+IDEAS.forEach((name,i)=>{
+  const d=document.createElement('label'); d.className='spell';
+  d.innerHTML=`<span class="n">${i+1}. ${name.split(' (')[0]}</span><span class="muted">${name.includes('(')?'('+name.split('(')[1]:'&nbsp;'}</span><input type="checkbox" data-spell="${i}">`;
+  sg.appendChild(d);
+});
+
+// Idea list (Act III)
+const il=document.getElementById('ideaList');
+IDEAS.forEach((n,i)=>{ const li=document.createElement('li'); li.textContent=n; il.appendChild(li); });
+
+// --- Quiz state → prompt ---
+function gather(){
+  const q={};
+  document.querySelectorAll('input[type=radio]:checked').forEach(r=>q[r.name]=r.value);
+  const notes={};
+  document.querySelectorAll('textarea[data-note]').forEach(t=>{ if(t.value.trim()) notes[t.dataset.note]=t.value.trim(); });
+  const spells=[...document.querySelectorAll('input[data-spell]:checked')].map(c=>IDEAS[+c.dataset.spell]);
+  return {q,notes,spells,portrait:{base:mixBase,face:mixFace}};
+}
+
+function updatePrompt(){
+  const {q,notes,spells,portrait}=gather();
+  const spellBlock = spells.length ? spells.map((s,i)=>`  ${i+1}. ${s}`).join('\n') : '  (none selected — pick in Q7)';
+  const noteBlock = Object.keys(notes).length ? Object.entries(notes).map(([k,v])=>`- ${k}: ${v}`).join('\n') : '- (none)';
+  const statNaming = ({full_lowercase:'full lowercase (strength, dexterity, intelligence, constitution)',short_lower:'short lowercase (str, dex, int, con)',short_upper:'short uppercase (STR, DEX, INT, CON)'})[q.stat_naming]||'full lowercase';
+  const validation = ({schema_warn:'JSON-Schema + warn-mode normalization',schema_hard:'JSON-Schema hard-fail',none:'no validation'})[q.validation]||'JSON-Schema + warn-mode';
+  const effects = ({dsl:'tiny effect DSL (~14 ops: damage, heal, applyStatus, buff, setFlag, requireFlag, onHit/onCrit/onKill/onEvent, echo, consumeStatus, resourceSwap, ritual, modifyTurnOrder)',script:'sandboxed JS per spell',flags:'hand-coded fields (status quo)'})[q.effects]||'effect DSL';
+  const events = ({flag_ledger:'GameState.flags ledger + requires/setFlags/consumesFlag/incrementFlag',quest_state:'full quest-state machine'})[q.events]||'flag ledger';
+  const manager = ({page:'dedicated /assets/custom-content.html (unlisted) with tabs + JSON import/export + validation UI',inline:'inline settings panel'})[q.manager]||'dedicated page';
+
+  const prompt = `SYSTEM
+You are generating mod content for Emberveil (game13), a JS/Vite portrait-only RPG.
+Conform strictly to the v1 schemas under /schemas/v1/ (character.json, skill.json, item.json, event.json, class.json).
+Canonical stat naming: ${statNaming}. Normalize all inputs to this form.
+Validation mode: ${validation}.
+Spell effects expressed as: ${effects}.
+Event chaining via: ${events}.
+Custom-content surface: ${manager}.
+
+TASK
+Generate the following:
+
+1) One new character, schema character.v1:
+   - portrait.base = "${portrait.base}"
+   - portrait.face = "${portrait.face}"
+   - Class must be one of the 19 existing classes OR a new class definition also output in this batch.
+   - Starting equipment from existing item keys OR new item definitions output in this batch.
+
+2) ${spells.length||'~10'} new skills/spells, schema skill.v1, using the effect DSL.
+   Required mechanics (each must be functionally distinct from every existing spell in src/game/skills.js):
+${spellBlock}
+   Do NOT produce fire/frost/lightning re-skins of the same mechanic.
+
+3) One event chain of 3–5 linked events, schema event.v1, using the flag ledger.
+   At least one chain must model: "rescue NPC A → later A finds you and rewards you → one more branching follow-up".
+
+4) (Optional) any items/classes the character requires that do not already exist.
+
+USER NOTES
+${noteBlock}
+
+OUTPUT FORMAT
+- One JSON file per entity, concatenated with === FILE: path/name.json === separators.
+- After all files, emit a VALIDATION block listing each file's $schema URL and one sentence confirming every required field is present.
+- No prose outside the files and validation block.`;
+
+  document.getElementById('promptOut').textContent=prompt;
+
+  // progress bar
+  const total=7; let filled=0;
+  ['stat_naming','validation','effects','portrait','events','manager'].forEach(n=>{if(q[n])filled++});
+  if(spells.length||Object.keys(notes).length) filled++;
+  document.getElementById('progress').style.width=Math.round(filled/total*100)+'%';
+}
+
+function copyPrompt(){
+  const t=document.getElementById('promptOut').textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    const b=event.target; const old=b.textContent; b.textContent='✓ Copied'; setTimeout(()=>b.textContent=old,1500);
+  });
+}
+
+document.querySelectorAll('input,textarea').forEach(e=>e.addEventListener('input',updatePrompt));
+updatePrompt();
+</script>
+</body>
+</html>

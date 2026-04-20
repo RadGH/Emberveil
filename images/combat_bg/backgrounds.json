@@ -3,62 +3,62 @@
     "border_roads": {
       "act": 1,
       "name": "The Border Roads",
-      "backgrounds": ["border_roads_1.png", "border_roads_2.png"]
+      "backgrounds": ["border_roads_hd.png"]
     },
     "thornwood": {
       "act": 1,
       "name": "Thornwood Forest",
-      "backgrounds": ["thornwood_1.png", "thornwood_2.png", "thornwood_3.png"]
+      "backgrounds": ["thornwood_forest_hd.png"]
     },
     "dust_roads": {
       "act": 2,
       "name": "The Dust Roads",
-      "backgrounds": ["dust_roads_1.png", "dust_roads_2.png"]
+      "backgrounds": ["desert_plateau_hd.png"]
     },
     "ember_plateau": {
       "act": 2,
       "name": "The Ember Plateau",
-      "backgrounds": ["ember_plateau_1.png", "ember_plateau_2.png", "ember_plateau_3.png"]
+      "backgrounds": ["volcanic_waste_hd.png"]
     },
     "hell_breach": {
       "act": 3,
       "name": "The Hell Breach",
-      "backgrounds": ["hell_breach_1.png", "hell_breach_2.png"]
+      "backgrounds": ["hell_breach_hd.png"]
     },
     "shattered_core": {
       "act": 3,
       "name": "The Shattered Core",
-      "backgrounds": ["shattered_core_1.png", "shattered_core_2.png"]
+      "backgrounds": ["shattered_core_hd.png"]
     },
     "cosmic_rift": {
       "act": 4,
       "name": "The Cosmic Rift",
-      "backgrounds": ["cosmic_rift_1.png", "cosmic_rift_2.png"]
+      "backgrounds": ["cosmic_rift_hd.png"]
     },
     "eternal_void": {
       "act": 4,
       "name": "The Eternal Void",
-      "backgrounds": ["eternal_void_1.png", "eternal_void_2.png"]
+      "backgrounds": ["eternal_void_hd.png"]
     },
     "abyssal_depths": {
       "act": 5,
       "name": "The Abyssal Depths",
-      "backgrounds": ["abyssal_depths_1.png", "abyssal_depths_2.png"]
+      "backgrounds": ["abyssal_depths_hd.png"]
     },
     "primordial_nexus": {
       "act": 5,
       "name": "The Primordial Nexus",
-      "backgrounds": ["primordial_nexus_1.png", "primordial_nexus_2.png"]
+      "backgrounds": ["primordial_nexus_hd.png"]
     },
     "dragons_reach": {
       "act": 6,
       "name": "The Dragon's Reach",
-      "backgrounds": ["dragons_reach_1.png", "dragons_reach_2.png"]
+      "backgrounds": ["dragons_reach_hd.png"]
     },
     "dragon_throne": {
       "act": 6,
       "name": "The Dragon Throne",
-      "backgrounds": ["dragon_throne_1.png", "dragon_throne_2.png"]
+      "backgrounds": ["dragon_throne_hd.png"]
     }
   }
 }

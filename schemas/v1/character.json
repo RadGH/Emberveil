@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://emberveil.rsg/schemas/v1/character.json",
+  "title": "Emberveil Character (v1)",
+  "description": "A pre-built hero, companion, or NPC. Defines starting class, appearance, stats, and optionally a skill override list.",
+  "type": "object",
+  "required": ["id", "name", "classId"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,47}$" },
+    "name": { "type": "string" },
+    "classId": { "type": "string" },
+    "appearanceId": { "type": "string" },
+    "role": { "enum": ["hero", "companion", "npc"], "default": "hero" },
+    "level": { "type": "integer", "minimum": 1, "default": 1 },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "str": { "type": "integer" },
+        "dex": { "type": "integer" },
+        "int": { "type": "integer" },
+        "con": { "type": "integer" }
+      }
+    },
+    "skillIds": { "type": "array", "items": { "type": "string" } },
+    "startingItems": { "type": "array", "items": { "type": "string" } },
+    "hireCost": { "type": "integer" },
+    "description": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  }
+}

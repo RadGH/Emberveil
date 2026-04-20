@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Item Catalog — Emberveil</title>
+<style>
+  body { padding: 1rem 1rem 4rem; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  h1 {
+    font-family: 'Cinzel',Georgia,serif;
+    color: var(--gold); font-size: 1.4rem; margin: 0 0 0.25rem;
+    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+    background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+  .tabs {
+    display: flex; gap: 0.3rem; margin: 0.25rem 0 0.5rem;
+    border-bottom: 1px solid var(--border-subtle, #2a1f30);
+  }
+  .tabs button {
+    background: transparent; color: var(--muted);
+    border: 1px solid transparent; border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    padding: 0.4rem 0.9rem; cursor: pointer;
+    font-family: 'Cinzel',Georgia,serif; font-size: 0.78rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .tabs button:hover { color: var(--ink, #f0e8d0); }
+  .tabs button.active {
+    background: var(--card, #1a1218);
+    border-color: var(--border-subtle, #2a1f30);
+    color: var(--gold);
+  }
+
+  .filters {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+    background: var(--card, #1a1218);
+    border: 1px solid var(--border-subtle, #2a1f30);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    margin: 0.25rem 0 1rem;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .filters input[type=text], .filters select {
+    background: #0b0810; color: var(--ink, #f0e8d0);
+    border: 1px solid var(--border-subtle, #2a1f30); border-radius: 4px;
+    padding: 0.35rem 0.5rem; font: inherit; font-size: 0.8rem;
+  }
+  .filters input[type=text] { min-width: 220px; flex: 1 1 240px; }
+  .filters label {
+    color: var(--muted, #9a8a70); font-size: 0.75rem;
+    display: inline-flex; align-items: center; gap: 0.35rem;
+  }
+  .filters .count { margin-left: auto; color: var(--muted); font-size: 0.75rem; }
+  .filters .count b { color: var(--gold); }
+  .filters button {
+    background: var(--gold); color: #0b0810; border: 1px solid var(--gold);
+    border-radius: 4px; padding: 0.4rem 0.7rem; cursor: pointer;
+    font-family: inherit; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .filters button.secondary {
+    background: transparent; color: var(--ink, #f0e8d0);
+    border-color: var(--border-subtle, #2a1f30);
+  }
+  .filters.hidden-control { display: none !important; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.6rem;
+  }
+  .card {
+    background: var(--card, #1a1218);
+    border: 1px solid var(--border-subtle, #2a1f30);
+    border-radius: 6px;
+    padding: 0.6rem 0.75rem;
+    cursor: pointer;
+    transition: border-color 0.12s, transform 0.08s;
+    display: flex; flex-direction: column; gap: 0.35rem;
+  }
+  .card:hover { border-color: var(--gold-dim, #a67818); }
+  .card.active { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+  .card .hdr { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+  .card .sk-name {
+    font-family: 'Cinzel',Georgia,serif; font-weight: 700;
+    color: var(--ink, #f0e8d0); font-size: 0.9rem;
+    letter-spacing: 0.03em; flex: 1 1 auto;
+  }
+  .card .sk-id {
+    font-family: ui-monospace,monospace; color: var(--muted);
+    font-size: 0.65rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.1rem 0.4rem; border-radius: 3px;
+    font-size: 0.62rem; letter-spacing: 0.06em;
+    text-transform: uppercase; font-weight: 600;
+    border: 1px solid var(--border-subtle, #2a1f30);
+    color: var(--ink, #f0e8d0);
+    background: rgba(255,255,255,0.03);
+  }
+  .badge.cat-heavy { background: rgba(224,140,64,0.10); color: #e8a870; border-color: #704020; }
+  .badge.cat-light { background: rgba(120,180,120,0.10); color: #a0d0a0; border-color: #305030; }
+  .badge.cat-magic { background: rgba(192,96,224,0.15); color: #c890e0; border-color: #502070; }
+
+  .badge.tier-cloth  { background: rgba(255,255,255,0.04); color: #d0c8b0; border-color: #40382a; }
+  .badge.tier-light  { background: rgba(120,180,120,0.10); color: #a0d0a0; border-color: #305030; }
+  .badge.tier-medium { background: rgba(96,160,224,0.10); color: #9cc4ea; border-color: #2a4a70; }
+  .badge.tier-heavy  { background: rgba(220,200,100,0.10); color: #d8c670; border-color: #605020; }
+  .badge.tier-any    { background: rgba(255,255,255,0.03); color: var(--muted); }
+
+  .badge.kind-prefix { background: rgba(96,160,224,0.12); color: #9cc4ea; border-color: #2a4a70; }
+  .badge.kind-suffix { background: rgba(220,200,100,0.12); color: #d8c670; border-color: #605020; }
+  .badge.kind-shield { background: rgba(192,96,224,0.15); color: #c890e0; border-color: #502070; }
+
+  .badge.flag-2h     { background: rgba(224,80,80,0.10); color: #ff8080; border-color: #702020; }
+  .badge.flag-dragon { background: rgba(224,140,64,0.15); color: #f0a860; border-color: #805028; }
+  .badge.flag-shield { background: rgba(96,160,224,0.10); color: #9cc4ea; border-color: #2a4a70; }
+  .badge.flag-descr  { background: rgba(255,255,255,0.04); color: var(--ink); border-color: #403830; }
+
+  .card .stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.1rem 0.6rem;
+    font-family: ui-monospace,monospace; font-size: 0.7rem;
+    color: var(--muted);
+  }
+  .card .stats b { color: var(--ink); font-weight: 500; }
+  .card .special-line {
+    font-size: 0.7rem; color: var(--muted);
+    font-family: ui-monospace,monospace;
+  }
+  .card .special-line b { color: #d8c670; font-weight: 500; }
+
+  /* Detail panel */
+  dialog.detail {
+    background: #0b0810; color: var(--ink, #f0e8d0);
+    border: 2px solid var(--gold); border-radius: 8px;
+    padding: 1rem; max-width: 880px; width: 92vw; max-height: 88vh;
+    overflow: auto;
+  }
+  dialog.detail::backdrop { background: rgba(0,0,0,0.75); }
+  dialog.detail h2 {
+    font-family: 'Cinzel',Georgia,serif; color: var(--gold);
+    font-size: 1.1rem; margin: 0 0 0.4rem;
+    letter-spacing: 0.05em;
+  }
+  dialog.detail .close-x {
+    position: sticky; top: 0; float: right;
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--border-subtle, #2a1f30);
+    border-radius: 3px; padding: 0.2rem 0.5rem;
+    cursor: pointer; font: inherit; font-size: 0.8rem;
+  }
+  dialog.detail pre {
+    background: #050308; color: var(--ink);
+    border: 1px solid var(--border-subtle, #2a1f30); border-radius: 4px;
+    padding: 0.6rem 0.75rem; margin: 0.4rem 0;
+    font-family: ui-monospace,monospace; font-size: 0.72rem;
+    overflow: auto; max-height: 420px;
+    white-space: pre; tab-size: 2;
+  }
+  dialog.detail section { margin: 0.7rem 0; }
+  dialog.detail section h3 {
+    font-family: 'Cinzel',Georgia,serif; color: var(--gold);
+    font-size: 0.82rem; letter-spacing: 0.05em; text-transform: uppercase;
+    border-bottom: 1px solid var(--border-subtle, #2a1f30);
+    padding-bottom: 0.2rem; margin: 0 0 0.4rem;
+  }
+  dialog.detail .piece-item, dialog.detail .bonus-item {
+    background: var(--card, #1a1218); border: 1px solid var(--border-subtle);
+    border-radius: 4px; padding: 0.3rem 0.5rem; margin: 0.2rem 0;
+    font-size: 0.76rem; font-family: ui-monospace,monospace;
+  }
+  dialog.detail .bonus-item b { color: var(--gold); }
+  dialog.detail .stat-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 0.2rem 1rem; font-family: ui-monospace,monospace; font-size: 0.78rem;
+  }
+  dialog.detail .stat-grid .k { color: var(--muted); }
+  dialog.detail .stat-grid .v { color: var(--ink); }
+
+  .empty {
+    text-align: center; padding: 2rem 1rem;
+    color: var(--muted); font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Item Catalog</h1>
+  <p class="sub">
+    Read-only inspector for every weapon, armor piece, affix, and item set defined in
+    <code>src/game/items.js</code> (<code>WEAPON_BASES</code>, <code>ARMOR_BASES</code>,
+    <code>AFFIXES_ACT1</code>, <code>SHIELD_AFFIXES</code>, <code>ITEM_SETS</code>).
+    Switch tabs to browse a kind. Click any card for full detail and raw JSON.
+  </p>
+
+  <div class="tabs" id="tabs">
+    <button data-tab="weapons" class="active">Weapons</button>
+    <button data-tab="armor">Armor</button>
+    <button data-tab="affixes">Affixes</button>
+    <button data-tab="sets">Sets</button>
+  </div>
+
+  <!-- Weapons filters -->
+  <div class="filters" id="f-weapons">
+    <input id="fw-search" type="text" placeholder="Search name or id...">
+    <label>Category
+      <select id="fw-cat">
+        <option value="">All</option>
+        <option value="heavy">Heavy</option>
+        <option value="light">Light</option>
+        <option value="magic">Magic</option>
+      </select>
+    </label>
+    <label>Subtype
+      <select id="fw-sub"><option value="">All</option></select>
+    </label>
+    <label>2H
+      <select id="fw-2h">
+        <option value="">Any</option>
+        <option value="yes">2-Handed only</option>
+        <option value="no">1-Handed only</option>
+      </select>
+    </label>
+    <button class="export-btn" data-kind="weapons">Export as mod pack</button>
+    <button class="clear-btn" data-kind="weapons">Clear</button>
+    <span class="count">Showing <b id="cw-shown">0</b> / <b id="cw-total">0</b></span>
+  </div>
+
+  <!-- Armor filters -->
+  <div class="filters hidden-control" id="f-armor">
+    <input id="fa-search" type="text" placeholder="Search name or id...">
+    <label>Slot
+      <select id="fa-slot">
+        <option value="">All</option>
+        <option value="head">Head</option>
+        <option value="chest">Chest</option>
+        <option value="legs">Legs</option>
+        <option value="hands">Hands</option>
+        <option value="feet">Feet</option>
+        <option value="offhand">Off-hand</option>
+        <option value="ring">Ring</option>
+        <option value="necklace">Necklace</option>
+      </select>
+    </label>
+    <label>Tier
+      <select id="fa-tier">
+        <option value="">All</option>
+        <option value="cloth">Cloth</option>
+        <option value="light">Light</option>
+        <option value="medium">Medium</option>
+        <option value="heavy">Heavy</option>
+        <option value="any">Any</option>
+      </select>
+    </label>
+    <label>Sort
+      <select id="fa-sort">
+        <option value="name">Name</option>
+        <option value="armor-asc">Armor asc</option>
+        <option value="armor-desc">Armor desc</option>
+      </select>
+    </label>
+    <button class="export-btn" data-kind="armor">Export as mod pack</button>
+    <button class="clear-btn" data-kind="armor">Clear</button>
+    <span class="count">Showing <b id="ca-shown">0</b> / <b id="ca-total">0</b></span>
+  </div>
+
+  <!-- Affix filters -->
+  <div class="filters hidden-control" id="f-affixes">
+    <input id="fx-search" type="text" placeholder="Search name or id...">
+    <label>Kind
+      <select id="fx-kind">
+        <option value="">All</option>
+        <option value="prefix">Prefix</option>
+        <option value="suffix">Suffix</option>
+        <option value="shield">Shield</option>
+      </select>
+    </label>
+    <label>Stat
+      <select id="fx-stat"><option value="">All</option></select>
+    </label>
+    <button class="export-btn" data-kind="affixes">Export as mod pack</button>
+    <button class="clear-btn" data-kind="affixes">Clear</button>
+    <span class="count">Showing <b id="cx-shown">0</b> / <b id="cx-total">0</b></span>
+  </div>
+
+  <!-- Set filters -->
+  <div class="filters hidden-control" id="f-sets">
+    <input id="fs-search" type="text" placeholder="Search name or id...">
+    <label>Pieces
+      <select id="fs-pieces">
+        <option value="">Any</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5+</option>
+      </select>
+    </label>
+    <button class="export-btn" data-kind="sets">Export as mod pack</button>
+    <button class="clear-btn" data-kind="sets">Clear</button>
+    <span class="count">Showing <b id="cs-shown">0</b> / <b id="cs-total">0</b></span>
+  </div>
+
+  <div id="grid" class="grid"></div>
+  <div id="empty" class="empty" style="display:none">Nothing matches the current filters.</div>
+</div>
+
+<dialog class="detail" id="detail">
+  <button class="close-x" id="btn-close-detail">Close</button>
+  <h2 id="d-title"></h2>
+  <div id="d-badges" style="margin:0.2rem 0 0.5rem;display:flex;gap:0.3rem;flex-wrap:wrap"></div>
+
+  <section id="d-stats-sec">
+    <h3>Stats</h3>
+    <div id="d-stats" class="stat-grid"></div>
+  </section>
+
+  <section id="d-extra-sec" style="display:none">
+    <h3 id="d-extra-title">Detail</h3>
+    <div id="d-extra"></div>
+  </section>
+
+  <section>
+    <h3>Raw JSON</h3>
+    <pre id="d-json"></pre>
+  </section>
+</dialog>
+
+<script id="items-data" type="application/json">{"weapons":{"dagger":{"name":"Dagger","type":"weapon","subtype":"dagger","weaponCategory":"light","dmg":[3,7],"speed":1.2,"twoHanded":false,"statScaling":"dex","armorPen":0.1},"sword":{"name":"Sword","type":"weapon","subtype":"sword","weaponCategory":"heavy","dmg":[6,14],"speed":1,"twoHanded":false,"statScaling":"str_dex"},"wand":{"name":"Wand","type":"weapon","subtype":"wand","weaponCategory":"magic","dmg":[4,10],"speed":1.1,"twoHanded":false,"statScaling":"int","offHandOk":true},"scepter":{"name":"Scepter","type":"weapon","subtype":"scepter","weaponCategory":"magic","dmg":[5,12],"speed":1,"twoHanded":false,"statScaling":"int","offHandOk":true},"staff":{"name":"Staff","type":"weapon","subtype":"staff","weaponCategory":"magic","dmg":[8,20],"speed":0.9,"twoHanded":true,"statScaling":"int","intMult":1.5},"hammer":{"name":"Hammer","type":"weapon","subtype":"hammer","weaponCategory":"heavy","dmg":[8,16],"speed":0.8,"twoHanded":false,"statScaling":"str","stunChance":0.1},"sword2h":{"name":"Greatsword","type":"weapon","subtype":"sword2h","weaponCategory":"heavy","dmg":[14,28],"speed":0.7,"twoHanded":true,"statScaling":"str","strMult":1.5},"axe2h":{"name":"Greataxe","type":"weapon","subtype":"axe2h","weaponCategory":"heavy","dmg":[16,30],"speed":0.65,"twoHanded":true,"statScaling":"str","bleedChance":0.15},"bow":{"name":"Bow","type":"weapon","subtype":"bow","weaponCategory":"light","dmg":[8,16],"speed":1,"twoHanded":true,"statScaling":"dex","dexMult":1.3,"ranged":true},"crossbow":{"name":"Crossbow","type":"weapon","subtype":"crossbow","weaponCategory":"light","dmg":[12,22],"speed":0.7,"twoHanded":true,"statScaling":"dex_str","ranged":true},"javelin":{"name":"Javelin","type":"weapon","subtype":"javelin","weaponCategory":"light","dmg":[9,18],"speed":0.9,"twoHanded":false,"statScaling":"str_dex","ranged":true,"throwable":true},"longsword":{"name":"Longsword","type":"weapon","subtype":"sword","weaponCategory":"heavy","dmg":[8,16],"speed":0.95,"twoHanded":false,"statScaling":"str_dex"},"rapier":{"name":"Rapier","type":"weapon","subtype":"sword","weaponCategory":"light","dmg":[5,11],"speed":1.25,"twoHanded":false,"statScaling":"dex","critBonus":0.08},"shortbow":{"name":"Shortbow","type":"weapon","subtype":"bow","weaponCategory":"light","dmg":[6,12],"speed":1.15,"twoHanded":true,"statScaling":"dex","ranged":true},"warhammer":{"name":"Warhammer","type":"weapon","subtype":"hammer","weaponCategory":"heavy","dmg":[10,18],"speed":0.75,"twoHanded":false,"statScaling":"str","stunChance":0.12},"battleaxe":{"name":"Battleaxe","type":"weapon","subtype":"axe","weaponCategory":"heavy","dmg":[9,17],"speed":0.85,"twoHanded":false,"statScaling":"str","bleedChance":0.1},"halberd":{"name":"Halberd","type":"weapon","subtype":"polearm","weaponCategory":"heavy","dmg":[13,24],"speed":0.7,"twoHanded":true,"statScaling":"str_dex"},"spear":{"name":"Spear","type":"weapon","subtype":"spear","weaponCategory":"light","dmg":[8,15],"speed":1,"twoHanded":false,"statScaling":"str_dex","reach":true},"quarterstaff":{"name":"Quarterstaff","type":"weapon","subtype":"staff","weaponCategory":"magic","dmg":[7,14],"speed":1.05,"twoHanded":true,"statScaling":"str_int"},"orb":{"name":"Orb","type":"weapon","subtype":"orb","weaponCategory":"magic","dmg":[3,8],"speed":1.1,"twoHanded":false,"statScaling":"int","offHandOk":true,"intMult":1.15},"tome":{"name":"Tome","type":"weapon","subtype":"tome","weaponCategory":"magic","dmg":[2,6],"speed":1,"twoHanded":false,"statScaling":"int","offHandOk":true,"mpBonus":10},"greatsword":{"name":"Greatsword","type":"weapon","subtype":"sword2h","weaponCategory":"heavy","dmg":[15,29],"speed":0.68,"twoHanded":true,"statScaling":"str","strMult":1.5},"dragonfang_dagger":{"name":"Dragonfang Dagger","type":"weapon","subtype":"dagger","weaponCategory":"light","dmg":[14,28],"speed":1.25,"twoHanded":false,"statScaling":"dex","armorPen":0.25,"bleedChance":0.15,"dragon":true},"dragonfang_sword":{"name":"Dragonfang Sword","type":"weapon","subtype":"sword","weaponCategory":"heavy","dmg":[22,38],"speed":1,"twoHanded":false,"statScaling":"str_dex","burnChance":0.15,"dragon":true},"dragonfang_greatsword":{"name":"Dragonfang Greatsword","type":"weapon","subtype":"sword2h","weaponCategory":"heavy","dmg":[38,62],"speed":0.7,"twoHanded":true,"statScaling":"str","strMult":1.6,"burnChance":0.2,"dragon":true},"wyrmscale_bow":{"name":"Wyrmscale Bow","type":"weapon","subtype":"bow","weaponCategory":"light","dmg":[26,46],"speed":1,"twoHanded":true,"statScaling":"dex","dexMult":1.35,"ranged":true,"dragon":true},"dragonbone_staff":{"name":"Dragonbone Staff","type":"weapon","subtype":"staff","weaponCategory":"magic","dmg":[24,50],"speed":0.9,"twoHanded":true,"statScaling":"int","intMult":1.6,"burnChance":0.2,"dragon":true},"drakehammer":{"name":"Drakehammer","type":"weapon","subtype":"hammer","weaponCategory":"heavy","dmg":[24,42],"speed":0.78,"twoHanded":false,"statScaling":"str","stunChance":0.18,"dragon":true},"dragontooth_wand":{"name":"Dragontooth Wand","type":"weapon","subtype":"wand","weaponCategory":"magic","dmg":[16,34],"speed":1.1,"twoHanded":false,"statScaling":"int","offHandOk":true,"burnChance":0.2,"dragon":true},"iron_mace":{"name":"Iron Mace","type":"weapon","subtype":"mace","weaponCategory":"heavy","dmg":[9,17],"speed":0.85,"twoHanded":false,"statScaling":"str","stunChance":0.08},"obsidian_scimitar":{"name":"Obsidian Scimitar","type":"weapon","subtype":"sword","weaponCategory":"light","dmg":[12,22],"speed":1.1,"twoHanded":false,"statScaling":"dex","critBonus":0.06},"ember_focus":{"name":"Ember Focus","type":"weapon","subtype":"wand","weaponCategory":"magic","dmg":[11,21],"speed":1.1,"twoHanded":false,"statScaling":"int","offHandOk":true,"burnChance":0.1},"voidsteel_greatsword":{"name":"Voidsteel Greatsword","type":"weapon","subtype":"sword2h","weaponCategory":"heavy","dmg":[28,46],"speed":0.7,"twoHanded":true,"statScaling":"str","strMult":1.55},"starfall_bow":{"name":"Starfall Bow","type":"weapon","subtype":"bow","weaponCategory":"light","dmg":[18,32],"speed":1,"twoHanded":true,"statScaling":"dex","dexMult":1.3,"ranged":true},"abyssal_rod":{"name":"Abyssal Rod","type":"weapon","subtype":"staff","weaponCategory":"magic","dmg":[20,40],"speed":0.95,"twoHanded":true,"statScaling":"int","intMult":1.55}},"armor":{"cloth_helm":{"name":"Hood","type":"armor","slot":"head","tier":"cloth","armor":1,"dodgeBonus":0},"light_helm":{"name":"Leather Cap","type":"armor","slot":"head","tier":"light","armor":3,"dodgeBonus":0},"medium_helm":{"name":"Chain Coif","type":"armor","slot":"head","tier":"medium","armor":5,"dodgeBonus":-1},"heavy_helm":{"name":"War Helm","type":"armor","slot":"head","tier":"heavy","armor":8,"dodgeBonus":-2},"cloth_chest":{"name":"Robes","type":"armor","slot":"chest","tier":"cloth","armor":2,"dodgeBonus":0},"light_chest":{"name":"Leather Armor","type":"armor","slot":"chest","tier":"light","armor":6,"dodgeBonus":0},"medium_chest":{"name":"Chain Shirt","type":"armor","slot":"chest","tier":"medium","armor":10,"dodgeBonus":-2},"heavy_chest":{"name":"Plate Armor","type":"armor","slot":"chest","tier":"heavy","armor":16,"dodgeBonus":-4},"cloth_legs":{"name":"Linen Leggings","type":"armor","slot":"legs","tier":"cloth","armor":1,"dodgeBonus":0},"light_legs":{"name":"Leather Legs","type":"armor","slot":"legs","tier":"light","armor":4,"dodgeBonus":0},"medium_legs":{"name":"Chain Legs","type":"armor","slot":"legs","tier":"medium","armor":7,"dodgeBonus":-1},"heavy_legs":{"name":"Plate Legs","type":"armor","slot":"legs","tier":"heavy","armor":11,"dodgeBonus":-3},"shield":{"name":"Shield","type":"armor","slot":"offhand","tier":"heavy","armor":5,"dodgeBonus":5,"blockChance":0.2,"blockPower":10,"isShield":true},"ring":{"name":"Ring","type":"accessory","slot":"ring","tier":"any","armor":0},"necklace":{"name":"Necklace","type":"accessory","slot":"necklace","tier":"any","armor":0},"plate_helm":{"name":"Plate Helm","type":"armor","slot":"head","tier":"heavy","armor":10,"dodgeBonus":-3},"light_gauntlets":{"name":"Leather Gauntlets","type":"armor","slot":"hands","tier":"light","armor":3,"dodgeBonus":0},"heavy_gauntlets":{"name":"Plate Gauntlets","type":"armor","slot":"hands","tier":"heavy","armor":6,"dodgeBonus":-1},"light_boots":{"name":"Leather Boots","type":"armor","slot":"feet","tier":"light","armor":3,"dodgeBonus":0},"heavy_boots":{"name":"Plate Boots","type":"armor","slot":"feet","tier":"heavy","armor":7,"dodgeBonus":-2},"silver_amulet":{"name":"Silver Amulet","type":"accessory","slot":"necklace","tier":"any","armor":0},"gold_signet":{"name":"Gold Signet","type":"accessory","slot":"ring","tier":"any","armor":0},"quiver":{"name":"Quiver","type":"armor","slot":"offhand","tier":"light","armor":1,"dodgeBonus":1},"dragonscale_cloth":{"name":"Dragonscale Robes","type":"armor","slot":"chest","tier":"cloth","armor":8,"dodgeBonus":0,"dragon":true},"wyrmscale_helm":{"name":"Wyrmscale Helm","type":"armor","slot":"head","tier":"heavy","armor":14,"dodgeBonus":-2,"dragon":true},"wyrmscale_chest":{"name":"Wyrmscale Plate","type":"armor","slot":"chest","tier":"heavy","armor":22,"dodgeBonus":-3,"dragon":true},"dragonsteel_chest":{"name":"Dragonsteel Plate","type":"armor","slot":"chest","tier":"heavy","armor":26,"dodgeBonus":-3,"dragon":true},"dragonhide_legs":{"name":"Dragonhide Legs","type":"armor","slot":"legs","tier":"medium","armor":12,"dodgeBonus":-1,"dragon":true},"dragonclaw_gauntlets":{"name":"Dragonclaw Gauntlets","type":"armor","slot":"hands","tier":"heavy","armor":10,"dodgeBonus":-1,"dragon":true},"dragonheart_ring":{"name":"Dragonheart Ring","type":"accessory","slot":"ring","tier":"any","armor":0,"dragon":true},"dragontooth_amulet":{"name":"Dragontooth Amulet","type":"accessory","slot":"necklace","tier":"any","armor":0,"dragon":true},"buckler":{"name":"Buckler","type":"armor","slot":"offhand","tier":"light","armor":3,"dodgeBonus":2,"blockChance":0.2,"blockPower":8,"isShield":true},"kite_shield":{"name":"Kite Shield","type":"armor","slot":"offhand","tier":"medium","armor":7,"dodgeBonus":3,"blockChance":0.3,"blockPower":18,"isShield":true},"tower_shield":{"name":"Tower Shield","type":"armor","slot":"offhand","tier":"heavy","armor":12,"dodgeBonus":4,"blockChance":0.4,"blockPower":32,"isShield":true},"aegis_shield":{"name":"Aegis Shield","type":"armor","slot":"offhand","tier":"heavy","armor":18,"dodgeBonus":6,"blockChance":0.5,"blockPower":55,"isShield":true},"scaled_chest":{"name":"Scaled Hauberk","type":"armor","slot":"chest","tier":"medium","armor":13,"dodgeBonus":-2},"runed_chest":{"name":"Runed Cuirass","type":"armor","slot":"chest","tier":"heavy","armor":20,"dodgeBonus":-4},"scaled_legs":{"name":"Scaled Greaves","type":"armor","slot":"legs","tier":"medium","armor":9,"dodgeBonus":-1},"runed_legs":{"name":"Runed Greaves","type":"armor","slot":"legs","tier":"heavy","armor":14,"dodgeBonus":-3},"medium_gauntlets":{"name":"Chain Gauntlets","type":"armor","slot":"hands","tier":"medium","armor":5,"dodgeBonus":-1},"runed_gauntlets":{"name":"Runed Gauntlets","type":"armor","slot":"hands","tier":"heavy","armor":8,"dodgeBonus":-1},"medium_boots":{"name":"Chain Boots","type":"armor","slot":"feet","tier":"medium","armor":5,"dodgeBonus":-1},"runed_boots":{"name":"Runed Sabatons","type":"armor","slot":"feet","tier":"heavy","armor":9,"dodgeBonus":-2}},"affixes":{"prefixes":[{"id":"of_str","name":"Sturdy","stat":"str","min":1,"max":4},{"id":"of_dex","name":"Swift","stat":"dex","min":1,"max":4},{"id":"of_int","name":"Wise","stat":"int","min":1,"max":4},{"id":"of_con","name":"Hardy","stat":"con","min":1,"max":4},{"id":"sharp","name":"Sharp","stat":"dmg","min":1,"max":3,"descriptor":"MELEE","physicalOnly":true},{"id":"sturdy","name":"Reinforced","stat":"armor","min":1,"max":3},{"id":"potency","name":"Potent","stat":"spellPower","min":1,"max":3,"descriptor":"SPELL","magicOnly":true},{"id":"lifeSteal","name":"Leeching","stat":"lifeSteal","min":3,"max":12},{"id":"manaSteal","name":"Siphoning","stat":"manaSteal","min":3,"max":12},{"id":"crit_chance","name":"Deadly","stat":"critChance","min":0.02,"max":0.1,"descriptor":"CRIT"},{"id":"crit_damage","name":"Savage","stat":"critDamage","min":0.1,"max":0.35,"descriptor":"CRIT DMG"}],"suffixes":[{"id":"of_hp","name":"of Vitality","stat":"hp","min":5,"max":20},{"id":"of_mp","name":"of Focus","stat":"mp","min":5,"max":15},{"id":"of_hit","name":"of Accuracy","stat":"hit","min":2,"max":8},{"id":"of_dodge","name":"of Evasion","stat":"dodge","min":2,"max":6},{"id":"of_speed","name":"of Haste","stat":"initiative","min":1,"max":3},{"id":"of_gold","name":"of Fortune","stat":"goldFind","min":0.05,"max":0.2},{"id":"of_mana_regen","name":"of Regeneration","stat":"mana_regen","min":1,"max":3},{"id":"of_magic_resist","name":"of Warding","stat":"magicResist","min":2,"max":8}]},"shieldAffixes":[{"id":"block_chance","name":"Bulwark","stat":"block_chance","min":0.05,"max":0.15},{"id":"block_power","name":"Bracing","stat":"block_power","min":10,"max":50},{"id":"shield_magic_resist","name":"Spellguard","stat":"magicResist","min":5,"max":15}],"sets":{"goblin_slayer":{"name":"Goblin Slayer's Garb","pieces":["goblin_helm","goblin_chest","goblin_blade"],"bonuses":{"2":{"desc":"+10% damage vs goblins","dmgVsGoblin":0.1},"3":{"desc":"+15% damage vs goblins, +5 Dodge","dmgVsGoblin":0.15,"dodge":5}}},"veil_warden":{"name":"Veil Warden's Regalia","pieces":["veil_hood","veil_robe","veil_ring"],"bonuses":{"2":{"desc":"+20 MP, +5% magic damage","mp":20,"magicDmgBonus":0.05},"3":{"desc":"+40 MP, +10% magic damage, Burn on hit","mp":40,"magicDmgBonus":0.1,"burnOnHit":true}}},"ashen_wanderer":{"name":"Ashen Wanderer's Kit","pieces":["ashen_boots","ashen_cloak","ashen_gloves"],"bonuses":{"2":{"desc":"+8 to all resistances, +5 HP regen/round","hpRegen":5},"3":{"desc":"+15 all resistances, +10 HP regen, immune to Burn","hpRegen":10,"burnImmune":true}}},"hell_touched":{"name":"Hell-Touched Armor","pieces":["hell_helm","hell_chest","hell_gauntlets","hell_greaves"],"bonuses":{"2":{"desc":"+25 armor, Thorns (5 dmg on hit)","thornsDmg":5},"3":{"desc":"+40 armor, Thorns 12 dmg","thornsDmg":12},"4":{"desc":"+60 armor, Thorns 20 dmg, +20% max HP","thornsDmg":20,"maxHpBonus":0.2}}}}}</script>
+<script>
+(function(){
+  const DATA = JSON.parse(document.getElementById('items-data').textContent);
+
+  // Normalize to arrays with id field baked in.
+  const WEAPONS = Object.entries(DATA.weapons).map(([id,w]) => ({ id, ...w }));
+  const ARMOR   = Object.entries(DATA.armor).map(([id,a]) => ({ id, ...a }));
+  const PREFIXES = (DATA.affixes.prefixes || []).map(a => ({ ...a, _kind: 'prefix' }));
+  const SUFFIXES = (DATA.affixes.suffixes || []).map(a => ({ ...a, _kind: 'suffix' }));
+  const SHIELD_AFF = (DATA.shieldAffixes || []).map(a => ({ ...a, _kind: 'shield' }));
+  const AFFIXES = [...PREFIXES, ...SUFFIXES, ...SHIELD_AFF];
+  const SETS = Object.entries(DATA.sets).map(([id,s]) => ({ id, ...s }));
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function fmtRange(r, fb) {
+    if (Array.isArray(r)) return r[0] + '-' + r[1];
+    if (r == null) return fb || '-';
+    return String(r);
+  }
+  function fmtAffixRange(a) {
+    const isPct = ['critChance','critDamage','lifeSteal','manaSteal','goldFind','block_chance'].includes(a.stat);
+    if (isPct && a.max <= 1) {
+      return Math.round(a.min * 100) + '%-' + Math.round(a.max * 100) + '%';
+    }
+    if (a.stat === 'lifeSteal' || a.stat === 'manaSteal') {
+      return a.min + '%-' + a.max + '%';
+    }
+    return a.min + '-' + a.max;
+  }
+
+  const $ = id => document.getElementById(id);
+  const grid = $('grid'), empty = $('empty');
+
+  // Populate dynamic filter options.
+  const subtypes = [...new Set(WEAPONS.map(w => w.subtype))].sort();
+  const subSel = $('fw-sub');
+  for (const s of subtypes) {
+    const opt = document.createElement('option');
+    opt.value = s; opt.textContent = s;
+    subSel.appendChild(opt);
+  }
+  const statSet = [...new Set(AFFIXES.map(a => a.stat))].sort();
+  const statSel = $('fx-stat');
+  for (const s of statSet) {
+    const opt = document.createElement('option');
+    opt.value = s; opt.textContent = s;
+    statSel.appendChild(opt);
+  }
+
+  // Totals
+  $('cw-total').textContent = WEAPONS.length;
+  $('ca-total').textContent = ARMOR.length;
+  $('cx-total').textContent = AFFIXES.length;
+  $('cs-total').textContent = SETS.length;
+
+  let currentTab = 'weapons';
+
+  // Tab switching
+  document.querySelectorAll('#tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#tabs button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTab = btn.dataset.tab;
+      document.querySelectorAll('.filters').forEach(f => f.classList.add('hidden-control'));
+      $('f-' + currentTab).classList.remove('hidden-control');
+      render();
+    });
+  });
+
+  function filterWeapons() {
+    const q = $('fw-search').value.trim().toLowerCase();
+    const cat = $('fw-cat').value;
+    const sub = $('fw-sub').value;
+    const th = $('fw-2h').value;
+    return WEAPONS.filter(w => {
+      if (q) {
+        const hay = (w.id + ' ' + (w.name||'')).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      if (cat && w.weaponCategory !== cat) return false;
+      if (sub && w.subtype !== sub) return false;
+      if (th === 'yes' && !w.twoHanded) return false;
+      if (th === 'no' && w.twoHanded) return false;
+      return true;
+    }).sort((a,b) => (a.name||a.id).localeCompare(b.name||b.id));
+  }
+  function filterArmor() {
+    const q = $('fa-search').value.trim().toLowerCase();
+    const slot = $('fa-slot').value;
+    const tier = $('fa-tier').value;
+    const sort = $('fa-sort').value;
+    let list = ARMOR.filter(a => {
+      if (q) {
+        const hay = (a.id + ' ' + (a.name||'')).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      if (slot && a.slot !== slot) return false;
+      if (tier && a.tier !== tier) return false;
+      return true;
+    });
+    list.sort((a,b) => {
+      if (sort === 'armor-asc') return (a.armor||0) - (b.armor||0);
+      if (sort === 'armor-desc') return (b.armor||0) - (a.armor||0);
+      return (a.name||a.id).localeCompare(b.name||b.id);
+    });
+    return list;
+  }
+  function filterAffixes() {
+    const q = $('fx-search').value.trim().toLowerCase();
+    const kind = $('fx-kind').value;
+    const stat = $('fx-stat').value;
+    return AFFIXES.filter(a => {
+      if (q) {
+        const hay = ((a.id||'') + ' ' + (a.name||'')).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      if (kind && a._kind !== kind) return false;
+      if (stat && a.stat !== stat) return false;
+      return true;
+    });
+  }
+  function filterSets() {
+    const q = $('fs-search').value.trim().toLowerCase();
+    const pieces = $('fs-pieces').value;
+    return SETS.filter(s => {
+      if (q) {
+        const hay = (s.id + ' ' + (s.name||'')).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      if (pieces) {
+        const n = (s.pieces || []).length;
+        if (pieces === '5') { if (n < 5) return false; }
+        else if (n !== +pieces) return false;
+      }
+      return true;
+    }).sort((a,b) => (a.name||a.id).localeCompare(b.name||b.id));
+  }
+
+  function render() {
+    grid.innerHTML = '';
+    let list = [];
+    let countShown, countTotal;
+    if (currentTab === 'weapons') { list = filterWeapons(); countShown = $('cw-shown'); }
+    else if (currentTab === 'armor') { list = filterArmor(); countShown = $('ca-shown'); }
+    else if (currentTab === 'affixes') { list = filterAffixes(); countShown = $('cx-shown'); }
+    else if (currentTab === 'sets') { list = filterSets(); countShown = $('cs-shown'); }
+    countShown.textContent = list.length;
+    empty.style.display = list.length ? 'none' : 'block';
+
+    const frag = document.createDocumentFragment();
+    for (const item of list) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      if (currentTab === 'weapons') card.innerHTML = weaponCardHTML(item);
+      else if (currentTab === 'armor') card.innerHTML = armorCardHTML(item);
+      else if (currentTab === 'affixes') card.innerHTML = affixCardHTML(item);
+      else if (currentTab === 'sets') card.innerHTML = setCardHTML(item);
+      card.addEventListener('click', () => openDetail(currentTab, item));
+      frag.appendChild(card);
+    }
+    grid.appendChild(frag);
+  }
+
+  function weaponCardHTML(w) {
+    const cat = w.weaponCategory || 'other';
+    const specials = [];
+    if (w.burnChance) specials.push('Burn ' + Math.round(w.burnChance*100) + '%');
+    if (w.stunChance) specials.push('Stun ' + Math.round(w.stunChance*100) + '%');
+    if (w.bleedChance) specials.push('Bleed ' + Math.round(w.bleedChance*100) + '%');
+    if (w.critBonus) specials.push('Crit +' + Math.round(w.critBonus*100) + '%');
+    if (w.armorPen) specials.push('APen ' + Math.round(w.armorPen*100) + '%');
+    return (
+      '<div class="hdr">' +
+        '<span class="sk-name">' + esc(w.name || w.id) + '</span>' +
+        '<span class="badge cat-' + esc(cat) + '">' + esc(cat) + '</span>' +
+        (w.twoHanded ? '<span class="badge flag-2h">2H</span>' : '') +
+        (w.dragon ? '<span class="badge flag-dragon">Dragon</span>' : '') +
+      '</div>' +
+      '<div class="sk-id">' + esc(w.id) + ' / ' + esc(w.subtype || '') + '</div>' +
+      '<div class="stats">' +
+        '<div>DMG <b>' + esc(fmtRange(w.dmg,'-')) + '</b></div>' +
+        '<div>Speed <b>' + esc(w.speed ?? '-') + '</b></div>' +
+        '<div>Scales <b>' + esc(w.statScaling || '-') + '</b></div>' +
+        '<div>' + (w.ranged ? 'Ranged' : (w.reach ? 'Reach' : (w.throwable ? 'Throwable' : (w.offHandOk ? 'Off-hand OK' : '&nbsp;')))) + '</div>' +
+      '</div>' +
+      (specials.length ? '<div class="special-line">special: <b>' + esc(specials.join(' · ')) + '</b></div>' : '')
+    );
+  }
+
+  function armorCardHTML(a) {
+    const tier = a.tier || 'any';
+    const specials = [];
+    if (a.isShield) {
+      if (a.blockChance) specials.push('Block ' + Math.round(a.blockChance*100) + '%');
+      if (a.blockPower) specials.push('Power ' + a.blockPower);
+    }
+    return (
+      '<div class="hdr">' +
+        '<span class="sk-name">' + esc(a.name || a.id) + '</span>' +
+        '<span class="badge tier-' + esc(tier) + '">' + esc(tier) + '</span>' +
+        '<span class="badge">' + esc(a.slot || '-') + '</span>' +
+        (a.isShield ? '<span class="badge flag-shield">Shield</span>' : '') +
+        (a.dragon ? '<span class="badge flag-dragon">Dragon</span>' : '') +
+      '</div>' +
+      '<div class="sk-id">' + esc(a.id) + '</div>' +
+      '<div class="stats">' +
+        '<div>Armor <b>' + esc(a.armor ?? 0) + '</b></div>' +
+        '<div>Dodge <b>' + esc(a.dodgeBonus ?? 0) + '</b></div>' +
+        (a.isShield
+          ? '<div>Block <b>' + Math.round((a.blockChance||0)*100) + '%</b></div>' +
+            '<div>Power <b>' + esc(a.blockPower ?? 0) + '</b></div>'
+          : '<div>Type <b>' + esc(a.type || '-') + '</b></div><div>&nbsp;</div>') +
+      '</div>' +
+      (specials.length ? '<div class="special-line">shield: <b>' + esc(specials.join(' · ')) + '</b></div>' : '')
+    );
+  }
+
+  function affixCardHTML(a) {
+    const flags = [];
+    if (a.magicOnly) flags.push('magic-only');
+    if (a.physicalOnly) flags.push('physical-only');
+    return (
+      '<div class="hdr">' +
+        '<span class="sk-name">' + esc(a.name || a.id) + '</span>' +
+        '<span class="badge kind-' + a._kind + '">' + a._kind + '</span>' +
+        (a.descriptor ? '<span class="badge flag-descr">' + esc(a.descriptor) + '</span>' : '') +
+      '</div>' +
+      '<div class="sk-id">' + esc(a.id) + '</div>' +
+      '<div class="stats">' +
+        '<div>Stat <b>' + esc(a.stat) + '</b></div>' +
+        '<div>Range <b>' + esc(fmtAffixRange(a)) + '</b></div>' +
+      '</div>' +
+      (flags.length ? '<div class="special-line">flags: <b>' + esc(flags.join(', ')) + '</b></div>' : '')
+    );
+  }
+
+  function setCardHTML(s) {
+    const pieces = (s.pieces || []);
+    const tiers = Object.keys(s.bonuses || {}).sort((a,b) => +a - +b);
+    return (
+      '<div class="hdr">' +
+        '<span class="sk-name">' + esc(s.name || s.id) + '</span>' +
+        '<span class="badge">' + pieces.length + ' pieces</span>' +
+      '</div>' +
+      '<div class="sk-id">' + esc(s.id) + '</div>' +
+      '<div class="stats">' +
+        '<div>Bonus tiers <b>' + esc(tiers.join(', ') || '-') + '</b></div>' +
+        '<div>&nbsp;</div>' +
+      '</div>' +
+      (tiers.length
+        ? '<div class="special-line"><b>' + esc(tiers[tiers.length-1]) + '-pc:</b> ' +
+          esc((s.bonuses[tiers[tiers.length-1]] || {}).desc || '') + '</div>'
+        : '')
+    );
+  }
+
+  // Detail dialog
+  const detail = $('detail');
+  $('btn-close-detail').addEventListener('click', () => detail.close());
+  detail.addEventListener('click', ev => { if (ev.target === detail) detail.close(); });
+
+  function openDetail(kind, item) {
+    $('d-title').textContent = item.name || item.id;
+    const badges = $('d-badges');
+    const idLabel = '<span class="sk-id" style="font-family:ui-monospace,monospace;color:var(--muted);font-size:0.72rem">' + esc(item.id) + '</span>';
+    let badgesHTML = '';
+    const extraSec = $('d-extra-sec');
+    const extraTitle = $('d-extra-title');
+    const extraEl = $('d-extra');
+    extraSec.style.display = 'none';
+    extraEl.innerHTML = '';
+
+    let pairs = [];
+    if (kind === 'weapons') {
+      badgesHTML =
+        '<span class="badge cat-' + esc(item.weaponCategory||'') + '">' + esc(item.weaponCategory||'') + '</span>' +
+        (item.twoHanded ? '<span class="badge flag-2h">2-Handed</span>' : '<span class="badge">1-Handed</span>') +
+        (item.dragon ? '<span class="badge flag-dragon">Dragon</span>' : '') +
+        idLabel;
+      pairs = [
+        ['Name', item.name], ['Subtype', item.subtype],
+        ['Damage', fmtRange(item.dmg,'-')], ['Speed', item.speed ?? '-'],
+        ['Stat Scaling', item.statScaling || '-'], ['Two-Handed', item.twoHanded ? 'yes' : 'no'],
+        ['Off-Hand OK', item.offHandOk ? 'yes' : 'no'], ['Ranged', item.ranged ? 'yes' : 'no'],
+        ['Throwable', item.throwable ? 'yes' : 'no'], ['Reach', item.reach ? 'yes' : 'no'],
+        ['Burn Chance', item.burnChance != null ? Math.round(item.burnChance*100)+'%' : '-'],
+        ['Stun Chance', item.stunChance != null ? Math.round(item.stunChance*100)+'%' : '-'],
+        ['Bleed Chance', item.bleedChance != null ? Math.round(item.bleedChance*100)+'%' : '-'],
+        ['Crit Bonus', item.critBonus != null ? '+'+Math.round(item.critBonus*100)+'%' : '-'],
+        ['Armor Pen', item.armorPen != null ? Math.round(item.armorPen*100)+'%' : '-'],
+        ['INT Mult', item.intMult ?? '-'], ['STR Mult', item.strMult ?? '-'], ['DEX Mult', item.dexMult ?? '-'],
+        ['MP Bonus', item.mpBonus ?? '-'],
+      ];
+    } else if (kind === 'armor') {
+      badgesHTML =
+        '<span class="badge tier-' + esc(item.tier||'any') + '">' + esc(item.tier||'any') + '</span>' +
+        '<span class="badge">' + esc(item.slot||'-') + '</span>' +
+        (item.isShield ? '<span class="badge flag-shield">Shield</span>' : '') +
+        (item.dragon ? '<span class="badge flag-dragon">Dragon</span>' : '') +
+        idLabel;
+      pairs = [
+        ['Name', item.name], ['Type', item.type], ['Slot', item.slot], ['Tier', item.tier],
+        ['Armor', item.armor ?? 0], ['Dodge Bonus', item.dodgeBonus ?? 0],
+      ];
+      if (item.isShield) {
+        pairs.push(['Block Chance', Math.round((item.blockChance||0)*100)+'%']);
+        pairs.push(['Block Power', item.blockPower ?? 0]);
+      }
+    } else if (kind === 'affixes') {
+      badgesHTML =
+        '<span class="badge kind-' + item._kind + '">' + item._kind + '</span>' +
+        (item.descriptor ? '<span class="badge flag-descr">' + esc(item.descriptor) + '</span>' : '') +
+        (item.magicOnly ? '<span class="badge cat-magic">magic-only</span>' : '') +
+        (item.physicalOnly ? '<span class="badge cat-heavy">physical-only</span>' : '') +
+        idLabel;
+      pairs = [
+        ['Name', item.name], ['ID', item.id], ['Kind', item._kind],
+        ['Stat', item.stat], ['Range', fmtAffixRange(item)],
+        ['Min', item.min], ['Max', item.max],
+        ['Descriptor', item.descriptor || '-'],
+        ['Magic Only', item.magicOnly ? 'yes' : 'no'],
+        ['Physical Only', item.physicalOnly ? 'yes' : 'no'],
+      ];
+    } else if (kind === 'sets') {
+      badgesHTML =
+        '<span class="badge">' + (item.pieces||[]).length + ' pieces</span>' +
+        idLabel;
+      pairs = [
+        ['Name', item.name], ['ID', item.id],
+        ['Piece Count', (item.pieces||[]).length],
+      ];
+      extraSec.style.display = '';
+      extraTitle.textContent = 'Pieces & Bonuses';
+      const pieces = item.pieces || [];
+      const bonusTiers = Object.keys(item.bonuses || {}).sort((a,b) => +a - +b);
+      const piecesHTML = pieces.map(p => '<div class="piece-item">' + esc(p) + '</div>').join('');
+      const bonusesHTML = bonusTiers.map(t => {
+        const b = item.bonuses[t];
+        return '<div class="bonus-item"><b>' + t + '-piece:</b> ' + esc(b.desc || '') + '</div>';
+      }).join('');
+      extraEl.innerHTML =
+        '<div style="color:var(--muted);font-size:0.72rem;margin:0.2rem 0">Pieces:</div>' + piecesHTML +
+        '<div style="color:var(--muted);font-size:0.72rem;margin:0.5rem 0 0.2rem">Set Bonuses:</div>' + bonusesHTML;
+    }
+
+    badges.innerHTML = badgesHTML;
+    $('d-stats').innerHTML = pairs.map(([k,v]) =>
+      '<div class="k">' + esc(k) + '</div><div class="v">' + esc(v) + '</div>'
+    ).join('');
+
+    // Strip our synthetic _kind field from raw JSON display.
+    const raw = { ...item };
+    delete raw._kind;
+    $('d-json').textContent = JSON.stringify(raw, null, 2);
+
+    if (typeof detail.showModal === 'function') detail.showModal();
+    else detail.setAttribute('open','');
+  }
+
+  // Export handlers
+  document.querySelectorAll('.export-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const kind = btn.dataset.kind;
+      exportPack(kind);
+    });
+  });
+  document.querySelectorAll('.clear-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const kind = btn.dataset.kind;
+      if (kind === 'weapons') {
+        $('fw-search').value = ''; $('fw-cat').value = ''; $('fw-sub').value = ''; $('fw-2h').value = '';
+      } else if (kind === 'armor') {
+        $('fa-search').value = ''; $('fa-slot').value = ''; $('fa-tier').value = ''; $('fa-sort').value = 'name';
+      } else if (kind === 'affixes') {
+        $('fx-search').value = ''; $('fx-kind').value = ''; $('fx-stat').value = '';
+      } else if (kind === 'sets') {
+        $('fs-search').value = ''; $('fs-pieces').value = '';
+      }
+      render();
+    });
+  });
+
+  function exportPack(kind) {
+    let items = [];
+    let name, description;
+    if (kind === 'weapons') {
+      const list = filterWeapons();
+      items = list.map(w => ({
+        id: w.id, name: w.name || w.id, type: 'weapon',
+        subtype: w.subtype, weaponCategory: w.weaponCategory,
+        dmg: w.dmg, speed: w.speed, twoHanded: !!w.twoHanded,
+        statScaling: w.statScaling,
+        ...(w.offHandOk ? { offHandOk: true } : {}),
+        ...(w.ranged ? { ranged: true } : {}),
+        ...(w.reach ? { reach: true } : {}),
+        ...(w.throwable ? { throwable: true } : {}),
+        ...(w.dragon ? { dragon: true } : {}),
+        ...(w.armorPen != null ? { armorPen: w.armorPen } : {}),
+        ...(w.burnChance != null ? { burnChance: w.burnChance } : {}),
+        ...(w.stunChance != null ? { stunChance: w.stunChance } : {}),
+        ...(w.bleedChance != null ? { bleedChance: w.bleedChance } : {}),
+        ...(w.critBonus != null ? { critBonus: w.critBonus } : {}),
+        ...(w.intMult != null ? { intMult: w.intMult } : {}),
+        ...(w.strMult != null ? { strMult: w.strMult } : {}),
+        ...(w.dexMult != null ? { dexMult: w.dexMult } : {}),
+        ...(w.mpBonus != null ? { mpBonus: w.mpBonus } : {}),
+      }));
+      name = 'item-catalog-weapons-export';
+      description = 'Exported ' + items.length + ' weapons from Item Catalog.';
+    } else if (kind === 'armor') {
+      const list = filterArmor();
+      items = list.map(a => ({
+        id: a.id, name: a.name || a.id, type: a.type || 'armor',
+        slot: a.slot, tier: a.tier,
+        armor: a.armor ?? 0, dodgeBonus: a.dodgeBonus ?? 0,
+        ...(a.isShield ? { isShield: true, blockChance: a.blockChance, blockPower: a.blockPower } : {}),
+        ...(a.dragon ? { dragon: true } : {}),
+      }));
+      name = 'item-catalog-armor-export';
+      description = 'Exported ' + items.length + ' armor pieces from Item Catalog.';
+    } else if (kind === 'affixes') {
+      const list = filterAffixes();
+      items = list.map(a => ({
+        id: a.id, name: a.name || a.id, type: 'affix',
+        kind: a._kind, stat: a.stat, min: a.min, max: a.max,
+        ...(a.descriptor ? { descriptor: a.descriptor } : {}),
+        ...(a.magicOnly ? { magicOnly: true } : {}),
+        ...(a.physicalOnly ? { physicalOnly: true } : {}),
+      }));
+      name = 'item-catalog-affixes-export';
+      description = 'Exported ' + items.length + ' affixes from Item Catalog.';
+    } else if (kind === 'sets') {
+      const list = filterSets();
+      items = list.map(s => ({
+        id: s.id, name: s.name || s.id, type: 'set',
+        pieces: s.pieces || [], bonuses: s.bonuses || {},
+      }));
+      name = 'item-catalog-sets-export';
+      description = 'Exported ' + items.length + ' item sets from Item Catalog.';
+    }
+    const pack = {
+      schemaVersion: 1,
+      name,
+      description,
+      items,
+    };
+    const blob = new Blob([JSON.stringify(pack, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'pack.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  // Wire filter events for all tabs.
+  const filterInputs = [
+    'fw-search','fw-cat','fw-sub','fw-2h',
+    'fa-search','fa-slot','fa-tier','fa-sort',
+    'fx-search','fx-kind','fx-stat',
+    'fs-search','fs-pieces',
+  ];
+  filterInputs.forEach(id => {
+    const el = $(id);
+    if (el) el.addEventListener('input', render);
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

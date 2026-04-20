@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Enemy Catalog — Emberveil</title>
+<style>
+  body { padding: 1rem 1rem 4rem; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  h1 {
+    font-family: 'Cinzel',Georgia,serif;
+    color: var(--gold); font-size: 1.4rem; margin: 0 0 0.25rem;
+    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+    background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+  .filters {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+    background: var(--card, #1a1218);
+    border: 1px solid var(--border-subtle, #2a1f30);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    margin: 0.5rem 0 1rem;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .filters input[type=text], .filters select {
+    background: #0b0810; color: var(--ink, #f0e8d0);
+    border: 1px solid var(--border-subtle, #2a1f30); border-radius: 4px;
+    padding: 0.35rem 0.5rem; font: inherit; font-size: 0.8rem;
+  }
+  .filters input[type=text] { min-width: 220px; flex: 1 1 240px; }
+  .filters label {
+    color: var(--muted, #9a8a70); font-size: 0.75rem;
+    display: inline-flex; align-items: center; gap: 0.35rem;
+  }
+  .filters .count { margin-left: auto; color: var(--muted); font-size: 0.75rem; }
+  .filters .count b { color: var(--gold); }
+  .filters button {
+    background: var(--gold); color: #0b0810; border: 1px solid var(--gold);
+    border-radius: 4px; padding: 0.4rem 0.7rem; cursor: pointer;
+    font-family: inherit; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .filters button.secondary {
+    background: transparent; color: var(--ink, #f0e8d0);
+    border-color: var(--border-subtle, #2a1f30);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.6rem;
+  }
+  .card {
+    background: var(--card, #1a1218);
+    border: 1px solid var(--border-subtle, #2a1f30);
+    border-radius: 6px;
+    padding: 0.6rem 0.75rem;
+    cursor: pointer;
+    transition: border-color 0.12s, transform 0.08s;
+    display: flex; flex-direction: column; gap: 0.35rem;
+  }
+  .card:hover { border-color: var(--gold-dim, #a67818); }
+  .card.active { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+  .card .hdr { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+  .card .sk-name {
+    font-family: 'Cinzel',Georgia,serif; font-weight: 700;
+    color: var(--ink, #f0e8d0); font-size: 0.9rem;
+    letter-spacing: 0.03em; flex: 1 1 auto;
+  }
+  .card .sk-id {
+    font-family: ui-monospace,monospace; color: var(--muted);
+    font-size: 0.65rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.1rem 0.4rem; border-radius: 3px;
+    font-size: 0.62rem; letter-spacing: 0.06em;
+    text-transform: uppercase; font-weight: 600;
+    border: 1px solid var(--border-subtle, #2a1f30);
+    color: var(--ink, #f0e8d0);
+    background: rgba(255,255,255,0.03);
+  }
+  .badge.tier-1 { background: rgba(120,180,120,0.10); color: #a0d0a0; border-color: #305030; }
+  .badge.tier-2 { background: rgba(96,160,224,0.10); color: #9cc4ea; border-color: #2a4a70; }
+  .badge.tier-3 { background: rgba(220,200,100,0.10); color: #d8c670; border-color: #605020; }
+  .badge.tier-4 { background: rgba(224,140,64,0.10); color: #e8a870; border-color: #704020; }
+  .badge.tier-5 { background: rgba(224,80,80,0.10); color: #ff8080; border-color: #702020; }
+  .badge.boss { background: rgba(192,96,224,0.15); color: #c890e0; border-color: #502070; }
+  .badge.regular { background: rgba(255,255,255,0.03); color: var(--muted); }
+
+  .card .stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.1rem 0.6rem;
+    font-family: ui-monospace,monospace; font-size: 0.7rem;
+    color: var(--muted);
+  }
+  .card .stats b { color: var(--ink); font-weight: 500; }
+  .card .loot-line {
+    font-size: 0.7rem; color: var(--muted);
+    font-family: ui-monospace,monospace;
+  }
+  .card .loot-line b { color: #d8c670; font-weight: 500; }
+  .card .reward-line {
+    font-size: 0.68rem; color: var(--muted); display: flex; gap: 0.6rem;
+  }
+  .card .reward-line .xp { color: #9cc4ea; }
+  .card .reward-line .gold { color: var(--gold); }
+
+  /* Detail panel */
+  dialog.detail {
+    background: #0b0810; color: var(--ink, #f0e8d0);
+    border: 2px solid var(--gold); border-radius: 8px;
+    padding: 1rem; max-width: 880px; width: 92vw; max-height: 88vh;
+    overflow: auto;
+  }
+  dialog.detail::backdrop { background: rgba(0,0,0,0.75); }
+  dialog.detail h2 {
+    font-family: 'Cinzel',Georgia,serif; color: var(--gold);
+    font-size: 1.1rem; margin: 0 0 0.4rem;
+    letter-spacing: 0.05em;
+  }
+  dialog.detail .close-x {
+    position: sticky; top: 0; float: right;
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--border-subtle, #2a1f30);
+    border-radius: 3px; padding: 0.2rem 0.5rem;
+    cursor: pointer; font: inherit; font-size: 0.8rem;
+  }
+  dialog.detail pre {
+    background: #050308; color: var(--ink);
+    border: 1px solid var(--border-subtle, #2a1f30); border-radius: 4px;
+    padding: 0.6rem 0.75rem; margin: 0.4rem 0;
+    font-family: ui-monospace,monospace; font-size: 0.72rem;
+    overflow: auto; max-height: 420px;
+    white-space: pre; tab-size: 2;
+  }
+  dialog.detail section { margin: 0.7rem 0; }
+  dialog.detail section h3 {
+    font-family: 'Cinzel',Georgia,serif; color: var(--gold);
+    font-size: 0.82rem; letter-spacing: 0.05em; text-transform: uppercase;
+    border-bottom: 1px solid var(--border-subtle, #2a1f30);
+    padding-bottom: 0.2rem; margin: 0 0 0.4rem;
+  }
+  dialog.detail .loot-item, dialog.detail .enc-item {
+    background: var(--card, #1a1218); border: 1px solid var(--border-subtle);
+    border-radius: 4px; padding: 0.3rem 0.5rem; margin: 0.2rem 0;
+    font-size: 0.76rem; font-family: ui-monospace,monospace;
+  }
+  dialog.detail .stat-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 0.2rem 1rem; font-family: ui-monospace,monospace; font-size: 0.78rem;
+  }
+  dialog.detail .stat-grid .k { color: var(--muted); }
+  dialog.detail .stat-grid .v { color: var(--ink); }
+  dialog.detail .scaled-row {
+    font-family: ui-monospace,monospace; font-size: 0.76rem;
+    color: var(--muted); padding: 0.2rem 0;
+    border-bottom: 1px dashed var(--border-subtle);
+  }
+  dialog.detail .scaled-row b { color: var(--ink); }
+
+  .empty {
+    text-align: center; padding: 2rem 1rem;
+    color: var(--muted); font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Enemy Catalog</h1>
+  <p class="sub">
+    Read-only inspector for every enemy defined in <code>src/maps/mapData.js</code>
+    (base <code>ENEMIES</code> plus <code>ENEMIES_ACT4/5/6</code>). Tiers are derived from base HP:
+    T1 &le;25, T2 &le;60, T3 &le;120, T4 &le;220, T5+ above. Click any card for the full JSON,
+    loot table, and encounter references.
+  </p>
+
+  <div class="filters">
+    <input id="f-search" type="text" placeholder="Search name or id...">
+    <label>Tier
+      <select id="f-tier">
+        <option value="">All</option>
+        <option value="1">T1 (&le;25 HP)</option>
+        <option value="2">T2 (&le;60 HP)</option>
+        <option value="3">T3 (&le;120 HP)</option>
+        <option value="4">T4 (&le;220 HP)</option>
+        <option value="5">T5+ (&gt;220 HP)</option>
+      </select>
+    </label>
+    <label>Tag
+      <select id="f-tag">
+        <option value="">All</option>
+        <option value="boss">Boss</option>
+        <option value="regular">Regular</option>
+      </select>
+    </label>
+    <label>Sort
+      <select id="f-sort">
+        <option value="name">Name</option>
+        <option value="hp-asc">HP asc</option>
+        <option value="hp-desc">HP desc</option>
+        <option value="dmg">Damage</option>
+      </select>
+    </label>
+    <button id="btn-export">Export as mod pack</button>
+    <button id="btn-clear" class="secondary">Clear filters</button>
+    <span class="count">Showing <b id="count-shown">0</b> / <b id="count-total">0</b></span>
+  </div>
+
+  <div id="grid" class="grid"></div>
+  <div id="empty" class="empty" style="display:none">No enemies match the current filters.</div>
+</div>
+
+<dialog class="detail" id="detail">
+  <button class="close-x" id="btn-close-detail">Close</button>
+  <h2 id="d-title"></h2>
+  <div id="d-badges" style="margin:0.2rem 0 0.5rem;display:flex;gap:0.3rem;flex-wrap:wrap"></div>
+
+  <section>
+    <h3>Stats</h3>
+    <div id="d-stats" class="stat-grid"></div>
+  </section>
+
+  <section>
+    <h3>Loot Table</h3>
+    <div id="d-loot"></div>
+  </section>
+
+  <section id="d-scaled-sec">
+    <h3>Tier Scaling (est.)</h3>
+    <div id="d-scaled"></div>
+  </section>
+
+  <section>
+    <h3>Encounter References</h3>
+    <div id="d-enc"></div>
+  </section>
+
+  <section>
+    <h3>Raw JSON</h3>
+    <pre id="d-json"></pre>
+  </section>
+</dialog>
+
+<script id="enemies-data" type="application/json">{"enemies":[{"id":"goblin_scout","name":"Goblin Scout","hp":22,"maxHp":22,"dmg":[4,8],"armor":2,"hit":72,"dodge":15,"xpValue":15,"magicResist":0,"gold":[2,6],"loot":["dagger","light_chest"]},{"id":"goblin_warrior","name":"Goblin Warrior","hp":38,"maxHp":38,"dmg":[7,14],"armor":5,"hit":68,"dodge":8,"xpValue":25,"magicResist":0,"gold":[5,12],"loot":["sword","medium_chest","shield"]},{"id":"goblin_shaman","name":"Goblin Shaman","hp":28,"maxHp":28,"dmg":[6,12],"armor":1,"hit":74,"dodge":10,"xpValue":30,"magicResist":0,"gold":[8,18],"loot":["wand","ring"],"statusOnHit":[{"type":"burn","chance":0.35,"duration":2,"power":4}]},{"id":"goblin_warlord","name":"Goblin Warlord","hp":65,"maxHp":65,"dmg":[10,18],"armor":7,"hit":70,"dodge":6,"xpValue":55,"magicResist":0,"gold":[20,40],"loot":["sword","heavy_chest"]},{"id":"corrupted_wolf","name":"Corrupted Wolf","hp":30,"maxHp":30,"dmg":[8,14],"armor":1,"hit":76,"dodge":18,"xpValue":22,"magicResist":0,"gold":[1,4],"loot":[],"statusOnHit":[{"type":"bleed","chance":0.4,"duration":2,"power":3}]},{"id":"corrupted_bear","name":"Corrupted Bear","hp":70,"maxHp":70,"dmg":[12,20],"armor":4,"hit":65,"dodge":5,"xpValue":50,"magicResist":0,"gold":[5,15],"loot":[],"statusOnHit":[{"type":"stun","chance":0.25,"duration":1,"power":0}]},{"id":"bandit","name":"Bandit","hp":28,"maxHp":28,"dmg":[6,11],"armor":3,"hit":70,"dodge":10,"xpValue":20,"magicResist":0,"gold":[4,10],"loot":["dagger","light_chest"]},{"id":"bandit_captain","name":"Bandit Captain","hp":55,"maxHp":55,"dmg":[10,16],"armor":5,"hit":72,"dodge":12,"xpValue":45,"magicResist":0,"gold":[15,30],"loot":["sword","medium_chest"]},{"id":"imp","name":"Imp","hp":65,"maxHp":65,"dmg":[12,18],"armor":4,"hit":82,"dodge":22,"xpValue":28,"magicResist":0,"gold":[4,10],"loot":[],"statusOnHit":[{"type":"burn","chance":0.55,"duration":2,"power":6}]},{"id":"hell_knight","name":"Hell Knight","hp":160,"maxHp":160,"dmg":[22,34],"armor":22,"hit":70,"dodge":8,"xpValue":72,"magicResist":0,"gold":[20,45],"loot":["heavy_chest","heavy_legs"],"statusOnHit":[{"type":"bleed","chance":0.4,"duration":2,"power":7}]},{"id":"void_shade","name":"Void Shade","hp":100,"maxHp":100,"dmg":[18,28],"armor":6,"hit":85,"dodge":28,"xpValue":55,"magicResist":0,"gold":[12,28],"loot":["ring","wand"],"statusOnHit":[{"type":"poison","chance":0.5,"duration":3,"power":7},{"type":"stun","chance":0.15,"duration":1,"power":0}]},{"id":"demon_brute","name":"Demon Brute","hp":220,"maxHp":220,"dmg":[26,40],"armor":18,"hit":65,"dodge":5,"xpValue":90,"magicResist":0,"gold":[30,60],"loot":["heavy_chest"],"statusOnHit":[{"type":"stun","chance":0.3,"duration":1,"power":0}]},{"id":"archfiend_malgrath","name":"Archfiend Malgrath","hp":550,"maxHp":550,"dmg":[30,46],"armor":26,"hit":75,"dodge":10,"xpValue":450,"magicResist":0,"gold":[120,200],"loot":["heavy_chest","ring","necklace"],"statusOnHit":[{"type":"burn","chance":0.6,"duration":3,"power":10},{"type":"bleed","chance":0.4,"duration":2,"power":8}]},{"id":"emberveil_sovereign","name":"The Emberveil Sovereign","hp":800,"maxHp":800,"dmg":[36,56],"armor":30,"hit":78,"dodge":12,"xpValue":800,"magicResist":0,"gold":[200,350],"loot":["heavy_chest","ring","necklace","staff"],"statusOnHit":[{"type":"burn","chance":0.7,"duration":3,"power":12},{"type":"poison","chance":0.5,"duration":3,"power":10},{"type":"stun","chance":0.25,"duration":1,"power":0}]},{"id":"ash_wraith","name":"Ash Wraith","hp":65,"maxHp":65,"dmg":[10,16],"armor":4,"hit":78,"dodge":20,"xpValue":32,"magicResist":0,"gold":[6,14],"loot":["wand","ring"],"statusOnHit":[{"type":"burn","chance":0.4,"duration":2,"power":5}]},{"id":"cinder_hound","name":"Cinder Hound","hp":55,"maxHp":55,"dmg":[12,18],"armor":5,"hit":80,"dodge":16,"xpValue":28,"magicResist":0,"gold":[3,9],"loot":[],"statusOnHit":[{"type":"bleed","chance":0.45,"duration":2,"power":4}]},{"id":"molten_golem","name":"Molten Golem","hp":140,"maxHp":140,"dmg":[16,24],"armor":16,"hit":62,"dodge":4,"xpValue":65,"magicResist":0,"gold":[15,30],"loot":["heavy_chest"],"statusOnHit":[{"type":"burn","chance":0.6,"duration":3,"power":6}]},{"id":"veil_cultist","name":"Veil Cultist","hp":70,"maxHp":70,"dmg":[11,17],"armor":5,"hit":72,"dodge":12,"xpValue":35,"magicResist":0,"gold":[8,18],"loot":["cloth_chest","wand"],"statusOnHit":[{"type":"poison","chance":0.35,"duration":3,"power":5}]},{"id":"veil_sorcerer","name":"Veil Sorcerer","hp":85,"maxHp":85,"dmg":[16,24],"armor":4,"hit":76,"dodge":14,"xpValue":60,"magicResist":0,"gold":[20,40],"loot":["staff","cloth_chest","ring"],"statusOnHit":[{"type":"burn","chance":0.5,"duration":2,"power":7},{"type":"stun","chance":0.2,"duration":1,"power":0}]},{"id":"lava_titan","name":"The Lava Titan","hp":350,"maxHp":350,"dmg":[24,36],"armor":20,"hit":70,"dodge":4,"xpValue":350,"magicResist":0,"gold":[80,140],"loot":["heavy_chest","heavy_legs","ring"],"statusOnHit":[{"type":"burn","chance":0.7,"duration":3,"power":8}]},{"id":"grax_veil_touched","name":"Grax the Veil-Touched","hp":200,"maxHp":200,"dmg":[14,24],"armor":10,"hit":78,"dodge":8,"xpValue":250,"magicResist":0,"gold":[60,100],"loot":["sword","heavy_chest","ring"],"statusOnHit":[{"type":"poison","chance":0.3,"duration":3,"power":5}]},{"id":"veil_warden","name":"Veil Warden","hp":90,"maxHp":90,"dmg":[10,16],"armor":6,"hit":70,"dodge":12,"xpValue":80,"magicResist":0,"gold":[25,45],"loot":["medium_chest","wand"],"statusOnHit":[{"type":"burn","chance":0.45,"duration":2,"power":5}]},{"id":"void_wraith","name":"Void Wraith","hp":160,"maxHp":160,"dmg":[28,44],"armor":16,"hit":82,"dodge":22,"xpValue":120,"magicResist":0,"gold":[20,40],"statusOnHit":{"type":"stun","chance":0.12,"duration":1}},{"id":"star_horror","name":"Star Horror","hp":180,"maxHp":180,"dmg":[24,38],"armor":12,"hit":78,"dodge":18,"xpValue":130,"magicResist":0,"gold":[18,35]},{"id":"cosmic_titan","name":"Cosmic Titan","hp":320,"maxHp":320,"dmg":[36,56],"armor":26,"hit":72,"dodge":8,"xpValue":200,"magicResist":0,"gold":[30,60]},{"id":"void_prophet","name":"Void Prophet","hp":140,"maxHp":140,"dmg":[25,42],"armor":10,"hit":85,"dodge":15,"xpValue":160,"magicResist":0,"gold":[25,50],"statusOnHit":{"type":"burn","chance":0.2,"duration":3,"power":12}},{"id":"the_unraveler","name":"The Unraveler","hp":900,"maxHp":900,"dmg":[52,88],"armor":34,"hit":88,"dodge":12,"xpValue":800,"magicResist":0,"gold":[200,400]},{"id":"primordial_elemental","name":"Primordial Elemental","hp":220,"maxHp":220,"dmg":[34,54],"armor":20,"hit":80,"dodge":15,"xpValue":180,"magicResist":0,"gold":[30,55],"statusOnHit":{"type":"burn","chance":0.25,"duration":2,"power":15}},{"id":"abyssal_knight","name":"Abyssal Knight","hp":260,"maxHp":260,"dmg":[38,62],"armor":30,"hit":78,"dodge":10,"xpValue":200,"magicResist":0,"gold":[35,65]},{"id":"reality_shard","name":"Reality Shard","hp":140,"maxHp":140,"dmg":[40,66],"armor":10,"hit":90,"dodge":30,"xpValue":150,"magicResist":0,"gold":[20,40],"statusOnHit":{"type":"stun","chance":0.2,"duration":1}},{"id":"genesis_worm","name":"Genesis Worm","hp":400,"maxHp":400,"dmg":[32,52],"armor":24,"hit":75,"dodge":5,"xpValue":220,"magicResist":0,"gold":[40,70]},{"id":"the_architect","name":"The Architect","hp":1400,"maxHp":1400,"dmg":[65,110],"armor":42,"hit":90,"dodge":15,"xpValue":1200,"magicResist":0,"gold":[300,600]},{"id":"dragon_whelp","name":"Dragon Whelp","hp":120,"maxHp":120,"dmg":[30,52],"armor":14,"hit":82,"dodge":18,"xpValue":220,"magicResist":0,"gold":[40,80],"loot":["dragonscale_cloth","dragonfang_dagger"],"statusOnHit":[{"type":"burn","chance":0.5,"duration":3,"power":14}]},{"id":"wyrm_warrior","name":"Wyrm Warrior","hp":180,"maxHp":180,"dmg":[40,64],"armor":22,"hit":80,"dodge":10,"xpValue":260,"magicResist":0,"gold":[50,90],"loot":["dragonsteel_chest","wyrmscale_helm"],"statusOnHit":[{"type":"bleed","chance":0.4,"duration":3,"power":12}]},{"id":"dragon_cultist","name":"Dragon Cultist","hp":140,"maxHp":140,"dmg":[36,58],"armor":8,"hit":85,"dodge":20,"xpValue":230,"magicResist":0,"gold":[45,85],"loot":["dragonbone_staff","cloth_chest"],"statusOnHit":[{"type":"burn","chance":0.6,"duration":3,"power":16}]},{"id":"frost_wyrm","name":"Frost Wyrm","hp":220,"maxHp":220,"dmg":[42,70],"armor":18,"hit":80,"dodge":12,"xpValue":300,"magicResist":0,"gold":[60,100],"loot":["wyrmscale_chest","dragontooth_amulet"],"statusOnHit":[{"type":"stun","chance":0.3,"duration":1}]},{"id":"storm_dragon","name":"Storm Dragon","hp":260,"maxHp":260,"dmg":[48,78],"armor":16,"hit":86,"dodge":16,"xpValue":340,"magicResist":0,"gold":[70,120],"loot":["dragonheart_ring","dragonscale_cloth"],"statusOnHit":[{"type":"stun","chance":0.25,"duration":1},{"type":"burn","chance":0.4,"duration":2,"power":10}]},{"id":"ancient_dragon","name":"Ancient Dragon","hp":520,"maxHp":520,"dmg":[60,100],"armor":28,"hit":88,"dodge":12,"xpValue":600,"magicResist":0,"gold":[160,260],"loot":["dragonsteel_chest","dragonheart_ring","dragonfang_greatsword"],"statusOnHit":[{"type":"burn","chance":0.7,"duration":3,"power":18},{"type":"bleed","chance":0.4,"duration":3,"power":14}]},{"id":"dragon_king","name":"Bahamorth, the Dragon King","hp":1200,"maxHp":1200,"dmg":[70,120],"armor":34,"hit":92,"dodge":14,"xpValue":1600,"magicResist":0,"gold":[400,700],"loot":["dragonfang_greatsword","dragonheart_ring","dragonscale_cloth","dragontooth_amulet"],"statusOnHit":[{"type":"burn","chance":0.8,"duration":3,"power":22},{"type":"stun","chance":0.3,"duration":1},{"type":"bleed","chance":0.5,"duration":3,"power":16}]}],"encRefs":{"goblin_scout":["Goblin Patrol","Corrupted Outpost","Goblin Camp"],"goblin_warrior":["Corrupted Outpost","Warlord's Vanguard","Goblin Camp"],"goblin_warlord":["Warlord's Vanguard"],"bandit":["Bandit Ambush"],"bandit_captain":["Bandit Ambush"],"giant_spider":["Spider Hollow"],"goblin_shaman":["Goblin Camp","The Veil Wardens"],"veil_warden":["The Veil Wardens","Grax the Veil-Touched"],"grax_veil_touched":["Grax the Veil-Touched"],"corrupted_wolf":["Corrupted Wolf Pack","Corrupted Predator"],"corrupted_bear":["Corrupted Predator"],"ash_wraith":["Ash Patrol","Obsidian Garrison"],"cinder_hound":["Ash Patrol","Ember Ambush"],"molten_golem":["Obsidian Garrison","The Lava Titan"],"lava_titan":["The Lava Titan"],"veil_cultist":["Veil Cult Encampment","Veil High Priest"],"veil_sorcerer":["Veil Cult Encampment","Veil High Priest"],"imp":["Demon Patrol","Hell Garrison"],"hell_knight":["Demon Patrol","Hell Garrison","Archfiend Malgrath"],"void_shade":["Rift Assault","Void Nexus","The Emberveil Sovereign"],"demon_brute":["Rift Assault","The Emberveil Sovereign"],"archfiend_malgrath":["Archfiend Malgrath"],"emberveil_sovereign":["The Emberveil Sovereign"],"primordial_elemental":["Primordial Patrol","Abyssal Garrison"],"reality_shard":["Primordial Patrol","Genesis Nest"],"abyssal_knight":["Abyssal Garrison","The Architect"],"genesis_worm":["Genesis Nest"],"the_architect":["The Architect"],"void_wraith":["Void Horde","The Unraveler"],"star_horror":["Void Horde","Cosmic Assault"],"cosmic_titan":["Cosmic Assault"],"the_unraveler":["The Unraveler"],"dragon_whelp":["Dragon Patrol","Wyrm Citadel","The Ancient Dragon"],"dragon_cultist":["Dragon Patrol","Storm Dragon Nest"],"wyrm_warrior":["Wyrm Citadel","Frost Wyrm Pack","Dragon Elite Flight","Bahamorth, the Dragon King"],"frost_wyrm":["Frost Wyrm Pack","Dragon Elite Flight"],"storm_dragon":["Storm Dragon Nest","Dragon Elite Flight"],"ancient_dragon":["The Ancient Dragon","Bahamorth, the Dragon King"],"dragon_king":["Bahamorth, the Dragon King"]}}</script>
+<script>
+(function(){
+  const payload = JSON.parse(document.getElementById('enemies-data').textContent);
+  const ENEMIES = payload.enemies || [];
+  const ENC_REFS = payload.encRefs || {};
+
+  function tierOf(e) {
+    const hp = +e.hp || 0;
+    if (hp <= 25) return 1;
+    if (hp <= 60) return 2;
+    if (hp <= 120) return 3;
+    if (hp <= 220) return 4;
+    return 5;
+  }
+  function isBoss(e) {
+    return /boss/i.test(e.id || '') || /boss/i.test(e.name || '');
+  }
+  function avgDmg(e) {
+    if (Array.isArray(e.dmg)) return (e.dmg[0] + e.dmg[1]) / 2;
+    return +e.dmg || 0;
+  }
+  function fmtRange(r, fallback) {
+    if (Array.isArray(r)) return r[0] + '-' + r[1];
+    if (r == null) return fallback || '-';
+    return String(r);
+  }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  const $ = id => document.getElementById(id);
+  const fSearch = $('f-search'), fTier = $('f-tier'), fTag = $('f-tag'), fSort = $('f-sort');
+  const grid = $('grid'), empty = $('empty');
+  const countShown = $('count-shown'), countTotal = $('count-total');
+  countTotal.textContent = ENEMIES.length;
+
+  function applyFilters() {
+    const q = fSearch.value.trim().toLowerCase();
+    const tier = fTier.value;
+    const tag = fTag.value;
+    const sort = fSort.value;
+
+    let list = ENEMIES.filter(e => {
+      if (q) {
+        const hay = (e.id + ' ' + (e.name||'')).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      if (tier && String(tierOf(e)) !== tier) return false;
+      if (tag === 'boss' && !isBoss(e)) return false;
+      if (tag === 'regular' && isBoss(e)) return false;
+      return true;
+    });
+
+    list.sort((a,b) => {
+      if (sort === 'hp-asc') return (a.hp||0) - (b.hp||0);
+      if (sort === 'hp-desc') return (b.hp||0) - (a.hp||0);
+      if (sort === 'dmg') return avgDmg(b) - avgDmg(a);
+      return (a.name||a.id).localeCompare(b.name||b.id);
+    });
+
+    render(list);
+  }
+
+  function render(list) {
+    countShown.textContent = list.length;
+    grid.innerHTML = '';
+    empty.style.display = list.length ? 'none' : 'block';
+    const frag = document.createDocumentFragment();
+    for (const e of list) {
+      const tier = tierOf(e);
+      const boss = isBoss(e);
+      const card = document.createElement('div');
+      card.className = 'card';
+      const lootList = Array.isArray(e.loot) ? e.loot : [];
+      const lootTrunc = lootList.slice(0,2).join(', ') + (lootList.length>2 ? ' +'+(lootList.length-2) : '');
+      const lootStr = lootList.length ? lootTrunc : '(none)';
+      card.innerHTML =
+        '<div class="hdr">' +
+          '<span class="sk-name">' + esc(e.name || e.id) + '</span>' +
+          '<span class="badge tier-' + tier + '">T' + tier + '</span>' +
+          '<span class="badge ' + (boss?'boss':'regular') + '">' + (boss?'Boss':'Regular') + '</span>' +
+        '</div>' +
+        '<div class="sk-id">' + esc(e.id) + '</div>' +
+        '<div class="stats">' +
+          '<div>HP <b>' + esc(e.hp) + '</b></div>' +
+          '<div>DMG <b>' + esc(fmtRange(e.dmg,'-')) + '</b></div>' +
+          '<div>Armor <b>' + esc(e.armor ?? 0) + '</b></div>' +
+          '<div>Hit <b>' + esc(e.hit ?? 0) + '</b></div>' +
+          '<div>Dodge <b>' + esc(e.dodge ?? 0) + '</b></div>' +
+          '<div>MR <b>' + esc(e.magicResist ?? 0) + '</b></div>' +
+        '</div>' +
+        '<div class="loot-line">drops: <b>' + esc(lootStr) + '</b></div>' +
+        '<div class="reward-line">' +
+          '<span class="xp">' + esc(e.xpValue ?? 0) + ' xp</span>' +
+          '<span class="gold">' + esc(fmtRange(e.gold,'0')) + ' gold</span>' +
+        '</div>';
+      card.addEventListener('click', () => openDetail(e));
+      frag.appendChild(card);
+    }
+    grid.appendChild(frag);
+  }
+
+  // Detail dialog
+  const detail = $('detail');
+  $('btn-close-detail').addEventListener('click', () => detail.close());
+  detail.addEventListener('click', ev => { if (ev.target === detail) detail.close(); });
+
+  function openDetail(e) {
+    const tier = tierOf(e);
+    const boss = isBoss(e);
+    $('d-title').textContent = e.name || e.id;
+    const badges = $('d-badges');
+    badges.innerHTML =
+      '<span class="badge tier-' + tier + '">Tier ' + tier + '</span>' +
+      '<span class="badge ' + (boss?'boss':'regular') + '">' + (boss?'Boss':'Regular') + '</span>' +
+      '<span class="sk-id" style="font-family:ui-monospace,monospace;color:var(--muted);font-size:0.72rem">' + esc(e.id) + '</span>';
+
+    const stats = $('d-stats');
+    const pairs = [
+      ['HP', e.hp], ['Max HP', e.maxHp ?? e.hp],
+      ['Damage', fmtRange(e.dmg,'-')], ['Armor', e.armor ?? 0],
+      ['Hit', e.hit ?? 0], ['Dodge', e.dodge ?? 0],
+      ['Magic Resist', e.magicResist ?? 0], ['XP Value', e.xpValue ?? 0],
+      ['Gold Drop', fmtRange(e.gold,'0')]
+    ];
+    stats.innerHTML = pairs.map(([k,v]) =>
+      '<div class="k">' + esc(k) + '</div><div class="v">' + esc(v) + '</div>'
+    ).join('');
+
+    const loot = Array.isArray(e.loot) ? e.loot : [];
+    $('d-loot').innerHTML = loot.length
+      ? loot.map(id => '<div class="loot-item">' + esc(id) + '</div>').join('')
+      : '<div class="loot-item" style="color:var(--muted)">(no loot defined)</div>';
+
+    // Tier scaling estimate: linear scale by tier multiplier
+    const scaleSec = $('d-scaled-sec');
+    const scaled = $('d-scaled');
+    const mults = { 1:1.0, 2:1.5, 3:2.25, 4:3.4, 5:5.0 };
+    const baseHp = +e.hp || 0;
+    const baseDmgMin = Array.isArray(e.dmg)?e.dmg[0]:(+e.dmg||0);
+    const baseDmgMax = Array.isArray(e.dmg)?e.dmg[1]:(+e.dmg||0);
+    let rows = '';
+    for (let t = 1; t <= 5; t++) {
+      const m = mults[t] / mults[tier];
+      const hp = Math.round(baseHp * m);
+      const dmin = Math.round(baseDmgMin * m);
+      const dmax = Math.round(baseDmgMax * m);
+      const marker = (t === tier) ? ' &larr; base' : '';
+      rows += '<div class="scaled-row">T' + t + ': HP <b>' + hp + '</b>  DMG <b>' + dmin + '-' + dmax + '</b>' + marker + '</div>';
+    }
+    scaled.innerHTML = rows;
+    scaleSec.style.display = '';
+
+    // Encounter references
+    const encs = ENC_REFS[e.id] || [];
+    $('d-enc').innerHTML = encs.length
+      ? '<div style="color:var(--muted);font-size:0.75rem;margin-bottom:0.3rem">' +
+        'Appears in ' + encs.length + ' encounter' + (encs.length===1?'':'s') + ':</div>' +
+        encs.map(n => '<div class="enc-item">' + esc(n) + '</div>').join('')
+      : '<div class="enc-item" style="color:var(--muted)">No references found in ENCOUNTERS.</div>';
+
+    $('d-json').textContent = JSON.stringify(e, null, 2);
+
+    if (typeof detail.showModal === 'function') detail.showModal();
+    else detail.setAttribute('open','');
+  }
+
+  // Export as mod pack
+  $('btn-export').addEventListener('click', () => {
+    const q = fSearch.value.trim().toLowerCase();
+    const tier = fTier.value;
+    const tag = fTag.value;
+    const filtered = ENEMIES.filter(e => {
+      if (q) {
+        const hay = (e.id + ' ' + (e.name||'')).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      if (tier && String(tierOf(e)) !== tier) return false;
+      if (tag === 'boss' && !isBoss(e)) return false;
+      if (tag === 'regular' && isBoss(e)) return false;
+      return true;
+    });
+    const characters = filtered.map(e => ({
+      id: e.id,
+      name: e.name || e.id,
+      classId: 'enemy',
+      hp: e.hp,
+      maxHp: e.maxHp ?? e.hp,
+      dmg: e.dmg,
+      armor: e.armor ?? 0,
+      hit: e.hit ?? 0,
+      dodge: e.dodge ?? 0,
+      magicResist: e.magicResist ?? 0,
+      xpValue: e.xpValue ?? 0,
+      gold: e.gold ?? [0,0],
+      loot: e.loot ?? [],
+      tier: tierOf(e),
+      isBoss: isBoss(e)
+    }));
+    const pack = {
+      schemaVersion: 1,
+      name: 'enemy-catalog-export',
+      description: 'Exported ' + characters.length + ' enemies from Enemy Catalog.',
+      characters
+    };
+    const blob = new Blob([JSON.stringify(pack, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'pack.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+
+  $('btn-clear').addEventListener('click', () => {
+    fSearch.value = ''; fTier.value = ''; fTag.value = ''; fSort.value = 'name';
+    applyFilters();
+  });
+
+  [fSearch, fTier, fTag, fSort].forEach(el => el.addEventListener('input', applyFilters));
+  applyFilters();
+})();
+</script>
+</body>
+</html>

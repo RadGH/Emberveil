@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>Custom Content — Emberveil</title>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<style>
+  main { max-width: 980px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+  h1 { font-family: var(--font-display); color: var(--gold); margin-bottom: .5rem; }
+  .lead { color: var(--muted); margin-bottom: 1.5rem; }
+  .tabs { display: flex; gap: .25rem; border-bottom: 1px solid var(--border); margin-bottom: 1rem; flex-wrap: wrap; }
+  .tab { padding: .6rem 1rem; background: transparent; border: 1px solid var(--border); border-bottom: none; color: var(--ink); cursor: pointer; border-radius: 6px 6px 0 0; }
+  .tab.active { background: var(--card); color: var(--gold); }
+  .panel { display: none; background: var(--card); border: 1px solid var(--border); border-radius: 0 var(--radius) var(--radius) var(--radius); padding: 1.25rem; }
+  .panel.active { display: block; }
+  textarea { width: 100%; min-height: 320px; background: var(--bg1); color: var(--ink); border: 1px solid var(--border); border-radius: 6px; padding: .75rem; font-family: ui-monospace, Menlo, monospace; font-size: 13px; resize: vertical; }
+  .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .75rem; }
+  button { background: var(--gold); color: #1a0a08; border: none; padding: .6rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
+  button.secondary { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+  .output { margin-top: 1rem; padding: .75rem; background: var(--bg1); border: 1px solid var(--border); border-radius: 6px; font-family: ui-monospace, monospace; font-size: 12px; white-space: pre-wrap; max-height: 300px; overflow: auto; }
+  .output.ok { border-color: #4a8; }
+  .output.err { border-color: #c55; color: #ffb0a0; }
+  .downloads a { display: block; padding: .4rem .6rem; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--border-subtle); }
+  .downloads a:hover { background: var(--card-h); }
+  .kind-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .5rem; margin-top: .75rem; }
+  .kind-list .entity { padding: .5rem .75rem; background: var(--bg1); border: 1px solid var(--border-subtle); border-radius: 6px; font-size: 13px; }
+  .kind-list .entity b { color: var(--gold); }
+</style>
+</head>
+<body>
+<script src="./_header.js" defer></script>
+<main>
+  <h1>Custom Content Loader</h1>
+  <p class="lead">Upload a JSON pack to add skills, classes, items, events, appearances, characters, or loot tables. Packs are merged at runtime; the game never hardcodes around them.</p>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="upload">Upload / Paste</button>
+    <button class="tab" data-tab="schemas">Schemas</button>
+    <button class="tab" data-tab="examples">Example Packs</button>
+    <button class="tab" data-tab="loaded">Loaded</button>
+  </div>
+
+  <section class="panel active" data-panel="upload">
+    <p style="color:var(--muted);margin-bottom:.5rem">Paste a pack, single entity, or bare array. Kind is inferred from shape when no <code>id/version</code> wrapper is present.</p>
+    <textarea id="jsonInput" placeholder='{\n  "id": "my_pack",\n  "version": "1.0.0",\n  "skills": [ { "id": "sk1", "name": "Ember Lance", "effects": [{"op":"damage","stat":"int","mult":1.2,"target":"target"}] } ]\n}'></textarea>
+    <div class="row">
+      <button id="btnValidate">Validate only</button>
+      <button id="btnLoad">Load into runtime</button>
+      <button class="secondary" id="btnFile">Load from file…</button>
+      <input type="file" id="fileInput" accept=".json" hidden>
+      <button class="secondary" id="btnFormat">Format</button>
+      <button class="secondary" id="btnClearAll">Clear all packs</button>
+    </div>
+    <div id="output" class="output" style="display:none"></div>
+  </section>
+
+  <section class="panel" data-panel="schemas">
+    <p style="color:var(--muted)">Download the JSON Schema v1 files. Point your editor (VS Code, JetBrains) at these via <code>$schema</code> for completion and validation.</p>
+    <div class="downloads" id="schemaList"></div>
+  </section>
+
+  <section class="panel" data-panel="examples">
+    <p style="color:var(--muted)">Reference packs that exercise every DSL op and pack kind.</p>
+    <div class="downloads" id="exampleList"></div>
+  </section>
+
+  <section class="panel" data-panel="loaded">
+    <p style="color:var(--muted)">Content currently merged in this session.</p>
+    <div id="loadedOutput"></div>
+  </section>
+</main>
+
+<script>
+// Inline registry + DSL op list so this tool works both in dev and in the built site.
+const KINDS = ['skills','classes','items','events','appearances','characters','loot'];
+const DSL_OPS = ['damage','heal','applyStatus','buff','setFlag','requireFlag','consumeStatus','resourceSwap','echo','ritual','modifyTurnOrder','onHit','onCrit','onKill','onEvent'];
+const availableOps = () => DSL_OPS;
+const store = Object.fromEntries(KINDS.map(k => [k, {}]));
+const packs = {};
+function inferKind(e) {
+  if (e.mpCost != null || e.targeting || Array.isArray(e.effects)) return 'skills';
+  if (e.primaryAttr || e.startingStats) return 'classes';
+  if (e.dmg || e.armor || e.weaponCategory) return 'items';
+  if (Array.isArray(e.nodes) && e.actRange) return 'events';
+  if (e.sprite && e.classDefault !== undefined) return 'appearances';
+  if (e.portrait || e.south || e.east_attack || e.east_ko) return 'appearances';
+  if (e.classId || (e.hp != null && e.tier != null)) return 'characters';
+  if (e.roll || e.items) return 'loot';
+  return null;
+}
+function registerPack(raw) {
+  let p = raw;
+  if (Array.isArray(raw)) {
+    const k = raw[0] && inferKind(raw[0]);
+    if (!k) throw new Error('Cannot infer pack kind from bare array');
+    p = { id: `anon_${Date.now()}`, version: '0.0.1', [k]: raw };
+  } else if (raw && typeof raw === 'object' && !KINDS.some(k => raw[k])) {
+    const k = inferKind(raw);
+    if (!k) throw new Error('Cannot infer pack kind from entity');
+    p = { id: raw.id || `anon_${Date.now()}`, version: '0.0.1', [k]: [raw] };
+  }
+  if (!p.id || !p.version) throw new Error('Pack missing id/version');
+  packs[p.id] = { id: p.id, version: p.version, name: p.name || p.id };
+  for (const k of KINDS) {
+    if (!Array.isArray(p[k])) continue;
+    for (const e of p[k]) { if (e.id) store[k][e.id] = { ...e, _pack: p.id }; }
+  }
+  if (typeof window !== 'undefined') window.__emberveilMods = { store, packs };
+  return p.id;
+}
+const getAll = (k) => Object.values(store[k] || {});
+const listPacks = () => Object.values(packs);
+const clear = () => { for (const k of KINDS) store[k] = {}; for (const id of Object.keys(packs)) delete packs[id]; };
+const SCHEMAS = ['pack','skill','effect-dsl','class','item','event-chain','appearance','character','loot'];
+const EXAMPLES = ['starter-pack', 'archetype-spells', 'archetype-spells-2', 'custom-weapons', 'custom-enemies', 'custom-event', 'event-chains'];
+
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector(`.panel[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+    if (btn.dataset.tab === 'loaded') renderLoaded();
+  });
+});
+
+const ta = document.getElementById('jsonInput');
+const out = document.getElementById('output');
+function say(msg, ok) { out.style.display = 'block'; out.className = 'output ' + (ok ? 'ok' : 'err'); out.textContent = msg; }
+
+function parseInput() {
+  try { return { ok: true, data: JSON.parse(ta.value) }; }
+  catch (e) { return { ok: false, error: 'Invalid JSON: ' + e.message }; }
+}
+
+function structuralCheck(raw) {
+  const issues = [];
+  const ops = new Set(availableOps());
+  const walk = (arr, path) => {
+    if (!Array.isArray(arr)) return;
+    arr.forEach((e, i) => {
+      if (e && typeof e === 'object' && 'op' in e) {
+        if (!ops.has(e.op)) issues.push(`${path}[${i}]: unknown op "${e.op}"`);
+        if (Array.isArray(e.effects)) walk(e.effects, `${path}[${i}].effects`);
+        if (Array.isArray(e.thenEffects)) walk(e.thenEffects, `${path}[${i}].thenEffects`);
+      }
+    });
+  };
+  const entities = Array.isArray(raw) ? raw : raw.skills || [];
+  entities.forEach((sk, i) => { if (Array.isArray(sk.effects)) walk(sk.effects, `skills[${i}].effects`); });
+  for (const kind of KINDS) {
+    if (Array.isArray(raw[kind])) walk(raw[kind].flatMap(e => e.effects || []), `${kind}[*].effects`);
+  }
+  return issues;
+}
+
+document.getElementById('btnValidate').onclick = () => {
+  const p = parseInput();
+  if (!p.ok) return say(p.error, false);
+  const issues = structuralCheck(p.data);
+  if (issues.length) return say('Validation issues:\n' + issues.join('\n'), false);
+  say('Looks structurally valid. (Full JSON-Schema validation runs on load.)', true);
+};
+
+document.getElementById('btnLoad').onclick = () => {
+  const p = parseInput();
+  if (!p.ok) return say(p.error, false);
+  try {
+    const id = registerPack(p.data);
+    const counts = KINDS.map(k => `${k}:${getAll(k).filter(e => e._pack === id).length}`).join(' ');
+    say(`Loaded pack "${id}". ${counts}`, true);
+  } catch (e) { say('Load failed: ' + e.message, false); }
+};
+
+document.getElementById('btnFile').onclick = () => document.getElementById('fileInput').click();
+document.getElementById('fileInput').onchange = (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => { ta.value = r.result; };
+  r.readAsText(f);
+};
+document.getElementById('btnFormat').onclick = () => {
+  const p = parseInput(); if (!p.ok) return say(p.error, false);
+  ta.value = JSON.stringify(p.data, null, 2);
+};
+document.getElementById('btnClearAll').onclick = () => {
+  clear(); say('Cleared all registered packs.', true); renderLoaded();
+};
+
+const schemaList = document.getElementById('schemaList');
+SCHEMAS.forEach(name => {
+  const a = document.createElement('a');
+  a.href = `../schemas/v1/${name}.json`;
+  a.download = `${name}.json`;
+  a.textContent = `schemas/v1/${name}.json`;
+  schemaList.appendChild(a);
+});
+const exampleList = document.getElementById('exampleList');
+EXAMPLES.forEach(name => {
+  const a = document.createElement('a');
+  a.href = `../mods/examples/${name}.json`;
+  a.download = `${name}.json`;
+  a.textContent = `mods/examples/${name}.json`;
+  exampleList.appendChild(a);
+});
+
+function renderLoaded() {
+  const el = document.getElementById('loadedOutput');
+  const packs = listPacks();
+  if (!packs.length) { el.innerHTML = '<p style="color:var(--muted)">No packs loaded yet.</p>'; return; }
+  let html = `<div style="margin-bottom:1rem">${packs.length} pack(s) loaded</div>`;
+  for (const kind of KINDS) {
+    const items = getAll(kind);
+    if (!items.length) continue;
+    html += `<h3 style="color:var(--gold);margin:1rem 0 .5rem">${kind} (${items.length})</h3>`;
+    html += '<div class="kind-list">';
+    for (const e of items) html += `<div class="entity"><b>${e.id}</b><br><span style="color:var(--muted);font-size:11px">${e.name||''} · ${e._pack||'?'}</span></div>`;
+    html += '</div>';
+  }
+  el.innerHTML = html;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>AI Content Generator — Emberveil</title>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<style>
+  main { max-width: 980px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+  h1 { font-family: var(--font-display); color: var(--gold); margin-bottom: .25rem; }
+  .lead { color: var(--muted); margin-bottom: 1rem; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1rem; margin-bottom: 1rem; }
+  label { display:block; color: var(--muted); font-size: 12px; margin-bottom: .3rem; letter-spacing: .04em; text-transform: uppercase; }
+  input[type=text], input[type=password], select, textarea {
+    width: 100%; background: var(--bg1); color: var(--ink); border: 1px solid var(--border);
+    border-radius: 6px; padding: .6rem .7rem; font-family: inherit; font-size: 14px;
+  }
+  textarea { font-family: ui-monospace, Menlo, monospace; font-size: 13px; min-height: 110px; resize: vertical; }
+  textarea.output { min-height: 320px; background: var(--bg1); }
+  .row { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.6rem; }
+  .row .grow { flex: 1 1 260px; }
+  button { background: var(--gold); color:#1a0a08; border:none; padding:.6rem 1rem; border-radius:6px; cursor:pointer; font-weight:600; }
+  button.secondary { background:transparent; color:var(--gold); border:1px solid var(--gold); }
+  button:disabled { opacity:.5; cursor:not-allowed; }
+  .status { margin-top:.6rem; font-size:13px; }
+  .status.ok { color:#80d0a0; }
+  .status.err { color:#ffa090; }
+  details { margin-top: .5rem; }
+  summary { cursor: pointer; color: var(--muted); font-size: 12px; }
+  .note { font-size: 12px; color: var(--muted); margin-top:.4rem; }
+  code { font-family: ui-monospace, Menlo, monospace; background: var(--bg1); padding:.1rem .3rem; border-radius: 3px; font-size: 12px; }
+  .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap:.75rem; }
+  @media (max-width: 720px) { .grid2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<script src="./_header.js" defer></script>
+<main>
+  <h1>AI Content Generator</h1>
+  <p class="lead">Describe a skill, class, character, item, loot table, event chain, or companion in plain English. Claude writes valid JSON against <code>/schemas/v1/</code>. Paste the result into <a href="./custom-content.html">Custom Content Loader</a>.</p>
+
+  <section class="card">
+    <label for="apiKey">Anthropic API Key <span style="color:var(--muted);text-transform:none;font-weight:normal">(stored locally only, never sent anywhere except api.anthropic.com)</span></label>
+    <div class="row">
+      <input type="password" id="apiKey" placeholder="sk-ant-..." class="grow" autocomplete="off">
+      <button class="secondary" id="btnSaveKey">Save</button>
+      <button class="secondary" id="btnClearKey">Clear</button>
+    </div>
+    <p class="note">Need a key? Get one at <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>. Uses <code>claude-haiku-4-5</code> by default for speed.</p>
+  </section>
+
+  <section class="card">
+    <div class="grid2">
+      <div>
+        <label for="kind">What to generate</label>
+        <select id="kind">
+          <option value="skill">Skill / Spell</option>
+          <option value="class">Class</option>
+          <option value="character">Character (hire)</option>
+          <option value="item">Item</option>
+          <option value="loot">Loot table</option>
+          <option value="event-chain">Event chain</option>
+          <option value="appearance">Appearance</option>
+          <option value="pack">Full pack (multiple kinds)</option>
+        </select>
+      </div>
+      <div>
+        <label for="model">Model</label>
+        <select id="model">
+          <option value="claude-haiku-4-5">Haiku 4.5 (fast, cheap)</option>
+          <option value="claude-sonnet-4-6">Sonnet 4.6 (best JSON)</option>
+          <option value="claude-opus-4-7">Opus 4.7 (slow, premium)</option>
+        </select>
+      </div>
+    </div>
+    <label for="prompt" style="margin-top:.8rem">Description</label>
+    <textarea id="prompt" placeholder="A paladin-only level 8 skill called 'Radiant Bulwark'. Costs 22 MP, 4-round cooldown, targets self. Grants a shield for 40% of INT damage for 3 rounds and heals nearby allies for 20% of INT every round while the shield is up."></textarea>
+    <div class="row">
+      <button id="btnGen">Generate JSON</button>
+      <button class="secondary" id="btnAbort" disabled>Abort</button>
+      <span id="status" class="status"></span>
+    </div>
+  </section>
+
+  <section class="card">
+    <label for="output">Output</label>
+    <textarea id="output" class="output" placeholder="(JSON will appear here)"></textarea>
+    <div class="row">
+      <button class="secondary" id="btnCopy">Copy</button>
+      <button class="secondary" id="btnDownload">Download .json</button>
+      <button class="secondary" id="btnValidate">Lint JSON</button>
+      <a class="secondary" href="./custom-content.html" style="display:inline-flex;align-items:center;padding:.6rem 1rem;border:1px solid var(--gold);color:var(--gold);border-radius:6px;text-decoration:none">Open Loader →</a>
+    </div>
+    <div id="validateStatus" class="status"></div>
+  </section>
+
+  <details class="card">
+    <summary>How it works</summary>
+    <p class="note" style="margin-top:.6rem">
+      On Generate, the tool fetches the relevant schema(s) from <code>/schemas/v1/</code>, builds a system prompt that includes the schema text plus the DSL op list, and calls the Anthropic Messages API directly from your browser (using the <code>anthropic-dangerous-direct-browser-access</code> header). The model returns JSON only. We strip any markdown fences, JSON-parse, and show the result. Your key never leaves your browser except when it's sent to api.anthropic.com over HTTPS.
+    </p>
+  </details>
+</main>
+
+<script>
+const SCHEMAS_BY_KIND = {
+  skill:       ['skill.json', 'effect-dsl.json'],
+  class:       ['class.json'],
+  character:   ['character.json'],
+  item:        ['item.json'],
+  loot:        ['loot.json'],
+  'event-chain': ['event-chain.json', 'effect-dsl.json'],
+  appearance:  ['appearance.json'],
+  pack:        ['pack.json', 'skill.json', 'class.json', 'item.json', 'loot.json', 'event-chain.json', 'appearance.json', 'character.json', 'effect-dsl.json'],
+};
+const DSL_OPS = ['damage','heal','applyStatus','buff','setFlag','requireFlag','consumeStatus','resourceSwap','echo','ritual','modifyTurnOrder','onHit','onCrit','onKill','onEvent'];
+
+const $ = id => document.getElementById(id);
+const statusEl = $('status');
+const valEl = $('validateStatus');
+function setStatus(msg, cls='') { statusEl.className = 'status ' + cls; statusEl.textContent = msg; }
+function setVal(msg, cls='') { valEl.className = 'status ' + cls; valEl.textContent = msg; }
+
+// --- key persistence ---
+const KEY_LS = 'emberveil.ai_content_gen.apiKey';
+$('apiKey').value = localStorage.getItem(KEY_LS) || '';
+$('btnSaveKey').onclick = () => {
+  const v = $('apiKey').value.trim();
+  if (!v) return setStatus('empty key not saved', 'err');
+  localStorage.setItem(KEY_LS, v);
+  setStatus('key saved to localStorage', 'ok');
+};
+$('btnClearKey').onclick = () => {
+  localStorage.removeItem(KEY_LS);
+  $('apiKey').value = '';
+  setStatus('key cleared', 'ok');
+};
+
+// --- schema fetch + cache ---
+const schemaCache = {};
+async function getSchema(file) {
+  if (schemaCache[file]) return schemaCache[file];
+  const r = await fetch('../schemas/v1/' + file);
+  if (!r.ok) throw new Error('schema fetch failed: ' + file);
+  const txt = await r.text();
+  schemaCache[file] = txt;
+  return txt;
+}
+
+function buildSystemPrompt(kind, schemaTexts) {
+  return [
+    'You author Emberveil mod JSON. Emberveil is a data-driven RPG; content loaded through the custom-content loader must validate against the v1 JSON Schemas below.',
+    '',
+    'STRICT RULES:',
+    '- Output ONLY a single JSON object, no prose, no markdown fences.',
+    '- Every "id" field must be snake_case, unique within the kind.',
+    '- Effect objects use the Effect DSL ops: ' + DSL_OPS.join(', ') + '.',
+    '- Never invent new ops, fields, or top-level keys not present in the schema.',
+    '- Prefer conservative numbers: mpCost 5-40, cooldown 0-6, unlockLevel 1-30, damage mult 0.6-2.4.',
+    '- For skills, use "effects": [{ "op": "...", ... }] — the Effect DSL drives all behavior.',
+    '',
+    'RELEVANT SCHEMAS:',
+    ...schemaTexts.map((s, i) => '--- schema #' + (i+1) + ' ---\n' + s),
+    '',
+    'Return JSON only.'
+  ].join('\n');
+}
+
+async function generate(kind, description, model, apiKey, signal) {
+  const files = SCHEMAS_BY_KIND[kind];
+  const texts = await Promise.all(files.map(getSchema));
+  const system = buildSystemPrompt(kind, texts);
+  const body = {
+    model,
+    max_tokens: 2048,
+    system,
+    messages: [{ role: 'user', content: 'Generate a ' + kind + ' with this spec:\n\n' + description }],
+  };
+  const r = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    signal,
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true',
+    },
+    body: JSON.stringify(body),
+  });
+  if (!r.ok) {
+    const t = await r.text();
+    throw new Error('HTTP ' + r.status + ': ' + t.slice(0, 400));
+  }
+  const data = await r.json();
+  const txt = (data.content || []).map(c => c.type === 'text' ? c.text : '').join('').trim();
+  return stripFences(txt);
+}
+
+function stripFences(s) {
+  return s.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/, '').trim();
+}
+
+let abortController = null;
+$('btnGen').onclick = async () => {
+  const key = ($('apiKey').value || '').trim();
+  if (!key) return setStatus('enter your Anthropic API key first', 'err');
+  const kind = $('kind').value;
+  const model = $('model').value;
+  const description = ($('prompt').value || '').trim();
+  if (!description) return setStatus('write a description of what to generate', 'err');
+
+  abortController = new AbortController();
+  $('btnGen').disabled = true;
+  $('btnAbort').disabled = false;
+  setStatus('calling ' + model + '...', '');
+  try {
+    const out = await generate(kind, description, model, key, abortController.signal);
+    $('output').value = out;
+    setStatus('generated — lint below to verify structure', 'ok');
+    autoValidate(out);
+  } catch (e) {
+    if (e.name === 'AbortError') setStatus('aborted', '');
+    else setStatus(e.message, 'err');
+  } finally {
+    $('btnGen').disabled = false;
+    $('btnAbort').disabled = true;
+    abortController = null;
+  }
+};
+$('btnAbort').onclick = () => abortController && abortController.abort();
+
+// --- lightweight structural lint (not full AJV) ---
+function lintJson(txt, kind) {
+  let obj;
+  try { obj = JSON.parse(txt); }
+  catch (e) { return { ok: false, msg: 'JSON parse: ' + e.message }; }
+  const reqById = ['id'];
+  const missing = reqById.filter(k => typeof obj[k] !== 'string' && !(kind === 'pack' && obj.version));
+  if (missing.length && !Array.isArray(obj)) {
+    return { ok: false, msg: 'missing required field(s): ' + missing.join(', ') };
+  }
+  if (kind === 'skill' && (!Array.isArray(obj.effects) || !obj.effects.length)) {
+    return { ok: false, msg: 'skill.effects must be a non-empty array' };
+  }
+  if (kind === 'skill' && obj.effects) {
+    for (const e of obj.effects) {
+      if (!e || !DSL_OPS.includes(e.op)) return { ok: false, msg: 'unknown effect op: ' + (e && e.op) };
+    }
+  }
+  return { ok: true, msg: 'JSON parsed and passes basic structural lint — load in Custom Content to run full schema validation' };
+}
+function autoValidate(txt) {
+  const r = lintJson(txt, $('kind').value);
+  setVal(r.msg, r.ok ? 'ok' : 'err');
+}
+$('btnValidate').onclick = () => autoValidate($('output').value);
+
+$('btnCopy').onclick = async () => {
+  await navigator.clipboard.writeText($('output').value);
+  setVal('copied to clipboard', 'ok');
+};
+$('btnDownload').onclick = () => {
+  const blob = new Blob([$('output').value], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = ($('kind').value) + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+</script>
+</body>
+</html>

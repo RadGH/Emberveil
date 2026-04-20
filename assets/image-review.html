@@ -19,6 +19,8 @@
     --muted: #8a7a6a;
     --accent: #60a0e0;
     --warn: #e85020;
+    --green: #40a060;
+    --purple: #a060e0;
   }
   * { box-sizing: border-box; }
   body {
@@ -62,6 +64,20 @@
   .summary span { padding: 0 0.3rem; }
   .summary b { color: var(--gold); font-weight: 700; }
 
+  /* Filter toolbar */
+  .filter-bar {
+    display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.4rem 0.8rem; margin: 0 0 0.75rem;
+    font-size: 0.75rem;
+  }
+  .filter-bar label { color: var(--muted); display: flex; align-items: center; gap: 0.3rem; }
+  .filter-bar select {
+    background: var(--panel-alt); color: var(--parchment);
+    border: 1px solid var(--border); border-radius: 3px;
+    padding: 0.2rem 0.4rem; font: inherit; font-size: 0.72rem;
+  }
+
   /* Card-row (hero/boss/companion groupings) */
   .group {
     background: var(--panel);
@@ -74,7 +90,56 @@
     font-family: 'Cinzel',Georgia,serif;
     color: var(--gold); font-size: 0.85rem; margin: 0 0 0.5rem;
     letter-spacing: 0.05em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
   }
+  .group-title .whole-btn {
+    background: var(--panel-alt); color: var(--parchment);
+    border: 1px solid var(--border); border-radius: 3px;
+    padding: 0.15rem 0.5rem; cursor: pointer; font: inherit;
+    font-size: 0.65rem; letter-spacing: 0.04em;
+    text-transform: none; font-weight: 500;
+  }
+  .group-title .whole-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+  .group-title .whole-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(232,160,32,0.08); }
+
+  /* Whole-sprite prompt panel */
+  .whole-sprite-panel {
+    background: #050308;
+    border: 1px solid var(--gold-dim);
+    border-radius: 5px;
+    padding: 0.55rem 0.7rem;
+    margin: 0.4rem 0 0.5rem;
+    font-size: 0.74rem;
+    display: none;
+  }
+  .whole-sprite-panel.open { display: block; }
+  .whole-sprite-panel .notice {
+    color: var(--accent); font-size: 0.68rem; margin: 0.35rem 0 0;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid var(--accent); border-radius: 3px;
+    background: rgba(96,160,224,0.07);
+  }
+  .whole-sprite-panel label {
+    display: block; color: var(--parchment); margin: 0.25rem 0;
+  }
+  .whole-sprite-panel label.inline { display: inline-block; margin-right: 0.75rem; }
+  .whole-sprite-panel input[type=text],
+  .whole-sprite-panel textarea {
+    width: 100%; background: #0b0810; color: var(--parchment);
+    border: 1px solid var(--border); border-radius: 3px;
+    padding: 0.3rem 0.4rem; font: inherit;
+    font-family: ui-monospace,monospace; font-size: 0.72rem;
+  }
+  .whole-sprite-panel textarea { min-height: 48px; resize: vertical; }
+  .whole-sprite-panel .row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; margin-top: 0.4rem; }
+  .whole-sprite-panel button {
+    background: var(--panel); color: var(--parchment);
+    border: 1px solid var(--border); border-radius: 3px;
+    padding: 0.3rem 0.65rem; cursor: pointer; font-size: 0.72rem;
+    font-family: inherit; font-weight: 600;
+  }
+  .whole-sprite-panel button.primary { background: var(--gold); color: #0b0810; border-color: var(--gold); }
+
   .poses {
     display: grid;
     grid-template-columns: repeat(7, minmax(90px, 1fr));
@@ -98,10 +163,21 @@
   .img-card:hover { border-color: var(--gold-dim); }
   .img-card.active { border-color: var(--gold); }
   .img-card.selected { outline: 2px solid var(--gold); outline-offset: 2px; }
-  .img-card.has-action { border-color: var(--accent); }
+  .img-card.has-action::before {
+    content: ''; position: absolute; top: 4px; left: 4px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 0 2px #050308;
+    z-index: 2;
+  }
   .img-card.status-pending { opacity: 0.55; }
   .img-card.status-pending img { filter: grayscale(1); }
   .img-card.status-orphaned { border-color: var(--warn); }
+
+  /* Action state visual marks */
+  .img-card.action-archived { opacity: 0.5; border-color: var(--muted); }
+  .img-card.action-library  { border-color: var(--purple); }
+  .img-card.action-deleted  { opacity: 0.35; border-color: var(--crimson); filter: grayscale(0.6); }
+
   .img-card img {
     width: 100%; height: 92px; object-fit: contain;
     image-rendering: pixelated;
@@ -125,6 +201,48 @@
   .status-dot.orphaned  { background: var(--warn); }
   .status-dot.in_progress { background: var(--accent); }
 
+  /* Action badge overlay on cards */
+  .img-card .action-badge {
+    position: absolute; bottom: 22px; left: 0; right: 0;
+    text-align: center; pointer-events: none;
+  }
+  .img-card .action-badge span {
+    display: inline-block;
+    font-size: 0.55rem; font-weight: 700; letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 0.1rem 0.35rem;
+    border-radius: 2px; color: #fff;
+  }
+  .action-badge-archived span { background: var(--muted); }
+  .action-badge-library span  { background: var(--purple); }
+  .action-badge-deleted span  { background: var(--crimson); }
+
+  /* Per-tile quick-action buttons */
+  .img-card .quick-actions {
+    display: flex; gap: 2px; justify-content: center;
+    margin-top: 0.2rem; flex-wrap: nowrap;
+  }
+  .img-card .quick-actions button {
+    flex: 1; min-width: 0;
+    background: var(--panel); color: var(--muted);
+    border: 1px solid var(--border); border-radius: 2px;
+    padding: 0.1rem 0; cursor: pointer;
+    font-size: 0.5rem; font-family: inherit; font-weight: 600;
+    letter-spacing: 0.03em; text-transform: uppercase;
+    transition: background 0.1s, color 0.1s, border-color 0.1s;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .img-card .quick-actions .qa-archive:hover,
+  .img-card .quick-actions .qa-archive.active { background: rgba(138,122,106,0.25); color: var(--parchment); border-color: var(--muted); }
+  .img-card .quick-actions .qa-library:hover,
+  .img-card .quick-actions .qa-library.active { background: rgba(160,96,224,0.2); color: #c090f0; border-color: var(--purple); }
+  .img-card .quick-actions .qa-delete:hover,
+  .img-card .quick-actions .qa-delete.active  { background: rgba(192,64,48,0.2); color: #f06050; border-color: var(--crimson); }
+  /* Restore / Assign buttons (archived section) */
+  .img-card .quick-actions .qa-restore:hover,
+  .img-card .quick-actions .qa-restore.active { background: rgba(64,160,96,0.2); color: #70c080; border-color: var(--green); }
+  .img-card .quick-actions .qa-assign:hover,
+  .img-card .quick-actions .qa-assign.active  { background: rgba(232,160,32,0.15); color: var(--gold); border-color: var(--gold-dim); }
+
   /* Backgrounds gallery grid */
   .bg-grid {
     display: grid;
@@ -133,16 +251,28 @@
   }
   .bg-grid .img-card img { height: 110px; image-rendering: auto; }
 
-  /* Editor panel appended under the clicked card's row */
+  /* Editor panel — sticky docked dialog (bottom-right), no layout shift */
   .editor {
-    grid-column: 1 / -1;
+    position: fixed;
+    right: 1rem;
+    bottom: 4.2rem;
+    width: min(420px, calc(100vw - 2rem));
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
     background: #050308;
-    border: 1px solid var(--gold-dim);
-    border-radius: 5px;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
     padding: 0.7rem 0.8rem;
-    margin-top: 0.5rem;
     font-size: 0.75rem;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+    z-index: 50;
   }
+  .editor .editor-close {
+    position: absolute; top: 0.25rem; right: 0.45rem;
+    background: transparent; border: none; color: var(--muted);
+    font-size: 1.1rem; cursor: pointer; line-height: 1;
+  }
+  .editor .editor-close:hover { color: var(--gold); }
   .editor .eid {
     font-family: ui-monospace,monospace; color: var(--gold);
     font-size: 0.72rem; margin-bottom: 0.5rem;
@@ -244,6 +374,22 @@
 
   <div class="summary" id="summary">Loading manifest…</div>
 
+  <!-- Filter bar for action-state visibility -->
+  <div class="filter-bar" id="filter-bar">
+    <label>Show:
+      <select id="filter-action-state">
+        <option value="all">All images</option>
+        <option value="none">No action</option>
+        <option value="archived">Archived only</option>
+        <option value="library">Library only</option>
+        <option value="deleted">Deleted only</option>
+        <option value="flagged">Any action flagged</option>
+      </select>
+    </label>
+    <span style="color:var(--muted);font-size:0.7rem">·</span>
+    <label style="font-size:0.7rem;color:var(--muted)">Quick-action buttons let you Archive / Move to Library / Delete each tile directly. Actions persist in localStorage.</label>
+  </div>
+
   <div id="sections"></div>
 </div>
 
@@ -268,16 +414,58 @@
 // Image Review tool
 // ============================================================================
 const STORAGE_KEY = 'rsg.imageReview.v1';
+const CAT_DETAILS_KEY = 'rsg.imageReview.categoryDetails.v1';
+// Enhancement #2: separate store for quick per-tile actions (archive/library/delete)
+const QUICK_ACTIONS_KEY = 'imageReview.actions';
 const MANIFEST_URL = './image-review-manifest.json';
+
+// Per-category custom-details defaults. Keyed by category
+// (hero, companion, boss, enemy, background, tap-weapons, orphan).
+// Prevents hero details from leaking onto background cards etc.
+let categoryDetails = {};
+function loadCategoryDetails() {
+  try { categoryDetails = JSON.parse(localStorage.getItem(CAT_DETAILS_KEY) || '{}') || {}; }
+  catch { categoryDetails = {}; }
+}
+function saveCategoryDetails() {
+  localStorage.setItem(CAT_DETAILS_KEY, JSON.stringify(categoryDetails));
+}
+
+// Enhancement #2: quick-action store
+// Structure: { [imageId]: { action: "archive"|"library"|"delete", ts: number } }
+let quickActions = {};
+function loadQuickActions() {
+  try { quickActions = JSON.parse(localStorage.getItem(QUICK_ACTIONS_KEY) || '{}') || {}; }
+  catch { quickActions = {}; }
+}
+function saveQuickActions() {
+  localStorage.setItem(QUICK_ACTIONS_KEY, JSON.stringify(quickActions));
+}
+function setQuickAction(id, action) {
+  // Toggle: clicking the same action again clears it
+  if (quickActions[id] && quickActions[id].action === action) {
+    delete quickActions[id];
+  } else {
+    quickActions[id] = { action, ts: Date.now() };
+  }
+  saveQuickActions();
+}
+function getQuickAction(id) {
+  return quickActions[id] ? quickActions[id].action : null;
+}
 
 let manifest = null;
 let entries = [];
 let state = {};   // keyed by entry id → action state
 let onlyFlagged = false;
+// Enhancement #2: filter for action state visibility
+let filterActionState = 'all';
 
 function loadState() {
   try { state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') || {}; }
   catch { state = {}; }
+  loadCategoryDetails();
+  loadQuickActions();
 }
 function saveState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -345,12 +533,33 @@ function isFlagged(e) {
   return !!(s && s.action && s.action !== 'none');
 }
 
+// Enhancement #2: check quick-action filter
+function passesActionFilter(e) {
+  if (filterActionState === 'all') return true;
+  const qa = getQuickAction(e.id);
+  const s = state[e.id];
+  const hasAnyAction = isFlagged(e) || !!qa;
+  switch (filterActionState) {
+    case 'none':    return !hasAnyAction;
+    case 'archived': return qa === 'archive' || (s && s.action === 'archive');
+    case 'library':  return qa === 'library' || (s && s.action === 'library');
+    case 'deleted':  return qa === 'delete'  || (s && s.action === 'delete');
+    case 'flagged':  return hasAnyAction;
+    default: return true;
+  }
+}
+
 function filterEntries(list) {
-  if (!onlyFlagged) return list;
-  return list.filter(isFlagged);
+  let result = list;
+  if (onlyFlagged) result = result.filter(isFlagged);
+  if (filterActionState !== 'all') result = result.filter(passesActionFilter);
+  return result;
 }
 
 const POSE_ORDER = ['portrait','south','east','east_attack','east_spell','east_block','east_ko'];
+// Enhancement #1: all pose keys for whole-sprite iteration
+const ALL_POSES = ['portrait','south','east','east_attack','east_spell','east_block','east_ko'];
+
 function sortPoses(arr) {
   return arr.slice().sort((a,b) => {
     const ia = POSE_ORDER.indexOf(a.pose); const ib = POSE_ORDER.indexOf(b.pose);
@@ -361,6 +570,32 @@ function sortPoses(arr) {
 function esc(s) { return String(s == null ? '' : s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
   .replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+// Enhancement #1: derive entry IDs for a group's poses given the group name + category
+function getGroupPoseIds(groupName, cat) {
+  return entries
+    .filter(e => e.category === cat && e.group === groupName)
+    .map(e => e.id);
+}
+
+// Enhancement #1: stub regeneration — logs which poses would be queued
+function stubRegenerateWhole(groupName, cat, prompt, includeAll) {
+  const poseIds = getGroupPoseIds(groupName, cat);
+  const posesDesc = poseIds.length
+    ? poseIds.map(id => {
+        const e = entries.find(en => en.id === id);
+        return e ? e.pose || e.id : id;
+      }).join(', ')
+    : ALL_POSES.join(', ');
+  console.log(
+    `[ImageReview] Whole-sprite regenerate queued\n` +
+    `  Group: ${groupName} (${cat})\n` +
+    `  Poses: ${posesDesc}\n` +
+    `  Prompt: ${prompt || '(none — use existing)'}\n` +
+    `  Include all poses: ${includeAll}`
+  );
+  return poseIds;
+}
 
 function renderSections() {
   const host = document.getElementById('sections');
@@ -380,33 +615,72 @@ function renderSections() {
   html.push(renderGroupedSection('Companions', 'companion', entries));
   // 4) Bosses
   html.push(renderGroupedSection('Bosses', 'boss', entries));
-  // 5) Enemies (flat grid — only portraits)
-  const enemies = filterEntries(entries.filter(e => e.category === 'enemy'));
-  html.push(`<h2>Enemies <span class="count">${enemies.length}</span></h2>`);
-  html.push(enemies.length
-    ? `<div class="bg-grid">${enemies.map(renderCard).join('')}</div>`
-    : `<div class="empty-note">No enemies matched the current filter.</div>`);
+  // 5) Enemies (grouped by name, same layout as Companions)
+  html.push(renderGroupedSection('Enemies', 'enemy', entries));
 
   // 6) Backgrounds
   const bgs = filterEntries(entries.filter(e => e.category === 'background'));
   html.push(`<h2>Backgrounds <span class="count">${bgs.length}</span></h2>`);
   html.push(bgs.length
-    ? `<div class="bg-grid">${bgs.map(renderCard).join('')}</div>`
+    ? `<div class="bg-grid">${bgs.map(e => renderCard(e)).join('')}</div>`
     : `<div class="empty-note">No backgrounds matched the current filter.</div>`);
+
+  // 6b) Tap Weapons (icons + effect/projectile art)
+  const taps = filterEntries(entries.filter(e => e.category === 'tap-weapons'));
+  html.push(`<h2>Tap Weapons <span class="count">${taps.length}</span></h2>`);
+  html.push(taps.length
+    ? `<div class="bg-grid">${taps.map(e => renderCard(e)).join('')}</div>`
+    : `<div class="empty-note">No tap-weapon icons indexed. Drop PNGs into public/images/tap_fx/ (or tap_weapons/, tap_effects/) and re-run the manifest builder.</div>`);
 
   // 7) Pending Generation — pulled from any category with status === pending
   const pending = filterEntries(entries.filter(e => e.status === 'pending'));
   html.push(`<h2>Pending Generation <span class="count">${pending.length}</span></h2>`);
   html.push(pending.length
-    ? `<div class="bg-grid">${pending.map(renderCard).join('')}</div>`
+    ? `<div class="bg-grid">${pending.map(e => renderCard(e)).join('')}</div>`
     : `<div class="empty-note">No pending images.</div>`);
 
-  // 8) Orphaned
-  const orphans = filterEntries(entries.filter(e => e.status === 'orphaned'));
-  html.push(`<h2>Orphaned Images <span class="count">${orphans.length}</span></h2>`);
-  html.push(orphans.length
-    ? `<div class="bg-grid">${orphans.map(renderCard).join('')}</div>`
-    : `<div class="empty-note">No orphaned files detected.</div>`);
+  // Enhancement #3 — "Unassigned Appearances"
+  // Populate from manifest entries where category === 'orphan' AND id matches
+  // appearance-style patterns (portrait/south/east suffixes).
+  const appearanceSuffixes = /_(portrait|south|east|east_attack|east_spell|east_block|east_ko)$/i;
+  const orphanAppearances = filterEntries(
+    entries.filter(e =>
+      e.category === 'orphan' && (
+        appearanceSuffixes.test(e.id) ||
+        appearanceSuffixes.test((e.file || '').split('/').pop().replace(/\.[^.]+$/, ''))
+      )
+    )
+  );
+  html.push(`<h2>Unassigned Appearances <span class="count">${orphanAppearances.length}</span></h2>`);
+  html.push(`<div class="empty-note" style="font-style:normal;color:var(--muted);font-size:0.7rem;margin-bottom:0.3rem">Orphaned sprite poses on disk (portrait, south, east, etc.) — files exist but are not linked to any Hero, Companion, or Boss. Archive, move to Library, or delete from the quick-action buttons on each tile.</div>`);
+  html.push(orphanAppearances.length
+    ? `<div class="bg-grid">${orphanAppearances.map(e => renderCard(e, { showRestore: false })).join('')}</div>`
+    : `<div class="empty-note">No unassigned appearance files. All pose-named orphans are accounted for — or run the manifest builder if new files were added recently.</div>`);
+
+  // Enhancement #4 — "Archived / Unattached"
+  // Archived = quick-action 'archive' OR state action === 'archive'
+  // Unattached = orphaned entries NOT already shown in Unassigned Appearances above
+  const archivedIds = new Set(
+    Object.entries(quickActions)
+      .filter(([, v]) => v && v.action === 'archive')
+      .map(([k]) => k)
+  );
+  // Also fold in state-level archive flags for backward compat
+  Object.entries(state).forEach(([k, v]) => {
+    if (v && v.action === 'archive') archivedIds.add(k);
+  });
+  const orphanAppearanceIds = new Set(orphanAppearances.map(e => e.id));
+  const archivedOrUnattached = filterEntries(
+    entries.filter(e =>
+      archivedIds.has(e.id) ||
+      (e.status === 'orphaned' && e.category === 'orphan' && !orphanAppearanceIds.has(e.id))
+    )
+  );
+  html.push(`<h2>Archived / Unattached <span class="count">${archivedOrUnattached.length}</span></h2>`);
+  html.push(`<div class="empty-note" style="font-style:normal;color:var(--muted);font-size:0.7rem;margin-bottom:0.3rem">Orphaned non-pose files on disk + any image explicitly archived. Use Restore to unarchive, Assign to link to a sprite, or Delete to permanently remove (local).</div>`);
+  html.push(archivedOrUnattached.length
+    ? `<div class="bg-grid">${archivedOrUnattached.map(e => renderCard(e, { showRestore: true })).join('')}</div>`
+    : `<div class="empty-note">No archived or orphaned files.</div>`);
 
   host.innerHTML = html.join('');
   wireCards(host);
@@ -422,41 +696,223 @@ function renderGroupedSection(title, cat, list) {
     const items = sortPoses(by.get(g));
     const filtered = onlyFlagged ? items.filter(isFlagged) : items;
     if (onlyFlagged && !filtered.length) continue;
-    out.push(`<div class="group">
-      <div class="group-title">${esc(g)}</div>
-      <div class="poses">${filtered.map(renderCard).join('')}</div>
+    const groupIds = filtered.map(e => e.id);
+
+    // Enhancement #1: whole-sprite prompt panel (unique id per group)
+    const panelId = `wsp-${cat}-${g.replace(/\W+/g, '_')}`;
+
+    out.push(`<div class="group" data-group="${esc(g)}" data-cat="${esc(cat)}" data-group-ids="${esc(groupIds.join(','))}">
+      <div class="group-title">
+        <span>${esc(g)}</span>
+        <button type="button" class="whole-btn" data-act="select-whole">Select whole sprite</button>
+        <button type="button" class="whole-btn" data-act="open-whole-prompt" data-panel="${esc(panelId)}">Prompt whole sprite</button>
+      </div>
+      <div class="whole-sprite-panel" id="${esc(panelId)}" data-group="${esc(g)}" data-cat="${esc(cat)}">
+        <label><input type="checkbox" class="wsp-include-all" checked> Apply prompt to ALL ${ALL_POSES.length} poses (portrait, south, east, east_attack, east_spell, east_block, east_ko)</label>
+        <label>Prompt for all poses
+          <textarea class="wsp-prompt" placeholder="e.g. Pixel art, fantasy warrior, consistent palette across all poses…" rows="3"></textarea>
+        </label>
+        <div class="row">
+          <button type="button" class="primary wsp-regen-btn">Regenerate (stub)</button>
+          <button type="button" class="wsp-close-btn">Cancel</button>
+          <span style="color:var(--muted);font-size:0.68rem;margin-left:0.25rem">${ALL_POSES.length} poses will be queued</span>
+        </div>
+        <div class="notice">Regeneration pending — requires Portrait-generation AI from roadmap. Clicking Regenerate logs which poses would be queued to the browser console.</div>
+      </div>
+      <div class="poses">${filtered.map(e => renderCard(e)).join('')}</div>
     </div>`);
   }
   return out.join('');
 }
 
 function renderFlatGrid(list) {
-  return `<div class="bg-grid">${list.map(renderCard).join('')}</div>`;
+  return `<div class="bg-grid">${list.map(e => renderCard(e)).join('')}</div>`;
 }
 
-function renderCard(e) {
+// Enhancement #2/#4: renderCard now accepts options { showRestore }
+function renderCard(e, opts = {}) {
   const s = state[e.id] || {};
   const flagged = !!(s.action && s.action !== 'none');
+  const qa = getQuickAction(e.id);
   const img = e.status === 'pending'
     ? `<div class="placeholder">[pending]</div>`
     : `<img src="${esc(e.file)}" loading="lazy" alt="">`;
-  const cls = `img-card status-${e.status}${flagged ? ' has-action' : ''}`;
+
+  let cardCls = `img-card status-${e.status}${flagged ? ' has-action' : ''}`;
+  let badgeHtml = '';
+  if (qa === 'archive') { cardCls += ' action-archived'; badgeHtml = `<div class="action-badge action-badge-archived"><span>archived</span></div>`; }
+  else if (qa === 'library') { cardCls += ' action-library'; badgeHtml = `<div class="action-badge action-badge-library"><span>library</span></div>`; }
+  else if (qa === 'delete') { cardCls += ' action-deleted'; badgeHtml = `<div class="action-badge action-badge-deleted"><span>deleted</span></div>`; }
+
   const label = e.pose ? `${e.pose}` : e.id.replace(/^bg_[^_]+_/, '');
-  return `<div class="${cls}" data-id="${esc(e.id)}">
+
+  // Enhancement #2: quick-action buttons on every tile
+  // Enhancement #4: show Restore + Assign instead in archived section
+  let quickBtns = '';
+  if (opts.showRestore) {
+    // Archived / Unattached section: Restore + Assign + Delete
+    quickBtns = `<div class="quick-actions">
+      <button class="qa-restore" data-qa="restore" data-id="${esc(e.id)}" title="Restore (unarchive)">Restore</button>
+      <button class="qa-assign"  data-qa="assign"  data-id="${esc(e.id)}" title="Assign to a sprite">Assign</button>
+      <button class="qa-delete"  data-qa="delete"  data-id="${esc(e.id)}" title="Mark for deletion">Del</button>
+    </div>`;
+  } else {
+    quickBtns = `<div class="quick-actions">
+      <button class="qa-archive${qa === 'archive' ? ' active' : ''}" data-qa="archive" data-id="${esc(e.id)}" title="Archive">Arc</button>
+      <button class="qa-library${qa === 'library' ? ' active' : ''}" data-qa="library" data-id="${esc(e.id)}" title="Move to Library">Lib</button>
+      <button class="qa-delete${qa === 'delete'  ? ' active' : ''}"  data-qa="delete"  data-id="${esc(e.id)}" title="Mark for deletion">Del</button>
+    </div>`;
+  }
+
+  return `<div class="${cardCls}" data-id="${esc(e.id)}">
     <span class="status-dot ${e.status}" title="${e.status}"></span>
     ${img}
+    ${badgeHtml}
     <div class="lbl">${esc(label)}</div>
+    ${quickBtns}
   </div>`;
 }
 
 const selection = new Set();
 
 function wireCards(host) {
+  // Wire card selection (click on card body, not quick-action buttons)
   host.querySelectorAll('.img-card').forEach(el => {
     el.addEventListener('click', (ev) => {
       if (ev.target.closest('.editor')) return;
+      // Enhancement #2: quick-action buttons intercept first
+      if (ev.target.closest('.quick-actions')) return;
       const id = el.dataset.id;
       toggleSelection(id, el);
+    });
+  });
+
+  // Enhancement #2: wire quick-action buttons
+  host.querySelectorAll('[data-qa]').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const id = btn.dataset.id;
+      const qa = btn.dataset.qa;
+      if (!id) return;
+
+      if (qa === 'restore') {
+        // Clear quick-action archive flag for this id
+        delete quickActions[id];
+        // Also clear state-level archive if present
+        if (state[id] && state[id].action === 'archive') delete state[id];
+        saveQuickActions();
+        saveState();
+        renderSections();
+        updateCounts();
+        return;
+      }
+
+      if (qa === 'assign') {
+        const spriteName = window.prompt(`Assign "${id}" to which sprite group? (Enter sprite name, e.g. "warrior")`);
+        if (!spriteName || !spriteName.trim()) return;
+        // Store assignment in localStorage for reference; no live game wiring (UI-only)
+        const assignments = JSON.parse(localStorage.getItem('imageReview.assignments') || '{}');
+        assignments[id] = { sprite: spriteName.trim(), ts: Date.now() };
+        localStorage.setItem('imageReview.assignments', JSON.stringify(assignments));
+        // Clear archive state so it leaves the archived section
+        delete quickActions[id];
+        if (state[id] && state[id].action === 'archive') delete state[id];
+        saveQuickActions();
+        saveState();
+        console.log(`[ImageReview] Assigned "${id}" → sprite "${spriteName.trim()}" (stored in imageReview.assignments)`);
+        alert(`Assigned "${id}" to sprite "${spriteName.trim()}". This is a local note only — wire it to the game data manually or via the next Claude session.`);
+        renderSections();
+        updateCounts();
+        return;
+      }
+
+      // archive / library / delete — toggle
+      setQuickAction(id, qa);
+      // Sync into the main state store so buildPrompt() picks it up
+      if (quickActions[id]) {
+        state[id] = { ...(state[id] || {}), action: qa };
+      } else {
+        // Toggled off — clear if the only thing in state was this qa
+        if (state[id] && state[id].action === qa) delete state[id];
+      }
+      saveState();
+      updateCounts();
+      // Re-render sections so badge + visual state update and section membership refreshes
+      const preserved = new Set(selection);
+      renderSections();
+      preserved.forEach(sid => {
+        const c = document.querySelector(`.img-card[data-id="${CSS.escape(sid)}"]`);
+        if (c) c.classList.add('selected');
+      });
+      renderSelectionEditor();
+    });
+  });
+
+  // Select-whole button
+  host.querySelectorAll('[data-act="select-whole"]').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const group = btn.closest('.group');
+      if (!group) return;
+      const ids = (group.dataset.groupIds || '').split(',').filter(Boolean);
+      const allSelected = ids.length && ids.every(id => selection.has(id));
+      ids.forEach(id => {
+        const card = document.querySelector(`.img-card[data-id="${CSS.escape(id)}"]`);
+        if (!card) return;
+        if (allSelected) { selection.delete(id); card.classList.remove('selected'); }
+        else { selection.add(id); card.classList.add('selected'); }
+      });
+      btn.classList.toggle('active', !allSelected);
+      renderSelectionEditor();
+    });
+  });
+
+  // Enhancement #1: "Prompt whole sprite" toggle
+  host.querySelectorAll('[data-act="open-whole-prompt"]').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const panelId = btn.dataset.panel;
+      const panel = panelId ? document.getElementById(panelId) : null;
+      if (!panel) return;
+      const isOpen = panel.classList.contains('open');
+      // Close any other open panels first
+      document.querySelectorAll('.whole-sprite-panel.open').forEach(p => p.classList.remove('open'));
+      document.querySelectorAll('[data-act="open-whole-prompt"]').forEach(b => b.classList.remove('active'));
+      if (!isOpen) {
+        panel.classList.add('open');
+        btn.classList.add('active');
+        panel.querySelector('.wsp-prompt').focus();
+      }
+    });
+  });
+
+  // Enhancement #1: whole-sprite regenerate (stub) and close
+  host.querySelectorAll('.wsp-regen-btn').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const panel = btn.closest('.whole-sprite-panel');
+      if (!panel) return;
+      const groupName = panel.dataset.group;
+      const cat = panel.dataset.cat;
+      const prompt = panel.querySelector('.wsp-prompt').value.trim();
+      const includeAll = panel.querySelector('.wsp-include-all').checked;
+      const poseIds = stubRegenerateWhole(groupName, cat, prompt, includeAll);
+      const poseCount = includeAll ? ALL_POSES.length : poseIds.length;
+      const msg = `Stub: ${poseCount} poses queued for "${groupName}" (${cat}).\n\nPoses: ${ALL_POSES.join(', ')}\n\nPrompt: ${prompt || '(none)'}\n\nOpen the browser console to see the full log.\n\nNote: Regeneration pending — requires Portrait-generation AI from roadmap.`;
+      alert(msg);
+    });
+  });
+
+  host.querySelectorAll('.wsp-close-btn').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const panel = btn.closest('.whole-sprite-panel');
+      if (panel) panel.classList.remove('open');
+      // Deactivate the matching open-whole-prompt button
+      const group = btn.closest('.group');
+      if (group) {
+        group.querySelectorAll('[data-act="open-whole-prompt"]').forEach(b => b.classList.remove('active'));
+      }
     });
   });
 }
@@ -483,11 +939,6 @@ function renderSelectionEditor() {
   const templateEntry = entries.find(e => e.id === firstId);
   if (!templateEntry) return;
 
-  // Append editor after the last selected card's containing row
-  const lastId = [...selection][selection.size - 1];
-  const lastCard = document.querySelector(`.img-card[data-id="${CSS.escape(lastId)}"]`);
-  const parent = lastCard ? lastCard.parentElement : document.body;
-
   const editor = document.createElement('div');
   editor.className = 'editor';
   editor.dataset.id = firstId;
@@ -495,10 +946,20 @@ function renderSelectionEditor() {
   const banner = selection.size > 1
     ? `<div style="color:var(--gold);font-size:0.75rem;margin-bottom:0.4rem">Editing ${selection.size} selected images — same action applies to all. <a href="#" data-act="clear-sel" style="color:var(--accent);margin-left:0.5rem">Clear selection</a></div>`
     : `<div style="color:var(--muted);font-size:0.7rem;margin-bottom:0.4rem">Tip: click more cards to apply the same action to multiple images. <a href="#" data-act="clear-sel" style="color:var(--accent);margin-left:0.5rem">Clear</a></div>`;
-  editor.innerHTML = banner + renderEditor(templateEntry);
-  parent.appendChild(editor);
+  editor.innerHTML = `<button type="button" class="editor-close" aria-label="Close">×</button>` + banner + renderEditor(templateEntry);
+  document.body.appendChild(editor);
   wireEditor(editor, templateEntry);
   editor.addEventListener('click', (ev) => {
+    if (ev.target.closest('.editor-close')) {
+      ev.preventDefault();
+      selection.forEach(id => {
+        const c = document.querySelector(`.img-card[data-id="${CSS.escape(id)}"]`);
+        if (c) c.classList.remove('selected');
+      });
+      selection.clear();
+      renderSelectionEditor();
+      return;
+    }
     const a = ev.target.closest('[data-act="clear-sel"]');
     if (!a) return;
     ev.preventDefault();
@@ -509,7 +970,6 @@ function renderSelectionEditor() {
     selection.clear();
     renderSelectionEditor();
   });
-  editor.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 
 function sameGroupRefs(entry) {
@@ -521,6 +981,10 @@ function sameGroupRefs(entry) {
 function renderEditor(entry) {
   const s = state[entry.id] || {};
   const cat = entry.category;
+  // Category-scoped details default — prefills when this card has none yet.
+  // Each category (hero, companion, boss, enemy, background, tap-weapons, orphan)
+  // keeps its own default so switching sections doesn't leak text.
+  if (!s.details && categoryDetails[cat]) s.details = categoryDetails[cat];
   const refs = sameGroupRefs(entry);
   const refOptions = ['<option value="">-- none --</option>']
     .concat(refs.map(r => `<option value="${esc(r.id)}"${s.reference === r.id ? ' selected' : ''}>${esc(r.label)}</option>`))
@@ -531,9 +995,10 @@ function renderEditor(entry) {
 
   if (entry.status === 'orphaned') {
     return `<div class="eid">${esc(entry.id)} — ${esc(entry.file)}</div>
-      <label class="inline"><input type="radio" name="a-${entry.id}" value="none" ${!s.action || s.action==='none' ? 'checked':''}> No action</label>
       <label class="inline"><input type="radio" name="a-${entry.id}" value="delete" ${s.action==='delete'?'checked':''}> Delete</label>
-      <label class="inline"><input type="radio" name="a-${entry.id}" value="other" ${s.action==='other'?'checked':''}> Other</label>
+      <label class="inline"><input type="radio" name="a-${entry.id}" value="library" ${s.action==='library'?'checked':''}> Move to Library</label>
+      <label class="inline"><input type="radio" name="a-${entry.id}" value="other" ${s.action==='other'?'checked':''}> Other (describe below)</label>
+      <button type="button" data-act="clear-action" style="margin-left:0.5rem;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:3px;padding:0.15rem 0.5rem;cursor:pointer;font-size:0.7rem">Clear action</button>
       <label>Details <textarea data-field="details">${esc(s.details || '')}</textarea></label>`;
   }
 
@@ -552,12 +1017,26 @@ function renderEditor(entry) {
   const isBg = cat === 'background';
   const removeBgAllowed = !isBg;
 
+  // Mixed-state banner for multi-select where selected cards already have different actions.
+  let mixedBanner = '';
+  if (selection.size > 1) {
+    const actions = new Set([...selection].map(id => (state[id] && state[id].action) || '').filter(Boolean));
+    if (actions.size > 1) {
+      mixedBanner = `<div style="color:var(--warn);font-size:0.7rem;margin:0.2rem 0 0.4rem">⚠ Mixed actions across selection (${[...actions].join(', ')}) — choosing an action below will overwrite all.</div>`;
+    }
+  }
+
   return `<div class="eid">${esc(entry.id)} — ${esc(entry.file)}</div>
     ${promptLine}
-    <label class="inline"><input type="radio" name="a-${entry.id}" value="none" ${!s.action || s.action==='none' ? 'checked':''}> No action</label>
+    ${mixedBanner}
     <label class="inline"><input type="radio" name="a-${entry.id}" value="flip" ${s.action==='flip'?'checked':''}> Flip</label>
     ${removeBgAllowed ? `<label class="inline"><input type="radio" name="a-${entry.id}" value="remove_bg" ${s.action==='remove_bg'?'checked':''}> Remove Background</label>` : ''}
-    <label class="inline"><input type="radio" name="a-${entry.id}" value="regenerate" ${s.action==='regenerate' || (isBg && !s.action) ? 'checked':''}> Re-Generate</label>
+    <label class="inline"><input type="radio" name="a-${entry.id}" value="regenerate" ${s.action==='regenerate' ? 'checked':''}> Re-Generate</label>
+    <label class="inline"><input type="radio" name="a-${entry.id}" value="library" ${s.action==='library'?'checked':''}> Move to Library</label>
+    <label class="inline"><input type="radio" name="a-${entry.id}" value="archive" ${s.action==='archive'?'checked':''}> Archive</label>
+    <label class="inline"><input type="radio" name="a-${entry.id}" value="delete" ${s.action==='delete'?'checked':''}> Delete</label>
+    <label class="inline"><input type="radio" name="a-${entry.id}" value="other" ${s.action==='other'?'checked':''}> Other (describe below)</label>
+    <button type="button" data-act="clear-action" style="margin-left:0.5rem;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:3px;padding:0.15rem 0.5rem;cursor:pointer;font-size:0.7rem">Clear action</button>
 
     <div class="sub-panel" data-sub="flip" style="${s.action==='flip'?'':'display:none'}">
       <label class="inline"><input type="radio" name="flip-${entry.id}" value="horizontal" ${s.flipDir!=='vertical'?'checked':''}> Horizontal</label>
@@ -582,30 +1061,77 @@ function wireEditor(editor, entry) {
   function snap() {
     const s = {};
     const actionEl = editor.querySelector('input[name^="a-"]:checked') || editor.querySelector('[data-field="action"]');
-    s.action = actionEl ? actionEl.value : 'none';
+    s.action = actionEl ? actionEl.value : '';
     const flipEl = editor.querySelector('input[name^="flip-"]:checked');
     if (flipEl) s.flipDir = flipEl.value;
     editor.querySelectorAll('[data-field]').forEach(el => {
       const f = el.dataset.field;
-      if (f === 'action') return; // handled
+      if (f === 'action') return;
       if (el.type === 'checkbox') s[f] = el.checked;
       else s[f] = el.value;
     });
-    const targets = selection.size > 0 ? [...selection] : [entry.id];
+    // Per-section isolation: when multiple cards are selected across categories,
+    // only apply to cards sharing the template entry's category. Prevents hero
+    // details / actions from leaking onto background cards (and vice versa).
+    const templateCat = entry.category;
+    const rawTargets = selection.size > 0 ? [...selection] : [entry.id];
+    const targets = rawTargets.filter(tid => {
+      const e = entries.find(en => en.id === tid);
+      return !e || e.category === templateCat;
+    });
     targets.forEach(tid => {
-      if (!s.action || s.action === 'none') delete state[tid];
-      else state[tid] = { ...s };
+      if (!s.action) {
+        // No radio checked — preserve whatever state the card already has (e.g. detail text updates).
+        if (state[tid] && s.details !== undefined) state[tid].details = s.details;
+        else if (s.details !== undefined) state[tid] = { ...(state[tid] || {}), details: s.details };
+      } else {
+        state[tid] = { ...s };
+      }
       updateCardAction(tid);
     });
+    // Persist details as category-scoped default so the next card in the same
+    // category prefills; but never write across categories.
+    if (s.details !== undefined) {
+      categoryDetails[templateCat] = s.details;
+      saveCategoryDetails();
+    }
     saveState();
     updateCounts();
-    // Toggle sub-panels
+    if (['library','archive'].includes(s.action)) {
+      // Sync into quickActions store too so the badge renders
+      targets.forEach(tid => { quickActions[tid] = { action: s.action, ts: Date.now() }; });
+      saveQuickActions();
+      const preserved = new Set(selection);
+      renderSections();
+      preserved.forEach(id => {
+        const c = document.querySelector(`.img-card[data-id="${CSS.escape(id)}"]`);
+        if (c) c.classList.add('selected');
+      });
+      renderSelectionEditor();
+      return;
+    }
     editor.querySelectorAll('.sub-panel').forEach(sp => {
       sp.style.display = sp.dataset.sub === s.action ? '' : 'none';
     });
   }
   editor.addEventListener('change', snap);
   editor.addEventListener('input', snap);
+  editor.addEventListener('click', (ev) => {
+    const btn = ev.target.closest('[data-act="clear-action"]');
+    if (!btn) return;
+    ev.preventDefault();
+    const targets = selection.size > 0 ? [...selection] : [entry.id];
+    targets.forEach(tid => {
+      delete state[tid];
+      // Also clear quick-action if present
+      if (quickActions[tid]) { delete quickActions[tid]; }
+      updateCardAction(tid);
+    });
+    saveState();
+    saveQuickActions();
+    updateCounts();
+    renderSelectionEditor();
+  });
 }
 
 function updateCardAction(id) {
@@ -634,7 +1160,7 @@ function buildPrompt() {
 
   if (!items.length) return 'Image Review Tool — no actions selected.';
 
-  const byAction = { flip: [], remove_bg: [], regenerate: [], generate: [], delete: [], other: [] };
+  const byAction = { flip: [], remove_bg: [], regenerate: [], generate: [], library: [], archive: [], delete: [], other: [] };
   for (const it of items) {
     if (byAction[it.action]) byAction[it.action].push(it);
   }
@@ -673,10 +1199,21 @@ function buildPrompt() {
     if (it.details) line += `\n    New prompt / details: ${it.details}`;
     return line;
   });
+  section('MOVE TO LIBRARY (unassigned appearance)', byAction.library, it => {
+    const parts = [it.entry.id, it.entry.file.replace(/^\.\.\//,'')];
+    if (it.details) parts.push(`(details: ${it.details})`);
+    return parts.join(' — ');
+  });
+  section('ARCHIVE', byAction.archive, it => {
+    const parts = [it.entry.id, it.entry.file.replace(/^\.\.\//,'')];
+    if (it.details) parts.push(`(details: ${it.details})`);
+    return parts.join(' — ');
+  });
   section('DELETE', byAction.delete, it => it.entry.file.replace(/^\.\.\//,''));
-  section('OTHER', byAction.other, it => {
-    const parts = [it.entry.file.replace(/^\.\.\//,'')];
-    if (it.details) parts.push(`details: ${it.details}`);
+  section('OTHER (free-form request)', byAction.other, it => {
+    const parts = [it.entry.id, it.entry.file.replace(/^\.\.\//,'')];
+    if (it.details) parts.push(`request: ${it.details}`);
+    else parts.push('(no details provided — author should describe)');
     return parts.join(' — ');
   });
 
@@ -691,7 +1228,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSections();
   });
   document.getElementById('btn-reset').addEventListener('click', () => {
-    if (!confirm('Clear all selected actions?')) return;
+    if (!confirm('Clear all selected actions? (Quick-action badges and section filters are NOT cleared — use the filter bar to see all images.)')) return;
     state = {}; saveState(); renderSections(); updateCounts();
   });
   document.getElementById('btn-generate').addEventListener('click', () => {
@@ -715,6 +1252,13 @@ document.addEventListener('DOMContentLoaded', () => {
     a.href = url; a.download = 'image-review-prompt.txt'; a.click();
     setTimeout(() => URL.revokeObjectURL(url), 500);
   });
+
+  // Enhancement #2: filter dropdown
+  document.getElementById('filter-action-state').addEventListener('change', (ev) => {
+    filterActionState = ev.target.value;
+    renderSections();
+  });
+
   boot();
 });
 </script>

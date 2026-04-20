@@ -564,8 +564,6 @@
   <section class="hero" aria-label="Hero banner">
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="cloud-layer cloud-layer-1" aria-hidden="true"><div class="cloud-strip"></div></div>
-    <div class="cloud-layer cloud-layer-2" aria-hidden="true"><div class="cloud-strip"></div></div>
-    <div class="cloud-layer cloud-layer-3" aria-hidden="true"><div class="cloud-strip"></div></div>
     <div class="hero-content">
       <h1 class="hero-logo">Emberveil</h1>
       <p class="hero-sub">A Dark-Fantasy Party RPG</p>
@@ -583,25 +581,19 @@
   <div class="divider"></div>
 
   <!-- ── Stat Boxes ──────────────────────────────────────────────── -->
-  <!-- CLAUDE: Numbers sourced from actual game files as of 2026-04-16. Update when classes/skills/companions change. -->
-  <!-- CLAUDE: Classes count from src/game/classes.js (20 entries) -->
-  <!-- CLAUDE: Skills count from src/game/skills.js (84 named skills) -->
-  <!-- CLAUDE: Enemies count from src/maps/mapData.js (28 unique enemy types) -->
-  <!-- CLAUDE: Zones from src/maps/mapData.js (6 acts, 12 main zones) -->
-  <!-- CLAUDE: Items count estimate from src/game/items.js (46 item id entries) -->
-  <!-- CLAUDE: Companions count from src/game/companions.js (10 companions) -->
+  <!-- Counts verified against src/ on 2026-04-19 (M167) -->
   <section class="stats-section">
     <div class="container">
       <div class="stats-grid">
-        <div class="stat-box reveal" data-count="20" data-tip="20 playable hero classes ranging from Warrior and Rogue to Chronomancer and Oracle. 5 available from the start, 15 unlockable.">
+        <div class="stat-box reveal" data-count="27" data-tip="27 playable hero classes ranging from Warrior and Rogue to Chronomancer and Oracle. 5 available from the start, 22 unlockable.">
           <div class="stat-number">0</div>
           <div class="stat-label">Classes</div>
         </div>
-        <div class="stat-box reveal" data-count="84" data-tip="84 combat skills spread across 20 classes. Each class has 4–6 active skills, each with 2 talent upgrades.">
+        <div class="stat-box reveal" data-count="109" data-tip="109 combat skills spread across 27 classes. Each class has 4–6 active skills, each with 2 talent upgrades.">
           <div class="stat-number">0</div>
           <div class="stat-label">Skills</div>
         </div>
-        <div class="stat-box reveal" data-count="28" data-tip="28 unique enemy types across all 6 acts — from lowly goblin scouts to the Emberveil Sovereign.">
+        <div class="stat-box reveal" data-count="39" data-tip="39 unique enemy types across all 6 acts — from lowly goblin scouts to the Emberveil Sovereign.">
           <div class="stat-number">0</div>
           <div class="stat-label">Enemies</div>
         </div>
@@ -609,48 +601,13 @@
           <div class="stat-number">0</div>
           <div class="stat-label">Acts</div>
         </div>
-        <div class="stat-box reveal" data-count="46" data-tip="46 base item types covering weapons, armor, accessories, and consumables. Items roll with affix systems for near-infinite variation.">
+        <div class="stat-box reveal" data-count="85" data-tip="85 base item types: 43 armor, 35 weapons, 7 potions. Items roll with affix systems for near-infinite variation.">
           <div class="stat-number">0</div>
           <div class="stat-label">Items</div>
         </div>
         <div class="stat-box reveal" data-count="10" data-tip="10 unlockable companions that join your party as pets — from a Bone Golem to an Arcane Familiar.">
           <div class="stat-number">0</div>
           <div class="stat-label">Companions</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ── Charts Section ──────────────────────────────────────────── -->
-  <!-- CLAUDE: Chart data sourced from src/game/formulas.js (HP/MP by CON/INT), src/maps/mapData.js (enemies per act), src/game/classes.js (skills per class) -->
-  <section class="charts-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">By the Numbers</h2>
-        <p class="section-sub">A look at the mechanics behind Emberveil</p>
-      </div>
-      <div class="charts-grid">
-        <!-- HP/MP curve by attribute -->
-        <!-- CLAUDE: Formula from formulas.js: maxHp = 50 + CON*10, maxMp = 30 + INT*8 -->
-        <div class="chart-card reveal">
-          <div class="chart-title">HP &amp; MP by Attribute</div>
-          <div class="chart-wrap"><canvas id="chart-hpmp"></canvas></div>
-          <div class="chart-caption">Max HP scales with CON (50 + CON × 10) · Max MP scales with INT (30 + INT × 8)</div>
-        </div>
-        <!-- Enemies per Act -->
-        <!-- CLAUDE: Counted unique enemy IDs per act from src/maps/mapData.js -->
-        <div class="chart-card reveal">
-          <div class="chart-title">Enemies per Act</div>
-          <div class="chart-wrap"><canvas id="chart-enemies"></canvas></div>
-          <div class="chart-caption">Unique enemy types introduced per act</div>
-        </div>
-        <!-- Class archetype distribution -->
-        <div class="chart-card reveal">
-          <div class="chart-title">Class Archetypes</div>
-          <div class="chart-wrap"><canvas id="chart-archetypes"></canvas></div>
-          <div class="chart-caption">Party role distribution across all 20 classes</div>
         </div>
       </div>
     </div>
@@ -726,6 +683,35 @@
       </div>
       <div class="sprite-grid" id="enemies-grid">
         <!-- populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Charts Section (moved below images, above News — M167) ──── -->
+  <section class="charts-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">By the Numbers</h2>
+        <p class="section-sub">A look at the mechanics behind Emberveil</p>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-card reveal">
+          <div class="chart-title">HP &amp; MP by Attribute</div>
+          <div class="chart-wrap"><canvas id="chart-hpmp"></canvas></div>
+          <div class="chart-caption">Max HP scales with CON (50 + CON × 10) · Max MP scales with INT (30 + INT × 8)</div>
+        </div>
+        <div class="chart-card reveal">
+          <div class="chart-title">Enemies per Act</div>
+          <div class="chart-wrap"><canvas id="chart-enemies"></canvas></div>
+          <div class="chart-caption">Unique enemy types introduced per act</div>
+        </div>
+        <div class="chart-card reveal">
+          <div class="chart-title">Class Archetypes</div>
+          <div class="chart-wrap"><canvas id="chart-archetypes"></canvas></div>
+          <div class="chart-caption">Party role distribution across 27 classes</div>
+        </div>
       </div>
     </div>
   </section>

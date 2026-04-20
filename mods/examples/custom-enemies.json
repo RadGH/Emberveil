@@ -1,0 +1,33 @@
+{
+  "id": "example_custom_enemies",
+  "version": "1.0.0",
+  "name": "Custom Enemies Example",
+  "characters": [
+    {
+      "id": "shadow_stalker",
+      "name": "Shadow Stalker",
+      "classId": "rogue",
+      "tier": 3,
+      "startingStats": { "str": 12, "dex": 18, "int": 10, "con": 12 },
+      "hp": 80,
+      "appearance": "shadow_stalker",
+      "effects": [
+        { "op": "onHit", "effects": [{ "op": "applyStatus", "type": "bleed", "duration": 2, "tickMult": 0.2, "target": "target" }] }
+      ],
+      "description": "A silhouette that moves against the light."
+    },
+    {
+      "id": "crystal_wraith",
+      "name": "Crystal Wraith",
+      "classId": "wizard",
+      "tier": 4,
+      "startingStats": { "str": 8, "dex": 12, "int": 20, "con": 10 },
+      "hp": 110,
+      "appearance": "crystal_wraith",
+      "effects": [
+        { "op": "onCrit", "effects": [{ "op": "applyStatus", "type": "stun", "duration": 1, "target": "target" }] }
+      ],
+      "description": "Fractured light given malice."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://emberveil.rsg/schemas/v1/pack.json",
+  "title": "Emberveil Mod Pack (v1)",
+  "description": "A bundle of content — any mix of skills, classes, items, events, appearances, characters, loot tables. The runtime merges packs at boot. A single file may be a pack, a single entity (inferred by shape), or a bare array of entities (same kind).",
+  "type": "object",
+  "required": ["id", "version"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$" },
+    "version": { "type": "string" },
+    "name": { "type": "string" },
+    "author": { "type": "string" },
+    "description": { "type": "string" },
+    "requires": { "type": "array", "items": { "type": "string" }, "description": "Pack ids that must load first." },
+    "skills":      { "type": "array", "items": { "$ref": "skill.json" } },
+    "classes":     { "type": "array", "items": { "$ref": "class.json" } },
+    "items":       { "type": "array", "items": { "$ref": "item.json" } },
+    "events":      { "type": "array", "items": { "$ref": "event-chain.json" } },
+    "appearances": { "type": "array", "items": { "$ref": "appearance.json" } },
+    "characters":  { "type": "array", "items": { "$ref": "character.json" } },
+    "loot":        { "type": "array", "items": { "$ref": "loot.json" } }
+  }
+}

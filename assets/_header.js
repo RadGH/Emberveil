@@ -73,6 +73,13 @@
       { href: ASSETS + 'sprite-flip-review.html', label: 'Sprite Flip Review' },
       { href: ASSETS + 'redesign-survey.html', label: 'Redesign Survey' },
       { href: ASSETS + 'image-review.html', label: 'Image Review' },
+      { href: ASSETS + 'custom-content.html', label: 'Custom Content' },
+      { href: ASSETS + 'ai-content-gen.html', label: 'AI Content Generator' },
+      { href: ASSETS + 'spell-catalog.html', label: 'Spell Catalog' },
+      { href: ASSETS + 'enemy-catalog.html', label: 'Enemy Catalog' },
+      { href: ASSETS + 'item-catalog.html', label: 'Item Catalog' },
+      { href: ASSETS + 'docs.html', label: 'Documentation' },
+      { href: ASSETS + 'wishlist.html', label: 'Wishlist' },
       { separator: true, label: 'Archived' },
       { href: ASSETS + 'rebalance.html', label: 'Rebalance' }
     ]

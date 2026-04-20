@@ -1,0 +1,116 @@
+{
+  "id": "starter_example",
+  "version": "1.0.0",
+  "name": "Starter Example Pack",
+  "author": "Emberveil",
+  "description": "Demonstrates every DSL op across 24 mechanically distinct skills, 5 event chains, and both deterministic and rolled loot tables.",
+  "skills": [
+    { "id": "ex_firebolt",        "name": "Firebolt",         "class": "pyromancer",   "unlockLevel": 1, "mpCost": 4, "cooldown": 0, "targeting": { "side": "enemy", "count": 1 },
+      "effects": [ { "op": "damage", "stat": "int", "mult": 1.2, "amount": 4, "target": "target" }, { "op": "applyStatus", "status": "burn", "duration": 3, "chance": 0.5, "target": "target" } ], "tags": ["fire"] },
+    { "id": "ex_frost_nova",      "name": "Frost Nova",       "class": "cryomancer",   "unlockLevel": 3, "mpCost": 8, "cooldown": 2, "targeting": { "side": "enemy", "count": 99, "aoe": true },
+      "effects": [ { "op": "damage", "stat": "int", "mult": 0.8, "target": "allEnemies" }, { "op": "applyStatus", "status": "chill", "duration": 2, "target": "allEnemies" } ] },
+    { "id": "ex_bloodrite",       "name": "Blood Rite",       "class": "warlock",      "unlockLevel": 5, "mpCost": 0, "cooldown": 4, "targeting": { "side": "enemy", "count": 1 },
+      "effects": [ { "op": "resourceSwap", "from": "hp", "to": "mp", "amount": 10, "target": "self" }, { "op": "damage", "stat": "int", "mult": 2.0, "target": "target" } ] },
+    { "id": "ex_mend",            "name": "Mend",             "class": "cleric",       "unlockLevel": 1, "mpCost": 3, "cooldown": 0, "targeting": { "side": "ally", "count": 1 },
+      "effects": [ { "op": "heal", "stat": "int", "mult": 1.5, "amount": 5, "target": "target" } ] },
+    { "id": "ex_consecrate",      "name": "Consecrate",       "class": "cleric",       "unlockLevel": 6, "mpCost": 6, "cooldown": 3, "targeting": { "side": "self" },
+      "effects": [ { "op": "ritual", "rounds": 2, "thenEffects": [ { "op": "heal", "stat": "int", "mult": 1.0, "amount": 8, "target": "allAllies" }, { "op": "applyStatus", "status": "blessed", "duration": 3, "target": "allAllies" } ] } ] },
+    { "id": "ex_hasten",          "name": "Hasten",           "class": "chronomancer", "unlockLevel": 2, "mpCost": 5, "cooldown": 2, "targeting": { "side": "ally", "count": 1 },
+      "effects": [ { "op": "modifyTurnOrder", "delta": -3, "target": "target" }, { "op": "buff", "key": "dex", "amount": 3, "duration": 2, "target": "target" } ] },
+    { "id": "ex_mirror_strike",   "name": "Mirror Strike",    "class": "echo_blade",   "unlockLevel": 4, "mpCost": 4, "cooldown": 1, "targeting": { "side": "enemy", "count": 1 },
+      "effects": [ { "op": "damage", "stat": "dex", "mult": 1.0, "target": "target" }, { "op": "echo", "of": "ex_firebolt", "mult": 0.5 } ] },
+    { "id": "ex_cleansing_touch", "name": "Cleansing Touch",  "class": "cleric",       "unlockLevel": 4, "mpCost": 3, "cooldown": 1, "targeting": { "side": "ally", "count": 1 },
+      "effects": [ { "op": "consumeStatus", "status": "burn", "target": "target" }, { "op": "consumeStatus", "status": "poison", "target": "target" }, { "op": "heal", "stat": "int", "mult": 0.7, "target": "target" } ] },
+    { "id": "ex_stalker_mark",    "name": "Stalker's Mark",   "class": "ranger",       "unlockLevel": 3, "mpCost": 2, "cooldown": 2, "targeting": { "side": "enemy", "count": 1 },
+      "effects": [ { "op": "setFlag", "flag": "marked" }, { "op": "onHit", "effects": [ { "op": "requireFlag", "flag": "marked" }, { "op": "damage", "stat": "dex", "mult": 0.5, "target": "target" } ] } ] },
+    { "id": "ex_reaper_toll",     "name": "Reaper's Toll",    "class": "deathknight",  "unlockLevel": 7, "mpCost": 6, "cooldown": 3, "targeting": { "side": "enemy", "count": 1 },
+      "effects": [ { "op": "damage", "stat": "str", "mult": 1.4, "target": "target" }, { "op": "onKill", "effects": [ { "op": "heal", "stat": "flat", "amount": 15, "target": "self" }, { "op": "buff", "key": "str", "amount": 2, "duration": 3, "target": "self" } ] } ] },
+    { "id": "ex_shield_wall",     "name": "Shield Wall",      "class": "guardian",     "unlockLevel": 2, "mpCost": 3, "cooldown": 2, "targeting": { "side": "self" },
+      "effects": [ { "op": "applyStatus", "status": "barrier", "duration": 3, "stacks": 20, "target": "allAllies" } ] },
+    { "id": "ex_taunt",           "name": "Taunt",            "class": "guardian",     "unlockLevel": 1, "mpCost": 1, "cooldown": 1, "targeting": { "side": "enemy", "count": 99, "aoe": true },
+      "effects": [ { "op": "applyStatus", "status": "taunted", "duration": 2, "target": "allEnemies" } ] },
+    { "id": "ex_crippling_shot",  "name": "Crippling Shot",   "class": "ranger",       "unlockLevel": 5, "mpCost": 4, "cooldown": 2, "targeting": { "side": "enemy", "count": 1 },
+      "effects": [ { "op": "damage", "stat": "dex", "mult": 0.9, "target": "target" }, { "op": "modifyTurnOrder", "delta": 4, "target": "target" }, { "op": "applyStatus", "status": "bleed", "duration": 3, "target": "target" } ] },
+    { "id": "ex_arcane_volley",   "name": "Arcane Volley",    "class": "battlemage",   "unlockLevel": 6, "mpCost": 7, "cooldown": 2, "targeting": { "side": "enemy", "count": 3 },
+      "effects": [ { "op": "damage", "stat": "int", "mult": 0.7, "target": "allEnemies" }, { "op": "onCrit", "effects": [ { "op": "damage", "stat": "int", "mult": 0.4, "target": "allEnemies" } ] } ] },
+    { "id": "ex_soul_drain",      "name": "Soul Drain",       "class": "warlock",      "unlockLevel": 4, "mpCost": 5, "cooldown": 1, "targeting": { "side": "enemy", "count": 1 },
+      "effects": [ { "op": "damage", "stat": "int", "mult": 0.8, "target": "target" }, { "op": "resourceSwap", "from": "mp", "to": "hp", "amount": 6, "target": "self" } ] },
+    { "id": "ex_phantom_step",    "name": "Phantom Step",     "class": "rogue",        "unlockLevel": 3, "mpCost": 3, "cooldown": 2, "targeting": { "side": "self" },
+      "effects": [ { "op": "applyStatus", "status": "evasive", "duration": 2, "target": "self" }, { "op": "modifyTurnOrder", "delta": -5, "target": "self" } ] },
+    { "id": "ex_backstab",        "name": "Backstab",         "class": "rogue",        "unlockLevel": 2, "mpCost": 2, "cooldown": 0, "targeting": { "side": "enemy", "count": 1 },
+      "effects": [ { "op": "damage", "stat": "dex", "mult": 1.1, "target": "target" }, { "op": "onCrit", "effects": [ { "op": "applyStatus", "status": "bleed", "duration": 3, "target": "target" } ] } ] },
+    { "id": "ex_thunderclap",     "name": "Thunderclap",      "class": "stormcaller",  "unlockLevel": 4, "mpCost": 6, "cooldown": 2, "targeting": { "side": "enemy", "count": 99, "aoe": true },
+      "effects": [ { "op": "damage", "stat": "int", "mult": 0.6, "target": "allEnemies" }, { "op": "applyStatus", "status": "stun", "duration": 1, "chance": 0.35, "target": "allEnemies" } ] },
+    { "id": "ex_starfall",        "name": "Starfall",         "class": "chronomancer", "unlockLevel": 8, "mpCost": 12, "cooldown": 5, "targeting": { "side": "enemy", "count": 99, "aoe": true },
+      "effects": [ { "op": "ritual", "rounds": 3, "thenEffects": [ { "op": "damage", "stat": "int", "mult": 2.5, "target": "allEnemies" }, { "op": "applyStatus", "status": "stun", "duration": 2, "target": "allEnemies" } ] } ] },
+    { "id": "ex_pact_of_ruin",    "name": "Pact of Ruin",     "class": "warlock",      "unlockLevel": 9, "mpCost": 10, "cooldown": 6, "targeting": { "side": "self" },
+      "effects": [ { "op": "resourceSwap", "from": "hp", "to": "mp", "amount": 25, "target": "self" }, { "op": "buff", "key": "int", "amount": 10, "duration": 4, "target": "self" }, { "op": "setFlag", "flag": "pact_active" } ] },
+    { "id": "ex_radiant_burst",   "name": "Radiant Burst",    "class": "paladin",      "unlockLevel": 5, "mpCost": 6, "cooldown": 2, "targeting": { "side": "ally", "count": 99, "aoe": true },
+      "effects": [ { "op": "heal", "stat": "int", "mult": 1.0, "amount": 10, "target": "allAllies" }, { "op": "consumeStatus", "status": "cursed", "target": "allAllies" } ] },
+    { "id": "ex_ironwill",        "name": "Ironwill",         "class": "paladin",      "unlockLevel": 3, "mpCost": 4, "cooldown": 3, "targeting": { "side": "ally", "count": 1 },
+      "effects": [ { "op": "buff", "key": "armor", "amount": 5, "duration": 4, "target": "target" }, { "op": "consumeStatus", "status": "fear", "target": "target" } ] },
+    { "id": "ex_venom_dart",      "name": "Venom Dart",       "class": "alchemist",    "unlockLevel": 2, "mpCost": 3, "cooldown": 0, "targeting": { "side": "enemy", "count": 1 },
+      "effects": [ { "op": "damage", "stat": "dex", "mult": 0.6, "target": "target" }, { "op": "applyStatus", "status": "poison", "duration": 4, "stacks": 2, "target": "target" } ] },
+    { "id": "ex_echo_cascade",    "name": "Echo Cascade",     "class": "echo_blade",   "unlockLevel": 10, "mpCost": 9, "cooldown": 4, "targeting": { "side": "enemy", "count": 1 },
+      "effects": [ { "op": "damage", "stat": "dex", "mult": 1.0, "target": "target" }, { "op": "echo", "of": "ex_backstab", "mult": 0.6 }, { "op": "echo", "of": "ex_firebolt", "mult": 0.4 } ] }
+  ],
+  "events": [
+    { "id": "ex_cursed_coin", "name": "The Cursed Coin", "actRange": [1,3],
+      "nodes": [
+        { "id": "start", "title": "A glinting coin", "text": "A single gold coin sits on a pedestal in the ruin. The air hums faintly.",
+          "choices": [
+            { "label": "Take the coin", "effects": [ { "op": "setFlag", "flag": "has_cursed_coin" }, { "op": "applyStatus", "status": "cursed", "duration": 10, "target": "self" } ], "next": "taken" },
+            { "label": "Leave it", "next": "left" } ] },
+        { "id": "taken", "title": "The coin is warm", "text": "You pocket it. Your hand tingles.", "choices": [ { "label": "Move on", "next": null } ] },
+        { "id": "left",  "title": "You walk on",      "text": "The coin stays where it lay.",       "choices": [ { "label": "Continue", "next": null } ] }
+      ] },
+    { "id": "ex_bessa_the_widow", "name": "Bessa the Widow", "actRange": [1,2],
+      "nodes": [
+        { "id": "start", "title": "A woman in black", "text": "Bessa sits by the road, tending a small fire. She looks up. 'You're not the first to pass today.'",
+          "choices": [
+            { "label": "Offer coin (10g)", "effects": [ { "op": "setFlag", "flag": "bessa_fed" } ], "next": "grateful" },
+            { "label": "Ask about her husband", "next": "tale" },
+            { "label": "Walk past", "next": null } ] },
+        { "id": "grateful", "title": "She smiles faintly", "text": "'Take this. He kept it by his pillow.' She hands you a small ember-ring.", "choices": [ { "label": "Thank her", "next": null } ] },
+        { "id": "tale", "title": "Her voice lowers", "text": "'He went into the Veil a year ago. Didn't come back.' She stares into the flames.",
+          "choices": [ { "label": "Promise to look", "effects": [ { "op": "setFlag", "flag": "bessa_promise" } ], "next": null }, { "label": "Say nothing", "next": null } ] }
+      ] },
+    { "id": "ex_grenn_the_drunk", "name": "Grenn the Drunk", "actRange": [1,4],
+      "nodes": [
+        { "id": "start", "title": "A tavern shout", "text": "'You! I know the way to the Dragon Roost — for a price.'",
+          "choices": [
+            { "label": "Pay 50g", "effects": [ { "op": "setFlag", "flag": "grenn_map" } ], "next": "map" },
+            { "label": "Buy him a round", "effects": [ { "op": "setFlag", "flag": "grenn_drunk" } ], "next": "slur" },
+            { "label": "Ignore", "next": null } ] },
+        { "id": "map",  "title": "A crude map", "text": "He scrawls something on a napkin. It looks...correct.",        "choices": [ { "label": "Leave", "next": null } ] },
+        { "id": "slur", "title": "He rambles",   "text": "He says the Roost is 'past the second river, mind the owls.'", "choices": [ { "label": "Leave", "next": null } ] }
+      ] },
+    { "id": "ex_dragon_whelp", "name": "The Dragon Whelp", "actRange": [3,5],
+      "nodes": [
+        { "id": "start", "title": "A small scaled form", "text": "A dragon whelp, barely larger than a cat, watches you from the rocks.",
+          "choices": [
+            { "label": "Offer food", "effects": [ { "op": "setFlag", "flag": "whelp_friend" }, { "op": "applyStatus", "status": "blessed", "duration": 5, "target": "self" } ], "next": "bond" },
+            { "label": "Strike it", "effects": [ { "op": "damage", "stat": "flat", "amount": 30, "target": "target" }, { "op": "setFlag", "flag": "whelp_dead" } ], "next": "bad" },
+            { "label": "Back away", "next": null } ] },
+        { "id": "bond", "title": "It follows", "text": "The whelp tucks itself against your shoulder.", "choices": [ { "label": "Move on", "next": null } ] },
+        { "id": "bad",  "title": "A roar in the distance", "text": "Something much larger answers the whelp's cry.", "choices": [ { "label": "Flee", "next": null } ] }
+      ] },
+    { "id": "ex_rival_adventurer", "name": "A Rival Adventurer", "actRange": [2,5],
+      "nodes": [
+        { "id": "start", "title": "A familiar face", "text": "The rival stands in your path, smirking. 'Funny, running into you here.'",
+          "choices": [
+            { "label": "Duel", "effects": [ { "op": "setFlag", "flag": "rival_dueled" } ], "next": "duel" },
+            { "label": "Trade tales", "effects": [ { "op": "heal", "stat": "flat", "amount": 20, "target": "self" } ], "next": "peace" },
+            { "label": "Walk past", "next": null } ] },
+        { "id": "duel",  "title": "Swords drawn", "text": "You both step back. Only one walks away.", "choices": [ { "label": "Fight!", "effects": [ { "op": "damage", "stat": "str", "mult": 2.0, "target": "target" } ], "next": null } ] },
+        { "id": "peace", "title": "A shared fire", "text": "They share a flask. You share a map. For now, the road is safer.", "choices": [ { "label": "Part ways", "next": null } ] }
+      ] }
+  ],
+  "appearances": [
+    { "id": "ex_ashen_pilgrim", "name": "Ashen Pilgrim", "sprite": "spritecook/pilgrim_portrait.png", "classDefault": false, "tags": ["human","robes"] }
+  ],
+  "loot": [
+    { "id": "ex_loot_starter_chest", "items": ["ex_potion_minor", "ex_potion_minor", "ex_scroll_firebolt"] },
+    { "id": "ex_loot_world_drop", "roll": { "types": ["weapon","armor","trinket"], "bases": ["iron","steel","ember"], "quality": { "min": 1, "max": 5, "weight": 3 }, "rarity": { "min": 1, "max": 3, "weight": 2 }, "count": 1, "seed": 0 } }
+  ]
+}

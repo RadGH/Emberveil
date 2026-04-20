@@ -720,6 +720,47 @@
   <div id="reports-list"><p class="reports-empty">No reports yet. Reports are added after each major milestone.</p></div>
 </section>
 
+<section id="tools-section" style="max-width:1200px;margin:24px auto 0;padding:0 24px;">
+  <h2 style="font-family:var(--font-display);font-size:1rem;color:var(--accent-b);margin:0 0 12px;letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:6px;">Developer Tools</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+    <a href="spell-catalog.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Skills</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Spell Catalog</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Browse all skills by class, tier, or effect type. Filter and export as mod pack.</div>
+    </a>
+    <a href="image-review.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Image Review</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Audit all character sprite frames — missing poses, flip issues, quality flags.</div>
+    </a>
+    <a href="bg-remove.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Images</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Background Remover</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Canvas-based BG removal with multi-sample picking and tolerance slider. Built for warlock_east_spell.</div>
+    </a>
+    <a href="wishlist.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Planning</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Wishlist</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Feature tracker — planned, in-progress, completed, and shelved items.</div>
+    </a>
+    <a href="docs.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Docs</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Documentation</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Asset policy, mod schemas, SpriteCook prompt templates, and authoring guides.</div>
+    </a>
+  </div>
+
+  <details id="archived-tools" style="margin-top:18px;">
+    <summary style="cursor:pointer;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:6px 0;user-select:none;">Archived Tools</summary>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:10px;opacity:0.8;">
+      <a href="sprite-flip-review.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites (archived)</div>
+        <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Sprite Flip Review</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.45;">Superseded by Image Review which also handles flipping. Kept for reference.</div>
+      </a>
+    </div>
+  </details>
+</section>
 
 <div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
   <div class="modal">
@@ -896,13 +937,15 @@ function detectVariantType(asset) {
   const combined = id + ' ' + file;
 
   if (combined.includes('portrait')) return 'portrait';
-  if (combined.includes('_attack')) return 'attack';
-  if (combined.includes('_spell')) return 'spell';
+  if (combined.includes('_east_attack') || combined.includes('_attack')) return 'attack';
+  if (combined.includes('_east_spell') || combined.includes('_spell')) return 'spell';
+  if (combined.includes('_east_block') || combined.includes('_block')) return 'block';
+  if (combined.includes('_east_ko') || combined.includes('_ko')) return 'ko';
   if (combined.includes('_death') || combined.includes('_down')) return 'death';
   if (combined.includes('_south')) return 'south';
   if (combined.includes('_east')) return 'east';
-  if (combined.includes('_north')) return 'north';
-  if (combined.includes('_west')) return 'west';
+  // Legacy PixelLab directions (_north, _west) are no longer used in-game — skip.
+  if (combined.includes('_north') || combined.includes('_west')) return null;
   if (combined.includes('_idle')) return 'idle';
 
   return 'default';
@@ -918,12 +961,13 @@ function renderCharacterBlock(charName, assets) {
   const variants = {};
   assets.forEach(asset => {
     const varType = detectVariantType(asset);
+    if (!varType) return; // skip unused legacy directions
     if (!variants[varType]) variants[varType] = [];
     variants[varType].push(asset);
   });
 
-  // Define preferred order of variants
-  const variantOrder = ['portrait', 'south', 'north', 'east', 'west', 'idle', 'attack', 'spell', 'death', 'default'];
+  // Preferred order of variants — matches the in-game sprite set.
+  const variantOrder = ['portrait', 'south', 'east', 'attack', 'spell', 'block', 'ko', 'death', 'idle', 'default'];
 
   let variantsHtml = '';
   variantOrder.forEach(varType => {
@@ -974,11 +1018,14 @@ function indexAssetsByCharacter(assets) {
     if (isPortraitAsset(a) && !idx[base].portrait) {
       idx[base].portrait = a;
     } else if (isSpriteAsset(a)) {
+      // Drop legacy PixelLab directions we no longer use in-game.
+      const fid = (a.id || '').toLowerCase();
+      if (fid.endsWith('_north') || fid.endsWith('_west')) continue;
       idx[base].frames.push(a);
     }
   }
-  // Dedup + sort frames: attack, spell, directions, death.
-  const order = ['east_attack','east_spell','south','east','west','north','death'];
+  // Dedup + sort frames: attack, spell, block, ko, directions, death.
+  const order = ['east_attack','east_spell','east_block','east_ko','south','east','death'];
   for (const k of Object.keys(idx)) {
     const seen = new Set();
     idx[k].frames = idx[k].frames.filter(f => {
@@ -1044,11 +1091,11 @@ function getFrameType(asset) {
   const id = (asset.id || '').toLowerCase();
   if (id.endsWith('_east_attack')) return 'attack';
   if (id.endsWith('_east_spell')) return 'spell';
+  if (id.endsWith('_east_block')) return 'block';
+  if (id.endsWith('_east_ko')) return 'ko';
   if (id.endsWith('_death')) return 'death';
-  if (id.endsWith('_north')) return 'N';
   if (id.endsWith('_south')) return 'S';
   if (id.endsWith('_east')) return 'E';
-  if (id.endsWith('_west')) return 'W';
   if (id.endsWith('_east_flipped')) return 'E-flip';
   return 'frame';
 }

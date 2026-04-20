@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Background Remover — Emberveil</title>
+<style>
+  body { padding: 1rem 1rem 4rem; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  h1 {
+    font-family: 'Cinzel',Georgia,serif;
+    font-size: 1.4rem; margin: 0 0 0.25rem;
+    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+    background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1.2rem; }
+
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.7rem 1rem; margin-bottom: 1rem;
+  }
+  .ctrl-group { display: flex; align-items: center; gap: 0.5rem; }
+  .ctrl-group label { color: var(--muted); font-size: 0.78rem; white-space: nowrap; }
+  .ctrl-group input[type=range] { width: 110px; accent-color: var(--gold); }
+  .ctrl-group .val { color: var(--gold); font-size: 0.78rem; min-width: 2.2rem; text-align: right; }
+  .ctrl-group input[type=file] { display: none; }
+  .btn {
+    background: var(--gold); color: #0b0810; border: none;
+    border-radius: 4px; padding: 0.42rem 0.9rem; cursor: pointer;
+    font-family: inherit; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.04em; white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn.btn-sec {
+    background: transparent; color: var(--gold);
+    border: 1px solid var(--border-hi);
+  }
+  .btn.btn-danger {
+    background: #c04030; color: #fff;
+    border: none;
+  }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* Sample chips */
+  .samples-row {
+    display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
+    margin-bottom: 0.75rem; min-height: 1.8rem;
+  }
+  .sample-chip {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    border-radius: 20px; padding: 0.25rem 0.55rem 0.25rem 0.4rem;
+    font-size: 0.72rem; border: 1px solid var(--border-hi); cursor: default;
+    background: var(--surface);
+  }
+  .sample-chip .swatch {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2); flex-shrink: 0;
+  }
+  .sample-chip .rm { cursor: pointer; opacity: 0.6; font-size: 0.7rem; margin-left: 2px; }
+  .sample-chip .rm:hover { opacity: 1; }
+  .samples-hint { color: var(--muted); font-size: 0.75rem; }
+
+  /* Canvas area */
+  .canvas-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 700px) {
+    .canvas-layout { grid-template-columns: 1fr; }
+  }
+  .canvas-panel {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+  }
+  .canvas-panel .panel-label {
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); padding: 0.45rem 0.7rem;
+    border-bottom: 1px solid var(--border); background: var(--surface);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .canvas-panel .panel-label .mode-note { color: var(--gold); font-size: 0.68rem; }
+  .canvas-wrap {
+    position: relative; overflow: auto;
+    max-height: 500px;
+    background:
+      repeating-conic-gradient(#1a1218 0% 25%, #12090d 0% 50%)
+      0 0 / 16px 16px;
+  }
+  .canvas-wrap canvas {
+    display: block; cursor: crosshair;
+    image-rendering: pixelated;
+  }
+  /* Drop zone overlay */
+  .drop-overlay {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: rgba(10,6,8,0.88);
+    border: 2px dashed var(--border-hi);
+    border-radius: 6px;
+    color: var(--muted); font-size: 0.9rem; gap: 0.5rem;
+    pointer-events: none;
+  }
+  .drop-overlay.hidden { display: none; }
+  .drop-overlay .big { font-size: 2rem; }
+  .drop-overlay b { color: var(--gold); }
+
+  /* Presets row */
+  .presets-row {
+    display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem;
+    align-items: center;
+  }
+  .presets-row .label { color: var(--muted); font-size: 0.75rem; margin-right: 0.2rem; }
+
+  /* Status bar */
+  .status-bar {
+    margin-top: 0.6rem; padding: 0.45rem 0.75rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; font-size: 0.75rem; color: var(--muted);
+    min-height: 2rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .status-bar b { color: var(--gold); }
+  .status-ok { color: #7ec67e; }
+  .status-warn { color: #e8a020; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Background Remover</h1>
+  <p class="sub">
+    Load a sprite, click one or more color samples on the source image, then apply removal.
+    Supports multi-sample (flood-fill each sampled color independently) and a tolerance slider.
+    Designed for warlock_east_spell and similar frames with complex multi-color backgrounds.
+  </p>
+
+  <!-- Controls -->
+  <div class="controls">
+    <label class="btn" for="file-input">Load Image</label>
+    <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp">
+
+    <div class="ctrl-group">
+      <label for="preset-select">Preset:</label>
+      <select id="preset-select" style="background:#0b0810;color:var(--text);border:1px solid var(--border);border-radius:4px;padding:0.35rem 0.5rem;font:inherit;font-size:0.78rem;">
+        <option value="">-- pick sprite --</option>
+        <option value="../images/spritecook/warlock_east_spell.png">warlock_east_spell</option>
+        <option value="../images/sprites/warlock_east_spell.png">warlock_east_spell (legacy)</option>
+        <option value="../images/spritecook/warlock_east.png">warlock_east</option>
+        <option value="../images/spritecook/warlock_east_attack.png">warlock_east_attack</option>
+      </select>
+    </div>
+
+    <div class="ctrl-group">
+      <label for="tol-slider">Tolerance</label>
+      <input type="range" id="tol-slider" min="0" max="120" value="32" step="1">
+      <span class="val" id="tol-val">32</span>
+    </div>
+
+    <div class="ctrl-group">
+      <label>
+        <input type="checkbox" id="feather-chk"> Feather edges
+      </label>
+    </div>
+
+    <button class="btn" id="apply-btn" disabled>Apply Removal</button>
+    <button class="btn btn-sec" id="clear-samples-btn" disabled>Clear Samples</button>
+    <button class="btn btn-sec" id="reset-btn" disabled>Reset</button>
+    <button class="btn btn-danger" id="download-btn" disabled>Download PNG</button>
+  </div>
+
+  <!-- Sample chips -->
+  <div class="samples-row" id="samples-row">
+    <span class="samples-hint">No samples yet — click on the source image to pick background colors.</span>
+  </div>
+
+  <!-- Canvas area -->
+  <div class="canvas-layout">
+    <div class="canvas-panel">
+      <div class="panel-label">
+        <span>Source <span id="src-dims"></span></span>
+        <span class="mode-note">Click to sample colors</span>
+      </div>
+      <div class="canvas-wrap" id="src-wrap">
+        <canvas id="src-canvas"></canvas>
+        <div class="drop-overlay" id="drop-overlay">
+          <span class="big">&#8681;</span>
+          <span>Drop an image here, or use <b>Load Image</b> above</span>
+        </div>
+      </div>
+    </div>
+    <div class="canvas-panel">
+      <div class="panel-label">
+        <span>Result <span id="result-dims"></span></span>
+        <span class="mode-note" id="result-mode">—</span>
+      </div>
+      <div class="canvas-wrap" id="result-wrap">
+        <canvas id="result-canvas"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="status-bar" id="status-bar">Load an image to begin.</div>
+</div>
+
+<script>
+/* =========================================================
+   bg-remove.html — canvas background removal tool
+   Multi-sample flood-fill with per-channel tolerance.
+   Feather option softens alpha at removal boundary (1-px blur).
+   ========================================================= */
+
+const fileInput      = document.getElementById('file-input');
+const presetSelect   = document.getElementById('preset-select');
+const tolSlider      = document.getElementById('tol-slider');
+const tolVal         = document.getElementById('tol-val');
+const featherChk     = document.getElementById('feather-chk');
+const applyBtn       = document.getElementById('apply-btn');
+const clearSamplesBtn = document.getElementById('clear-samples-btn');
+const resetBtn       = document.getElementById('reset-btn');
+const downloadBtn    = document.getElementById('download-btn');
+const samplesRow     = document.getElementById('samples-row');
+const srcCanvas      = document.getElementById('src-canvas');
+const resultCanvas   = document.getElementById('result-canvas');
+const srcCtx         = srcCanvas.getContext('2d', { willReadFrequently: true });
+const resultCtx      = resultCanvas.getContext('2d', { willReadFrequently: true });
+const dropOverlay    = document.getElementById('drop-overlay');
+const srcDims        = document.getElementById('src-dims');
+const resultDims     = document.getElementById('result-dims');
+const resultMode     = document.getElementById('result-mode');
+const statusBar      = document.getElementById('status-bar');
+
+/** @type {HTMLImageElement|null} */
+let loadedImage = null;
+/** @type {Array<{r:number,g:number,b:number,a:number}>} */
+let samples = [];
+let removedData = null; // ImageData after removal
+
+/* ── helpers ───────────────────────────────────────────── */
+function setStatus(msg, cls = '') {
+  statusBar.innerHTML = msg;
+  statusBar.className = 'status-bar' + (cls ? ' ' + cls : '');
+}
+
+function colorDist(r1,g1,b1, r2,g2,b2) {
+  // Weighted Euclidean in RGB (simple, fast for sprite BGs)
+  const dr = r1-r2, dg = g1-g2, db = b1-b2;
+  return Math.sqrt(2*dr*dr + 4*dg*dg + 3*db*db);
+}
+
+function renderSamples() {
+  if (samples.length === 0) {
+    samplesRow.innerHTML = '<span class="samples-hint">No samples yet — click on the source image to pick background colors.</span>';
+    clearSamplesBtn.disabled = true;
+    applyBtn.disabled = true;
+    return;
+  }
+  clearSamplesBtn.disabled = false;
+  applyBtn.disabled = !loadedImage;
+  samplesRow.innerHTML = samples.map((s, i) => {
+    const hex = `#${[s.r,s.g,s.b].map(v=>v.toString(16).padStart(2,'0')).join('')}`;
+    return `<span class="sample-chip">
+      <span class="swatch" style="background:${hex}"></span>
+      <span>${hex}</span>
+      <span class="rm" data-idx="${i}" title="Remove">&#10005;</span>
+    </span>`;
+  }).join('');
+  samplesRow.querySelectorAll('.rm').forEach(el => {
+    el.addEventListener('click', () => {
+      samples.splice(Number(el.dataset.idx), 1);
+      renderSamples();
+      redrawSrcOverlay();
+    });
+  });
+}
+
+/** Redraw source canvas with sample-point markers */
+function redrawSrcOverlay() {
+  if (!loadedImage) return;
+  srcCtx.drawImage(loadedImage, 0, 0);
+  // We don't store click coords, so just draw the source clean.
+  // The sample chips show the colors; no persistent dot needed.
+}
+
+function loadImageObj(img) {
+  loadedImage = img;
+  srcCanvas.width  = img.naturalWidth;
+  srcCanvas.height = img.naturalHeight;
+  resultCanvas.width  = img.naturalWidth;
+  resultCanvas.height = img.naturalHeight;
+  srcCtx.drawImage(img, 0, 0);
+  // Clear result
+  resultCtx.clearRect(0, 0, resultCanvas.width, resultCanvas.height);
+  removedData = null;
+  dropOverlay.classList.add('hidden');
+  srcDims.textContent = `(${img.naturalWidth}×${img.naturalHeight})`;
+  resultDims.textContent = '';
+  resultMode.textContent = '—';
+  resetBtn.disabled = false;
+  downloadBtn.disabled = true;
+  if (samples.length > 0) applyBtn.disabled = false;
+  setStatus(`Loaded <b>${img.naturalWidth}×${img.naturalHeight}</b> px. Click on background pixels to sample colors, then press <b>Apply Removal</b>.`);
+}
+
+function loadFromURL(url) {
+  setStatus('Loading…');
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = () => loadImageObj(img);
+  img.onerror = () => setStatus(`Failed to load image: ${url}`, 'status-warn');
+  img.src = url;
+}
+
+/* ── event: file input ─────────────────────────────────── */
+fileInput.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => loadImageObj(img);
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+/* ── event: preset ─────────────────────────────────────── */
+presetSelect.addEventListener('change', () => {
+  const v = presetSelect.value;
+  if (v) loadFromURL(v);
+  presetSelect.value = '';
+});
+
+/* ── event: tolerance slider ───────────────────────────── */
+tolSlider.addEventListener('input', () => {
+  tolVal.textContent = tolSlider.value;
+});
+
+/* ── event: drag-drop ──────────────────────────────────── */
+const srcWrap = document.getElementById('src-wrap');
+srcWrap.addEventListener('dragover', e => { e.preventDefault(); dropOverlay.classList.remove('hidden'); });
+srcWrap.addEventListener('dragleave', () => { if (!loadedImage) dropOverlay.classList.remove('hidden'); });
+srcWrap.addEventListener('drop', e => {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0];
+  if (!file || !file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => loadImageObj(img);
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+/* ── event: click on source canvas to sample ──────────── */
+srcCanvas.addEventListener('click', e => {
+  if (!loadedImage) return;
+  const rect = srcCanvas.getBoundingClientRect();
+  const scaleX = srcCanvas.width  / rect.width;
+  const scaleY = srcCanvas.height / rect.height;
+  const x = Math.floor((e.clientX - rect.left) * scaleX);
+  const y = Math.floor((e.clientY - rect.top)  * scaleY);
+  if (x < 0 || y < 0 || x >= srcCanvas.width || y >= srcCanvas.height) return;
+
+  const px = srcCtx.getImageData(x, y, 1, 1).data;
+  const col = { r: px[0], g: px[1], b: px[2], a: px[3] };
+  const hex = `#${[col.r,col.g,col.b].map(v=>v.toString(16).padStart(2,'0')).join('')}`;
+
+  // Avoid near-duplicate samples
+  const tol = 12;
+  const dup = samples.some(s => colorDist(s.r,s.g,s.b, col.r,col.g,col.b) < tol);
+  if (!dup) {
+    samples.push(col);
+    renderSamples();
+    setStatus(`Sampled <b>${hex}</b> at (${x}, ${y}). ${samples.length} sample(s) collected.`);
+  } else {
+    setStatus(`Color <b>${hex}</b> at (${x}, ${y}) is already in sample set (within 12 distance).`, 'status-warn');
+  }
+});
+
+/* ── Apply removal ─────────────────────────────────────── */
+applyBtn.addEventListener('click', () => {
+  if (!loadedImage || samples.length === 0) return;
+
+  const t0 = performance.now();
+  const tolerance = Number(tolSlider.value);
+  const feather   = featherChk.checked;
+  const w = srcCanvas.width, h = srcCanvas.height;
+
+  // Grab raw pixel data from source
+  const src = srcCtx.getImageData(0, 0, w, h);
+  const data = src.data; // Uint8ClampedArray
+
+  // Build result: copy source then zero-alpha matching pixels
+  const out = new Uint8ClampedArray(data.length);
+  out.set(data);
+
+  /**
+   * For each pixel: check if its color is within tolerance of ANY sample.
+   * If yes, mark as transparent.
+   */
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i], g = data[i+1], b = data[i+2], a = data[i+3];
+    if (a === 0) continue; // already transparent
+    let remove = false;
+    for (const s of samples) {
+      if (colorDist(r,g,b, s.r,s.g,s.b) <= tolerance) { remove = true; break; }
+    }
+    if (remove) {
+      out[i+3] = 0;
+    }
+  }
+
+  // Optional: feather — for each pixel that IS opaque but has a transparent
+  // neighbour from the removal, blend alpha by distance to edge (simple 1-px pass)
+  if (feather) {
+    const mask = new Uint8Array(w * h); // 1 = was removed
+    for (let i = 0; i < data.length; i += 4) {
+      mask[i >> 2] = out[i+3] === 0 ? 1 : 0;
+    }
+    for (let y = 1; y < h-1; y++) {
+      for (let x = 1; x < w-1; x++) {
+        const pi = (y * w + x);
+        if (mask[pi]) continue; // already transparent
+        // Check 4-neighbours
+        const hasTransN = mask[pi - w] || mask[pi + w] || mask[pi - 1] || mask[pi + 1];
+        if (hasTransN) {
+          const di = pi * 4;
+          out[di+3] = Math.round(out[di+3] * 0.5);
+        }
+      }
+    }
+  }
+
+  const resultImg = new ImageData(out, w, h);
+  resultCtx.putImageData(resultImg, 0, 0);
+  removedData = resultImg;
+
+  const elapsed = (performance.now() - t0).toFixed(1);
+  resultDims.textContent = `(${w}×${h})`;
+  resultMode.textContent = feather ? 'feathered' : 'hard edge';
+  downloadBtn.disabled = false;
+
+  // Count removed pixels
+  let removed = 0;
+  for (let i = 3; i < out.length; i += 4) if (out[i] === 0 && data[i] !== 0) removed++;
+  const pct = ((removed / (w * h)) * 100).toFixed(1);
+
+  setStatus(
+    `Removed <b>${removed.toLocaleString()}</b> px (${pct}%) using ${samples.length} sample(s), tol=${tolerance}${feather ? ', feathered' : ''}. Elapsed: ${elapsed} ms.`,
+    'status-ok'
+  );
+});
+
+/* ── Clear samples ─────────────────────────────────────── */
+clearSamplesBtn.addEventListener('click', () => {
+  samples = [];
+  renderSamples();
+  redrawSrcOverlay();
+  setStatus('Samples cleared. Click on background pixels to re-sample.');
+});
+
+/* ── Reset ─────────────────────────────────────────────── */
+resetBtn.addEventListener('click', () => {
+  if (!loadedImage) return;
+  samples = [];
+  renderSamples();
+  srcCtx.drawImage(loadedImage, 0, 0);
+  resultCtx.clearRect(0, 0, resultCanvas.width, resultCanvas.height);
+  removedData = null;
+  downloadBtn.disabled = true;
+  setStatus('Reset. Load a fresh image or re-sample.');
+});
+
+/* ── Download ──────────────────────────────────────────── */
+downloadBtn.addEventListener('click', () => {
+  if (!removedData) return;
+  // Render to off-screen canvas to get PNG blob
+  const tmp = document.createElement('canvas');
+  tmp.width  = removedData.width;
+  tmp.height = removedData.height;
+  tmp.getContext('2d').putImageData(removedData, 0, 0);
+  tmp.toBlob(blob => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'bg_removed.png';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }, 'image/png');
+});
+
+/* ── Initial state ─────────────────────────────────────── */
+dropOverlay.classList.remove('hidden');
+renderSamples();
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://emberveil.rsg/schemas/v1/effect-dsl.json",
+  "title": "Effect DSL op (v1)",
+  "description": "A single op executed by the DSL runtime. See /docs/mod-system/effect-dsl.md for semantics.",
+  "type": "object",
+  "required": ["op"],
+  "oneOf": [
+    { "properties": { "op": { "const": "damage" }, "stat": { "enum": ["str","dex","int","flat"] }, "mult": { "type": "number" }, "amount": { "type": "number" }, "target": { "type": "string" } }, "required": ["op"] },
+    { "properties": { "op": { "const": "heal"   }, "stat": { "enum": ["int","wis","flat"] },      "mult": { "type": "number" }, "amount": { "type": "number" }, "target": { "type": "string" } }, "required": ["op"] },
+    { "properties": { "op": { "const": "applyStatus" }, "status": { "type": "string" }, "duration": { "type": "integer" }, "chance": { "type": "number" }, "stacks": { "type": "integer" }, "target": { "type": "string" } }, "required": ["op","status"] },
+    { "properties": { "op": { "const": "buff" }, "key": { "type": "string" }, "amount": { "type": "number" }, "duration": { "type": "integer" }, "target": { "type": "string" } }, "required": ["op","key","amount"] },
+    { "properties": { "op": { "const": "setFlag"     }, "flag": { "type": "string" }, "value": {} }, "required": ["op","flag"] },
+    { "properties": { "op": { "const": "requireFlag" }, "flag": { "type": "string" }, "value": {} }, "required": ["op","flag"] },
+    { "properties": { "op": { "const": "consumeStatus" }, "status": { "type": "string" }, "target": { "type": "string" } }, "required": ["op","status"] },
+    { "properties": { "op": { "const": "resourceSwap" }, "from": { "enum": ["hp","mp"] }, "to": { "enum": ["hp","mp"] }, "amount": { "type": "number" }, "target": { "type": "string" } }, "required": ["op","from","to","amount"] },
+    { "properties": { "op": { "const": "echo" }, "of": { "type": "string" }, "mult": { "type": "number" } }, "required": ["op","of"] },
+    { "properties": { "op": { "const": "ritual" }, "rounds": { "type": "integer" }, "thenEffects": { "type": "array", "items": { "$ref": "#" } } }, "required": ["op","rounds","thenEffects"] },
+    { "properties": { "op": { "const": "modifyTurnOrder" }, "delta": { "type": "integer" }, "target": { "type": "string" } }, "required": ["op","delta"] },
+    { "properties": { "op": { "const": "onHit"   }, "effects": { "type": "array", "items": { "$ref": "#" } } }, "required": ["op","effects"] },
+    { "properties": { "op": { "const": "onCrit"  }, "effects": { "type": "array", "items": { "$ref": "#" } } }, "required": ["op","effects"] },
+    { "properties": { "op": { "const": "onKill"  }, "effects": { "type": "array", "items": { "$ref": "#" } } }, "required": ["op","effects"] },
+    { "properties": { "op": { "const": "onEvent" }, "event": { "type": "string" }, "effects": { "type": "array", "items": { "$ref": "#" } } }, "required": ["op","event","effects"] }
+  ]
+}

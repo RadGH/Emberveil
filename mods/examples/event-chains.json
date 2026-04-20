@@ -1,0 +1,271 @@
+{
+  "id": "event_chains_m151",
+  "version": "1.0.0",
+  "name": "Event Chains — Five Storylines",
+  "author": "Emberveil",
+  "description": "Five multi-node event chains wired through the M133 flag ledger (incrementFlag/consumeFlag/requireFlags) and the existing event-chain v1 schema. Each chain uses `setFlag` to drop markers and `requires` guards on later nodes so the runtime picks up where the previous episode ended.",
+  "eventChains": [
+    {
+      "id": "ec_rescue_bessa",
+      "name": "Rescue Bessa",
+      "description": "Rescue a captive alchemist Bessa. If abandoned she hunts you down; a rare ring reward triggers a second rescue beat.",
+      "actRange": [1, 3],
+      "nodes": [
+        {
+          "id": "start",
+          "title": "Bessa — First Encounter",
+          "text": "A muffled cry drifts from a bandit wagon. A woman, gagged and bound, eyes you desperately.",
+          "choices": [
+            { "label": "Cut her free", "next": "rescued_1",
+              "effects": [ { "op": "setFlag", "flag": "bessa_rescued_1" } ] },
+            { "label": "Walk past", "next": "abandoned",
+              "effects": [ { "op": "setFlag", "flag": "bessa_abandoned" } ] }
+          ]
+        },
+        {
+          "id": "rescued_1",
+          "title": "A Grateful Alchemist",
+          "text": "'Bessa,' she says, clasping your hand. 'If you find yourselves near Thornroot, I owe you a gift.' She presses a sealed letter into your palm.",
+          "requires": [ { "flag": "bessa_rescued_1" } ],
+          "choices": [
+            { "label": "Accept the letter", "next": "ring_reward",
+              "effects": [ { "op": "setFlag", "flag": "bessa_letter" } ] }
+          ]
+        },
+        {
+          "id": "ring_reward",
+          "title": "Thornroot Hollow",
+          "text": "Bessa's workshop smells of marjoram and tin. She hands you a small iron ring. 'Rare find — for a rarer friend.'",
+          "requires": [ { "flag": "bessa_letter" } ],
+          "choices": [
+            { "label": "Pocket the ring", "next": "second_capture",
+              "effects": [ { "op": "setFlag", "flag": "bessa_ring" } ] }
+          ]
+        },
+        {
+          "id": "second_capture",
+          "title": "Taken Again",
+          "text": "Smoke on the horizon. Bessa's workshop is burning; the marauders have her again.",
+          "requires": [ { "flag": "bessa_ring" } ],
+          "choices": [
+            { "label": "Rescue her once more", "next": null,
+              "effects": [
+                { "op": "setFlag", "flag": "bessa_rescued_twice" },
+                { "op": "incrementFlag", "flag": "hero_reputation", "by": 2 }
+              ] },
+            { "label": "She can fend for herself", "next": null,
+              "effects": [ { "op": "setFlag", "flag": "bessa_lost" } ] }
+          ]
+        },
+        {
+          "id": "abandoned",
+          "title": "The Hunt",
+          "text": "Months later, a scarred woman blocks the road. 'You left me in that wagon.' She draws a blade.",
+          "requires": [ { "flag": "bessa_abandoned" } ],
+          "choices": [
+            { "label": "Fight", "next": null,
+              "effects": [ { "op": "setFlag", "flag": "bessa_hostile" } ] },
+            { "label": "Apologize", "next": null,
+              "effects": [ { "op": "setFlag", "flag": "bessa_forgave" } ] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ec_bandit_grenn",
+      "name": "Spare Bandit Grenn",
+      "description": "Spare a captured bandit; he warns of an ambush later, and joins your party at level 10 if reputation holds.",
+      "actRange": [1, 4],
+      "nodes": [
+        {
+          "id": "start",
+          "title": "Grenn At Sword Point",
+          "text": "The bandit kneels, bleeding. 'Spare me and I swear on my brother's grave you'll see me again — for the better.'",
+          "choices": [
+            { "label": "Spare him", "next": "spared",
+              "effects": [ { "op": "setFlag", "flag": "grenn_spared" } ] },
+            { "label": "Execute him", "next": null,
+              "effects": [ { "op": "setFlag", "flag": "grenn_dead" } ] }
+          ]
+        },
+        {
+          "id": "spared",
+          "title": "A Whisper In The Rain",
+          "text": "Weeks later, a hooded figure slips into your camp. 'Grenn. There's an ambush at the next crossing — twelve of them.'",
+          "requires": [ { "flag": "grenn_spared" } ],
+          "choices": [
+            { "label": "Thank him", "next": "awaiting_join",
+              "effects": [ { "op": "setFlag", "flag": "grenn_warned_ambush" } ] },
+            { "label": "Distrust him", "next": null,
+              "effects": [ { "op": "setFlag", "flag": "grenn_estranged" } ] }
+          ]
+        },
+        {
+          "id": "awaiting_join",
+          "title": "The Offer",
+          "text": "Grenn waits at your next town stop. 'You're strong enough now. Let me fight beside you.' (Available at level 10+.)",
+          "requires": [ { "flag": "grenn_warned_ambush" }, { "flag": "hero_level_10" } ],
+          "choices": [
+            { "label": "Welcome him", "next": null,
+              "effects": [
+                { "op": "setFlag", "flag": "grenn_joined" },
+                { "op": "incrementFlag", "flag": "party_size_bonus", "by": 1 }
+              ] },
+            { "label": "Turn him away", "next": null,
+              "effects": [ { "op": "setFlag", "flag": "grenn_refused" } ] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ec_cursed_coin",
+      "name": "Cursed Coin",
+      "description": "A whispering coin rewards acts of corruption; at corruption ≥ 5 it manifests as a boss.",
+      "actRange": [2, 4],
+      "nodes": [
+        {
+          "id": "start",
+          "title": "The Coin",
+          "text": "A black coin sits in the dust, humming faintly. When you lift it, it whispers a promise: 'Feed me, and grow.'",
+          "choices": [
+            { "label": "Pocket it", "next": "first_offer",
+              "effects": [ { "op": "setFlag", "flag": "cursed_coin_held" } ] },
+            { "label": "Bury it", "next": null,
+              "effects": [ { "op": "setFlag", "flag": "cursed_coin_buried" } ] }
+          ]
+        },
+        {
+          "id": "first_offer",
+          "title": "The First Whisper",
+          "text": "'Strike the merchant. He will not remember.' The coin warms in your palm.",
+          "requires": [ { "flag": "cursed_coin_held" } ],
+          "choices": [
+            { "label": "Obey", "next": "coin_check",
+              "effects": [
+                { "op": "incrementFlag", "flag": "corruption", "by": 2 },
+                { "op": "buff", "key": "str", "amount": 2, "duration": -1, "target": "self" }
+              ] },
+            { "label": "Resist", "next": "coin_check",
+              "effects": [ { "op": "incrementFlag", "flag": "corruption", "by": 0 } ] }
+          ]
+        },
+        {
+          "id": "coin_check",
+          "title": "Second Whisper",
+          "text": "The coin grows heavier. 'Break an oath. Betray a friend. Each gift compounds.'",
+          "choices": [
+            { "label": "Betray an ally (corruption +3)", "next": "coin_check",
+              "effects": [ { "op": "incrementFlag", "flag": "corruption", "by": 3 } ] },
+            { "label": "Walk away", "next": "coin_boss" }
+          ]
+        },
+        {
+          "id": "coin_boss",
+          "title": "The Coin Awakens",
+          "text": "The coin grows limbs and fangs. It has eaten enough of you to be itself.",
+          "requires": [ { "flag": "corruption" } ],
+          "choices": [
+            { "label": "Fight the Coin-Wraith", "next": null,
+              "effects": [
+                { "op": "setFlag", "flag": "coin_boss_triggered" },
+                { "op": "consumeFlag", "flag": "cursed_coin_held" }
+              ] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ec_dragon_whelp",
+      "name": "Spare the Dragon Whelp",
+      "description": "Spare a dragon whelp in act 1; it circles overhead in act 3, and returns as an ally in the act 5 boss.",
+      "actRange": [1, 5],
+      "nodes": [
+        {
+          "id": "start",
+          "title": "The Whelp In The Snare",
+          "text": "A young dragon, no bigger than a hound, is tangled in a trapper's snare. Its green eyes plead.",
+          "choices": [
+            { "label": "Cut it free", "next": "freed",
+              "effects": [ { "op": "setFlag", "flag": "whelp_freed" } ] },
+            { "label": "Slay it for the hide", "next": null,
+              "effects": [ { "op": "setFlag", "flag": "whelp_slain" } ] }
+          ]
+        },
+        {
+          "id": "freed",
+          "title": "A Shadow In The Sky",
+          "text": "Two years on. A green shadow circles the mountain pass, screeching once — a greeting, you think — before vanishing.",
+          "requires": [ { "flag": "whelp_freed" }, { "flag": "act_3_reached" } ],
+          "choices": [
+            { "label": "Wave in greeting", "next": "allied_boss",
+              "effects": [ { "op": "setFlag", "flag": "whelp_remembers" } ] }
+          ]
+        },
+        {
+          "id": "allied_boss",
+          "title": "The Reckoning",
+          "text": "At the summit, the Dragon Tyrant descends — and from the clouds, your whelp (now grown) crashes into its back.",
+          "requires": [ { "flag": "whelp_remembers" }, { "flag": "act_5_reached" } ],
+          "choices": [
+            { "label": "Fight together", "next": null,
+              "effects": [
+                { "op": "setFlag", "flag": "whelp_ally_in_boss" },
+                { "op": "buff", "key": "str", "amount": 4, "duration": 10, "target": "allAllies" }
+              ] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ec_rival_adventurer",
+      "name": "Rival Adventurer",
+      "description": "A rival party crosses your path repeatedly — branch into ally, neutral, or boss based on accumulated choices.",
+      "actRange": [2, 5],
+      "nodes": [
+        {
+          "id": "start",
+          "title": "The Rival Meets You",
+          "text": "A polished adventurer blocks the tavern door. 'Heard your name twice this week. Drink with me — or step aside.'",
+          "choices": [
+            { "label": "Drink", "next": "second_meeting",
+              "effects": [ { "op": "incrementFlag", "flag": "rival_warmth", "by": 2 } ] },
+            { "label": "Step aside", "next": "second_meeting",
+              "effects": [ { "op": "incrementFlag", "flag": "rival_warmth", "by": 0 } ] },
+            { "label": "Shove past", "next": "second_meeting",
+              "effects": [ { "op": "incrementFlag", "flag": "rival_warmth", "by": -2 } ] }
+          ]
+        },
+        {
+          "id": "second_meeting",
+          "title": "The Contested Chest",
+          "text": "A dungeon chest — you both reach it at the same moment.",
+          "choices": [
+            { "label": "Split the loot", "next": "third_meeting",
+              "effects": [ { "op": "incrementFlag", "flag": "rival_warmth", "by": 2 } ] },
+            { "label": "Offer it entirely", "next": "third_meeting",
+              "effects": [ { "op": "incrementFlag", "flag": "rival_warmth", "by": 4 } ] },
+            { "label": "Take it all", "next": "third_meeting",
+              "effects": [ { "op": "incrementFlag", "flag": "rival_warmth", "by": -3 } ] }
+          ]
+        },
+        {
+          "id": "third_meeting",
+          "title": "The Crossroads",
+          "text": "Your paths meet one last time on a windswept ridge. How the rival greets you depends on everything so far.",
+          "choices": [
+            { "label": "Ally — 'Fight beside me'", "next": null,
+              "requires": [ { "flag": "rival_warmth" } ],
+              "effects": [ { "op": "setFlag", "flag": "rival_ally" } ] },
+            { "label": "Neutral — 'Safe travels'", "next": null,
+              "effects": [ { "op": "setFlag", "flag": "rival_neutral" } ] },
+            { "label": "Boss — 'Draw steel'", "next": null,
+              "effects": [
+                { "op": "setFlag", "flag": "rival_boss" },
+                { "op": "consumeFlag", "flag": "rival_warmth" }
+              ] }
+          ]
+        }
+      ]
+    }
+  ]
+}
