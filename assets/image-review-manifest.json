@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-04-19T22:21:33.549Z",
+    "generated": "2026-04-20T23:29:08.066Z",
     "derivedFrom": {
       "appearances": "src/game/appearances.js (28 entries)",
       "classPets": "src/game/companions.js CLASS_PETS (10 entries)",
@@ -9,9 +9,9 @@
       "bossIds": "src/maps/mapData.js map nodes type:'boss' encounter fields (12 bosses)"
     },
     "counts": {
-      "total": 593,
+      "total": 567,
       "by_status": {
-        "ready": 437,
+        "ready": 411,
         "pending": 121,
         "orphaned": 35
       },
@@ -20,7 +20,7 @@
         "companion": 120,
         "boss": 84,
         "enemy": 95,
-        "background": 54,
+        "background": 28,
         "tap-weapons": 9,
         "orphan": 35
       }
@@ -4485,24 +4485,6 @@
       "status": "ready"
     },
     {
-      "id": "bg_combat_abyssal_depths_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/abyssal_depths_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_abyssal_depths_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/abyssal_depths_2.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
       "id": "bg_combat_abyssal_depths_hd",
       "category": "background",
       "group": "combat",
@@ -4512,47 +4494,11 @@
       "status": "ready"
     },
     {
-      "id": "bg_combat_border_roads_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/border_roads_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_border_roads_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/border_roads_2.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
       "id": "bg_combat_border_roads_hd",
       "category": "background",
       "group": "combat",
       "pose": null,
       "file": "../images/combat_bg/border_roads_hd.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_cosmic_rift_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/cosmic_rift_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_cosmic_rift_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/cosmic_rift_2.png",
       "prompt": null,
       "status": "ready"
     },
@@ -4575,47 +4521,11 @@
       "status": "ready"
     },
     {
-      "id": "bg_combat_dragon_throne_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/dragon_throne_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_dragon_throne_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/dragon_throne_2.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
       "id": "bg_combat_dragon_throne_hd",
       "category": "background",
       "group": "combat",
       "pose": null,
       "file": "../images/combat_bg/dragon_throne_hd.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_dragons_reach_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/dragons_reach_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_dragons_reach_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/dragons_reach_2.png",
       "prompt": null,
       "status": "ready"
     },
@@ -4629,92 +4539,11 @@
       "status": "ready"
     },
     {
-      "id": "bg_combat_dust_roads_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/dust_roads_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_dust_roads_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/dust_roads_2.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_ember_plateau_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/ember_plateau_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_ember_plateau_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/ember_plateau_2.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_ember_plateau_3",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/ember_plateau_3.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_eternal_void_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/eternal_void_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_eternal_void_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/eternal_void_2.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
       "id": "bg_combat_eternal_void_hd",
       "category": "background",
       "group": "combat",
       "pose": null,
       "file": "../images/combat_bg/eternal_void_hd.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_hell_breach_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/hell_breach_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_hell_breach_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/hell_breach_2.png",
       "prompt": null,
       "status": "ready"
     },
@@ -4728,24 +4557,6 @@
       "status": "ready"
     },
     {
-      "id": "bg_combat_primordial_nexus_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/primordial_nexus_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_primordial_nexus_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/primordial_nexus_2.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
       "id": "bg_combat_primordial_nexus_hd",
       "category": "background",
       "group": "combat",
@@ -4755,56 +4566,11 @@
       "status": "ready"
     },
     {
-      "id": "bg_combat_shattered_core_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/shattered_core_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_shattered_core_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/shattered_core_2.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
       "id": "bg_combat_shattered_core_hd",
       "category": "background",
       "group": "combat",
       "pose": null,
       "file": "../images/combat_bg/shattered_core_hd.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_thornwood_1",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/thornwood_1.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_thornwood_2",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/thornwood_2.png",
-      "prompt": null,
-      "status": "ready"
-    },
-    {
-      "id": "bg_combat_thornwood_3",
-      "category": "background",
-      "group": "combat",
-      "pose": null,
-      "file": "../images/combat_bg/thornwood_3.png",
       "prompt": null,
       "status": "ready"
     },

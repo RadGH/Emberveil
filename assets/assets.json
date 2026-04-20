@@ -7433,214 +7433,6 @@
       "notes": "Generated companion attack animation frame for void_moth"
     },
     {
-      "id": "combat_bg_border_roads_1",
-      "name": "Border Roads - Crossroads at Twilight",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/border_roads_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_border_roads_2",
-      "name": "Border Roads - Ruined Watchtower",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/border_roads_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_thornwood_1",
-      "name": "Thornwood Forest - Dense Dark Woods",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/thornwood_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_thornwood_2",
-      "name": "Thornwood Forest - Standing Stones Clearing",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/thornwood_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_thornwood_3",
-      "name": "Thornwood Forest - Deep Gnarled Roots",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/thornwood_3.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_dust_roads_1",
-      "name": "Dust Roads - Arid Wasteland",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/dust_roads_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_dust_roads_2",
-      "name": "Dust Roads - Desert Canyon Pass",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/dust_roads_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_ember_plateau_1",
-      "name": "Ember Plateau - Volcanic Plateau",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/ember_plateau_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_ember_plateau_2",
-      "name": "Ember Plateau - Obsidian Formations",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/ember_plateau_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_ember_plateau_3",
-      "name": "Ember Plateau - Ashen Wasteland",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/ember_plateau_3.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_hell_breach_1",
-      "name": "Hell Breach - Obsidian Spires and Lava",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/hell_breach_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_hell_breach_2",
-      "name": "Hell Breach - Hellfire Rift",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/hell_breach_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_shattered_core_1",
-      "name": "Shattered Core - Broken Dimension",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/shattered_core_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_shattered_core_2",
-      "name": "Shattered Core - Ruined Throne Room",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/shattered_core_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_cosmic_rift_1",
-      "name": "Cosmic Rift - Tear in Reality",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/cosmic_rift_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_cosmic_rift_2",
-      "name": "Cosmic Rift - Shattered Starfield",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/cosmic_rift_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_eternal_void_1",
-      "name": "Eternal Void - Dying Stars",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/eternal_void_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_eternal_void_2",
-      "name": "Eternal Void - Impossible Geometry",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/eternal_void_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_abyssal_depths_1",
-      "name": "Abyssal Depths - Bioluminescent Cavern",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/abyssal_depths_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_abyssal_depths_2",
-      "name": "Abyssal Depths - Fossilized Abyss",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/abyssal_depths_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_primordial_nexus_1",
-      "name": "Primordial Nexus - Energy Vortex",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/primordial_nexus_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_primordial_nexus_2",
-      "name": "Primordial Nexus - Genesis Chamber",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/primordial_nexus_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_dragons_reach_1",
-      "name": "Dragon Reach - Mountain Lair Entrance",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/dragons_reach_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_dragons_reach_2",
-      "name": "Dragon Reach - Mountain Pass Nests",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/dragons_reach_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_dragon_throne_1",
-      "name": "Dragon Throne - Treasure Hoard Hall",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/dragon_throne_1.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
-      "id": "combat_bg_dragon_throne_2",
-      "name": "Dragon Throne - Volcano Summit",
-      "category": "background",
-      "source": "openai",
-      "file": "../images/combat_bg/dragon_throne_2.png",
-      "notes": "Combat background generated via DALL-E 3, 256x256 pixel art"
-    },
-    {
       "id": "spritecook_bard_east",
       "name": "SpriteCook Bard East",
       "category": "sprite",
@@ -9207,42 +8999,6 @@
       "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 5e121d58-8366-423b-b409-1d8723804c8b"
     },
     {
-      "id": "spritecook_thornwood_boss_south",
-      "name": "SpriteCook The Veil Wardens South",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/thornwood_boss_south.png",
-      "prompt": "Pixel-art RPG sprite: The Veil Warden boss, hooded cult sentinel in tattered violet robes with silver eye sigils, face hidden in hood shadow, purple veil-magic crackling around clawed hands, twisted thorn branches at feet. Standing idle pose facing the camera (south/front view). Full-body character sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 7b404a7a-a021-4ab3-a3b8-a5d69e3f0fc9"
-    },
-    {
-      "id": "spritecook_thornwood_boss_east",
-      "name": "SpriteCook The Veil Wardens East",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/thornwood_boss_east.png",
-      "prompt": "Pixel-art RPG sprite: The Veil Warden boss, hooded cult sentinel in violet robes with silver eye sigils, face hidden in hood shadow, clawed hands glowing with purple magic. Side-view walking pose facing east (right), mid-stride, robes flowing. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 3ec9b12a-9676-45bd-847a-c27a69eda21e"
-    },
-    {
-      "id": "spritecook_thornwood_boss_east_attack",
-      "name": "SpriteCook The Veil Wardens East Attack",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/thornwood_boss_east_attack.png",
-      "prompt": "Pixel-art RPG sprite: The Veil Warden boss casting attack — hooded cult sentinel in violet robes, side-view facing east, both clawed hands thrust forward unleashing a crackling burst of purple veil-magic, eye sigils glowing bright. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 71ff5f44-11d5-4daa-860c-c54c677906d1"
-    },
-    {
-      "id": "spritecook_thornwood_boss_east_ko",
-      "name": "SpriteCook The Veil Wardens East Ko",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/thornwood_boss_east_ko.png",
-      "prompt": "Pixel-art RPG sprite: The Veil Warden boss defeated — hooded cult sentinel in violet robes, side-view facing east, collapsed face-down on ground, hood fallen, magic fading around body. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id fb41d9cb-96f4-4273-964e-a54b453a9ce2"
-    },
-    {
       "id": "spritecook_dust_boss_portrait",
       "name": "SpriteCook The Lava Titan Portrait",
       "category": "portrait",
@@ -9252,42 +9008,6 @@
       "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 9a48ccc3-2cfd-4f67-bdbc-2196836fb6f7"
     },
     {
-      "id": "spritecook_dust_boss_south",
-      "name": "SpriteCook The Lava Titan South",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dust_boss_south.png",
-      "prompt": "Pixel-art RPG sprite: The Lava Titan boss, massive humanoid of cracked black obsidian with glowing molten lava veins in chest and arms, huge craggy fists, ember sparks. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 4638ecc2-61ea-4536-82b0-56bc1cf1ec77"
-    },
-    {
-      "id": "spritecook_dust_boss_east",
-      "name": "SpriteCook The Lava Titan East",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dust_boss_east.png",
-      "prompt": "Pixel-art RPG sprite: The Lava Titan boss, cracked obsidian colossus with glowing lava veins. Side-view walking pose facing east (right), mid-stride, heavy stomp, ember sparks trailing. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id cde721e7-9bbc-41ec-82bd-426ff44816e2"
-    },
-    {
-      "id": "spritecook_dust_boss_east_attack",
-      "name": "SpriteCook The Lava Titan East Attack",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dust_boss_east_attack.png",
-      "prompt": "Pixel-art RPG sprite: The Lava Titan boss attacking — cracked obsidian colossus with glowing lava veins, side-view facing east, rearing back and slamming down a huge flaming craggy fist, molten lava splashing out. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 238cf910-c2b3-4848-9a3f-181974b18aba"
-    },
-    {
-      "id": "spritecook_dust_boss_east_ko",
-      "name": "SpriteCook The Lava Titan East Ko",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dust_boss_east_ko.png",
-      "prompt": "Pixel-art RPG sprite: The Lava Titan boss defeated — cracked obsidian colossus crumbled on ground, lava veins dimmed and cooling to black, smoke rising, side-view facing east. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id d742112c-6de7-4353-bf59-e6ba4c511118"
-    },
-    {
       "id": "spritecook_plateau_boss_portrait",
       "name": "SpriteCook Veil High Priest Portrait",
       "category": "portrait",
@@ -9295,42 +9015,6 @@
       "file": "../images/spritecook/plateau_boss_portrait.png",
       "prompt": "Dark fantasy boss portrait: Veil High Priest — skeletal figure in ornate gold-trimmed purple ceremonial robes, bone-white pale face, glowing violet eyes, a jagged crystal staff topped with a pulsing eldritch eye sigil, levitating slightly with arcane runes circling. Grand rift-temple backdrop. Head-and-shoulders portrait, centered, facing viewer.",
       "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 1429edd7-74d8-4583-912e-0172ef6a3ae7"
-    },
-    {
-      "id": "spritecook_plateau_boss_south",
-      "name": "SpriteCook Veil High Priest South",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/plateau_boss_south.png",
-      "prompt": "Pixel-art RPG sprite: Veil High Priest boss, skeletal figure in purple and gold robes, glowing violet eyes, holding jagged crystal staff with eldritch eye sigil. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id fc888850-50f6-4f2c-88db-4211e470b42d"
-    },
-    {
-      "id": "spritecook_plateau_boss_east",
-      "name": "SpriteCook Veil High Priest East",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/plateau_boss_east.png",
-      "prompt": "Pixel-art RPG sprite: Veil High Priest boss, skeletal figure in purple gold robes with crystal staff. Side-view walking pose facing east (right), robes flowing, hovering slightly above ground. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id ba81f905-19c5-4b99-9760-ef8bee82d77e"
-    },
-    {
-      "id": "spritecook_plateau_boss_east_attack",
-      "name": "SpriteCook Veil High Priest East Attack",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/plateau_boss_east_attack.png",
-      "prompt": "Pixel-art RPG sprite: Veil High Priest boss casting — skeletal figure in purple gold robes, side-view facing east, staff thrust forward unleashing violet eldritch beam, eye sigil on staff glowing. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id ba902525-e54a-48c1-937b-d812692ba887"
-    },
-    {
-      "id": "spritecook_plateau_boss_east_ko",
-      "name": "SpriteCook Veil High Priest East Ko",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/plateau_boss_east_ko.png",
-      "prompt": "Pixel-art RPG sprite: Veil High Priest boss defeated — skeletal figure in torn purple robes, side-view facing east, collapsed on ground, staff broken and dim. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id dd23a39b-6cbe-492f-baef-0548723c92e8"
     },
     {
       "id": "spritecook_breach_boss_portrait",
@@ -9387,42 +9071,6 @@
       "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 54c2bd10-d4db-4235-8600-a9d9e5d5a4e4"
     },
     {
-      "id": "spritecook_core_boss_south",
-      "name": "SpriteCook The Emberveil Sovereign South",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/core_boss_south.png",
-      "prompt": "Pixel-art RPG sprite: The Emberveil Sovereign boss, wraith-king in crimson robes and silver-black armor, crown of blackened thorns, glowing ember-orange eyes, spectral flame aura, scepter with burning veil-sigil. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id c4327d65-7492-4949-af8f-310075bb81bb"
-    },
-    {
-      "id": "spritecook_core_boss_east",
-      "name": "SpriteCook The Emberveil Sovereign East",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/core_boss_east.png",
-      "prompt": "Pixel-art RPG sprite: The Emberveil Sovereign boss, wraith-king, side-view walking east, robes billowing, hovering slightly, scepter held ready, flame aura trailing. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id c73c4df2-c8fc-4db6-ac01-93ec1a617fcb"
-    },
-    {
-      "id": "spritecook_core_boss_east_attack",
-      "name": "SpriteCook The Emberveil Sovereign East Attack",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/core_boss_east_attack.png",
-      "prompt": "Pixel-art RPG sprite: The Emberveil Sovereign boss attacking — wraith-king, side-view facing east, scepter raised unleashing a ring of ember fire and veil-sigils outward, aura blazing. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id f0df986d-ce0a-44d9-8edc-225ef1d12f77"
-    },
-    {
-      "id": "spritecook_core_boss_east_ko",
-      "name": "SpriteCook The Emberveil Sovereign East Ko",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/core_boss_east_ko.png",
-      "prompt": "Pixel-art RPG sprite: The Emberveil Sovereign boss defeated — wraith-king collapsed on ground, crown broken and falling, aura extinguished, scepter dark, robes crumpled, side-view facing east. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 77d7b9a2-e38d-43cb-9fec-da15e241b2f7"
-    },
-    {
       "id": "spritecook_rift_boss_portrait",
       "name": "SpriteCook The Void Herald Portrait",
       "category": "portrait",
@@ -9432,42 +9080,6 @@
       "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id a0d557b6-cfa6-4aef-a866-d14b0806ef07"
     },
     {
-      "id": "spritecook_rift_boss_south",
-      "name": "SpriteCook The Void Herald South",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/rift_boss_south.png",
-      "prompt": "Pixel-art RPG sprite: The Void Herald boss, tall gaunt cosmic entity of black void fabric, obsidian mask face with single slit of white light, crown of shattered constellations, floating glass shards. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 752cce7c-9d39-4c23-86d6-95aac92131fb"
-    },
-    {
-      "id": "spritecook_rift_boss_east",
-      "name": "SpriteCook The Void Herald East",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/rift_boss_east.png",
-      "prompt": "Pixel-art RPG sprite: The Void Herald boss, cosmic void entity with obsidian mask, side-view facing east, gliding above ground, trailing tendrils of cosmic mist, glass shards floating alongside. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id b89fcf1f-1b6a-47f3-b76d-127b237f3ea0"
-    },
-    {
-      "id": "spritecook_rift_boss_east_attack",
-      "name": "SpriteCook The Void Herald East Attack",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/rift_boss_east_attack.png",
-      "prompt": "Pixel-art RPG sprite: The Void Herald boss attacking — cosmic void entity, side-view facing east, arms spread wide, hurling floating glass shards in a burst of starlight at the target. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 0f7788f8-cae5-474a-9c33-5ca2b81db862"
-    },
-    {
-      "id": "spritecook_rift_boss_east_ko",
-      "name": "SpriteCook The Void Herald East Ko",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/rift_boss_east_ko.png",
-      "prompt": "Pixel-art RPG sprite: The Void Herald boss defeated — cosmic void entity crumpled on ground, mask cracked, crown shattered, glass shards falling to ground, dimming, side-view facing east. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id d76a1d17-4939-4b90-8413-58e2064d067a"
-    },
-    {
       "id": "spritecook_void_boss_portrait",
       "name": "SpriteCook The Unraveler Portrait",
       "category": "portrait",
@@ -9475,42 +9087,6 @@
       "file": "../images/spritecook/void_boss_portrait.png",
       "prompt": "Dark fantasy boss portrait: The Unraveler — a nightmarish entity composed of unraveling reality threads, multiple elongated limbs, face a torn rift of glowing cyan-white light, body wrapped in bandages of starfabric that are coming apart into strands, surrounding air warping. Cosmic void backdrop with reality tears. Head-and-shoulders portrait, centered, facing viewer.",
       "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id d25515ec-3be9-4596-a4e3-18cb4d9074e7"
-    },
-    {
-      "id": "spritecook_void_boss_south",
-      "name": "SpriteCook The Unraveler South",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/void_boss_south.png",
-      "prompt": "Pixel-art RPG sprite: The Unraveler boss, nightmarish entity of unraveling reality threads, multiple elongated limbs, face a rift of cyan-white light, body wrapped in bandages of starfabric coming apart. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 453db306-11a2-46a0-bf94-0cab2c9d2699"
-    },
-    {
-      "id": "spritecook_void_boss_east",
-      "name": "SpriteCook The Unraveler East",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/void_boss_east.png",
-      "prompt": "Pixel-art RPG sprite: The Unraveler boss, side-view facing east, gliding forward, elongated limbs trailing behind, bandages fluttering, reality threads unraveling from body. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 7a036810-16d0-43c7-9add-8ab89a184423"
-    },
-    {
-      "id": "spritecook_void_boss_east_attack",
-      "name": "SpriteCook The Unraveler East Attack",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/void_boss_east_attack.png",
-      "prompt": "Pixel-art RPG sprite: The Unraveler boss attacking — side-view facing east, all elongated limbs lashing out in a whip-crack motion, threads extending toward target, cyan-white rift face blazing. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 971c7b2b-0773-4866-970c-954dc17484f0"
-    },
-    {
-      "id": "spritecook_void_boss_east_ko",
-      "name": "SpriteCook The Unraveler East Ko",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/void_boss_east_ko.png",
-      "prompt": "Pixel-art RPG sprite: The Unraveler boss defeated — entity fully unraveled on ground, threads scattered, rift-face dim, limbs limp, side-view facing east. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 0b614f7a-22d0-4ac6-a909-696acd924916"
     },
     {
       "id": "spritecook_abyss_boss_portrait",
@@ -9612,42 +9188,6 @@
       "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id cc6c2193-2b34-4315-9b67-0f860d85bdf5"
     },
     {
-      "id": "spritecook_dragon_boss_south",
-      "name": "SpriteCook The Ancient Dragon South",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dragon_boss_south.png",
-      "prompt": "Pixel-art RPG sprite: The Ancient Dragon boss, colossal elder wyrm with scarred jet-black scales and ember streaks, curling horns, jagged fangs, amber eyes, tattered leathery wings. Standing idle pose facing the camera (south/front view, quadruped dragon stance with wings folded slightly). Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 15161874-fed7-4d9c-b654-88ce8224284c"
-    },
-    {
-      "id": "spritecook_dragon_boss_east",
-      "name": "SpriteCook The Ancient Dragon East",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dragon_boss_east.png",
-      "prompt": "Pixel-art RPG sprite: The Ancient Dragon boss, colossal elder wyrm, side-view facing east, quadruped dragon stalking pose mid-stride, wings partly spread, tail trailing, embers leaking from scales. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id c5c8166f-8779-4246-9358-1f3603719cf7"
-    },
-    {
-      "id": "spritecook_dragon_boss_east_attack",
-      "name": "SpriteCook The Ancient Dragon East Attack",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dragon_boss_east_attack.png",
-      "prompt": "Pixel-art RPG sprite: The Ancient Dragon boss attacking — colossal elder wyrm, side-view facing east, head reared back and exhaling a massive plume of ember fire breath toward target, wings spread wide. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id b6bc74b2-71ae-4cbd-837a-8426125239d1"
-    },
-    {
-      "id": "spritecook_dragon_boss_east_ko",
-      "name": "SpriteCook The Ancient Dragon East Ko",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dragon_boss_east_ko.png",
-      "prompt": "Pixel-art RPG sprite: The Ancient Dragon boss defeated — colossal elder wyrm collapsed on ground, head down, wings crumpled beside body, amber eyes dim, embers fading, side-view facing east. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 010f6302-ffe7-43fe-81de-6a074c9caad8"
-    },
-    {
       "id": "spritecook_dragonking_boss_portrait",
       "name": "SpriteCook Bahamorth, the Dragon King Portrait",
       "category": "portrait",
@@ -9655,42 +9195,6 @@
       "file": "../images/spritecook/dragonking_boss_portrait.png",
       "prompt": "Dark fantasy boss portrait: Bahamorth the Dragon King — regal platinum-scaled draconic sovereign with sapphire-and-gold inlaid plate armor, colossal golden draconic crown with branching horns, molten gold breath glowing behind closed fangs, two massive wings behind, bearing an ornate obsidian greatsword. Dragon fortress throne backdrop. Head-and-shoulders portrait, centered, facing viewer.",
       "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 1b527d88-08ff-4b02-8e87-0d521cfe0ce3"
-    },
-    {
-      "id": "spritecook_dragonking_boss_south",
-      "name": "SpriteCook Bahamorth, the Dragon King South",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dragonking_boss_south.png",
-      "prompt": "Pixel-art RPG sprite: Bahamorth Dragon King boss, humanoid-dragon sovereign with platinum scales, sapphire-gold plate armor, golden draconic crown, massive wings behind, obsidian greatsword. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id b02914bb-4030-4ae0-af34-97fd03066468"
-    },
-    {
-      "id": "spritecook_dragonking_boss_east",
-      "name": "SpriteCook Bahamorth, the Dragon King East",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dragonking_boss_east.png",
-      "prompt": "Pixel-art RPG sprite: Bahamorth Dragon King boss, side-view facing east, walking forward with regal stride, wings slightly unfurled, obsidian greatsword held ready. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id a6382473-afaa-42b9-9919-fc9fff9f6714"
-    },
-    {
-      "id": "spritecook_dragonking_boss_east_attack",
-      "name": "SpriteCook Bahamorth, the Dragon King East Attack",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dragonking_boss_east_attack.png",
-      "prompt": "Pixel-art RPG sprite: Bahamorth Dragon King boss attacking — side-view facing east, wings fully spread, swinging obsidian greatsword in a devastating horizontal slash, molten gold flames trailing the blade. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id b8b8848d-9dab-41da-be0d-6c89764dd13b"
-    },
-    {
-      "id": "spritecook_dragonking_boss_east_ko",
-      "name": "SpriteCook Bahamorth, the Dragon King East Ko",
-      "category": "sprite",
-      "source": "spritecook",
-      "file": "../images/spritecook/dragonking_boss_east_ko.png",
-      "prompt": "Pixel-art RPG sprite: Bahamorth Dragon King boss defeated — sovereign collapsed to knees, crown tilting off, wings crumpled, obsidian greatsword embedded in ground beside him, side-view facing east. Full-body sprite, centered, transparent background.",
-      "notes": "Boss asset generated via SpriteCook on 2026-04-16; asset_id 1375dc8a-7c6e-47d0-8fc9-9e411fe4f5a9"
     },
     {
       "id": "sc_dire_wolf_south",
