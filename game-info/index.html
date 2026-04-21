@@ -797,7 +797,7 @@
     }
 
     @media (max-width: 600px) {
-      .slots-grid { grid-template-columns: repeat(5, 1fr); }
+      .slots-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
     }
 
     .slot-item {
@@ -1319,9 +1319,9 @@
       margin: 0 auto 8px; display: block;
       filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
     }
-    @media (max-width: 480px) {
-      .roster-portrait { width: 64px; height: 64px; }
-      .roster-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+    @media (max-width: 600px) {
+      .roster-portrait { width: 72px; height: 72px; }
+      .roster-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     }
     .roster-name {
       font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700;

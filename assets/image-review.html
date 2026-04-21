@@ -66,17 +66,145 @@
 
   /* Filter toolbar */
   .filter-bar {
-    display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+    display: flex; align-items: flex-start; gap: 0.5rem 0.75rem; flex-wrap: wrap;
     background: var(--panel); border: 1px solid var(--border);
     border-radius: 6px; padding: 0.4rem 0.8rem; margin: 0 0 0.75rem;
     font-size: 0.75rem;
   }
+  .filter-bar > label, .filter-bar > .filter-tree, .filter-bar > .qs-btn,
+  .filter-bar > .display-modes { align-self: flex-start; }
   .filter-bar label { color: var(--muted); display: flex; align-items: center; gap: 0.3rem; }
   .filter-bar select {
     background: var(--panel-alt); color: var(--parchment);
     border: 1px solid var(--border); border-radius: 3px;
     padding: 0.2rem 0.4rem; font: inherit; font-size: 0.72rem;
   }
+  .filter-tree {
+    position: relative;
+    border: 1px solid var(--border); border-radius: 4px;
+    background: var(--panel-alt); padding: 0;
+    font-size: 0.72rem;
+    align-self: flex-start;
+  }
+  .filter-tree summary {
+    cursor: pointer; padding: 0.3rem 0.6rem;
+    color: var(--gold); font-weight: 700;
+    list-style: none; outline: none;
+    white-space: nowrap;
+  }
+  .filter-tree summary::-webkit-details-marker { display: none; }
+  .filter-tree summary::before { content: '▸ '; color: var(--muted); font-size: 0.7em; }
+  .filter-tree[open] summary::before { content: '▾ '; }
+  .filter-tree[open] {
+    z-index: 30;
+  }
+  .filter-tree[open] > .ft-pop {
+    display: block;
+    position: absolute;
+    top: 100%; left: 0;
+    background: var(--panel);
+    border: 1px solid var(--gold-dim);
+    border-radius: 4px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+    min-width: 180px;
+    padding: 0.3rem 0.5rem 0.4rem;
+    margin-top: 2px;
+  }
+  .filter-tree .ft-pop { display: none; }
+  .filter-tree .ft-group {
+    padding: 0.2rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .filter-tree .ft-group:first-child { border-top: none; }
+  .filter-tree .ft-group .ft-parent {
+    display: flex; align-items: center; gap: 0.3rem;
+    color: var(--gold); font-weight: 700;
+    font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.06em; margin: 0.15rem 0 0.15rem;
+    cursor: pointer;
+  }
+  .filter-tree label {
+    display: block; padding: 0.1rem 0 0.1rem 1.1rem;
+    color: var(--parchment);
+    cursor: pointer;
+  }
+  .filter-tree label.ft-parent { padding-left: 0; }
+  .filter-tree label input { margin-right: 0.4rem; }
+  @media (max-width: 600px) {
+    .filter-bar { padding: 0.4rem 0.5rem; gap: 0.4rem; }
+    .filter-tree[open] > .ft-pop { left: auto; right: 0; min-width: 220px; }
+    .filter-bar > label { font-size: 0.7rem; }
+  }
+  .display-modes { display: inline-flex; gap: 2px; }
+  .display-modes button {
+    background: var(--panel-alt); color: var(--muted);
+    border: 1px solid var(--border); border-radius: 3px;
+    padding: 0.2rem 0.5rem; font: inherit; font-size: 0.7rem;
+    cursor: pointer; font-weight: 600;
+  }
+  .display-modes button:hover { color: var(--parchment); border-color: var(--gold-dim); }
+  .display-modes button.active { background: var(--gold); color: #0b0810; border-color: var(--gold); }
+  .qs-btn {
+    background: var(--panel-alt); color: var(--gold);
+    border: 1px solid var(--gold-dim); border-radius: 3px;
+    padding: 0.25rem 0.7rem; font: inherit; font-size: 0.72rem;
+    cursor: pointer; font-weight: 700; margin-left: auto;
+  }
+  .qs-btn:hover { background: rgba(232,160,32,0.12); }
+
+  /* Display-mode overrides applied to .poses + .bg-grid containers */
+  body[data-display="hero"] .poses,
+  body[data-display="hero"] .bg-grid { grid-template-columns: 1fr; }
+  body[data-display="hero"] .img-card img,
+  body[data-display="hero"] .bg-grid .img-card img { height: 320px; }
+  body[data-display="g6"] .poses,
+  body[data-display="g6"] .bg-grid { grid-template-columns: repeat(6, minmax(0,1fr)); }
+  body[data-display="g5"] .poses,
+  body[data-display="g5"] .bg-grid { grid-template-columns: repeat(5, minmax(0,1fr)); }
+  body[data-display="g4"] .poses,
+  body[data-display="g4"] .bg-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  body[data-display="g3"] .poses,
+  body[data-display="g3"] .bg-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  body[data-display="g2"] .poses,
+  body[data-display="g2"] .bg-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  body[data-display="g6"] .img-card img, body[data-display="g6"] .bg-grid .img-card img { height: 70px; }
+  body[data-display="g5"] .img-card img, body[data-display="g5"] .bg-grid .img-card img { height: 80px; }
+  body[data-display="g3"] .img-card img, body[data-display="g3"] .bg-grid .img-card img { height: 140px; }
+  body[data-display="g2"] .img-card img, body[data-display="g2"] .bg-grid .img-card img { height: 200px; }
+  body[data-display="list"] .poses,
+  body[data-display="list"] .bg-grid {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  body[data-display="list"] .img-card {
+    display: grid; grid-template-columns: 60px 1fr auto;
+    text-align: left; align-items: center; gap: 0.6rem; padding: 0.3rem 0.5rem;
+  }
+  body[data-display="list"] .img-card img,
+  body[data-display="list"] .img-card .placeholder { height: 50px; width: 50px; }
+  body[data-display="list"] .img-card .lbl { font-size: 0.78rem; color: var(--parchment); margin: 0; white-space: normal; }
+  body[data-display="list"] .img-card .quick-actions { margin: 0; flex-direction: row; }
+  body[data-display="list"] .img-card .action-badge { position: static; }
+
+  /* Selection list dialog */
+  dialog.qs-dialog {
+    background: var(--panel); color: var(--parchment);
+    border: 1px solid var(--gold-dim); border-radius: 8px;
+    max-width: 720px; width: 90vw; padding: 1rem;
+  }
+  dialog.qs-dialog::backdrop { background: rgba(0,0,0,0.6); }
+  dialog.qs-dialog h2 { color: var(--gold); margin: 0 0 0.5rem; font-size: 1rem; }
+  dialog.qs-dialog textarea {
+    width: 100%; min-height: 240px; background: #050308; color: var(--parchment);
+    border: 1px solid var(--border); border-radius: 4px; padding: 0.5rem;
+    font: 12px ui-monospace, monospace;
+  }
+  dialog.qs-dialog .qs-actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
+  dialog.qs-dialog button {
+    background: var(--panel-alt); color: var(--parchment);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 0.4rem 0.8rem; cursor: pointer; font: inherit; font-size: 0.78rem;
+  }
+  dialog.qs-dialog button.primary { background: var(--gold); color: #0b0810; border-color: var(--gold); }
 
   /* Card-row (hero/boss/companion groupings) */
   .group {
@@ -91,6 +219,13 @@
     color: var(--gold); font-size: 0.85rem; margin: 0 0 0.5rem;
     letter-spacing: 0.05em; text-transform: uppercase;
     display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+  }
+  .group-title .group-select-lbl {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    cursor: pointer; user-select: none;
+  }
+  .group-title .group-select-lbl input {
+    width: 14px; height: 14px; cursor: pointer;
   }
   .group-title .whole-btn {
     background: var(--panel-alt); color: var(--parchment);
@@ -386,9 +521,73 @@
         <option value="flagged">Any action flagged</option>
       </select>
     </label>
-    <span style="color:var(--muted);font-size:0.7rem">·</span>
-    <label style="font-size:0.7rem;color:var(--muted)">Quick-action buttons let you Archive / Move to Library / Delete each tile directly. Actions persist in localStorage.</label>
+    <details class="filter-tree" id="filter-tree-cats">
+      <summary>Categories</summary>
+      <div class="ft-pop">
+        <div class="ft-group">
+          <label class="ft-parent"><input type="checkbox" data-fparent="characters" checked> Characters</label>
+          <label><input type="checkbox" data-fcat="hero" data-fparent-of="characters" checked> Heroes</label>
+          <label><input type="checkbox" data-fcat="companion" data-fparent-of="characters" checked> Companions</label>
+          <label><input type="checkbox" data-fcat="boss" data-fparent-of="characters" checked> Bosses</label>
+          <label><input type="checkbox" data-fcat="enemy" data-fparent-of="characters" checked> Enemies</label>
+        </div>
+        <div class="ft-group">
+          <label class="ft-parent"><input type="checkbox" data-fparent="backgrounds" checked> Backgrounds</label>
+          <label><input type="checkbox" data-fcat="bg-combat" data-fparent-of="backgrounds" checked> Combat</label>
+          <label><input type="checkbox" data-fcat="bg-map" data-fparent-of="backgrounds" checked> Map</label>
+          <label><input type="checkbox" data-fcat="bg-other" data-fparent-of="backgrounds" checked> Other</label>
+        </div>
+        <div class="ft-group">
+          <label class="ft-parent"><input type="checkbox" data-fparent="other" checked> Other</label>
+          <label><input type="checkbox" data-fcat="tap-weapons" data-fparent-of="other" checked> Tap Weapons</label>
+          <label><input type="checkbox" data-fcat="orphan" data-fparent-of="other" checked> Orphans</label>
+        </div>
+      </div>
+    </details>
+    <details class="filter-tree" id="filter-tree-poses">
+      <summary>Poses</summary>
+      <div class="ft-pop">
+        <div class="ft-group">
+          <label class="ft-parent"><input type="checkbox" data-fparent="poses" checked> All poses</label>
+          <label><input type="checkbox" data-fpose="portrait" data-fparent-of="poses" checked> Portrait</label>
+          <label><input type="checkbox" data-fpose="south" data-fparent-of="poses" checked> South</label>
+          <label><input type="checkbox" data-fpose="east" data-fparent-of="poses" checked> East</label>
+          <label><input type="checkbox" data-fpose="east_attack" data-fparent-of="poses" checked> East attack</label>
+          <label><input type="checkbox" data-fpose="east_spell" data-fparent-of="poses" checked> East spell</label>
+          <label><input type="checkbox" data-fpose="east_block" data-fparent-of="poses" checked> East block</label>
+          <label><input type="checkbox" data-fpose="east_ko" data-fparent-of="poses" checked> East ko</label>
+        </div>
+      </div>
+    </details>
+    <label>Display:
+      <span class="display-modes" id="display-modes">
+        <button type="button" data-mode="hero">Hero</button>
+        <button type="button" data-mode="g6">6</button>
+        <button type="button" data-mode="g5">5</button>
+        <button type="button" data-mode="g4" class="active">4</button>
+        <button type="button" data-mode="g3">3</button>
+        <button type="button" data-mode="g2">2</button>
+        <button type="button" data-mode="list">List</button>
+      </span>
+    </label>
+    <label style="font-size:0.72rem"><input type="checkbox" id="group-characters" checked> Group characters</label>
   </div>
+
+  <!-- How-to / explanation block -->
+  <details class="collapsible" id="how-to" style="margin-bottom:0.75rem;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:0.4rem 0.7rem">
+    <summary style="color:var(--gold);font-weight:700;font-size:0.78rem">How to use this page</summary>
+    <div style="font-size:0.74rem;color:var(--parchment);line-height:1.5;margin-top:0.3rem">
+      <p style="margin:0.3rem 0"><b>Tile actions</b> on every image card:</p>
+      <ul style="margin:0.2rem 0 0.4rem 1.2rem;padding:0">
+        <li><b>Arc</b> (Archive) — hides the image from active sections; reversible via the Archived / Unattached section. Local UI flag only — no file is moved.</li>
+        <li><b>Lib</b> (Library) — flags the image as moved to the unassigned-appearance library. Reversible by un-toggling.</li>
+        <li><b>Del</b> (Delete) — flags the image for deletion. <b>Reversible</b> until you actually run the generated prompt against the project; nothing is deleted from disk by clicking the button.</li>
+      </ul>
+      <p style="margin:0.3rem 0"><b>Selecting</b>: click a tile (or the checkbox left of a sprite name) to add it to the working selection. The selection editor opens at the bottom-right; assign an action there to apply it to every selected image at once.</p>
+      <p style="margin:0.3rem 0"><b>Quick Select</b> (footer): just gives you a paste-ready list of the selected file paths — for handing off images to Claude with no action attached.</p>
+      <p style="margin:0.3rem 0"><b>Generate Prompt</b> (footer): produces the full action-batch prompt for every flagged image.</p>
+    </div>
+  </details>
 
   <div id="sections"></div>
 </div>
@@ -397,17 +596,34 @@
   <button id="btn-reset" class="danger">Reset</button>
   <button id="btn-only-flagged">Show flagged only</button>
   <span class="count-wrap">Actions: <b id="action-count">0</b> &middot; Ready: <b id="ready-count">0</b> &middot; Pending: <b id="pending-count">0</b> &middot; Orphaned: <b id="orphaned-count">0</b></span>
+  <button id="btn-show-selection" class="qs-btn">Quick select (<span id="qs-count">0</span>)</button>
   <button id="btn-generate" class="primary">Generate Prompt</button>
 </div>
+
+<dialog class="qs-dialog" id="qs-dialog">
+  <h2>Quick Select — <span id="qs-dialog-count">0</span> images</h2>
+  <p style="color:var(--muted);font-size:0.75rem;margin:0 0 0.4rem">File paths of every currently-selected image. Edit, copy, or hand off to Claude.</p>
+  <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;margin:0 0 0.4rem;color:var(--parchment)">
+    <input type="checkbox" id="qs-filter-only-selected"> Filter the page to selected only (temporary)
+  </label>
+  <textarea id="qs-list" readonly></textarea>
+  <div class="qs-actions">
+    <button class="primary" id="qs-copy">Copy</button>
+    <button id="qs-clear">Clear selection</button>
+    <button id="qs-close">Close</button>
+  </div>
+</dialog>
 
 <dialog class="prompt-out" id="prompt-dialog">
   <textarea id="prompt-text" readonly></textarea>
   <div class="actions">
     <button class="primary" id="btn-copy">Copy to Clipboard</button>
     <button id="btn-download">Download .txt</button>
+    <button id="btn-minimize">Minimize</button>
     <button id="btn-close">Close</button>
   </div>
 </dialog>
+<button id="prompt-restore" type="button" style="display:none;position:fixed;bottom:4.2rem;left:1rem;z-index:60;background:var(--gold);color:#0b0810;border:1px solid var(--gold);border-radius:4px;padding:0.4rem 0.8rem;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.5)">▴ Restore prompt</button>
 
 <script>
 // ============================================================================
@@ -549,10 +765,34 @@ function passesActionFilter(e) {
   }
 }
 
+function entryFilterCat(e) {
+  // Map entry → checkbox key
+  if (e.category === 'background') {
+    if (/combat_bg\//.test(e.file || '')) return 'bg-combat';
+    if (/map_bg\//.test(e.file || '')) return 'bg-map';
+    return 'bg-other';
+  }
+  return e.category;
+}
+function passesCatTree(e) {
+  if (!filterCats || !filterCats.size) return true;
+  return filterCats.has(entryFilterCat(e));
+}
+function passesPoseTree(e) {
+  if (!filterPoses || !filterPoses.size) return true;
+  // Only character entries have poses; non-character entries pass through
+  const charCats = new Set(['hero','companion','boss','enemy']);
+  if (!charCats.has(e.category)) return true;
+  if (!e.pose) return false;
+  return filterPoses.has(e.pose);
+}
+let filterOnlySelected = false;
 function filterEntries(list) {
   let result = list;
   if (onlyFlagged) result = result.filter(isFlagged);
   if (filterActionState !== 'all') result = result.filter(passesActionFilter);
+  result = result.filter(passesCatTree).filter(passesPoseTree);
+  if (filterOnlySelected) result = result.filter(e => selection.has(e.id));
   return result;
 }
 
@@ -687,37 +927,38 @@ function renderSections() {
 }
 
 function renderGroupedSection(title, cat, list) {
-  const by = groupBy(cat, list);
+  // Apply the global filter pipeline (action-state, category, pose, only-selected).
+  const catEntries = filterEntries(list.filter(e => e.category === cat));
+  if (!groupCharacters) {
+    // Flat list mode — sort by group then pose
+    const sorted = catEntries.slice().sort((a, b) => {
+      if (a.group !== b.group) return String(a.group).localeCompare(String(b.group));
+      const ia = POSE_ORDER.indexOf(a.pose); const ib = POSE_ORDER.indexOf(b.pose);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+    });
+    const out = [`<h2>${title} <span class="count">${sorted.length} poses</span></h2>`];
+    if (!sorted.length) { out.push(`<div class="empty-note">No ${title.toLowerCase()} matched the current filter.</div>`); return out.join(''); }
+    out.push(`<div class="bg-grid">${sorted.map(e => renderCard(e)).join('')}</div>`);
+    return out.join('');
+  }
+
+  // Grouped mode (default)
+  const by = new Map();
+  for (const e of catEntries) {
+    if (!by.has(e.group)) by.set(e.group, []);
+    by.get(e.group).push(e);
+  }
   const groups = [...by.keys()].sort();
-  const totalCount = [...by.values()].reduce((n, arr) => n + arr.length, 0);
+  const totalCount = catEntries.length;
   const out = [`<h2>${title} <span class="count">${groups.length} ${cat === 'hero' ? 'classes' : 'groups'} · ${totalCount} poses</span></h2>`];
-  if (!groups.length) { out.push(`<div class="empty-note">No ${title.toLowerCase()} found.</div>`); return out.join(''); }
+  if (!groups.length) { out.push(`<div class="empty-note">No ${title.toLowerCase()} matched the current filter.</div>`); return out.join(''); }
   for (const g of groups) {
-    const items = sortPoses(by.get(g));
-    const filtered = onlyFlagged ? items.filter(isFlagged) : items;
-    if (onlyFlagged && !filtered.length) continue;
+    const filtered = sortPoses(by.get(g));
+    if (!filtered.length) continue;
     const groupIds = filtered.map(e => e.id);
-
-    // Enhancement #1: whole-sprite prompt panel (unique id per group)
-    const panelId = `wsp-${cat}-${g.replace(/\W+/g, '_')}`;
-
     out.push(`<div class="group" data-group="${esc(g)}" data-cat="${esc(cat)}" data-group-ids="${esc(groupIds.join(','))}">
       <div class="group-title">
-        <span>${esc(g)}</span>
-        <button type="button" class="whole-btn" data-act="select-whole">Select whole sprite</button>
-        <button type="button" class="whole-btn" data-act="open-whole-prompt" data-panel="${esc(panelId)}">Prompt whole sprite</button>
-      </div>
-      <div class="whole-sprite-panel" id="${esc(panelId)}" data-group="${esc(g)}" data-cat="${esc(cat)}">
-        <label><input type="checkbox" class="wsp-include-all" checked> Apply prompt to ALL ${ALL_POSES.length} poses (portrait, south, east, east_attack, east_spell, east_block, east_ko)</label>
-        <label>Prompt for all poses
-          <textarea class="wsp-prompt" placeholder="e.g. Pixel art, fantasy warrior, consistent palette across all poses…" rows="3"></textarea>
-        </label>
-        <div class="row">
-          <button type="button" class="primary wsp-regen-btn">Regenerate (stub)</button>
-          <button type="button" class="wsp-close-btn">Cancel</button>
-          <span style="color:var(--muted);font-size:0.68rem;margin-left:0.25rem">${ALL_POSES.length} poses will be queued</span>
-        </div>
-        <div class="notice">Regeneration pending — requires Portrait-generation AI from roadmap. Clicking Regenerate logs which poses would be queued to the browser console.</div>
+        <label class="group-select-lbl"><input type="checkbox" class="group-select-cb" data-act="select-whole"> <span>${esc(g)}</span></label>
       </div>
       <div class="poses">${filtered.map(e => renderCard(e)).join('')}</div>
     </div>`);
@@ -848,22 +1089,29 @@ function wireCards(host) {
     });
   });
 
-  // Select-whole button
-  host.querySelectorAll('[data-act="select-whole"]').forEach(btn => {
-    btn.addEventListener('click', (ev) => {
-      ev.preventDefault();
-      const group = btn.closest('.group');
-      if (!group) return;
+  // Group-select checkbox (replaces "Select whole sprite" button)
+  host.querySelectorAll('[data-act="select-whole"]').forEach(cb => {
+    // Initialize check state from current selection
+    const group = cb.closest('.group');
+    if (group) {
       const ids = (group.dataset.groupIds || '').split(',').filter(Boolean);
       const allSelected = ids.length && ids.every(id => selection.has(id));
+      cb.checked = allSelected;
+    }
+    cb.addEventListener('change', (ev) => {
+      ev.stopPropagation();
+      const group = cb.closest('.group');
+      if (!group) return;
+      const ids = (group.dataset.groupIds || '').split(',').filter(Boolean);
+      const target = cb.checked;
       ids.forEach(id => {
         const card = document.querySelector(`.img-card[data-id="${CSS.escape(id)}"]`);
         if (!card) return;
-        if (allSelected) { selection.delete(id); card.classList.remove('selected'); }
-        else { selection.add(id); card.classList.add('selected'); }
+        if (target) { selection.add(id); card.classList.add('selected'); }
+        else { selection.delete(id); card.classList.remove('selected'); }
       });
-      btn.classList.toggle('active', !allSelected);
       renderSelectionEditor();
+      updateQsCount();
     });
   });
 
@@ -926,7 +1174,11 @@ function toggleSelection(id, cardEl) {
     cardEl.classList.add('selected');
   }
   renderSelectionEditor();
+  if (typeof updateQsCount === 'function') updateQsCount();
 }
+
+// editorMode kept for back-compat — always batch now
+const editorMode = 'batch';
 
 function renderSelectionEditor() {
   // Remove any existing editor
@@ -934,7 +1186,6 @@ function renderSelectionEditor() {
   if (existing) existing.remove();
   if (selection.size === 0) return;
 
-  // Use the first selected entry as template for the editor (prompt line, refs, status)
   const firstId = [...selection][0];
   const templateEntry = entries.find(e => e.id === firstId);
   if (!templateEntry) return;
@@ -942,11 +1193,23 @@ function renderSelectionEditor() {
   const editor = document.createElement('div');
   editor.className = 'editor';
   editor.dataset.id = firstId;
-  editor.dataset.multi = '1';
   const banner = selection.size > 1
-    ? `<div style="color:var(--gold);font-size:0.75rem;margin-bottom:0.4rem">Editing ${selection.size} selected images — same action applies to all. <a href="#" data-act="clear-sel" style="color:var(--accent);margin-left:0.5rem">Clear selection</a></div>`
+    ? `<div style="color:var(--gold);font-size:0.75rem;margin-bottom:0.4rem">Editing ${selection.size} selected images (batch). <a href="#" data-act="clear-sel" style="color:var(--accent);margin-left:0.5rem">Clear selection</a></div>`
     : `<div style="color:var(--muted);font-size:0.7rem;margin-bottom:0.4rem">Tip: click more cards to apply the same action to multiple images. <a href="#" data-act="clear-sel" style="color:var(--accent);margin-left:0.5rem">Clear</a></div>`;
-  editor.innerHTML = `<button type="button" class="editor-close" aria-label="Close">×</button>` + banner + renderEditor(templateEntry);
+
+  // Always batch — single template editor; snap() writes to every selected id
+  let body = renderEditor(templateEntry);
+  if (selection.size > 1) {
+    body = `<div style="color:var(--muted);font-size:0.68rem;margin-bottom:0.3rem">Batch override — the prompt and details below replace the per-item prompts for every selected image.</div>` + body;
+  }
+  // Live "Filter selected only" + Generate-for-selection footer
+  const liveFooter = `<div style="margin-top:0.6rem;padding-top:0.4rem;border-top:1px solid var(--border);display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
+    <label style="font-size:0.7rem;color:var(--parchment);display:flex;align-items:center;gap:0.3rem">
+      <input type="checkbox" data-act="editor-filter-selected" ${filterOnlySelected?'checked':''}> Filter selected only
+    </label>
+    <button type="button" class="primary" data-act="editor-prompt-selected" style="background:var(--gold);color:#0b0810;border:1px solid var(--gold);border-radius:3px;padding:0.3rem 0.7rem;cursor:pointer;font-size:0.72rem;font-weight:700">Generate prompt for selection</button>
+  </div>`;
+  editor.innerHTML = `<button type="button" class="editor-close" aria-label="Close">×</button>` + banner + body + liveFooter;
   document.body.appendChild(editor);
   wireEditor(editor, templateEntry);
   editor.addEventListener('click', (ev) => {
@@ -958,18 +1221,83 @@ function renderSelectionEditor() {
       });
       selection.clear();
       renderSelectionEditor();
+      updateQsCount();
       return;
     }
     const a = ev.target.closest('[data-act="clear-sel"]');
-    if (!a) return;
-    ev.preventDefault();
-    selection.forEach(id => {
-      const c = document.querySelector(`.img-card[data-id="${CSS.escape(id)}"]`);
-      if (c) c.classList.remove('selected');
-    });
-    selection.clear();
-    renderSelectionEditor();
+    if (a) {
+      ev.preventDefault();
+      selection.forEach(id => {
+        const c = document.querySelector(`.img-card[data-id="${CSS.escape(id)}"]`);
+        if (c) c.classList.remove('selected');
+      });
+      selection.clear();
+      renderSelectionEditor();
+      updateQsCount();
+      return;
+    }
+    const fs = ev.target.closest('[data-act="editor-filter-selected"]');
+    if (fs) {
+      filterOnlySelected = fs.checked;
+      // Sync the Quick-Select dialog checkbox
+      const qsBox = document.getElementById('qs-filter-only-selected');
+      if (qsBox) qsBox.checked = fs.checked;
+      const preserved = new Set(selection);
+      renderSections();
+      preserved.forEach(sid => {
+        const c = document.querySelector(`.img-card[data-id="${CSS.escape(sid)}"]`);
+        if (c) c.classList.add('selected');
+      });
+      return;
+    }
+    const ps = ev.target.closest('[data-act="editor-prompt-selected"]');
+    if (ps) {
+      ev.preventDefault();
+      // Build a prompt using the LIVE form fields for the selection only
+      const liveSnap = readEditorLive(editor);
+      const txt = buildPromptForSelection(liveSnap);
+      const dlg = document.getElementById('prompt-dialog');
+      document.getElementById('prompt-text').value = txt;
+      if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open','');
+      const rb = document.getElementById('prompt-restore'); if (rb) rb.style.display = 'none';
+    }
   });
+}
+
+// Read live editor state without writing to global state
+function readEditorLive(editor) {
+  const s = {};
+  const actSelect = editor.querySelector('[data-field="action"]');
+  if (actSelect) s.action = actSelect.value;
+  editor.querySelectorAll('[data-field]').forEach(el => {
+    const f = el.dataset.field;
+    if (f === 'action') return;
+    if (el.type === 'checkbox') s[f] = el.checked;
+    else s[f] = el.value;
+  });
+  return s;
+}
+
+function buildPromptForSelection(liveState) {
+  const ids = [...selection];
+  if (!ids.length) return 'No selection.';
+  const items = ids.map(id => {
+    const entry = entries.find(e => e.id === id);
+    return entry ? { entry, ...liveState } : null;
+  }).filter(Boolean);
+  const action = liveState.action || 'other';
+  const lines = [`Image Review — selection (${items.length} items, action: ${action})`, ''];
+  lines.push(`Items:`);
+  for (const it of items) lines.push(`  - ${it.entry.id}  (${(it.entry.file||'').replace(/^\.\.\//,'')})`);
+  if (liveState.details) lines.push('', `Details: ${liveState.details}`);
+  if (liveState.includePrev !== false) {
+    const prompts = items.filter(i => i.entry.prompt).map(i => `${i.entry.id}: ${i.entry.prompt}`);
+    if (prompts.length) {
+      lines.push('', 'Previous prompts:');
+      prompts.forEach(p => lines.push(`  - ${p}`));
+    }
+  }
+  return lines.join('\n');
 }
 
 function sameGroupRefs(entry) {
@@ -995,10 +1323,15 @@ function renderEditor(entry) {
 
   if (entry.status === 'orphaned') {
     return `<div class="eid">${esc(entry.id)} — ${esc(entry.file)}</div>
-      <label class="inline"><input type="radio" name="a-${entry.id}" value="delete" ${s.action==='delete'?'checked':''}> Delete</label>
-      <label class="inline"><input type="radio" name="a-${entry.id}" value="library" ${s.action==='library'?'checked':''}> Move to Library</label>
-      <label class="inline"><input type="radio" name="a-${entry.id}" value="other" ${s.action==='other'?'checked':''}> Other (describe below)</label>
-      <button type="button" data-act="clear-action" style="margin-left:0.5rem;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:3px;padding:0.15rem 0.5rem;cursor:pointer;font-size:0.7rem">Clear action</button>
+      <label>Action
+        <select data-field="action">
+          <option value="">— pick action —</option>
+          <option value="delete" ${s.action==='delete'?'selected':''}>Delete</option>
+          <option value="library" ${s.action==='library'?'selected':''}>Move to Library</option>
+          <option value="other" ${s.action==='other'?'selected':''}>Other (describe below)</option>
+        </select>
+      </label>
+      <button type="button" data-act="clear-action" style="margin-top:0.2rem;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:3px;padding:0.15rem 0.5rem;cursor:pointer;font-size:0.7rem">Clear action</button>
       <label>Details <textarea data-field="details">${esc(s.details || '')}</textarea></label>`;
   }
 
@@ -1008,7 +1341,7 @@ function renderEditor(entry) {
       <label>Reference sprite
         <select data-field="reference">${refOptions}</select>
       </label>
-      <label><input type="checkbox" data-field="includePrev" ${s.includePrev !== false ? 'checked' : ''}> Include previous prompt (if any)</label>
+      <label><input type="checkbox" data-field="includePrev" ${s.includePrev !== false ? 'checked' : ''}> Include previous prompt</label>
       <label>Details / new prompt<textarea data-field="details" placeholder="Additional instructions or full new prompt">${esc(s.details || '')}</textarea></label>
       <input type="hidden" data-field="action" value="generate">`;
   }
@@ -1026,17 +1359,24 @@ function renderEditor(entry) {
     }
   }
 
+  const actOptions = [
+    ['', '— pick action —'],
+    ['flip', 'Flip'],
+    ...(removeBgAllowed ? [['remove_bg', 'Remove Background']] : []),
+    ['regenerate', 'Re-Generate'],
+    ['library', 'Move to Library'],
+    ['archive', 'Archive'],
+    ['delete', 'Delete'],
+    ['other', 'Other (describe below)'],
+  ].map(([v,l]) => `<option value="${v}" ${s.action===v?'selected':''}>${esc(l)}</option>`).join('');
+
   return `<div class="eid">${esc(entry.id)} — ${esc(entry.file)}</div>
     ${promptLine}
     ${mixedBanner}
-    <label class="inline"><input type="radio" name="a-${entry.id}" value="flip" ${s.action==='flip'?'checked':''}> Flip</label>
-    ${removeBgAllowed ? `<label class="inline"><input type="radio" name="a-${entry.id}" value="remove_bg" ${s.action==='remove_bg'?'checked':''}> Remove Background</label>` : ''}
-    <label class="inline"><input type="radio" name="a-${entry.id}" value="regenerate" ${s.action==='regenerate' ? 'checked':''}> Re-Generate</label>
-    <label class="inline"><input type="radio" name="a-${entry.id}" value="library" ${s.action==='library'?'checked':''}> Move to Library</label>
-    <label class="inline"><input type="radio" name="a-${entry.id}" value="archive" ${s.action==='archive'?'checked':''}> Archive</label>
-    <label class="inline"><input type="radio" name="a-${entry.id}" value="delete" ${s.action==='delete'?'checked':''}> Delete</label>
-    <label class="inline"><input type="radio" name="a-${entry.id}" value="other" ${s.action==='other'?'checked':''}> Other (describe below)</label>
-    <button type="button" data-act="clear-action" style="margin-left:0.5rem;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:3px;padding:0.15rem 0.5rem;cursor:pointer;font-size:0.7rem">Clear action</button>
+    <label>Action
+      <select data-field="action">${actOptions}</select>
+    </label>
+    <button type="button" data-act="clear-action" style="margin-top:0.2rem;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:3px;padding:0.15rem 0.5rem;cursor:pointer;font-size:0.7rem">Clear action</button>
 
     <div class="sub-panel" data-sub="flip" style="${s.action==='flip'?'':'display:none'}">
       <label class="inline"><input type="radio" name="flip-${entry.id}" value="horizontal" ${s.flipDir!=='vertical'?'checked':''}> Horizontal</label>
@@ -1053,14 +1393,14 @@ function renderEditor(entry) {
       </label>
     </div>
 
-    <label><input type="checkbox" data-field="includePrev" ${s.includePrev !== false ? 'checked' : ''}> Include previous prompt (default on; uncheck to use Details as the full prompt)</label>
+    <label><input type="checkbox" data-field="includePrev" ${s.includePrev !== false ? 'checked' : ''}> Include previous prompt</label>
     <label>Details<textarea data-field="details" placeholder="Additional instructions">${esc(s.details || '')}</textarea></label>`;
 }
 
 function wireEditor(editor, entry) {
   function snap() {
     const s = {};
-    const actionEl = editor.querySelector('input[name^="a-"]:checked') || editor.querySelector('[data-field="action"]');
+    const actionEl = editor.querySelector('[data-field="action"]');
     s.action = actionEl ? actionEl.value : '';
     const flipEl = editor.querySelector('input[name^="flip-"]:checked');
     if (flipEl) s.flipDir = flipEl.value;
@@ -1165,7 +1505,39 @@ function buildPrompt() {
     if (byAction[it.action]) byAction[it.action].push(it);
   }
 
-  const lines = [`Image Review Tool — requested actions (${items.length} items)`, ''];
+  const lines = [`Image Review Tool — requested actions (${items.length} items, mode: ${editorMode})`, ''];
+
+  // Batch mode: when multiple items in the same action share identical details,
+  // emit a single block listing all affected ids + the shared prompt once.
+  function batchSection(title, arr) {
+    if (!arr.length) return;
+    const groups = new Map();
+    for (const it of arr) {
+      const key = (it.details || '').trim();
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(it);
+    }
+    lines.push(`${title} (${arr.length} items, ${groups.size} prompt group${groups.size===1?'':'s'}):`);
+    for (const [details, group] of groups) {
+      lines.push(`  Items (${group.length}):`);
+      for (const it of group) lines.push(`    - ${it.entry.id}  (${(it.entry.file||'').replace(/^\.\.\//,'')})`);
+      if (details) lines.push(`  Override prompt: ${details}`);
+      else lines.push(`  Override prompt: (none — keep each item's own previous prompt)`);
+      lines.push('');
+    }
+  }
+  if (editorMode === 'batch') {
+    batchSection('FLIP', byAction.flip);
+    batchSection('REMOVE BACKGROUND', byAction.remove_bg);
+    batchSection('RE-GENERATE', byAction.regenerate);
+    batchSection('GENERATE', byAction.generate);
+    batchSection('MOVE TO LIBRARY', byAction.library);
+    batchSection('ARCHIVE', byAction.archive);
+    batchSection('DELETE', byAction.delete);
+    batchSection('OTHER', byAction.other);
+    return lines.join('\n');
+  }
+
   function section(title, arr, fmt) {
     if (!arr.length) return;
     lines.push(title + ':');
@@ -1236,6 +1608,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dlg = document.getElementById('prompt-dialog');
     document.getElementById('prompt-text').value = txt;
     if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open','');
+    const rb = document.getElementById('prompt-restore'); if (rb) rb.style.display = 'none';
   });
   document.getElementById('btn-close').addEventListener('click', () => {
     document.getElementById('prompt-dialog').close();
@@ -1259,8 +1632,153 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSections();
   });
 
+  // M188 — multi-select filter tree (categories + poses)
+  function readFilterTree() {
+    filterCats = new Set();
+    document.querySelectorAll('[data-fcat]').forEach(cb => { if (cb.checked) filterCats.add(cb.dataset.fcat); });
+    filterPoses = new Set();
+    document.querySelectorAll('[data-fpose]').forEach(cb => { if (cb.checked) filterPoses.add(cb.dataset.fpose); });
+    localStorage.setItem('rsg.imageReview.filterCats', JSON.stringify([...filterCats]));
+    localStorage.setItem('rsg.imageReview.filterPoses', JSON.stringify([...filterPoses]));
+    syncParentChecks();
+    renderSections();
+  }
+  // Sync parent checkbox state from children (checked / indeterminate / unchecked)
+  function syncParentChecks() {
+    document.querySelectorAll('[data-fparent]').forEach(parentCb => {
+      const group = parentCb.dataset.fparent;
+      const kids = document.querySelectorAll(`[data-fparent-of="${group}"]`);
+      const checked = [...kids].filter(k => k.checked).length;
+      parentCb.indeterminate = checked > 0 && checked < kids.length;
+      parentCb.checked = checked === kids.length;
+    });
+  }
+  // Restore from localStorage
+  try {
+    const sc = JSON.parse(localStorage.getItem('rsg.imageReview.filterCats') || 'null');
+    const sp = JSON.parse(localStorage.getItem('rsg.imageReview.filterPoses') || 'null');
+    if (Array.isArray(sc)) {
+      const set = new Set(sc);
+      document.querySelectorAll('[data-fcat]').forEach(cb => { cb.checked = set.has(cb.dataset.fcat); });
+    }
+    if (Array.isArray(sp)) {
+      const set = new Set(sp);
+      document.querySelectorAll('[data-fpose]').forEach(cb => { cb.checked = set.has(cb.dataset.fpose); });
+    }
+  } catch (_) {}
+  // Parent checkbox click → toggle all children
+  document.querySelectorAll('[data-fparent]').forEach(parentCb => {
+    parentCb.addEventListener('change', (ev) => {
+      ev.stopPropagation();
+      const group = parentCb.dataset.fparent;
+      const target = parentCb.checked;
+      document.querySelectorAll(`[data-fparent-of="${group}"]`).forEach(k => { k.checked = target; });
+      readFilterTree();
+    });
+  });
+  document.querySelectorAll('[data-fcat],[data-fpose]').forEach(cb => cb.addEventListener('change', readFilterTree));
+  readFilterTree();
+
+  // Group characters toggle
+  const groupBox = document.getElementById('group-characters');
+  if (groupBox) {
+    groupBox.checked = groupCharacters;
+    groupBox.addEventListener('change', () => {
+      groupCharacters = groupBox.checked;
+      localStorage.setItem('rsg.imageReview.groupCharacters', groupCharacters ? '1' : '0');
+      renderSections();
+    });
+  }
+
+  // M188 — display modes
+  const savedMode = localStorage.getItem('rsg.imageReview.displayMode') || 'g4';
+  document.body.dataset.display = savedMode;
+  document.querySelectorAll('#display-modes button').forEach(b => {
+    b.classList.toggle('active', b.dataset.mode === savedMode);
+    b.addEventListener('click', () => {
+      document.body.dataset.display = b.dataset.mode;
+      localStorage.setItem('rsg.imageReview.displayMode', b.dataset.mode);
+      document.querySelectorAll('#display-modes button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  });
+
+  // M188 — quick-select dialog
+  function openQuickSelect() {
+    const dlg = document.getElementById('qs-dialog');
+    const ids = [...selection];
+    const lines = ids.map(id => {
+      const e = entries.find(en => en.id === id);
+      if (!e) return id;
+      const path = (e.file || '').replace(/^\.\.\//, 'public/');
+      return `${id}\t${path}`;
+    });
+    document.getElementById('qs-list').value = lines.length
+      ? lines.join('\n')
+      : '(no images selected — click any tile to add it)';
+    document.getElementById('qs-dialog-count').textContent = ids.length;
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  document.getElementById('btn-show-selection').addEventListener('click', openQuickSelect);
+  document.getElementById('qs-close').addEventListener('click', () => document.getElementById('qs-dialog').close());
+  document.getElementById('qs-copy').addEventListener('click', async () => {
+    const ta = document.getElementById('qs-list');
+    try { await navigator.clipboard.writeText(ta.value); } catch { ta.select(); document.execCommand('copy'); }
+  });
+  document.getElementById('qs-clear').addEventListener('click', () => {
+    selection.clear();
+    document.querySelectorAll('.img-card.selected').forEach(c => c.classList.remove('selected'));
+    updateQsCount();
+    renderSelectionEditor();
+    document.getElementById('qs-dialog').close();
+  });
+  // Quick-Select dialog: Filter selected only checkbox
+  const qsFilterBox = document.getElementById('qs-filter-only-selected');
+  if (qsFilterBox) {
+    qsFilterBox.checked = filterOnlySelected;
+    qsFilterBox.addEventListener('change', () => {
+      filterOnlySelected = qsFilterBox.checked;
+      const preserved = new Set(selection);
+      renderSections();
+      preserved.forEach(sid => {
+        const c = document.querySelector(`.img-card[data-id="${CSS.escape(sid)}"]`);
+        if (c) c.classList.add('selected');
+      });
+    });
+  }
+
+  // Prompt-out minimize / restore — never auto-opens; only the Generate buttons open it.
+  const promptDlg = document.getElementById('prompt-dialog');
+  const restoreBtn = document.getElementById('prompt-restore');
+  document.getElementById('btn-minimize').addEventListener('click', () => {
+    promptDlg.close();
+    restoreBtn.style.display = 'inline-block';
+  });
+  restoreBtn.addEventListener('click', () => {
+    if (typeof promptDlg.showModal === 'function') promptDlg.showModal();
+    else promptDlg.setAttribute('open','');
+    restoreBtn.style.display = 'none';
+  });
+  // Closing for any reason hides the restore tab
+  promptDlg.addEventListener('close', () => {
+    if (restoreBtn.style.display === 'none') return;
+    // keep restore visible only after explicit Minimize click
+  });
+  document.getElementById('btn-close').addEventListener('click', () => {
+    restoreBtn.style.display = 'none';
+  });
+
   boot();
 });
+
+// M188 — filter tree state
+let filterCats = new Set();
+let filterPoses = new Set();
+let groupCharacters = (localStorage.getItem('rsg.imageReview.groupCharacters') ?? '1') === '1';
+function updateQsCount() {
+  const el = document.getElementById('qs-count');
+  if (el) el.textContent = selection.size;
+}
 </script>
 </body>
 </html>

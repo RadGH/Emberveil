@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-04-20T23:29:08.066Z",
+    "generated": "2026-04-21T03:59:12.399Z",
     "derivedFrom": {
       "appearances": "src/game/appearances.js (28 entries)",
       "classPets": "src/game/companions.js CLASS_PETS (10 entries)",
@@ -9,11 +9,12 @@
       "bossIds": "src/maps/mapData.js map nodes type:'boss' encounter fields (12 bosses)"
     },
     "counts": {
-      "total": 567,
+      "total": 569,
       "by_status": {
         "ready": 411,
         "pending": 121,
-        "orphaned": 35
+        "orphaned": 35,
+        "candidate": 2
       },
       "by_category": {
         "hero": 196,
@@ -22,7 +23,8 @@
         "enemy": 95,
         "background": 28,
         "tap-weapons": 9,
-        "orphan": 35
+        "orphan": 35,
+        "reference-sheet": 2
       }
     },
     "source": "scripts/build-image-review-manifest.cjs",
@@ -5131,6 +5133,24 @@
       "file": "../images/spritecook/void_boss_east_spell.png",
       "prompt": null,
       "status": "orphaned"
+    },
+    {
+      "id": "ref_sheet_oracle",
+      "category": "reference-sheet",
+      "group": "oracle",
+      "pose": "reference_sheet",
+      "file": "../images/pixellab/oracle/reference_sheet.png",
+      "prompt": null,
+      "status": "candidate"
+    },
+    {
+      "id": "ref_sheet_shadow_cat",
+      "category": "reference-sheet",
+      "group": "shadow_cat",
+      "pose": "reference_sheet",
+      "file": "../images/pixellab/shadow_cat/reference_sheet.png",
+      "prompt": null,
+      "status": "candidate"
     }
   ]
 }

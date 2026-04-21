@@ -1,0 +1,111 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "shadow_cat",
+  "displayName": "Shadow Cat",
+  "class": "quadruped_small",
+  "pixelHeight": 80,
+  "identity": "Sleek midnight-black short-haired cat, roughly the mass of a large housecat. Eyes are LUMINOUS VIOLET ALMONDS with a subtle pink-magenta core — glowing softly, the only bright feature on the cat. Long cat whiskers. Wispy dark-purple shadow vapor drifts upward and backward from the tail in a tall curling ribbon, and smaller wisps trail from the ear tips — a subtle magical trail, never thick enough to obscure the silhouette. Four legs, NOT bipedal; moves and fights as a real cat. Proportions are real-cat, not fantasy-stylized.",
+  "outfit": "No clothing, no armor, no accessories. Just fur. (A tiny amount of spectral mist around the paws is acceptable but is not equipment.)",
+  "weapons": "None. Attacks exclusively with claws and teeth. The cat never holds, wields, or is accompanied by any tool, weapon, or prop of any kind.",
+  "attackStyle": "East-facing mid-swipe: front body lifted off the ground, right forepaw extended forward with all CLAWS FULLY EXTENDED and visible, left forepaw planted for balance. Mouth open in a silent hiss, fangs visible. Tail whipped behind for counterbalance. Shadow vapor trailing the swipe. NO held object of any kind.",
+  "spellStyle": "East-facing, crouched with all four paws on the ground, back arched high, fur raised along the spine. Eyes BLAZING brighter than normal, mouth slightly open. Dense shadow vapor coils upward from the spine and tail, forming an aura — but nothing is held, grasped, or summoned as an object. The cat is the spell.",
+  "blockStyle": "East-facing, crouched low to the ground with belly nearly touching, ears flattened back, forepaws tucked close underneath the body, head drawn down and slightly turned away. Tail curled tight along the body. A faint shimmer of shadow vapor gathers around the cat as a protective ward. Pure defensive cat posture — all four paws on the ground, bare fur only.",
+  "koStyle": "Lying on the ground on its side, all four legs limp, eyes closed (glow extinguished), tongue visible slightly between fangs, tail curled loosely. Shadow vapor dissipated. Clearly unconscious.",
+  "southStyle": "Facing the camera (south), standing naturally on all four paws, tail lifted, eyes glowing violet-cyan. Neutral alert idle.",
+  "portraitStyle": "Close head-and-shoulders bust. The cat's luminous eyes and fangs should read as the primary features. Shadow vapor drifting from the ear tips, short wisps from the jawline.",
+  "bannedSubstrings": [
+    "sword",
+    "axe",
+    "dagger",
+    "bow",
+    "crossbow",
+    "staff",
+    "wand",
+    "mace",
+    "spear",
+    "hammer",
+    "polearm",
+    "shield",
+    "gun",
+    "pistol",
+    "flail",
+    "scythe",
+    "whip",
+    "weapon",
+    "blade",
+    "longsword",
+    "greatsword",
+    "katana",
+    "rapier",
+    "holding",
+    "wielding",
+    "wields",
+    "armor",
+    "helmet",
+    "saddle",
+    "collar",
+    "rider",
+    "mounted",
+    "bipedal",
+    "standing upright"
+  ],
+  "referenceSheet": {
+    "path": "images/pixellab/shadow_cat/reference_sheet.png",
+    "prompt": "IDENTITY (must be preserved in every view): Sleek midnight-black short-haired cat, housecat size. LUMINOUS VIOLET ALMOND EYES with subtle pink-magenta core — glowing, the only bright feature. Dark purple shadow-vapor trailing tall from the tail and wisping off the ears. Four legs, NOT bipedal; real cat proportions.\n\nOUTFIT: Nothing. No clothing, no armor, no accessories. Just fur. (Faint spectral mist near the paws is acceptable but is not equipment.)\n\nWEAPONS: None. Attacks exclusively with claws and teeth. The cat never holds or is accompanied by any tool, weapon, or prop of any kind.\n\nCLASS: quadruped_small. Character height in each view: 80px on the 256px-tall canvas strip — the cat should occupy about a third of the canvas height, NOT fill it. This sells scale relative to humanoid characters. Feet aligned to the bottom edge.\n\nLAYOUT: three-view turnaround on a single horizontal 768x256 canvas — [LEFT] front view facing camera, [CENTER] side profile facing right (east), [RIGHT] three-quarter back view. All three views on the same horizontal baseline. Transparent background between views.\n\nSTYLE: cohesive pixel-art character sheet, readable silhouette, consistent palette across all three views, no ground shadow, no borders, no text, no labels.\n\nNEGATIVE: no weapons beyond those listed in WEAPONS, no held props not described in OUTFIT, no motion blur, no background scenery.",
+    "bitforgeAssetId": null,
+    "sourcePortraitPath": "images/portraits/shadow_cat.png",
+    "generatedAt": null,
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait": {
+      "path": "images/pixellab/shadow_cat/portrait.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Sleek midnight-black short-haired cat, roughly the mass of a large housecat. Eyes are LUMINOUS VIOLET ALMONDS with a subtle pink-magenta core — glowing softly, the only bright feature on the cat. Long cat whiskers. Wispy dark-purple shadow vapor drifts upward and backward from the tail in a tall curling ribbon, and smaller wisps trail from the ear tips — a subtle magical trail, never thick enough to obscure the silhouette. Four legs, NOT bipedal; moves and fights as a real cat. Proportions are real-cat, not fantasy-stylized.\n\nOUTFIT: No clothing, no armor, no accessories. Just fur. (A tiny amount of spectral mist around the paws is acceptable but is not equipment.)\n\nWEAPONS: None. Attacks exclusively with claws and teeth. The cat never holds, wields, or is accompanied by any tool, weapon, or prop of any kind.\n\nPOSE (portrait): Close head-and-shoulders bust. The cat's luminous eyes and fangs should read as the primary features. Shadow vapor drifting from the ear tips, short wisps from the jawline.\n\nFRAMING: bust shot from mid-chest up, three-quarter view, centered in a 256x256 canvas, shoulders fill the lower third.\n\nSCALE (non-negotiable): the Shadow Cat must occupy approximately 80px of the 256px canvas height — roughly 31% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/shadow_cat.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "bitforgeAssetId": null,
+      "generatedAt": null,
+      "approvedAt": null
+    },
+    "south": {
+      "path": "images/pixellab/shadow_cat/south.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Sleek midnight-black short-haired cat, roughly the mass of a large housecat. Eyes are LUMINOUS VIOLET ALMONDS with a subtle pink-magenta core — glowing softly, the only bright feature on the cat. Long cat whiskers. Wispy dark-purple shadow vapor drifts upward and backward from the tail in a tall curling ribbon, and smaller wisps trail from the ear tips — a subtle magical trail, never thick enough to obscure the silhouette. Four legs, NOT bipedal; moves and fights as a real cat. Proportions are real-cat, not fantasy-stylized.\n\nOUTFIT: No clothing, no armor, no accessories. Just fur. (A tiny amount of spectral mist around the paws is acceptable but is not equipment.)\n\nWEAPONS: None. Attacks exclusively with claws and teeth. The cat never holds, wields, or is accompanied by any tool, weapon, or prop of any kind.\n\nPOSE (south): Facing the camera (south), standing naturally on all four paws, tail lifted, eyes glowing violet-cyan. Neutral alert idle.\n\nFRAMING: full body facing camera (south), feet aligned to bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): the Shadow Cat must occupy approximately 80px of the 256px canvas height — roughly 31% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/shadow_cat.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "bitforgeAssetId": null,
+      "generatedAt": null,
+      "approvedAt": null
+    },
+    "east": {
+      "path": "images/pixellab/shadow_cat/east.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Sleek midnight-black short-haired cat, roughly the mass of a large housecat. Eyes are LUMINOUS VIOLET ALMONDS with a subtle pink-magenta core — glowing softly, the only bright feature on the cat. Long cat whiskers. Wispy dark-purple shadow vapor drifts upward and backward from the tail in a tall curling ribbon, and smaller wisps trail from the ear tips — a subtle magical trail, never thick enough to obscure the silhouette. Four legs, NOT bipedal; moves and fights as a real cat. Proportions are real-cat, not fantasy-stylized.\n\nOUTFIT: No clothing, no armor, no accessories. Just fur. (A tiny amount of spectral mist around the paws is acceptable but is not equipment.)\n\nWEAPONS: None. Attacks exclusively with claws and teeth. The cat never holds, wields, or is accompanied by any tool, weapon, or prop of any kind.\n\nPOSE (east): neutral combat idle, consistent with reference sheet.\n\nFRAMING: full body facing east (camera-right), combat idle, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): the Shadow Cat must occupy approximately 80px of the 256px canvas height — roughly 31% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/shadow_cat.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "bitforgeAssetId": null,
+      "generatedAt": null,
+      "approvedAt": null
+    },
+    "east_attack": {
+      "path": "images/pixellab/shadow_cat/east_attack.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Sleek midnight-black short-haired cat, roughly the mass of a large housecat. Eyes are LUMINOUS VIOLET ALMONDS with a subtle pink-magenta core — glowing softly, the only bright feature on the cat. Long cat whiskers. Wispy dark-purple shadow vapor drifts upward and backward from the tail in a tall curling ribbon, and smaller wisps trail from the ear tips — a subtle magical trail, never thick enough to obscure the silhouette. Four legs, NOT bipedal; moves and fights as a real cat. Proportions are real-cat, not fantasy-stylized.\n\nOUTFIT: No clothing, no armor, no accessories. Just fur. (A tiny amount of spectral mist around the paws is acceptable but is not equipment.)\n\nWEAPONS: None. Attacks exclusively with claws and teeth. The cat never holds, wields, or is accompanied by any tool, weapon, or prop of any kind.\n\nPOSE (east_attack): East-facing mid-swipe: front body lifted off the ground, right forepaw extended forward with all CLAWS FULLY EXTENDED and visible, left forepaw planted for balance. Mouth open in a silent hiss, fangs visible. Tail whipped behind for counterbalance. Shadow vapor trailing the swipe. NO held object of any kind.\n\nFRAMING: full body facing east, mid-action attack frame, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): the Shadow Cat must occupy approximately 80px of the 256px canvas height — roughly 31% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/shadow_cat.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "bitforgeAssetId": null,
+      "generatedAt": null,
+      "approvedAt": null
+    },
+    "east_spell": {
+      "path": "images/pixellab/shadow_cat/east_spell.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Sleek midnight-black short-haired cat, roughly the mass of a large housecat. Eyes are LUMINOUS VIOLET ALMONDS with a subtle pink-magenta core — glowing softly, the only bright feature on the cat. Long cat whiskers. Wispy dark-purple shadow vapor drifts upward and backward from the tail in a tall curling ribbon, and smaller wisps trail from the ear tips — a subtle magical trail, never thick enough to obscure the silhouette. Four legs, NOT bipedal; moves and fights as a real cat. Proportions are real-cat, not fantasy-stylized.\n\nOUTFIT: No clothing, no armor, no accessories. Just fur. (A tiny amount of spectral mist around the paws is acceptable but is not equipment.)\n\nWEAPONS: None. Attacks exclusively with claws and teeth. The cat never holds, wields, or is accompanied by any tool, weapon, or prop of any kind.\n\nPOSE (east_spell): East-facing, crouched with all four paws on the ground, back arched high, fur raised along the spine. Eyes BLAZING brighter than normal, mouth slightly open. Dense shadow vapor coils upward from the spine and tail, forming an aura — but nothing is held, grasped, or summoned as an object. The cat is the spell.\n\nFRAMING: full body facing east, mid-cast spell frame, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): the Shadow Cat must occupy approximately 80px of the 256px canvas height — roughly 31% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/shadow_cat.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "bitforgeAssetId": null,
+      "generatedAt": null,
+      "approvedAt": null
+    },
+    "east_block": {
+      "path": "images/pixellab/shadow_cat/east_block.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Sleek midnight-black short-haired cat, roughly the mass of a large housecat. Eyes are LUMINOUS VIOLET ALMONDS with a subtle pink-magenta core — glowing softly, the only bright feature on the cat. Long cat whiskers. Wispy dark-purple shadow vapor drifts upward and backward from the tail in a tall curling ribbon, and smaller wisps trail from the ear tips — a subtle magical trail, never thick enough to obscure the silhouette. Four legs, NOT bipedal; moves and fights as a real cat. Proportions are real-cat, not fantasy-stylized.\n\nOUTFIT: No clothing, no armor, no accessories. Just fur. (A tiny amount of spectral mist around the paws is acceptable but is not equipment.)\n\nWEAPONS: None. Attacks exclusively with claws and teeth. The cat never holds, wields, or is accompanied by any tool, weapon, or prop of any kind.\n\nPOSE (east_block): East-facing, crouched low to the ground with belly nearly touching, ears flattened back, forepaws tucked close underneath the body, head drawn down and slightly turned away. Tail curled tight along the body. A faint shimmer of shadow vapor gathers around the cat as a protective ward. Pure defensive cat posture — all four paws on the ground, bare fur only.\n\nFRAMING: full body facing east, mid-defensive-stance frame, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): the Shadow Cat must occupy approximately 80px of the 256px canvas height — roughly 31% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/shadow_cat.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "bitforgeAssetId": null,
+      "generatedAt": null,
+      "approvedAt": null
+    },
+    "east_ko": {
+      "path": "images/pixellab/shadow_cat/east_ko.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Sleek midnight-black short-haired cat, roughly the mass of a large housecat. Eyes are LUMINOUS VIOLET ALMONDS with a subtle pink-magenta core — glowing softly, the only bright feature on the cat. Long cat whiskers. Wispy dark-purple shadow vapor drifts upward and backward from the tail in a tall curling ribbon, and smaller wisps trail from the ear tips — a subtle magical trail, never thick enough to obscure the silhouette. Four legs, NOT bipedal; moves and fights as a real cat. Proportions are real-cat, not fantasy-stylized.\n\nOUTFIT: No clothing, no armor, no accessories. Just fur. (A tiny amount of spectral mist around the paws is acceptable but is not equipment.)\n\nWEAPONS: None. Attacks exclusively with claws and teeth. The cat never holds, wields, or is accompanied by any tool, weapon, or prop of any kind.\n\nPOSE (east_ko): Lying on the ground on its side, all four legs limp, eyes closed (glow extinguished), tongue visible slightly between fangs, tail curled loosely. Shadow vapor dissipated. Clearly unconscious.\n\nFRAMING: full body on the ground, knocked out, fit within 256x256 canvas.\n\nSCALE (non-negotiable): the Shadow Cat must occupy approximately 80px of the 256px canvas height — roughly 31% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/shadow_cat.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "bitforgeAssetId": null,
+      "generatedAt": null,
+      "approvedAt": null
+    }
+  }
+}

@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="game13">
+<script src="./_header.js" defer></script>
+<title>Tools &middot; PixelLab Redesign &mdash; RSG</title>
+<style>
+  :root {
+    --bg: #0b0810;
+    --panel: #1a1220;
+    --panel-alt: #12101a;
+    --border: #2a1f30;
+    --gold: #e8a020;
+    --gold-dim: #a67818;
+    --crimson: #c04030;
+    --parchment: #e8d8b8;
+    --muted: #8a7a6a;
+    --accent: #60a0e0;
+    --warn: #e85020;
+    --green: #40a060;
+    --purple: #a060e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--parchment);
+    font-family: 'Inter','Segoe UI',system-ui,sans-serif;
+    padding: 1rem 1rem 6rem; line-height: 1.45;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  h1 {
+    font-family: 'Cinzel',Georgia,serif;
+    color: var(--gold); font-size: 1.4rem; margin: 0 0 0.25rem;
+    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+    background: linear-gradient(180deg,#f8d880 0%,#e8a020 40%,#c04030 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  p.sub { color: var(--muted); font-size: 0.85rem; margin: 0 0 1rem; }
+  .notice {
+    background: var(--panel); border: 1px solid var(--border);
+    border-left: 3px solid var(--warn); padding: 0.6rem 0.8rem;
+    font-size: 0.8rem; margin-bottom: 1.2rem; color: var(--parchment);
+  }
+  .notice a { color: var(--accent); }
+  .summary {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    background: var(--panel); border: 1px solid var(--border);
+    padding: 0.75rem; border-radius: 4px; margin-bottom: 1.25rem;
+  }
+  .summary .stat {
+    background: var(--panel-alt); border: 1px solid var(--border);
+    padding: 0.4rem 0.7rem; border-radius: 4px; min-width: 110px;
+  }
+  .summary .stat .k { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .summary .stat .v { font-size: 1.1rem; color: var(--gold); font-weight: 700; }
+  .char {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1rem; margin-bottom: 1.2rem;
+  }
+  .char header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .char header h2 {
+    font-family: 'Cinzel',Georgia,serif;
+    color: var(--gold); font-size: 1rem; margin: 0; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .pill {
+    display: inline-block; padding: 0.15rem 0.5rem; border-radius: 10px;
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em;
+    border: 1px solid var(--border); background: var(--panel-alt);
+  }
+  .pill.pending       { color: var(--muted); }
+  .pill.generated     { color: var(--accent); border-color: var(--accent); }
+  .pill.dry_run       { color: var(--warn);   border-color: var(--warn); }
+  .pill.approved      { color: var(--green);  border-color: var(--green); }
+  .pill.reference_generated { color: var(--purple); border-color: var(--purple); }
+  .body { display: grid; grid-template-columns: 320px 1fr; gap: 1rem; }
+  @media (max-width: 820px) { .body { grid-template-columns: 1fr; } }
+  .refcol { background: var(--panel-alt); border: 1px solid var(--border); padding: 0.75rem; border-radius: 4px; }
+  .refcol img.sheet {
+    width: 100%; height: auto; image-rendering: pixelated;
+    background: repeating-conic-gradient(#151018 0% 25%, #1e1624 0% 50%) 50%/20px 20px;
+    border: 1px solid var(--border); margin-bottom: 0.5rem;
+  }
+  .refcol .placeholder {
+    width: 100%; aspect-ratio: 3/1; display: flex; align-items: center;
+    justify-content: center; color: var(--muted); font-size: 0.75rem;
+    border: 1px dashed var(--border); margin-bottom: 0.5rem;
+  }
+  details.ad {
+    margin-top: 0.5rem; border-top: 1px solid var(--border); padding-top: 0.5rem;
+  }
+  details.ad summary { cursor: pointer; color: var(--gold-dim); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  details.ad .ad-grid { display: grid; gap: 0.35rem; margin-top: 0.4rem; font-size: 0.75rem; }
+  details.ad .ad-grid dt { color: var(--muted); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  details.ad .ad-grid dd { margin: 0 0 0.3rem; color: var(--parchment); }
+  .frames { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0.6rem; }
+  .cell {
+    background: var(--panel-alt); border: 1px solid var(--border); border-radius: 4px;
+    padding: 0.4rem; display: flex; flex-direction: column; gap: 0.25rem;
+  }
+  .cell .label {
+    font-size: 0.65rem; color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.08em; display: flex; justify-content: space-between; align-items: center;
+  }
+  .cell .twoup {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: var(--border);
+  }
+  .refcol .anchor {
+    width: 100%; aspect-ratio: 1/1; image-rendering: pixelated;
+    background: repeating-conic-gradient(#151018 0% 25%, #1e1624 0% 50%) 50%/20px 20px;
+    border: 1px solid var(--gold); margin-bottom: 0.5rem;
+    display: block; object-fit: contain;
+  }
+  .refcol .anchor-label {
+    font-size: 0.65rem; color: var(--gold); text-transform: uppercase;
+    letter-spacing: 0.08em; margin: 0 0 0.25rem;
+  }
+  .cell .twoup .slot {
+    aspect-ratio: 1/1; position: relative;
+    background: repeating-conic-gradient(#151018 0% 25%, #1e1624 0% 50%) 50%/12px 12px;
+  }
+  .cell .twoup .slot img { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; display: block; }
+  .cell .twoup .slot .tag {
+    position: absolute; top: 2px; left: 3px;
+    font-size: 0.55rem; color: var(--parchment); text-transform: uppercase;
+    background: rgba(0,0,0,0.5); padding: 1px 4px; letter-spacing: 0.06em;
+  }
+  .cell .twoup .slot.empty {
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 0.65rem;
+  }
+  footer.note {
+    color: var(--muted); font-size: 0.7rem; margin-top: 2rem;
+    border-top: 1px solid var(--border); padding-top: 0.75rem;
+  }
+  footer.note code { background: var(--panel-alt); padding: 0 0.25rem; border-radius: 2px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Tools &middot; PixelLab Redesign</h1>
+    <p class="sub">Reference sheets, candidate frames, and approval status for the BitForge-only character redesign pipeline.</p>
+
+    <div class="notice">
+      <strong>Canonical spec lives in <a href="../docs/image-policy.md">/docs/image-policy.md</a></strong> &mdash; 7 poses, 256&times;256, no animation files.
+      The <a href="./index.html">/assets/ gallery</a> is stale and may show incorrect frames; treat the docs as source of truth.
+    </div>
+
+    <div class="summary" id="summary"></div>
+    <div id="characters"></div>
+
+    <footer class="note">
+      Generator entry points:
+      <code>node scripts/pixellab/gen-reference-sheet.cjs &lt;id&gt;</code>,
+      <code>node scripts/pixellab/gen-frame.cjs &lt;id&gt; &lt;pose&gt;</code>,
+      <code>node scripts/pixellab/approve.cjs &lt;id&gt;</code>.
+      State file: <code>public/data/pixellab_redesign_state.json</code>.
+      Banned-substring guardrail lives in each character's <code>bannedSubstrings</code> field in <code>public/data/art_direction/</code>.
+    </footer>
+  </div>
+
+<script>
+const POSES = ['portrait','south','east','east_attack','east_spell','east_block','east_ko'];
+// Vite serves /public at the site root, so from /assets/<file>.html we reach
+// assets via "../images/..." and data via "../data/...".
+const IMG_BASE  = '../images';
+const DATA_BASE = '../data';
+
+async function loadJson(url) {
+  const r = await fetch(url, { cache: 'no-store' });
+  if (!r.ok) throw new Error(url + ' ' + r.status);
+  return r.json();
+}
+
+function pill(text, cls) {
+  const el = document.createElement('span');
+  el.className = 'pill ' + (cls || 'pending');
+  el.textContent = text;
+  return el;
+}
+
+function imgOrPlaceholder(src, label) {
+  const slot = document.createElement('div');
+  slot.className = 'slot';
+  const img = new Image();
+  img.onerror = () => { slot.classList.add('empty'); slot.textContent = label + ' missing'; };
+  img.src = src + '?t=' + Date.now();  // bust cache during review
+  img.alt = label;
+  const tag = document.createElement('span');
+  tag.className = 'tag'; tag.textContent = label;
+  slot.appendChild(img);
+  slot.appendChild(tag);
+  return slot;
+}
+
+function renderSummary(state) {
+  const box = document.getElementById('summary');
+  box.innerHTML = '';
+  const ids = Object.keys(state.characters);
+  const byStatus = s => ids.filter(id => state.characters[id].status === s).length;
+  const stats = [
+    ['Characters', ids.length],
+    ['Pending', byStatus('pending')],
+    ['Reference Ready', byStatus('reference_generated')],
+    ['Reference Approved', byStatus('reference_approved')],
+    ['Fully Approved', byStatus('approved')],
+    ['Credits Used', state.creditsUsedTotal || 0],
+    ['Updated', state.updatedAt ? new Date(state.updatedAt).toLocaleString() : '—'],
+  ];
+  stats.forEach(([k, v]) => {
+    const s = document.createElement('div');
+    s.className = 'stat';
+    s.innerHTML = '<div class="k">' + k + '</div><div class="v">' + v + '</div>';
+    box.appendChild(s);
+  });
+}
+
+function renderArtDirection(ad) {
+  const d = document.createElement('details');
+  d.className = 'ad';
+  const s = document.createElement('summary');
+  s.textContent = 'Art direction';
+  d.appendChild(s);
+  const dl = document.createElement('dl');
+  dl.className = 'ad-grid';
+  const keys = ['class','pixelHeight','identity','outfit','weapons','attackStyle','spellStyle','blockStyle','koStyle','southStyle','portraitStyle'];
+  keys.forEach(k => {
+    if (!ad[k]) return;
+    const dt = document.createElement('dt'); dt.textContent = k;
+    const dd = document.createElement('dd'); dd.textContent = ad[k];
+    dl.appendChild(dt); dl.appendChild(dd);
+  });
+  if (ad.bannedSubstrings?.length) {
+    const dt = document.createElement('dt'); dt.textContent = 'bannedSubstrings (' + ad.bannedSubstrings.length + ')';
+    const dd = document.createElement('dd'); dd.textContent = ad.bannedSubstrings.join(', ');
+    dl.appendChild(dt); dl.appendChild(dd);
+  }
+  d.appendChild(dl);
+  return d;
+}
+
+async function renderCharacter(id, entry) {
+  const card = document.createElement('div');
+  card.className = 'char';
+
+  const hdr = document.createElement('header');
+  const h2 = document.createElement('h2'); h2.textContent = id;
+  hdr.appendChild(h2);
+  hdr.appendChild(pill('status: ' + entry.status, entry.status));
+  hdr.appendChild(pill('ref: ' + entry.referenceStatus, entry.referenceStatus));
+  card.appendChild(hdr);
+
+  if (entry.notes) {
+    const n = document.createElement('p');
+    n.className = 'sub'; n.style.margin = '-0.25rem 0 0.75rem'; n.textContent = entry.notes;
+    card.appendChild(n);
+  }
+
+  let ad = null;
+  // entry.artDirectionPath is "data/art_direction/oracle.json" (repo-relative
+  // inside public/). From /assets/ pages that maps to ../data/art_direction/...
+  try { ad = await loadJson('../' + entry.artDirectionPath); } catch (e) { /* may not exist yet */ }
+
+  const body = document.createElement('div'); body.className = 'body';
+
+  // Reference column
+  const refcol = document.createElement('div'); refcol.className = 'refcol';
+
+  // Identity anchor: the OLD portrait from public/images/portraits/<id>.png.
+  // This is the single source of truth for identity (hair, eye color, outfit
+  // palette) — NOT the SpriteCook version. Everything downstream matches this.
+  const anchorLabel = document.createElement('div');
+  anchorLabel.className = 'anchor-label'; anchorLabel.textContent = 'Identity anchor (old portrait)';
+  refcol.appendChild(anchorLabel);
+  const anchor = document.createElement('img');
+  anchor.className = 'anchor';
+  anchor.src = IMG_BASE + '/portraits/' + id + '.png?t=' + Date.now();
+  anchor.alt = id + ' identity anchor';
+  refcol.appendChild(anchor);
+
+  const refh = document.createElement('div');
+  refh.style.fontSize = '0.7rem'; refh.style.color = 'var(--muted)';
+  refh.style.textTransform = 'uppercase'; refh.style.letterSpacing = '0.06em';
+  refh.style.marginBottom = '0.4rem'; refh.style.marginTop = '0.8rem';
+  refh.textContent = 'SpriteCook reference (identity anchor)';
+  refcol.appendChild(refh);
+  const refImg = document.createElement('img');
+  refImg.className = 'sheet';
+  refImg.style.aspectRatio = '1/1';
+  refImg.src = '../images/pixellab/' + id + '/reference.png?t=' + Date.now();
+  refImg.onerror = () => { refImg.replaceWith(Object.assign(document.createElement('div'), { className: 'placeholder', textContent: 'reference not on disk yet' })); };
+  refcol.appendChild(refImg);
+  if (ad) refcol.appendChild(renderArtDirection(ad));
+
+  body.appendChild(refcol);
+
+  // Frames grid
+  const grid = document.createElement('div'); grid.className = 'frames';
+  for (const pose of POSES) {
+    const cell = document.createElement('div'); cell.className = 'cell';
+    const label = document.createElement('div'); label.className = 'label';
+    const lname = document.createElement('span'); lname.textContent = pose;
+    const status = entry.framesStatus?.[pose] || 'pending';
+    const lpill = pill(status, status);
+    lpill.style.fontSize = '0.55rem';
+    label.appendChild(lname); label.appendChild(lpill);
+    cell.appendChild(label);
+
+    // 3-way compare: OLD sprites/ (pre-spritecook, often has the bugs that
+    // triggered this redesign — cat with sword, oracle without glow) |
+    // SpriteCook (current in-game, loses personality) | new PixelLab candidate.
+    const two = document.createElement('div'); two.className = 'twoup';
+    // Old sprites use different naming: sprites/<id>_<pose>.png (no east_block,
+    // no east_spell for most; portrait lives in portraits/<id>.png).
+    const oldSrc = pose === 'portrait'
+      ? IMG_BASE + '/portraits/' + id + '.png'
+      : IMG_BASE + '/sprites/' + id + '_' + pose + '.png';
+    const spritecookSrc = IMG_BASE + '/spritecook/' + id + '_' + pose + '.png';
+    const candSrc       = IMG_BASE + '/pixellab/' + id + '/' + pose + '.png';
+    two.appendChild(imgOrPlaceholder(oldSrc,        'old'));
+    two.appendChild(imgOrPlaceholder(spritecookSrc, 'sc'));
+    two.appendChild(imgOrPlaceholder(candSrc,       'new'));
+    cell.appendChild(two);
+
+    const prompt = ad?.frames?.[pose]?.prompt;
+    if (prompt) {
+      const p = document.createElement('div');
+      p.style.fontSize = '0.65rem'; p.style.color = 'var(--muted)';
+      p.title = prompt;
+      p.textContent = prompt.slice(0, 90) + (prompt.length > 90 ? '…' : '');
+      cell.appendChild(p);
+    }
+
+    grid.appendChild(cell);
+  }
+  body.appendChild(grid);
+
+  card.appendChild(body);
+  return card;
+}
+
+async function main() {
+  const state = await loadJson(DATA_BASE + '/pixellab_redesign_state.json');
+  renderSummary(state);
+  const root = document.getElementById('characters');
+  for (const [id, entry] of Object.entries(state.characters)) {
+    root.appendChild(await renderCharacter(id, entry));
+  }
+}
+main().catch(e => {
+  document.getElementById('characters').innerHTML =
+    '<div class="notice">Failed to load state: ' + (e.message || e) + '</div>';
+});
+</script>
+</body>
+</html>

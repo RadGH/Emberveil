@@ -1,0 +1,108 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "oracle",
+  "displayName": "Oracle",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "identity": "Young female seer, slender build. LONG GOLDEN-COPPER HAIR (warm orange-brown, wavy, falling past the shoulders to mid-back). Eyes are the critical identifier: GLOWING CYAN-BLUE ALMONDS — no visible pupil or iris, just pure cyan-blue luminance with soft glow bleed; a faint trail of cyan light drips from the lower lid like a tear. Pale porcelain skin, barefoot. A small GOLD CIRCLET with a single teardrop-shaped gem rests across her brow, just above the eyes.",
+  "outfit": "White / cream hooded robe with gold embroidered trim at the hem, sleeves, and sash. Gold belt at the waist with a draping sash. The HOOD IS ALWAYS PULLED UP over the head, framing the face; locks of golden hair spill out in front of the shoulders. Soft, flowing cloth.",
+  "weapons": "None. She never holds a weapon or staff. When casting, a small floating ring-rune of soft cyan light hovers between her palms.",
+  "attackStyle": "East-facing profile, hood still up. Right arm thrust forward, palm open, a thin beam of cool cyan-white light extending from her fingertips. Left hand drawn back near hip, fingers curled. No held object. Hair lifts slightly from the energy release; robe hem swirls.",
+  "spellStyle": "East-facing profile, hood still up. Both hands raised at shoulder height, palms up and cupped together. A glowing ring-rune of cyan-white light hovers above her open palms. Head tilted slightly back, cyan eye-glow brighter than normal. Robe hem floats gently.",
+  "blockStyle": "East-facing profile, hood still up. Crossed forearms in front of chest, palms outward, a shimmering translucent ward of pale cyan light forming between her arms. Shoulders squared, chin down, eyes narrowed but still glowing cyan.",
+  "koStyle": "East-facing, slumped on her knees on the ground. Both arms limp, hands resting on the ground in front of her. Head bowed, hood still up but tilted forward, golden hair fallen forward covering most of her face. Eye-glow dimmed to a faint cool-cyan smudge behind the hair. Robe pooled around her knees.",
+  "southStyle": "Facing the camera (south), full body, hood still up, calm idle stance. Hands clasped loosely at her abdomen. Cyan glowing eyes front and center, golden hair framing the face, gold circlet visible below the hood's edge.",
+  "portraitStyle": "Bust shot from mid-chest up, facing slightly off-camera three-quarter view, neutral serene expression. Hood UP. Gold circlet with teardrop gem visible on forehead. CYAN GLOWING ALMOND EYES must read clearly as the first thing you notice. Golden hair flows out of the hood on both sides.",
+  "bannedSubstrings": [
+    "sword",
+    "axe",
+    "dagger",
+    "bow",
+    "crossbow",
+    "staff",
+    "wand",
+    "mace",
+    "spear",
+    "hammer",
+    "polearm",
+    "gun",
+    "pistol",
+    "flail",
+    "scythe",
+    "whip",
+    "blade",
+    "longsword",
+    "greatsword",
+    "katana",
+    "rapier",
+    "holding a",
+    "wielding",
+    "wields",
+    "silver hair",
+    "silver-white hair",
+    "white hair",
+    "purple eyes",
+    "visible pupil",
+    "visible iris"
+  ],
+  "referenceSheet": {
+    "path": "images/pixellab/oracle/reference.png",
+    "spritecookAssetId": "37e0cc79-7897-45d3-8fc8-36c7ee1bc3fd",
+    "prompt": "IDENTITY (this image becomes the canonical identity anchor — preserve in every downstream frame): Young female seer, slender build. LONG GOLDEN-COPPER HAIR (warm orange-brown, wavy, falling past the shoulders to mid-back). Eyes are the critical identifier: GLOWING CYAN-BLUE ALMONDS — no visible pupil or iris, just pure cyan-blue luminance with soft glow bleed; a faint trail of cyan light drips from the lower lid like a tear. Pale porcelain skin, barefoot. A small GOLD CIRCLET with a single teardrop-shaped gem rests across her brow, just above the eyes.\n\nOUTFIT: White / cream hooded robe with gold embroidered trim at the hem, sleeves, and sash. Gold belt at the waist with a draping sash. The HOOD IS ALWAYS PULLED UP over the head, framing the face; locks of golden hair spill out in front of the shoulders. Soft, flowing cloth.\n\nWEAPONS: None. She never holds a weapon or staff. When casting, a small floating ring-rune of soft cyan light hovers between her palms.\n\nCLASS: humanoid. Full-body view, head to feet visible. Character occupies 281px of the 400px canvas height (~70%). Feet aligned near the bottom; headroom above.\n\nPOSE: full-body side profile facing right (east), calm combat-ready idle, arms relaxed at sides (for humanoids) or four legs planted (for quadrupeds). Head up, eyes visible. NOT a portrait bust, NOT a close-up — entire character from head to feet.\n\nSTYLE: detailed pixel art with clean readable silhouette, warm pixel-art palette.",
+    "bitforgeAssetId": null,
+    "sourcePortraitPath": "images/portraits/oracle.png",
+    "generatedAt": "2026-04-21T04:36:47.791Z",
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait": {
+      "path": "images/pixellab/oracle/portrait.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Young female seer, slender build. LONG GOLDEN-COPPER HAIR (warm orange-brown, wavy, falling past the shoulders to mid-back). Eyes are the critical identifier: GLOWING CYAN-BLUE ALMONDS — no visible pupil or iris, just pure cyan-blue luminance with soft glow bleed; a faint trail of cyan light drips from the lower lid like a tear. Pale porcelain skin, barefoot. A small GOLD CIRCLET with a single teardrop-shaped gem rests across her brow, just above the eyes.\n\nOUTFIT: White / cream hooded robe with gold embroidered trim at the hem, sleeves, and sash. Gold belt at the waist with a draping sash. The HOOD IS ALWAYS PULLED UP over the head, framing the face; locks of golden hair spill out in front of the shoulders. Soft, flowing cloth.\n\nWEAPONS: None. She never holds a weapon or staff. When casting, a small floating ring-rune of soft cyan light hovers between her palms.\n\nPOSE (portrait): Bust shot from mid-chest up, facing slightly off-camera three-quarter view, neutral serene expression. Hood UP. Gold circlet with teardrop gem visible on forehead. CYAN GLOWING ALMOND EYES must read clearly as the first thing you notice. Golden hair flows out of the hood on both sides.\n\nFRAMING: bust shot from mid-chest up, three-quarter view, centered in a 256x256 canvas, shoulders fill the lower third.\n\nSCALE (non-negotiable): the Oracle must occupy approximately 180px of the 256px canvas height — roughly 70% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/oracle.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "generatedAt": "2026-04-21T05:05:00.000Z",
+      "approvedAt": null,
+      "spritecookAssetId": "5f7b6e44-7a0e-4d53-b16c-892fd639f7df"
+    },
+    "south": {
+      "path": "images/pixellab/oracle/south.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Young female seer, slender build. LONG GOLDEN-COPPER HAIR (warm orange-brown, wavy, falling past the shoulders to mid-back). Eyes are the critical identifier: GLOWING CYAN-BLUE ALMONDS — no visible pupil or iris, just pure cyan-blue luminance with soft glow bleed; a faint trail of cyan light drips from the lower lid like a tear. Pale porcelain skin, barefoot. A small GOLD CIRCLET with a single teardrop-shaped gem rests across her brow, just above the eyes.\n\nOUTFIT: White / cream hooded robe with gold embroidered trim at the hem, sleeves, and sash. Gold belt at the waist with a draping sash. The HOOD IS ALWAYS PULLED UP over the head, framing the face; locks of golden hair spill out in front of the shoulders. Soft, flowing cloth.\n\nWEAPONS: None. She never holds a weapon or staff. When casting, a small floating ring-rune of soft cyan light hovers between her palms.\n\nPOSE (south): Facing the camera (south), full body, hood still up, calm idle stance. Hands clasped loosely at her abdomen. Cyan glowing eyes front and center, golden hair framing the face, gold circlet visible below the hood's edge.\n\nFRAMING: full body facing camera (south), feet aligned to bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): the Oracle must occupy approximately 180px of the 256px canvas height — roughly 70% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/oracle.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "generatedAt": "2026-04-21T05:05:00.000Z",
+      "approvedAt": null,
+      "spritecookAssetId": "51b32eed-5bf9-4cc2-b160-60521b37a1af"
+    },
+    "east": {
+      "path": "images/pixellab/oracle/east.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Young female seer, slender build. LONG GOLDEN-COPPER HAIR (warm orange-brown, wavy, falling past the shoulders to mid-back). Eyes are the critical identifier: GLOWING CYAN-BLUE ALMONDS — no visible pupil or iris, just pure cyan-blue luminance with soft glow bleed; a faint trail of cyan light drips from the lower lid like a tear. Pale porcelain skin, barefoot. A small GOLD CIRCLET with a single teardrop-shaped gem rests across her brow, just above the eyes.\n\nOUTFIT: White / cream hooded robe with gold embroidered trim at the hem, sleeves, and sash. Gold belt at the waist with a draping sash. The HOOD IS ALWAYS PULLED UP over the head, framing the face; locks of golden hair spill out in front of the shoulders. Soft, flowing cloth.\n\nWEAPONS: None. She never holds a weapon or staff. When casting, a small floating ring-rune of soft cyan light hovers between her palms.\n\nPOSE (east): neutral combat idle, consistent with reference sheet.\n\nFRAMING: full body facing east (camera-right), combat idle, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): the Oracle must occupy approximately 180px of the 256px canvas height — roughly 70% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/oracle.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "generatedAt": "2026-04-21T05:05:00.000Z",
+      "approvedAt": null,
+      "spritecookAssetId": "6119563c-812e-4f5b-9106-d8fa728696a6"
+    },
+    "east_attack": {
+      "path": "images/pixellab/oracle/east_attack.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Young female seer, slender build. LONG GOLDEN-COPPER HAIR (warm orange-brown, wavy, falling past the shoulders to mid-back). Eyes are the critical identifier: GLOWING CYAN-BLUE ALMONDS — no visible pupil or iris, just pure cyan-blue luminance with soft glow bleed; a faint trail of cyan light drips from the lower lid like a tear. Pale porcelain skin, barefoot. A small GOLD CIRCLET with a single teardrop-shaped gem rests across her brow, just above the eyes.\n\nOUTFIT: White / cream hooded robe with gold embroidered trim at the hem, sleeves, and sash. Gold belt at the waist with a draping sash. The HOOD IS ALWAYS PULLED UP over the head, framing the face; locks of golden hair spill out in front of the shoulders. Soft, flowing cloth.\n\nWEAPONS: None. She never holds a weapon or staff. When casting, a small floating ring-rune of soft cyan light hovers between her palms.\n\nPOSE (east_attack): East-facing profile, hood still up. Right arm thrust forward, palm open, a thin beam of cool cyan-white light extending from her fingertips. Left hand drawn back near hip, fingers curled. No held object. Hair lifts slightly from the energy release; robe hem swirls.\n\nFRAMING: full body facing east, mid-action attack frame, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): the Oracle must occupy approximately 180px of the 256px canvas height — roughly 70% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/oracle.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "generatedAt": "2026-04-21T05:05:00.000Z",
+      "approvedAt": null,
+      "spritecookAssetId": "5fa858b6-3ace-4896-889a-4dce994881db"
+    },
+    "east_spell": {
+      "path": "images/pixellab/oracle/east_spell.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Young female seer, slender build. LONG GOLDEN-COPPER HAIR (warm orange-brown, wavy, falling past the shoulders to mid-back). Eyes are the critical identifier: GLOWING CYAN-BLUE ALMONDS — no visible pupil or iris, just pure cyan-blue luminance with soft glow bleed; a faint trail of cyan light drips from the lower lid like a tear. Pale porcelain skin, barefoot. A small GOLD CIRCLET with a single teardrop-shaped gem rests across her brow, just above the eyes.\n\nOUTFIT: White / cream hooded robe with gold embroidered trim at the hem, sleeves, and sash. Gold belt at the waist with a draping sash. The HOOD IS ALWAYS PULLED UP over the head, framing the face; locks of golden hair spill out in front of the shoulders. Soft, flowing cloth.\n\nWEAPONS: None. She never holds a weapon or staff. When casting, a small floating ring-rune of soft cyan light hovers between her palms.\n\nPOSE (east_spell): East-facing profile, hood still up. Both hands raised at shoulder height, palms up and cupped together. A glowing ring-rune of cyan-white light hovers above her open palms. Head tilted slightly back, cyan eye-glow brighter than normal. Robe hem floats gently.\n\nFRAMING: full body facing east, mid-cast spell frame, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): the Oracle must occupy approximately 180px of the 256px canvas height — roughly 70% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/oracle.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "generatedAt": "2026-04-21T05:05:00.000Z",
+      "approvedAt": null,
+      "spritecookAssetId": "ebd3287c-3910-4daa-9414-116aec19c4b3"
+    },
+    "east_block": {
+      "path": "images/pixellab/oracle/east_block.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Young female seer, slender build. LONG GOLDEN-COPPER HAIR (warm orange-brown, wavy, falling past the shoulders to mid-back). Eyes are the critical identifier: GLOWING CYAN-BLUE ALMONDS — no visible pupil or iris, just pure cyan-blue luminance with soft glow bleed; a faint trail of cyan light drips from the lower lid like a tear. Pale porcelain skin, barefoot. A small GOLD CIRCLET with a single teardrop-shaped gem rests across her brow, just above the eyes.\n\nOUTFIT: White / cream hooded robe with gold embroidered trim at the hem, sleeves, and sash. Gold belt at the waist with a draping sash. The HOOD IS ALWAYS PULLED UP over the head, framing the face; locks of golden hair spill out in front of the shoulders. Soft, flowing cloth.\n\nWEAPONS: None. She never holds a weapon or staff. When casting, a small floating ring-rune of soft cyan light hovers between her palms.\n\nPOSE (east_block): East-facing profile, hood still up. Crossed forearms in front of chest, palms outward, a shimmering translucent ward of pale cyan light forming between her arms. Shoulders squared, chin down, eyes narrowed but still glowing cyan.\n\nFRAMING: full body facing east, mid-defensive-stance frame, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): the Oracle must occupy approximately 180px of the 256px canvas height — roughly 70% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/oracle.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "generatedAt": "2026-04-21T05:05:00.000Z",
+      "approvedAt": null,
+      "spritecookAssetId": "1b6afe35-5218-479e-9d58-b25037fe8928"
+    },
+    "east_ko": {
+      "path": "images/pixellab/oracle/east_ko.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Young female seer, slender build. LONG GOLDEN-COPPER HAIR (warm orange-brown, wavy, falling past the shoulders to mid-back). Eyes are the critical identifier: GLOWING CYAN-BLUE ALMONDS — no visible pupil or iris, just pure cyan-blue luminance with soft glow bleed; a faint trail of cyan light drips from the lower lid like a tear. Pale porcelain skin, barefoot. A small GOLD CIRCLET with a single teardrop-shaped gem rests across her brow, just above the eyes.\n\nOUTFIT: White / cream hooded robe with gold embroidered trim at the hem, sleeves, and sash. Gold belt at the waist with a draping sash. The HOOD IS ALWAYS PULLED UP over the head, framing the face; locks of golden hair spill out in front of the shoulders. Soft, flowing cloth.\n\nWEAPONS: None. She never holds a weapon or staff. When casting, a small floating ring-rune of soft cyan light hovers between her palms.\n\nPOSE (east_ko): East-facing, slumped on her knees on the ground. Both arms limp, hands resting on the ground in front of her. Head bowed, hood still up but tilted forward, golden hair fallen forward covering most of her face. Eye-glow dimmed to a faint cool-cyan smudge behind the hair. Robe pooled around her knees.\n\nFRAMING: full body on the ground, knocked out, fit within 256x256 canvas.\n\nSCALE (non-negotiable): the Oracle must occupy approximately 180px of the 256px canvas height — roughly 70% of the canvas. Do NOT stretch or upscale the figure to fill the frame. Extra space above head and/or below feet is correct and preserves scale relative to other species. Feet (or lowest point of body for KO / quadruped) aligned near the bottom.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference portrait at images/portraits/oracle.png.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in to fill the canvas — respect SCALE.",
+      "generatedAt": "2026-04-21T05:05:00.000Z",
+      "approvedAt": null,
+      "spritecookAssetId": "778f7341-ed97-420c-8714-8e8a25fd8260"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "pixellab_redesign_state/v1",
+  "updatedAt": "2026-04-21T05:05:00.000Z",
+  "creditsUsedTotal": 0,
+  "characters": {
+    "oracle": {
+      "spriteId": "oracle",
+      "status": "frames_generated",
+      "referenceStatus": "generated",
+      "framesStatus": {
+        "portrait": "generated",
+        "south": "generated",
+        "east": "generated",
+        "east_attack": "generated",
+        "east_spell": "generated",
+        "east_block": "generated",
+        "east_ko": "generated"
+      },
+      "artDirectionPath": "data/art_direction/oracle.json",
+      "candidateDir": "images/pixellab/oracle",
+      "originalSpritecookPrefix": "images/spritecook/oracle_",
+      "creditsUsed": 0,
+      "notes": "User success criterion: glowing white eyes MUST persist across all 7 frames."
+    },
+    "shadow_cat": {
+      "spriteId": "shadow_cat",
+      "status": "pending",
+      "referenceStatus": "dry_run",
+      "framesStatus": {
+        "portrait": "dry_run",
+        "south": "dry_run",
+        "east": "dry_run",
+        "east_attack": "dry_run",
+        "east_spell": "dry_run",
+        "east_block": "dry_run",
+        "east_ko": "dry_run"
+      },
+      "artDirectionPath": "data/art_direction/shadow_cat.json",
+      "candidateDir": "images/pixellab/shadow_cat",
+      "originalSpritecookPrefix": "images/spritecook/shadow_cat_",
+      "creditsUsed": 0,
+      "notes": "User success criterion: east_attack uses CLAWS. Zero weapons, zero held props."
+    }
+  }
+}

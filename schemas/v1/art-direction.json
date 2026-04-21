@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://emberveil.rsg/schemas/v1/art-direction.json",
+  "title": "Emberveil Art Direction (v1)",
+  "description": "Per-sprite art-direction + reference sheet + per-frame provenance. Consumed by the PixelLab redesign pipeline (scripts/pixellab/*) and the Tools > PixelLab Redesign page. Never read by gameplay code — the runtime still resolves frames by filename convention under public/images/spritecook/.",
+  "type": "object",
+  "required": ["spriteId", "class", "pixelHeight", "identity"],
+  "additionalProperties": false,
+  "properties": {
+    "spriteId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{1,47}$",
+      "description": "Matches the sprite prefix used in public/images/spritecook/{spriteId}_{pose}.png."
+    },
+    "displayName": { "type": "string" },
+    "class": {
+      "type": "string",
+      "enum": [
+        "humanoid_small",
+        "humanoid",
+        "humanoid_large",
+        "quadruped_small",
+        "quadruped_large",
+        "dragon",
+        "boss"
+      ],
+      "description": "Drives pixel-height defaults and canvas rules."
+    },
+    "pixelHeight": {
+      "type": "integer",
+      "minimum": 32,
+      "maximum": 256,
+      "description": "Target sprite height inside the 256x256 canvas."
+    },
+    "identity": {
+      "type": "string",
+      "description": "The single most important line: species, build, IDENTIFYING FEATURES that must persist across every frame (e.g. Oracle's glowing white eyes)."
+    },
+    "outfit": { "type": "string" },
+    "weapons": {
+      "type": "string",
+      "description": "Weapons present in the canonical reference. Use 'None.' explicitly when the character fights unarmed — the guardrail reads this field to build the banned-substring list."
+    },
+    "attackStyle": { "type": "string", "description": "What east_attack depicts. Must not introduce weapons not in `weapons`." },
+    "spellStyle":  { "type": "string" },
+    "blockStyle":  { "type": "string" },
+    "koStyle":     { "type": "string" },
+    "southStyle":  { "type": "string", "description": "Optional override for the south (map) pose. Default: neutral idle facing camera." },
+    "portraitStyle": { "type": "string", "description": "Optional override for the portrait bust framing." },
+
+    "bannedSubstrings": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Explicit veto list checked by scripts/pixellab/gen-frame.cjs against the composed pose prompt. Auto-seeded from `weapons: 'None.'`; authors may extend."
+    },
+
+    "referenceSheet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path":   { "type": "string", "description": "Repo-relative path, e.g. images/pixellab/oracle/reference_sheet.png" },
+        "prompt": { "type": "string" },
+        "bitforgeAssetId":   { "type": ["string", "null"] },
+        "sourcePortraitPath": { "type": ["string", "null"], "description": "Which existing portrait was used as identity anchor." },
+        "generatedAt": { "type": ["string", "null"], "format": "date-time" },
+        "approvedAt":  { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+
+    "frames": {
+      "type": "object",
+      "description": "Per-pose provenance. Keys are the 7 canonical pose names from image-policy.md.",
+      "additionalProperties": false,
+      "properties": {
+        "portrait":    { "$ref": "#/definitions/frameEntry" },
+        "south":       { "$ref": "#/definitions/frameEntry" },
+        "east":        { "$ref": "#/definitions/frameEntry" },
+        "east_attack": { "$ref": "#/definitions/frameEntry" },
+        "east_spell":  { "$ref": "#/definitions/frameEntry" },
+        "east_block":  { "$ref": "#/definitions/frameEntry" },
+        "east_ko":     { "$ref": "#/definitions/frameEntry" }
+      }
+    }
+  },
+  "definitions": {
+    "frameEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path":   { "type": "string" },
+        "prompt": { "type": "string" },
+        "bitforgeAssetId": { "type": ["string", "null"] },
+        "generatedAt": { "type": ["string", "null"], "format": "date-time" },
+        "approvedAt":  { "type": ["string", "null"], "format": "date-time" }
+      }
+    }
+  }
+}

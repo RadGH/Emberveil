@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /dist/
+Disallow: /auth-test.html
+Disallow: /auth-test
 
 Sitemap: https://emberveil.radgh.com/sitemap.xml
