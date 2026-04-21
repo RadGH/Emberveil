@@ -38,7 +38,7 @@
     .muted { color: #6a717f; font-size: .8rem; }
     code { font-family: ui-monospace, Menlo, Consolas, monospace; }
   </style>
-  <script type="module" crossorigin src="/assets/authTest-BatGuOpm.js"></script>
+  <script type="module" crossorigin src="/assets/authTest-D1rsXlef.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
 </head>
 <body>
@@ -73,6 +73,23 @@
   <div class="card">
     <button id="btnGoogle" class="google">Sign in with Google</button>
     <div id="googleStatus" class="muted" style="margin-top:.5rem;"></div>
+  </div>
+
+  <h2>Saves (Phase 2 — RLS test)</h2>
+  <div class="card">
+    <label for="slotName">Slot name</label>
+    <input id="slotName" type="text" placeholder="e.g. rls-test-slot-1" />
+    <label for="slotState">State (JSON) — defaults to a tiny payload if blank</label>
+    <input id="slotState" type="text" placeholder='{"level":3,"hp":42}' />
+    <div style="margin-top:.5rem;">
+      <button id="btnSaveWrite" class="primary">Write / upsert</button>
+      <button id="btnSaveRead">Read</button>
+      <button id="btnSaveList">List my saves</button>
+      <button id="btnSaveDelete" class="danger">Delete slot</button>
+      <button id="btnSaveDeleteAll" class="danger">Delete all my saves</button>
+    </div>
+    <div id="savesStatus" class="muted" style="margin-top:.5rem;"></div>
+    <pre id="savesOutput" style="margin-top:.5rem;">(no saves fetched yet)</pre>
   </div>
 
   <h2>Event log</h2>
