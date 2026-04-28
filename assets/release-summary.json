@@ -1,10 +1,9 @@
 {
-  "milestone": 347,
+  "milestone": 348,
   "date": "2026-04-28",
-  "summary": "M347 - Cleric overheal AI; XP halved + cap tightened; prologue trailhead start; traveling overlay viewport-centered; skill-check first-visit fix; boss-chest iPhone-tappable; per-zone map fit.",
+  "summary": "M348 - iPhone inventory tap targets, boss scale fix, real reset defaults, combat positioning, FTL gap fix.",
   "categories": [
     "bugfix",
-    "balance",
     "feature"
   ],
   "breakingChanges": []
