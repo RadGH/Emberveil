@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Asset Pipeline Trace — Emberveil</title>
+<style>
+  body { padding: 1rem 1rem 5rem; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 40%, var(--ember1) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin: 0 0 0.25rem;
+  }
+  .page-sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    margin-bottom: 1rem;
+    position: sticky; top: 0; z-index: 20;
+  }
+  .controls input[type=text] {
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 0.35rem 0.5rem; font: inherit; font-size: 0.8rem;
+    min-width: 200px; flex: 1 1 220px;
+  }
+  .controls select {
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 0.35rem 0.5rem; font: inherit; font-size: 0.8rem;
+  }
+  .controls label { color: var(--muted); font-size: 0.78rem; display: flex; align-items: center; gap: 0.3rem; }
+  .btn {
+    background: var(--gold); color: #080507;
+    border: none; border-radius: 4px;
+    padding: 0.38rem 0.8rem; font: inherit; font-size: 0.78rem; font-weight: 700;
+    cursor: pointer; letter-spacing: 0.04em;
+  }
+  .btn.secondary {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  /* Script cards */
+  .script-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .script-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.12s;
+  }
+  .script-card:hover { border-color: var(--border-hi, rgba(232,160,32,0.45)); }
+  .script-card.highlighted { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+  .sc-name {
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    word-break: break-all;
+  }
+  .sc-path { color: var(--muted); font-size: 0.7rem; margin-bottom: 0.4rem; font-family: monospace; }
+  .sc-desc { color: var(--text); font-size: 0.78rem; margin-bottom: 0.5rem; line-height: 1.5; }
+  .sc-io { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .sc-io-block { }
+  .sc-io-label {
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.2rem;
+  }
+  .sc-io-label.in  { color: #80b0e0; }
+  .sc-io-label.out { color: #80e8a0; }
+  .sc-io-item {
+    font-size: 0.72rem; font-family: monospace;
+    padding: 1px 5px; margin: 1px 0;
+    border-radius: 3px;
+  }
+  .sc-io-item.in  { background: rgba(80,140,220,0.12); color: #80b0e0; }
+  .sc-io-item.out { background: rgba(80,220,140,0.12); color: #80e8a0; }
+  .sc-tags { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.4rem; }
+  .sc-tag {
+    display: inline-block; padding: 1px 6px; border-radius: 3px;
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .sc-tag.prebuild  { background: rgba(232,160,32,0.15); color: var(--gold); border: 1px solid rgba(232,160,32,0.3); }
+  .sc-tag.manual    { background: rgba(120,80,220,0.15); color: #b080ff; border: 1px solid rgba(120,80,220,0.3); }
+  .sc-tag.release   { background: rgba(200,80,80,0.15); color: #ff9060; border: 1px solid rgba(200,80,80,0.3); }
+  .sc-tag.devtool   { background: rgba(80,180,120,0.15); color: #60e880; border: 1px solid rgba(80,180,120,0.3); }
+  .sc-tag.workspace { background: rgba(100,160,220,0.12); color: #80b0e0; border: 1px solid rgba(100,160,220,0.25); }
+  .sc-tag.data      { background: rgba(220,160,40,0.12); color: #ffd060; border: 1px solid rgba(220,160,40,0.25); }
+
+  /* Sankey-style flow diagram */
+  .flow-section { margin-bottom: 1.5rem; }
+  .flow-section h2 {
+    font-family: var(--font-display);
+    color: var(--gold-bright);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 0.6rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.3rem;
+  }
+  .flow-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+  .flow-table th {
+    text-align: left; padding: 5px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted); font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .flow-table td { padding: 5px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+  .flow-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .flow-table td.script-name { font-family: monospace; color: var(--gold); font-size: 0.75rem; white-space: nowrap; }
+  .flow-table td.inputs  { color: #80b0e0; font-family: monospace; font-size: 0.72rem; }
+  .flow-table td.outputs { color: #80e8a0; font-family: monospace; font-size: 0.72rem; }
+  .flow-table td.trigger { color: var(--muted); font-size: 0.72rem; }
+  .flow-table td.inputs span, .flow-table td.outputs span { display: block; }
+
+  .filter-match { background: rgba(232,160,32,0.08); }
+
+  .empty-state { color: var(--muted); font-size: 0.82rem; font-style: italic; padding: 1rem 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page-title">Asset Pipeline Trace</h1>
+  <p class="page-sub">Static knowledge map: which scripts touch which file types and directories. Use this to understand what runs when, and what changes as a result. "If I run X, what changes?" — answered here.</p>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search script name, input, output…">
+    <label>Trigger: <select id="filterTrigger">
+      <option value="">All</option>
+      <option value="prebuild">Pre-build (auto)</option>
+      <option value="release">release.sh</option>
+      <option value="manual">Manual</option>
+      <option value="devtool">Devtool / browser</option>
+      <option value="workspace">Workspace-level</option>
+    </select></label>
+    <button class="btn secondary" id="btnReset">Reset</button>
+  </div>
+
+  <!-- Table view -->
+  <div class="flow-section">
+    <h2>Script to File Map</h2>
+    <div style="overflow-x:auto;">
+      <table class="flow-table" id="flowTable">
+        <thead><tr>
+          <th>Script</th>
+          <th>Trigger</th>
+          <th>Inputs</th>
+          <th>Outputs</th>
+        </tr></thead>
+        <tbody id="flowBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Card grid -->
+  <div class="flow-section">
+    <h2>Script Detail Cards</h2>
+    <div class="script-grid" id="cardGrid"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">No scripts match this filter.</div>
+  </div>
+</div>
+
+<script>
+// ---------------------------------------------------------------------------
+// Static pipeline knowledge map
+// ---------------------------------------------------------------------------
+const PIPELINE = [
+  {
+    id: 'release_sh',
+    name: 'release.sh',
+    path: '/home/radgh/claude/release.sh',
+    trigger: 'release',
+    desc: 'Master release orchestrator. Increments milestone number in game_meta.json, runs optimize_audio.sh and optimize_images.sh, copies shared/nav-header.js into public/assets/_header.js, then runs `npm run build` (Vite). Rsyncs build output to <game>_releases/dist/. Rebuilds the release summary and roadmap data.',
+    inputs: [
+      'src/**',
+      'public/**',
+      'shared/nav-header.js',
+      'game13_releases/game_meta.json',
+      'vite.config.js',
+    ],
+    outputs: [
+      'game13_releases/dist/',
+      'game13_releases/game_meta.json (releases[N])',
+      'public/assets/_header.js (copy)',
+    ],
+    tags: ['release', 'workspace'],
+  },
+  {
+    id: 'optimize_audio',
+    name: 'optimize_audio.sh',
+    path: '/home/radgh/claude/optimize_audio.sh',
+    trigger: 'release',
+    desc: 'Called by release.sh before Vite build. Transcodes .wav/.flac and large .mp3 files to Ogg Vorbis (-q:a 3, ~64kbps mono / ~112kbps stereo). Rewrites filename references in src/**, public/**, and index.html. Idempotent — skips already-optimized files. Requires ffmpeg.',
+    inputs: [
+      'public/music/*.wav, *.flac, *.mp3',
+      'public/sfx/*.wav, *.flac, *.mp3',
+    ],
+    outputs: [
+      'public/music/*.ogg',
+      'public/sfx/*.ogg',
+      'src/** (filename references rewritten)',
+      'public/** (filename references rewritten)',
+    ],
+    tags: ['release', 'workspace'],
+  },
+  {
+    id: 'optimize_images',
+    name: 'optimize_images.sh (asset_manager.sh)',
+    path: '/home/radgh/claude/asset_manager.sh',
+    trigger: 'release',
+    desc: 'Image optimization pass run by release.sh. Compresses PNG/JPG assets in public/images/ using pngquant/mozjpeg where available. Also handles batch background removal via remove-bg.cjs when triggered manually.',
+    inputs: [
+      'public/images/**/*.png',
+      'public/images/**/*.jpg',
+    ],
+    outputs: [
+      'public/images/**/*.png (optimized in-place)',
+      'public/images/**/*.jpg (optimized in-place)',
+    ],
+    tags: ['release', 'workspace'],
+  },
+  {
+    id: 'emit_game_data',
+    name: 'emit-game-data.cjs',
+    path: 'game13/scripts/emit-game-data.cjs',
+    trigger: 'prebuild',
+    desc: 'Pre-build script (runs in package.json "build" step via vite.config.js plugin or npm prebuild). Reads live game source files (companions.js, mapData.js, STATUS_META, achievements.js, skills.js, itemPools.js, etc.) and emits one JSON file per data type into public/assets/data/. All devtool catalog pages read from these JSON files via data-source.js.',
+    inputs: [
+      'src/game/companions.js',
+      'src/maps/mapData.js',
+      'src/game/statusEffects.js',
+      'src/game/achievements.js',
+      'src/game/skills.js',
+      'src/game/itemPools.js',
+      'src/game/classes.js',
+    ],
+    outputs: [
+      'public/assets/data/companions.json',
+      'public/assets/data/enemies.json',
+      'public/assets/data/dungeons.json',
+      'public/assets/data/status-effects.json',
+      'public/assets/data/achievements.json',
+      'public/assets/data/skills.json',
+      'public/assets/data/affixes.json',
+      'public/assets/data/items.json',
+      'public/assets/data/bosses.json',
+      'public/assets/data/classes.json',
+    ],
+    tags: ['prebuild', 'data'],
+  },
+  {
+    id: 'emit_release_summary',
+    name: 'emit-release-summary.cjs',
+    path: 'game13/scripts/emit-release-summary.cjs',
+    trigger: 'prebuild',
+    desc: 'Reads game_meta.json releases[] array and emits a compact JSON summary used by the release server and GitHub Pages index generator to display per-milestone summaries on the hub homepage.',
+    inputs: [
+      'game13_releases/game_meta.json',
+    ],
+    outputs: [
+      'public/assets/data/release-summary.json',
+    ],
+    tags: ['prebuild', 'data'],
+  },
+  {
+    id: 'emit_roadmap_data',
+    name: 'emit-roadmap-data.cjs',
+    path: 'game13/scripts/emit-roadmap-data.cjs',
+    trigger: 'prebuild',
+    desc: 'Reads memory/future_milestones.md and parses the milestone plan (completed / upcoming). Emits roadmap-data.json consumed by roadmap.html and achievement-roadmap.html.',
+    inputs: [
+      'game13/memory/future_milestones.md',
+    ],
+    outputs: [
+      'public/assets/data/roadmap-data.json',
+    ],
+    tags: ['prebuild', 'data'],
+  },
+  {
+    id: 'parse_changelog',
+    name: 'parse-changelog-categories.cjs',
+    path: 'game13/scripts/parse-changelog-categories.cjs',
+    trigger: 'prebuild',
+    desc: 'Reads the changelog field from game_meta.json, splits it into category buckets (balance, content, bugfix, ux, devtools), and emits changelog-categories.json for the changelog.html page.',
+    inputs: [
+      'game13_releases/game_meta.json (changelog field)',
+    ],
+    outputs: [
+      'public/assets/data/changelog-categories.json',
+    ],
+    tags: ['prebuild', 'data'],
+  },
+  {
+    id: 'sync_wishlist',
+    name: 'sync-wishlist-checkboxes.cjs',
+    path: 'game13/scripts/sync-wishlist-checkboxes.cjs',
+    trigger: 'manual',
+    desc: 'Normalizes checkbox state in wishlist.html. Reads the HTML, finds all .wl-item elements, and ensures .box div has class "checked" if and only if the parent .wl-item has class "done". Run after editing wishlist.html to maintain consistent state.',
+    inputs: [
+      'public/assets/wishlist.html',
+    ],
+    outputs: [
+      'public/assets/wishlist.html (checkbox states normalized)',
+    ],
+    tags: ['manual', 'devtool'],
+  },
+  {
+    id: 'sync_pixellab',
+    name: 'sync-pixellab-to-spritecook.cjs',
+    path: 'game13/scripts/sync-pixellab-to-spritecook.cjs',
+    trigger: 'manual',
+    desc: 'After PixelLab assets are generated, copies approved frames from public/images/pixellab/<id>/ into public/images/spritecook/ following the canonical naming convention. Updates art_direction JSON and pixellab_redesign_state.json. Must be run after approve.cjs.',
+    inputs: [
+      'public/images/pixellab/<spriteId>/<pose>.png',
+      'public/data/art_direction/<id>.json',
+      'public/data/pixellab_redesign_state.json',
+    ],
+    outputs: [
+      'public/images/spritecook/<id>_<pose>.png',
+      'public/data/art_direction/<id>.json (updated paths)',
+      'public/data/pixellab_redesign_state.json (status flags)',
+    ],
+    tags: ['manual'],
+  },
+  {
+    id: 'audit_sprite_404s',
+    name: 'audit-sprite-404s.cjs',
+    path: 'game13/scripts/audit-sprite-404s.cjs',
+    trigger: 'manual',
+    desc: 'Walks src/game/appearances.js and src/game/companions.js, resolves every sprite path, and checks whether the file exists on disk. Prints a report of missing (404) sprite files. Does not modify any files.',
+    inputs: [
+      'src/game/appearances.js',
+      'src/game/companions.js',
+      'public/images/spritecook/**',
+    ],
+    outputs: [
+      'stdout: 404 report (read-only)',
+    ],
+    tags: ['manual', 'devtool'],
+  },
+  {
+    id: 'build_manifest',
+    name: 'build-image-review-manifest.cjs',
+    path: 'game13/scripts/build-image-review-manifest.cjs',
+    trigger: 'manual',
+    desc: 'Crawls src/game/appearances.js, companions.js, and mapData.js to discover all expected sprite IDs. Reads the existing manifest and merges new entries. Emits public/assets/image-review-manifest.json with status (ready/pending/orphaned/approved/candidate) for each frame. Also called automatically by approve.cjs after approval.',
+    inputs: [
+      'src/game/appearances.js',
+      'src/game/companions.js',
+      'src/maps/mapData.js',
+      'public/assets/image-review-manifest.json (prior state)',
+      'public/images/spritecook/**',
+      'public/images/pixellab/**',
+    ],
+    outputs: [
+      'public/assets/image-review-manifest.json',
+    ],
+    tags: ['manual', 'devtool'],
+  },
+  {
+    id: 'redirect_assets',
+    name: 'redirect-assets-to-spritecook.cjs',
+    path: 'game13/scripts/redirect-assets-to-spritecook.cjs',
+    trigger: 'manual',
+    desc: 'Updates src/game/appearances.js entries to point from old paths (e.g. public/images/characters/) to the canonical spritecook paths. Used during the PixelLab migration to reroute source references without breaking runtime.',
+    inputs: [
+      'src/game/appearances.js',
+      'public/data/pixellab_redesign_state.json',
+    ],
+    outputs: [
+      'src/game/appearances.js (paths rewritten)',
+    ],
+    tags: ['manual'],
+  },
+  {
+    id: 'clean_manifest',
+    name: 'clean-image-review-manifest.cjs',
+    path: 'game13/scripts/clean-image-review-manifest.cjs',
+    trigger: 'manual',
+    desc: 'M300 deprecation pass. Reads image-review-manifest.json, checks each entry file exists on disk, removes missing-file entries and duplicates. Reports size before/after.',
+    inputs: [
+      'public/assets/image-review-manifest.json',
+      'public/images/spritecook/**',
+      'public/images/pixellab/**',
+    ],
+    outputs: [
+      'public/assets/image-review-manifest.json (cleaned)',
+    ],
+    tags: ['manual', 'devtool'],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Render
+// ---------------------------------------------------------------------------
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function matchesSearch(entry, q) {
+  if (!q) return true;
+  const haystack = [
+    entry.name, entry.path, entry.desc,
+    ...entry.inputs, ...entry.outputs,
+    ...entry.tags,
+  ].join(' ').toLowerCase();
+  return haystack.includes(q.toLowerCase());
+}
+
+function buildTable(filtered, q) {
+  const tbody = document.getElementById('flowBody');
+  if (!filtered.length) { tbody.innerHTML = '<tr><td colspan="4" style="color:var(--muted);padding:1rem;font-style:italic;">No entries match.</td></tr>'; return; }
+  tbody.innerHTML = filtered.map(e => {
+    const inputs = e.inputs.map(i => `<span>${esc(i)}</span>`).join('');
+    const outputs = e.outputs.map(o => `<span>${esc(o)}</span>`).join('');
+    const tags = e.tags.map(t => `<span class="sc-tag ${t}">${t}</span>`).join(' ');
+    return `<tr class="${q && matchesSearch(e, q) ? 'filter-match' : ''}">
+      <td class="script-name">${esc(e.name)}<br><small style="color:var(--muted);font-size:0.65rem;">${esc(e.path)}</small><br><div style="margin-top:3px;">${tags}</div></td>
+      <td class="trigger">${esc(e.trigger)}</td>
+      <td class="inputs">${inputs}</td>
+      <td class="outputs">${outputs}</td>
+    </tr>`;
+  }).join('');
+}
+
+function buildCards(filtered) {
+  const grid = document.getElementById('cardGrid');
+  const empty = document.getElementById('emptyState');
+  if (!filtered.length) { grid.innerHTML = ''; empty.style.display = ''; return; }
+  empty.style.display = 'none';
+  grid.innerHTML = filtered.map(e => {
+    const inHtml = e.inputs.map(i => `<div class="sc-io-item in">${esc(i)}</div>`).join('');
+    const outHtml = e.outputs.map(o => `<div class="sc-io-item out">${esc(o)}</div>`).join('');
+    const tags = e.tags.map(t => `<span class="sc-tag ${t}">${t}</span>`).join('');
+    return `<div class="script-card">
+      <div class="sc-name">${esc(e.name)}</div>
+      <div class="sc-path">${esc(e.path)}</div>
+      <div class="sc-desc">${esc(e.desc)}</div>
+      <div class="sc-io">
+        <div class="sc-io-block">
+          <div class="sc-io-label in">Reads</div>
+          ${inHtml}
+        </div>
+        <div class="sc-io-block">
+          <div class="sc-io-label out">Writes</div>
+          ${outHtml}
+        </div>
+      </div>
+      <div class="sc-tags">${tags}</div>
+    </div>`;
+  }).join('');
+}
+
+function render() {
+  const q = document.getElementById('search').value.trim();
+  const trigger = document.getElementById('filterTrigger').value;
+  const filtered = PIPELINE.filter(e => {
+    if (trigger && !e.tags.includes(trigger)) return false;
+    if (q && !matchesSearch(e, q)) return false;
+    return true;
+  });
+  buildTable(filtered, q);
+  buildCards(filtered);
+}
+
+document.getElementById('search').addEventListener('input', render);
+document.getElementById('filterTrigger').addEventListener('change', render);
+document.getElementById('btnReset').addEventListener('click', () => {
+  document.getElementById('search').value = '';
+  document.getElementById('filterTrigger').value = '';
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

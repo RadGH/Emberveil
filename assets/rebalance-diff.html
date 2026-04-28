@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Rebalance Diff — Emberveil</title>
+<style>
+  body { padding: 1rem 1rem 5rem; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 40%, var(--ember1) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin: 0 0 0.25rem;
+  }
+  .page-sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+  .compare-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 0.75rem;
+    align-items: end;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 600px) { .compare-bar { grid-template-columns: 1fr; } }
+  .compare-bar label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.78rem; color: var(--muted); }
+  .compare-bar select {
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 0.4rem 0.5rem; font: inherit; font-size: 0.82rem;
+  }
+  .btn {
+    background: var(--gold); color: #080507;
+    border: none; border-radius: 5px;
+    padding: 0.5rem 1.1rem; font: inherit; font-size: 0.82rem; font-weight: 700;
+    cursor: pointer; letter-spacing: 0.04em; align-self: end;
+  }
+  .btn:hover { background: var(--gold-bright); }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  /* Snapshot labels */
+  .snap-labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .snap-label {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.78rem;
+  }
+  .snap-label .sl-head { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.15rem; }
+  .snap-label .sl-name { font-family: var(--font-display); color: var(--gold); font-weight: 700; }
+  .snap-label .sl-meta { color: var(--muted); font-size: 0.7rem; margin-top: 0.1rem; }
+
+  /* Legend */
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 0.75rem; font-size: 0.72rem;
+  }
+  .lc {
+    display: inline-flex; align-items: center; gap: 0.25rem;
+    padding: 2px 8px; border-radius: 3px;
+    font-weight: 600; letter-spacing: 0.04em;
+  }
+  .lc-buff    { background: rgba(80,200,120,0.15); color: #60e880; border: 1px solid rgba(80,200,120,0.3); }
+  .lc-nerf    { background: rgba(220,80,80,0.15);  color: #ff8060; border: 1px solid rgba(220,80,80,0.3); }
+  .lc-mixed   { background: rgba(220,180,40,0.15); color: #ffd060; border: 1px solid rgba(220,180,40,0.3); }
+  .lc-same    { background: rgba(120,120,120,0.1); color: var(--muted); border: 1px solid rgba(120,120,120,0.18); }
+
+  /* Category sections */
+  .diff-section { margin-bottom: 1.25rem; }
+  .diff-section h2 {
+    font-family: var(--font-display);
+    color: var(--gold-bright);
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.3rem;
+    margin: 0 0 0.6rem;
+  }
+
+  /* Diff table */
+  table.diff {
+    width: 100%; border-collapse: collapse; font-size: 0.78rem;
+  }
+  table.diff th {
+    text-align: left; padding: 5px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted); font-size: 0.68rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  table.diff td {
+    padding: 5px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: middle;
+  }
+  table.diff tr:hover td { background: rgba(255,255,255,0.02); }
+  table.diff td.row-key { color: var(--text); font-weight: 600; }
+  table.diff td.val-a { color: var(--muted); }
+  table.diff td.val-b { }
+  table.diff td.change { font-weight: 700; }
+
+  .change-buff  { color: #60e880; }
+  .change-nerf  { color: #ff8060; }
+  .change-mixed { color: #ffd060; }
+  .change-same  { color: var(--muted); }
+
+  .delta-tag {
+    display: inline-block;
+    padding: 1px 6px; border-radius: 3px;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .dt-buff  { background: rgba(80,200,120,0.15); color: #60e880; }
+  .dt-nerf  { background: rgba(220,80,80,0.15);  color: #ff8060; }
+  .dt-mixed { background: rgba(220,180,40,0.15); color: #ffd060; }
+  .dt-same  { background: rgba(120,120,120,0.1); color: var(--muted); }
+
+  .empty-state {
+    color: var(--muted); font-size: 0.82rem;
+    padding: 2rem 1rem; text-align: center;
+  }
+  .error-msg { color: #ff6060; font-size: 0.82rem; padding: 0.5rem 0; }
+
+  /* Summary bar */
+  .summary-bar {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.65rem 0.9rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+  }
+  .sum-kpi .sk-lbl { color: var(--muted); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .sum-kpi .sk-val { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+  .sk-val.buff  { color: #60e880; }
+  .sk-val.nerf  { color: #ff8060; }
+  .sk-val.mixed { color: #ffd060; }
+  .sk-val.same  { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page-title">Rebalance Snapshot Diff</h1>
+  <p class="page-sub">Select two rebalance snapshots to compare hero DPS, companion, and utility stats side-by-side. Color-coded: green = buffed, red = nerfed, yellow = mixed change.</p>
+
+  <div class="compare-bar">
+    <label>Snapshot A (older)
+      <select id="snapA"><option value="">— Loading… —</option></select>
+    </label>
+    <label>Snapshot B (newer)
+      <select id="snapB"><option value="">— Loading… —</option></select>
+    </label>
+    <button class="btn" id="btnCompare" disabled>Compare</button>
+  </div>
+
+  <div id="output"></div>
+</div>
+
+<script>
+const SNAP_BASE = './rebalance_snapshots/';
+
+async function fetchJson(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`${res.status} ${url}`);
+  return res.json();
+}
+
+// ---- number diff helpers ---------------------------------------------------
+
+function pct(a, b) {
+  if (!a || a === 0) return null;
+  return ((b - a) / Math.abs(a)) * 100;
+}
+
+function deltaTag(a, b) {
+  if (a === b || (typeof a !== 'number' && typeof b !== 'number')) {
+    return `<span class="delta-tag dt-same">—</span>`;
+  }
+  if (typeof a !== 'number' || typeof b !== 'number') {
+    const changed = a !== b;
+    return changed ? `<span class="delta-tag dt-mixed">changed</span>` : `<span class="delta-tag dt-same">—</span>`;
+  }
+  const p = pct(a, b);
+  if (p === null) return `<span class="delta-tag dt-same">—</span>`;
+  const abs = Math.abs(p);
+  if (abs < 0.5) return `<span class="delta-tag dt-same">0%</span>`;
+  const sign = p > 0 ? '+' : '';
+  if (p > 0) return `<span class="delta-tag dt-buff">${sign}${p.toFixed(1)}%</span>`;
+  return `<span class="delta-tag dt-nerf">${p.toFixed(1)}%</span>`;
+}
+
+function classifyChange(a, b) {
+  if (typeof a !== 'number' || typeof b !== 'number') return 'same';
+  const p = pct(a, b);
+  if (!p || Math.abs(p) < 0.5) return 'same';
+  return p > 0 ? 'buff' : 'nerf';
+}
+
+function fmt(v) {
+  if (typeof v === 'number') return v.toFixed(1);
+  return String(v ?? '—');
+}
+
+// ---- Build diff for a dict-of-dicts structure (heroes, companions, etc.) ---
+
+function diffSection(title, mapA, mapB) {
+  if (!mapA && !mapB) return '';
+
+  const allKeys = [...new Set([
+    ...Object.keys(mapA || {}),
+    ...Object.keys(mapB || {}),
+  ])].sort();
+
+  if (!allKeys.length) return '';
+
+  // Gather all sub-fields across all keys
+  const allSubKeys = new Set();
+  for (const k of allKeys) {
+    const a = (mapA || {})[k] || {};
+    const b = (mapB || {})[k] || {};
+    // Flatten: collect byLevel values and byScenario values
+    for (const subK of [...Object.keys(a), ...Object.keys(b)]) {
+      if (subK === 'byLevel') {
+        const la = a.byLevel || {}, lb = b.byLevel || {};
+        for (const lv of [...Object.keys(la), ...Object.keys(lb)]) {
+          allSubKeys.add(`byLevel.${lv}`);
+        }
+      } else if (subK === 'byScenario') {
+        const sa = a.byScenario || {}, sb = b.byScenario || {};
+        for (const sc of [...Object.keys(sa), ...Object.keys(sb)]) {
+          allSubKeys.add(`byScenario.${sc}`);
+        }
+      } else {
+        allSubKeys.add(subK);
+      }
+    }
+  }
+
+  let rowCount = 0, buffCount = 0, nerfCount = 0, mixedCount = 0;
+  let tbody = '';
+
+  for (const k of allKeys) {
+    const a = ((mapA || {})[k]) || {};
+    const b = ((mapB || {})[k]) || {};
+
+    const rows = [];
+    for (const sub of [...allSubKeys].sort()) {
+      let va, vb;
+      if (sub.startsWith('byLevel.')) {
+        const lv = sub.slice('byLevel.'.length);
+        va = (a.byLevel || {})[lv];
+        vb = (b.byLevel || {})[lv];
+      } else if (sub.startsWith('byScenario.')) {
+        const sc = sub.slice('byScenario.'.length);
+        va = (a.byScenario || {})[sc];
+        vb = (b.byScenario || {})[sc];
+      } else {
+        va = a[sub]; vb = b[sub];
+      }
+      const cls = classifyChange(va, vb);
+      rows.push({ sub, va, vb, cls });
+      rowCount++;
+      if (cls === 'buff') buffCount++;
+      else if (cls === 'nerf') nerfCount++;
+      else if (cls === 'mixed') mixedCount++;
+    }
+
+    // Determine overall entity class
+    const entityBuff = rows.filter(r => r.cls === 'buff').length;
+    const entityNerf = rows.filter(r => r.cls === 'nerf').length;
+    let entityCls = 'same';
+    if (entityBuff && entityNerf) entityCls = 'mixed';
+    else if (entityBuff) entityCls = 'buff';
+    else if (entityNerf) entityCls = 'nerf';
+
+    tbody += `<tr>
+      <td colspan="4" style="padding-top:8px;padding-bottom:2px;">
+        <span style="font-family:var(--font-display);font-weight:700;font-size:0.82rem;color:var(--gold);">${k}</span>
+        <span class="delta-tag dt-${entityCls}" style="margin-left:6px;">${entityCls}</span>
+      </td>
+    </tr>`;
+
+    for (const { sub, va, vb, cls } of rows) {
+      if (va === undefined && vb === undefined) continue;
+      tbody += `<tr>
+        <td class="row-key" style="padding-left:20px;">${sub}</td>
+        <td class="val-a">${fmt(va)}</td>
+        <td class="val-b change-${cls}">${fmt(vb)}</td>
+        <td>${deltaTag(va, vb)}</td>
+      </tr>`;
+    }
+  }
+
+  return `
+    <div class="diff-section">
+      <h2>${title} <span style="font-size:0.7rem;font-weight:400;color:var(--muted);">${allKeys.length} entries</span></h2>
+      <div style="overflow-x:auto;">
+        <table class="diff">
+          <thead><tr>
+            <th>Key</th>
+            <th>Snapshot A</th>
+            <th>Snapshot B</th>
+            <th>Delta</th>
+          </tr></thead>
+          <tbody>${tbody}</tbody>
+        </table>
+      </div>
+    </div>
+    <script>/* buff=${buffCount} nerf=${nerfCount} */<\/script>
+  `;
+}
+
+// ---- Summary bar -----------------------------------------------------------
+
+function buildSummary(snapA, snapB, aData, bData) {
+  let totalBuff = 0, totalNerf = 0, totalSame = 0;
+  const CATS = ['heroes', 'companions', 'taps', 'utilities'];
+  for (const cat of CATS) {
+    const ma = aData[cat] || {}, mb = bData[cat] || {};
+    const keys = [...new Set([...Object.keys(ma), ...Object.keys(mb)])];
+    for (const k of keys) {
+      const a = ma[k] || {}, b = mb[k] || {};
+      const levels = [...new Set([...Object.keys(a.byLevel||{}), ...Object.keys(b.byLevel||{})])];
+      for (const lv of levels) {
+        const cls = classifyChange((a.byLevel||{})[lv], (b.byLevel||{})[lv]);
+        if (cls === 'buff') totalBuff++;
+        else if (cls === 'nerf') totalNerf++;
+        else totalSame++;
+      }
+    }
+  }
+
+  return `
+    <div class="summary-bar">
+      <div class="sum-kpi"><div class="sk-lbl">Buffed</div><div class="sk-val buff">${totalBuff}</div></div>
+      <div class="sum-kpi"><div class="sk-lbl">Nerfed</div><div class="sk-val nerf">${totalNerf}</div></div>
+      <div class="sum-kpi"><div class="sk-lbl">Unchanged</div><div class="sk-val same">${totalSame}</div></div>
+      <div class="sum-kpi"><div class="sk-lbl">A</div><div class="sk-val" style="color:var(--text);">${snapA.label} (${snapA.date}, ${snapA.runs} runs)</div></div>
+      <div class="sum-kpi"><div class="sk-lbl">B</div><div class="sk-val" style="color:var(--text);">${snapB.label} (${snapB.date}, ${snapB.runs} runs)</div></div>
+    </div>
+  `;
+}
+
+// ---- Main ------------------------------------------------------------------
+
+let snapFiles = [];
+let loadedSnaps = {};
+
+async function loadSnapList() {
+  try {
+    const idx = await fetchJson(`${SNAP_BASE}index.json`);
+    return idx.files || [];
+  } catch (_) {
+    return [];
+  }
+}
+
+async function getSnap(filename) {
+  if (loadedSnaps[filename]) return loadedSnaps[filename];
+  const data = await fetchJson(`${SNAP_BASE}${filename}`);
+  loadedSnaps[filename] = data;
+  return data;
+}
+
+function buildSelects(files) {
+  const opts = files.map(f => `<option value="${f}">${f.replace('.json','')}</option>`).join('');
+  const selA = document.getElementById('snapA');
+  const selB = document.getElementById('snapB');
+  selA.innerHTML = '<option value="">— Select —</option>' + opts;
+  selB.innerHTML = '<option value="">— Select —</option>' + opts;
+  if (files.length >= 2) {
+    selA.value = files[0];
+    selB.value = files[files.length - 1];
+    document.getElementById('btnCompare').disabled = false;
+  }
+}
+
+async function runCompare() {
+  const btn = document.getElementById('btnCompare');
+  const output = document.getElementById('output');
+  const fA = document.getElementById('snapA').value;
+  const fB = document.getElementById('snapB').value;
+
+  if (!fA || !fB) { output.innerHTML = '<div class="error-msg">Select both snapshots.</div>'; return; }
+  if (fA === fB)  { output.innerHTML = '<div class="error-msg">Select two different snapshots.</div>'; return; }
+
+  btn.disabled = true;
+  output.innerHTML = '<div class="empty-state">Loading snapshots…</div>';
+
+  try {
+    const [sA, sB] = await Promise.all([getSnap(fA), getSnap(fB)]);
+
+    let html = buildSummary(sA, sB, sA, sB);
+
+    html += '<div class="snap-labels">';
+    html += `<div class="snap-label"><div class="sl-head">Snapshot A (older)</div><div class="sl-name">${sA.label}</div><div class="sl-meta">${sA.date} &nbsp;·&nbsp; ${sA.runs} runs</div></div>`;
+    html += `<div class="snap-label"><div class="sl-head">Snapshot B (newer)</div><div class="sl-name">${sB.label}</div><div class="sl-meta">${sB.date} &nbsp;·&nbsp; ${sB.runs} runs</div></div>`;
+    html += '</div>';
+
+    html += '<div class="legend">';
+    html += '<span class="lc lc-buff">Buffed</span>';
+    html += '<span class="lc lc-nerf">Nerfed</span>';
+    html += '<span class="lc lc-mixed">Mixed</span>';
+    html += '<span class="lc lc-same">Unchanged</span>';
+    html += '</div>';
+
+    const CATS = [
+      { key: 'heroes',      label: 'Heroes' },
+      { key: 'companions',  label: 'Companions' },
+      { key: 'taps',        label: 'Tap Weapons' },
+      { key: 'utilities',   label: 'Utilities / Skills' },
+    ];
+
+    for (const { key, label } of CATS) {
+      const sect = diffSection(label, sA[key], sB[key]);
+      if (sect) html += sect;
+    }
+
+    output.innerHTML = html;
+  } catch (e) {
+    output.innerHTML = `<div class="error-msg">Failed to load snapshots: ${e.message}</div>`;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function init() {
+  snapFiles = await loadSnapList();
+  if (!snapFiles.length) {
+    document.getElementById('output').innerHTML = `
+      <div class="empty-state">
+        No snapshot files found in <code>${SNAP_BASE}index.json</code>.<br>
+        Generate snapshots from <a href="./rebalance.html" style="color:var(--gold);">rebalance.html</a> and add them to
+        <code>rebalance_snapshots/index.json</code>.
+      </div>`;
+    return;
+  }
+  buildSelects(snapFiles);
+
+  document.getElementById('snapA').addEventListener('change', () => {
+    const a = document.getElementById('snapA').value;
+    const b = document.getElementById('snapB').value;
+    document.getElementById('btnCompare').disabled = !(a && b);
+  });
+  document.getElementById('snapB').addEventListener('change', () => {
+    const a = document.getElementById('snapA').value;
+    const b = document.getElementById('snapB').value;
+    document.getElementById('btnCompare').disabled = !(a && b);
+  });
+  document.getElementById('btnCompare').addEventListener('click', runCompare);
+
+  // Auto-run if two valid snapshots are pre-selected
+  if (snapFiles.length >= 2) {
+    await runCompare();
+  }
+}
+
+init();
+</script>
+</body>
+</html>

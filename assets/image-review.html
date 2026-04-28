@@ -167,6 +167,9 @@
   body[data-display="g3"] .bg-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
   body[data-display="g2"] .poses,
   body[data-display="g2"] .bg-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  body[data-display="g1"] .poses,
+  body[data-display="g1"] .bg-grid { grid-template-columns: 1fr; }
+  body[data-display="g1"] .img-card img, body[data-display="g1"] .bg-grid .img-card img { height: auto; max-height: none; width: 100%; }
   body[data-display="g6"] .img-card img, body[data-display="g6"] .bg-grid .img-card img { height: 70px; }
   body[data-display="g5"] .img-card img, body[data-display="g5"] .bg-grid .img-card img { height: 80px; }
   body[data-display="g3"] .img-card img, body[data-display="g3"] .bg-grid .img-card img { height: 140px; }
@@ -507,6 +510,16 @@
     When you're done, hit <b>Generate Prompt</b> to produce a paste-ready instruction block for Claude.
   </p>
 
+  <!-- M300 deprecation notice -->
+  <div style="background:rgba(200,160,40,0.10);border:1px solid rgba(200,160,40,0.3);border-radius:6px;padding:0.6rem 0.9rem;margin:0 0 0.75rem;font-size:0.8rem;color:#ffd060;">
+    <strong>Note (M300):</strong> This tool is no longer the primary sprite workflow.
+    The canonical pipeline is: <strong>SpriteCook generation</strong> via <code>scripts/pixellab/</code>
+    and approval via <code>scripts/pixellab/approve.cjs</code>. This page still functions
+    for auditing existing sprites, but newly generated frames are managed through
+    <a href="./character-redesign.html" style="color:#ffd060;">character-redesign.html</a>.
+    Run <code>node scripts/clean-image-review-manifest.cjs</code> periodically to prune stale entries.
+  </div>
+
   <div class="summary" id="summary">Loading manifest…</div>
 
   <!-- Filter bar for action-state visibility -->
@@ -567,6 +580,7 @@
         <button type="button" data-mode="g4" class="active">4</button>
         <button type="button" data-mode="g3">3</button>
         <button type="button" data-mode="g2">2</button>
+        <button type="button" data-mode="g1">1</button>
         <button type="button" data-mode="list">List</button>
       </span>
     </label>

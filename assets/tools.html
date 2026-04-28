@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Dev Tools — Emberveil</title>
+<style>
+body { padding: 1rem 1rem 4rem; }
+.wrap { max-width: 1100px; margin: 0 auto; }
+h1 {
+  font-family: 'Cinzel',Georgia,serif;
+  font-size: 1.4rem; margin: 0 0 0.2rem;
+  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+  background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+.tag-filter {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 8px; padding: 0.5rem 0.75rem; margin: 0 0 0.75rem;
+  align-items: center;
+}
+.tag-btn {
+  padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 4px;
+  background: var(--surface); color: var(--muted); font: inherit; font-size: 0.74rem;
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+  cursor: pointer; transition: all 0.15s;
+}
+.tag-btn:hover, .tag-btn.active {
+  border-color: var(--gold); color: var(--gold); background: rgba(232,160,32,0.08);
+}
+.search-box {
+  margin-left: auto;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text); padding: 0.3rem 0.6rem; font: inherit; font-size: 0.78rem;
+  min-width: 160px;
+}
+.search-box:focus { outline: none; border-color: var(--gold); }
+
+/* Section headers */
+.section-hdr {
+  font-family: 'Cinzel',Georgia,serif; font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+  margin: 1rem 0 0.4rem; padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--border-subtle,#2a1f30);
+}
+
+/* Tool table */
+.tool-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: 1rem; }
+.tool-table thead th {
+  background: var(--surface); color: var(--muted); font-size: 0.68rem;
+  letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.6rem;
+  text-align: left; border-bottom: 1px solid var(--border);
+}
+.tool-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); }
+.tool-table tbody tr:hover { background: var(--card-h); }
+.tool-table td { padding: 0.5rem 0.6rem; vertical-align: top; }
+.td-name a {
+  color: var(--gold-bright); font-weight: 600; text-decoration: none;
+  font-family: 'Cinzel',Georgia,serif; font-size: 0.85rem; letter-spacing: 0.04em;
+}
+.td-name a:hover { color: var(--gold); text-decoration: underline; }
+.td-name .coming { color: var(--muted); font-size: 0.82rem; font-family: inherit; }
+.td-desc { color: var(--muted); font-size: 0.78rem; max-width: 360px; }
+.tag {
+  display: inline-block; padding: 1px 6px; border-radius: 3px;
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.tag-devtool  { background:rgba(100,60,200,0.2); color:#b090ff; border:1px solid rgba(100,60,200,0.35); }
+.tag-admin    { background:rgba(200,60,40,0.18); color:#e08070; border:1px solid rgba(200,60,40,0.3); }
+.tag-docs     { background:rgba(60,130,200,0.18); color:#80b0ff; border:1px solid rgba(60,130,200,0.3); }
+.tag-catalog  { background:rgba(60,180,80,0.15); color:#60d880; border:1px solid rgba(60,180,80,0.25); }
+.tag-sim      { background:rgba(200,160,20,0.15); color:#e8c840; border:1px solid rgba(200,160,20,0.25); }
+.tag-coming   { background:rgba(100,100,100,0.15); color:#888; border:1px solid rgba(100,100,100,0.2); }
+.td-date { color: var(--muted); font-size: 0.74rem; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Dev Tools</h1>
+  <p class="sub">All developer and content tools for Emberveil. Use the filters to narrow by category.</p>
+
+  <div class="tag-filter">
+    <button class="tag-btn active" data-tag="">All</button>
+    <button class="tag-btn" data-tag="catalog">Catalog</button>
+    <button class="tag-btn" data-tag="devtool">DevTool</button>
+    <button class="tag-btn" data-tag="admin">Admin</button>
+    <button class="tag-btn" data-tag="sim">Sim</button>
+    <button class="tag-btn" data-tag="docs">Docs</button>
+    <input class="search-box" type="text" id="search" placeholder="Search tools...">
+  </div>
+
+  <div id="content"></div>
+</div>
+
+<script>
+const TOOLS = [
+  // ─── M299 Catalog Pages ────────────────────────────────────────────────
+  {
+    name: 'Class Catalog',
+    href: 'class-catalog.html',
+    desc: 'All 28 playable classes — portrait, 7-pose sprite strip, role, armor, primary attribute, full skill list with MP cost + unlock level, and class passive tree. Reads live from data-source.js (same source the in-game screens use).',
+    tag: 'catalog',
+    updated: '2026-04-27',
+    milestone: 'M331',
+  },
+  {
+    name: 'Companion Catalog',
+    href: 'companion-catalog.html',
+    desc: 'All companions — class pets, hireables, wild companions, and dragon companions. Sortable table with stat columns.',
+    tag: 'catalog',
+    updated: '2026-04-26',
+    milestone: 'M299',
+  },
+  {
+    name: 'Dungeon Catalog',
+    href: 'dungeon-catalog.html',
+    desc: 'Side-branch dungeons: name, zone, stages, mini-boss, rewards. Card grid with click-to-expand.',
+    tag: 'catalog',
+    updated: '2026-04-26',
+    milestone: 'M299',
+  },
+  {
+    name: 'Status Effect Catalog',
+    href: 'status-effect-catalog.html',
+    desc: 'Full glossary of all status effects with glyph, color, plain-language description. Grouped by category.',
+    tag: 'catalog',
+    updated: '2026-04-26',
+    milestone: 'M299',
+  },
+  {
+    name: 'Achievement Roadmap',
+    href: 'achievement-roadmap.html',
+    desc: 'All achievements sorted by tier (bronze / silver / gold). Unlock conditions and rarity.',
+    tag: 'catalog',
+    updated: '2026-04-26',
+    milestone: 'M299',
+  },
+  // M345 — Archived: Data Overrides moved out of the visible Tools list.
+  // The HTML page is preserved at public/assets/data-overrides.html for
+  // direct linking and existing bookmarks; the entry below is left in
+  // place commented out so future re-enabling is a one-line revert.
+  // {
+  //   name: 'Data Overrides',
+  //   href: 'data-overrides.html',
+  //   desc: 'Upload custom JSON to override any catalog data type. Overrides persist via localStorage across all tool pages.',
+  //   tag: 'admin', updated: '2026-04-26', milestone: 'M299',
+  // },
+  // ─── Existing Tools ────────────────────────────────────────────────────
+  {
+    name: 'Asset Gallery',
+    href: 'index.html',
+    desc: 'All generated images, audio, and milestone reports. The main /assets/ landing page.',
+    tag: 'admin',
+    updated: '2026-04-26',
+    milestone: 'M001',
+  },
+  {
+    name: 'Affix Survey',
+    href: 'affix-survey.html',
+    desc: 'Visual survey of all item affixes — prefixes, suffixes, and shield-only affixes.',
+    tag: 'devtool',
+    updated: '2026-04-13',
+    milestone: 'M093',
+  },
+  // M345 — Archived: AI Content Generator. Page preserved on disk for
+  // direct linking; archived from the visible Tools list to keep the
+  // catalog short on mobile.
+  // {
+  //   name: 'AI Content Generator',
+  //   href: 'ai-content-gen.html',
+  //   desc: 'Generate game content (dialogs, lore, item names) using the AI pipeline.',
+  //   tag: 'devtool', updated: '2026-04-14', milestone: 'M120',
+  // },
+  {
+    name: 'BG Remove',
+    href: 'bg-remove.html',
+    desc: 'Batch background removal for sprite images using the remove.bg API.',
+    tag: 'admin',
+    updated: '2026-04-14',
+    milestone: 'M150',
+  },
+  {
+    name: 'Brainstorm',
+    href: 'brainstorm.html',
+    desc: 'Design brainstorm and planning notes for upcoming milestones.',
+    tag: 'docs',
+    updated: '2026-04-26',
+    milestone: 'M291',
+  },
+  {
+    name: 'Character Redesign',
+    href: 'character-redesign.html',
+    desc: 'Submit characters for full SpriteCook redesign pipeline. Reference art + 7 canonical poses.',
+    tag: 'devtool',
+    updated: '2026-04-21',
+    milestone: 'M236',
+  },
+  {
+    name: 'Custom Content',
+    href: 'custom-content.html',
+    desc: 'Author custom mod content via the JSON DSL — enemies, items, quests.',
+    tag: 'devtool',
+    updated: '2026-04-15',
+    milestone: 'M210',
+  },
+  // M345 — Archived: Data Catalogs (Legacy). Superseded by the individual
+  // catalog pages (companion-catalog, dungeon-catalog, status-effect-
+  // catalog, achievement-roadmap, class-catalog). Page kept on disk for
+  // historical reference; removed from the Tools list to shorten it.
+  // {
+  //   name: 'Data Catalogs',
+  //   href: 'data-catalogs.html',
+  //   desc: 'Legacy combined catalog view.',
+  //   tag: 'catalog', updated: '2026-04-23', milestone: 'M242',
+  // },
+  {
+    name: 'Documentation',
+    href: 'docs.html',
+    desc: 'Design and reference docs — image policy, schema reference, mod authoring.',
+    tag: 'docs',
+    updated: '2026-04-23',
+    milestone: 'M242',
+  },
+  {
+    name: 'Enemy Audit',
+    href: 'enemy-audit.html',
+    desc: 'Audit enemy stats against act-tier benchmarks. Highlight outliers and balance issues.',
+    tag: 'devtool',
+    updated: '2026-04-22',
+    milestone: 'M205',
+  },
+  {
+    name: 'Enemy Catalog',
+    href: 'enemy-catalog.html',
+    desc: 'All enemies by act — stats, loot tables, status-on-hit effects.',
+    tag: 'catalog',
+    updated: '2026-04-22',
+    milestone: 'M205',
+  },
+  {
+    name: 'Image Review',
+    href: 'image-review.html',
+    desc: 'Review pending sprite images — approve, reject, or flag for regeneration.',
+    tag: 'admin',
+    updated: '2026-04-26',
+    milestone: 'M290',
+  },
+  {
+    name: 'Item Catalog',
+    href: 'item-catalog.html',
+    desc: 'All weapon and armor bases with stat ranges, categories, and affix eligibility.',
+    tag: 'catalog',
+    updated: '2026-04-22',
+    milestone: 'M205',
+  },
+  {
+    name: 'Mod System Report',
+    href: 'mod-system-report.html',
+    desc: 'Status of the mod authoring pipeline — supported ops, known limits, shelf items.',
+    tag: 'docs',
+    updated: '2026-04-15',
+    milestone: 'M210',
+  },
+  {
+    name: 'Privacy',
+    href: 'privacy.html',
+    desc: 'Privacy policy and data handling disclosure for Emberveil.',
+    tag: 'docs',
+    updated: '2026-04-14',
+    milestone: 'M200',
+  },
+  {
+    name: 'Rebalance',
+    href: 'rebalance.html',
+    desc: 'Interactive balance sliders — adjust enemy and loot multipliers, preview changes.',
+    tag: 'sim',
+    updated: '2026-04-22',
+    milestone: 'M205',
+  },
+  {
+    name: 'Rebalance Report',
+    href: 'rebalance-report.html',
+    desc: 'Auto-generated balance analysis report comparing milestones.',
+    tag: 'devtool',
+    updated: '2026-04-22',
+    milestone: 'M205',
+  },
+  {
+    name: 'Redesign Survey',
+    href: 'redesign-survey.html',
+    desc: 'Prioritize characters for the SpriteCook redesign pipeline.',
+    tag: 'admin',
+    updated: '2026-04-21',
+    milestone: 'M236',
+  },
+  {
+    name: 'Skill Audit',
+    href: 'skill-audit.html',
+    desc: 'Audit class skills — mpCost, damage multipliers, talent coverage, missing descriptions.',
+    tag: 'devtool',
+    updated: '2026-04-23',
+    milestone: 'M242',
+  },
+  {
+    name: 'Spell Catalog',
+    href: 'spell-catalog.html',
+    desc: 'All class skills and spells — sorted by class, type, and MP cost.',
+    tag: 'catalog',
+    updated: '2026-04-23',
+    milestone: 'M242',
+  },
+  {
+    name: 'Sprite Adjust',
+    href: 'sprite-adjust.html',
+    desc: 'Per-character sprite visual adjustment — offset, scale, flip overrides.',
+    tag: 'admin',
+    updated: '2026-04-26',
+    milestone: 'M290',
+  },
+  {
+    name: 'Sprite Flip Review',
+    href: 'sprite-flip-review.html',
+    desc: 'Archived — review sprite horizontal flips. Superseded by Sprite Adjust.',
+    tag: 'admin',
+    updated: '2026-04-14',
+    milestone: 'M150',
+  },
+  {
+    name: 'Sprite Replace',
+    href: 'sprite-replace.html',
+    desc: 'Upload replacement sprites for characters in bulk.',
+    tag: 'admin',
+    updated: '2026-04-14',
+    milestone: 'M150',
+  },
+  {
+    name: 'Wishlist',
+    href: 'wishlist.html',
+    desc: 'Feature and bug wishlist organized by milestone target. Track status of every request.',
+    tag: 'docs',
+    updated: '2026-04-26',
+    milestone: 'M292',
+  },
+  // ─── Roadmap / Changelog ──────────────────────────────────────────────
+  {
+    name: 'Roadmap',
+    href: 'roadmap.html',
+    desc: 'Milestone roadmap — completed and upcoming milestones.',
+    tag: 'docs',
+    updated: '2026-04-26',
+    milestone: 'M298',
+  },
+  {
+    name: 'Changelog',
+    href: 'changelog.html',
+    desc: 'Full categorized changelog by feature area.',
+    tag: 'docs',
+    updated: '2026-04-26',
+    milestone: 'M298',
+  },
+  // ─── Upcoming (M300/M301 placeholders) ───────────────────────────────
+  {
+    name: 'Status Interactions Matrix',
+    href: null,
+    desc: 'Planned M300 — cross-status interaction table (stacks, overrides, immunities).',
+    tag: 'catalog',
+    updated: null,
+    milestone: 'M300',
+    coming: true,
+  },
+  {
+    name: 'Prompts Master',
+    href: null,
+    desc: 'Planned M301 — master prompt template library for SpriteCook and AI content generation.',
+    tag: 'devtool',
+    updated: null,
+    milestone: 'M301',
+    coming: true,
+  },
+];
+
+// ─── Render ───────────────────────────────────────────────────────────────────
+
+const contentEl = document.getElementById('content');
+const searchEl  = document.getElementById('search');
+const tagBtns   = document.querySelectorAll('.tag-btn');
+let _activeTag  = '';
+
+const SECTION_ORDER = ['catalog', 'devtool', 'admin', 'sim', 'docs'];
+const SECTION_LABELS = {
+  catalog: 'Catalogs',
+  devtool: 'Dev Tools',
+  admin: 'Admin',
+  sim: 'Simulation',
+  docs: 'Documentation',
+};
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function tagHtml(t, coming) {
+  if (coming) return `<span class="tag tag-coming">Coming soon</span>`;
+  return `<span class="tag tag-${t}">${esc(t)}</span>`;
+}
+
+function render() {
+  const q = searchEl.value.toLowerCase();
+  const filtered = TOOLS.filter(t => {
+    if (_activeTag && t.tag !== _activeTag) return false;
+    if (q) {
+      return [t.name, t.desc, t.tag, t.milestone].join(' ').toLowerCase().includes(q);
+    }
+    return true;
+  });
+
+  // Group
+  const groups = {};
+  for (const t of filtered) {
+    if (!groups[t.tag]) groups[t.tag] = [];
+    groups[t.tag].push(t);
+  }
+
+  contentEl.innerHTML = '';
+  const order = _activeTag ? [_activeTag] : SECTION_ORDER;
+  for (const tag of order) {
+    const list = groups[tag];
+    if (!list?.length) continue;
+    const hdr = document.createElement('div');
+    hdr.className = 'section-hdr';
+    hdr.textContent = SECTION_LABELS[tag] || tag;
+    contentEl.appendChild(hdr);
+
+    const table = document.createElement('table');
+    table.className = 'tool-table';
+    table.innerHTML = `<thead><tr><th>Tool</th><th>Description</th><th>Tag</th><th>Milestone</th><th>Updated</th></tr></thead>`;
+    const tbody = document.createElement('tbody');
+    for (const t of list) {
+      const tr = document.createElement('tr');
+      const nameCell = t.coming
+        ? `<td class="td-name"><span class="coming">${esc(t.name)}</span></td>`
+        : `<td class="td-name"><a href="${esc(t.href)}">${esc(t.name)}</a></td>`;
+      tr.innerHTML = `
+        ${nameCell}
+        <td class="td-desc">${esc(t.desc)}</td>
+        <td>${tagHtml(t.tag, t.coming)}</td>
+        <td style="color:var(--muted);font-size:0.76rem;">${esc(t.milestone||'')}</td>
+        <td class="td-date">${t.updated || ''}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    contentEl.appendChild(table);
+  }
+
+  if (contentEl.children.length === 0) {
+    contentEl.innerHTML = '<div style="text-align:center;color:var(--muted);padding:2rem;">No tools match the current filter.</div>';
+  }
+}
+
+tagBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    _activeTag = btn.dataset.tag;
+    tagBtns.forEach(b => b.classList.toggle('active', b.dataset.tag === _activeTag));
+    render();
+  });
+});
+searchEl.addEventListener('input', render);
+render();
+</script>
+</body>
+</html>

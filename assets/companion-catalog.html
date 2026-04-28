@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Companion Catalog — Emberveil</title>
+<!-- TODO M299: migrate to data-source.js — this page already uses it -->
+<style>
+body { padding: 1rem 1rem 4rem; }
+.wrap { max-width: 1100px; margin: 0 auto; }
+h1 {
+  font-family: 'Cinzel',Georgia,serif;
+  font-size: 1.4rem; margin: 0 0 0.2rem;
+  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+  background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+.filters {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 8px; padding: 0.6rem 0.75rem; margin: 0.5rem 0 0.75rem;
+  position: sticky; top: 0; z-index: 10;
+}
+.filters input[type=text] {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text); padding: 0.3rem 0.6rem; font: inherit; font-size: 0.8rem;
+  min-width: 160px; flex: 1 1 160px;
+}
+.filters input[type=text]:focus { outline: none; border-color: var(--gold); }
+.filters select {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text); padding: 0.3rem 0.5rem; font: inherit; font-size: 0.8rem;
+}
+.count { color: var(--muted); font-size: 0.78rem; margin-left: auto; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+thead th {
+  background: var(--surface); color: var(--gold); font-family: 'Cinzel',Georgia,serif;
+  font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.55rem 0.6rem; text-align: left; border-bottom: 1px solid var(--border);
+  cursor: pointer; user-select: none; white-space: nowrap;
+}
+thead th:hover { color: var(--gold-bright); }
+thead th.sort-asc::after  { content: ' \25B2'; font-size: 0.65rem; }
+thead th.sort-desc::after { content: ' \25BC'; font-size: 0.65rem; }
+tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); }
+tbody tr:hover { background: var(--card-h); }
+tbody td { padding: 0.5rem 0.6rem; vertical-align: top; color: var(--text); }
+.td-name { font-weight: 600; color: var(--gold-bright); white-space: nowrap; }
+.td-kind {
+  display: inline-block; padding: 1px 6px; border-radius: 3px;
+  font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  background: rgba(255,255,255,0.06); color: var(--muted);
+}
+.td-kind.pet      { background: rgba(90,60,180,0.2); color: #b090ff; }
+.td-kind.hireable { background: rgba(60,140,60,0.2); color: #80d880; }
+.td-kind.wild     { background: rgba(180,100,20,0.2); color: #e8a060; }
+.td-kind.companion{ background: rgba(60,100,180,0.2); color: #80b0ff; }
+.td-owner { color: var(--muted); font-size: 0.76rem; }
+.stat-bar { display: inline-flex; gap: 0.3rem; }
+.stat { min-width: 28px; text-align: center; padding: 1px 3px; border-radius: 3px; background: rgba(255,255,255,0.05); font-size: 0.76rem; }
+.stat-label { color: var(--muted); font-size: 0.68rem; display: block; text-align: center; }
+.td-desc { color: var(--muted); font-size: 0.76rem; max-width: 280px; }
+.td-cost { color: var(--gold); font-size: 0.82rem; }
+.empty { text-align: center; color: var(--muted); padding: 2rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Companion Catalog</h1>
+  <p class="sub">All companions — class pets, hireables, wild companions, and dragon companions. Click column headers to sort.</p>
+
+  <div class="filters">
+    <input type="text" id="search" placeholder="Search by name or description...">
+    <select id="filterKind">
+      <option value="">All types</option>
+      <option value="pet">Class Pets</option>
+      <option value="hireable">Hireables</option>
+      <option value="wild">Wild</option>
+      <option value="companion">Companions</option>
+    </select>
+    <select id="filterClass">
+      <option value="">All classes</option>
+    </select>
+    <span class="count" id="count"></span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th data-col="name">Name</th>
+        <th data-col="kind">Type</th>
+        <th data-col="ownerClass">Owner / Class</th>
+        <th data-col="level">Lv</th>
+        <th data-col="cost">Cost</th>
+        <th data-col="str">STR</th>
+        <th data-col="dex">DEX</th>
+        <th data-col="int">INT</th>
+        <th data-col="con">CON</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div class="empty" id="empty" style="display:none">No companions match the current filters.</div>
+</div>
+
+<script type="module">
+import { getCompanions } from './data/data-source.js';
+
+let _all = [];
+let _sortCol = 'name';
+let _sortDir = 1;
+
+const tbody      = document.getElementById('tbody');
+const searchEl   = document.getElementById('search');
+const filterKind = document.getElementById('filterKind');
+const filterClass= document.getElementById('filterClass');
+const countEl    = document.getElementById('count');
+const emptyEl    = document.getElementById('empty');
+const headers    = document.querySelectorAll('thead th[data-col]');
+
+function attrVal(c, col) {
+  if (!c.attrs) return 0;
+  const map = { str:'STR', dex:'DEX', int:'INT', con:'CON' };
+  return c.attrs[map[col]] ?? 0;
+}
+
+function getVal(c, col) {
+  if (['str','dex','int','con'].includes(col)) return attrVal(c, col);
+  if (col === 'cost') return c.cost ?? 0;
+  if (col === 'level') return c.level ?? 0;
+  return (c[col] ?? '');
+}
+
+function render() {
+  const q    = searchEl.value.toLowerCase();
+  const kind = filterKind.value;
+  const cls  = filterClass.value;
+
+  let rows = _all.filter(c => {
+    if (kind && c.kind !== kind) return false;
+    if (cls) {
+      const owner = (c.ownerClass || c.class || '').toLowerCase();
+      if (!owner.includes(cls.toLowerCase())) return false;
+    }
+    if (q) {
+      const blob = [c.name, c.description, c.ownerClass, c.className, c.personality].join(' ').toLowerCase();
+      if (!blob.includes(q)) return false;
+    }
+    return true;
+  });
+
+  rows.sort((a, b) => {
+    const av = getVal(a, _sortCol);
+    const bv = getVal(b, _sortCol);
+    if (typeof av === 'number') return (av - bv) * _sortDir;
+    return String(av).localeCompare(String(bv)) * _sortDir;
+  });
+
+  tbody.innerHTML = '';
+  for (const c of rows) {
+    const attrs = c.attrs || {};
+    const kindLabel = c.kind || 'companion';
+    const ownerLabel = c.ownerClass || c.className || c.class || '';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="td-name">${esc(c.name)}</td>
+      <td><span class="td-kind ${kindLabel}">${kindLabel}</span></td>
+      <td class="td-owner">${esc(ownerLabel)}</td>
+      <td>${c.level ?? ''}</td>
+      <td class="td-cost">${c.cost != null ? c.cost + 'g' : ''}</td>
+      <td class="stat">${attrs.STR ?? ''}</td>
+      <td class="stat">${attrs.DEX ?? ''}</td>
+      <td class="stat">${attrs.INT ?? ''}</td>
+      <td class="stat">${attrs.CON ?? ''}</td>
+      <td class="td-desc">${esc(c.description || '')}</td>
+    `;
+    tbody.appendChild(tr);
+  }
+
+  countEl.textContent = `${rows.length} of ${_all.length} companions`;
+  emptyEl.style.display = rows.length === 0 ? 'block' : 'none';
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Sort handlers
+headers.forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.col;
+    if (_sortCol === col) { _sortDir *= -1; }
+    else { _sortCol = col; _sortDir = 1; }
+    headers.forEach(h => h.classList.remove('sort-asc','sort-desc'));
+    th.classList.add(_sortDir === 1 ? 'sort-asc' : 'sort-desc');
+    render();
+  });
+});
+
+searchEl.addEventListener('input', render);
+filterKind.addEventListener('change', render);
+filterClass.addEventListener('change', render);
+
+getCompanions().then(data => {
+  _all = data;
+  // Populate class filter
+  const classes = [...new Set(data.map(c => c.ownerClass || c.class || '').filter(Boolean))].sort();
+  classes.forEach(cls => {
+    const opt = document.createElement('option');
+    opt.value = cls; opt.textContent = cls;
+    filterClass.appendChild(opt);
+  });
+  render();
+}).catch(err => {
+  tbody.innerHTML = `<tr><td colspan="10" class="empty">Failed to load companion data: ${err.message}</td></tr>`;
+});
+</script>
+</body>
+</html>

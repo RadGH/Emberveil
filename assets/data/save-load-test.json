@@ -1,0 +1,114 @@
+{
+  "generated": "2026-04-28T07:30:04.952Z",
+  "savesDir": "/home/radgh/claude/assets/references/emberveil/saves",
+  "totalFiles": 7,
+  "pass": 7,
+  "fail": 0,
+  "results": [
+    {
+      "file": "emberveil-save-hero-2026-04-25.json",
+      "pass": true,
+      "errors": [],
+      "warnings": [],
+      "fields": {
+        "party": true,
+        "gold": true,
+        "act": true
+      },
+      "heroName": "Hero",
+      "saveVersion": 6,
+      "act": 2,
+      "partySize": 4
+    },
+    {
+      "file": "emberveil-save-necroman-2026-04-17.json",
+      "pass": true,
+      "errors": [],
+      "warnings": [],
+      "fields": {
+        "party": true,
+        "gold": true,
+        "act": true
+      },
+      "heroName": "Necroman",
+      "saveVersion": 6,
+      "act": 6,
+      "partySize": 2
+    },
+    {
+      "file": "emberveil-save-rouge_the_rogue-2026-04-27.json",
+      "pass": true,
+      "errors": [],
+      "warnings": [],
+      "fields": {
+        "party": true,
+        "gold": true,
+        "act": true
+      },
+      "heroName": "Rouge the Rogue",
+      "saveVersion": 6,
+      "act": 5,
+      "partySize": 4
+    },
+    {
+      "file": "emberveil-save-strormu-2026-04-23.json",
+      "pass": true,
+      "errors": [],
+      "warnings": [],
+      "fields": {
+        "party": true,
+        "gold": true,
+        "act": true
+      },
+      "heroName": "Strormu",
+      "saveVersion": 6,
+      "act": 2,
+      "partySize": 2
+    },
+    {
+      "file": "emberveil-save-warrior-2026-04-22.json",
+      "pass": true,
+      "errors": [],
+      "warnings": [],
+      "fields": {
+        "party": true,
+        "gold": true,
+        "act": true
+      },
+      "heroName": "Warrior",
+      "saveVersion": 6,
+      "act": 3,
+      "partySize": 2
+    },
+    {
+      "file": "emberveil-save-ylva-2026-04-24.json",
+      "pass": true,
+      "errors": [],
+      "warnings": [],
+      "fields": {
+        "party": true,
+        "gold": true,
+        "act": true
+      },
+      "heroName": "Ylva",
+      "saveVersion": 6,
+      "act": 4,
+      "partySize": 1
+    },
+    {
+      "file": "emberveil-save-zanaver-2026-04-16.json",
+      "pass": true,
+      "errors": [],
+      "warnings": [],
+      "fields": {
+        "party": true,
+        "gold": true,
+        "act": true
+      },
+      "heroName": "Zanaver",
+      "saveVersion": 6,
+      "act": 5,
+      "partySize": 2
+    }
+  ]
+}

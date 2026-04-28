@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "turret_bot",
+  "displayName": "Turret Bot",
+  "class": "construct",
+  "pixelHeight": 90,
+  "identity": "A small mechanical turret bot, about half the height of a human. Brass-and-iron body, single glowing amber eye in the center of a dome head, tripod legs, copper piping and rivets, small steam-vents, friendly-but-dangerous silhouette. Steampunk aesthetic.",
+  "outfit": "Brass-and-iron plating, copper piping, rivets, tiny steam-vents on the back.",
+  "weapons": "Central amber-eye beam cannon; tripod-stance stability.",
+  "attackStyle": "East-facing. Muzzle-flash from the central eye, recoil stance on tripod legs.",
+  "spellStyle": "East-facing. Central eye beaming a charging amber glow, small arcs of electricity around the body.",
+  "blockStyle": "East-facing. Tripod legs braced wide, dome lowered, armor-plates extended as shield.",
+  "koStyle": "East-facing, tipped over on its side, tripod legs askew, eye dimmed.",
+  "southStyle": "Facing camera, idle. Tripod grounded, eye glowing softly.",
+  "portraitStyle": "Front-facing upper-body bust shot. Dome head with single large amber eye, brass body with rivets, copper piping visible.",
+  "bannedSubstrings": ["humanoid", "face", "robe"],
+  "referenceSheet": {
+    "path": "images/pixellab/turret_bot/portrait.png",
+    "prompt": "See generation script — OpenAI gpt-image-2 pipeline, M269.",
+    "generatedAt": "2026-04-23T00:00:00.000Z",
+    "approvedAt": "2026-04-23T00:00:00.000Z"
+  },
+  "frames": {}
+}

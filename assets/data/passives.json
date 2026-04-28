@@ -1,0 +1,515 @@
+{
+  "warrior": [
+    {
+      "id": "toughness",
+      "name": "Toughness",
+      "desc": "+10 Max HP per rank"
+    },
+    {
+      "id": "iron_wall",
+      "name": "Iron Wall",
+      "desc": "+5% block chance per rank"
+    },
+    {
+      "id": "thorns",
+      "name": "Thorns",
+      "desc": "Reflect 8% damage per rank"
+    },
+    {
+      "id": "vampirism",
+      "name": "Vampirism",
+      "desc": "Lifesteal +5% per rank"
+    },
+    {
+      "id": "killing_blow",
+      "name": "Killing Blow",
+      "desc": "Restore 10 HP on kill per rank"
+    }
+  ],
+  "paladin": [
+    {
+      "id": "devotion",
+      "name": "Devotion",
+      "desc": "+10 Max HP per rank"
+    },
+    {
+      "id": "iron_wall",
+      "name": "Iron Wall",
+      "desc": "+5% block chance per rank"
+    },
+    {
+      "id": "resistance",
+      "name": "Resistance",
+      "desc": "+3% all-damage reduction per rank"
+    },
+    {
+      "id": "thorns",
+      "name": "Thorns",
+      "desc": "Reflect 8% damage per rank"
+    },
+    {
+      "id": "killing_blow",
+      "name": "Killing Blow",
+      "desc": "Restore 10 HP on kill per rank"
+    }
+  ],
+  "ranger": [
+    {
+      "id": "regrowth",
+      "name": "Regrowth",
+      "desc": "Regen +1 HP/turn per rank"
+    },
+    {
+      "id": "fleetfoot",
+      "name": "Fleetfoot",
+      "desc": "+4% dodge per rank"
+    },
+    {
+      "id": "deadly_aim",
+      "name": "Deadly Aim",
+      "desc": "+3% crit chance per rank"
+    },
+    {
+      "id": "stormcharged",
+      "name": "Stormcharged",
+      "desc": "10% chance/rank to chain 50% dmg"
+    },
+    {
+      "id": "killing_blow",
+      "name": "Killing Blow",
+      "desc": "Restore 10 HP on kill per rank"
+    }
+  ],
+  "rogue": [
+    {
+      "id": "wisdom",
+      "name": "Wisdom",
+      "desc": "+5 HP & +5 MP per rank"
+    },
+    {
+      "id": "fleetfoot",
+      "name": "Fleetfoot",
+      "desc": "+4% dodge per rank"
+    },
+    {
+      "id": "assassin",
+      "name": "Assassin",
+      "desc": "+2% crit & 15%/rank poison on crit"
+    },
+    {
+      "id": "vampirism",
+      "name": "Vampirism",
+      "desc": "Lifesteal +5% per rank"
+    },
+    {
+      "id": "venomous",
+      "name": "Venomous",
+      "desc": "25% chance/rank to poison on crit"
+    }
+  ],
+  "cleric": [
+    {
+      "id": "devotion",
+      "name": "Devotion",
+      "desc": "+10 Max HP per rank"
+    },
+    {
+      "id": "mana_pool",
+      "name": "Mana Pool",
+      "desc": "+10 Max MP per rank"
+    },
+    {
+      "id": "mana_flow",
+      "name": "Mana Flow",
+      "desc": "Regen +1 MP/turn per rank"
+    },
+    {
+      "id": "aegis",
+      "name": "Aegis",
+      "desc": "+3% block & +5 HP per rank"
+    },
+    {
+      "id": "soul_harvest",
+      "name": "Soul Harvest",
+      "desc": "Restore 8 MP on kill per rank"
+    }
+  ],
+  "bard": [
+    {
+      "id": "mana_flow",
+      "name": "Mana Flow",
+      "desc": "Regen +1 MP/turn per rank"
+    },
+    {
+      "id": "wisdom",
+      "name": "Wisdom",
+      "desc": "+5 HP & +5 MP per rank"
+    },
+    {
+      "id": "fleetfoot",
+      "name": "Fleetfoot",
+      "desc": "+4% dodge per rank"
+    },
+    {
+      "id": "vampirism",
+      "name": "Vampirism",
+      "desc": "Lifesteal +5% per rank"
+    },
+    {
+      "id": "soul_harvest",
+      "name": "Soul Harvest",
+      "desc": "Restore 8 MP on kill per rank"
+    }
+  ],
+  "mage": [
+    {
+      "id": "mana_pool",
+      "name": "Mana Pool",
+      "desc": "+10 Max MP per rank"
+    },
+    {
+      "id": "mana_flow",
+      "name": "Mana Flow",
+      "desc": "Regen +1 MP/turn per rank"
+    },
+    {
+      "id": "igniting",
+      "name": "Igniting",
+      "desc": "15% chance/rank to burn on hit"
+    },
+    {
+      "id": "stormcharged",
+      "name": "Stormcharged",
+      "desc": "10% chance/rank to chain 50% dmg"
+    },
+    {
+      "id": "soul_harvest",
+      "name": "Soul Harvest",
+      "desc": "Restore 8 MP on kill per rank"
+    }
+  ],
+  "necromancer": [
+    {
+      "id": "mana_pool",
+      "name": "Mana Pool",
+      "desc": "+10 Max MP per rank"
+    },
+    {
+      "id": "mana_flow",
+      "name": "Mana Flow",
+      "desc": "Regen +1 MP/turn per rank"
+    },
+    {
+      "id": "soul_harvest",
+      "name": "Soul Harvest",
+      "desc": "Restore 8 MP on kill per rank"
+    },
+    {
+      "id": "vampirism",
+      "name": "Vampirism",
+      "desc": "Lifesteal +5% per rank"
+    },
+    {
+      "id": "venomous",
+      "name": "Venomous",
+      "desc": "25% chance/rank to poison on crit"
+    }
+  ],
+  "warlock": [
+    {
+      "id": "mana_pool",
+      "name": "Mana Pool",
+      "desc": "+10 Max MP per rank"
+    },
+    {
+      "id": "soul_harvest",
+      "name": "Soul Harvest",
+      "desc": "Restore 8 MP on kill per rank"
+    },
+    {
+      "id": "igniting",
+      "name": "Igniting",
+      "desc": "15% chance/rank to burn on hit"
+    },
+    {
+      "id": "vampirism",
+      "name": "Vampirism",
+      "desc": "Lifesteal +5% per rank"
+    },
+    {
+      "id": "thorns",
+      "name": "Thorns",
+      "desc": "Reflect 8% damage per rank"
+    }
+  ],
+  "demon_hunter": [
+    {
+      "id": "fleetfoot",
+      "name": "Fleetfoot",
+      "desc": "+4% dodge per rank"
+    },
+    {
+      "id": "deadly_aim",
+      "name": "Deadly Aim",
+      "desc": "+3% crit chance per rank"
+    },
+    {
+      "id": "vampirism",
+      "name": "Vampirism",
+      "desc": "Lifesteal +5% per rank"
+    },
+    {
+      "id": "assassin",
+      "name": "Assassin",
+      "desc": "+2% crit & 15%/rank poison on crit"
+    },
+    {
+      "id": "killing_blow",
+      "name": "Killing Blow",
+      "desc": "Restore 10 HP on kill per rank"
+    }
+  ],
+  "scavenger": [
+    {
+      "id": "regrowth",
+      "name": "Regrowth",
+      "desc": "Regen +1 HP/turn per rank"
+    },
+    {
+      "id": "fleetfoot",
+      "name": "Fleetfoot",
+      "desc": "+4% dodge per rank"
+    },
+    {
+      "id": "killing_blow",
+      "name": "Killing Blow",
+      "desc": "Restore 10 HP on kill per rank"
+    },
+    {
+      "id": "soul_harvest",
+      "name": "Soul Harvest",
+      "desc": "Restore 8 MP on kill per rank"
+    },
+    {
+      "id": "vampirism",
+      "name": "Vampirism",
+      "desc": "Lifesteal +5% per rank"
+    }
+  ],
+  "swashbuckler": [
+    {
+      "id": "wisdom",
+      "name": "Wisdom",
+      "desc": "+5 HP & +5 MP per rank"
+    },
+    {
+      "id": "fleetfoot",
+      "name": "Fleetfoot",
+      "desc": "+4% dodge per rank"
+    },
+    {
+      "id": "deadly_aim",
+      "name": "Deadly Aim",
+      "desc": "+3% crit chance per rank"
+    },
+    {
+      "id": "venomous",
+      "name": "Venomous",
+      "desc": "25% chance/rank to poison on crit"
+    },
+    {
+      "id": "vampirism",
+      "name": "Vampirism",
+      "desc": "Lifesteal +5% per rank"
+    }
+  ],
+  "dragon_knight": [
+    {
+      "id": "toughness",
+      "name": "Toughness",
+      "desc": "+10 Max HP per rank"
+    },
+    {
+      "id": "iron_wall",
+      "name": "Iron Wall",
+      "desc": "+5% block chance per rank"
+    },
+    {
+      "id": "resistance",
+      "name": "Resistance",
+      "desc": "+3% all-damage reduction per rank"
+    },
+    {
+      "id": "igniting",
+      "name": "Igniting",
+      "desc": "15% chance/rank to burn on hit"
+    },
+    {
+      "id": "killing_blow",
+      "name": "Killing Blow",
+      "desc": "Restore 10 HP on kill per rank"
+    }
+  ],
+  "pyromancer": [
+    {
+      "id": "mana_pool",
+      "name": "Mana Pool",
+      "desc": "+10 Max MP per rank"
+    },
+    {
+      "id": "mana_flow",
+      "name": "Mana Flow",
+      "desc": "Regen +1 MP/turn per rank"
+    },
+    {
+      "id": "igniting",
+      "name": "Igniting",
+      "desc": "15% chance/rank to burn on hit"
+    },
+    {
+      "id": "igniting",
+      "name": "Igniting",
+      "desc": "15% chance/rank to burn on hit"
+    },
+    {
+      "id": "soul_harvest",
+      "name": "Soul Harvest",
+      "desc": "Restore 8 MP on kill per rank"
+    }
+  ],
+  "stormcaller": [
+    {
+      "id": "mana_pool",
+      "name": "Mana Pool",
+      "desc": "+10 Max MP per rank"
+    },
+    {
+      "id": "mana_flow",
+      "name": "Mana Flow",
+      "desc": "Regen +1 MP/turn per rank"
+    },
+    {
+      "id": "stormcharged",
+      "name": "Stormcharged",
+      "desc": "10% chance/rank to chain 50% dmg"
+    },
+    {
+      "id": "stormcharged",
+      "name": "Stormcharged",
+      "desc": "10% chance/rank to chain 50% dmg"
+    },
+    {
+      "id": "soul_harvest",
+      "name": "Soul Harvest",
+      "desc": "Restore 8 MP on kill per rank"
+    }
+  ],
+  "druid": [
+    {
+      "id": "regrowth",
+      "name": "Regrowth",
+      "desc": "Regen +1 HP/turn per rank"
+    },
+    {
+      "id": "mana_flow",
+      "name": "Mana Flow",
+      "desc": "Regen +1 MP/turn per rank"
+    },
+    {
+      "id": "thorns",
+      "name": "Thorns",
+      "desc": "Reflect 8% damage per rank"
+    },
+    {
+      "id": "resistance",
+      "name": "Resistance",
+      "desc": "+3% all-damage reduction per rank"
+    },
+    {
+      "id": "venomous",
+      "name": "Venomous",
+      "desc": "25% chance/rank to poison on crit"
+    }
+  ],
+  "oracle": [
+    {
+      "id": "mana_pool",
+      "name": "Mana Pool",
+      "desc": "+10 Max MP per rank"
+    },
+    {
+      "id": "mana_flow",
+      "name": "Mana Flow",
+      "desc": "Regen +1 MP/turn per rank"
+    },
+    {
+      "id": "wisdom",
+      "name": "Wisdom",
+      "desc": "+5 HP & +5 MP per rank"
+    },
+    {
+      "id": "resistance",
+      "name": "Resistance",
+      "desc": "+3% all-damage reduction per rank"
+    },
+    {
+      "id": "soul_harvest",
+      "name": "Soul Harvest",
+      "desc": "Restore 8 MP on kill per rank"
+    }
+  ],
+  "tactician": [
+    {
+      "id": "wisdom",
+      "name": "Wisdom",
+      "desc": "+5 HP & +5 MP per rank"
+    },
+    {
+      "id": "mana_flow",
+      "name": "Mana Flow",
+      "desc": "Regen +1 MP/turn per rank"
+    },
+    {
+      "id": "deadly_aim",
+      "name": "Deadly Aim",
+      "desc": "+3% crit chance per rank"
+    },
+    {
+      "id": "aegis",
+      "name": "Aegis",
+      "desc": "+3% block & +5 HP per rank"
+    },
+    {
+      "id": "killing_blow",
+      "name": "Killing Blow",
+      "desc": "Restore 10 HP on kill per rank"
+    }
+  ],
+  "chronomancer": [
+    {
+      "id": "mana_pool",
+      "name": "Mana Pool",
+      "desc": "+10 Max MP per rank"
+    },
+    {
+      "id": "mana_flow",
+      "name": "Mana Flow",
+      "desc": "Regen +1 MP/turn per rank"
+    },
+    {
+      "id": "wisdom",
+      "name": "Wisdom",
+      "desc": "+5 HP & +5 MP per rank"
+    },
+    {
+      "id": "stormcharged",
+      "name": "Stormcharged",
+      "desc": "10% chance/rank to chain 50% dmg"
+    },
+    {
+      "id": "resistance",
+      "name": "Resistance",
+      "desc": "+3% all-damage reduction per rank"
+    }
+  ]
+}

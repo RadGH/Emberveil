@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="rsg-featured-image" content="../images/combat_bg/cosmic_rift_1.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>Emberveil — M220–M254 Fast-Travel Overhaul &amp; Questline</title>
+<link rel="stylesheet" href="../assets/_tool-styles.css">
+<script src="../assets/_header.js" defer></script>
+<style>
+body { padding: 0; overflow-x: hidden; background: var(--bg, #0a0608); color: var(--parchment, #dfd1c2); font-family: 'Inter', sans-serif; }
+.report { max-width: 860px; margin: 0 auto; padding: 24px 16px 80px; }
+.hero { position: relative; min-height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 24px 48px; overflow: hidden; background: linear-gradient(180deg, #0a0608 0%, #1a0a10 30%, #2a1018 60%, #0a0608 100%); }
+.hero-eyebrow { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold, #e8a020); margin-bottom: 0.5rem; }
+.hero-title { font-family: 'Cinzel', serif; font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 900; letter-spacing: 0.1em; background: linear-gradient(180deg, #ffd078 0%, #e8a040 40%, #c04030 100%); -webkit-background-clip: text; background-clip: text; color: transparent; max-width: 800px; }
+.hero-date { font-size: 0.75rem; color: #8a7a6a; margin-top: 1rem; letter-spacing: 0.1em; text-transform: uppercase; }
+h2 { font-family: 'Cinzel', serif; color: var(--gold, #e8a020); font-size: 1.2rem; margin: 2rem 0 0.6rem; letter-spacing: 0.06em; padding-bottom: 0.4rem; border-bottom: 1px solid rgba(232,160,32,0.2); }
+h3 { font-family: 'Cinzel', serif; color: var(--gold-bright, #ffd078); font-size: 0.95rem; margin: 1.2rem 0 0.4rem; letter-spacing: 0.05em; }
+p { line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem; }
+ul { padding-left: 1.5rem; margin: 0.4rem 0 0.8rem; }
+li { line-height: 1.6; margin-bottom: 0.35rem; font-size: 0.9rem; }
+code { background: rgba(255,255,255,0.06); padding: 0 0.3rem; border-radius: 3px; font-size: 0.85em; color: #ffd078; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+.stat { background: rgba(26,18,24,0.7); border: 1px solid rgba(232,160,32,0.2); border-radius: 6px; padding: 0.85rem 1rem; }
+.stat .n { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold-bright, #ffd078); font-weight: 900; line-height: 1; }
+.stat .l { font-size: 0.72rem; color: #8a7a6a; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.3rem; }
+strong { color: var(--gold-bright, #ffd078); }
+em { color: #c0a070; font-style: normal; }
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-eyebrow">Development Report</div>
+  <h1 class="hero-title">Fast-Travel Overhaul, Questline &amp; Difficulty System</h1>
+  <div class="hero-date">M220–M254 · April 2026</div>
+</section>
+<div class="report">
+  <p>Forty-plus milestones consolidated into one changelog. If you've been away since mid-April, here's what landed.</p>
+
+  <div class="grid">
+    <div class="stat"><div class="n">6</div><div class="l">new towns across the campaign</div></div>
+    <div class="stat"><div class="n">27</div><div class="l">gender-variant appearances wired</div></div>
+    <div class="stat"><div class="n">5</div><div class="l">data catalogs under Tools</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">recurring-NPC storyline</div></div>
+  </div>
+
+  <h2>Fast-Travel &amp; Difficulty</h2>
+  <p>The namesake of the arc. <strong>Return to Town</strong> is now always visible on the map and teleports you instantly to the nearest visited town (replaces the old portal-scroll flow). Visited towns get a <strong>blue waypoint ring</strong> and click-to-teleport. A new <strong>waypoint flag</strong> on any map node opts it into the system — Thornwood's Forest Warden is the first non-town waypoint.</p>
+  <p>New <strong>Hard difficulty</strong> for players who want every fight to matter. Normal auto-heals on town entry and keeps the cleric free; Hard preserves HP and MP between fights, charges the cleric per injured/fallen hero, and disables fast-travel teleport (waypoints remain as the Hard alternative). Set on the new <em>first</em> screen of New Game.</p>
+
+  <h2>Questline</h2>
+  <p>Three recurring NPCs anchor a 5-act main quest:</p>
+  <ul>
+    <li><strong>Silas Veilward</strong> — grey-bearded scholar who greets you in Emberglen's square. Confirms the raids are a cover; turns out (Act 3) he's the one who let the Veil in.</li>
+    <li><strong>Kaela Thorne</strong> — smug ranger bounty hunter, keeps beating you to the mark until it gets her hurt in Act 4. Becomes a reluctant ally.</li>
+    <li><strong>Marek Greel</strong> — quiet hooded "scholar" who turns up conveniently in Act 2 with helpful advice. He's the Architect. Silas was his puppet for decades.</li>
+  </ul>
+  <p>Quest nodes show a gold <code>!</code> marker on the map. Bounty-board side quests start in Act 2. Dialog outcomes can now trigger conditional combat (fail a skill check → ambush).</p>
+
+  <h2>Sprites &amp; Appearances</h2>
+  <p>The redesign pipeline has closed the loop: approved art on the review page now <em>actually</em> appears in-game thanks to the new <code>sync-pixellab-to-spritecook.cjs</code> bridge. Nine identity-locked regens went through canonical-prompt workflow (previous passes drifted because prompts were written from memory instead of pulled from art_direction JSONs — the lesson is now baked into <code>public/docs/prompt-templates.md</code> as a non-negotiable rule).</p>
+  <p><strong>27 gender variants</strong> for every class are now wired through <code>APPEARANCES</code>. Taverns respect the chosen main-hero's appearance gender and roll opposite-gender mercenaries to avoid visual duplication. Names carry their own gender tag (male / female / either) so a female warrior no longer gets "Lorik".</p>
+
+  <h2>Combat System Polish</h2>
+  <ul>
+    <li><strong>Attack Speed</strong> runtime — daggers, rapiers, shortbows, and dragonfang daggers get one bonus attack per round. On by default.</li>
+    <li><strong>Attribute Rating</strong> scaling — skill damage scales 1:1 up to attr 20, then softens to 0.6× per point. Caps late-game solo-caster one-shots.</li>
+    <li><strong>Loot Chests</strong> at treasure nodes offer 2–3 picks with rarity fanfare. First-time boss kills grant a bonus high-tier chest (one-time).</li>
+    <li><strong>Magic Find</strong> affix <em>of Discovery</em> shifts the drop-rarity odds; Act 1 settles at ~50% normal items.</li>
+    <li>Combat log <strong>miss tooltip</strong> shows attacker hit%, target dodge%, and the rolled %.</li>
+  </ul>
+
+  <h2>UI / UX</h2>
+  <ul>
+    <li>Difficulty choice as the first screen of New Game (two large cards).</li>
+    <li>Hire Custom dialog rewritten to match Create Character exactly — gold/brown colors, 480px centered, 3-row scrollable appearance grid, Estimated Stats panel, level meter.</li>
+    <li>Random-name dice button next to hero name on both screens.</li>
+    <li>Combat Debug + Map Debug moved out of the Cheat menu into Debug Settings. Panels are now transparent-backdrop draggable windows; combat auto-pauses on open so you can tune layout without the fight ticking.</li>
+    <li>Quest indicators, cross-zone arrow always visible, post-boss first-node auto-activate, five per-class passive trees catalogued.</li>
+  </ul>
+
+  <h2>Tools</h2>
+  <p>New <strong>Data Catalogs</strong> page under Tools with tabs for Affixes (23 total), Encounters (36), Quests (5 main + 10 side), Passives (19 class trees), and Status Effects (58 with family labels). Auto-regenerated from <code>src/</code> by <code>node scripts/generate-data-catalogs.cjs</code>.</p>
+  <p>New <strong>sync-pixellab-to-spritecook</strong> script bridges the review pipeline to the in-game sprite paths. <strong>audit-sprite-404s</strong> walks every character × 7 poses + enemies + companions and reports misses. <strong>redirect-assets-to-spritecook</strong> one-shot migrated 164 gallery entries to the approved redesign paths.</p>
+
+  <h2>Infrastructure</h2>
+  <ul>
+    <li><strong>Post-deploy smoke test</strong> — every release now runs <code>scripts/smoke-test-deployed.sh</code> to verify play.html loads, the canvas + module script are present, and the main chunk returns 200.</li>
+    <li><strong>Black-screen on mobile play.html</strong> (briefly introduced in M242 and fixed in M250/M254) — a circular import between <code>CharacterBuilderScreen</code> and <code>TownScreen</code> caused a temporal-dead-zone error at init. Name-generation extracted to a dep-less module.</li>
+    <li><strong>Clouds</strong> — hand-tinted <code>clouds_08b.png</code> now drives both the front-page hero and the in-game title screen as a dual-layer parallax at 0.65α.</li>
+  </ul>
+
+  <p style="margin-top: 2rem; color: #8a7a6a; font-size: 0.8rem;">Previous reports: <a href="./milestone-report.html">Milestone 79 overview</a> · <a href="./seo-update.html">Site SEO &amp; restructure</a> · <a href="./index.html">All news</a>.</p>
+</div>
+</body>
+</html>

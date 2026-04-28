@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Character Redesign Archive — Emberveil</title>
+<style>
+  body { padding: 1rem 1rem 5rem; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 40%, var(--ember1) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin: 0 0 0.25rem;
+  }
+  .page-sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+  .notice {
+    background: rgba(200,160,40,0.1);
+    border: 1px solid rgba(200,160,40,0.3);
+    border-radius: 6px;
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    color: #ffd060;
+    line-height: 1.6;
+  }
+
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    margin-bottom: 1rem;
+    position: sticky; top: 0; z-index: 20;
+  }
+  .controls input[type=text] {
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 0.35rem 0.5rem; font: inherit; font-size: 0.8rem;
+    min-width: 180px; flex: 1 1 200px;
+  }
+
+  /* Character sections */
+  .char-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .char-header {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.65rem 0.9rem;
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .char-header:hover { background: rgba(255,255,255,0.04); }
+  .char-header h2 {
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+  .char-header .snap-count {
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+  .char-header .chevron {
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 0.7rem;
+    transition: transform 0.15s;
+  }
+  .char-section.open .chevron { transform: rotate(90deg); }
+  .char-body { display: none; padding: 0.75rem; }
+  .char-section.open .char-body { display: block; }
+
+  /* Snapshot grid */
+  .snap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.6rem;
+  }
+  .snap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.72rem;
+  }
+  .snap-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    background: #0a0608;
+    display: block;
+  }
+  .snap-card .snap-meta {
+    padding: 0.35rem 0.4rem;
+  }
+  .snap-card .snap-pose {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 0.72rem;
+    margin-bottom: 0.1rem;
+  }
+  .snap-card .snap-date {
+    color: var(--muted);
+    font-size: 0.65rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+  .empty-state strong { color: var(--text); display: block; font-size: 1rem; margin-bottom: 0.5rem; }
+  .empty-state code { background: rgba(0,0,0,0.3); padding: 1px 5px; border-radius: 3px; font-size: 0.78rem; color: #d0c0b0; }
+
+  .loading { color: var(--muted); font-size: 0.82rem; padding: 1rem 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page-title">Character Redesign Archive</h1>
+  <p class="page-sub">Historical snapshots of character sprites before each redesign approval. Forward-only archive — snapshots are captured by <code>scripts/pixellab/approve.cjs</code> before overwriting canonical frames.</p>
+
+  <div class="notice">
+    <strong>Forward-only archive (M300):</strong> No backfill from pre-M300 approvals — there is no source-of-truth for overwritten frames before this system was added.
+    All future approvals via <code>approve.cjs</code> will automatically archive the old frame here.
+  </div>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Filter by character ID…">
+  </div>
+
+  <div id="content">
+    <div class="loading">Loading archive index…</div>
+  </div>
+</div>
+
+<script>
+// ---------------------------------------------------------------------------
+// The archive lives at: public/assets/character-redesign-archive/<charId>/
+// Each character has: index.json (list of snapshots) + <timestamp>/meta.json
+// Images: <timestamp>/<pose>.png
+// ---------------------------------------------------------------------------
+
+const ARCHIVE_BASE = './character-redesign-archive/';
+
+async function fetchJson(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`${res.status} ${url}`);
+  return res.json();
+}
+
+async function loadCharacterIndex(charId) {
+  const url = `${ARCHIVE_BASE}${charId}/index.json`;
+  try {
+    return await fetchJson(url);
+  } catch (_) {
+    return null;
+  }
+}
+
+// Attempt to discover available character IDs by fetching a manifest.
+// Since we can't list directories in a static server, we rely on a
+// generated index file at character-redesign-archive/index.json.
+// If that doesn't exist, we show the empty state.
+async function loadArchiveIndex() {
+  try {
+    const idx = await fetchJson(`${ARCHIVE_BASE}index.json`);
+    return idx.characters || [];
+  } catch (_) {
+    return [];
+  }
+}
+
+function formatDate(iso) {
+  if (!iso) return '—';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+  } catch (_) {
+    return iso.slice(0, 10);
+  }
+}
+
+function renderCharSection(charId, idx, snapDetails) {
+  const totalSnaps = idx.snapshots.length;
+  const section = document.createElement('div');
+  section.className = 'char-section';
+  section.dataset.charId = charId;
+
+  section.innerHTML = `
+    <div class="char-header">
+      <h2>${charId}</h2>
+      <span class="snap-count">${totalSnaps} snapshot${totalSnaps !== 1 ? 's' : ''}</span>
+      <span class="chevron">&#9658;</span>
+    </div>
+    <div class="char-body">
+      <div class="snap-grid" id="grid-${charId}"></div>
+    </div>
+  `;
+
+  section.querySelector('.char-header').addEventListener('click', () => {
+    section.classList.toggle('open');
+  });
+
+  // Build snapshot cards
+  const grid = section.querySelector('.snap-grid');
+  for (const snap of idx.snapshots) {
+    const imgUrl = `${ARCHIVE_BASE}${charId}/${snap.timestamp}/${snap.pose}.png`;
+    const card = document.createElement('div');
+    card.className = 'snap-card';
+    card.innerHTML = `
+      <img src="${imgUrl}" alt="${snap.pose}" loading="lazy" onerror="this.style.opacity='0.3'">
+      <div class="snap-meta">
+        <div class="snap-pose">${snap.pose}</div>
+        <div class="snap-date">${formatDate(snap.archivedAt)}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  }
+
+  return section;
+}
+
+async function render(charIds) {
+  const container = document.getElementById('content');
+  const q = document.getElementById('search').value.trim().toLowerCase();
+
+  const filtered = q ? charIds.filter(id => id.toLowerCase().includes(q)) : charIds;
+
+  if (!filtered.length) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <strong>No archived redesigns found</strong>
+        The archive is populated automatically when <code>node scripts/pixellab/approve.cjs &lt;spriteId&gt;</code>
+        is run and an existing canonical frame is overwritten.<br><br>
+        This archive is forward-only — no backfill from pre-M300 approvals.
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = '';
+  for (const charId of filtered) {
+    const idx = await loadCharacterIndex(charId);
+    if (!idx || !idx.snapshots?.length) continue;
+    const section = renderCharSection(charId, idx, null);
+    container.appendChild(section);
+  }
+
+  if (!container.children.length) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <strong>No snapshots yet</strong>
+        Run <code>node scripts/pixellab/approve.cjs &lt;spriteId&gt;</code> to generate the first archive entry.
+      </div>`;
+  }
+}
+
+let allCharIds = [];
+
+async function init() {
+  allCharIds = await loadArchiveIndex();
+  await render(allCharIds);
+
+  document.getElementById('search').addEventListener('input', () => render(allCharIds));
+}
+
+init();
+</script>
+</body>
+</html>

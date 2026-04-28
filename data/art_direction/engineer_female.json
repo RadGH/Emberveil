@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "engineer_female",
+  "displayName": "Engineer (Female)",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "identity": "Human WOMAN engineer, mid-30s, tall athletic adult build. Long dark braid over shoulder, round brass goggles pushed up on forehead, soot-smudged cheek. Leather apron with pockets over dark tunic, copper-wire accents, tool-belt with wrenches and gears, leather boots. Muted browns and golds palette.",
+  "outfit": "Leather apron with pockets over dark tunic, copper-wire accents, tool-belt with wrenches and gears, leather boots. No helm, no cape.",
+  "weapons": "Small brass crossbow in right hand; mechanical grenade pouch at belt; portable turret gadget.",
+  "attackStyle": "East-facing. Firing a small brass crossbow / hurling a mechanical grenade, right foot lunged forward. Clearly mid-strike.",
+  "spellStyle": "East-facing. Holding up a glowing brass device with arcane sparks arcing between copper wires.",
+  "blockStyle": "East-facing. Crouched behind a portable brass turret / free arm raised in guard.",
+  "koStyle": "East-facing, slumped on side, tools scattered beside her.",
+  "southStyle": "Facing camera, calm combat idle. Brass crossbow held at ready, tool-belt visible.",
+  "portraitStyle": "Bust shot from mid-chest up, three-quarter view. Long dark braid, brass goggles on forehead, soot-smudged cheek, leather apron, confident focused expression.",
+  "bannedSubstrings": ["robe", "wizard hat", "staff"],
+  "referenceSheet": {
+    "path": "images/pixellab/engineer_female/portrait.png",
+    "prompt": "See generation script — OpenAI gpt-image-2 pipeline, M269.",
+    "generatedAt": "2026-04-23T00:00:00.000Z",
+    "approvedAt": "2026-04-23T00:00:00.000Z"
+  },
+  "frames": {}
+}

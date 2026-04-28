@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Skill Interaction Simulator — Emberveil</title>
+<style>
+  body { padding: 1rem 1rem 5rem; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 40%, var(--ember1) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin: 0 0 0.25rem;
+  }
+  .page-sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1.25rem; }
+
+  .pickers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 600px) { .pickers { grid-template-columns: 1fr; } }
+
+  .picker-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem;
+  }
+  .picker-panel h2 {
+    font-family: var(--font-display);
+    color: var(--gold-bright);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.4rem;
+  }
+  .picker-panel select {
+    width: 100%;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.4rem 0.5rem;
+    font: inherit; font-size: 0.82rem;
+    margin-bottom: 0.6rem;
+  }
+  .skill-detail {
+    font-size: 0.8rem;
+    color: var(--text);
+    min-height: 80px;
+  }
+  .skill-detail .sk-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  .skill-detail .sk-tags {
+    display: flex; flex-wrap: wrap; gap: 0.25rem;
+    margin-bottom: 0.4rem;
+  }
+  .tag {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .tag.melee   { background: rgba(200,80,80,0.15); color: #ff9060; border-color: rgba(200,80,80,0.35); }
+  .tag.magic   { background: rgba(120,80,220,0.15); color: #b880ff; border-color: rgba(120,80,220,0.35); }
+  .tag.buff    { background: rgba(80,180,120,0.15); color: #60e890; border-color: rgba(80,180,120,0.35); }
+  .tag.debuff  { background: rgba(200,160,40,0.15); color: #ffd060; border-color: rgba(200,160,40,0.35); }
+  .tag.ranged  { background: rgba(80,160,220,0.15); color: #60b0ff; border-color: rgba(80,160,220,0.35); }
+  .tag.summon  { background: rgba(160,80,200,0.15); color: #d080ff; border-color: rgba(160,80,200,0.35); }
+  .tag.support { background: rgba(100,180,200,0.15); color: #80d0f0; border-color: rgba(100,180,200,0.35); }
+  .tag.passive { background: rgba(160,160,80,0.15); color: #d0d060; border-color: rgba(160,160,80,0.35); }
+  .tag.class   { background: rgba(232,160,32,0.12); color: var(--gold); border-color: rgba(232,160,32,0.3); }
+
+  .sk-stat { display: flex; gap: 0.4rem; font-size: 0.75rem; color: var(--muted); flex-wrap: wrap; }
+  .sk-stat span { color: var(--text); }
+  .sk-desc { margin-top: 0.35rem; color: var(--muted); font-size: 0.78rem; line-height: 1.5; }
+
+  /* Side-by-side effects */
+  .effects-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 600px) { .effects-row { grid-template-columns: 1fr; } }
+
+  .effects-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+  .effects-panel h3 {
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.3rem;
+  }
+  .effect-row { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .effect-row .ef-lbl { color: var(--muted); }
+  .effect-row .ef-val { color: var(--text); font-weight: 600; }
+  .effect-row .ef-val.positive { color: #60e880; }
+  .effect-row .ef-val.damage   { color: #ff9060; }
+  .effect-row .ef-val.mana     { color: #80b0ff; }
+  .none-msg { color: var(--muted); font-size: 0.78rem; font-style: italic; }
+
+  /* Combo panel */
+  .combo-panel {
+    background: var(--card);
+    border: 1px solid var(--border-hi);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    margin-bottom: 1rem;
+  }
+  .combo-panel h2 {
+    font-family: var(--font-display);
+    color: var(--gold-bright);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 0.6rem;
+  }
+  .combo-verdict {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .combo-verdict.stacking  { background: rgba(80,180,120,0.12); border: 1px solid rgba(80,180,120,0.3); color: #60e880; }
+  .combo-verdict.consume   { background: rgba(200,80,200,0.12); border: 1px solid rgba(200,80,200,0.3); color: #e080e0; }
+  .combo-verdict.dps       { background: rgba(200,80,80,0.12);  border: 1px solid rgba(200,80,80,0.3);  color: #ff9060; }
+  .combo-verdict.neutral   { background: rgba(120,120,120,0.1); border: 1px solid rgba(120,120,120,0.2); color: var(--muted); }
+  .combo-verdict .cv-icon  { font-size: 1.1rem; font-variant-emoji: text; }
+  .combo-detail { font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.6; }
+  .dps-estimate { margin-top: 0.5rem; padding: 0.5rem 0.75rem; background: rgba(0,0,0,0.25); border-radius: 5px; font-size: 0.78rem; }
+  .dps-estimate .dps-label { color: var(--muted); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem; }
+  .dps-estimate .dps-val   { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--gold); }
+
+  /* Sim button + results */
+  .sim-bar {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .btn {
+    background: var(--gold);
+    color: #080507;
+    border: none;
+    border-radius: 5px;
+    padding: 0.45rem 1rem;
+    font: inherit; font-size: 0.82rem; font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+  }
+  .btn:hover { background: var(--gold-bright); }
+  .btn.secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  .sim-results {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    display: none;
+  }
+  .sim-results.visible { display: block; }
+  .sim-results h3 {
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+  .sim-kpi-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.6rem; }
+  .sim-kpi { }
+  .sim-kpi .kl { color: var(--muted); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .sim-kpi .kv { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--gold-bright); }
+  .sim-breakdown { color: var(--muted); font-size: 0.75rem; line-height: 1.7; }
+
+  .placeholder { color: var(--muted); font-size: 0.82rem; font-style: italic; padding: 0.5rem 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page-title">Skill Interaction Simulator</h1>
+  <p class="page-sub">Pick two skills to see mechanical effects side-by-side and run a combo heuristic. Uses live data from <code>getSkills()</code>.</p>
+
+  <div class="pickers">
+    <div class="picker-panel">
+      <h2>Skill A</h2>
+      <select id="pickA"><option value="">— Loading skills… —</option></select>
+      <div class="skill-detail" id="detailA"><span class="placeholder">Select a skill</span></div>
+    </div>
+    <div class="picker-panel">
+      <h2>Skill B</h2>
+      <select id="pickB"><option value="">— Loading skills… —</option></select>
+      <div class="skill-detail" id="detailB"><span class="placeholder">Select a skill</span></div>
+    </div>
+  </div>
+
+  <div class="effects-row">
+    <div class="effects-panel" id="fxA">
+      <h3>Skill A — Effects</h3>
+      <div class="none-msg">Select a skill above</div>
+    </div>
+    <div class="effects-panel" id="fxB">
+      <h3>Skill B — Effects</h3>
+      <div class="none-msg">Select a skill above</div>
+    </div>
+  </div>
+
+  <div class="combo-panel" id="comboPanel">
+    <h2>Combo Prediction</h2>
+    <div class="none-msg">Select two skills to see combo analysis</div>
+  </div>
+
+  <div class="sim-bar">
+    <button class="btn" id="btnSim" disabled>Run 100 Combats</button>
+    <button class="btn secondary" id="btnReset">Reset</button>
+    <span id="simStatus" style="font-size:0.78rem;color:var(--muted);"></span>
+  </div>
+  <div class="sim-results" id="simResults">
+    <h3>Simulation Results — 100 Combats</h3>
+    <div class="sim-kpi-row" id="simKpi"></div>
+    <div class="sim-breakdown" id="simBreakdown"></div>
+  </div>
+</div>
+
+<script type="module">
+import { getSkills } from './data/data-source.js';
+
+let skills = [];
+let skA = null, skB = null;
+
+// ---- helpers ---------------------------------------------------------------
+
+function typeClass(type) {
+  const map = { melee:'melee', magic:'magic', buff:'buff', debuff:'debuff',
+                ranged:'ranged', summon:'summon', support:'support', passive:'passive' };
+  return map[type] || 'passive';
+}
+
+function deriveEffects(sk) {
+  if (!sk) return [];
+  const effs = [];
+  const d = sk.description || '';
+  const dl = d.toLowerCase();
+
+  // Damage
+  const dmgMatch = d.match(/(\d+)%\s*(STR|INT|DEX|ATK|SPELL)/i);
+  if (dmgMatch) effs.push({ label:'Damage', value: dmgMatch[1]+'% '+dmgMatch[2].toUpperCase(), cls:'damage' });
+
+  // Targets
+  const targMatch = d.match(/(\d+)\s*(?:adjacent\s*)?enem(?:y|ies)/i);
+  if (targMatch) effs.push({ label:'Targets', value: targMatch[1] });
+  else if (dl.includes('all enem')) effs.push({ label:'Targets', value: 'All enemies' });
+  else if (dl.includes('single')) effs.push({ label:'Targets', value: '1' });
+
+  // Rounds / duration
+  const rndMatch = d.match(/(\d+)\s*round/i);
+  if (rndMatch) effs.push({ label:'Duration', value: rndMatch[1]+' rounds' });
+
+  // MP cost
+  effs.push({ label:'MP Cost', value: sk.mpCost === 0 ? 'Free' : String(sk.mpCost), cls: sk.mpCost > 0 ? 'mana' : '' });
+
+  // Unlock
+  effs.push({ label:'Unlock Lv.', value: String(sk.unlockLevel || 1) });
+
+  // Status effects from description
+  const statuses = [];
+  if (dl.includes('bleed') || dl.includes('bleed')) statuses.push('Bleed');
+  if (dl.includes('burn') || dl.includes('burning')) statuses.push('Burn');
+  if (dl.includes('stun')) statuses.push('Stun');
+  if (dl.includes('freeze') || dl.includes('frozen')) statuses.push('Freeze');
+  if (dl.includes('poison')) statuses.push('Poison');
+  if (dl.includes('blind')) statuses.push('Blind');
+  if (dl.includes('slow')) statuses.push('Slow');
+  if (dl.includes('taunt')) statuses.push('Taunt');
+  if (statuses.length) effs.push({ label:'Status', value: statuses.join(', '), cls:'positive' });
+
+  // Buffs
+  const buffMatch = d.match(/\+(\d+)%\s*(damage|armor|defense|speed|initiative)/i);
+  if (buffMatch && (sk.type === 'buff' || sk.type === 'support'))
+    effs.push({ label:'Bonus', value: '+'+buffMatch[1]+'% '+buffMatch[2], cls:'positive' });
+
+  // Heal
+  const healMatch = d.match(/heal\w*\s+(?:for\s+)?(\d+)/i);
+  if (healMatch) effs.push({ label:'Heal', value: healMatch[1]+' HP', cls:'positive' });
+
+  // Talents count
+  if (sk.talents && sk.talents.length)
+    effs.push({ label:'Talents', value: String(sk.talents.length) });
+
+  return effs;
+}
+
+function renderEffects(containerId, sk, label) {
+  const el = document.getElementById(containerId);
+  if (!sk) { el.innerHTML = `<h3>${label}</h3><div class="none-msg">Select a skill above</div>`; return; }
+  const effs = deriveEffects(sk);
+  let html = `<h3>${label} — ${sk.name}</h3>`;
+  if (!effs.length) { html += '<div class="none-msg">No parsed effects</div>'; }
+  else {
+    html += effs.map(e =>
+      `<div class="effect-row"><span class="ef-lbl">${e.label}</span><span class="ef-val ${e.cls||''}">${e.value}</span></div>`
+    ).join('');
+  }
+  el.innerHTML = html;
+}
+
+function deriveStatuses(sk) {
+  const d = (sk.description || '').toLowerCase();
+  const s = [];
+  if (d.includes('bleed')) s.push('bleed');
+  if (d.includes('burn')) s.push('burn');
+  if (d.includes('stun')) s.push('stun');
+  if (d.includes('freeze') || d.includes('frozen')) s.push('freeze');
+  if (d.includes('poison')) s.push('poison');
+  if (d.includes('blind')) s.push('blind');
+  if (d.includes('slow')) s.push('slow');
+  return s;
+}
+
+function isDamager(sk) { return ['melee','magic','ranged'].includes(sk.type); }
+function isBuffer(sk)  { return ['buff','support'].includes(sk.type); }
+function isDebuffer(sk){ return sk.type === 'debuff'; }
+
+function estimateDPS(sk) {
+  const d = sk.description || '';
+  const m = d.match(/(\d+)%\s*(STR|INT|DEX)/i);
+  if (!m) return 0;
+  const pct = parseFloat(m[1]) / 100;
+  const baseStatMap = { str: 15, int: 14, dex: 12, atk: 14, spell: 14 };
+  const base = baseStatMap[(m[2]||'atk').toLowerCase()] || 14;
+  return Math.round(pct * base);
+}
+
+function computeCombo(a, b) {
+  if (!a || !b) return null;
+  const sA = deriveStatuses(a), sB = deriveStatuses(b);
+  const sharedStatus = sA.filter(s => sB.includes(s));
+  const dpsA = estimateDPS(a), dpsB = estimateDPS(b);
+  const comboDPS = Math.round((dpsA + dpsB) * (sharedStatus.length ? 1.3 : 1.0));
+
+  // Priority: stacking status > buff+damage consume > cumulative DPS > neutral
+  if (sharedStatus.length > 0) {
+    return {
+      type: 'stacking',
+      headline: 'Status Stacking',
+      detail: `Both skills apply [${sharedStatus.join(', ')}]. When stacked on the same target, the DoT effect doubles its tick rate or intensity (game-rule: duplicate debuffs extend duration and increase severity by 1 tier).`,
+      dps: comboDPS,
+    };
+  }
+  if ((isBuffer(a) && isDamager(b)) || (isDamager(a) && isBuffer(b))) {
+    const buff = isBuffer(a) ? a : b;
+    const dmg  = isDamager(a) ? a : b;
+    return {
+      type: 'consume',
+      headline: 'Buff + Damage Combo',
+      detail: `${buff.name} applies a buff that is consumed by ${dmg.name}'s damage hit — a "prime-and-detonate" sequence. Cast ${buff.name} first, then ${dmg.name} to trigger bonus damage.`,
+      dps: comboDPS,
+    };
+  }
+  if (isDamager(a) && isDamager(b)) {
+    return {
+      type: 'dps',
+      headline: 'Cumulative DPS',
+      detail: `Both skills deal direct damage to the same target. Combined estimated damage per round: ${comboDPS}. No special interaction — pure additive throughput.`,
+      dps: comboDPS,
+    };
+  }
+  return {
+    type: 'neutral',
+    headline: 'Independent Effects',
+    detail: `${a.name} and ${b.name} operate on different systems (${a.type} vs ${b.type}). No synergy or conflict detected — safe to use in the same rotation.`,
+    dps: 0,
+  };
+}
+
+function renderCombo(a, b) {
+  const panel = document.getElementById('comboPanel');
+  const combo = computeCombo(a, b);
+  if (!combo) {
+    panel.innerHTML = '<h2>Combo Prediction</h2><div class="none-msg">Select two skills to see combo analysis</div>';
+    return;
+  }
+  const iconMap = { stacking: '[+]', consume: '[*]', dps: '[>]', neutral: '[-]' };
+  let html = `<h2>Combo Prediction</h2>
+    <div class="combo-verdict ${combo.type}">
+      <span class="cv-icon">${iconMap[combo.type]}</span>
+      <span>${combo.headline}</span>
+    </div>
+    <div class="combo-detail">${combo.detail}</div>`;
+  if (combo.dps > 0) {
+    html += `<div class="dps-estimate">
+      <div class="dps-label">Combined Damage Estimate (base stats, no gear)</div>
+      <div class="dps-val">${combo.dps} per cast</div>
+    </div>`;
+  }
+  panel.innerHTML = html;
+}
+
+// ---- simulation ------------------------------------------------------------
+
+function simCombat(a, b, rounds = 5) {
+  // Simple in-browser combat stub: enemy has 100 HP, skills do estimateDPS each
+  let hp = 100, round = 0, log = [];
+  const dA = Math.max(estimateDPS(a), 3);
+  const dB = Math.max(estimateDPS(b), 3);
+  const combo = computeCombo(a, b);
+  const comboMult = (combo && combo.type !== 'neutral') ? 1.15 : 1.0;
+  while (hp > 0 && round < rounds) {
+    round++;
+    const dThisA = Math.round(dA * (0.9 + Math.random() * 0.2));
+    const dThisB = Math.round(dB * (0.9 + Math.random() * 0.2) * comboMult);
+    hp -= dThisA + dThisB;
+    log.push({ round, dA: dThisA, dB: dThisB, hpLeft: Math.max(hp, 0) });
+    if (hp <= 0) break;
+  }
+  return { won: hp <= 0, rounds: round, log, totalDmg: 100 - Math.max(hp, 0) };
+}
+
+function runSim() {
+  if (!skA || !skB) return;
+  const btn = document.getElementById('btnSim');
+  const statusEl = document.getElementById('simStatus');
+  btn.disabled = true;
+  statusEl.textContent = 'Simulating…';
+
+  // Run 100 combats
+  setTimeout(() => {
+    let wins = 0, totalRounds = 0, totalDmg = 0;
+    for (let i = 0; i < 100; i++) {
+      const r = simCombat(skA, skB, 10);
+      if (r.won) wins++;
+      totalRounds += r.rounds;
+      totalDmg += r.totalDmg;
+    }
+    const avgRounds = (totalRounds / 100).toFixed(1);
+    const winRate = wins;
+    const avgDmg  = Math.round(totalDmg / 100);
+
+    const kpiEl = document.getElementById('simKpi');
+    kpiEl.innerHTML = `
+      <div class="sim-kpi"><div class="kl">Win Rate</div><div class="kv">${winRate}%</div></div>
+      <div class="sim-kpi"><div class="kl">Avg Rounds</div><div class="kv">${avgRounds}</div></div>
+      <div class="sim-kpi"><div class="kl">Avg Dmg/Fight</div><div class="kv">${avgDmg}</div></div>
+    `;
+    const bkEl = document.getElementById('simBreakdown');
+    const combo = computeCombo(skA, skB);
+    bkEl.textContent = `Enemy HP: 100. Skills: ${skA.name} (~${Math.max(estimateDPS(skA),3)}/cast) + ${skB.name} (~${Math.max(estimateDPS(skB),3)}/cast). Combo type: ${combo?.type||'none'}. Damage has ±10% variance. ${wins < 60 ? 'Low win rate — both skills deal below-average damage.' : wins > 85 ? 'High win rate — strong combo.' : 'Moderate win rate — typical pairing.'}`;
+
+    document.getElementById('simResults').classList.add('visible');
+    statusEl.textContent = '100 combats complete';
+    btn.disabled = false;
+  }, 80);
+}
+
+// ---- detail rendering ------------------------------------------------------
+
+function renderDetail(containerId, sk) {
+  const el = document.getElementById(containerId);
+  if (!sk) { el.innerHTML = '<span class="placeholder">Select a skill</span>'; return; }
+  el.innerHTML = `
+    <div class="sk-name">${sk.name}</div>
+    <div class="sk-tags">
+      <span class="tag ${typeClass(sk.type)}">${sk.type}</span>
+      <span class="tag class">${sk.class || 'all'}</span>
+    </div>
+    <div class="sk-stat">
+      <span style="color:var(--muted)">MP:</span><span>${sk.mpCost || 0}</span>
+      <span style="color:var(--muted)">Unlock:</span><span>Lv. ${sk.unlockLevel || 1}</span>
+      <span style="color:var(--muted)">Talents:</span><span>${(sk.talents||[]).length}</span>
+    </div>
+    <div class="sk-desc">${sk.description || '—'}</div>
+  `;
+}
+
+// ---- init ------------------------------------------------------------------
+
+function buildOptions(selectEl, skillList, selectedId) {
+  const classes = [...new Set(skillList.map(s => s.class).filter(Boolean))].sort();
+  selectEl.innerHTML = '<option value="">— Pick a skill —</option>';
+  for (const cls of classes) {
+    const grp = document.createElement('optgroup');
+    grp.label = cls.charAt(0).toUpperCase() + cls.slice(1);
+    skillList.filter(s => s.class === cls).forEach(s => {
+      const opt = document.createElement('option');
+      opt.value = s.id;
+      opt.textContent = `${s.name} (${s.type})`;
+      if (s.id === selectedId) opt.selected = true;
+      grp.appendChild(opt);
+    });
+    selectEl.appendChild(grp);
+  }
+  // skills without class
+  const noClass = skillList.filter(s => !s.class);
+  if (noClass.length) {
+    const grp = document.createElement('optgroup');
+    grp.label = 'Other';
+    noClass.forEach(s => {
+      const opt = document.createElement('option');
+      opt.value = s.id;
+      opt.textContent = `${s.name} (${s.type})`;
+      grp.appendChild(opt);
+    });
+    selectEl.appendChild(grp);
+  }
+}
+
+function getSkillById(id) { return skills.find(s => s.id === id) || null; }
+
+function update() {
+  const idA = document.getElementById('pickA').value;
+  const idB = document.getElementById('pickB').value;
+  skA = getSkillById(idA);
+  skB = getSkillById(idB);
+  renderDetail('detailA', skA);
+  renderDetail('detailB', skB);
+  renderEffects('fxA', skA, 'Skill A');
+  renderEffects('fxB', skB, 'Skill B');
+  renderCombo(skA, skB);
+  document.getElementById('btnSim').disabled = !(skA && skB);
+  document.getElementById('simResults').classList.remove('visible');
+  document.getElementById('simStatus').textContent = '';
+}
+
+async function init() {
+  try {
+    skills = await getSkills();
+  } catch (e) {
+    document.querySelector('.wrap').innerHTML = `<p style="color:#ff6060">Failed to load skill data: ${e.message}</p>`;
+    return;
+  }
+  const selA = document.getElementById('pickA');
+  const selB = document.getElementById('pickB');
+  buildOptions(selA, skills, '');
+  buildOptions(selB, skills, '');
+  selA.addEventListener('change', update);
+  selB.addEventListener('change', update);
+  document.getElementById('btnSim').addEventListener('click', runSim);
+  document.getElementById('btnReset').addEventListener('click', () => {
+    selA.value = ''; selB.value = ''; update();
+    document.getElementById('simResults').classList.remove('visible');
+    document.getElementById('simStatus').textContent = '';
+  });
+  update();
+}
+
+init();
+</script>
+</body>
+</html>

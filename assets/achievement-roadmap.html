@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Achievement Roadmap — Emberveil</title>
+<!-- TODO M299: migrate to data-source.js — this page already uses it -->
+<style>
+body { padding: 1rem 1rem 4rem; }
+.wrap { max-width: 1000px; margin: 0 auto; }
+h1 {
+  font-family: 'Cinzel',Georgia,serif;
+  font-size: 1.4rem; margin: 0 0 0.2rem;
+  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+  background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+.controls {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 8px; padding: 0.6rem 0.75rem; margin: 0 0 0.75rem;
+  position: sticky; top: 0; z-index: 10;
+}
+.controls input[type=text] {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text); padding: 0.3rem 0.6rem; font: inherit; font-size: 0.8rem;
+  min-width: 200px; flex: 1 1 200px;
+}
+.controls input[type=text]:focus { outline: none; border-color: var(--gold); }
+.controls select {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text); padding: 0.3rem 0.5rem; font: inherit; font-size: 0.8rem;
+}
+.count { color: var(--muted); font-size: 0.78rem; margin-left: auto; }
+
+/* Tier sections */
+.tier-header {
+  display: flex; align-items: center; gap: 0.6rem;
+  margin: 1.1rem 0 0.5rem;
+}
+.tier-gem {
+  width: 16px; height: 16px; border-radius: 50%;
+  display: inline-block; flex-shrink: 0;
+  box-shadow: 0 0 6px 1px;
+}
+.tier-gem.bronze { background:#cd7f32; box-shadow:0 0 6px 1px rgba(205,127,50,0.5); }
+.tier-gem.silver { background:#c0c0c0; box-shadow:0 0 6px 1px rgba(192,192,192,0.5); }
+.tier-gem.gold   { background:#ffd700; box-shadow:0 0 6px 1px rgba(255,215,0,0.5); }
+.tier-label {
+  font-family: 'Cinzel',Georgia,serif; font-size: 0.78rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.6rem; }
+.ach-card {
+  background: var(--card); border-radius: 8px;
+  border-left: 3px solid transparent;
+  padding: 0.65rem 0.85rem;
+  display: flex; flex-direction: column; gap: 0.25rem;
+  border-top: 1px solid var(--border-subtle,#2a1f30);
+  border-right: 1px solid var(--border-subtle,#2a1f30);
+  border-bottom: 1px solid var(--border-subtle,#2a1f30);
+}
+.ach-card.bronze { border-left-color: #cd7f32; }
+.ach-card.silver { border-left-color: #c0c0c0; }
+.ach-card.gold   { border-left-color: #ffd700; }
+.ach-name {
+  font-family: 'Cinzel',Georgia,serif; font-size: 0.88rem;
+  color: var(--text); font-weight: 700; letter-spacing: 0.04em;
+}
+.ach-id { font-size: 0.67rem; color: var(--muted); font-family: monospace; }
+.ach-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.45; }
+.tier-badge {
+  display: inline-block; padding: 1px 6px; border-radius: 3px;
+  font-size: 0.66rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+  margin-top: 0.2rem; width: fit-content;
+}
+.tier-badge.bronze { background: rgba(205,127,50,0.15); color: #cd7f32; border: 1px solid rgba(205,127,50,0.3); }
+.tier-badge.silver { background: rgba(192,192,192,0.12); color: #c0c0c0; border: 1px solid rgba(192,192,192,0.25); }
+.tier-badge.gold   { background: rgba(255,215,0,0.12);   color: #ffd700; border: 1px solid rgba(255,215,0,0.25); }
+
+.stat-row {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  background: var(--surface); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 7px; padding: 0.5rem 0.75rem; margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+}
+.stat-item { color: var(--muted); }
+.stat-item strong { color: var(--text); }
+.empty { text-align: center; color: var(--muted); padding: 2rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Achievement Roadmap</h1>
+  <p class="sub">
+    All achievements sorted by tier and rarity. Unlock conditions are parsed from the
+    <code>ACHIEVEMENTS</code> list in <code>src/game/achievements.js</code>.
+    Prerequisites and tier-aware fields are nullable — see M298 for planned tier data.
+  </p>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search name or description...">
+    <select id="filterTier">
+      <option value="">All tiers</option>
+      <option value="bronze">Bronze</option>
+      <option value="silver">Silver</option>
+      <option value="gold">Gold</option>
+    </select>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div id="statRow" class="stat-row" style="display:none"></div>
+  <div id="content"></div>
+  <div class="empty" id="empty" style="display:none">No achievements match the current filter.</div>
+</div>
+
+<script type="module">
+import { getAchievements } from './data/data-source.js';
+
+let _all = [];
+
+const searchEl   = document.getElementById('search');
+const filterTier = document.getElementById('filterTier');
+const contentEl  = document.getElementById('content');
+const countEl    = document.getElementById('count');
+const emptyEl    = document.getElementById('empty');
+const statRow    = document.getElementById('statRow');
+
+const TIER_ORDER = ['bronze','silver','gold'];
+const TIER_LABELS = { bronze: 'Bronze', silver: 'Silver', gold: 'Gold' };
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderStats() {
+  const counts = { bronze:0, silver:0, gold:0 };
+  for (const a of _all) counts[a.tier] = (counts[a.tier]||0) + 1;
+  statRow.style.display = 'flex';
+  statRow.innerHTML =
+    `<span class="stat-item"><strong>${_all.length}</strong> total</span>` +
+    TIER_ORDER.map(t => `<span class="stat-item"><strong>${counts[t]||0}</strong> ${TIER_LABELS[t]}</span>`).join('');
+}
+
+function render() {
+  const q    = searchEl.value.toLowerCase();
+  const tier = filterTier.value;
+
+  const filtered = _all.filter(a => {
+    if (tier && a.tier !== tier) return false;
+    if (q) {
+      return [a.id, a.name, a.desc].join(' ').toLowerCase().includes(q);
+    }
+    return true;
+  });
+
+  // Group by tier
+  const groups = {};
+  for (const a of filtered) {
+    if (!groups[a.tier]) groups[a.tier] = [];
+    groups[a.tier].push(a);
+  }
+
+  contentEl.innerHTML = '';
+  let total = 0;
+  for (const t of TIER_ORDER) {
+    const list = groups[t];
+    if (!list?.length) continue;
+    total += list.length;
+
+    const hdr = document.createElement('div');
+    hdr.className = 'tier-header';
+    hdr.innerHTML = `<span class="tier-gem ${t}"></span><span class="tier-label">${TIER_LABELS[t]} — ${list.length} achievement${list.length!==1?'s':''}</span>`;
+    contentEl.appendChild(hdr);
+
+    const grid = document.createElement('div');
+    grid.className = 'ach-grid';
+    for (const a of list) {
+      const card = document.createElement('div');
+      card.className = `ach-card ${a.tier}`;
+      card.innerHTML = `
+        <div class="ach-name">${esc(a.name)}</div>
+        <div class="ach-id">${esc(a.id)}</div>
+        <div class="ach-desc">${esc(a.desc)}</div>
+        <span class="tier-badge ${a.tier}">${esc(a.tier)}</span>
+      `;
+      grid.appendChild(card);
+    }
+    contentEl.appendChild(grid);
+  }
+
+  countEl.textContent = `${total} of ${_all.length} achievements`;
+  emptyEl.style.display = total === 0 ? 'block' : 'none';
+}
+
+searchEl.addEventListener('input', render);
+filterTier.addEventListener('change', render);
+
+getAchievements().then(data => {
+  _all = data;
+  renderStats();
+  render();
+}).catch(err => {
+  contentEl.innerHTML = `<div class="empty">Failed to load achievement data: ${err.message}</div>`;
+});
+</script>
+</body>
+</html>

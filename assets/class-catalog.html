@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Class Catalog — Emberveil</title>
+<style>
+  body { padding: 1rem 1rem 4rem; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  h1 {
+    font-family: 'Cinzel',Georgia,serif;
+    font-size: 1.4rem; margin: 0 0 0.2rem;
+    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+    background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+  /* Sticky filter bar */
+  .filters {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+    background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+    border-radius: 8px; padding: 0.6rem 0.75rem; margin: 0.5rem 0 0.85rem;
+    position: sticky; top: 0; z-index: 30;
+  }
+  .filters input[type=text] {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+    color: var(--text); padding: 0.4rem 0.6rem; font: inherit; font-size: 0.82rem;
+    min-width: 180px; flex: 1 1 200px; min-height: 36px;
+  }
+  .filters select {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+    color: var(--text); padding: 0.4rem 0.5rem; font: inherit; font-size: 0.82rem;
+    min-height: 36px;
+  }
+  .filters label.tog {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    color: var(--muted); font-size: 0.78rem; cursor: pointer;
+    padding: 0.2rem 0.4rem; border-radius: 4px;
+  }
+  .filters label.tog input[type=checkbox] { margin: 0; }
+  .filters {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+
+	.filters #search {
+		grid-column: 1 / 5;
+	}
+
+	.filters .tog {
+		grid-column: 1 / 4;
+	}
+	
+
+:root {
+    --header-height: 52px;
+    --header-sticky: 1;
+}
+
+.filters {
+    top: calc( var(--header-height) * var(--header-sticky ) );
+}
+
+.lightbox .lb-close {
+    top: calc( 1rem + ( var(--header-height) * var(--header-sticky) ) );
+    right: 2rem;
+    margin-top: 0;
+}
+
+  .count { color: var(--muted); font-size: 0.78rem; }
+  .count.has-sel { color: var(--gold-bright,#f8d880); font-weight: 600; }
+  .copy-btn {
+    background: var(--gold-dim,rgba(232,160,32,0.18));
+    border: 1px solid var(--gold,#e8a020); color: var(--gold-bright,#f8d880);
+    border-radius: 5px; padding: 0.35rem 0.7rem; cursor: pointer; font: inherit;
+    font-size: 0.75rem; letter-spacing: 0.06em; min-height: 36px;
+  }
+  .copy-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
+  .copy-btn:not([disabled]):hover { background: rgba(232,160,32,0.3); }
+  .filters .right { margin-left: auto; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+
+  /* Grid of class cards */
+  .class-grid {
+    display: grid; gap: 0.85rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+  .cc-card {
+    background: var(--card);
+    border: 1px solid var(--border-subtle,#2a1f30);
+    border-radius: 10px;
+    padding: 0.85rem 0.95rem 0.7rem;
+    display: flex; flex-direction: column; gap: 0.55rem;
+    transition: border-color 0.15s, transform 0.15s;
+    position: relative;
+  }
+  .cc-card:hover { border-color: var(--gold-dim,rgba(232,160,32,0.5)); }
+  .cc-card.selected { border-color: var(--gold,#e8a020); box-shadow: 0 0 0 1px var(--gold,#e8a020) inset; }
+
+  .cc-select {
+    position: absolute; top: 0.6rem; right: 0.6rem;
+    width: 22px; height: 22px; cursor: pointer; z-index: 2;
+  }
+
+  .cc-head { display: flex; gap: 0.7rem; align-items: flex-start; }
+  .cc-portrait {
+    width: 72px; height: 72px; flex-shrink: 0;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    cursor: zoom-in;
+  }
+  .cc-portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .cc-portrait img.missing { opacity: 0.15; }
+
+  .cc-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.2rem; padding-right: 1.8rem; }
+  .cc-name {
+    font-family: 'Cinzel',Georgia,serif; font-weight: 800;
+    font-size: 1.05rem; color: var(--gold-bright,#f8d880);
+    letter-spacing: 0.04em;
+  }
+  .cc-role {
+    font-size: 0.7rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .cc-hook { font-size: 0.78rem; color: var(--text); line-height: 1.45; }
+
+  .cc-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.15rem; }
+  .cc-tag {
+    display: inline-block; padding: 0.05rem 0.55rem; border-radius: 99px;
+    font-size: 0.66rem; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.06); color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .cc-tag.attr-STR { background: rgba(232,80,80,0.15); border-color: rgba(232,80,80,0.4); color: #f48080; }
+  .cc-tag.attr-DEX { background: rgba(80,208,128,0.15); border-color: rgba(80,208,128,0.4); color: #80e0a0; }
+  .cc-tag.attr-INT { background: rgba(120,140,255,0.15); border-color: rgba(120,140,255,0.4); color: #a0b0ff; }
+  .cc-tag.attr-CON { background: rgba(232,200,80,0.15); border-color: rgba(232,200,80,0.4); color: #f0d880; }
+  .cc-tag.tier-heavy { background: rgba(180,180,180,0.12); border-color: rgba(180,180,180,0.4); color: #d0d0d0; }
+  .cc-tag.tier-medium { background: rgba(200,160,90,0.12); border-color: rgba(200,160,90,0.4); color: #e0c890; }
+  .cc-tag.tier-light { background: rgba(120,200,200,0.12); border-color: rgba(120,200,200,0.4); color: #a0e0e0; }
+  .cc-tag.tier-cloth { background: rgba(180,140,200,0.12); border-color: rgba(180,140,200,0.4); color: #e0c0f0; }
+  .cc-tag.starter { background: rgba(72,176,96,0.15); border-color: rgba(72,176,96,0.45); color: #80e0a0; }
+  .cc-tag.lock { background: rgba(192,64,48,0.15); border-color: rgba(192,64,48,0.45); color: #f08080; }
+
+  /* M331 update — sprite strip uses fixed-basis flex rows so 4 cards fit
+     across desktop and 2 across mobile, with no awkward stretching. */
+  .cc-sprites {
+    display: flex; gap: 0.4rem; flex-wrap: wrap;
+    background: rgba(0,0,0,0.18); border-radius: 6px; padding: 0.35rem;
+  }
+  .cc-sprite {
+    flex: 0 1 calc((100% - 1.2rem) / 4); /* 4 across, 3 gaps of 0.4rem */
+    aspect-ratio: 1;
+    background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.08);
+    border-radius: 4px; overflow: hidden;
+    display: flex; flex-direction: column; align-items: stretch;
+    position: relative; cursor: zoom-in;
+  }
+  @media (max-width: 540px) {
+    .cc-sprite { flex-basis: calc((100% - 0.4rem) / 2); } /* 2 across on mobile */
+  }
+  .cc-sprite img { width: 100%; height: 100%; object-fit: contain; }
+  .cc-sprite img.missing { opacity: 0.2; }
+  .cc-sprite .lbl {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.85));
+    color: var(--muted); font-size: 0.6rem;
+    text-align: center; padding: 0.05rem 0.15rem; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+
+  .cc-section-title {
+    font-family: 'Cinzel',Georgia,serif; font-size: 0.7rem;
+    color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase;
+    margin: 0.3rem 0 0.1rem; border-top: 1px solid var(--border); padding-top: 0.4rem;
+  }
+  .cc-skills, .cc-passives {
+    display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.78rem;
+  }
+  .cc-row { display: flex; gap: 0.4rem; align-items: baseline; }
+  .cc-row .nm { color: var(--gold-bright,#f8d880); font-weight: 600; }
+  .cc-row .ds { color: var(--muted); flex: 1; min-width: 0; line-height: 1.4; }
+  .cc-row .lvl {
+    font-size: 0.65rem; color: var(--muted); font-family: 'JetBrains Mono', ui-monospace, monospace;
+    background: rgba(255,255,255,0.05); border-radius: 3px; padding: 0 0.35rem;
+  }
+  .cc-row .mp {
+    font-size: 0.65rem; color: #80b0ff;
+    background: rgba(80,140,232,0.1); border-radius: 3px; padding: 0 0.35rem;
+  }
+  .cc-req {
+    font-size: 0.78rem; color: var(--text);
+    background: rgba(192,64,48,0.08); border: 1px solid rgba(192,64,48,0.3);
+    border-radius: 4px; padding: 0.35rem 0.55rem;
+    display: flex; gap: 0.5rem; align-items: baseline;
+  }
+  .cc-req .req-type {
+    font-size: 0.62rem; color: #f08080; letter-spacing: 0.08em;
+    text-transform: uppercase; background: rgba(192,64,48,0.18);
+    border-radius: 3px; padding: 0 0.3rem;
+  }
+
+  /* Display-mode hooks — toggle which sections are visible per card */
+  .cc-card.mode-basic .cc-sprites,
+  .cc-card.mode-basic .cc-section-title,
+  .cc-card.mode-basic .cc-skills,
+  .cc-card.mode-basic .cc-passives,
+  .cc-card.mode-basic .cc-equip,
+  .cc-card.mode-basic .cc-req-block { display: none; }
+
+  .cc-card.mode-images .cc-section-title,
+  .cc-card.mode-images .cc-skills,
+  .cc-card.mode-images .cc-passives,
+  .cc-card.mode-images .cc-equip,
+  .cc-card.mode-images .cc-req-block { display: none; }
+
+  .cc-card.mode-attributes .cc-sprites { display: none; }
+
+  .empty { text-align: center; color: var(--muted); padding: 2rem; }
+  .err { color: #f08080; padding: 1rem; }
+
+  /* ── Lightbox (modeled on character-redesign.html) ─────────────────────── */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.93);
+    display: none; z-index: 100; flex-direction: column; align-items: center;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    padding: 64px 1rem 2rem;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox .lb-stage {
+    width: min(92vw, 720px);
+    height: min(54vh, 560px);
+    display: flex; align-items: center; justify-content: center;
+    background: repeating-conic-gradient(#151018 0% 25%, #1e1624 0% 50%) 50%/24px 24px;
+    border: 1px solid var(--gold,#e8a020); border-radius: 4px; flex-shrink: 0;
+  }
+  @media (min-width: 768px) { .lightbox .lb-stage { height: min(72vh, 720px); } }
+  .lightbox .lb-stage img { max-width: 100%; max-height: 100%; display: block; }
+  .lightbox .lb-title {
+    color: var(--gold,#e8a020); margin: 0.8rem 0 0.2rem;
+    font-family: 'Cinzel',Georgia,serif; letter-spacing: 0.08em;
+    text-transform: uppercase; font-size: 0.95rem; text-align: center;
+  }
+  .lightbox .lb-sub { color: var(--muted); font-size: 0.78rem; margin: 0 0 0.5rem; text-align: center; }
+  .lightbox .lb-prompt {
+    color: var(--text); font-size: 0.78rem; line-height: 1.55;
+    background: rgba(20,12,28,0.6); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0.6rem 0.8rem; max-width: min(92vw, 720px);
+    margin: 0.5rem 0 0.6rem; white-space: pre-wrap;
+  }
+  .lightbox .lb-prompt-label {
+    font-size: 0.6rem; color: var(--gold,#e8a020); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.3rem; display: block;
+  }
+  .lightbox .lb-nav { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-top: 0.4rem; }
+  .lightbox button {
+    background: var(--card); color: var(--text); border: 1px solid var(--border);
+    padding: 0.5rem 1rem; cursor: pointer; font-size: 0.8rem; border-radius: 3px;
+    letter-spacing: 0.06em; min-height: 44px; min-width: 44px;
+  }
+  .lightbox button:hover { border-color: var(--gold,#e8a020); color: var(--gold,#e8a020); }
+  .lightbox .lb-close {
+    position: fixed; top: 0.75rem; right: 0.75rem; z-index: 110;
+    background: rgba(20,12,16,0.92); border: 1.5px solid var(--gold,#e8a020); color: var(--gold,#e8a020);
+    padding: 0.55rem 0.95rem; font-size: 0.85rem; font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5); min-height: 44px; min-width: 44px;
+  }
+  .lightbox .lb-counter { color: var(--muted); font-size: 0.7rem; margin-top: 0.5rem; letter-spacing: 0.08em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Class Catalog</h1>
+  <p class="sub">All 28 playable classes — portrait, 7-pose sprite strip, role, armor, primary attribute, full skill list with MP cost + unlock level, class passive tree, and unlock requirements. Loads via <code>data-source.js</code> (same source the in-game screens use; not a copy).</p>
+
+  <div class="filters">
+    <input type="text" id="search" placeholder="Search class, role, hook, skill…">
+    <select id="filterAttr">
+      <option value="">All attrs</option>
+      <option value="STR">STR</option>
+      <option value="DEX">DEX</option>
+      <option value="INT">INT</option>
+      <option value="CON">CON</option>
+    </select>
+    <select id="filterTier">
+      <option value="">All armor</option>
+      <option value="heavy">Heavy</option>
+      <option value="medium">Medium</option>
+      <option value="light">Light</option>
+      <option value="cloth">Cloth</option>
+    </select>
+    <select id="filterStarter">
+      <option value="">All</option>
+      <option value="starter">Starters only</option>
+      <option value="locked">Unlockable only</option>
+    </select>
+    <select id="filterMode" title="Display mode">
+      <option value="all">View: all</option>
+      <option value="basic">View: basic</option>
+      <option value="images">View: images</option>
+      <option value="attributes">View: attributes</option>
+    </select>
+    <label class="tog" title="Toggle per-card selection checkboxes">
+      <input type="checkbox" id="enableSelect">
+      Select
+    </label>
+    <div class="right">
+      <span class="count" id="count"></span>
+      <button class="copy-btn" id="copyBtn" disabled>Copy List</button>
+    </div>
+  </div>
+
+  <div class="class-grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none">No classes match the current filters.</div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Sprite viewer">
+  <button class="lb-close" id="lb-close" aria-label="Close">&times; Close</button>
+  <div class="lb-stage"><img id="lb-img" alt=""></div>
+  <h3 class="lb-title" id="lb-title"></h3>
+  <p class="lb-sub" id="lb-sub"></p>
+  <div class="lb-prompt" id="lb-prompt" style="display:none">
+    <span class="lb-prompt-label">Prompt</span>
+    <span id="lb-prompt-text"></span>
+  </div>
+  <div class="lb-nav">
+    <button id="lb-prev" aria-label="Previous image">&larr; Prev</button>
+    <button id="lb-next" aria-label="Next image">Next &rarr;</button>
+  </div>
+  <p class="lb-counter" id="lb-counter"></p>
+</div>
+
+<script type="module">
+import { getClasses, getSkills, getPassives } from './data/data-source.js';
+
+const POSES = [
+  { id: 'portrait',   label: 'Portrait',   description: 'Head-and-shoulders bust. Used in dialog panels, stat screens, and the character builder.' },
+  { id: 'south',      label: 'Front idle', description: 'Full-body front-facing idle. Town view, party panel.' },
+  { id: 'east',       label: 'Side idle',  description: 'East-facing combat-stance idle. Default in-combat sprite.' },
+  { id: 'east_attack',label: 'Attack',     description: 'East-facing mid-strike. Plays on basic attack.' },
+  { id: 'east_spell', label: 'Spell',      description: 'East-facing spell channel. Plays on spell cast.' },
+  { id: 'east_block', label: 'Block',      description: 'East-facing defensive stance. Plays on Block / parry.' },
+  { id: 'east_ko',    label: 'Knocked out',description: 'East-facing downed. Shown when HP hits 0 in combat.' },
+];
+const POSE_BY_ID = Object.fromEntries(POSES.map(p => [p.id, p]));
+
+const grid       = document.getElementById('grid');
+const searchEl   = document.getElementById('search');
+const filterAttr = document.getElementById('filterAttr');
+const filterTier = document.getElementById('filterTier');
+const filterStr  = document.getElementById('filterStarter');
+const filterMode = document.getElementById('filterMode');
+const enableSel  = document.getElementById('enableSelect');
+const countEl    = document.getElementById('count');
+const copyBtn    = document.getElementById('copyBtn');
+const emptyEl    = document.getElementById('empty');
+
+let _classes = [];
+let _skills  = [];
+let _passives = {};
+let _promptByClass = {};         // { classId: { portrait: 'prompt…', south: '…', … } }
+let _selected = new Set();       // class ids
+let _lbItems = [];               // [{ src, title, sub, prompt }, …] currently rebuilt per render
+let _lbIdx = 0;
+
+function esc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function spriteSrc(classId, pose) {
+  return `../images/spritecook/${classId}_${pose}.png`;
+}
+function transparentDataUrl() {
+  return 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22></svg>';
+}
+
+// Lazy-load art-direction prompts only when the user actually opens a sprite.
+async function loadPromptsFor(classId) {
+  if (_promptByClass[classId]) return _promptByClass[classId];
+  try {
+    const r = await fetch(`../data/art_direction/${classId}.json`);
+    if (!r.ok) throw new Error('no art-direction');
+    const j = await r.json();
+    // Schema: identity / outfit / weapons / portraitStyle / southStyle / etc.
+    const out = {
+      portrait: [j.identity, j.outfit, j.portraitStyle].filter(Boolean).join('\n\n'),
+      south:    [j.identity, j.outfit, j.southStyle].filter(Boolean).join('\n\n'),
+      east:     [j.identity, j.outfit].filter(Boolean).join('\n\n'),
+      east_attack: [j.identity, j.weapons, j.attackStyle].filter(Boolean).join('\n\n'),
+      east_spell:  [j.identity, j.spellStyle].filter(Boolean).join('\n\n'),
+      east_block:  [j.identity, j.blockStyle].filter(Boolean).join('\n\n'),
+      east_ko:     [j.identity, j.koStyle].filter(Boolean).join('\n\n'),
+    };
+    _promptByClass[classId] = out;
+    return out;
+  } catch (_) {
+    _promptByClass[classId] = null;
+    return null;
+  }
+}
+
+function buildLightboxItemsFor(cls) {
+  const items = POSES.map(p => ({
+    classId: cls.id,
+    pose: p.id,
+    src: spriteSrc(cls.id, p.id),
+    title: `${cls.name} — ${p.label}`,
+    sub: p.description,
+  }));
+  return items;
+}
+
+function openLightbox(cls, poseId) {
+  _lbItems = buildLightboxItemsFor(cls);
+  _lbIdx = Math.max(0, _lbItems.findIndex(it => it.pose === poseId));
+  if (_lbIdx < 0) _lbIdx = 0;
+  showLightbox();
+}
+
+async function showLightbox() {
+  const it = _lbItems[_lbIdx];
+  if (!it) return;
+  document.getElementById('lb-img').src = it.src;
+  document.getElementById('lb-img').alt = it.title;
+  document.getElementById('lb-title').textContent = it.title;
+  document.getElementById('lb-sub').textContent = it.sub;
+  document.getElementById('lb-counter').textContent = `${_lbIdx + 1} / ${_lbItems.length}`;
+  // Prompt (loaded lazily)
+  const promptBox = document.getElementById('lb-prompt');
+  const promptTxt = document.getElementById('lb-prompt-text');
+  promptBox.style.display = 'none';
+  promptTxt.textContent = '';
+  const map = await loadPromptsFor(it.classId);
+  const p = map && map[it.pose];
+  if (p && p.trim()) {
+    promptTxt.textContent = p;
+    promptBox.style.display = '';
+  }
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbStep(delta) {
+  if (!_lbItems.length) return;
+  _lbIdx = (_lbIdx + delta + _lbItems.length) % _lbItems.length;
+  showLightbox();
+}
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb-prev').addEventListener('click', () => lbStep(-1));
+document.getElementById('lb-next').addEventListener('click', () => lbStep(1));
+document.getElementById('lightbox').addEventListener('click', e => {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+window.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  else if (e.key === 'ArrowLeft') lbStep(-1);
+  else if (e.key === 'ArrowRight') lbStep(1);
+});
+
+const STARTER_FALLBACK = new Set(['warrior','fighter','ranger','rogue','mage']);
+function isStarter(c) { return c.starter === true || (c.starter === undefined && STARTER_FALLBACK.has(c.id)); }
+
+function renderCard(cls) {
+  const skills = _skills.filter(s => s.class === cls.id);
+  const passives = _passives[cls.id] || [];
+  const starter = isStarter(cls);
+
+  const card = document.createElement('div');
+  const mode = filterMode.value;
+  card.className = `cc-card mode-${mode}` + (_selected.has(cls.id) ? ' selected' : '');
+  card.dataset.id = cls.id;
+
+  const sprites = POSES.map(p => `
+    <div class="cc-sprite" data-pose="${p.id}" title="${esc(p.label)} — click to enlarge">
+      <img src="${spriteSrc(cls.id, p.id)}" alt="${esc(cls.name)} ${p.label}"
+           loading="lazy" onerror="this.classList.add('missing'); this.src='${transparentDataUrl()}'">
+      <div class="lbl">${esc(p.label)}</div>
+    </div>
+  `).join('');
+
+  const skillRows = skills.length
+    ? skills.map(s => `
+        <div class="cc-row">
+          <span class="lvl">L${s.unlockLevel ?? 1}</span>
+          <span class="nm">${esc(s.name)}</span>
+          ${s.mpCost ? `<span class="mp">${s.mpCost} MP</span>` : ''}
+          <span class="ds">${esc(s.description || '')}</span>
+        </div>
+      `).join('')
+    : '<div class="cc-row"><span class="ds" style="color:var(--muted);font-style:italic">No skills defined.</span></div>';
+
+  const passiveRows = passives.length
+    ? passives.map(p => `
+        <div class="cc-row">
+          <span class="nm">${esc(p.name)}</span>
+          <span class="ds">${esc(p.desc || '')}</span>
+        </div>
+      `).join('')
+    : '<div class="cc-row"><span class="ds" style="color:var(--muted);font-style:italic">No class-specific passives.</span></div>';
+
+  const reqBlock = !starter && cls.unlockRequirement
+    ? `<div class="cc-section-title cc-req-block">Unlock Requirement</div>
+       <div class="cc-req cc-req-block">
+         <span class="req-type">${esc(cls.unlockRequirement.type)}</span>
+         <span>${esc(cls.unlockRequirement.label)}</span>
+       </div>`
+    : (!starter
+        ? `<div class="cc-section-title cc-req-block">Unlock Requirement</div>
+           <div class="cc-req cc-req-block">
+             <span class="req-type">unknown</span>
+             <span>Unlock condition not yet defined for this class.</span>
+           </div>`
+        : '');
+
+  const tier = (cls.armorTier || '').toLowerCase();
+  const attr = cls.primaryAttr || '';
+
+  card.innerHTML = `
+    <input type="checkbox" class="cc-select" aria-label="Select ${esc(cls.name)}" ${enableSel.checked ? '' : 'style="display:none"'} ${_selected.has(cls.id) ? 'checked' : ''}>
+    <div class="cc-head">
+      <div class="cc-portrait" data-pose="portrait" title="${esc(cls.name)} portrait — click to enlarge">
+        <img src="${spriteSrc(cls.id,'portrait')}" alt="${esc(cls.name)} portrait"
+             loading="lazy" onerror="this.classList.add('missing'); this.src='${transparentDataUrl()}'">
+      </div>
+      <div class="cc-meta">
+        <div class="cc-name">${esc(cls.name)}</div>
+        <div class="cc-role">${esc(cls.role || '')}</div>
+        <div class="cc-tags">
+          ${attr ? `<span class="cc-tag attr-${attr}">${attr}</span>` : ''}
+          ${tier ? `<span class="cc-tag tier-${tier}">${tier}</span>` : ''}
+          ${starter ? '<span class="cc-tag starter">Starter</span>' : '<span class="cc-tag lock">Unlockable</span>'}
+        </div>
+      </div>
+    </div>
+    <div class="cc-hook">${esc(cls.hook || '')}</div>
+    <div class="cc-sprites">${sprites}</div>
+    <div class="cc-section-title">Skills (${skills.length})</div>
+    <div class="cc-skills">${skillRows}</div>
+    <div class="cc-section-title">Passives (${passives.length})</div>
+    <div class="cc-passives">${passiveRows}</div>
+    <div class="cc-row cc-equip" style="margin-top:0.35rem;color:var(--muted);font-size:0.7rem">
+      <span class="ds"><strong>Equipment:</strong> ${esc(cls.armorType || '—')}</span>
+    </div>
+    ${reqBlock}
+  `;
+
+  // Wire sprite-click → lightbox.
+  card.querySelectorAll('[data-pose]').forEach(el => {
+    el.addEventListener('click', () => {
+      openLightbox(cls, el.dataset.pose);
+    });
+  });
+  // Wire selection checkbox.
+  const cb = card.querySelector('.cc-select');
+  cb.addEventListener('change', (e) => {
+    e.stopPropagation();
+    if (cb.checked) _selected.add(cls.id); else _selected.delete(cls.id);
+    card.classList.toggle('selected', cb.checked);
+    refreshSelectionUi();
+  });
+
+  return card;
+}
+
+function refreshSelectionUi() {
+  const total = _classes.length;
+  const selN = _selected.size;
+  if (selN === 0) {
+    countEl.textContent = `${currentVisibleCount()} of ${total} classes`;
+    countEl.classList.remove('has-sel');
+    copyBtn.disabled = true;
+  } else {
+    countEl.textContent = `${selN} selected · ${currentVisibleCount()} of ${total} classes`;
+    countEl.classList.add('has-sel');
+    copyBtn.disabled = false;
+  }
+}
+let _lastVisibleCount = 0;
+function currentVisibleCount() { return _lastVisibleCount; }
+
+function render() {
+  const q    = searchEl.value.toLowerCase().trim();
+  const attr = filterAttr.value;
+  const tier = filterTier.value;
+  const sf   = filterStr.value;
+
+  const rows = _classes.filter(c => {
+    if (attr && c.primaryAttr !== attr) return false;
+    if (tier && (c.armorTier || '').toLowerCase() !== tier) return false;
+    if (sf === 'starter' && !isStarter(c)) return false;
+    if (sf === 'locked'  &&  isStarter(c)) return false;
+    if (q) {
+      const skillBlob = _skills.filter(s => s.class === c.id).map(s => `${s.name} ${s.description||''}`).join(' ');
+      const blob = [c.name, c.role, c.hook, c.armorType, c.primaryAttr, skillBlob].join(' ').toLowerCase();
+      if (!blob.includes(q)) return false;
+    }
+    return true;
+  });
+
+  grid.innerHTML = '';
+  for (const c of rows) grid.appendChild(renderCard(c));
+  _lastVisibleCount = rows.length;
+  emptyEl.style.display = rows.length === 0 ? 'block' : 'none';
+  refreshSelectionUi();
+}
+
+[searchEl, filterAttr, filterTier, filterStr, filterMode].forEach(el =>
+  el.addEventListener('input', render)
+);
+filterMode.addEventListener('change', render);
+enableSel.addEventListener('change', () => {
+  // Toggle visibility of all per-card checkboxes; if turning off, clear
+  // selection (otherwise a hidden selection is confusing).
+  if (!enableSel.checked) {
+    _selected.clear();
+  }
+  render();
+});
+
+copyBtn.addEventListener('click', async () => {
+  if (!_selected.size) return;
+  const names = _classes.filter(c => _selected.has(c.id)).map(c => c.name);
+  const text = names.join('\n');
+  try {
+    await navigator.clipboard.writeText(text);
+    copyBtn.textContent = `✓ Copied ${names.length}`;
+    setTimeout(() => { copyBtn.textContent = 'Copy List'; }, 1500);
+  } catch (_) {
+    // Fallback — show in prompt so user can copy manually.
+    window.prompt('Copy these class names:', text);
+  }
+});
+
+Promise.all([getClasses(), getSkills(), getPassives()])
+  .then(([classes, skills, passives]) => {
+    _classes = classes.sort((a, b) => {
+      const sa = isStarter(a) ? 0 : 1;
+      const sb = isStarter(b) ? 0 : 1;
+      if (sa !== sb) return sa - sb;
+      return a.name.localeCompare(b.name);
+    });
+    _skills   = skills;
+    _passives = passives || {};
+    render();
+  })
+  .catch(err => {
+    grid.innerHTML = `<div class="err">Failed to load class data: ${esc(err.message)}</div>`;
+  });
+</script>
+</body>
+</html>

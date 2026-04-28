@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Status Effect Catalog — Emberveil</title>
+<!-- TODO M299: migrate to data-source.js — this page already uses it -->
+<style>
+body { padding: 1rem 1rem 4rem; }
+.wrap { max-width: 1000px; margin: 0 auto; }
+h1 {
+  font-family: 'Cinzel',Georgia,serif;
+  font-size: 1.4rem; margin: 0 0 0.2rem;
+  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+  background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+.filters {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 8px; padding: 0.6rem 0.75rem; margin: 0 0 0.75rem;
+  position: sticky; top: 0; z-index: 10;
+}
+.filters input[type=text] {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text); padding: 0.3rem 0.6rem; font: inherit; font-size: 0.8rem;
+  min-width: 200px; flex: 1 1 200px;
+}
+.filters input[type=text]:focus { outline: none; border-color: var(--gold); }
+.count { color: var(--muted); font-size: 0.78rem; margin-left: auto; }
+
+.effect-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 0.65rem;
+}
+.effect-card {
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 8px; padding: 0.75rem 0.9rem;
+  display: flex; gap: 0.75rem; align-items: flex-start;
+}
+.glyph-badge {
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 6px;
+  font-size: 1.15rem; font-weight: 700; flex-shrink: 0;
+  border: 1.5px solid;
+  font-variant-emoji: text;
+}
+.effect-info { flex: 1; min-width: 0; }
+.effect-name {
+  font-family: 'Cinzel',Georgia,serif; font-size: 0.92rem; font-weight: 700;
+  color: var(--text); letter-spacing: 0.04em; margin-bottom: 0.25rem;
+}
+.effect-id { font-size: 0.68rem; color: var(--muted); font-family: monospace; margin-bottom: 0.3rem; }
+.effect-plain { font-size: 0.79rem; color: var(--text); line-height: 1.5; }
+
+/* Category sections */
+.cat-header {
+  font-family: 'Cinzel',Georgia,serif; font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+  margin: 1rem 0 0.4rem; padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--border-subtle,#2a1f30);
+}
+.empty { text-align: center; color: var(--muted); padding: 2rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Status Effect Catalog</h1>
+  <p class="sub">
+    Every status effect in Emberveil. Data is sourced from <code>src/game/statusEffects.js</code> STATUS_META.
+    Interactions matrix planned for M300.
+  </p>
+
+  <div class="filters">
+    <input type="text" id="search" placeholder="Search name, id, or description...">
+    <span class="count" id="count"></span>
+  </div>
+
+  <div id="content"></div>
+  <div class="empty" id="empty" style="display:none">No status effects match the current filter.</div>
+</div>
+
+<script type="module">
+import { getStatusEffects } from './data/data-source.js';
+
+let _all = [];
+
+const searchEl  = document.getElementById('search');
+const contentEl = document.getElementById('content');
+const countEl   = document.getElementById('count');
+const emptyEl   = document.getElementById('empty');
+
+// Derive category from known families (mirrors generate-data-catalogs.cjs logic)
+const FAMILY = {
+  burn:'DoT', poison:'DoT', bleed:'DoT', holy_burn:'DoT',
+  stun:'Control', blind:'Control', slow:'Control', root:'Control', silence:'Control', disarm:'Control',
+  barrier:'Defensive', block:'Defensive', deflect:'Defensive',
+  haste:'Buff', rally:'Buff', regen:'Buff', enchant:'Buff',
+  marked:'Debuff', curse:'Debuff', taunt_totem:'Debuff',
+  soulbind:'Link',
+};
+
+const CAT_ORDER = ['Buff','Defensive','DoT','Control','Debuff','Link','Other'];
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function render() {
+  const q = searchEl.value.toLowerCase();
+  const filtered = _all.filter(e => {
+    if (!q) return true;
+    return [e.id, e.name, e.plain].join(' ').toLowerCase().includes(q);
+  });
+
+  // Group by category
+  const groups = {};
+  for (const e of filtered) {
+    const cat = FAMILY[e.id] || 'Other';
+    if (!groups[cat]) groups[cat] = [];
+    groups[cat].push(e);
+  }
+
+  contentEl.innerHTML = '';
+  let total = 0;
+  for (const cat of CAT_ORDER) {
+    const effects = groups[cat];
+    if (!effects?.length) continue;
+    total += effects.length;
+
+    const hdr = document.createElement('div');
+    hdr.className = 'cat-header';
+    hdr.textContent = cat;
+    contentEl.appendChild(hdr);
+
+    const grid = document.createElement('div');
+    grid.className = 'effect-grid';
+    for (const e of effects) {
+      const card = document.createElement('div');
+      card.className = 'effect-card';
+      // Color-tinted glyph badge
+      const bgColor = e.color ? e.color + '22' : 'rgba(255,255,255,0.06)';
+      const borderColor = e.color || 'rgba(255,255,255,0.2)';
+      card.innerHTML = `
+        <div class="glyph-badge" style="background:${bgColor};border-color:${borderColor};color:${e.color||'var(--text)'}">
+          ${esc(e.glyph)}
+        </div>
+        <div class="effect-info">
+          <div class="effect-name">${esc(e.name)}</div>
+          <div class="effect-id">${esc(e.id)}</div>
+          <div class="effect-plain">${esc(e.plain)}</div>
+        </div>
+      `;
+      grid.appendChild(card);
+    }
+    contentEl.appendChild(grid);
+  }
+
+  countEl.textContent = `${total} of ${_all.length} status effects`;
+  emptyEl.style.display = total === 0 ? 'block' : 'none';
+}
+
+searchEl.addEventListener('input', render);
+
+getStatusEffects().then(data => {
+  _all = data;
+  render();
+}).catch(err => {
+  contentEl.innerHTML = `<div class="empty">Failed to load status effect data: ${err.message}</div>`;
+});
+</script>
+</body>
+</html>

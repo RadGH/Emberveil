@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="rsg-game" content="Emberveil">
+  <title>Emberveil — Sprite Adjust</title>
+  <link rel="stylesheet" href="./_tool-styles.css">
+  <style>
+    :root { font-variant-emoji: text; --pane-bg: #15101a; --pane-border: rgba(160,80,255,0.18); }
+    html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
+    body { background: linear-gradient(180deg, #0e0a14, #1a121e); color: #f0e8d8; font-family: 'Inter', system-ui, sans-serif; }
+    .sa-shell { display: flex; flex-direction: column; height: 100vh; }
+    .sa-topbar { display: flex; align-items: center; gap: 14px; padding: 8px 14px; border-bottom: 1px solid var(--pane-border); background: rgba(0,0,0,0.35); flex: 0 0 auto; }
+    .sa-title { font-family: var(--font-display); color: var(--gold-bright); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; margin-right: 8px; }
+    .sa-topbar label { font-size: 11px; color: var(--muted); display: inline-flex; align-items: center; gap: 4px; }
+    .sa-topbar select, .sa-topbar input[type="text"] { background: #0a0714; border: 1px solid rgba(160,80,255,0.3); color: var(--text); padding: 3px 6px; border-radius: 3px; font-size: 11px; }
+    .sa-topbar button { background: rgba(160,80,255,0.15); border: 1px solid rgba(160,80,255,0.4); color: #b87fff; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; cursor: pointer; letter-spacing: 0.05em; }
+    .sa-topbar button:hover { background: rgba(160,80,255,0.28); }
+    .sa-topbar button.active { background: rgba(232,160,32,0.2); border-color: rgba(232,160,32,0.5); color: var(--gold); }
+    .sa-spacer { flex: 1; }
+
+    .sa-main { display: grid; grid-template-columns: 1fr 1fr 320px; flex: 1; min-height: 0; position: relative; }
+    /* Stacked = overlapping. Both panels occupy the same grid cell; ref draws
+       under target at reduced opacity so the user can compare alignment. The
+       reference's stage canvas is the only thing that bleeds through — its
+       header + foot stay visible above the target's, offset to the side. */
+    /* M290 — Stacked layout: the panel listed FIRST in the order toggle is the
+       overlay (drawn on top of the second panel's stage at --stack-opacity).
+       The "bottom" panel is the one being adjusted; the "top" panel is just a
+       visual guide and ignores pointer input. The opacity only applies to the
+       sprite stage area — head + foot stay fully readable so scale / x / y
+       coords aren't dimmed. */
+    :root { --stack-opacity: 0.5; }
+    .sa-main.stacked { grid-template-columns: 1fr 320px; grid-template-rows: 1fr; }
+    .sa-main.stacked .sa-panel { grid-column: 1; grid-row: 1; background: transparent; border: none; }
+    .sa-main.stacked .sa-list { grid-row: 1; grid-column: 2; }
+    .sa-main.stacked .sa-panel-stage { background: transparent; }
+    /* Default order (Ref → Target): REF is the overlay on top of TARGET. */
+    .sa-main.stacked .sa-panel-target { z-index: 1; pointer-events: auto; }
+    .sa-main.stacked .sa-panel-target .sa-panel-stage { opacity: 1; pointer-events: auto; }
+    .sa-main.stacked .sa-panel-ref { z-index: 2; pointer-events: none; }
+    .sa-main.stacked .sa-panel-ref .sa-panel-stage { opacity: var(--stack-opacity); pointer-events: none; }
+    /* Keep BOTH heads + feet visible side-by-side (head left for ref, right
+       for target; foot does the same). Head/foot are in the same grid cell so
+       float them to opposite sides. */
+    .sa-main.stacked .sa-panel-head, .sa-main.stacked .sa-panel-foot { background: rgba(8,4,12,0.85); pointer-events: auto; opacity: 1; }
+    .sa-main.stacked .sa-panel-ref .sa-panel-head { border-bottom-color: rgba(128,176,255,0.4); margin-right: 50%; }
+    .sa-main.stacked .sa-panel-target .sa-panel-head { border-bottom-color: rgba(232,160,32,0.4); margin-left: 50%; }
+    .sa-main.stacked .sa-panel-ref .sa-panel-foot { border-top-color: rgba(128,176,255,0.4); margin-right: 50%; }
+    .sa-main.stacked .sa-panel-target .sa-panel-foot { border-top-color: rgba(232,160,32,0.4); margin-left: 50%; }
+    /* Swapped order (Target → Ref): TARGET is the overlay on top of REF. */
+    .sa-main.stacked.swapped .sa-panel-target { z-index: 2; pointer-events: none; }
+    .sa-main.stacked.swapped .sa-panel-target .sa-panel-stage { opacity: var(--stack-opacity); pointer-events: none; }
+    .sa-main.stacked.swapped .sa-panel-ref { z-index: 1; pointer-events: auto; }
+    .sa-main.stacked.swapped .sa-panel-ref .sa-panel-stage { opacity: 1; pointer-events: auto; }
+    /* Side-by-side mode swap: order in the flex/grid */
+    .sa-main.swapped:not(.stacked) .sa-panel-ref { order: 2; }
+    .sa-main.swapped:not(.stacked) .sa-panel-target { order: 1; }
+    /* Stack Opacity slider styling */
+    .sa-stack-op { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+    .sa-stack-op input[type=range] { width: 80px; accent-color: var(--gold); }
+    .sa-stack-op .v { color: var(--gold); font-variant-numeric: tabular-nums; min-width: 30px; }
+
+    .sa-panel { background: var(--pane-bg); border-right: 1px solid var(--pane-border); display: flex; flex-direction: column; overflow: hidden; position: relative; }
+    .sa-panel-target { border-right: 1px solid var(--pane-border); }
+    .sa-panel-head { padding: 8px 12px; border-bottom: 1px solid var(--pane-border); display: flex; align-items: center; gap: 10px; flex: 0 0 auto; min-height: 30px; }
+    .sa-panel-head .sa-pane-tag { font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+    .sa-panel-head .sa-pane-tag.ref { color: #80b0ff; }
+    .sa-panel-head .sa-pane-name { font-weight: 700; color: var(--gold-bright); font-size: 13px; flex: 1; }
+    .sa-panel-head .sa-pane-pose { font-size: 11px; color: var(--muted); }
+    .sa-panel-stage { flex: 1; position: relative; overflow: hidden; background:
+      linear-gradient(45deg, rgba(255,255,255,0.025) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(255,255,255,0.025) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.025) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.025) 75%);
+      background-size: 24px 24px;
+      background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+    }
+    .sa-stage-grid { position: absolute; inset: 0; pointer-events: none; opacity: 0.18; }
+    .sa-sprite-canvas { position: absolute; inset: 0; }
+    .sa-panel-foot { padding: 6px 12px; border-top: 1px solid var(--pane-border); display: flex; gap: 12px; font-size: 11px; flex: 0 0 auto; }
+    .sa-panel-foot .v { color: var(--gold); font-variant-numeric: tabular-nums; min-width: 38px; display: inline-block; }
+    .sa-panel-foot .reset { background: rgba(200,80,80,0.12); border: 1px solid rgba(200,80,80,0.35); color: #ff8a70; padding: 1px 8px; border-radius: 3px; font-size: 10px; cursor: pointer; }
+    .sa-panel-foot .reset:hover { background: rgba(200,80,80,0.22); }
+    .sa-panel-foot .sa-live-pill { font-size: 9.5px; letter-spacing: 0.18em; padding: 1px 7px; background: rgba(96,168,232,0.16); border: 1px solid rgba(96,168,232,0.5); color: #80b0ff; border-radius: 3px; font-weight: 700; }
+    .sa-panel-ref .sa-sprite-canvas { cursor: default !important; }
+    .sa-panel-ref .sa-panel-stage { cursor: default !important; }
+
+    .sa-list { background: rgba(8,4,12,0.7); border-left: 1px solid var(--pane-border); display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+    .sa-list-head { padding: 8px 12px; border-bottom: 1px solid var(--pane-border); display: flex; flex-wrap: wrap; align-items: center; gap: 8px; flex: 0 0 auto; }
+    .sa-list-head .sa-list-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); flex: 1 1 100%; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .sa-list-head select { font-size: 10px; flex: 0 0 auto; }
+    .sa-list-body { flex: 1; overflow-y: auto; }
+    .sa-list-row { padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 11px; line-height: 1.3; }
+    .sa-list-row:hover { background: rgba(160,80,255,0.06); }
+    .sa-list-row.active { background: rgba(232,160,32,0.12); border-left: 3px solid var(--gold); padding-left: 7px; }
+    .sa-list-row .sa-state-dot { flex: 0 0 8px; width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.18); }
+    .sa-list-row[data-state="viewed"] .sa-state-dot { background: rgba(96,200,255,0.7); }
+    .sa-list-row[data-state="adjusted"] .sa-state-dot { background: rgba(96,200,128,0.85); box-shadow: 0 0 6px rgba(96,200,128,0.55); }
+    .sa-list-row .sa-row-id { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    .sa-list-row .sa-row-id .sub { color: var(--muted); font-size: 10px; }
+    .sa-list-row .sa-row-delta { font-family: 'JetBrains Mono', monospace; color: #6fd88a; font-size: 10px; white-space: nowrap; }
+
+    .sa-mode-bar { padding: 8px 14px; border-top: 1px solid var(--pane-border); background: rgba(0,0,0,0.45); display: flex; flex-wrap: wrap; align-items: center; gap: 14px; flex: 0 0 auto; font-size: 11px; }
+    .sa-mode-group { display: inline-flex; gap: 4px; align-items: center; padding: 2px 8px; background: rgba(255,255,255,0.04); border-radius: 4px; }
+    .sa-mode-group .lab { color: var(--muted); margin-right: 6px; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .sa-mode-group button { background: transparent; border: 1px solid rgba(160,80,255,0.25); color: var(--text); padding: 2px 8px; border-radius: 3px; cursor: pointer; font-size: 10.5px; }
+    .sa-mode-group button.on { background: rgba(160,80,255,0.25); border-color: rgba(160,80,255,0.5); color: #d0b0ff; }
+    .sa-mode-bar .hint { font-size: 10px; color: var(--muted); margin-left: auto; }
+
+    /* Modal */
+    .sa-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 100; display: none; align-items: center; justify-content: center; }
+    .sa-modal-overlay.open { display: flex; }
+    .sa-modal { background: #15101a; border: 1px solid rgba(184,127,255,0.45); border-radius: 8px; padding: 16px 18px; width: min(720px, 92vw); max-height: 90vh; display: flex; flex-direction: column; gap: 10px; }
+    .sa-modal h2 { font-family: var(--font-display); color: #b87fff; font-size: 16px; margin: 0; letter-spacing: 0.05em; }
+    .sa-modal label { font-size: 11px; color: var(--muted); display: block; margin-top: 6px; }
+    .sa-modal textarea { width: 100%; box-sizing: border-box; background: #0a0714; border: 1px solid rgba(160,80,255,0.3); color: var(--text); padding: 8px 10px; border-radius: 4px; font-family: inherit; resize: vertical; min-height: 60px; font-size: 12px; }
+    .sa-modal pre { background: #0a0714; border: 1px solid rgba(160,80,255,0.3); color: #d0c0b0; padding: 10px 12px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; max-height: 40vh; overflow: auto; white-space: pre-wrap; word-break: break-word; }
+    .sa-modal .row { display: flex; gap: 8px; align-items: center; justify-content: flex-end; }
+    .sa-modal button { background: rgba(184,127,255,0.18); border: 1px solid rgba(184,127,255,0.45); color: #b87fff; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+    .sa-modal button.primary { background: rgba(232,160,32,0.18); border-color: rgba(232,160,32,0.5); color: var(--gold); }
+    .sa-toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: rgba(0,0,0,0.85); color: var(--gold); padding: 8px 14px; border-radius: 4px; border: 1px solid rgba(232,160,32,0.4); z-index: 200; pointer-events: none; opacity: 0; transition: opacity 0.2s; font-size: 12px; }
+    .sa-toast.show { opacity: 1; }
+    .sa-empty { padding: 30px; text-align: center; color: var(--muted); font-size: 12px; }
+
+    /* Mobile-only row dropdown shown above the panels */
+    .sa-mobile-rowbar { display: none; align-items: center; gap: 8px; padding: 6px 10px; border-bottom: 1px solid var(--pane-border); background: rgba(8,4,12,0.7); flex: 0 0 auto; }
+    .sa-mobile-rowbar select { flex: 1; background: #0a0714; border: 1px solid rgba(160,80,255,0.3); color: var(--text); padding: 5px 6px; border-radius: 4px; font-size: 12px; }
+    .sa-mobile-rowbar .sa-mobile-counter { font-size: 10px; color: var(--muted); white-space: nowrap; }
+
+    @media (max-width: 720px) {
+      .sa-topbar { flex-wrap: wrap; gap: 8px; padding: 6px 8px; }
+      .sa-topbar label { font-size: 10px; }
+      .sa-mobile-rowbar { display: flex; }
+      .sa-main { grid-template-columns: 1fr !important; grid-template-rows: 1fr 1fr !important; }
+      .sa-list { display: none; }
+      .sa-main .sa-panel-ref { grid-column: 1 !important; grid-row: 1 !important; }
+      .sa-main .sa-panel-target { grid-column: 1 !important; grid-row: 2 !important; }
+      .sa-main.swapped .sa-panel-ref { grid-row: 2 !important; }
+      .sa-main.swapped .sa-panel-target { grid-row: 1 !important; }
+      /* Mobile stacked = overlap in single row, same as desktop. */
+      .sa-main.stacked { grid-template-columns: 1fr !important; grid-template-rows: 1fr !important; }
+      .sa-main.stacked .sa-panel-ref,
+      .sa-main.stacked .sa-panel-target { grid-row: 1 !important; grid-column: 1 !important; }
+      .sa-mode-bar .hint { display: none; }
+    }
+  </style>
+  <script src="./_header.js" defer></script>
+</head>
+<body>
+<div class="sa-shell">
+  <div class="sa-topbar">
+    <span class="sa-title">Sprite Adjust</span>
+    <label>Layout
+      <button id="layout-toggle" type="button" data-mode="side">Side</button>
+    </label>
+    <label>Order
+      <button id="order-toggle" type="button">Ref → Target</button>
+    </label>
+    <label class="sa-stack-op" id="stack-op-wrap" style="display:none">Stack Opacity
+      <input type="range" id="stack-op" min="0" max="100" value="50" step="5">
+      <span class="v" id="stack-op-v">50%</span>
+    </label>
+    <label>Reference
+      <select id="ref-char-select"></select>
+      <button id="lock-ref" type="button">🔓 Auto</button>
+    </label>
+    <label><input type="checkbox" id="show-raw"> Show raw (no adjust)</label>
+    <span class="sa-spacer"></span>
+    <button id="btn-anim" type="button">▶ Preview Animation</button>
+    <button id="btn-prompt" type="button">Get Prompt</button>
+  </div>
+
+  <div class="sa-main" id="sa-main">
+    <div class="sa-panel sa-panel-ref">
+      <div class="sa-panel-head">
+        <span class="sa-pane-tag ref">Reference</span>
+        <span class="sa-pane-name" id="ref-name">—</span>
+        <span class="sa-pane-pose" id="ref-pose">—</span>
+      </div>
+      <div class="sa-panel-stage" id="ref-stage">
+        <canvas class="sa-sprite-canvas" id="ref-canvas"></canvas>
+      </div>
+      <div class="sa-panel-foot">
+        <span class="sa-live-pill" title="Reference shows the live values from sprite_adjustments.json (read-only)">LIVE</span>
+        <span>Scale <span class="v" id="ref-scale-v">1.00</span></span>
+        <span>X <span class="v" id="ref-x-v">0</span></span>
+        <span>Y <span class="v" id="ref-y-v">0</span></span>
+      </div>
+    </div>
+
+    <div class="sa-panel sa-panel-target">
+      <div class="sa-panel-head">
+        <span class="sa-pane-tag">Target</span>
+        <span class="sa-pane-name" id="tgt-name">—</span>
+        <span class="sa-pane-pose" id="tgt-pose">—</span>
+      </div>
+      <div class="sa-panel-stage" id="tgt-stage">
+        <canvas class="sa-sprite-canvas" id="tgt-canvas"></canvas>
+      </div>
+      <div class="sa-panel-foot">
+        <span>Scale <span class="v" id="tgt-scale-v">1.00</span></span>
+        <span>X <span class="v" id="tgt-x-v">0</span></span>
+        <span>Y <span class="v" id="tgt-y-v">0</span></span>
+        <button class="reset" type="button" data-reset="tgt">reset</button>
+      </div>
+    </div>
+
+    <div class="sa-list">
+      <div class="sa-list-head">
+        <span class="sa-list-title" id="list-counter">0 / 0</span>
+        <select id="filter-state">
+          <option value="all">all</option>
+          <option value="untouched">untouched</option>
+          <option value="viewed">viewed</option>
+          <option value="adjusted">adjusted</option>
+        </select>
+      </div>
+      <div class="sa-list-body" id="list-body"></div>
+    </div>
+  </div>
+
+  <div class="sa-mode-bar">
+    <span class="sa-mode-group">
+      <span class="lab">Action</span>
+      <button data-action="position" type="button" class="on">Position</button>
+      <button data-action="resize" type="button">Resize</button>
+    </span>
+    <span class="hint">Drag target to move; scroll wheel to scale. Arrow keys also work. Reference is read-only (live game JSON).</span>
+  </div>
+</div>
+
+<!-- Get Prompt modal -->
+<div class="sa-modal-overlay" id="modal-overlay">
+  <div class="sa-modal">
+    <h2>Get Prompt</h2>
+    <label>Optional prompt prefix (your message):</label>
+    <textarea id="prompt-prefix" placeholder="e.g. Please apply these sprite scale adjustments to public/data/sprite_adjustments.json:"></textarea>
+    <label>Generated list (auto-updates):</label>
+    <pre id="prompt-output"></pre>
+    <div class="row">
+      <button id="modal-close" type="button">Cancel</button>
+      <button id="modal-copy" type="button" class="primary">Copy to clipboard</button>
+    </div>
+  </div>
+</div>
+
+<div class="sa-toast" id="toast"></div>
+
+<script type="module">
+// ── State ────────────────────────────────────────────────────────────────
+const POSES = ['portrait', 'south', 'east', 'east_attack', 'east_spell', 'east_block', 'east_ko'];
+const PREF_KEY = 'emberveil_sprite_adjust_prefs';
+
+const state = {
+  // Live game data
+  characters: [],         // [{ id, name, classDefault, gender, isCompanion, npc, status, framesStatus, posesAvailable[] }]
+  liveAdjustments: {},    // existing public/data/sprite_adjustments.json
+  // List
+  rows: [],               // [{ id: char.poseId, charId, charName, pose, status: 'untouched'|'viewed'|'adjusted', adj: {scale,offsetX,offsetY} }]
+  selectedRowIdx: 0,
+  // Reference
+  referenceCharId: null,
+  referenceLocked: false, // when locked, ref pose stays put even if target pose changes
+  referenceLockedPose: null,
+  // M283 — Reference adj is now derived from liveAdjustments (the JSON file
+  // currently in the game). Read-only. The target keeps user edits in row.adj.
+  // Kept as a computed getter helper (`getRefAdj`).
+  // UI prefs (persisted)
+  layout: 'side',         // 'side' | 'stacked'
+  orderSwapped: false,    // false = ref first, true = target first
+  showRaw: false,
+  controlSide: 'tgt',     // 'ref' | 'tgt'
+  controlAction: 'position', // 'position' | 'resize'
+  filter: 'all',
+  // Image cache
+  imgCache: new Map(),
+};
+
+// ── Pref persistence (UI prefs only — list state is ephemeral per #4) ────
+function loadPrefs() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(PREF_KEY) || '{}');
+    if (raw.layout) state.layout = raw.layout;
+    if (typeof raw.orderSwapped === 'boolean') state.orderSwapped = raw.orderSwapped;
+    if (typeof raw.showRaw === 'boolean') state.showRaw = raw.showRaw;
+    if (raw.controlSide) state.controlSide = raw.controlSide;
+    if (raw.controlAction) state.controlAction = raw.controlAction;
+    if (raw.referenceCharId) state.referenceCharId = raw.referenceCharId;
+    if (typeof raw.referenceLocked === 'boolean') state.referenceLocked = raw.referenceLocked;
+    if (raw.filter) state.filter = raw.filter;
+    if (raw.promptPrefix) state.promptPrefix = raw.promptPrefix;
+  } catch (_) {}
+}
+function savePrefs() {
+  try {
+    localStorage.setItem(PREF_KEY, JSON.stringify({
+      layout: state.layout,
+      orderSwapped: state.orderSwapped,
+      showRaw: state.showRaw,
+      controlSide: state.controlSide,
+      controlAction: state.controlAction,
+      referenceCharId: state.referenceCharId,
+      referenceLocked: state.referenceLocked,
+      filter: state.filter,
+      promptPrefix: document.getElementById('prompt-prefix')?.value || '',
+    }));
+  } catch (_) {}
+}
+
+// ── Data loading ─────────────────────────────────────────────────────────
+async function loadData() {
+  try {
+    const [redesignRes, adjRes] = await Promise.all([
+      fetch('../data/pixellab_redesign_state.json').then(r => r.json()),
+      fetch('../data/sprite_adjustments.json').then(r => r.json()).catch(() => ({})),
+    ]);
+    // Strip $schema/$comment from adjustments
+    const adj = {};
+    for (const [k, v] of Object.entries(adjRes || {})) {
+      if (k.startsWith('$') || typeof v !== 'object' || v == null) continue;
+      adj[k] = v;
+    }
+    state.liveAdjustments = adj;
+    state.characters = parseRedesignState(redesignRes);
+    buildRows();
+  } catch (e) {
+    document.getElementById('list-body').innerHTML = `<div class="sa-empty">Failed to load data: ${e.message}<br>Make sure you opened this via a server (not file://).</div>`;
+    console.error(e);
+  }
+}
+
+function parseRedesignState(redesign) {
+  const chars = [];
+  const ents = redesign?.characters || {};
+  for (const [id, e] of Object.entries(ents)) {
+    if (!e || typeof e !== 'object') continue;
+    const fs = e.framesStatus || {};
+    const poses = POSES.filter(p => fs[p] && fs[p] !== 'not_generated');
+    if (!poses.length) continue;
+    chars.push({
+      id,
+      name: id,
+      classDefault: e.spriteId || id,
+      isCompanion: !!e.isCompanion,
+      npc: !!e.npc,
+      status: e.status || 'unknown',
+      framesStatus: fs,
+      posesAvailable: poses,
+    });
+  }
+  // Sort: heroes first, then companions, then npcs; within each by id.
+  chars.sort((a, b) => {
+    const aa = a.npc ? 2 : a.isCompanion ? 1 : 0;
+    const bb = b.npc ? 2 : b.isCompanion ? 1 : 0;
+    if (aa !== bb) return aa - bb;
+    return a.id.localeCompare(b.id);
+  });
+  return chars;
+}
+
+function buildRows() {
+  state.rows = [];
+  for (const c of state.characters) {
+    for (const pose of c.posesAvailable) {
+      const live = state.liveAdjustments[c.id];
+      const livePose = live?.perPose?.[pose] || null;
+      const liveBase = live ? { scale: live.scale ?? 1, offsetX: live.offsetX ?? 0, offsetY: live.offsetY ?? 0 } : null;
+      const adj = livePose
+        ? { scale: livePose.scale ?? liveBase?.scale ?? 1, offsetX: livePose.offsetX ?? liveBase?.offsetX ?? 0, offsetY: livePose.offsetY ?? liveBase?.offsetY ?? 0 }
+        : (liveBase || { scale: 1, offsetX: 0, offsetY: 0 });
+      const isAdjusted = adj.scale !== 1 || adj.offsetX !== 0 || adj.offsetY !== 0;
+      state.rows.push({
+        id: `${c.id}__${pose}`,
+        charId: c.id,
+        charName: c.name,
+        pose,
+        status: isAdjusted ? 'adjusted' : 'untouched',
+        adj: { ...adj },
+        adjOriginal: { ...adj },
+      });
+    }
+  }
+  // Initial reference: first hero
+  if (!state.referenceCharId || !state.characters.find(c => c.id === state.referenceCharId)) {
+    const firstHero = state.characters.find(c => !c.isCompanion && !c.npc);
+    state.referenceCharId = firstHero?.id || state.characters[0]?.id || null;
+  }
+  populateRefSelect();
+  renderList();
+  selectRow(0);
+}
+
+function populateRefSelect() {
+  const sel = document.getElementById('ref-char-select');
+  sel.innerHTML = '';
+  for (const c of state.characters) {
+    const opt = document.createElement('option');
+    opt.value = c.id;
+    opt.textContent = c.id;
+    if (c.id === state.referenceCharId) opt.selected = true;
+    sel.appendChild(opt);
+  }
+}
+
+// ── Reference adjustment lookup (live, read-only) ────────────────────────
+// Returns the scale/offset values currently in sprite_adjustments.json for
+// the active reference character + pose. Used to render the Reference panel
+// exactly as the game would render that character.
+function getRefAdj(refPose = state.refPose) {
+  const charId = state.referenceCharId;
+  const live = state.liveAdjustments[charId];
+  if (!live) return { scale: 1, offsetX: 0, offsetY: 0 };
+  const per = live.perPose && live.perPose[refPose];
+  return {
+    scale: (per && typeof per.scale === 'number') ? per.scale
+         : (typeof live.scale === 'number') ? live.scale : 1,
+    offsetX: (per && typeof per.offsetX === 'number') ? per.offsetX
+           : (typeof live.offsetX === 'number') ? live.offsetX : 0,
+    offsetY: (per && typeof per.offsetY === 'number') ? per.offsetY
+           : (typeof live.offsetY === 'number') ? live.offsetY : 0,
+  };
+}
+
+// ── Image loading ────────────────────────────────────────────────────────
+function loadImage(spriteId, pose) {
+  const key = `${spriteId}_${pose}`;
+  if (state.imgCache.has(key)) return state.imgCache.get(key);
+  const p = new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error(`Failed to load ${key}.png`));
+    img.src = `../images/spritecook/${key}.png`;
+  });
+  state.imgCache.set(key, p);
+  return p;
+}
+
+// ── Render ───────────────────────────────────────────────────────────────
+function renderList() {
+  const body = document.getElementById('list-body');
+  const filtered = state.filter === 'all' ? state.rows : state.rows.filter(r => r.status === state.filter);
+  if (!filtered.length) {
+    body.innerHTML = `<div class="sa-empty">No items match the filter.</div>`;
+  } else {
+    body.innerHTML = filtered.map((r, fi) => {
+      const idx = state.rows.indexOf(r);
+      const isActive = idx === state.selectedRowIdx;
+      const ox = Math.round(r.adj.offsetX);
+      const oy = Math.round(r.adj.offsetY);
+      const delta = r.status === 'adjusted'
+        ? `s${r.adj.scale.toFixed(2)} ${ox>=0?'+':''}${ox},${oy>=0?'+':''}${oy}`
+        : '';
+      return `<div class="sa-list-row${isActive ? ' active' : ''}" data-state="${r.status}" data-idx="${idx}">
+        <span class="sa-state-dot"></span>
+        <span class="sa-row-id">${r.charId} <span class="sub">· ${r.pose}</span></span>
+        <span class="sa-row-delta">${delta}</span>
+      </div>`;
+    }).join('');
+    body.querySelectorAll('.sa-list-row').forEach(el => {
+      el.addEventListener('click', () => selectRow(parseInt(el.dataset.idx, 10)));
+    });
+    // Scroll active into view
+    const active = body.querySelector('.sa-list-row.active');
+    if (active) active.scrollIntoView({ block: 'nearest' });
+  }
+  document.getElementById('list-counter').textContent = `${filtered.length} / ${state.rows.length}`;
+}
+
+function selectRow(idx) {
+  if (idx < 0 || idx >= state.rows.length) return;
+  state.selectedRowIdx = idx;
+  const row = state.rows[idx];
+  if (row.status === 'untouched') row.status = 'viewed';
+  document.getElementById('tgt-name').textContent = row.charId;
+  document.getElementById('tgt-pose').textContent = row.pose;
+  // Reference pose: if locked, stay; else mirror target pose if available on ref char
+  const refChar = state.characters.find(c => c.id === state.referenceCharId);
+  let refPose = row.pose;
+  if (state.referenceLocked && state.referenceLockedPose) {
+    refPose = state.referenceLockedPose;
+  } else if (refChar && !refChar.posesAvailable.includes(row.pose)) {
+    refPose = refChar.posesAvailable[0];
+  }
+  document.getElementById('ref-name').textContent = refChar?.id || '—';
+  document.getElementById('ref-pose').textContent = refPose || '—';
+  state.refPose = refPose;
+  renderList();
+  drawSprites();
+  updateValueLabels();
+}
+
+function setStatus(idx, st) {
+  if (idx < 0 || idx >= state.rows.length) return;
+  state.rows[idx].status = st;
+  renderList();
+}
+
+async function drawSprites() {
+  const row = state.rows[state.selectedRowIdx];
+  if (!row) return;
+  // Target
+  const tgtCanvas = document.getElementById('tgt-canvas');
+  const tgtStage = document.getElementById('tgt-stage');
+  resizeCanvas(tgtCanvas, tgtStage);
+  drawSprite(tgtCanvas, row.charId, row.pose, state.showRaw ? { scale: 1, offsetX: 0, offsetY: 0 } : row.adj);
+  // Reference
+  const refCanvas = document.getElementById('ref-canvas');
+  const refStage = document.getElementById('ref-stage');
+  resizeCanvas(refCanvas, refStage);
+  if (state.referenceCharId && state.refPose) {
+    drawSprite(refCanvas, state.referenceCharId, state.refPose, state.showRaw ? { scale: 1, offsetX: 0, offsetY: 0 } : getRefAdj());
+  } else {
+    const ctx = refCanvas.getContext('2d');
+    ctx.clearRect(0, 0, refCanvas.width, refCanvas.height);
+  }
+}
+
+function resizeCanvas(canvas, stage) {
+  const r = stage.getBoundingClientRect();
+  if (canvas.width !== r.width || canvas.height !== r.height) {
+    canvas.width = r.width;
+    canvas.height = r.height;
+  }
+}
+
+async function drawSprite(canvas, charId, pose, adj) {
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Center crosshair (visual reference)
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(canvas.width / 2, 0);
+  ctx.lineTo(canvas.width / 2, canvas.height);
+  ctx.moveTo(0, canvas.height / 2);
+  ctx.lineTo(canvas.width, canvas.height / 2);
+  ctx.stroke();
+  try {
+    const img = await loadImage(charId, pose);
+    const baseFit = Math.min(canvas.width, canvas.height) * 0.85;
+    const scale = (baseFit / img.naturalWidth) * (adj.scale || 1);
+    const w = img.naturalWidth * scale;
+    const h = img.naturalHeight * scale;
+    const x = (canvas.width - w) / 2 + (adj.offsetX || 0);
+    const y = (canvas.height - h) / 2 + (adj.offsetY || 0);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(img, x, y, w, h);
+  } catch (e) {
+    ctx.fillStyle = 'rgba(255,140,140,0.7)';
+    ctx.font = '14px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`missing: ${charId}_${pose}.png`, canvas.width / 2, canvas.height / 2);
+  }
+}
+
+function updateValueLabels() {
+  const row = state.rows[state.selectedRowIdx];
+  if (row) {
+    document.getElementById('tgt-scale-v').textContent = row.adj.scale.toFixed(2);
+    document.getElementById('tgt-x-v').textContent = String(Math.round(row.adj.offsetX));
+    document.getElementById('tgt-y-v').textContent = String(Math.round(row.adj.offsetY));
+  }
+  const _ra = getRefAdj();
+  document.getElementById('ref-scale-v').textContent = _ra.scale.toFixed(2);
+  document.getElementById('ref-x-v').textContent = String(Math.round(_ra.offsetX));
+  document.getElementById('ref-y-v').textContent = String(Math.round(_ra.offsetY));
+}
+
+// ── Interaction (drag + scroll wheel + keys) ─────────────────────────────
+function getActiveAdj() {
+  // Reference is read-only (live JSON values). Force target.
+  return state.rows[state.selectedRowIdx].adj;
+}
+function commitAdjustmentChange() {
+  const row = state.rows[state.selectedRowIdx];
+  if (state.controlSide === 'tgt' && row) {
+    const isAdj = row.adj.scale !== 1 || row.adj.offsetX !== 0 || row.adj.offsetY !== 0;
+    row.status = isAdj ? 'adjusted' : 'viewed';
+  }
+  drawSprites();
+  updateValueLabels();
+  renderList();
+}
+
+function bindStage(canvas) {
+  let dragging = false; let startX = 0, startY = 0; let startAdjX = 0, startAdjY = 0; let startScale = 1;
+  canvas.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    canvas.setPointerCapture(e.pointerId);
+    startX = e.clientX; startY = e.clientY;
+    const a = getActiveAdj(); startAdjX = a.offsetX; startAdjY = a.offsetY; startScale = a.scale;
+    e.preventDefault();
+  });
+  canvas.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - startX, dy = e.clientY - startY;
+    const a = getActiveAdj();
+    if (state.controlAction === 'position') {
+      a.offsetX = startAdjX + dx;
+      a.offsetY = startAdjY + dy;
+    } else { // resize: vertical drag scales (down=bigger, up=smaller)
+      a.scale = Math.max(0.1, Math.min(4, startScale * (1 + dy / 200)));
+    }
+    commitAdjustmentChange();
+  });
+  canvas.addEventListener('pointerup', () => { dragging = false; });
+  canvas.addEventListener('pointercancel', () => { dragging = false; });
+  canvas.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const a = getActiveAdj();
+    const factor = e.deltaY > 0 ? 0.95 : 1.05;
+    a.scale = Math.max(0.1, Math.min(4, a.scale * factor));
+    commitAdjustmentChange();
+  }, { passive: false });
+}
+
+window.addEventListener('keydown', (e) => {
+  if (e.target?.tagName === 'INPUT' || e.target?.tagName === 'TEXTAREA' || e.target?.tagName === 'SELECT') return;
+  const a = getActiveAdj();
+  let consumed = false;
+  if (e.key === 'ArrowLeft') { a.offsetX -= e.shiftKey ? 10 : 1; consumed = true; }
+  else if (e.key === 'ArrowRight') { a.offsetX += e.shiftKey ? 10 : 1; consumed = true; }
+  else if (e.key === 'ArrowUp') { a.offsetY -= e.shiftKey ? 10 : 1; consumed = true; }
+  else if (e.key === 'ArrowDown') { a.offsetY += e.shiftKey ? 10 : 1; consumed = true; }
+  else if (e.key === '+' || e.key === '=') { a.scale = Math.min(4, a.scale * 1.05); consumed = true; }
+  else if (e.key === '-' || e.key === '_') { a.scale = Math.max(0.1, a.scale * 0.95); consumed = true; }
+  else if (e.key === 'j' || e.key === 'ArrowDown' && !e.altKey) { /* handled */ }
+  else if (e.key === 'n') { selectRow(Math.min(state.rows.length - 1, state.selectedRowIdx + 1)); consumed = true; }
+  else if (e.key === 'p') { selectRow(Math.max(0, state.selectedRowIdx - 1)); consumed = true; }
+  else if (e.key === 'r') { resetActive(); consumed = true; }
+  if (consumed) { e.preventDefault(); commitAdjustmentChange(); }
+});
+
+function resetActive() {
+  // Only target is editable now (reference is read-only live JSON).
+  const row = state.rows[state.selectedRowIdx];
+  if (row) row.adj = { ...row.adjOriginal };
+}
+
+// ── Get Prompt modal ─────────────────────────────────────────────────────
+function buildPromptOutput() {
+  const adjusted = state.rows.filter(r => r.status === 'adjusted');
+  // Group by charId for cleaner JSON
+  const byChar = {};
+  for (const r of adjusted) {
+    if (!byChar[r.charId]) byChar[r.charId] = { perPose: {} };
+    byChar[r.charId].perPose[r.pose] = {
+      scale: +r.adj.scale.toFixed(3),
+      offsetX: Math.round(r.adj.offsetX),
+      offsetY: Math.round(r.adj.offsetY),
+    };
+  }
+  return JSON.stringify(byChar, null, 2);
+}
+
+document.getElementById('btn-prompt').addEventListener('click', () => {
+  const overlay = document.getElementById('modal-overlay');
+  document.getElementById('prompt-output').textContent = buildPromptOutput();
+  const ta = document.getElementById('prompt-prefix');
+  if (state.promptPrefix && !ta.value) ta.value = state.promptPrefix;
+  overlay.classList.add('open');
+});
+document.getElementById('modal-close').addEventListener('click', () => {
+  document.getElementById('modal-overlay').classList.remove('open');
+  savePrefs();
+});
+document.getElementById('modal-copy').addEventListener('click', async () => {
+  const prefix = document.getElementById('prompt-prefix').value.trim();
+  const json = buildPromptOutput();
+  const out = prefix ? `${prefix}\n\n${json}` : json;
+  try {
+    await navigator.clipboard.writeText(out);
+    showToast('Copied to clipboard');
+  } catch (_) {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = out; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); ta.remove();
+    showToast('Copied (fallback)');
+  }
+  savePrefs();
+});
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1400);
+}
+
+// ── UI bindings ──────────────────────────────────────────────────────────
+function applyLayout() {
+  const main = document.getElementById('sa-main');
+  main.classList.toggle('stacked', state.layout === 'stacked');
+  main.classList.toggle('swapped', state.orderSwapped);
+  document.getElementById('layout-toggle').textContent = state.layout === 'stacked' ? 'Stacked' : 'Side';
+  document.getElementById('order-toggle').textContent = state.orderSwapped ? 'Target → Ref' : 'Ref → Target';
+  // M290 — Stack Opacity slider only meaningful in stacked layout.
+  const stackWrap = document.getElementById('stack-op-wrap');
+  if (stackWrap) stackWrap.style.display = state.layout === 'stacked' ? 'inline-flex' : 'none';
+  // Update mode-bar buttons
+  document.querySelectorAll('.sa-mode-group [data-side]').forEach(b => b.classList.toggle('on', b.dataset.side === state.controlSide));
+  document.querySelectorAll('.sa-mode-group [data-action]').forEach(b => b.classList.toggle('on', b.dataset.action === state.controlAction));
+  document.getElementById('lock-ref').textContent = state.referenceLocked ? '🔒 Locked' : '🔓 Auto';
+  document.getElementById('show-raw').checked = state.showRaw;
+  document.getElementById('filter-state').value = state.filter;
+  setTimeout(drawSprites, 0); // wait for layout reflow
+}
+
+// ── Preview Animation ────────────────────────────────────────────────────
+// Cycles south → east → east_attack → east → east_spell → east → east_block
+// → east → east_ko → repeat on the selected target row. Stacked layout is
+// suppressed while animating so the panel is unambiguous.
+const ANIM_CYCLE = ['south','east','east_attack','east','east_spell','east','east_block','east','east_ko'];
+state.anim = { running: false, idx: 0, timer: null, savedRowPose: null, savedLayout: null };
+function _drawTargetWithPose(pose) {
+  const row = state.rows[state.selectedRowIdx];
+  if (!row) return;
+  // Find a matching row for this character at the requested pose; if none
+  // exists (some chars lack certain poses), skip without throwing.
+  const animRow = state.rows.find(r => r.charId === row.charId && r.pose === pose) || row;
+  document.getElementById('tgt-pose').textContent = pose;
+  // Reference mirrors the same pose unless locked.
+  const refChar = state.characters.find(c => c.id === state.referenceCharId);
+  let refPose = pose;
+  if (state.anim.lockedRefPose) refPose = state.anim.lockedRefPose;
+  else if (refChar && !refChar.posesAvailable.includes(pose)) refPose = refChar.posesAvailable[0];
+  state.refPose = refPose;
+  document.getElementById('ref-pose').textContent = refPose || '—';
+  // Draw target with the animated pose using the saved adj for that row.
+  const tgtCanvas = document.getElementById('tgt-canvas');
+  const tgtStage = document.getElementById('tgt-stage');
+  resizeCanvas(tgtCanvas, tgtStage);
+  drawSprite(tgtCanvas, animRow.charId, animRow.pose, state.showRaw ? { scale: 1, offsetX: 0, offsetY: 0 } : animRow.adj);
+  const refCanvas = document.getElementById('ref-canvas');
+  const refStage = document.getElementById('ref-stage');
+  resizeCanvas(refCanvas, refStage);
+  if (state.referenceCharId && refPose) {
+    drawSprite(refCanvas, state.referenceCharId, refPose, state.showRaw ? { scale: 1, offsetX: 0, offsetY: 0 } : getRefAdj(refPose));
+  }
+}
+function startAnimation() {
+  if (state.anim.running) return;
+  state.anim.running = true;
+  state.anim.idx = 0;
+  state.anim.savedLayout = state.layout;
+  state.anim.lockedRefPose = state.referenceLocked ? state.referenceLockedPose : null;
+  if (state.layout === 'stacked') {
+    state.layout = 'side';
+    applyLayout();
+  }
+  document.getElementById('btn-anim').textContent = '■ Stop Animation';
+  document.getElementById('btn-anim').classList.add('active');
+  const tick = () => {
+    if (!state.anim.running) return;
+    _drawTargetWithPose(ANIM_CYCLE[state.anim.idx]);
+    state.anim.idx = (state.anim.idx + 1) % ANIM_CYCLE.length;
+  };
+  tick();
+  state.anim.timer = setInterval(tick, 500);
+}
+function stopAnimation() {
+  if (!state.anim.running) return;
+  clearInterval(state.anim.timer);
+  state.anim.timer = null;
+  state.anim.running = false;
+  document.getElementById('btn-anim').textContent = '▶ Preview Animation';
+  document.getElementById('btn-anim').classList.remove('active');
+  // Restore layout if we suppressed stacked.
+  if (state.anim.savedLayout && state.anim.savedLayout !== state.layout) {
+    state.layout = state.anim.savedLayout;
+    applyLayout();
+  }
+  // Re-render the originally selected row.
+  selectRow(state.selectedRowIdx);
+}
+document.getElementById('btn-anim').addEventListener('click', () => {
+  if (state.anim.running) stopAnimation(); else startAnimation();
+});
+
+// M290 — Stack Opacity slider (preview-only, NOT persisted to game data).
+(() => {
+  const sl = document.getElementById('stack-op');
+  const out = document.getElementById('stack-op-v');
+  if (!sl || !out) return;
+  const apply = (v) => {
+    document.documentElement.style.setProperty('--stack-opacity', String(v / 100));
+    out.textContent = v + '%';
+  };
+  sl.addEventListener('input', e => apply(parseInt(e.target.value, 10)));
+  apply(parseInt(sl.value, 10));
+})();
+
+document.getElementById('layout-toggle').addEventListener('click', () => {
+  if (state.anim.running) stopAnimation();
+  state.layout = state.layout === 'side' ? 'stacked' : 'side';
+  applyLayout(); savePrefs();
+});
+document.getElementById('order-toggle').addEventListener('click', () => {
+  state.orderSwapped = !state.orderSwapped;
+  applyLayout(); savePrefs();
+});
+document.getElementById('lock-ref').addEventListener('click', () => {
+  state.referenceLocked = !state.referenceLocked;
+  if (state.referenceLocked) state.referenceLockedPose = state.refPose;
+  else state.referenceLockedPose = null;
+  applyLayout(); selectRow(state.selectedRowIdx); savePrefs();
+});
+document.getElementById('ref-char-select').addEventListener('change', (e) => {
+  state.referenceCharId = e.target.value;
+  selectRow(state.selectedRowIdx); savePrefs();
+});
+document.getElementById('show-raw').addEventListener('change', (e) => {
+  state.showRaw = e.target.checked; drawSprites(); savePrefs();
+});
+document.getElementById('filter-state').addEventListener('change', (e) => {
+  state.filter = e.target.value; renderList(); savePrefs();
+});
+document.querySelectorAll('.sa-mode-group [data-side]').forEach(b => {
+  b.addEventListener('click', () => { state.controlSide = b.dataset.side; applyLayout(); savePrefs(); });
+});
+document.querySelectorAll('.sa-mode-group [data-action]').forEach(b => {
+  b.addEventListener('click', () => { state.controlAction = b.dataset.action; applyLayout(); savePrefs(); });
+});
+document.querySelectorAll('[data-reset]').forEach(b => {
+  b.addEventListener('click', () => {
+    // Reference is read-only (live JSON). Reset only affects target.
+    if (b.dataset.reset === 'tgt') {
+      const r = state.rows[state.selectedRowIdx]; if (r) r.adj = { ...r.adjOriginal };
+      commitAdjustmentChange();
+    }
+  });
+});
+
+// Resize handler keeps sprites centered
+window.addEventListener('resize', () => drawSprites());
+
+// ── Boot ─────────────────────────────────────────────────────────────────
+loadPrefs();
+applyLayout();
+bindStage(document.getElementById('tgt-canvas'));
+// Reference panel is read-only; do not bind drag/wheel handlers.
+loadData();
+</script>
+</body>
+</html>

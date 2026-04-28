@@ -1,0 +1,85 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "sorcerer",
+  "displayName": "Sorcerer",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "identity": "Human male sorcerer, sharp intelligent face, short neatly-styled raven-black hair, glowing violet eyes, fair skin, slim build.",
+  "outfit": "Elegant black-and-violet layered robes with intricate gold arcane embroidery on the sleeves and hem, a gold-and-amethyst pendant on the chest, a high collar, violet shoulder cape. Black boots.",
+  "weapons": "A floating violet crystal orb hovering above his open right palm, emitting gentle light. No staff.",
+  "attackStyle": "East-facing. Right hand thrust forward, crystal orb in front projecting a concentrated beam of violet arcane energy outward. CRITICAL: character must be MID-STRIKE, clearly in motion \u2014 weapon in the middle of a swing, thrust, shot, or spell-cast, NOT an idle/battle-ready stance. Pose must be visually distinct from the east idle.",
+  "spellStyle": "East-facing. Both hands raised, the violet crystal orb rising between them surrounded by a swirling arcane circle of gold runes.",
+  "blockStyle": "East-facing. Crystal orb floats in front, projecting a translucent violet hex-dome shield forward.",
+  "koStyle": "East-facing, slumped on one knee, crystal orb fallen beside him, pendant lying on the ground, robes splayed.",
+  "southStyle": "Facing camera (south), composed mystic idle. Crystal orb hovering above the right palm held at chest level. Violet eye-glow.",
+  "portraitStyle": "Bust shot from mid-chest up, three-quarter view. Raven hair, glowing violet eyes, amethyst pendant, violet shoulder cape, gold-embroidered robes.",
+  "bannedSubstrings": [
+    "sword",
+    "axe",
+    "bow",
+    "pointed hat",
+    "staff",
+    "beard"
+  ],
+  "referenceSheet": {
+    "path": "images/pixellab/sorcerer/reference.png",
+    "spritecookAssetId": "5a95396d-9f31-44ae-b81e-0d7363278628",
+    "prompt": "IDENTITY (this image becomes the canonical identity anchor \u2014 preserve in every downstream frame): Human male sorcerer, sharp intelligent face, short neatly-styled raven-black hair, glowing violet eyes, fair skin, slim build.\n\nOUTFIT: Elegant black-and-violet layered robes with intricate gold arcane embroidery on the sleeves and hem, a gold-and-amethyst pendant on the chest, a high collar, violet shoulder cape. Black boots.\n\nWEAPONS: A floating violet crystal orb hovering above his open right palm, emitting gentle light. No staff.\n\nCLASS: humanoid. Full-body view, head to feet visible. Character occupies ~70% of the canvas height. Feet aligned near the bottom; headroom above.\n\nPOSE: full-body side profile facing right (east), calm combat-ready idle. Head up, eyes visible. NOT a portrait bust, NOT a close-up \u2014 entire character from head to feet.\n\nSTYLE: detailed pixel art with clean readable silhouette, warm pixel-art palette, transparent background, no ground shadow.",
+    "bitforgeAssetId": null,
+    "sourcePortraitPath": "images/portraits/sorcerer.png",
+    "generatedAt": "2026-04-21T08:15:39.764Z",
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait": {
+      "path": "images/spritecook/sorcerer_portrait.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human male sorcerer, sharp intelligent face, short neatly-styled raven-black hair, glowing violet eyes, fair skin, slim build.\n\nOUTFIT: Elegant black-and-violet layered robes with intricate gold arcane embroidery on the sleeves and hem, a gold-and-amethyst pendant on the chest, a high collar, violet shoulder cape. Black boots.\n\nWEAPONS: A floating violet crystal orb hovering above his open right palm, emitting gentle light. No staff.\n\nPOSE (portrait): Bust shot from mid-chest up, three-quarter view. Raven hair, glowing violet eyes, amethyst pendant, violet shoulder cape, gold-embroidered robes.\n\nFRAMING: bust shot from mid-chest up, three-quarter view, centered in a 256x256 canvas, shoulders fill the lower third.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:47:10.000Z",
+      "approvedAt": "2026-04-22T05:47:10.000Z",
+      "spritecookAssetId": "d0a2e73c-0aed-445b-a5fd-f6cad21fa0c6"
+    },
+    "south": {
+      "path": "images/spritecook/sorcerer_south.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human male sorcerer, sharp intelligent face, short neatly-styled raven-black hair, glowing violet eyes, fair skin, slim build.\n\nOUTFIT: Elegant black-and-violet layered robes with intricate gold arcane embroidery on the sleeves and hem, a gold-and-amethyst pendant on the chest, a high collar, violet shoulder cape. Black boots.\n\nWEAPONS: A floating violet crystal orb hovering above his open right palm, emitting gentle light. No staff.\n\nPOSE (south): Facing camera (south), composed mystic idle. Crystal orb hovering above the right palm held at chest level. Violet eye-glow.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:47:10.000Z",
+      "approvedAt": "2026-04-22T05:47:10.000Z",
+      "spritecookAssetId": "1925b5da-bc0d-4005-8d54-907ed14cd23b"
+    },
+    "east": {
+      "path": "images/spritecook/sorcerer_east.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human male sorcerer, sharp intelligent face, short neatly-styled raven-black hair, glowing violet eyes, fair skin, slim build.\n\nOUTFIT: Elegant black-and-violet layered robes with intricate gold arcane embroidery on the sleeves and hem, a gold-and-amethyst pendant on the chest, a high collar, violet shoulder cape. Black boots.\n\nWEAPONS: A floating violet crystal orb hovering above his open right palm, emitting gentle light. No staff.\n\nPOSE (east): Neutral combat idle, consistent with reference sheet, full-body facing east.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:47:10.000Z",
+      "approvedAt": "2026-04-22T05:47:10.000Z",
+      "spritecookAssetId": "8fd4725f-ed33-44d6-a677-e10e0e7b7f39"
+    },
+    "east_attack": {
+      "path": "images/spritecook/sorcerer_east_attack.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human male sorcerer, sharp intelligent face, short neatly-styled raven-black hair, glowing violet eyes, fair skin, slim build.\n\nOUTFIT: Elegant black-and-violet layered robes with intricate gold arcane embroidery on the sleeves and hem, a gold-and-amethyst pendant on the chest, a high collar, violet shoulder cape. Black boots.\n\nWEAPONS: A floating violet crystal orb hovering above his open right palm, emitting gentle light. No staff.\n\nPOSE (east_attack): East-facing. Right hand thrust forward, crystal orb in front projecting a concentrated beam of violet arcane energy outward.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:47:10.000Z",
+      "approvedAt": "2026-04-22T05:47:10.000Z",
+      "spritecookAssetId": "d58427f3-395a-4539-a08b-3126fa005139"
+    },
+    "east_spell": {
+      "path": "images/spritecook/sorcerer_east_spell.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human male sorcerer, sharp intelligent face, short neatly-styled raven-black hair, glowing violet eyes, fair skin, slim build.\n\nOUTFIT: Elegant black-and-violet layered robes with intricate gold arcane embroidery on the sleeves and hem, a gold-and-amethyst pendant on the chest, a high collar, violet shoulder cape. Black boots.\n\nWEAPONS: A floating violet crystal orb hovering above his open right palm, emitting gentle light. No staff.\n\nPOSE (east_spell): East-facing. Both hands raised, the violet crystal orb rising between them surrounded by a swirling arcane circle of gold runes.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:47:10.000Z",
+      "approvedAt": "2026-04-22T05:47:10.000Z",
+      "spritecookAssetId": "5049962f-6028-4420-82f2-0cecc16a58c4"
+    },
+    "east_block": {
+      "path": "images/spritecook/sorcerer_east_block.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human male sorcerer, sharp intelligent face, short neatly-styled raven-black hair, glowing violet eyes, fair skin, slim build.\n\nOUTFIT: Elegant black-and-violet layered robes with intricate gold arcane embroidery on the sleeves and hem, a gold-and-amethyst pendant on the chest, a high collar, violet shoulder cape. Black boots.\n\nWEAPONS: A floating violet crystal orb hovering above his open right palm, emitting gentle light. No staff.\n\nPOSE (east_block): East-facing. Crystal orb floats in front, projecting a translucent violet hex-dome shield forward.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:47:10.000Z",
+      "approvedAt": "2026-04-22T05:47:10.000Z",
+      "spritecookAssetId": "d374e5a9-34b4-4564-9c37-c59798206776"
+    },
+    "east_ko": {
+      "path": "images/spritecook/sorcerer_east_ko.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human male sorcerer, sharp intelligent face, short neatly-styled raven-black hair, glowing violet eyes, fair skin, slim build.\n\nOUTFIT: Elegant black-and-violet layered robes with intricate gold arcane embroidery on the sleeves and hem, a gold-and-amethyst pendant on the chest, a high collar, violet shoulder cape. Black boots.\n\nWEAPONS: A floating violet crystal orb hovering above his open right palm, emitting gentle light. No staff.\n\nPOSE (east_ko): East-facing, slumped on one knee, crystal orb fallen beside him, pendant lying on the ground, robes splayed.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:47:10.000Z",
+      "approvedAt": "2026-04-22T05:47:10.000Z",
+      "spritecookAssetId": "3064de4f-4f44-46bf-82a2-aca25358cd6c"
+    }
+  },
+  "notes": "Crystal-orb caster, more refined than the archetypal Mage (no hat/beard)."
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "war_dog",
+  "displayName": "War Dog",
+  "class": "quadruped-companion",
+  "pixelHeight": 160,
+  "poseSet": ["portrait", "south", "east", "east_attack", "east_ko"],
+  "poseSetNote": "Companion dogs use a reduced 5-pose set — no east_spell, no east_block (matches dire_wolf, bone_hound, shadow_cat, ember_drake). east_spell in sprites/ is a copy of east_attack as a render-time fallback.",
+  "identity": "Muscular loyal war-hound, mastiff/pit-bull build, broad chest, powerful hindquarters, short tan-brown fur with darker muzzle, battle-scarred (small nick across the bridge of the nose, notched left ear). Amber-gold eyes, confident protective expression. Quadruped — never bipedal, never anthropomorphic.",
+  "outfit": "Thick dark-brown studded leather collar with small iron spikes and brass buckle. Faded red cloth bandana tied around the neck with frayed edges. Single narrow leather shoulder strap across the chest with a small brass ring. Decoration only — NOT armor.",
+  "weapons": "None. Teeth and claws only.",
+  "attackStyle": "East-facing mid-lunge — front paws off the ground, hind legs pushing off, body stretched forward through the air, jaws wide open showing teeth in a snarling bite, ears pinned back, hackles fully raised, tail streaming behind.",
+  "spellStyle": "N/A for companion dogs. sprites/war_dog_east_spell.png is a copy of east_attack used as a render-time fallback when combat code requests a spell pose.",
+  "blockStyle": "N/A for companion dogs.",
+  "koStyle": "Side profile facing east, dog collapsed on the ground on its side, legs limp and sprawled, head resting on the ground with muzzle down, eyes closed, tongue slightly out, bandana rumpled.",
+  "southStyle": "Full body facing the camera (south), calm alert quadruped idle, all four paws planted on the ground, chest squared to viewer, head slightly tilted, ears pricked, tail relaxed behind. Amber eyes facing viewer. Studded collar and red bandana clearly visible.",
+  "portraitStyle": "Head-and-shoulders bust shot, three-quarter view. Alert ears, amber eyes focused forward. Studded collar, red bandana, and brass strap ring clearly visible at the bottom of the frame. Neutral confident expression.",
+  "bannedSubstrings": [
+    "plate armor",
+    "chestplate",
+    "pauldrons",
+    "helmet",
+    "greaves",
+    "gauntlets",
+    "boots",
+    "sword",
+    "axe",
+    "spear",
+    "wielding",
+    "holding a",
+    "bipedal",
+    "anthropomorphic",
+    "bobblehead"
+  ],
+  "referenceSheet": {
+    "path": "images/spritecook/war_dog_reference.png",
+    "spritecookAssetId": "0f30c439-d447-45ef-b74a-796109d904b2",
+    "sourcePortraitPath": "images/_bg-removal-backup/war_dog_openai_armor/war_dog.png",
+    "sourceNote": "Previous portrait was OpenAI-generated bulldog in full plate armor — user flagged as silly. New identity drops the armor and keeps decoration only. Old files archived at images/_bg-removal-backup/war_dog_openai_armor/.",
+    "generatedAt": "2026-04-22T00:00:00.000Z",
+    "approvedAt": "2026-04-22T00:00:00.000Z"
+  },
+  "frames": {
+    "portrait":    { "path": "images/spritecook/war_dog_portrait.png",    "spritecookAssetId": "64b4bcf7-36e6-42fb-b947-0a39c6aead6c", "generatedAt": "2026-04-22T00:00:00.000Z", "approvedAt": "2026-04-22T00:00:00.000Z" },
+    "south":       { "path": "images/spritecook/war_dog_south.png",       "spritecookAssetId": "6aa3f0af-7ed3-40ca-b735-3386a0e83fcb", "generatedAt": "2026-04-22T00:00:00.000Z", "approvedAt": "2026-04-22T00:00:00.000Z" },
+    "east":        { "path": "images/spritecook/war_dog_east.png",        "spritecookAssetId": "25d1b81a-ac91-4ba5-9de0-7cb0d9c88fd8", "generatedAt": "2026-04-22T00:00:00.000Z", "approvedAt": "2026-04-22T00:00:00.000Z" },
+    "east_attack": { "path": "images/spritecook/war_dog_east_attack.png", "spritecookAssetId": "6fc67ae1-7cdb-4630-966d-ed954a00c56a", "generatedAt": "2026-04-22T00:00:00.000Z", "approvedAt": "2026-04-22T00:00:00.000Z" },
+    "east_ko":     { "path": "images/spritecook/war_dog_east_ko.png",     "spritecookAssetId": "c62e9f0a-bc73-4d18-b428-6ac4b76defd9", "generatedAt": "2026-04-22T00:00:00.000Z", "approvedAt": "2026-04-22T00:00:00.000Z" }
+  }
+}

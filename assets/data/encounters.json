@@ -1,0 +1,218 @@
+{
+  "goblin_patrol": {
+    "id": "goblin_patrol",
+    "name": "Goblin Patrol",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "corrupted_outpost": {
+    "id": "corrupted_outpost",
+    "name": "Corrupted Outpost",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "border_boss": {
+    "id": "border_boss",
+    "name": "Warlord\\",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "bandit_ambush": {
+    "id": "bandit_ambush",
+    "name": "Bandit Ambush",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "spider_nest": {
+    "id": "spider_nest",
+    "name": "Spider Hollow",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "goblin_camp": {
+    "id": "goblin_camp",
+    "name": "Goblin Camp",
+    "enemyCount": 3,
+    "isBoss": false
+  },
+  "thornwood_boss": {
+    "id": "thornwood_boss",
+    "name": "The Veil Wardens",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "grax_final": {
+    "id": "grax_final",
+    "name": "Grax the Veil-Touched",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "wolf_pack": {
+    "id": "wolf_pack",
+    "name": "Corrupted Wolf Pack",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "bear_ambush": {
+    "id": "bear_ambush",
+    "name": "Corrupted Predator",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "ash_patrol": {
+    "id": "ash_patrol",
+    "name": "Ash Patrol",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "obsidian_garrison": {
+    "id": "obsidian_garrison",
+    "name": "Obsidian Garrison",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "ember_ambush": {
+    "id": "ember_ambush",
+    "name": "Ember Ambush",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "lava_titan": {
+    "id": "lava_titan",
+    "name": "The Lava Titan",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "veil_cult_camp": {
+    "id": "veil_cult_camp",
+    "name": "Veil Cult Encampment",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "veil_high_priest": {
+    "id": "veil_high_priest",
+    "name": "Veil High Priest",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "demon_patrol": {
+    "id": "demon_patrol",
+    "name": "Demon Patrol",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "hell_garrison": {
+    "id": "hell_garrison",
+    "name": "Hell Garrison",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "rift_assault": {
+    "id": "rift_assault",
+    "name": "Rift Assault",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "void_nexus_ambush": {
+    "id": "void_nexus_ambush",
+    "name": "Void Nexus",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "archfiend_malgrath": {
+    "id": "archfiend_malgrath",
+    "name": "Archfiend Malgrath",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "emberveil_sovereign": {
+    "id": "emberveil_sovereign",
+    "name": "The Emberveil Sovereign",
+    "enemyCount": 3,
+    "isBoss": false
+  },
+  "primordial_patrol": {
+    "id": "primordial_patrol",
+    "name": "Primordial Patrol",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "abyssal_garrison": {
+    "id": "abyssal_garrison",
+    "name": "Abyssal Garrison",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "genesis_nest": {
+    "id": "genesis_nest",
+    "name": "Genesis Nest",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "the_architect_final": {
+    "id": "the_architect_final",
+    "name": "The Architect",
+    "enemyCount": 2,
+    "isBoss": false
+  },
+  "void_horde": {
+    "id": "void_horde",
+    "name": "Void Horde",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "cosmic_assault": {
+    "id": "cosmic_assault",
+    "name": "Cosmic Assault",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "unraveler": {
+    "id": "unraveler",
+    "name": "The Unraveler",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "dragon_patrol": {
+    "id": "dragon_patrol",
+    "name": "Dragon Patrol",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "wyrm_citadel": {
+    "id": "wyrm_citadel",
+    "name": "Wyrm Citadel",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "frost_wyrm_pack": {
+    "id": "frost_wyrm_pack",
+    "name": "Frost Wyrm Pack",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "storm_dragon_nest": {
+    "id": "storm_dragon_nest",
+    "name": "Storm Dragon Nest",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "dragon_elite": {
+    "id": "dragon_elite",
+    "name": "Dragon Elite Flight",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "ancient_dragon_fight": {
+    "id": "ancient_dragon_fight",
+    "name": "The Ancient Dragon",
+    "enemyCount": 1,
+    "isBoss": false
+  },
+  "dragon_king_fight": {
+    "id": "dragon_king_fight",
+    "name": "Bahamorth, the Dragon King",
+    "enemyCount": 1,
+    "isBoss": false
+  }
+}

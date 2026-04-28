@@ -1,0 +1,686 @@
+[
+  {
+    "id": "goblin_scout",
+    "name": "Goblin Scout",
+    "act": 1,
+    "hp": 22,
+    "armor": 2,
+    "hit": 80,
+    "dodge": 15,
+    "xpValue": 15,
+    "dmg": [
+      10,
+      15
+    ],
+    "gold": [
+      2,
+      6
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "goblin_warrior",
+    "name": "Goblin Warrior",
+    "act": 1,
+    "hp": 38,
+    "armor": 5,
+    "hit": 80,
+    "dodge": 8,
+    "xpValue": 25,
+    "dmg": [
+      13,
+      21
+    ],
+    "gold": [
+      5,
+      12
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "goblin_shaman",
+    "name": "Goblin Shaman",
+    "act": 1,
+    "hp": 28,
+    "armor": 1,
+    "hit": 80,
+    "dodge": 10,
+    "xpValue": 30,
+    "dmg": [
+      12,
+      19
+    ],
+    "gold": [
+      8,
+      18
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "goblin_warlord",
+    "name": "Goblin Warlord",
+    "act": 1,
+    "hp": 65,
+    "armor": 7,
+    "hit": 82,
+    "dodge": 6,
+    "xpValue": 55,
+    "dmg": [
+      18,
+      28
+    ],
+    "gold": [
+      20,
+      40
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "corrupted_wolf",
+    "name": "Corrupted Wolf",
+    "act": 1,
+    "hp": 30,
+    "armor": 1,
+    "hit": 80,
+    "dodge": 18,
+    "xpValue": 22,
+    "dmg": [
+      14,
+      21
+    ],
+    "gold": [
+      1,
+      4
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "corrupted_bear",
+    "name": "Corrupted Bear",
+    "act": 1,
+    "hp": 70,
+    "armor": 4,
+    "hit": 75,
+    "dodge": 5,
+    "xpValue": 50,
+    "dmg": [
+      19,
+      28
+    ],
+    "gold": [
+      5,
+      15
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "bandit",
+    "name": "Bandit",
+    "act": 1,
+    "hp": 28,
+    "armor": 3,
+    "hit": 80,
+    "dodge": 10,
+    "xpValue": 20,
+    "dmg": [
+      12,
+      18
+    ],
+    "gold": [
+      4,
+      10
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "bandit_captain",
+    "name": "Bandit Captain",
+    "act": 1,
+    "hp": 55,
+    "armor": 5,
+    "hit": 82,
+    "dodge": 12,
+    "xpValue": 45,
+    "dmg": [
+      18,
+      25
+    ],
+    "gold": [
+      15,
+      30
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "imp",
+    "name": "Imp",
+    "act": 1,
+    "hp": 65,
+    "armor": 4,
+    "hit": 82,
+    "dodge": 22,
+    "xpValue": 28,
+    "dmg": [
+      12,
+      18
+    ],
+    "gold": [
+      4,
+      10
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "hell_knight",
+    "name": "Hell Knight",
+    "act": 1,
+    "hp": 160,
+    "armor": 22,
+    "hit": 70,
+    "dodge": 8,
+    "xpValue": 72,
+    "dmg": [
+      22,
+      34
+    ],
+    "gold": [
+      20,
+      45
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "void_shade",
+    "name": "Void Shade",
+    "act": 1,
+    "hp": 100,
+    "armor": 6,
+    "hit": 85,
+    "dodge": 28,
+    "xpValue": 55,
+    "dmg": [
+      18,
+      28
+    ],
+    "gold": [
+      12,
+      28
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "demon_brute",
+    "name": "Demon Brute",
+    "act": 1,
+    "hp": 220,
+    "armor": 18,
+    "hit": 65,
+    "dodge": 5,
+    "xpValue": 90,
+    "dmg": [
+      26,
+      40
+    ],
+    "gold": [
+      30,
+      60
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "archfiend_malgrath",
+    "name": "Archfiend Malgrath",
+    "act": 1,
+    "hp": 550,
+    "armor": 26,
+    "hit": 75,
+    "dodge": 10,
+    "xpValue": 450,
+    "dmg": [
+      30,
+      46
+    ],
+    "gold": [
+      120,
+      200
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "emberveil_sovereign",
+    "name": "The Emberveil Sovereign",
+    "act": 1,
+    "hp": 800,
+    "armor": 30,
+    "hit": 78,
+    "dodge": 12,
+    "xpValue": 800,
+    "dmg": [
+      36,
+      56
+    ],
+    "gold": [
+      200,
+      350
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "ash_wraith",
+    "name": "Ash Wraith",
+    "act": 1,
+    "hp": 65,
+    "armor": 4,
+    "hit": 80,
+    "dodge": 20,
+    "xpValue": 32,
+    "dmg": [
+      14,
+      21
+    ],
+    "gold": [
+      6,
+      14
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "cinder_hound",
+    "name": "Cinder Hound",
+    "act": 1,
+    "hp": 55,
+    "armor": 5,
+    "hit": 80,
+    "dodge": 16,
+    "xpValue": 28,
+    "dmg": [
+      16,
+      23
+    ],
+    "gold": [
+      3,
+      9
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "molten_golem",
+    "name": "Molten Golem",
+    "act": 1,
+    "hp": 140,
+    "armor": 16,
+    "hit": 78,
+    "dodge": 4,
+    "xpValue": 65,
+    "dmg": [
+      20,
+      29
+    ],
+    "gold": [
+      15,
+      30
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "veil_cultist",
+    "name": "Veil Cultist",
+    "act": 1,
+    "hp": 70,
+    "armor": 5,
+    "hit": 80,
+    "dodge": 12,
+    "xpValue": 35,
+    "dmg": [
+      15,
+      22
+    ],
+    "gold": [
+      8,
+      18
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "veil_sorcerer",
+    "name": "Veil Sorcerer",
+    "act": 1,
+    "hp": 85,
+    "armor": 4,
+    "hit": 82,
+    "dodge": 14,
+    "xpValue": 60,
+    "dmg": [
+      20,
+      29
+    ],
+    "gold": [
+      20,
+      40
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "lava_titan",
+    "name": "The Lava Titan",
+    "act": 1,
+    "hp": 350,
+    "armor": 20,
+    "hit": 85,
+    "dodge": 4,
+    "xpValue": 350,
+    "dmg": [
+      24,
+      36
+    ],
+    "gold": [
+      80,
+      140
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "grax_veil_touched",
+    "name": "Grax the Veil-Touched",
+    "act": 1,
+    "hp": 200,
+    "armor": 10,
+    "hit": 82,
+    "dodge": 8,
+    "xpValue": 250,
+    "dmg": [
+      22,
+      33
+    ],
+    "gold": [
+      60,
+      100
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "veil_warden",
+    "name": "Veil Warden",
+    "act": 1,
+    "hp": 90,
+    "armor": 6,
+    "hit": 80,
+    "dodge": 12,
+    "xpValue": 80,
+    "dmg": [
+      16,
+      23
+    ],
+    "gold": [
+      25,
+      45
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "primordial_elemental",
+    "name": "Primordial Elemental",
+    "act": 5,
+    "hp": 220,
+    "armor": 20,
+    "hit": 80,
+    "dodge": 15,
+    "xpValue": 180,
+    "dmg": [
+      34,
+      54
+    ],
+    "gold": [
+      30,
+      55
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "abyssal_knight",
+    "name": "Abyssal Knight",
+    "act": 5,
+    "hp": 260,
+    "armor": 30,
+    "hit": 78,
+    "dodge": 10,
+    "xpValue": 200,
+    "dmg": [
+      38,
+      62
+    ],
+    "gold": [
+      35,
+      65
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "reality_shard",
+    "name": "Reality Shard",
+    "act": 5,
+    "hp": 140,
+    "armor": 10,
+    "hit": 90,
+    "dodge": 30,
+    "xpValue": 150,
+    "dmg": [
+      40,
+      66
+    ],
+    "gold": [
+      20,
+      40
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "genesis_worm",
+    "name": "Genesis Worm",
+    "act": 5,
+    "hp": 400,
+    "armor": 24,
+    "hit": 75,
+    "dodge": 5,
+    "xpValue": 220,
+    "dmg": [
+      32,
+      52
+    ],
+    "gold": [
+      40,
+      70
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "void_wraith",
+    "name": "Void Wraith",
+    "act": 4,
+    "hp": 160,
+    "armor": 16,
+    "hit": 82,
+    "dodge": 22,
+    "xpValue": 120,
+    "dmg": [
+      28,
+      44
+    ],
+    "gold": [
+      20,
+      40
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "star_horror",
+    "name": "Star Horror",
+    "act": 4,
+    "hp": 180,
+    "armor": 12,
+    "hit": 78,
+    "dodge": 18,
+    "xpValue": 130,
+    "dmg": [
+      24,
+      38
+    ],
+    "gold": [
+      18,
+      35
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "cosmic_titan",
+    "name": "Cosmic Titan",
+    "act": 4,
+    "hp": 320,
+    "armor": 26,
+    "hit": 72,
+    "dodge": 8,
+    "xpValue": 200,
+    "dmg": [
+      36,
+      56
+    ],
+    "gold": [
+      30,
+      60
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "void_prophet",
+    "name": "Void Prophet",
+    "act": 4,
+    "hp": 140,
+    "armor": 10,
+    "hit": 85,
+    "dodge": 15,
+    "xpValue": 160,
+    "dmg": [
+      25,
+      42
+    ],
+    "gold": [
+      25,
+      50
+    ],
+    "isBoss": false
+  },
+  {
+    "id": "dragon_whelp",
+    "name": "Dragon Whelp",
+    "act": 6,
+    "hp": 120,
+    "armor": 14,
+    "hit": 82,
+    "dodge": 18,
+    "xpValue": 220,
+    "dmg": [
+      30,
+      52
+    ],
+    "gold": [
+      40,
+      80
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "wyrm_warrior",
+    "name": "Wyrm Warrior",
+    "act": 6,
+    "hp": 180,
+    "armor": 22,
+    "hit": 80,
+    "dodge": 10,
+    "xpValue": 260,
+    "dmg": [
+      40,
+      64
+    ],
+    "gold": [
+      50,
+      90
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "dragon_cultist",
+    "name": "Dragon Cultist",
+    "act": 6,
+    "hp": 140,
+    "armor": 8,
+    "hit": 85,
+    "dodge": 20,
+    "xpValue": 230,
+    "dmg": [
+      36,
+      58
+    ],
+    "gold": [
+      45,
+      85
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "frost_wyrm",
+    "name": "Frost Wyrm",
+    "act": 6,
+    "hp": 220,
+    "armor": 18,
+    "hit": 80,
+    "dodge": 12,
+    "xpValue": 300,
+    "dmg": [
+      42,
+      70
+    ],
+    "gold": [
+      60,
+      100
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "storm_dragon",
+    "name": "Storm Dragon",
+    "act": 6,
+    "hp": 260,
+    "armor": 16,
+    "hit": 86,
+    "dodge": 16,
+    "xpValue": 340,
+    "dmg": [
+      48,
+      78
+    ],
+    "gold": [
+      70,
+      120
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "ancient_dragon",
+    "name": "Ancient Dragon",
+    "act": 6,
+    "hp": 520,
+    "armor": 28,
+    "hit": 88,
+    "dodge": 12,
+    "xpValue": 600,
+    "dmg": [
+      60,
+      100
+    ],
+    "gold": [
+      160,
+      260
+    ],
+    "isBoss": true
+  }
+]

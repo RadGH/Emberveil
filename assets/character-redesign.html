@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="game13">
+<script src="./_header.js" defer></script>
+<title>Tools &middot; Character Redesign &mdash; RSG</title>
+<style>
+  :root {
+    --bg: #0b0810;
+    --panel: #1a1220;
+    --panel-alt: #12101a;
+    --border: #2a1f30;
+    --gold: #e8a020;
+    --gold-dim: #a67818;
+    --crimson: #c04030;
+    --parchment: #e8d8b8;
+    --muted: #8a7a6a;
+    --accent: #60a0e0;
+    --warn: #e85020;
+    --green: #40a060;
+    --purple: #a060e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--parchment);
+    font-family: 'Inter','Segoe UI',system-ui,sans-serif;
+    padding: 1rem 1rem 6rem; line-height: 1.45;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  h1 {
+    font-family: 'Cinzel',Georgia,serif;
+    color: var(--gold); font-size: 1.4rem; margin: 0 0 0.25rem;
+    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+    background: linear-gradient(180deg,#f8d880 0%,#e8a020 40%,#c04030 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  p.sub { color: var(--muted); font-size: 0.85rem; margin: 0 0 1rem; }
+  .notice {
+    background: var(--panel); border: 1px solid var(--border);
+    border-left: 3px solid var(--warn); padding: 0.6rem 0.8rem;
+    font-size: 0.8rem; margin-bottom: 1.2rem; color: var(--parchment);
+  }
+  .notice a { color: var(--accent); }
+  .summary {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    background: var(--panel); border: 1px solid var(--border);
+    padding: 0.75rem; border-radius: 4px; margin-bottom: 1.25rem;
+  }
+  .summary .stat {
+    background: var(--panel-alt); border: 1px solid var(--border);
+    padding: 0.4rem 0.7rem; border-radius: 4px; min-width: 110px;
+  }
+  .summary .stat .k { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .summary .stat .v { font-size: 1.1rem; color: var(--gold); font-weight: 700; }
+  .char {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1rem; margin-bottom: 1.2rem;
+  }
+  .char header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .char header h2 {
+    font-family: 'Cinzel',Georgia,serif;
+    color: var(--gold); font-size: 1rem; margin: 0; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .pill {
+    display: inline-block; padding: 0.15rem 0.5rem; border-radius: 10px;
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em;
+    border: 1px solid var(--border); background: var(--panel-alt);
+  }
+  .pill.pending       { color: var(--muted); }
+  .pill.generated     { color: var(--accent); border-color: var(--accent); }
+  .pill.dry_run       { color: var(--warn);   border-color: var(--warn); }
+  .pill.approved      { color: var(--green);  border-color: var(--green); }
+  .pill.reference_generated { color: var(--purple); border-color: var(--purple); }
+  .pill.pending_approval { color: var(--gold); border-color: var(--gold); }
+  .section-header {
+    font-family: 'Cinzel',Georgia,serif; color: var(--gold);
+    font-size: 0.95rem; letter-spacing: 0.1em; text-transform: uppercase;
+    margin: 1.5rem 0 0.5rem; padding: 0.4rem 0.6rem;
+    border-left: 3px solid var(--gold); background: var(--panel-alt);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem;
+  }
+  .section-header .count { color: var(--muted); font-size: 0.7rem; font-weight: 400; letter-spacing: 0.06em; }
+  .section-header:first-child { margin-top: 0; }
+  .body { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  @media (max-width: 820px) { .body { grid-template-columns: 1fr; } }
+  .refcol { background: var(--panel-alt); border: 1px solid var(--border); padding: 0.75rem; border-radius: 4px; display: flex; flex-direction: column; }
+  .refcol.empty { opacity: 0.5; align-items: center; justify-content: center; color: var(--muted); font-size: 0.75rem; min-height: 200px; border-style: dashed; }
+  .refcol .slot-label { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; font-weight: 700; display: flex; justify-content: space-between; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
+  .refcol .slot-label .sid { color: var(--muted); font-weight: 400; font-size: 0.6rem; text-transform: none; letter-spacing: 0; }
+  .refcol img.sheet {
+    width: 100%; height: auto; image-rendering: pixelated;
+    background: repeating-conic-gradient(#151018 0% 25%, #1e1624 0% 50%) 50%/20px 20px;
+    border: 1px solid var(--border); margin-bottom: 0.5rem;
+  }
+  .refcol .placeholder {
+    width: 100%; aspect-ratio: 3/1; display: flex; align-items: center;
+    justify-content: center; color: var(--muted); font-size: 0.75rem;
+    border: 1px dashed var(--border); margin-bottom: 0.5rem;
+  }
+  details.ad {
+    margin-top: 0.5rem; border-top: 1px solid var(--border); padding-top: 0.5rem;
+  }
+  details.ad summary { cursor: pointer; color: var(--gold-dim); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  details.ad .ad-grid { display: grid; gap: 0.35rem; margin-top: 0.4rem; font-size: 0.75rem; }
+  details.ad .ad-grid dt { color: var(--muted); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  details.ad .ad-grid dd { margin: 0 0 0.3rem; color: var(--parchment); }
+  .frames { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0.6rem; }
+  .cell {
+    background: var(--panel-alt); border: 1px solid var(--border); border-radius: 4px;
+    padding: 0.4rem; display: flex; flex-direction: column; gap: 0.25rem;
+  }
+  .cell .label {
+    font-size: 0.65rem; color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.08em; display: flex; justify-content: space-between; align-items: center;
+  }
+  .cell .twoup {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: var(--border);
+  }
+  .refcol .anchor {
+    width: 100%; aspect-ratio: 1/1; image-rendering: pixelated;
+    background: repeating-conic-gradient(#151018 0% 25%, #1e1624 0% 50%) 50%/20px 20px;
+    border: 1px solid var(--gold); margin-bottom: 0.5rem;
+    display: block; object-fit: contain;
+  }
+  .refcol .anchor-label {
+    font-size: 0.65rem; color: var(--gold); text-transform: uppercase;
+    letter-spacing: 0.08em; margin: 0 0 0.25rem;
+  }
+  .cell .twoup .slot {
+    aspect-ratio: 1/1; position: relative;
+    background: repeating-conic-gradient(#151018 0% 25%, #1e1624 0% 50%) 50%/12px 12px;
+  }
+  .cell .twoup .slot img { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; display: block; }
+  .cell .twoup .slot .tag {
+    position: absolute; top: 2px; left: 3px;
+    font-size: 0.55rem; color: var(--parchment); text-transform: uppercase;
+    background: rgba(0,0,0,0.5); padding: 1px 4px; letter-spacing: 0.06em;
+  }
+  .cell .twoup .slot.empty {
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 0.65rem;
+  }
+  footer.note {
+    color: var(--muted); font-size: 0.7rem; margin-top: 2rem;
+    border-top: 1px solid var(--border); padding-top: 0.75rem;
+  }
+  footer.note code { background: var(--panel-alt); padding: 0 0.25rem; border-radius: 2px; }
+  .subsprites { margin-top: 0.5rem; gap: 2px; background: var(--border); }
+  .subsprites { display: none; }
+  body.show-subsprites .subsprites { display: grid; }
+  .subsprites .sub {
+    position: relative; aspect-ratio: 1/1;
+    background: repeating-conic-gradient(#151018 0% 25%, #1e1624 0% 50%) 50%/10px 10px;
+  }
+  .subsprites .sub img { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; display: block; }
+  .subsprites .sub .tag {
+    position: absolute; top: 1px; left: 2px; font-size: 0.5rem; color: var(--parchment);
+    background: rgba(0,0,0,0.6); padding: 0 3px; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .subsprites .sub.empty { display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.5rem; }
+  .refcol img.sheet, .subsprites .sub img { cursor: zoom-in; }
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.93);
+    display: none; z-index: 100; flex-direction: column; align-items: center;
+    /* M279: scroll body content (image + nav + close) on small viewports so
+       the close button is always reachable and the modal never escapes the
+       window. Padding-top = 60px so content clears the sticky close button. */
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    padding: 64px 1rem 1.5rem;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox .lb-stage {
+    width: min(92vw, 720px);
+    /* Mobile-first: clamp by both width AND viewport height so the image plus
+       title + nav + counter still fits without forcing the close button off. */
+    height: min(54vh, 560px);
+    display: flex; align-items: center; justify-content: center;
+    background: repeating-conic-gradient(#151018 0% 25%, #1e1624 0% 50%) 50%/24px 24px;
+    border: 1px solid var(--gold); border-radius: 4px;
+    flex-shrink: 0;
+  }
+  @media (min-width: 768px) {
+    .lightbox .lb-stage { height: min(72vh, 720px); }
+  }
+  .lightbox .lb-stage img {
+    max-width: 100%; max-height: 100%; image-rendering: pixelated; display: block;
+  }
+  .lightbox .lb-title {
+    color: var(--gold); margin: 0.8rem 0 0.2rem; font-family: 'Cinzel',Georgia,serif;
+    letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.95rem;
+    text-align: center;
+  }
+  .lightbox .lb-sub { color: var(--muted); font-size: 0.75rem; margin: 0 0 0.8rem; text-align: center; }
+  .lightbox .lb-nav { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
+  .lightbox button {
+    background: var(--panel); color: var(--parchment); border: 1px solid var(--border);
+    padding: 0.5rem 1rem; cursor: pointer; font-size: 0.8rem; border-radius: 3px;
+    letter-spacing: 0.06em; min-height: 44px; min-width: 44px;
+  }
+  .lightbox button:hover { border-color: var(--gold); color: var(--gold); }
+  /* M279: anchor the close button to the viewport (not the scrollable lightbox)
+     so it stays put even on tall image content; bigger touch target for mobile. */
+  .lightbox .lb-close {
+    position: fixed; top: 0.75rem; right: 0.75rem; z-index: 110;
+    background: rgba(20,12,16,0.92); border: 1.5px solid var(--gold); color: var(--gold);
+    padding: 0.55rem 0.95rem; font-size: 0.85rem; font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5); min-height: 44px; min-width: 44px;
+  }
+  .lightbox .lb-counter { color: var(--muted); font-size: 0.7rem; margin-top: 0.5rem; letter-spacing: 0.08em; }
+
+  /* M279: pending-approval call-out indicator. Always shown in the summary
+     when count > 0; on mobile it floats as a sticky bottom-right badge so
+     the user can spot pending review at a glance without scrolling. */
+  .summary .stat.stat-attention {
+    border-color: var(--gold); background: rgba(232,160,32,0.12);
+    box-shadow: 0 0 8px rgba(232,160,32,0.3);
+    cursor: pointer;
+  }
+  .summary .stat.stat-attention .v { color: var(--gold); animation: pa-pulse 2s ease-in-out infinite; }
+  @keyframes pa-pulse { 0%,100% { opacity: 0.85; } 50% { opacity: 1; } }
+  #pending-floater {
+    display: none; position: fixed; bottom: 0.85rem; right: 0.85rem; z-index: 90;
+    background: rgba(192,64,48,0.95); color: #fff; border: 1.5px solid var(--gold);
+    padding: 0.55rem 0.85rem; border-radius: 999px; cursor: pointer;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    min-height: 44px; min-width: 44px;
+  }
+  #pending-floater .pf-count {
+    background: #fff; color: #c04030; padding: 0 0.4rem; border-radius: 10px;
+    margin-left: 0.4rem; font-weight: 800;
+  }
+  @media (max-width: 767px) {
+    #pending-floater.show { display: inline-flex; align-items: center; }
+  }
+
+  /* ── Desktop-only enhancements ── */
+  @media (min-width: 768px) {
+    /* Per-frame status dot */
+    .subsprites .sub .frame-dot {
+      position: absolute; bottom: 3px; right: 3px;
+      width: 9px; height: 9px; border-radius: 50%;
+      box-shadow: 0 0 0 1.5px rgba(0,0,0,0.7), 0 0 0 2.5px rgba(255,255,255,0.15);
+      z-index: 2; pointer-events: none;
+    }
+    .frame-dot.dot-approved,  .leg-dot.dot-approved  { background: var(--green); }
+    .frame-dot.dot-pending,   .leg-dot.dot-pending   { background: var(--gold); }
+    .frame-dot.dot-rejected,  .leg-dot.dot-rejected  { background: var(--warn); }
+    .frame-dot.dot-other,     .leg-dot.dot-other     { background: #555; }
+
+    /* Lightbox pose status dot */
+    .lightbox .lb-pose-dot {
+      display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+      vertical-align: middle; margin-right: 6px;
+      box-shadow: 0 0 0 1.5px rgba(0,0,0,0.6), 0 0 0 2.5px rgba(255,255,255,0.12);
+    }
+    .lightbox .lb-pose-dot.dot-approved { background: var(--green); }
+    .lightbox .lb-pose-dot.dot-pending  { background: var(--gold); }
+    .lightbox .lb-pose-dot.dot-rejected { background: var(--warn); }
+    .lightbox .lb-pose-dot.dot-other    { background: #555; }
+
+    /* Grid-col buttons (inside sticky menu) */
+    .grid-col-label {
+      font-size: 0.6rem; color: var(--muted); text-transform: uppercase;
+      letter-spacing: 0.08em; flex-shrink: 0;
+    }
+    .grid-col-btns { display: flex; gap: 3px; }
+    .grid-col-btns button {
+      background: var(--panel); color: var(--muted);
+      border: 1px solid var(--border); border-radius: 3px;
+      width: 22px; height: 22px; font-size: 0.65rem; cursor: pointer;
+      padding: 0; line-height: 1; letter-spacing: 0;
+    }
+    .grid-col-btns button.active {
+      background: var(--panel-alt); color: var(--gold); border-color: var(--gold);
+    }
+    .grid-col-btns button:hover:not(.active) {
+      border-color: var(--muted); color: var(--parchment);
+    }
+
+    /* Legend (inside sticky menu) */
+    .subsprites-legend {
+      display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;
+      font-size: 0.6rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .subsprites-legend .leg-item { display: flex; align-items: center; gap: 4px; }
+    .subsprites-legend .leg-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+      box-shadow: 0 0 0 1.5px rgba(0,0,0,0.7), 0 0 0 2.5px rgba(255,255,255,0.12);
+    }
+  }
+
+  /* Sticky sub-sprite control menu */
+  #subsprite-toggle {
+    position: fixed; right: 1rem; bottom: 1rem; z-index: 50;
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.6rem 0.8rem;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+    font-size: 0.75rem; color: var(--parchment);
+    display: flex; flex-direction: column; gap: 0.5rem;
+    max-width: min(90vw, 360px);
+  }
+  #subsprite-toggle .ss-row {
+    display: flex; align-items: center; gap: 0.4rem;
+    cursor: pointer; flex-wrap: wrap;
+  }
+  #subsprite-toggle input[type=checkbox] { accent-color: var(--gold); }
+  #subsprite-toggle #ss-legend { margin-top: 0.1rem; }
+
+  /* Desktop-only rows inside the sticky menu */
+  @media (max-width: 767px) {
+    #subsprite-toggle .ss-desktop { display: none !important; }
+  }
+
+  /* M232: pose-background override for the redesign audit page. Swaps the
+     repeating checker grid out for a flat color so art reads differently
+     against each baseline. Applies to anchor + cell slots + sub-sprite
+     cells in one go. */
+  body[data-bg="black"]  .refcol .anchor,
+  body[data-bg="black"]  .cell .twoup .slot,
+  body[data-bg="black"]  .subsprites .sub { background: #000; }
+  body[data-bg="dark"]   .refcol .anchor,
+  body[data-bg="dark"]   .cell .twoup .slot,
+  body[data-bg="dark"]   .subsprites .sub { background: #2a242e; }
+  body[data-bg="light"]  .refcol .anchor,
+  body[data-bg="light"]  .cell .twoup .slot,
+  body[data-bg="light"]  .subsprites .sub { background: #d8d0c8; }
+  body[data-bg="white"]  .refcol .anchor,
+  body[data-bg="white"]  .cell .twoup .slot,
+  body[data-bg="white"]  .subsprites .sub { background: #ffffff; }
+  body[data-bg="green"]  .refcol .anchor,
+  body[data-bg="green"]  .cell .twoup .slot,
+  body[data-bg="green"]  .subsprites .sub { background: #00b200; }
+
+  /* Pending-only filter: hide rows where every pose is approved. */
+  body.pending-only .char[data-fully-approved] { display: none; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Tools &middot; Character Redesign</h1>
+    <p class="sub">Rebuilt reference sheets per class using tighter art-direction prompts, grouped by gender. Each row shows the <em>old OpenAI portrait</em> (the original identity anchor) alongside the new male and female SpriteCook references so you can flag miscategorized genders or regressions at a glance.</p>
+
+    <div class="notice">
+      <strong>Pipeline:</strong> prompts live in <code>public/data/art_direction/&lt;id&gt;.json</code>; references are generated via the SpriteCook MCP (<code>generate_game_art</code>, pixel mode, 256&times;256) and saved to <code>public/images/pixellab/&lt;id&gt;/reference.png</code>. The canonical pose spec is in <a href="../docs/image-policy.md">/docs/image-policy.md</a> (7 poses per character). Sub-sprite frames below each card are optional; use the floating toggle to hide them while auditing the main references.
+    </div>
+
+    <div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;margin:0 0 1rem;padding:0.5rem 0.75rem;background:var(--panel);border:1px solid var(--border);border-radius:4px;">
+      <label for="version-select" style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Game Version:</label>
+      <select id="version-select" style="background:var(--panel-alt);color:var(--parchment);border:1px solid var(--border);padding:0.3rem 0.5rem;font-size:0.85rem;border-radius:3px;cursor:pointer;">
+        <option value="current">Current (live)</option>
+        <option value="m217">M217 snapshot</option>
+      </select>
+      <span id="version-note" style="font-size:0.7rem;color:var(--muted);"></span>
+    </div>
+
+    <div class="summary" id="summary"></div>
+    <div id="characters"></div>
+
+    <div id="subsprite-toggle">
+      <label class="ss-row">
+        <input type="checkbox" id="subsprite-checkbox">
+        Show sub-sprites (7-pose frames)
+      </label>
+      <label class="ss-row ss-desktop">
+        <input type="checkbox" id="hide-approved-checkbox">
+        Hide fully-approved characters
+      </label>
+      <label class="ss-row ss-desktop" id="pending-only-row">
+        <input type="checkbox" id="pending-only-checkbox">
+        Only show pending-review poses
+      </label>
+      <div class="ss-row" id="bg-color-row">
+        <span class="grid-col-label">BG:</span>
+        <select id="bg-color-select" style="background:var(--panel-alt);color:var(--parchment);border:1px solid var(--border);padding:0.2rem 0.35rem;font-size:0.7rem;border-radius:3px;cursor:pointer;">
+          <option value="grid">Grid</option>
+          <option value="black">Black</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="white">White</option>
+          <option value="green">Green</option>
+        </select>
+      </div>
+      <div class="ss-row ss-desktop" id="ss-cols-row">
+        <span class="grid-col-label">Cols:</span>
+        <div class="grid-col-btns" id="ss-cols-btns"></div>
+      </div>
+      <div class="subsprites-legend ss-desktop" id="ss-legend"></div>
+    </div>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button class="lb-close" id="lb-close" aria-label="Close">&times; Close</button>
+      <div class="lb-stage"><img id="lb-img" alt=""></div>
+      <h3 class="lb-title" id="lb-title"></h3>
+      <p class="lb-sub" id="lb-sub"></p>
+      <div class="lb-nav">
+        <button id="lb-prev" aria-label="Previous image">&larr; Prev</button>
+        <button id="lb-next" aria-label="Next image">Next &rarr;</button>
+      </div>
+      <p class="lb-counter" id="lb-counter"></p>
+    </div>
+
+    <footer class="note">
+      Regen entry point: <code>SpriteCook MCP &rarr; generate_game_art</code> with the prompt from <code>referenceSheet.prompt</code>. Prompt rewriter: <code>node scripts/pixellab/rewrite-prompts.cjs</code>. State file: <code>public/data/pixellab_redesign_state.json</code>. Each class's banned substrings live in its art-direction JSON.
+    </footer>
+  </div>
+
+<script>
+const POSES = ['portrait','south','east','east_attack','east_spell','east_block','east_ko'];
+const LB_ITEMS = [];
+
+// ── Lightbox pose-dot metadata ──
+// Each entry may carry a poseDotClass so the lightbox can show a status dot.
+function registerLightbox(imgEl, title, subtitle, poseDotClass) {
+  const idx = LB_ITEMS.length;
+  LB_ITEMS.push({ el: imgEl, title, subtitle, poseDotClass: poseDotClass || null });
+  imgEl.dataset.lbIdx = String(idx);
+  imgEl.addEventListener('click', () => openLightbox(idx));
+}
+let lbIdx = 0;
+function openLightbox(i) {
+  if (!LB_ITEMS.length) return;
+  lbIdx = ((i % LB_ITEMS.length) + LB_ITEMS.length) % LB_ITEMS.length;
+  const item = LB_ITEMS[lbIdx];
+  const big = document.getElementById('lb-img');
+  big.src = item.el.src;
+  big.alt = item.title;
+  document.getElementById('lb-title').textContent = item.title;
+
+  // Sub line: optionally prepend a status dot on desktop
+  const lbSub = document.getElementById('lb-sub');
+  lbSub.innerHTML = '';
+  if (item.poseDotClass && window.matchMedia('(min-width: 768px)').matches) {
+    const dot = document.createElement('span');
+    dot.className = 'lb-pose-dot ' + item.poseDotClass;
+    lbSub.appendChild(dot);
+  }
+  lbSub.appendChild(document.createTextNode(item.subtitle));
+
+  document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + LB_ITEMS.length;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+function stepLightbox(dir) { openLightbox(lbIdx + dir); }
+
+// Vite serves /public at the site root, so from /assets/<file>.html we reach
+// assets via "../images/..." and data via "../data/...".
+const IMG_BASE_LIVE  = '../images';
+const DATA_BASE_LIVE = '../data';
+let IMG_BASE  = IMG_BASE_LIVE;
+let DATA_BASE = DATA_BASE_LIVE;
+let CURRENT_VERSION = 'current';   // 'current' or a snapshot id like 'm217'
+let STATE_URL       = DATA_BASE_LIVE + '/pixellab_redesign_state.json';
+
+function setVersion(versionId) {
+  CURRENT_VERSION = versionId;
+  if (versionId === 'current') {
+    IMG_BASE  = IMG_BASE_LIVE;
+    DATA_BASE = DATA_BASE_LIVE;
+    STATE_URL = DATA_BASE_LIVE + '/pixellab_redesign_state.json';
+  } else {
+    IMG_BASE  = IMG_BASE_LIVE  + '/character_redesign_snapshots/' + versionId;
+    DATA_BASE = DATA_BASE_LIVE + '/character_redesign_snapshots/' + versionId;
+    STATE_URL = DATA_BASE + '/state.json';
+  }
+}
+
+async function loadJson(url) {
+  const r = await fetch(url, { cache: 'no-store' });
+  if (!r.ok) throw new Error(url + ' ' + r.status);
+  return r.json();
+}
+
+function pill(text, cls) {
+  const el = document.createElement('span');
+  el.className = 'pill ' + (cls || 'pending');
+  el.textContent = text;
+  return el;
+}
+
+function imgOrPlaceholder(src, label) {
+  const slot = document.createElement('div');
+  slot.className = 'slot';
+  const img = new Image();
+  img.onerror = () => { slot.classList.add('empty'); slot.textContent = label + ' missing'; };
+  img.src = src + '?t=' + Date.now();
+  img.alt = label;
+  const tag = document.createElement('span');
+  tag.className = 'tag'; tag.textContent = label;
+  slot.appendChild(img);
+  slot.appendChild(tag);
+  return slot;
+}
+
+// ── Status-dot helpers ──
+function dotClassForStatus(status) {
+  if (!status) return 'dot-other';
+  if (status === 'approved') return 'dot-approved';
+  if (status === 'pending_approval') return 'dot-pending';
+  if (status === 'rejected') return 'dot-rejected';
+  return 'dot-other';
+}
+
+function makeDot(status) {
+  const dot = document.createElement('span');
+  dot.className = 'frame-dot ' + dotClassForStatus(status);
+  return dot;
+}
+
+function renderSummary(state) {
+  const box = document.getElementById('summary');
+  box.innerHTML = '';
+  const ids = Object.keys(state.characters);
+  const byStatus = s => ids.filter(id => state.characters[id].status === s).length;
+  const pendingApproval = byStatus('pending_approval');
+  const stats = [
+    ['Characters', ids.length],
+    ['Pending', byStatus('pending')],
+    ['Reference Ready', byStatus('reference_generated')],
+    ['Pending Approval', pendingApproval, 'attention'],
+    ['Reference Approved', byStatus('reference_approved')],
+    ['Fully Approved', byStatus('approved')],
+    ['Credits Used', state.creditsUsedTotal || 0],
+    ['Updated', state.updatedAt ? new Date(state.updatedAt).toLocaleString() : '—'],
+  ];
+  stats.forEach(([k, v, kind]) => {
+    const s = document.createElement('div');
+    s.className = 'stat' + (kind === 'attention' && v > 0 ? ' stat-attention' : '');
+    s.innerHTML = '<div class="k">' + k + '</div><div class="v">' + v + '</div>';
+    if (kind === 'attention' && v > 0) {
+      s.title = 'Tap to jump to Pending Approval section';
+      s.addEventListener('click', _scrollToPendingSection);
+    }
+    box.appendChild(s);
+  });
+  // M279 — Mobile floating indicator. Visible only on phones (CSS @media)
+  // when there's something waiting for review. Tap = scroll to section.
+  let floater = document.getElementById('pending-floater');
+  if (!floater) {
+    floater = document.createElement('button');
+    floater.type = 'button';
+    floater.id = 'pending-floater';
+    floater.addEventListener('click', _scrollToPendingSection);
+    document.body.appendChild(floater);
+  }
+  if (pendingApproval > 0) {
+    floater.innerHTML = '⚑ Pending Review<span class="pf-count">' + pendingApproval + '</span>';
+    floater.classList.add('show');
+  } else {
+    floater.classList.remove('show');
+  }
+}
+
+function _scrollToPendingSection() {
+  // The "Pending Approval" section header is always the first .section-header
+  // when present (per the SECTIONS order in main()). Scroll to it.
+  const headers = document.querySelectorAll('#characters .section-header');
+  for (const h of headers) {
+    if (/Pending Approval/i.test(h.textContent)) {
+      h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+  }
+}
+
+function renderArtDirection(ad) {
+  const d = document.createElement('details');
+  d.className = 'ad';
+  const s = document.createElement('summary');
+  s.textContent = 'Art direction';
+  d.appendChild(s);
+  const dl = document.createElement('dl');
+  dl.className = 'ad-grid';
+  const keys = ['class','pixelHeight','identity','outfit','weapons','attackStyle','spellStyle','blockStyle','koStyle','southStyle','portraitStyle'];
+  keys.forEach(k => {
+    if (!ad[k]) return;
+    const dt = document.createElement('dt'); dt.textContent = k;
+    const dd = document.createElement('dd'); dd.textContent = ad[k];
+    dl.appendChild(dt); dl.appendChild(dd);
+  });
+  if (ad.bannedSubstrings?.length) {
+    const dt = document.createElement('dt'); dt.textContent = 'bannedSubstrings (' + ad.bannedSubstrings.length + ')';
+    const dd = document.createElement('dd'); dd.textContent = ad.bannedSubstrings.join(', ');
+    dl.appendChild(dt); dl.appendChild(dd);
+  }
+  d.appendChild(dl);
+  return d;
+}
+
+function detectGender(ad, spriteId) {
+  // Companions / non-humanoid entries have no gender; treat as 'companion'.
+  if (ad && (ad.class === 'quadruped-companion' || /companion/i.test(ad.class || ''))) return 'companion';
+  if (ad && Array.isArray(ad.poseSet) && ad.poseSet.length && ad.poseSet.length < 7) return 'companion';
+  if (spriteId.endsWith('_male')) return 'male';
+  if (spriteId.endsWith('_female')) return 'female';
+  const text = ((ad?.identity || '') + ' ' + (ad?.portraitStyle || '')).toLowerCase();
+  if (/\bwoman\b|\bfemale\b|\bshe\b|\bher\b/.test(text)) return 'female';
+  if (/\bman\b|\bmale\b|\bhe\b|\bhis\b/.test(text)) return 'male';
+  return 'unknown';
+}
+
+function baseIdOf(spriteId) {
+  return spriteId.replace(/_(male|female)$/, '');
+}
+
+// ── Sub-sprite grid column count (desktop, persisted) ──
+const COL_KEY = 'rsg.charRedesign.subGridCols';
+const COL_DEFAULT = 4;
+const COL_OPTIONS = [1, 2, 3, 4, 5, 6, 7];
+
+function getSubGridCols() {
+  const v = parseInt(localStorage.getItem(COL_KEY), 10);
+  return COL_OPTIONS.includes(v) ? v : COL_DEFAULT;
+}
+
+function applySubGridCols(cols) {
+  document.querySelectorAll('.subsprites').forEach(el => {
+    el.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
+  });
+  document.querySelectorAll('.grid-col-btns button').forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.cols, 10) === cols);
+  });
+}
+
+function buildStickyMenuControls() {
+  const btns = document.getElementById('ss-cols-btns');
+  if (btns && !btns.children.length) {
+    const currentCols = getSubGridCols();
+    COL_OPTIONS.forEach(n => {
+      const b = document.createElement('button');
+      b.dataset.cols = String(n);
+      b.textContent = String(n);
+      if (n === currentCols) b.classList.add('active');
+      b.addEventListener('click', () => {
+        localStorage.setItem(COL_KEY, String(n));
+        applySubGridCols(n);
+      });
+      btns.appendChild(b);
+    });
+  }
+  const legend = document.getElementById('ss-legend');
+  if (legend && !legend.children.length) {
+    const LEGEND_ITEMS = [
+      { cls: 'dot-approved', label: 'Approved' },
+      { cls: 'dot-pending',  label: 'Pending' },
+      { cls: 'dot-other',    label: 'Needs Reference' },
+      { cls: 'dot-rejected', label: 'Rejected' },
+    ];
+    LEGEND_ITEMS.forEach(({ cls, label }) => {
+      const item = document.createElement('span');
+      item.className = 'leg-item';
+      const dot = document.createElement('span');
+      dot.className = 'leg-dot ' + cls;
+      item.appendChild(dot);
+      item.appendChild(document.createTextNode(label));
+      legend.appendChild(item);
+    });
+  }
+}
+buildStickyMenuControls();
+
+function renderSubSprites(spriteId, gender, framesStatus, posesOverride, entry) {
+  const cols = getSubGridCols();
+  const grid = document.createElement('div');
+  grid.className = 'subsprites';
+  grid.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
+
+  const poses = Array.isArray(posesOverride) && posesOverride.length ? posesOverride : POSES;
+  const pendingReview = (entry && entry.pendingReview) || {};
+  poses.forEach(pose => {
+    const poseStatus = (framesStatus && framesStatus[pose]) ? framesStatus[pose] : null;
+    const dotCls = dotClassForStatus(poseStatus);
+    // M236: when a pose has a pending-review regen, render the NEW image
+    // directly so the user sees what's waiting for approval. Fallback to
+    // the approved on-disk file if pendingReview is missing.
+    const pending = pendingReview[pose];
+    const cell = document.createElement('div'); cell.className = 'sub';
+    const img = new Image();
+    img.onerror = () => { cell.classList.add('empty'); cell.textContent = pose; };
+    const imgSrc = pending && pending.path
+      ? ('../' + pending.path + '?t=' + Date.now())
+      : (IMG_BASE + '/pixellab/' + spriteId + '/' + pose + '.png?t=' + Date.now());
+    img.src = imgSrc;
+    img.alt = pose;
+
+    const subtitle = 'Pose \xb7 ' + pose + (poseStatus ? ' \xb7 ' + poseStatus : '') + (pending ? ' \xb7 NEW (pending review)' : '');
+    registerLightbox(img, spriteId + ' \xb7 ' + (gender || '').toUpperCase(), subtitle, dotCls);
+
+    const tag = document.createElement('span'); tag.className = 'tag'; tag.textContent = pose + (pending ? ' ★' : '');
+
+    const dot = makeDot(poseStatus);
+
+    cell.appendChild(img);
+    cell.appendChild(tag);
+    cell.appendChild(dot);
+    grid.appendChild(cell);
+  });
+  return grid;
+}
+
+function renderSlot(baseId, variant, state) {
+  const col = document.createElement('div');
+  col.className = 'refcol';
+  if (!variant) {
+    col.classList.add('empty');
+    col.textContent = 'no variant yet';
+    return col;
+  }
+  const { spriteId, entry, ad, gender } = variant;
+
+  const label = document.createElement('div');
+  label.className = 'slot-label';
+  const left = document.createElement('span');
+  left.textContent = gender.toUpperCase();
+  label.appendChild(left);
+  label.appendChild(pill(entry.referenceStatus || 'pending', entry.referenceStatus || 'pending'));
+  const sid = document.createElement('span');
+  sid.className = 'sid'; sid.textContent = spriteId;
+  label.appendChild(sid);
+  col.appendChild(label);
+
+  const refImg = document.createElement('img');
+  refImg.className = 'sheet';
+  refImg.style.aspectRatio = '1/1';
+  // M236: use the pending-review reference when it exists so the user
+  // sees the new gen awaiting approval.
+  const pendingRef = entry && entry.pendingReview && entry.pendingReview.reference;
+  refImg.src = pendingRef && pendingRef.path
+    ? ('../' + pendingRef.path + '?t=' + Date.now())
+    : (IMG_BASE + '/pixellab/' + spriteId + '/reference.png?t=' + Date.now());
+  refImg.onerror = () => { refImg.replaceWith(Object.assign(document.createElement('div'), { className: 'placeholder', textContent: 'reference not on disk yet' })); };
+  registerLightbox(refImg, spriteId + ' \xb7 ' + gender.toUpperCase(), 'Reference sheet \xb7 ' + (entry.referenceStatus || 'pending'));
+  col.appendChild(refImg);
+
+  const framesStatus = entry.framesStatus || null;
+  const poseSet = (ad && Array.isArray(ad.poseSet) && ad.poseSet.length) ? ad.poseSet : null;
+  col.appendChild(renderSubSprites(spriteId, gender, framesStatus, poseSet, entry));
+  if (ad) col.appendChild(renderArtDirection(ad));
+  return col;
+}
+
+function renderOldPortraitSlot(baseId) {
+  const col = document.createElement('div');
+  col.className = 'refcol';
+  const label = document.createElement('div');
+  label.className = 'slot-label';
+  const left = document.createElement('span'); left.textContent = 'OLD PORTRAIT';
+  label.appendChild(left);
+  const sid = document.createElement('span');
+  sid.className = 'sid'; sid.textContent = baseId;
+  label.appendChild(sid);
+  col.appendChild(label);
+
+  const img = document.createElement('img');
+  img.className = 'sheet';
+  img.style.aspectRatio = '1/1';
+  img.src = IMG_BASE + '/portraits/' + baseId + '.png?t=' + Date.now();
+  img.onerror = () => { img.replaceWith(Object.assign(document.createElement('div'), { className: 'placeholder', textContent: 'no old portrait' })); };
+  registerLightbox(img, baseId + ' \xb7 OLD PORTRAIT', 'Original OpenAI portrait (identity anchor)');
+  col.appendChild(img);
+  return col;
+}
+
+// ── Hide-approved helpers ──
+const HIDE_KEY = 'rsg.charRedesign.hideApproved';
+
+function isFullyApproved(variants) {
+  // M263: trust framesStatus when present — top-level `status` often lags
+  // behind (e.g. chronomancer_female had all 7 frames approved but status
+  // still 'pending_approval' from an M217 regen that never flipped the root).
+  return variants.every(v => {
+    const fs = v.entry.framesStatus;
+    if (fs && Object.keys(fs).length) {
+      return Object.values(fs).every(s => s === 'approved');
+    }
+    return v.entry.status === 'approved';
+  });
+}
+
+function applyHideApproved(hide) {
+  document.querySelectorAll('.char[data-fully-approved]').forEach(el => {
+    el.style.display = hide ? 'none' : '';
+  });
+}
+
+function renderGroup(baseId, variants) {
+  const card = document.createElement('div');
+  card.className = 'char';
+  const hdr = document.createElement('header');
+  const h2 = document.createElement('h2'); h2.textContent = baseId;
+  hdr.appendChild(h2);
+  variants.forEach(v => {
+    hdr.appendChild(pill(v.gender + ': ' + v.entry.status, v.entry.status));
+  });
+  card.appendChild(hdr);
+
+  if (isFullyApproved(variants)) {
+    card.dataset.fullyApproved = '1';
+  }
+
+  const body = document.createElement('div'); body.className = 'body';
+  body.appendChild(renderOldPortraitSlot(baseId));
+  const companion = variants.find(v => v.gender === 'companion');
+  if (companion) {
+    // Companion row: 3-column layout — [old portrait] [companion] [empty placeholder]
+    body.appendChild(renderSlot(baseId, companion, null));
+    body.appendChild(renderSlot(baseId, null,      null)); // empty 3rd col for visual parity
+  } else {
+    const male   = variants.find(v => v.gender === 'male') || variants.find(v => v.gender === 'unknown');
+    const female = variants.find(v => v.gender === 'female');
+    body.appendChild(renderSlot(baseId, male,   null));
+    body.appendChild(renderSlot(baseId, female, null));
+  }
+  card.appendChild(body);
+  return card;
+}
+
+async function main() {
+  const root = document.getElementById('characters');
+  root.innerHTML = '';                                 // clear for re-runs (version switch)
+  document.getElementById('summary').innerHTML = '';
+  const state = await loadJson(STATE_URL);
+  renderSummary(state);
+
+  const variants = [];
+  for (const [spriteId, entry] of Object.entries(state.characters)) {
+    let ad = null;
+    try { ad = await loadJson('../' + entry.artDirectionPath); } catch (e) {}
+    variants.push({ spriteId, entry, ad, gender: detectGender(ad, spriteId), baseId: baseIdOf(spriteId) });
+  }
+
+  const groups = new Map();
+  for (const v of variants) {
+    if (!groups.has(v.baseId)) groups.set(v.baseId, []);
+    groups.get(v.baseId).push(v);
+  }
+  const sortedBaseIds = [...groups.keys()].sort();
+
+  function bucketOf(variants) {
+    const statuses = variants.map(v => v.entry.status || 'pending');
+    if (statuses.includes('pending_approval')) return 'pending_approval';
+    // M279: also bucket as pending_approval when ANY frame is pending_approval
+    // OR a pendingReview block has pose paths — even if the top-level status
+    // is still 'partial' or 'approved'. Otherwise mid-approval characters
+    // hide in the "Partially Approved" section and miss user review.
+    for (const v of variants) {
+      const fs = v.entry?.framesStatus || {};
+      if (Object.values(fs).some(s => s === 'pending_approval')) return 'pending_approval';
+      const pr = v.entry?.pendingReview || {};
+      if (Object.entries(pr).some(([k, val]) => k !== 'reference' && val && val.path)) return 'pending_approval';
+    }
+    const approvedCount = statuses.filter(s => s === 'approved').length;
+    if (approvedCount && approvedCount === statuses.length) return 'approved';
+    if (approvedCount > 0) return 'partial';
+    if (statuses.includes('reference_generated')) return 'reference_generated';
+    return 'pending';
+  }
+
+  const SECTIONS = [
+    { key: 'pending_approval',    label: 'Pending Approval' },
+    { key: 'approved',            label: 'Fully Approved' },
+    { key: 'partial',             label: 'Partially Approved' },
+    { key: 'reference_generated', label: 'Reference Generated' },
+    { key: 'pending',             label: 'Pending' },
+  ];
+  const buckets = Object.fromEntries(SECTIONS.map(s => [s.key, []]));
+  for (const baseId of sortedBaseIds) {
+    const vs = groups.get(baseId);
+    buckets[bucketOf(vs)].push({ baseId, vs });
+  }
+
+  for (const sec of SECTIONS) {
+    const items = buckets[sec.key];
+    if (!items.length) continue;
+    const hdr = document.createElement('div');
+    hdr.className = 'section-header';
+    const lbl = document.createElement('span'); lbl.textContent = sec.label;
+    const cnt = document.createElement('span'); cnt.className = 'count'; cnt.textContent = items.length + ' ' + (items.length === 1 ? 'class' : 'classes');
+    hdr.appendChild(lbl); hdr.appendChild(cnt);
+    root.appendChild(hdr);
+    for (const { baseId, vs } of items) {
+      root.appendChild(renderGroup(baseId, vs));
+    }
+  }
+
+  // Apply persisted hide-approved state after DOM is built
+  const hideApprovedInit = localStorage.getItem(HIDE_KEY) === '1';
+  applyHideApproved(hideApprovedInit);
+}
+
+async function bootstrap() {
+  // Populate version dropdown from manifest
+  const sel = document.getElementById('version-select');
+  const note = document.getElementById('version-note');
+  try {
+    const manifest = await loadJson(DATA_BASE_LIVE + '/character_redesign_snapshots/manifest.json');
+    (manifest.snapshots || []).forEach(snap => {
+      const opt = document.createElement('option');
+      opt.value = snap.id;
+      opt.textContent = snap.label;
+      opt.dataset.note = snap.note || '';
+      sel.appendChild(opt);
+    });
+  } catch (e) {
+    // No manifest yet — only "Current" option remains
+  }
+  sel.addEventListener('change', () => {
+    setVersion(sel.value);
+    const opt = sel.options[sel.selectedIndex];
+    note.textContent = opt?.dataset?.note || '';
+    main().catch(err => {
+      document.getElementById('characters').innerHTML =
+        '<div class="notice">Failed to load version: ' + (err.message || err) + '</div>';
+    });
+  });
+  setVersion('current');
+  await main();
+}
+
+bootstrap().catch(e => {
+  document.getElementById('characters').innerHTML =
+    '<div class="notice">Failed to load state: ' + (e.message || e) + '</div>';
+});
+
+// Lightbox wiring
+(function wireLightbox(){
+  const box = document.getElementById('lightbox');
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lb-prev').addEventListener('click', (e) => { e.stopPropagation(); stepLightbox(-1); });
+  document.getElementById('lb-next').addEventListener('click', (e) => { e.stopPropagation(); stepLightbox(1); });
+  box.addEventListener('click', (e) => { if (e.target === box) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!box.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') stepLightbox(-1);
+    else if (e.key === 'ArrowRight') stepLightbox(1);
+  });
+})();
+
+// Sub-sprite toggle (sticky floating control, persisted in localStorage)
+(function wireSubSpriteToggle(){
+  const cb = document.getElementById('subsprite-checkbox');
+  const KEY = 'rsg-char-redesign-show-subsprites';
+  const initial = localStorage.getItem(KEY) === '1';
+  cb.checked = initial;
+  document.body.classList.toggle('show-subsprites', initial);
+  cb.addEventListener('change', () => {
+    document.body.classList.toggle('show-subsprites', cb.checked);
+    localStorage.setItem(KEY, cb.checked ? '1' : '0');
+  });
+})();
+
+// Hide-approved toggle (desktop only — control is CSS-hidden on mobile)
+(function wireHideApproved(){
+  const cb = document.getElementById('hide-approved-checkbox');
+  if (!cb) return;
+  const initial = localStorage.getItem(HIDE_KEY) === '1';
+  cb.checked = initial;
+  cb.addEventListener('change', () => {
+    const v = cb.checked;
+    localStorage.setItem(HIDE_KEY, v ? '1' : '0');
+    applyHideApproved(v);
+  });
+})();
+
+// M232: background-color swatch persists and applies via body[data-bg].
+(function wireBgColor(){
+  const sel = document.getElementById('bg-color-select');
+  if (!sel) return;
+  const KEY = 'rsg-char-redesign-bg';
+  const initial = localStorage.getItem(KEY) || 'grid';
+  sel.value = initial;
+  if (initial !== 'grid') document.body.setAttribute('data-bg', initial);
+  sel.addEventListener('change', () => {
+    const v = sel.value;
+    if (v === 'grid') document.body.removeAttribute('data-bg');
+    else document.body.setAttribute('data-bg', v);
+    localStorage.setItem(KEY, v);
+  });
+})();
+
+// M232/M236: pending-only filter. DEFAULT ON so the "Current" view shows only
+// sprites that still need review — the page opens with 0 items unless there's
+// something unreviewed, matching the review workflow the user wants.
+(function wirePendingOnly(){
+  const cb = document.getElementById('pending-only-checkbox');
+  if (!cb) return;
+  const KEY = 'rsg-char-redesign-pending-only';
+  const raw = localStorage.getItem(KEY);
+  const initial = raw === null ? true : raw === '1';
+  cb.checked = initial;
+  document.body.classList.toggle('pending-only', initial);
+  cb.addEventListener('change', () => {
+    document.body.classList.toggle('pending-only', cb.checked);
+    localStorage.setItem(KEY, cb.checked ? '1' : '0');
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1523 @@
+[
+  {
+    "id": "cleave",
+    "name": "Cleave",
+    "class": "warrior",
+    "type": "melee",
+    "mpCost": 0,
+    "unlockLevel": 1,
+    "description": "Sweeping strike hitting up to 3 adjacent enemies for 110% STR damage.",
+    "talents": [
+      "cl_wide",
+      "cl_bleed"
+    ]
+  },
+  {
+    "id": "battle_cry",
+    "name": "Battle Cry",
+    "class": "warrior",
+    "type": "buff",
+    "mpCost": 15,
+    "unlockLevel": 5,
+    "description": "Rally the party, granting +20% damage for 3 rounds.",
+    "talents": [
+      "bc_hp",
+      "bc_def"
+    ]
+  },
+  {
+    "id": "whirlwind",
+    "name": "Whirlwind",
+    "class": "warrior",
+    "type": "melee",
+    "mpCost": 20,
+    "unlockLevel": 10,
+    "description": "Spin attack hitting all adjacent enemies (up to 3).",
+    "talents": [
+      "ww_bleed",
+      "ww_extra"
+    ]
+  },
+  {
+    "id": "unbreakable",
+    "name": "Unbreakable",
+    "class": "warrior",
+    "type": "buff",
+    "mpCost": 25,
+    "unlockLevel": 15,
+    "description": "Enter defensive stance for 2 rounds: take 50% less damage, reflect 10% back.",
+    "talents": [
+      "ub_reflect",
+      "ub_dur"
+    ]
+  },
+  {
+    "id": "precise_strike",
+    "name": "Precise Strike",
+    "class": "fighter",
+    "type": "melee",
+    "mpCost": 0,
+    "unlockLevel": 1,
+    "description": "A meticulously aimed blow dealing 160% STR damage.",
+    "talents": [
+      "ps_crit",
+      "ps_bleed"
+    ]
+  },
+  {
+    "id": "defensive_stance",
+    "name": "Defensive Stance",
+    "class": "fighter",
+    "type": "buff",
+    "mpCost": 10,
+    "unlockLevel": 3,
+    "description": "Adopt a defensive posture: take 35% less damage for 4 rounds.",
+    "talents": [
+      "ds_thorns",
+      "ds_dur"
+    ]
+  },
+  {
+    "id": "offensive_stance",
+    "name": "Offensive Stance",
+    "class": "fighter",
+    "type": "buff",
+    "mpCost": 12,
+    "unlockLevel": 5,
+    "description": "Shift to an aggressive posture: deal 30% more damage for 4 rounds.",
+    "talents": [
+      "os_speed",
+      "os_crit"
+    ]
+  },
+  {
+    "id": "riposte",
+    "name": "Riposte",
+    "class": "fighter",
+    "type": "buff",
+    "mpCost": 18,
+    "unlockLevel": 8,
+    "description": "For 3 rounds, parry incoming attacks and reflect 40% damage back to attackers.",
+    "talents": [
+      "rp_full",
+      "rp_dur"
+    ]
+  },
+  {
+    "id": "second_wind",
+    "name": "Second Wind",
+    "class": "fighter",
+    "type": "heal",
+    "mpCost": 15,
+    "unlockLevel": 10,
+    "description": "Catch your breath, instantly restoring 80 HP.",
+    "talents": [
+      "sw_more",
+      "sw_buff"
+    ]
+  },
+  {
+    "id": "sunder_armor",
+    "name": "Sunder Armor",
+    "class": "fighter",
+    "type": "melee",
+    "mpCost": 14,
+    "unlockLevel": 13,
+    "description": "A targeted blow that deals 90% STR damage and shreds the target\\u2019s armor for 4 rounds.",
+    "talents": [
+      "sa_aoe",
+      "sa_long"
+    ]
+  },
+  {
+    "id": "holy_strike",
+    "name": "Holy Strike",
+    "class": "paladin",
+    "type": "melee",
+    "mpCost": 5,
+    "unlockLevel": 1,
+    "description": "Blessed melee blow dealing STR+INT damage. Double vs undead/demons.",
+    "talents": [
+      "hs_burn",
+      "hs_splash"
+    ]
+  },
+  {
+    "id": "lay_on_hands",
+    "name": "Lay on Hands",
+    "class": "paladin",
+    "type": "heal",
+    "mpCost": 20,
+    "unlockLevel": 5,
+    "description": "Instantly restore HP to one ally equal to 2× INT.",
+    "talents": [
+      "loh_cleanse",
+      "loh_free"
+    ]
+  },
+  {
+    "id": "divine_shield",
+    "name": "Divine Shield",
+    "class": "paladin",
+    "type": "buff",
+    "mpCost": 25,
+    "unlockLevel": 10,
+    "description": "Surround one ally with a barrier absorbing 3× CON damage for 2 rounds.",
+    "talents": [
+      "ds_reflect",
+      "ds_double"
+    ]
+  },
+  {
+    "id": "consecration",
+    "name": "Consecration",
+    "class": "paladin",
+    "type": "zone",
+    "mpCost": 35,
+    "unlockLevel": 15,
+    "description": "Sanctify the ground: damages all enemies and heals party for 3 rounds.",
+    "talents": [
+      "con_slow",
+      "con_heal"
+    ]
+  },
+  {
+    "id": "magic_missile",
+    "name": "Magic Missile",
+    "class": "mage",
+    "type": "magic",
+    "mpCost": 8,
+    "unlockLevel": 1,
+    "description": "Launch 3 arcane bolts, each hitting a random enemy for INT damage.",
+    "talents": [
+      "mm_5bolts",
+      "mm_stun",
+      "mg_familiar"
+    ]
+  },
+  {
+    "id": "fireball",
+    "name": "Fireball",
+    "class": "mage",
+    "type": "magic",
+    "mpCost": 18,
+    "unlockLevel": 5,
+    "description": "Explosive fireball hitting one enemy group with fire damage and Burn.",
+    "talents": [
+      "fb_wider",
+      "fb_burn"
+    ]
+  },
+  {
+    "id": "blizzard",
+    "name": "Blizzard",
+    "class": "mage",
+    "type": "magic",
+    "mpCost": 30,
+    "unlockLevel": 10,
+    "description": "Ice storm blanketing all enemies for 3 rounds, dealing cold damage and Slow.",
+    "talents": [
+      "bz_freeze",
+      "bz_dmg"
+    ]
+  },
+  {
+    "id": "arcane_surge",
+    "name": "Arcane Surge",
+    "class": "mage",
+    "type": "magic",
+    "mpCost": 40,
+    "unlockLevel": 15,
+    "description": "400% INT damage to single target with overflow to adjacent enemies.",
+    "talents": [
+      "as_cd",
+      "as_pen"
+    ]
+  },
+  {
+    "id": "bone_spike",
+    "name": "Bone Spike",
+    "class": "necromancer",
+    "type": "magic",
+    "mpCost": 8,
+    "unlockLevel": 1,
+    "description": "Bone projectile dealing INT damage and applying Bleed, pierces target row.",
+    "talents": [
+      "bs_pierce",
+      "bs_extra",
+      "nr_skeletal"
+    ]
+  },
+  {
+    "id": "bone_spear",
+    "name": "Bone Spear",
+    "class": "necromancer",
+    "type": "magic",
+    "mpCost": 18,
+    "unlockLevel": 5,
+    "description": "Hurl a bone spear that pierces a row of enemies for 160% INT damage.",
+    "talents": [
+      "bs_pierce",
+      "bs_bleed"
+    ]
+  },
+  {
+    "id": "life_drain",
+    "name": "Life Drain",
+    "class": "necromancer",
+    "type": "magic",
+    "mpCost": 20,
+    "unlockLevel": 10,
+    "description": "Drain life from target dealing INT damage, healing Necromancer for 50%.",
+    "talents": [
+      "ld_chain",
+      "ld_buff"
+    ]
+  },
+  {
+    "id": "corpse_explosion",
+    "name": "Corpse Explosion",
+    "class": "necromancer",
+    "type": "damage",
+    "mpCost": 18,
+    "unlockLevel": 15,
+    "description": "Detonate a fallen enemy. Damage to adjacent foes scales with the corpse\\",
+    "talents": [
+      "ce_radius",
+      "ce_pierce",
+      "nr_golem"
+    ]
+  },
+  {
+    "id": "flame_lance",
+    "name": "Flame Lance",
+    "class": "pyromancer",
+    "type": "magic",
+    "mpCost": 8,
+    "unlockLevel": 1,
+    "description": "Fire bolt dealing INT damage and applying Burn (3-round DoT).",
+    "talents": [
+      "fl_dur",
+      "fl_spread",
+      "py_elemental"
+    ]
+  },
+  {
+    "id": "ignite",
+    "name": "Ignite",
+    "class": "pyromancer",
+    "type": "zone",
+    "mpCost": 18,
+    "unlockLevel": 5,
+    "description": "Set ground ablaze under one group, persisting 3 rounds with stacking Burn.",
+    "talents": [
+      "ig_spread",
+      "ig_stack"
+    ]
+  },
+  {
+    "id": "pyroclasm",
+    "name": "Pyroclasm",
+    "class": "pyromancer",
+    "type": "magic",
+    "mpCost": 25,
+    "unlockLevel": 10,
+    "description": "Chain fire explosion: each target triggers a secondary blast on nearest enemy, up to 3.",
+    "talents": [
+      "py_chain4",
+      "py_scale"
+    ]
+  },
+  {
+    "id": "meteor",
+    "name": "Meteor",
+    "class": "pyromancer",
+    "type": "magic",
+    "mpCost": 45,
+    "unlockLevel": 15,
+    "description": "Devastating meteor hitting all enemies with maximum Burn stacks and Ignite zones.",
+    "talents": [
+      "me_split",
+      "me_resist"
+    ]
+  },
+  {
+    "id": "aimed_shot",
+    "name": "Aimed Shot",
+    "class": "ranger",
+    "type": "ranged",
+    "mpCost": 5,
+    "unlockLevel": 1,
+    "description": "Focused ranged attack dealing 150% DEX damage. Can pierce armor via talent.",
+    "talents": [
+      "as_pen",
+      "as_bleed",
+      "rg_hound"
+    ]
+  },
+  {
+    "id": "multi_shot",
+    "name": "Multi-Shot",
+    "class": "ranger",
+    "type": "ranged",
+    "mpCost": 15,
+    "unlockLevel": 5,
+    "description": "Fire at 3 separate targets simultaneously, each at 80% DEX damage.",
+    "talents": [
+      "ms_4",
+      "ms_b"
+    ]
+  },
+  {
+    "id": "smoke_trap",
+    "name": "Smoke Trap",
+    "class": "ranger",
+    "type": "trap",
+    "mpCost": 20,
+    "unlockLevel": 10,
+    "description": "Plant a trap that Blinds (−50% hit chance) one enemy group for 2 rounds.",
+    "talents": [
+      "st_slow",
+      "st_2"
+    ]
+  },
+  {
+    "id": "rain_of_arrows",
+    "name": "Rain of Arrows",
+    "class": "ranger",
+    "type": "ranged",
+    "mpCost": 30,
+    "unlockLevel": 15,
+    "description": "Volley descending on all enemies for 3 rounds, each dealing DEX damage.",
+    "talents": [
+      "roa_bleed",
+      "roa_dur"
+    ]
+  },
+  {
+    "id": "backstab",
+    "name": "Backstab",
+    "class": "rogue",
+    "type": "melee",
+    "mpCost": 5,
+    "unlockLevel": 1,
+    "description": "169% DEX damage. Bonus if target is Stunned or Bleeding.",
+    "talents": [
+      "bs_crit",
+      "bs_refund"
+    ]
+  },
+  {
+    "id": "poison_blade",
+    "name": "Poison Blade",
+    "class": "rogue",
+    "type": "buff",
+    "mpCost": 10,
+    "unlockLevel": 5,
+    "description": "Next 3 attacks apply Poison DoT (up to 5 stacks per source).",
+    "talents": [
+      "pb_deep",
+      "pb_extra"
+    ]
+  },
+  {
+    "id": "shadow_step",
+    "name": "Shadow Step",
+    "class": "rogue",
+    "type": "melee",
+    "mpCost": 20,
+    "unlockLevel": 10,
+    "description": "Teleport behind target and attack for 127% DEX.",
+    "talents": [
+      "ss_cheap",
+      "ss_dodge"
+    ]
+  },
+  {
+    "id": "death_mark",
+    "name": "Death Mark",
+    "class": "rogue",
+    "type": "debuff",
+    "mpCost": 25,
+    "unlockLevel": 15,
+    "description": "Marked target takes 50% more damage from all sources for 3 rounds.",
+    "talents": [
+      "dm_linger",
+      "dm_exec"
+    ]
+  },
+  {
+    "id": "pilfer_magic",
+    "name": "Pilfer Magic",
+    "class": "rogue",
+    "type": "debuff",
+    "mpCost": 18,
+    "unlockLevel": 8,
+    "description": "Strip the first positive status from a target enemy and apply it to yourself for the remaining duration.",
+    "talents": [
+      "pm_two",
+      "pm_dmg"
+    ]
+  },
+  {
+    "id": "hemorrhage",
+    "name": "Hemorrhage",
+    "class": "rogue",
+    "type": "melee",
+    "mpCost": 22,
+    "unlockLevel": 13,
+    "description": "Consumes all Bleed stacks on target for 30 damage each, then deals a base attack. Stacks are reset after.",
+    "talents": [
+      "hm_spread",
+      "hm_rebleed"
+    ]
+  },
+  {
+    "id": "heal",
+    "name": "Heal",
+    "class": "cleric",
+    "type": "heal",
+    "mpCost": 15,
+    "unlockLevel": 1,
+    "description": "Restore HP to one ally equal to 2.5× INT.",
+    "talents": [
+      "heal_splash",
+      "heal_barrier"
+    ]
+  },
+  {
+    "id": "smite",
+    "name": "Smite",
+    "class": "cleric",
+    "type": "magic",
+    "mpCost": 15,
+    "unlockLevel": 5,
+    "description": "Holy bolt, double damage vs undead/demons.",
+    "talents": [
+      "sm_pierce",
+      "sm_heal"
+    ]
+  },
+  {
+    "id": "sanctuary",
+    "name": "Sanctuary",
+    "class": "cleric",
+    "type": "buff",
+    "mpCost": 25,
+    "unlockLevel": 10,
+    "description": "Ally regenerates HP each round and cannot be targeted for 3 rounds.",
+    "talents": [
+      "sc_regen",
+      "sc_party"
+    ]
+  },
+  {
+    "id": "mass_resurrection",
+    "name": "Resurrect",
+    "class": "cleric",
+    "type": "revive",
+    "mpCost": 60,
+    "unlockLevel": 15,
+    "description": "Revive a single fallen ally at 25% max HP. They gain damage immunity until their next action. 10-round cooldown per combat.",
+    "talents": [
+      "mr_hp",
+      "mr_immune",
+      "res_heal_60",
+      "res_shield"
+    ]
+  },
+  {
+    "id": "inspiring_tune",
+    "name": "Inspiring Tune",
+    "class": "bard",
+    "type": "buff",
+    "mpCost": 10,
+    "unlockLevel": 1,
+    "description": "+15% hit and +1 initiative for party for 3 rounds.",
+    "talents": [
+      "it_long",
+      "it_morale"
+    ]
+  },
+  {
+    "id": "discordant_wail",
+    "name": "Discordant Wail",
+    "class": "bard",
+    "type": "debuff",
+    "mpCost": 15,
+    "unlockLevel": 5,
+    "description": "−30% damage and erratic targeting for one enemy group.",
+    "talents": [
+      "dw_wider",
+      "dw_skip"
+    ]
+  },
+  {
+    "id": "ballad_of_valor",
+    "name": "Ballad of Valor",
+    "class": "bard",
+    "type": "buff",
+    "mpCost": 25,
+    "unlockLevel": 10,
+    "description": "One hero gets double actions for 1 round.",
+    "talents": [
+      "bv_dmg",
+      "bv_cheap"
+    ]
+  },
+  {
+    "id": "song_of_ruin",
+    "name": "Song of Ruin",
+    "class": "bard",
+    "type": "magic",
+    "mpCost": 35,
+    "unlockLevel": 15,
+    "description": "147% INT sonic damage to all enemies, removes all their buffs.",
+    "talents": [
+      "sr_power",
+      "sr_silence"
+    ]
+  },
+  {
+    "id": "corruption",
+    "name": "Corruption",
+    "class": "warlock",
+    "type": "magic",
+    "mpCost": 8,
+    "unlockLevel": 1,
+    "description": "Target takes INT damage per round for 4 rounds. Re-casting instantly detonates all remaining DoT damage, then refreshes the status.",
+    "talents": [
+      "cr_long"
+    ]
+  },
+  {
+    "id": "hellfire",
+    "name": "Hellfire",
+    "class": "warlock",
+    "type": "magic",
+    "mpCost": 18,
+    "unlockLevel": 5,
+    "description": "Hellfire hits enemy group, applies Burn. Bypasses fire resistance.",
+    "talents": [
+      "hf_burn",
+      "hf_aoe"
+    ]
+  },
+  {
+    "id": "soul_pact",
+    "name": "Soul Pact",
+    "class": "warlock",
+    "type": "buff",
+    "mpCost": 0,
+    "unlockLevel": 10,
+    "description": "Sacrifice 20% own HP to double all active DoT duration and damage.",
+    "talents": [
+      "sp_cheap",
+      "sp_heal"
+    ]
+  },
+  {
+    "id": "void_rift",
+    "name": "Void Rift",
+    "class": "warlock",
+    "type": "zone",
+    "mpCost": 35,
+    "unlockLevel": 15,
+    "description": "Void rift under enemies for 3 rounds: damage + 20% stun chance each round.",
+    "talents": [
+      "vr_long",
+      "vr_stun",
+      "wl_demon"
+    ]
+  },
+  {
+    "id": "soul_curse",
+    "name": "Soul Curse",
+    "class": "warlock",
+    "type": "debuff",
+    "mpCost": 20,
+    "unlockLevel": 8,
+    "description": "Apply a Curse to the target: reduces its damage output by 10%. When the cursed enemy dies the curse spreads to a random adjacent living enemy.",
+    "talents": [
+      "sc_strong",
+      "sc_chain"
+    ]
+  },
+  {
+    "id": "demon_bolt",
+    "name": "Demon Bolt",
+    "class": "demon_hunter",
+    "type": "ranged",
+    "mpCost": 8,
+    "unlockLevel": 1,
+    "description": "+50% vs demons. DEX+INT damage.",
+    "talents": [
+      "db_demon",
+      "db_pierce"
+    ]
+  },
+  {
+    "id": "glaive_toss",
+    "name": "Glaive Toss",
+    "class": "demon_hunter",
+    "type": "ranged",
+    "mpCost": 15,
+    "unlockLevel": 5,
+    "description": "Spinning glaive hits all enemies in a row, applying Bleed.",
+    "talents": [
+      "gt_return",
+      "gt_bleed"
+    ]
+  },
+  {
+    "id": "fel_sight",
+    "name": "Fel Sight",
+    "class": "demon_hunter",
+    "type": "buff",
+    "mpCost": 20,
+    "unlockLevel": 10,
+    "description": "+25% hit/dodge, immune to Blind/Confuse for 3 rounds.",
+    "talents": [
+      "fs_long",
+      "fs_crit"
+    ]
+  },
+  {
+    "id": "vengeance",
+    "name": "Vengeance",
+    "class": "demon_hunter",
+    "type": "melee",
+    "mpCost": 20,
+    "unlockLevel": 15,
+    "description": "Stacks 15% damage per fallen ally. Release all stacks in one strike.",
+    "talents": [
+      "vg_stack",
+      "vg_heal"
+    ]
+  },
+  {
+    "id": "scrounge",
+    "name": "Lucky Strike",
+    "class": "scavenger",
+    "type": "melee",
+    "mpCost": 0,
+    "unlockLevel": 1,
+    "description": "Improvised strike — 50% chance to inflict a random status (poison, bleed, or stun) for 2 rounds.",
+    "talents": [
+      "sg_chance",
+      "sg_double"
+    ]
+  },
+  {
+    "id": "thrown_junk",
+    "name": "Thrown Junk",
+    "class": "scavenger",
+    "type": "ranged",
+    "mpCost": 5,
+    "unlockLevel": 5,
+    "description": "Hurl debris at an enemy group; 30% stun chance.",
+    "talents": [
+      "tj_stun"
+    ]
+  },
+  {
+    "id": "makeshift_bomb",
+    "name": "Makeshift Bomb",
+    "class": "scavenger",
+    "type": "ranged",
+    "mpCost": 15,
+    "unlockLevel": 10,
+    "description": "Improvised explosive: DEX+CON damage with Burn to a group.",
+    "talents": [
+      "mb_boom",
+      "mb_shrap"
+    ]
+  },
+  {
+    "id": "jackpot",
+    "name": "Big Score",
+    "class": "scavenger",
+    "type": "ranged",
+    "mpCost": 20,
+    "unlockLevel": 15,
+    "description": "A wild gambling strike: 250% DEX with ±80% variance — could crit for 4.5× or whiff for 0.5×.",
+    "talents": [
+      "jp_chance",
+      "jp_gold"
+    ]
+  },
+  {
+    "id": "riposte",
+    "name": "Riposte",
+    "class": "swashbuckler",
+    "type": "counter",
+    "mpCost": 0,
+    "unlockLevel": 1,
+    "description": "Enter parry stance: counter next melee hit for 200% DEX damage.",
+    "talents": [
+      "rp_count",
+      "rp_disarm"
+    ]
+  },
+  {
+    "id": "flourish",
+    "name": "Flourish",
+    "class": "swashbuckler",
+    "type": "melee",
+    "mpCost": 8,
+    "unlockLevel": 5,
+    "description": "3 rapid strikes, each building Flair stacks for Grandeur.",
+    "talents": [
+      "fl_extra",
+      "fl_flair"
+    ]
+  },
+  {
+    "id": "taunt",
+    "name": "Taunt",
+    "class": "swashbuckler",
+    "type": "buff",
+    "mpCost": 15,
+    "unlockLevel": 10,
+    "description": "Force one enemy to target only you for 2 rounds; +30% dodge vs them.",
+    "talents": [
+      "tn_long",
+      "tn_thorns"
+    ]
+  },
+  {
+    "id": "grandeur",
+    "name": "Grandeur",
+    "class": "swashbuckler",
+    "type": "melee",
+    "mpCost": 0,
+    "unlockLevel": 15,
+    "description": "Consume all Flair stacks for DEX × stacks damage + random debuffs per stack.",
+    "talents": [
+      "gr_keep",
+      "gr_power"
+    ]
+  },
+  {
+    "id": "dragon_claw",
+    "name": "Dragon Claw",
+    "class": "dragon_knight",
+    "type": "melee",
+    "mpCost": 0,
+    "unlockLevel": 1,
+    "description": "Savage strike ignoring 20% armor; hits adjacent enemies.",
+    "talents": [
+      "dc_pen",
+      "dc_bleed"
+    ]
+  },
+  {
+    "id": "breath_weapon",
+    "name": "Breath Weapon",
+    "class": "dragon_knight",
+    "type": "magic",
+    "mpCost": 20,
+    "unlockLevel": 5,
+    "description": "Cone of fire/ice/lightning hitting one group. Choose element at class creation.",
+    "talents": [
+      "bw_wider",
+      "bw_status"
+    ]
+  },
+  {
+    "id": "dragon_scales",
+    "name": "Dragon Scales",
+    "class": "dragon_knight",
+    "type": "buff",
+    "mpCost": 20,
+    "unlockLevel": 10,
+    "description": "30% damage reduction + element immunity for 3 rounds.",
+    "talents": [
+      "ds_long",
+      "ds_reflect"
+    ]
+  },
+  {
+    "id": "draconic_fury",
+    "name": "Draconic Fury",
+    "class": "dragon_knight",
+    "type": "buff",
+    "mpCost": 35,
+    "unlockLevel": 15,
+    "description": "All attacks become group AoE, +50% damage for 2 rounds. Cannot be Stunned.",
+    "talents": [
+      "df_long",
+      "df_power"
+    ]
+  },
+  {
+    "id": "chain_lightning",
+    "name": "Chain Lightning",
+    "class": "stormcaller",
+    "type": "magic",
+    "mpCost": 15,
+    "unlockLevel": 1,
+    "description": "Bolt leaps to 3 targets for 130% INT damage.",
+    "talents": [
+      "cl_chain",
+      "cl_shock"
+    ]
+  },
+  {
+    "id": "static_field",
+    "name": "Static Field",
+    "class": "stormcaller",
+    "type": "magic",
+    "mpCost": 20,
+    "unlockLevel": 5,
+    "description": "Current arcs across all enemies dealing 50% INT and reducing their speed.",
+    "talents": [
+      "sf_power",
+      "sf_slow"
+    ]
+  },
+  {
+    "id": "thunder_ring",
+    "name": "Thunder Ring",
+    "class": "stormcaller",
+    "type": "magic",
+    "mpCost": 30,
+    "unlockLevel": 10,
+    "description": "Ring of thunder centered on self hits all nearby enemies.",
+    "talents": [
+      "tr_stun"
+    ]
+  },
+  {
+    "id": "tempest",
+    "name": "Tempest",
+    "class": "stormcaller",
+    "type": "magic",
+    "mpCost": 50,
+    "unlockLevel": 15,
+    "description": "Unleash a storm that strikes every enemy for 220% INT.",
+    "talents": [
+      "tp_power",
+      "tp_cheap"
+    ]
+  },
+  {
+    "id": "rejuvenation",
+    "name": "Rejuvenation",
+    "class": "druid",
+    "type": "heal",
+    "mpCost": 12,
+    "unlockLevel": 1,
+    "description": "Instant heal + Regen 1× INT / round for 3 rounds.",
+    "talents": [
+      "rj_party",
+      "rj_long",
+      "dr_wolf"
+    ]
+  },
+  {
+    "id": "entangle",
+    "name": "Entangle",
+    "class": "druid",
+    "type": "magic",
+    "mpCost": 18,
+    "unlockLevel": 5,
+    "description": "Vines root a row, 80% INT damage and Stun 1 round.",
+    "talents": [
+      "en_long"
+    ]
+  },
+  {
+    "id": "wild_shape",
+    "name": "Wild Shape",
+    "class": "druid",
+    "type": "buff",
+    "mpCost": 25,
+    "unlockLevel": 10,
+    "description": "Shapeshift: +50% damage and −20% incoming for 4 rounds.",
+    "talents": [
+      "ws_long",
+      "ws_regen"
+    ]
+  },
+  {
+    "id": "natures_wrath",
+    "name": "Nature",
+    "class": "druid",
+    "type": "magic",
+    "mpCost": 45,
+    "unlockLevel": 15,
+    "description": "The wilds strike back — 200% INT to all enemies, Bleed 3 rounds.",
+    "talents": [
+      "nw_power",
+      "nw_root"
+    ]
+  },
+  {
+    "id": "foresight",
+    "name": "Foresight",
+    "class": "oracle",
+    "type": "buff",
+    "mpCost": 12,
+    "unlockLevel": 1,
+    "description": "Grant an ally a 40 HP barrier for 2 rounds.",
+    "talents": [
+      "fs_party",
+      "fs_long"
+    ]
+  },
+  {
+    "id": "prophecy",
+    "name": "Prophecy",
+    "class": "oracle",
+    "type": "buff",
+    "mpCost": 18,
+    "unlockLevel": 5,
+    "description": "Party gains +25 Dodge for 3 rounds.",
+    "talents": [
+      "pr_more",
+      "pr_long"
+    ]
+  },
+  {
+    "id": "fate_weave",
+    "name": "Fate Weave",
+    "class": "oracle",
+    "type": "magic",
+    "mpCost": 22,
+    "unlockLevel": 10,
+    "description": "Rewrite a target\\u2019s fate: 251% INT damage and converts to heal for weakest ally.",
+    "talents": [
+      "fw_power",
+      "fw_split"
+    ]
+  },
+  {
+    "id": "ascendance",
+    "name": "Ascendance",
+    "class": "oracle",
+    "type": "buff",
+    "mpCost": 50,
+    "unlockLevel": 15,
+    "description": "Party transcends for 4 rounds: +30% damage, −30% incoming.",
+    "talents": [
+      "as_long",
+      "as_heal"
+    ]
+  },
+  {
+    "id": "rally_action",
+    "name": "Rally Action",
+    "class": "tactician",
+    "type": "buff",
+    "mpCost": 15,
+    "unlockLevel": 1,
+    "description": "Grant an ally an immediate extra action.",
+    "talents": [
+      "ra_cheap",
+      "ra_dmg"
+    ]
+  },
+  {
+    "id": "feint",
+    "name": "Feint",
+    "class": "tactician",
+    "type": "magic",
+    "mpCost": 12,
+    "unlockLevel": 5,
+    "description": "120% DEX damage and forces target to the back of turn order.",
+    "talents": [
+      "ft_power",
+      "ft_conf"
+    ]
+  },
+  {
+    "id": "reposition",
+    "name": "Reposition",
+    "class": "tactician",
+    "type": "buff",
+    "mpCost": 20,
+    "unlockLevel": 10,
+    "description": "Shift the formation: party gains +15 Dodge and −15% damage taken for 2 rounds.",
+    "talents": [
+      "rp_long",
+      "rp_dodge"
+    ]
+  },
+  {
+    "id": "masterstroke",
+    "name": "Masterstroke",
+    "class": "tactician",
+    "type": "buff",
+    "mpCost": 60,
+    "unlockLevel": 15,
+    "description": "Whole party acts again at +50% damage.",
+    "talents": [
+      "ms_cheap",
+      "ms_crit"
+    ]
+  },
+  {
+    "id": "haste",
+    "name": "Haste",
+    "class": "chronomancer",
+    "type": "buff",
+    "mpCost": 14,
+    "unlockLevel": 1,
+    "description": "Speed another ally — they act again this round. Cannot target self.",
+    "talents": [
+      "ha_dmg",
+      "ha_duration"
+    ]
+  },
+  {
+    "id": "slow_time",
+    "name": "Slow Time",
+    "class": "chronomancer",
+    "type": "magic",
+    "mpCost": 20,
+    "unlockLevel": 5,
+    "description": "All enemies lose 1 action next round and take 40% INT damage.",
+    "talents": [
+      "st_more",
+      "st_power"
+    ]
+  },
+  {
+    "id": "rewind",
+    "name": "Rewind",
+    "class": "chronomancer",
+    "type": "heal",
+    "mpCost": 25,
+    "unlockLevel": 10,
+    "description": "Rewind an ally\\u2019s wounds for 3× INT HP and clear one status effect.",
+    "talents": [
+      "rw_heal",
+      "rw_cleanse"
+    ]
+  },
+  {
+    "id": "time_stop",
+    "name": "Time Stop",
+    "class": "chronomancer",
+    "type": "buff",
+    "mpCost": 70,
+    "unlockLevel": 15,
+    "description": "Freeze time: enemies skip next round; party gets an extra action.",
+    "talents": [
+      "ts_long",
+      "ts_cheap"
+    ]
+  },
+  {
+    "id": "palm_strike",
+    "name": "Palm Strike",
+    "class": "monk",
+    "type": "melee",
+    "mpCost": 0,
+    "unlockLevel": 1,
+    "description": "A focused palm strike for 130% DEX damage.",
+    "talents": [
+      "ps_chi",
+      "ps_stun"
+    ]
+  },
+  {
+    "id": "flurry",
+    "name": "Flurry",
+    "class": "monk",
+    "type": "melee",
+    "mpCost": 12,
+    "unlockLevel": 5,
+    "description": "Three rapid strikes, each 60% DEX damage.",
+    "talents": [
+      "fl_extra",
+      "fl_bleed"
+    ]
+  },
+  {
+    "id": "inner_focus",
+    "name": "Inner Focus",
+    "class": "monk",
+    "type": "heal",
+    "mpCost": 0,
+    "unlockLevel": 10,
+    "description": "Meditate briefly: heal self for 2.5× DEX and restore 15 MP.",
+    "talents": [
+      "if_cleanse",
+      "if_dmg"
+    ]
+  },
+  {
+    "id": "monk_shadow_step",
+    "name": "Shadow Step",
+    "class": "monk",
+    "type": "melee",
+    "mpCost": 25,
+    "unlockLevel": 15,
+    "description": "Dash behind target and strike for 200% DEX with +40% crit.",
+    "talents": [
+      "mss_dodge",
+      "mss_cheap"
+    ]
+  },
+  {
+    "id": "spirit_bolt",
+    "name": "Spirit Bolt",
+    "class": "shaman",
+    "type": "magic",
+    "mpCost": 8,
+    "unlockLevel": 1,
+    "description": "A bolt of spirit energy dealing 150% INT damage.",
+    "talents": [
+      "sb_cheap",
+      "sb_power"
+    ]
+  },
+  {
+    "id": "healing_totem",
+    "name": "Healing Totem",
+    "class": "shaman",
+    "type": "heal",
+    "mpCost": 20,
+    "unlockLevel": 5,
+    "description": "Summon a totem that heals the party for 1× INT each round for 3 rounds.",
+    "talents": [
+      "ht_long",
+      "ht_big"
+    ]
+  },
+  {
+    "id": "chain_lightning_spirit",
+    "name": "Spirit Chain",
+    "class": "shaman",
+    "type": "magic",
+    "mpCost": 22,
+    "unlockLevel": 10,
+    "description": "Lightning leaps between up to 3 enemies at 120% INT each.",
+    "talents": [
+      "cls_more",
+      "cls_stun"
+    ]
+  },
+  {
+    "id": "ancestral_shield",
+    "name": "Ancestral Shield",
+    "class": "shaman",
+    "type": "buff",
+    "mpCost": 30,
+    "unlockLevel": 15,
+    "description": "Party gains −30% damage taken and a barrier equal to 50% of caster INT for 3 rounds.",
+    "talents": [
+      "as_long",
+      "as_reflect"
+    ]
+  },
+  {
+    "id": "silver_bolt",
+    "name": "Silver Bolt",
+    "class": "witch_hunter",
+    "type": "ranged",
+    "mpCost": 0,
+    "unlockLevel": 1,
+    "description": "Silver-tipped bolt dealing 140% DEX damage. +50% vs demons and undead.",
+    "talents": [
+      "sv_demon",
+      "sv_bleed"
+    ]
+  },
+  {
+    "id": "dispel_curse",
+    "name": "Dispel Curse",
+    "class": "witch_hunter",
+    "type": "heal",
+    "mpCost": 18,
+    "unlockLevel": 5,
+    "description": "Remove all negative status effects from an ally and heal 0.5× DEX.",
+    "talents": [
+      "dc_party",
+      "dc_heal"
+    ]
+  },
+  {
+    "id": "purge_strike",
+    "name": "Purge Strike",
+    "class": "witch_hunter",
+    "type": "melee",
+    "mpCost": 20,
+    "unlockLevel": 10,
+    "description": "170% DEX damage; +50% vs demons and undead.",
+    "talents": [
+      "pu_stun"
+    ]
+  },
+  {
+    "id": "inquisitor_mark",
+    "name": "Inquisitor\\u2019s Mark",
+    "class": "witch_hunter",
+    "type": "magic",
+    "mpCost": 22,
+    "unlockLevel": 15,
+    "description": "Mark a target — it takes 40% more damage from the party for 3 rounds.",
+    "talents": [
+      "im_linger",
+      "im_exec"
+    ]
+  },
+  {
+    "id": "knight_shield_bash",
+    "name": "Shield Bash",
+    "class": "knight",
+    "type": "melee",
+    "mpCost": 0,
+    "unlockLevel": 1,
+    "description": "Bash with shield for 110% STR damage; 60% chance to Stun.",
+    "talents": [
+      "ksb_stun"
+    ]
+  },
+  {
+    "id": "knight_taunt",
+    "name": "Taunt",
+    "class": "knight",
+    "type": "buff",
+    "mpCost": 10,
+    "unlockLevel": 5,
+    "description": "Force enemies to target you for 2 rounds; −25% damage taken.",
+    "talents": [
+      "kt_long",
+      "kt_reflect"
+    ]
+  },
+  {
+    "id": "knight_holy_strike",
+    "name": "Holy Strike",
+    "class": "knight",
+    "type": "melee",
+    "mpCost": 20,
+    "unlockLevel": 10,
+    "description": "180% STR damage; +50% vs demons and undead.",
+    "talents": [
+      "khs_heal",
+      "khs_aoe"
+    ]
+  },
+  {
+    "id": "rally",
+    "name": "Rally",
+    "class": "knight",
+    "type": "buff",
+    "mpCost": 25,
+    "unlockLevel": 15,
+    "description": "Rally the party: +25% damage and −15% damage taken for 3 rounds.",
+    "talents": [
+      "rl_long",
+      "rl_heal"
+    ]
+  },
+  {
+    "id": "wild_bolt",
+    "name": "Wild Bolt",
+    "class": "sorcerer",
+    "type": "magic",
+    "mpCost": 8,
+    "unlockLevel": 1,
+    "description": "A chaotic bolt dealing 160% INT damage of a random element (fire/cold/lightning).",
+    "talents": [
+      "wb_big",
+      "wb_stat"
+    ]
+  },
+  {
+    "id": "sorc_arcane_surge",
+    "name": "Arcane Surge",
+    "class": "sorcerer",
+    "type": "buff",
+    "mpCost": 25,
+    "unlockLevel": 5,
+    "description": "Double spell damage for 2 rounds.",
+    "talents": [
+      "sas_long",
+      "sas_crit"
+    ]
+  },
+  {
+    "id": "mana_burn",
+    "name": "Mana Burn",
+    "class": "sorcerer",
+    "type": "magic",
+    "mpCost": 18,
+    "unlockLevel": 10,
+    "description": "120% INT damage and drains 20 MP; each MP drained adds 1 damage.",
+    "talents": [
+      "mb_drain",
+      "mb_stun"
+    ]
+  },
+  {
+    "id": "chaos_ward",
+    "name": "Chaos Ward",
+    "class": "sorcerer",
+    "type": "buff",
+    "mpCost": 30,
+    "unlockLevel": 15,
+    "description": "Barrier equal to 2× INT for 3 rounds; reflects 30% of damage taken.",
+    "talents": [
+      "cw_reflect",
+      "cw_mp"
+    ]
+  },
+  {
+    "id": "rune_hammer",
+    "name": "Rune Hammer",
+    "class": "runesmith",
+    "type": "melee",
+    "mpCost": 0,
+    "unlockLevel": 1,
+    "description": "A rune-imbued hammer blow dealing 140% STR damage.",
+    "talents": [
+      "rh_arcane",
+      "rh_stun"
+    ]
+  },
+  {
+    "id": "rune_of_warding",
+    "name": "Rune of Warding",
+    "class": "runesmith",
+    "type": "buff",
+    "mpCost": 18,
+    "unlockLevel": 5,
+    "description": "Inscribe a rune on an ally granting a barrier equal to 1.5× STR for 3 rounds.",
+    "talents": [
+      "row_dur",
+      "row_big"
+    ]
+  },
+  {
+    "id": "rune_of_might",
+    "name": "Rune of Might",
+    "class": "runesmith",
+    "type": "buff",
+    "mpCost": 25,
+    "unlockLevel": 10,
+    "description": "Party gains +25% damage for 3 rounds.",
+    "talents": [
+      "rom_long",
+      "rom_crit"
+    ]
+  },
+  {
+    "id": "forge_flame",
+    "name": "Forge Flame",
+    "class": "runesmith",
+    "type": "magic",
+    "mpCost": 28,
+    "unlockLevel": 15,
+    "description": "Unleash forge-flame on a row: 130% STR damage and Burns for 3 rounds.",
+    "talents": [
+      "ff_all",
+      "ff_burn"
+    ]
+  },
+  {
+    "id": "sd_shadow_strike",
+    "name": "Shadow Strike",
+    "class": "shadow_dancer",
+    "type": "melee",
+    "mpCost": 0,
+    "unlockLevel": 1,
+    "description": "150% DEX damage with +20% crit.",
+    "talents": [
+      "sss_bleed"
+    ]
+  },
+  {
+    "id": "smoke_veil",
+    "name": "Smoke Veil",
+    "class": "shadow_dancer",
+    "type": "buff",
+    "mpCost": 15,
+    "unlockLevel": 5,
+    "description": "Vanish in smoke: +40 Dodge and Stealth for 2 rounds.",
+    "talents": [
+      "sv_long",
+      "sv_party"
+    ]
+  },
+  {
+    "id": "assassinate",
+    "name": "Assassinate",
+    "class": "shadow_dancer",
+    "type": "melee",
+    "mpCost": 25,
+    "unlockLevel": 10,
+    "description": "220% DEX damage. If target is below 25% HP, triple damage.",
+    "talents": [
+      "asn_thresh",
+      "asn_refund"
+    ]
+  },
+  {
+    "id": "dance_of_blades",
+    "name": "Dance of Blades",
+    "class": "shadow_dancer",
+    "type": "melee",
+    "mpCost": 30,
+    "unlockLevel": 15,
+    "description": "Whirl through all enemies twice, each strike 80% DEX damage.",
+    "talents": [
+      "dob_extra",
+      "dob_bleed"
+    ]
+  },
+  {
+    "id": "tinker_bolt",
+    "name": "Clockwork Bolt",
+    "class": "tinker",
+    "type": "ranged",
+    "mpCost": 4,
+    "unlockLevel": 1,
+    "description": "Fire a rune-etched brass bolt. 120% INT damage. Cheap reliable opener.",
+    "talents": [
+      "tb_spark"
+    ]
+  },
+  {
+    "id": "tinker_grenade",
+    "name": "Alchemical Grenade",
+    "class": "tinker",
+    "type": "ranged",
+    "mpCost": 14,
+    "unlockLevel": 5,
+    "description": "Lob a hissing brass grenade. 90% INT to three adjacent targets; 40% chance to Burn.",
+    "talents": [
+      "gr_shrap"
+    ]
+  },
+  {
+    "id": "tinker_quick_fix",
+    "name": "Quick-Fix",
+    "class": "tinker",
+    "type": "heal",
+    "mpCost": 16,
+    "unlockLevel": 10,
+    "description": "Apply a brass clockwork patch — restores HP equal to 160% INT to one ally.",
+    "talents": [
+      "qf_cleanse",
+      "qf_bonus"
+    ]
+  },
+  {
+    "id": "tinker_overcharge",
+    "name": "Overcharge",
+    "class": "tinker",
+    "type": "buff",
+    "mpCost": 28,
+    "unlockLevel": 15,
+    "description": "Wind the arcane battery — entire party gains +25% damage and +10% crit chance for 3 rounds.",
+    "talents": [
+      "oc_long",
+      "oc_spark"
+    ]
+  }
+]

@@ -1,0 +1,134 @@
+{
+  "version": "2026-04-21-baseline",
+  "note": "Verbatim snapshot of pre-rebalance numbers. Loading this file reproduces M64 gameplay. Do not modify — copy to balance.active.json to revert.",
+  "heroes": {
+    "hireCost": {
+      "base": 100,
+      "scaling": 0.10,
+      "formula": "round(base * level * (1 + scaling * (level - 1)))"
+    },
+    "creation": {
+      "baseAttrValue": 8,
+      "baseAttrPoints": 8,
+      "attrPointsPerLevel": 2
+    }
+  },
+  "progression": {
+    "xpTable": [0, 100, 250, 450, 700, 1000, 1400, 1900, 2500, 3200, 4000, 5000, 6200, 7600, 9200, 11000, 13200, 15800, 18800, 22300],
+    "maxLevel": 20,
+    "statPointsPerLevel": 2,
+    "talentPointLevels": [3, 8, 13, 18, 23, 28],
+    "passivePointEveryNLevels": 5
+  },
+  "combat": {
+    "maxHp": { "base": 50, "conMult": 10 },
+    "maxMp": { "base": 30, "intMult": 8 },
+    "hit": { "base": 70, "dexMult": 1.2, "cap": 95 },
+    "dodge": {
+      "hero": { "base": 5, "dexMult": 0.8, "cap": 40 },
+      "companion": { "base": 3, "dexMult": 0.35, "cap": 15 }
+    },
+    "hitRoll": { "min": 5, "max": 95 },
+    "initiative": { "dexCoef": 1, "levelCoef": 1 },
+    "crit": { "base": 5, "cap": 75, "baseDamageMult": 1.5 },
+    "damage": {
+      "minCoef": 0.4,
+      "maxCoef": 1.0,
+      "equipMinMult": 1.0,
+      "equipMaxMult": 1.5,
+      "minFloor": 1,
+      "maxFloor": 3,
+      "magicSpellBonusCoef": 0.25
+    },
+    "spell": {
+      "intSpellPowerCoef": 0.025,
+      "manaRegenIntCoef": 0.3,
+      "manaRegenMin": 1,
+      "dotIntCoef": 0.15,
+      "dotMin": 3,
+      "healBaseMult": 1.5
+    },
+    "steal": {
+      "lifeStealDivisor": 100,
+      "manaStealDivisor": 100
+    },
+    "mitigation": {
+      "liveFormula": "flat",
+      "simulatorFormula": "legacy",
+      "legacyFloorFraction": 0.15,
+      "curveDr": { "k": 100, "cap": 0.95 },
+      "note": "Baseline preserves M64 dual paths: live=flat, simulator=legacy. curveDr present so shape matches active.json."
+    }
+  },
+  "enemies": {
+    "globalMultipliers": {
+      "hp": 1.0,
+      "damage": 1.0,
+      "armor": 1.0,
+      "hit": 1.0,
+      "dodge": 1.0
+    },
+    "ngPlus": {
+      "hpBase": 4.5,
+      "hpBossMult": 1.35,
+      "dmgBase": 2.8,
+      "dmgBossMult": 1.2,
+      "armorLinear": 0.55,
+      "hitBonusPerNg": 5,
+      "dodgeBonusPerNg": 3,
+      "hitCap": 95,
+      "dodgeCap": 45,
+      "xpBonusLinear": 0.8,
+      "xpBossAdder": 1.0
+    }
+  },
+  "economy": {
+    "globalMultipliers": {
+      "gold": 1.0,
+      "xp": 1.0,
+      "shopPrice": 1.0,
+      "dropRate": 1.0
+    }
+  },
+  "tap": {
+    "globalMult": 1.0,
+    "note": "Baseline: no scaling. M4 may increase to compensate for curve-DR if weak classes need help."
+  },
+  "loot": {
+    "qualityMult": {
+      "low": 0.7,
+      "medium": 1.0,
+      "high": 1.2,
+      "elite": 1.4,
+      "exotic": 1.6
+    },
+    "rarityAffixCount": {
+      "normal": [0, 0],
+      "magic": [2, 2],
+      "rare": [3, 3],
+      "legendary": [5, 6]
+    },
+    "accessoryAffixBonus": 1
+  },
+  "affixes": {
+    "tapPower": null,
+    "note": "existing affix ranges are in src/game/items.js per-act tables (AFFIXES_ACT1..AFFIXES_ACT5). Baseline leaves these in code; tuning knobs in economy/enemies sections cover the target range for M4. Tap Power affix is introduced in M3."
+  },
+  "m3Preview": {
+    "curveDr": {
+      "enabled": false,
+      "k": 100,
+      "cap": 0.95,
+      "formula": "DR = min(cap, armor / (armor + k))"
+    },
+    "tapPower": {
+      "enabled": false,
+      "tiers": [
+        { "rarity": "magic",     "min": 0.05, "max": 0.15 },
+        { "rarity": "rare",      "min": 0.12, "max": 0.25 },
+        { "rarity": "legendary", "min": 0.22, "max": 0.40 }
+      ],
+      "scopes": ["tapDamage", "tapUtilityMagnitude", "tapUtilityDuration"]
+    }
+  }
+}

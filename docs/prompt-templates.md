@@ -2,6 +2,14 @@
 
 Reusable prompt templates for SpriteCook / image generation. Consistency across batches is the whole point — substitute the variables, keep the surrounding text intact.
 
+> ## ⚠️ Non-negotiable rule for sprite regens (added M236)
+>
+> **Never write character descriptions from memory.** When regenerating a sprite pose, the prompt MUST come from the character's `public/data/art_direction/<id>.json` file — use `frames[<pose>].prompt` verbatim if populated, otherwise compose from the top-level `identity` + `outfit` + `weapons` + `<pose>Style` fields of the same file. Any pose-specific fix (e.g. "scale issue," "legs cut off") goes at the END of the prompt as an explicit `REGEN FIX:` section — never as a rewrite of the identity text.
+>
+> SpriteCook treats the **prompt as the source of truth for WHAT to draw**. The `reference_asset_id` only locks HOW (palette, style, pixel height). If the prompt text contradicts the reference asset's character (e.g. says "blue robes, staff" when the canonical is "deep purple robes, hourglass"), the model will obey the PROMPT and drift. **This happened in M236 and wasted credits on garbage regens for chronomancer_female, cleric, druid, knight, paladin.** Root cause: regen prompts were invented from the character's name instead of pulled from art_direction. Fix: see first paragraph above.
+>
+> **After every approval, run `node scripts/sync-pixellab-to-spritecook.cjs`.** The game loads sprites from `public/images/spritecook/<id>_<pose>.png`; the redesign pipeline saves approved art to `public/images/pixellab/<id>/<pose>.png`. Without the sync step, approved art does NOT appear in-game and the player still sees the stale sprite. This is also what caused the necromancer / mage "still using old textures" reports in M236.
+
 ### Character frames
 
 #### Portrait (reference frame for a new character)

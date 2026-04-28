@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="rsg-game" content="Emberveil">
+  <title>Emberveil — Infinite Depths</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+    :root {
+      --bg:        #080612;
+      --surface:   #0e0a1c;
+      --card:      #140e24;
+      --accent:    #c080f0;
+      --gold:      #f0c020;
+      --text:      #f0e8d8;
+      --muted:     #7a6090;
+      --border:    rgba(160,80,240,0.2);
+      --radius:    8px;
+      --font-display:'Cinzel',Georgia,serif;
+      --font-ui:'Inter','Segoe UI',sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: var(--font-ui); font-size: 14px; line-height: 1.5;
+      min-height: 100vh; padding-bottom: 3rem;
+    }
+    h1, h2, h3 { font-family: var(--font-display); }
+    .page-header {
+      background: rgba(20,10,36,0.8); border-bottom: 1px solid var(--border);
+      padding: 1.5rem 1.5rem 1rem; text-align: center;
+    }
+    .page-title { color: var(--accent); font-size: clamp(1.4rem,4vw,2.2rem); font-weight: 900; letter-spacing: 0.06em; }
+    .page-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.35rem; }
+    .container { max-width: 860px; margin: 0 auto; padding: 1.5rem 1rem; }
+    .section { margin-bottom: 2rem; }
+    .section-title {
+      font-family: var(--font-display); color: var(--accent);
+      font-size: 1rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 0.75rem;
+      padding-bottom: 0.35rem; border-bottom: 1px solid var(--border);
+    }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem 1.25rem;
+      margin-bottom: 0.6rem;
+    }
+    .card h3 { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.3rem; font-weight: 700; letter-spacing: 0.04em; }
+    .card p  { color: var(--muted); font-size: 0.82rem; line-height: 1.55; }
+    .effect-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.6rem; }
+    .effect-card {
+      background: var(--card); border: 1px solid; border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+    }
+    .effect-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem; }
+    .effect-desc { color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .formula-box {
+      background: rgba(10,6,20,0.8); border: 1px solid rgba(160,80,240,0.3);
+      border-radius: var(--radius); padding: 1rem; font-family: monospace;
+      font-size: 0.82rem; color: #d0b0f0; line-height: 1.8;
+    }
+    .formula-box strong { color: var(--accent); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    th { background: rgba(160,80,240,0.12); color: var(--accent); padding: 0.4rem 0.75rem; text-align: left; font-family: var(--font-display); font-size: 0.78rem; letter-spacing: 0.04em; }
+    td { padding: 0.35rem 0.75rem; border-bottom: 1px solid rgba(160,80,240,0.08); color: #c0a0e0; }
+    tr:last-child td { border-bottom: none; }
+    .lb-table th { color: var(--gold); background: rgba(240,192,32,0.08); }
+    .badge { display: inline-block; padding: 0.1rem 0.45rem; border-radius: 10px; font-size: 0.7rem; font-weight: 700; }
+    .badge-anchor { background: rgba(240,192,32,0.15); color: var(--gold); border: 1px solid rgba(240,192,32,0.4); }
+    .badge-mode   { background: rgba(160,80,240,0.15); color: var(--accent); border: 1px solid rgba(160,80,240,0.4); }
+    #lb-empty { color: var(--muted); font-size: 0.82rem; padding: 0.75rem; }
+  </style>
+  <script src="./_header.js" defer></script>
+</head>
+<body>
+<div class="page-header">
+  <div class="page-title">Infinite Depths</div>
+  <div class="page-sub">Emberveil M306 — Post-game infinite scaling dungeon</div>
+</div>
+
+<div class="container">
+
+  <!-- Unlock & Overview -->
+  <div class="section">
+    <div class="section-title">Overview</div>
+    <div class="card">
+      <h3>What is the Infinite Depths?</h3>
+      <p>A separate, post-game challenge mode accessible from the town screen after defeating at least one Act 5 boss (<em>Emberveil Sovereign</em> or <em>The Unraveler</em>). Each floor is a small procedurally generated dungeon with 3-5 nodes: combat encounters, optional treasure caches, and anchor bosses every 5 floors. There is no story, no fixed map — only the question of how deep you can go.</p>
+    </div>
+    <div class="card">
+      <h3>Rules</h3>
+      <p><strong>Death ends the run.</strong> All loot collected this run stays in your inventory. You may voluntarily exit at the end of any floor. Hardcore death triggers the M298 fallen-hero monument as normal. Best floors are tracked on the local leaderboard per character class.</p>
+    </div>
+  </div>
+
+  <!-- Scaling formula -->
+  <div class="section">
+    <div class="section-title">Scaling Formula</div>
+    <div class="formula-box">
+      <strong>Enemy HP</strong>   = base_hp &times; 1.15<sup>floor</sup> (capped at 1,000,000)<br>
+      <strong>Enemy Damage</strong>= base_dmg &times; 1.10<sup>floor</sup><br>
+      <strong>Enemy Level</strong> = max(party_avg_level, 5 + floor)<br>
+      <strong>XP reward</strong>   = base_xp &times; 1.08<sup>floor</sup><br>
+      <strong>Gold reward</strong> = base_gold &times; 1.06<sup>floor</sup>
+    </div>
+    <p style="color:var(--muted);font-size:0.78rem;margin-top:0.5rem">Anchor bosses receive an additional +25% HP and +15% damage on top of the above scaling.</p>
+  </div>
+
+  <!-- Floor effects -->
+  <div class="section">
+    <div class="section-title">Floor Effects</div>
+    <p style="color:var(--muted);font-size:0.82rem;margin-bottom:0.75rem">Each floor rolls 1 effect (floor 1-4) or 1-2 effects (floor 5+). Effects are seeded by floor number and run seed — they are stable on re-entry.</p>
+    <div class="effect-grid" id="effect-grid"></div>
+  </div>
+
+  <!-- Anchor bosses -->
+  <div class="section">
+    <div class="section-title">Anchor Bosses <span class="badge badge-anchor">Every 5 Floors</span></div>
+    <p style="color:var(--muted);font-size:0.82rem;margin-bottom:0.75rem">Every 5th floor is an Anchor floor. The final node is a scaled boss drawn from the pool below. Defeating an anchor boss guarantees a legendary-quality item drop.</p>
+    <table>
+      <thead><tr><th>Boss Name</th><th>Base Enemy</th><th>Modifier</th></tr></thead>
+      <tbody id="anchor-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- Loot scaling -->
+  <div class="section">
+    <div class="section-title">Loot Scaling</div>
+    <table>
+      <thead><tr><th>Floor Range</th><th>Legendary Chance</th><th>Quality</th></tr></thead>
+      <tbody>
+        <tr><td>1 – 9</td><td>2 – 15%</td><td>Medium / High</td></tr>
+        <tr><td>10 – 19</td><td>17 – 32%</td><td>High / Elite</td></tr>
+        <tr><td>20 – 29</td><td>35 – 50%</td><td>Elite</td></tr>
+        <tr><td>30+</td><td>50 – 60%</td><td>Elite / Exotic</td></tr>
+      </tbody>
+    </table>
+    <p style="color:var(--muted);font-size:0.78rem;margin-top:0.5rem">Base drop chance per node: 45% + 1% per floor. The "Glass and Fury" and "Cursed Plenty" floor effects further modify drop rates.</p>
+  </div>
+
+  <!-- Leaderboard -->
+  <div class="section">
+    <div class="section-title">Local Leaderboard</div>
+    <p style="color:var(--muted);font-size:0.82rem;margin-bottom:0.75rem">Top 50 runs tracked in localStorage (<code>emberveil.infiniteLeaderboard</code>). Sorted by deepest floor, then run time.</p>
+    <div id="lb-container">
+      <p id="lb-empty">No runs recorded yet. Enter the Infinite Depths to set your first record.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Floor effects data (mirrors infiniteDungeon.js)
+const EFFECTS = [
+  { id:'champion_tide',  name:'Champion Tide',  color:'#e8c030', desc:'All enemies are champions — +40% HP, +20% damage, +30% armor.' },
+  { id:'heal_disabled',  name:'Sanguine Curse', color:'#c04060', desc:'Healing suppressed — all heals restore 50% less.' },
+  { id:'double_damage',  name:'Glass and Fury',  color:'#ff6030', desc:'Damage taken doubled, but loot quantity doubled this floor.' },
+  { id:'haste_enemies',  name:'Frenzied Pack',   color:'#e08020', desc:'Enemies gain +20% initiative and +15% damage.' },
+  { id:'volatile_ground',name:'Volatile Ground', color:'#c060e0', desc:'Combat opens with both sides taking 10% max HP damage.' },
+  { id:'iron_skin',      name:'Iron Skin',        color:'#8080c0', desc:'All enemies have +50% armor (minimum +5).' },
+  { id:'veil_rift',      name:'Veil Rift',         color:'#a040c0', desc:'Enemies gain +30% magic resistance; their spells deal +25% damage.' },
+  { id:'extra_group',    name:'Horde Surge',       color:'#e06030', desc:'An extra enemy group joins every combat on this floor.' },
+  { id:'blessed_loot',   name:'Cursed Plenty',     color:'#40d080', desc:'Item drop chance tripled.' },
+  { id:'soul_drain',     name:'Soul Drain',         color:'#6040c0', desc:'Party MP does not regenerate between nodes.' },
+];
+
+const ANCHORS = [
+  { name:'Warlord of the Depths',   base:'Goblin Warlord',         mod:'Champion' },
+  { name:'Shadow Captain',          base:'Bandit Captain',          mod:'Enraged' },
+  { name:'Eternal Veil Warden',     base:'Veil Warden',            mod:'Champion' },
+  { name:'Molten Colossus',         base:'Molten Golem',           mod:'Enraged' },
+  { name:'Malgrath Ascendant',      base:'Archfiend Malgrath',     mod:'Champion' },
+  { name:'Echo of the Sovereign',   base:'Emberveil Sovereign',    mod:'Enraged' },
+  { name:'Primordial Titan',        base:'Demon Brute / Cosmic Titan', mod:'Champion' },
+];
+
+// Render floor effects
+const grid = document.getElementById('effect-grid');
+EFFECTS.forEach(fx => {
+  const card = document.createElement('div');
+  card.className = 'effect-card';
+  card.style.borderColor = fx.color + '50';
+  card.innerHTML = `<div class="effect-name" style="color:${fx.color}">${fx.name}</div><div class="effect-desc">${fx.desc}</div>`;
+  grid.appendChild(card);
+});
+
+// Render anchor bosses
+const tbody = document.getElementById('anchor-tbody');
+ANCHORS.forEach((a, i) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td style="color:#f0d060">${a.name}</td><td>${a.base}</td><td><span class="badge badge-anchor">${a.mod}</span></td>`;
+  tbody.appendChild(tr);
+});
+
+// Leaderboard from localStorage
+try {
+  const board = JSON.parse(localStorage.getItem('emberveil.infiniteLeaderboard') || '[]');
+  if (board.length > 0) {
+    document.getElementById('lb-empty').style.display = 'none';
+    const container = document.getElementById('lb-container');
+    const table = document.createElement('table');
+    table.className = 'lb-table';
+    table.innerHTML = `<thead><tr><th>#</th><th>Name</th><th>Class</th><th>Deepest Floor</th><th>Anchors</th><th>Run Time</th><th>Date</th></tr></thead>`;
+    const tb = document.createElement('tbody');
+    board.slice(0, 10).forEach((e, i) => {
+      const m = Math.floor(e.runTime / 60), s = e.runTime % 60;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td style="color:#f0c020">${i+1}</td><td style="color:#d0b0f0"><strong>${e.heroName}</strong></td><td>${e.heroClass}</td><td style="color:#c080f0;font-weight:700">Floor ${e.deepestFloor}</td><td>${e.anchorsCleared || 0}</td><td>${m}:${s.toString().padStart(2,'0')}</td><td style="color:var(--muted)">${e.date || ''}</td>`;
+      tb.appendChild(tr);
+    });
+    table.appendChild(tb);
+    container.appendChild(table);
+  }
+} catch (_) {}
+</script>
+</body>
+</html>

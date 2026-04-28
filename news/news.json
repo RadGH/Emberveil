@@ -1,5 +1,12 @@
 [
   {
+    "slug": "m220-m254-consolidation",
+    "title": "Fast-Travel Overhaul, Questline & Difficulty System",
+    "date": "2026-04-23",
+    "summary": "Forty-plus milestones rolled up: 6 new towns, always-visible Return-to-Town, Silas/Kaela/Marek 5-act main quest, Normal/Hard difficulty, Loot Chests, Magic Find, Attack Speed runtime, 27 gender variants, 5 data catalogs, sprite-approval \u2192 in-game sync bridge, and a dragon epilogue.",
+    "featured_image": "../images/combat_bg/cosmic_rift_1.png"
+  },
+  {
     "slug": "seo-update",
     "title": "Site SEO & Restructure",
     "date": "2026-04-16",
@@ -10,14 +17,14 @@
     "slug": "milestone-report",
     "title": "Emberveil Major Milestone Report",
     "date": "2026-04-15",
-    "summary": "20 hero classes, 84 skills, 10 companions, combat rebalance, 60+ SFX — a comprehensive look at the Emberveil journey so far.",
+    "summary": "20 hero classes, 84 skills, 10 companions, combat rebalance, 60+ SFX \u2014 a comprehensive look at the Emberveil journey so far.",
     "featured_image": "../images/combat_bg/hell_breach_1.png"
   },
   {
     "slug": "re-redesign",
-    "title": "Re-redesign — SpriteCook",
+    "title": "Re-redesign \u2014 SpriteCook",
     "date": "2026-04-14",
-    "summary": "Full visual overhaul using SpriteCook's HD portrait and sprite pipeline — 20 hero classes, 10 companions, and boss art all regenerated.",
+    "summary": "Full visual overhaul using SpriteCook's HD portrait and sprite pipeline \u2014 20 hero classes, 10 companions, and boss art all regenerated.",
     "featured_image": "../images/combat_bg/ember_plateau_1.png"
   },
   {
@@ -31,14 +38,14 @@
     "slug": "balance-report",
     "title": "Balance Report",
     "date": "2026-04-14",
-    "summary": "Community survey on the M77 combat rebalance — burst vs sustain, target falloff, affix reshuffle.",
+    "summary": "Community survey on the M77 combat rebalance \u2014 burst vs sustain, target falloff, affix reshuffle.",
     "featured_image": "../images/combat_bg/dust_roads_1.png"
   },
   {
     "slug": "tap-weapons",
     "title": "Tap Weapons Design",
     "date": "2026-04-13",
-    "summary": "Design document for the tap-to-attack weapons system — how real-time input layers on top of the turn-based combat loop.",
+    "summary": "Design document for the tap-to-attack weapons system \u2014 how real-time input layers on top of the turn-based combat loop.",
     "featured_image": "../images/combat_bg/abyssal_depths_1.png"
   },
   {
@@ -52,7 +59,7 @@
     "slug": "dragon-expansion",
     "title": "Dragon Expansion",
     "date": "2026-04-13",
-    "summary": "Act 6 Dragon's Reach expansion — new zones, boss encounters, and the Dragon Knight unlock chain.",
+    "summary": "Act 6 Dragon's Reach expansion \u2014 new zones, boss encounters, and the Dragon Knight unlock chain.",
     "featured_image": "../images/combat_bg/dragons_reach_1.png"
   },
   {
@@ -66,7 +73,7 @@
     "slug": "pre-game",
     "title": "Pre-Game Brainstorm",
     "date": "2026-04-10",
-    "summary": "The original design document — party-based RPG with mobile-first combat and an atmospheric dark-fantasy world.",
+    "summary": "The original design document \u2014 party-based RPG with mobile-first combat and an atmospheric dark-fantasy world.",
     "featured_image": "../images/map_bg/dust_roads.jpg"
   }
 ]

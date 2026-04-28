@@ -48,7 +48,9 @@
   // Fallback: map rsg-game meta → game key so bare-domain hosts (e.g. emberveil.radgh.com)
   // still populate Tools/News dropdowns.
   var LABEL_TO_KEY = { 'emberveil': 'game13' };
-  var metaKey = LABEL_TO_KEY[String(GAME_LABEL).toLowerCase()] || '';
+  var rawLabel = String(GAME_LABEL).toLowerCase();
+  // If the meta/label is already a gameNN key, use it directly.
+  var metaKey = LABEL_TO_KEY[rawLabel] || (/^game[0-9a-z_]+$/.test(rawLabel) ? rawLabel : '');
   var GAME_KEY = gameKeyMatch ? gameKeyMatch[1].toLowerCase() : metaKey;
   var GAME_ROOT;
   if (gameKeyMatch) {
@@ -67,18 +69,31 @@
   // (/gameNN/...). Keep hardcoded for now; generalize later.
   var TOOLS_BY_GAME = {
     game13: [
-      { href: ASSETS + 'affix-survey.html', label: 'Affix Survey' },
-      { href: ASSETS + 'enemy-audit.html', label: 'Enemy Audit' },
-      { href: ASSETS + 'skill-audit.html', label: 'Skill Audit' },
-      { href: ASSETS + 'redesign-survey.html', label: 'Redesign Survey' },
-      { href: ASSETS + 'image-review.html', label: 'Image Review' },
-      { href: ASSETS + 'custom-content.html', label: 'Custom Content' },
-      { href: ASSETS + 'ai-content-gen.html', label: 'AI Content Generator' },
+      { href: ASSETS + 'tools.html', label: 'All Tools (Index)' },
+      { separator: true, label: 'Catalogs' },
+      { href: ASSETS + 'class-catalog.html', label: 'Class Catalog' },
+      { href: ASSETS + 'companion-catalog.html', label: 'Companion Catalog' },
+      { href: ASSETS + 'dungeon-catalog.html', label: 'Dungeon Catalog' },
+      { href: ASSETS + 'status-effect-catalog.html', label: 'Status Effect Catalog' },
+      { href: ASSETS + 'achievement-roadmap.html', label: 'Achievement Roadmap' },
       { href: ASSETS + 'spell-catalog.html', label: 'Spell Catalog' },
       { href: ASSETS + 'enemy-catalog.html', label: 'Enemy Catalog' },
       { href: ASSETS + 'item-catalog.html', label: 'Item Catalog' },
+      // M345 — Data Catalogs (Legacy) archived (superseded by individual catalogs).
+      { separator: true, label: 'Dev Tools' },
+      { href: ASSETS + 'affix-survey.html', label: 'Affix Survey' },
+      { href: ASSETS + 'enemy-audit.html', label: 'Enemy Audit' },
+      { href: ASSETS + 'skill-audit.html', label: 'Skill Audit' },
+      { href: ASSETS + 'image-review.html', label: 'Image Review' },
+      { href: ASSETS + 'character-redesign.html', label: 'Character Redesign' },
+      { href: ASSETS + 'sprite-adjust.html', label: 'Sprite Adjust' },
+      { href: ASSETS + 'custom-content.html', label: 'Custom Content' },
+      // M345 — AI Content Generator + Data Overrides archived to shorten the menu.
+      { separator: true, label: 'Docs + Admin' },
       { href: ASSETS + 'docs.html', label: 'Documentation' },
       { href: ASSETS + 'wishlist.html', label: 'Wishlist' },
+      { href: ASSETS + 'brainstorm.html', label: 'Brainstorm' },
+      { href: ASSETS + 'redesign-survey.html', label: 'Redesign Survey' },
       { separator: true, label: 'Archived' },
       { href: ASSETS + 'sprite-flip-review.html', label: 'Sprite Flip Review' },
       { href: ASSETS + 'rebalance.html', label: 'Rebalance' }
@@ -114,6 +129,7 @@
       { href: NEWS_ROOT + 'm5.html',          label: 'Milestone 5 Report',  date: '2025-10-01' }
     ],
     game13: [
+      { href: NEWS_ROOT + 'm220-m254-consolidation.html', label: 'Fast-Travel Overhaul + Questline + Difficulty', date: '2026-04-23' },
       { href: NEWS_ROOT + 'milestone-report.html',   label: 'Major Milestone Report',date: '2026-04-15' },
       { href: NEWS_ROOT + 're-redesign.html',        label: 'Re-redesign — SpriteCook', date: '2026-04-14' },
       { href: NEWS_ROOT + 'm79-redesign.html',       label: 'M79 Redesign Report',   date: '2026-04-14' },
@@ -140,7 +156,7 @@
     ]
   };
   var toolsItem = TOOLS.length ? {
-    href: TOOLS[0].href,
+    href: ASSETS + 'tools.html',
     label: 'Tools',
     children: TOOLS.slice()
   } : null;
@@ -151,11 +167,18 @@
     });
     return { href: children[0].href, label: 'News', children: children };
   })() : null;
+  // M242: "Home" takes over the front-page role; "Game Info" still links
+  // for any games that haven't consolidated yet. For Emberveil (game13)
+  // the Game Info page will be deleted and the link drops out of the menu.
+  var HOME_HREF = GAME_ROOT;
   var MENU = [
     { href: PLAY_HREF, label: 'Play Game', primary: true },
-    { href: GAME_INFO, label: 'Game Info' },
-    assetsItem
+    { href: HOME_HREF, label: 'Home' }
   ];
+  // Keep Game Info link for non-emberveil games. Once every game is
+  // consolidated this branch can go.
+  if (GAME_KEY !== 'game13') MENU.push({ href: GAME_INFO, label: 'Game Info' });
+  MENU.push(assetsItem);
   if (toolsItem) MENU.push(toolsItem);
   if (newsItem) MENU.push(newsItem);
   MENU.push({ href: 'https://docs.google.com/forms/d/e/1FAIpQLScWHFEQ8Kbxvsxg5nKerJOPqkYntAkRLCihqQchypNdqayvmA/viewform?usp=publish-editor', label: 'Send Feedback', external: true });

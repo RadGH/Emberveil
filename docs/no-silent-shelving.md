@@ -27,3 +27,42 @@ The wishlist is the single source of truth for "things we agreed to do later." C
 - `no-silent-shelving` rule is quoted at the top of `CLAUDE.md` and `/home/radgh/claude/CLAUDE.md`.
 - Wishlist tool: `public/assets/wishlist.html` — audited every milestone.
 - Technical-debt register: wishlist section "Technical Debt Registry" captures explicitly-shelved items.
+
+---
+
+## Backward-Compatibility Notes (sibling guideline, M313+)
+
+Any milestone that changes the save-file schema or removes a field that old saves may rely on **must** document those changes as backward-compat notes.
+
+### How to record
+
+Set `BREAKING_CHANGES` at release time (pipe-delimited):
+
+```bash
+BREAKING_CHANGES="fieldX added; old saves default to null|fieldY removed; safe to ignore on load" \
+  bash /home/radgh/claude/release.sh game13
+```
+
+Or edit `game_meta.json` directly under `releases[N].breakingChanges: [...]`.
+
+### What must be documented
+
+- New save-file fields (with migration behavior: lazy, default value, or one-time migration).
+- Removed or renamed save-file fields.
+- Changes to the serialization format of existing fields (e.g., Set serialized as array).
+- Combat or skill changes that render existing build configurations invalid.
+
+### Where it surfaces
+
+- `release-summary.json` (emitted by `emit-release-summary.cjs`) includes `breakingChanges`.
+- The What's New splash (`TitleScreen._showWhatsNewSplash`) renders a "Migration Notes" section when `breakingChanges` is non-empty.
+- `game_meta.json` `releases[N].breakingChanges` is the authoritative record.
+
+### Retroactive notes added
+
+| Milestone | Note |
+|-----------|------|
+| M302 | `levelSync` companion setting added; old saves default to independent leveling. |
+| M305 | Legendary effect hooks added to item schema; old items with no hooks continue working. |
+| M306 | `infiniteRun` field added; null on old saves, lazy-migrated on first access. |
+| M307 | `craftingRecipesUnlocked` added as serialized Set; null on old saves triggers lazy migration. |

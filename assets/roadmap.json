@@ -1,0 +1,753 @@
+{
+  "generated": "2026-04-28T18:00:22.456Z",
+  "currentMilestone": 347,
+  "milestones": [
+    {
+      "milestone": 315,
+      "title": "Map / fog-of-war fixes",
+      "items": [
+        {
+          "label": "Back-arrow popup covers map nodes — replace with floating DOM box below player node",
+          "status": "done",
+          "tag": "done — m315",
+          "desc": "Replaced canvas edge-label with a DOM .czb-back-popup div positioned below (or above/side) the anchor node. Viewport-aware: tries below first, falls back to above, then clamps. OK button triggers _crossZoneJump. MapScreen.js _updateCrossZoneBackPopup()."
+        },
+        {
+          "label": "Back arrow from Map 2 first node puts player at random node, not boss node where Map 1 ended",
+          "status": "done",
+          "tag": "done — m315",
+          "desc": "_getCrossZoneLink now calls GameState.getZoneNode(prev.id) to look up the last-visited node in the previous zone, falling back to zone.nodes[last] only if no saved position exists. MapScreen.js line ~114."
+        },
+        {
+          "label": "Hidden (fogged) map nodes still hoverable to reveal type/position",
+          "status": "done",
+          "tag": "done — m315",
+          "desc": "_onHover now computes the fog revealed-set and skips any node not in it, preventing tooltip + visual hover on fogged tiles. MapScreen.js _onHover()."
+        },
+        {
+          "label": "Fog-of-war should be active by default",
+          "status": "done",
+          "tag": "done — m315",
+          "desc": "CharacterBuilderScreen._fogOfWar changed from false to true (new game default). gameState.js load migration changed from !!saved.fogOfWar to saved.fogOfWar !== false so old saves without the field get fog-on rather than fog-off."
+        }
+      ],
+      "doneCount": 4,
+      "total": 4,
+      "shipped": true
+    },
+    {
+      "milestone": 314,
+      "title": "Critical UI Bugs (post-M309 feedback)",
+      "items": [
+        {
+          "label": ".dg-screen doesn't go away after dungeon completed",
+          "status": "done",
+          "tag": "done — m314",
+          "desc": "DungeonScreen had onLeave() but ScreenManager only calls onExit()/destroy(). Added onExit and destroy aliases that call removeEl(this._el)."
+        },
+        {
+          "label": ".combat-screen becomes 0px tall mid-combat",
+          "status": "done",
+          "tag": "done — m314",
+          "desc": "Added height:100%; min-height:100% to .combat-screen CSS rule in COMBAT_STYLES."
+        },
+        {
+          "label": "Victory screen overflows when many rewards",
+          "status": "done",
+          "tag": "done — m314",
+          "desc": "Added max-height:90vh; overflow-y:auto to .cem-box so the victory modal scrolls instead of clipping."
+        },
+        {
+          "label": "Boss treasure drops 3 items — should be PICK 1 of 3",
+          "status": "done",
+          "tag": "done — m314",
+          "desc": "Converted MapScreen._showBossChestModal from \"Take All\" to a pick-one UI: 3 buttons side-by-side, one click selects + closes. Only rarity colors on borders (no class-suggestion green). mm-box gets max-height/overflow-y."
+        },
+        {
+          "label": "Boss treasure pick-dialog borders should be rarity, not class suggestion",
+          "status": "done",
+          "tag": "done — m314",
+          "desc": "Pick-one modal uses RAR_COLOR/RAR_BG maps keyed by rarity. No character-suggestion overlay rendered."
+        },
+        {
+          "label": "Achievement screen during combat doesn't pause; victory pops up over it",
+          "status": "done",
+          "tag": "done — m314",
+          "desc": "Added onPause/onResume to CombatScreen. onPause saves and zeroes _speedMult. onResume restores it and drains _deferredVictory. _showVictoryModal defers if CombatScreen is not the stack top."
+        },
+        {
+          "label": "Boss intro splash shows old intro text in background; no auto-dismiss",
+          "status": "done",
+          "tag": "done — m314",
+          "desc": "Removed 2s auto-dismiss timer from _showBossIntroSplash. HUD, potion belt, and log panel are hidden (visibility:hidden) while splash is up and restored on dismiss."
+        },
+        {
+          "label": "500-fame guildmaster popup appears after quitting to menu",
+          "status": "done",
+          "tag": "done — m314",
+          "desc": "TownScreen stores _fameEncounterModal reference. onExit/destroy removes it. Prevents modal from persisting over TitleScreen after GameMenuScreen._goToTitle() clears the stack."
+        },
+        {
+          "label": "Combat report \"TOTAL HEAL 0.38999...\" — too many digits",
+          "status": "done",
+          "tag": "done — m314",
+          "desc": "Applied formatStat(...,'int') to totalDmg, totalHeal, totalMit, avgDps, per-row totals, source totals, and individual hit amounts in _buildCombatReportHtml."
+        },
+        {
+          "label": "Replace big E toggle button with Combat Settings pause menu",
+          "status": "done",
+          "tag": "done — m314",
+          "desc": "Added \"Combat Settings\" button to pause menu. Sub-panel: show/hide DPS Meter (with Show Enemies sub-option), show/hide Combat Log (with Show Secondary Effects sub-option), Combat Captions toggle. Redirect note added in main Settings."
+        },
+        {
+          "label": "Combat captions overlap bottom HP bar",
+          "status": "done",
+          "tag": "done — m314",
+          "desc": "Changed .cbt-captions bottom from 0 to 80px so captions sit above the .cbt-hud bar."
+        }
+      ],
+      "doneCount": 11,
+      "total": 11,
+      "shipped": true
+    },
+    {
+      "milestone": 309,
+      "title": "News flow + asset archive + release pipeline",
+      "items": [
+        {
+          "label": "public/news/ folder + Latest News widget",
+          "status": "done",
+          "tag": "done — m313",
+          "desc": "public/news/*.md with YAML frontmatter; emit-news-index.cjs prebuild script writes index.json; Latest News widget on asset gallery (top 3 cards); news-archive.html with category filter. M302/M305/M306 starter entries added."
+        },
+        {
+          "label": "Versioned asset archive (snapshot per milestone)",
+          "status": "done",
+          "tag": "done — m313",
+          "desc": "snapshot-assets.cjs wired into release.sh after game_meta.json update; idempotent (skips existing). data-overrides.html now probes snapshot manifests and presents working Restore from Snapshot M### dropdown with per-type and restore-all modes."
+        },
+        {
+          "label": "release.sh prompt for changelog category tags",
+          "status": "done",
+          "tag": "done — m313",
+          "desc": "RELEASE_CATEGORY env var (feature/balance/bugfix/qol/art/infrastructure, comma-separated). Interactive prompt if unset and TTY; default to feature in non-interactive mode. Persisted to releases[N].categories in game_meta.json. parse-changelog-categories.cjs merges explicit tags into structured output."
+        },
+        {
+          "label": "Backward-compat notes on release",
+          "status": "done",
+          "tag": "done — m313",
+          "desc": "BREAKING_CHANGES env var (pipe-delimited) persisted to releases[N].breakingChanges. emit-release-summary.cjs includes field. What's New splash renders Migration Notes section when non-empty. Retroactive notes added for M302/M305/M306/M307. Documented in public/docs/no-silent-shelving.md."
+        }
+      ],
+      "doneCount": 4,
+      "total": 4,
+      "shipped": true
+    },
+    {
+      "milestone": 308,
+      "title": "Number rounding + fame-locked unlocks",
+      "items": [
+        {
+          "label": "Number rounding audit",
+          "status": "done",
+          "tag": "done — m308",
+          "desc": "Manual #16: floor int stats (HP/MP/STR/DEX/INT/WIS/CON/CHA, armor, damage); display floats with up to 2 decimals (crit chance shows 1.15%, not 13.000000001%). Apply across DPS meter + character stats. Multipliers, dodge %, resistances stay float; consider per-stat formatting helper."
+        },
+        {
+          "label": "Fame-locked appearance / weapon variety unlocks",
+          "status": "done",
+          "tag": "done — m308",
+          "desc": "Long-term carrot; fame is invisible today. Fame counter in CharacterBuilder + TitleScreen badge. Appearances beyond slot 5 gate behind fame thresholds (100/250/500/1000/2000). Locked tiles greyed out with fame target tooltip."
+        }
+      ],
+      "doneCount": 2,
+      "total": 2,
+      "shipped": true
+    },
+    {
+      "milestone": 307,
+      "title": "Crafting + boss preludes + cinematic dialog",
+      "items": [
+        {
+          "label": "Craftable unique items (recipe unlocks on boss kill)",
+          "status": "done",
+          "tag": "done — m307",
+          "desc": "Bridge merchant/blacksmith/enchanter workflows. 5 per act."
+        },
+        {
+          "label": "Crafting recipe unlocks via lore-node exploration",
+          "status": "done",
+          "tag": "done — m307",
+          "desc": "Make Blacksmith/Enchanter discovery dynamic instead of static stock. Manual #12: all basic/white recipes should unlock easily — gating is for higher tiers."
+        },
+        {
+          "label": "Boss-defeat cinematic dialog",
+          "status": "done",
+          "tag": "done — m307",
+          "desc": "Capture story beat, not just combat. Leverage story; minimal boss dialog today."
+        }
+      ],
+      "doneCount": 3,
+      "total": 3,
+      "shipped": true
+    },
+    {
+      "milestone": 306,
+      "title": "Infinite scaling dungeon",
+      "items": [
+        {
+          "label": "Procedural challenge dungeon (infinite scaling)",
+          "status": "done",
+          "tag": "done — m306",
+          "desc": "Manual #11: separate from in-game dungeons. Diablo-3/4 / PoE-delve style infinite scaling tiers. Random Act 1-5 enemies + twists. Replayable post-game content for build-testing."
+        }
+      ],
+      "doneCount": 1,
+      "total": 1,
+      "shipped": true
+    },
+    {
+      "milestone": 305,
+      "title": "Set items + uniques + 40 affixes",
+      "items": [
+        {
+          "label": "Set items (24 sets total)",
+          "status": "done",
+          "tag": "done — m305",
+          "desc": "Manual #10 (doubled per user): 12 low-tier (2-piece — Diablo-2 Sigon-style with powerful low-level modifiers), 8 mid-tier (3-piece), 4 endgame (4–5 piece). Sets have legendary effects on top of stat bonuses (e.g. Mage set: Magic Missile fires bonus AoE projectile at second target). Pre-determined effects, semi-random affix values per template (Sigon Shield always +5 STR but other affixes random)."
+        },
+        {
+          "label": "Unique items (~24 across 5 acts)",
+          "status": "done",
+          "tag": "done — m305",
+          "desc": "Rare items with a legendary effect (rarely multiple). Pre-determined effects; affixes may be pre-determined or random per template."
+        },
+        {
+          "label": "40 new affixes (elemental combos, conditional triggers, set bonuses)",
+          "status": "done",
+          "tag": "done — m305",
+          "desc": "Deepen itemization beyond the current ~30 affixes. Overlaps with sets — design together."
+        }
+      ],
+      "doneCount": 3,
+      "total": 3,
+      "shipped": true
+    },
+    {
+      "milestone": 304,
+      "title": "Multi-phase bosses + boss loot + hidden bosses + dialogue",
+      "items": [
+        {
+          "label": "Multi-phase boss fights",
+          "status": "done",
+          "tag": "status-done — m304",
+          "desc": "HP checkpoints unlock new attack patterns. Generalize the Unraveler pattern to 3-5 other final bosses."
+        },
+        {
+          "label": "Boss-themed loot tables",
+          "status": "done",
+          "tag": "status-done — m304",
+          "desc": "e.g. Unraveler always drops void-themed items. Memorable rewards for memorable fights."
+        },
+        {
+          "label": "Hidden boss encounters",
+          "status": "done",
+          "tag": "status-done — m304",
+          "desc": "Gated by rare-loot-finds or stat thresholds. Easter eggs for completionists / speedrunners."
+        },
+        {
+          "label": "8 new dialogue branches per act",
+          "status": "done",
+          "tag": "status-done — m304",
+          "desc": "Gated on party comp / past choices. Replay value; story is mostly linear today."
+        }
+      ],
+      "doneCount": 4,
+      "total": 4,
+      "shipped": true
+    },
+    {
+      "milestone": 303,
+      "title": "Enemy spells + champion modifiers",
+      "items": [
+        {
+          "label": "Enemy spells",
+          "status": "done",
+          "tag": "done — m303",
+          "desc": "Manual #7: add spells to selected enemies — basic monsters (esp. goblins) keep auto-attack. Reusable element-keyed FX assets (fire/ice/shadow/holy/nature) with monster-class tinting; fall back gracefully when art is missing. Bosses get wind-up spells interruptible by sufficient damage or dispel/spell-steal. Some boss buffs are stealable and can flip the tide of combat."
+        },
+        {
+          "label": "Blue-name champion modifiers",
+          "status": "done",
+          "tag": "done — m303",
+          "desc": "Manual #8: Diablo-2-style champion prefixes — health regen, damage aura, fast, extra strong, etc. No new artwork; pure mechanical layer. Defer the \"giant fiery mini-boss\" idea to challenge tiles in a later milestone."
+        }
+      ],
+      "doneCount": 2,
+      "total": 2,
+      "shipped": true
+    },
+    {
+      "milestone": 302,
+      "title": "Gameplay batch 1: Combat additions + new node types",
+      "items": [
+        {
+          "label": "Companion level-sync option",
+          "status": "done",
+          "tag": "done — m302",
+          "desc": "Scale companion to party avg. Manual #5: party average level should also be displayed on save game slots so you can quickly compare playthroughs."
+        },
+        {
+          "label": "Flee from combat (DEX check; failure costs gold)",
+          "status": "done",
+          "tag": "done — m302",
+          "desc": "Recovery option early-act instead of auto-wipe."
+        },
+        {
+          "label": "Steal-buff mechanic (Rogue)",
+          "status": "done",
+          "tag": "done — m302",
+          "desc": "Pull enemy buffs to self. New effect type; high-skill play."
+        },
+        {
+          "label": "Bleed-stack burst finisher skill",
+          "status": "done",
+          "tag": "done — m302",
+          "desc": "Make bleed-focused builds rewarding beyond passive DoT."
+        },
+        {
+          "label": "Curse system (negative buff that spreads on death)",
+          "status": "done",
+          "tag": "done — m302",
+          "desc": "Differentiate curses from poison/burn; Warlock identity."
+        },
+        {
+          "label": "Skill-check node (single attribute roll)",
+          "status": "done",
+          "tag": "done — m302",
+          "desc": "Success/fail branches. Rewards stat investment."
+        },
+        {
+          "label": "Travelling merchant + minigame node-overlay system",
+          "status": "done",
+          "tag": "done — m302",
+          "desc": "Travelling merchant stops on the path; one-time stock. Manual #9: generalize to a node-overlay system — random encounters can overlay an existing node OR appear between nodes. If overlaying, the node-click triggers the overlay first, THEN starts the underlying node encounter (do NOT let the user skip the underlying node — known bug on Node 1 of new maps). Includes positive (merchant), neutral (memory minigame), and hostile (bandit patrol) overlays. Ties into quest system."
+        },
+        {
+          "label": "DoT stacking modes per-spell",
+          "status": "done",
+          "tag": "done — m302",
+          "desc": "Manual #6: Bleed, poison, and other DoTs each declare a stacking mode: per-source (each character independently up to N stacks — e.g. 2 rogues × 5 = 10), per-character (one stack per source), or global (one stack from any source). Tooltips read e.g. \"Poison Dagger: applies up to 5 stacks of poison on target.\" Pick whichever mode best suits each spell."
+        }
+      ],
+      "doneCount": 8,
+      "total": 8,
+      "shipped": true
+    },
+    {
+      "milestone": 301,
+      "title": "Headless simulator + regression infra",
+      "items": [
+        {
+          "label": "Headless combat simulator API",
+          "status": "done",
+          "tag": "status-done — m301",
+          "desc": "Spawn combatants, run N rounds, return stats. Currently Monte Carlo lives in scripts; expose as a clean Node API for Claude to call."
+        },
+        {
+          "label": "Batch rebalance reports (parallel + CSV)",
+          "status": "done",
+          "tag": "status-done — m301",
+          "desc": "Test 50 skill tweaks in parallel, compare win-rates. Currently serial."
+        },
+        {
+          "label": "Regression alerts on rebalance",
+          "status": "done",
+          "tag": "status-done — m301",
+          "desc": "Alert if Act win-rate drops > threshold. Manual #15: per-act configurable thresholds (e.g. Act 5 25% floor vs Act 1 10%). Config file: scripts/regression-thresholds.json, hand-editable."
+        },
+        {
+          "label": "Encounter difficulty rating",
+          "status": "done",
+          "tag": "status-done — m301",
+          "desc": "Predicted win-rate, flag too-hard fights. Uses simulator."
+        },
+        {
+          "label": "Item-generation validator",
+          "status": "done",
+          "tag": "status-done — m301",
+          "desc": "Every affix rolls within bounds. Catch balance bugs early."
+        },
+        {
+          "label": "Affix coverage report",
+          "status": "done",
+          "tag": "status-done — m301",
+          "desc": "Which affixes never appear in Act 1-2 loot. Identify dead content."
+        },
+        {
+          "label": "Save-file load-tester (auto-snapshot per milestone)",
+          "status": "done",
+          "tag": "status-done — m301",
+          "desc": "Load 100 random saves, check for crashes. Manual #17: auto-save a game per act after each milestone build under assets/references/emberveil/saves/regression/M###/ for regression testing."
+        },
+        {
+          "label": "Loot distribution audit",
+          "status": "done",
+          "tag": "status-done — m301",
+          "desc": "Drop chance per act; flag rare over-drop. Manual #18: include merchant, guild hall, black market shop pools — they're part of the economy too."
+        },
+        {
+          "label": "Combat-log replayer (export-only)",
+          "status": "done",
+          "tag": "status-done — m301",
+          "desc": "Save fight trace JSON, replay visually on demand. Manual #13: no repo bloat — keep traces in localStorage with manual export button. Loader takes pasted JSON or file upload."
+        },
+        {
+          "label": "Status-effect interaction matrix",
+          "status": "done",
+          "tag": "status-done — m301",
+          "desc": "All 2-effect combos, computed outcomes. Identify unintended synergies."
+        },
+        {
+          "label": "Automated end-to-end playthrough",
+          "status": "done",
+          "tag": "status-done — m301",
+          "desc": "Seeded RNG, full Act 1-5 run, softlock detection. Smoke test after balance changes."
+        }
+      ],
+      "doneCount": 11,
+      "total": 11,
+      "shipped": true
+    },
+    {
+      "milestone": 300,
+      "title": "Devtool batch 2: Sims, audits, archives",
+      "items": [
+        {
+          "label": "Skill interaction simulator (skill A + skill B combo)",
+          "status": "done",
+          "tag": "done — m300",
+          "desc": "skill-sim.html — two skill pickers from getSkills(), side-by-side effect panels, combo heuristic (stacking/consume/DPS/neutral), and \"Run 100 Combats\" in-browser sim."
+        },
+        {
+          "label": "Affix interaction matrix page",
+          "status": "done",
+          "tag": "done — m300",
+          "desc": "affix-matrix.html — visual grid from getAffixes(), heuristic interaction types (stack/conflict/multiply/independent), color-coded, click-to-detail modal, pool filter."
+        },
+        {
+          "label": "Spell catalog: side-by-side skill comparison",
+          "status": "done",
+          "tag": "done — m300",
+          "desc": "spell-catalog.html — added Compare mode button; pick up to 4 skills, click \"Show Comparison\" for a horizontal stats table (cooldown, MP, damage type, talents, upgrades)."
+        },
+        {
+          "label": "Asset-pipeline trace tool",
+          "status": "done",
+          "tag": "done — m300",
+          "desc": "asset-pipeline-trace.html — static knowledge map of 13 scripts (release.sh, optimize_audio, emit-game-data, build-manifest, clean-manifest, etc.) with inputs/outputs/trigger. Search + trigger filter."
+        },
+        {
+          "label": "image-review-manifest deprecation pass",
+          "status": "done",
+          "tag": "done — m300",
+          "desc": "scripts/clean-image-review-manifest.cjs — removes missing-file entries and duplicates. Ran: 917 → 782 entries, 1655.7 KB → 1622.3 KB (135 stale removed). Deprecation notice added to image-review.html."
+        },
+        {
+          "label": "character-redesign archive",
+          "status": "done",
+          "tag": "done — m300",
+          "desc": "approve.cjs now archives displaced frames to public/assets/character-redesign-archive/<id>/<timestamp>/ before overwriting. redesign-archive.html lists all archived versions with thumbnails + dates. Forward-only (no backfill — noted in wishlist)."
+        },
+        {
+          "label": "Rebalance report diff view",
+          "status": "done",
+          "tag": "done — m300",
+          "desc": "rebalance-diff.html — select two snapshots from rebalance_snapshots/index.json, renders color-coded diff table (green=buff, red=nerf) by hero/companion/tap/utility. Summary KPIs (buffed/nerfed count). Linked from rebalance-report.html."
+        }
+      ],
+      "doneCount": 7,
+      "total": 7,
+      "shipped": true
+    },
+    {
+      "milestone": 299,
+      "title": "Devtool catalogs + tools landing",
+      "items": [
+        {
+          "label": "Companion catalog page (sortable: name, class, stats, skills)",
+          "status": "done",
+          "tag": "done — m299",
+          "desc": "companion-catalog.html — pets, hireables, wild companions, dragon companions. Sortable table, search, filter by kind/class."
+        },
+        {
+          "label": "Dungeon catalog page",
+          "status": "done",
+          "tag": "done — m299",
+          "desc": "dungeon-catalog.html — card grid with location, stages, mini-boss, rewards. Click to expand details."
+        },
+        {
+          "label": "Status effect catalog page",
+          "status": "done",
+          "tag": "done — m299",
+          "desc": "status-effect-catalog.html — glyph, color, name, plain description for all STATUS_META entries. Grouped by category (DoT / Control / Buff / Defensive / Debuff / Link)."
+        },
+        {
+          "label": "Achievement roadmap page",
+          "status": "done",
+          "tag": "done — m299",
+          "desc": "achievement-roadmap.html — all achievements grouped by tier (bronze/silver/gold), with unlock conditions. Filter by tier and search."
+        },
+        {
+          "label": "Tools-menu landing page (curated)",
+          "status": "done",
+          "tag": "done — m299",
+          "desc": "tools.html — curated table of all 30+ tools with tag filters (catalog / devtool / admin / sim / docs), search, and coming-soon rows for M300/M301."
+        },
+        {
+          "label": "Live-data + client-side override system across all tools",
+          "status": "done",
+          "tag": "done — m299",
+          "desc": "data-source.js ESM module + emit-game-data.cjs prebuild script. data-overrides.html management UI. All M299 catalog pages use live data. Milestone snapshot scaffold added (M309 planned)."
+        },
+        {
+          "label": "wishlist.html: group by milestone target",
+          "status": "done",
+          "tag": "done — m292",
+          "desc": "Done as part of this M292 migration — this section is the result."
+        }
+      ],
+      "doneCount": 7,
+      "total": 7,
+      "shipped": true
+    },
+    {
+      "milestone": 298,
+      "title": "Changelog flow + lore + roadmap + monument",
+      "items": [
+        {
+          "label": "Changelog categorization",
+          "status": "done",
+          "tag": "done — m298",
+          "desc": "Bug Fix / Feature / Balance / QoL / Art icons. Flat lists are hard to scan."
+        },
+        {
+          "label": "In-game \"What's New?\" splash on first launch after update",
+          "status": "done",
+          "tag": "done — m298",
+          "desc": "Engage players with patch notes; currently external only."
+        },
+        {
+          "label": "Per-feature \"shipped in M###\" badge",
+          "status": "done",
+          "tag": "done — m298",
+          "desc": "Visible at the feature itself. Celebrate; drive engagement."
+        },
+        {
+          "label": "Public roadmap page",
+          "status": "done",
+          "tag": "done — m298",
+          "desc": "Upcoming acts + major features. Manage expectations; hype building. Pulls from this wishlist's milestone groups."
+        },
+        {
+          "label": "In-game lore compendium (Claude-authored)",
+          "status": "done",
+          "tag": "done — m298",
+          "desc": "Help follow the 5-act narrative. Manual #19: Claude writes the lore — this is Claude's game; user is one of the players."
+        },
+        {
+          "label": "Hardcore monument on title screen",
+          "status": "done",
+          "tag": "done — m298",
+          "desc": "Display fallen heroes. Manual #13: only render if a hardcore character has fallen. Manual #20: hardcore saves remain loadable as disabled slots so character stats can be compared across playthroughs (Character A from previous run vs Character B from new run). Option to delete the slot."
+        }
+      ],
+      "doneCount": 6,
+      "total": 6,
+      "shipped": true
+    },
+    {
+      "milestone": 297,
+      "title": "Keyboard navigation",
+      "items": [
+        {
+          "label": "Keyboard navigation across screens (arrow + enter)",
+          "status": "done",
+          "tag": "done — m297",
+          "desc": "Full Tier A coverage: TitleScreen, CharacterBuilderScreen, LoadGameScreen, SettingsScreen, TownScreen, MapScreen, PartyPanelScreen, DialogScreen, LevelUpScreen, AchievementsScreen, StatsScreen, StatsDashboardScreen, GameMenuScreen. Gold :focus-visible ring site-wide. Tier B (combat): digit keys 1–N for manual-combat action picker; auto-combat has no action buttons so target selection remains mouse/touch-only. Combat keyboard nav intentionally limited to digit shortcuts — adding full arrow-key target selection would require significant combat refactor and is out of scope per user guidance (\"do not sacrifice existing UX\")."
+        }
+      ],
+      "doneCount": 1,
+      "total": 1,
+      "shipped": true
+    },
+    {
+      "milestone": 296,
+      "title": "Accessibility batch",
+      "items": [
+        {
+          "label": "Colorblind palettes (deuteranopia / protanopia / tritanopia)",
+          "status": "done",
+          "tag": "done — m296",
+          "desc": "Rarity colors today are red/blue/yellow/orange — collide for ~8% of players."
+        },
+        {
+          "label": "Font-size scaling (Settings → 80%/100%/120%/150%)",
+          "status": "done",
+          "tag": "done — m296",
+          "desc": "Fixed 1rem today; mobile readability win."
+        },
+        {
+          "label": "Tap-target validation (≥ 44×44px per WCAG)",
+          "status": "done",
+          "tag": "done — m296",
+          "desc": "Many tooltip-trigger areas likely undersized on mobile. Audit + fix pass."
+        },
+        {
+          "label": "Reduce-motion toggle (kill parallax, screen wipes)",
+          "status": "done",
+          "tag": "done — m296",
+          "desc": "Already partial; expand coverage. Manual #14: ensure surfaced in Settings menu — user's OS has reduce-motion enabled and may not know how to override per-app, so the toggle must be in-game-discoverable."
+        },
+        {
+          "label": "Subtitle / caption mode for combat log",
+          "status": "done",
+          "tag": "done — m296",
+          "desc": "Screen-reader friendly real-time combat narration."
+        }
+      ],
+      "doneCount": 5,
+      "total": 5,
+      "shipped": true
+    },
+    {
+      "milestone": 295,
+      "title": "Polish: enchanter, potion belt, toasts, plain-language status",
+      "items": [
+        {
+          "label": "Enchanter upgrade preview (before/after stats on hover)",
+          "status": "done",
+          "tag": "done — m295",
+          "desc": "Half-done per CLAUDE.md; finalize the tooltip."
+        },
+        {
+          "label": "Potion belt (combat-quick consumables)",
+          "status": "done",
+          "tag": "done — m295",
+          "desc": "Separate from inventory; QoL for healing flow."
+        },
+        {
+          "label": "Achievement-unlock toast notifications",
+          "status": "done",
+          "tag": "done — m295",
+          "desc": "Celebration moment; currently silent unlock."
+        },
+        {
+          "label": "\"Patch notes\" shortcut in GameMenu",
+          "status": "done",
+          "tag": "done — m295",
+          "desc": "Link to latest release summary (in-game splash) with a \"full history\" link to /assets/changelog.html. Discoverable without leaving the game."
+        },
+        {
+          "label": "Plain-language status descriptions",
+          "status": "done",
+          "tag": "done — m295",
+          "desc": "Cognitive accessibility; avoid jargon. \"Bleeding (3 rounds): loses 8 HP per round\" not \"Bleed: DoT\"."
+        },
+        {
+          "label": "Boss-specific dialogue preludes (2-3 lines)",
+          "status": "done",
+          "tag": "done — m295",
+          "desc": "Sells stakes; cheap content. Could ship in M295 or M307 with cinematic-dialog."
+        }
+      ],
+      "doneCount": 6,
+      "total": 6,
+      "shipped": true
+    },
+    {
+      "milestone": 294,
+      "title": "UI batch 2: Party panel + boss splash + zone dropdown",
+      "items": [
+        {
+          "label": "Unified Spells / Passives / Attributes / Inventory tabbed panel (\"Party\")",
+          "status": "done",
+          "tag": "done — m294",
+          "desc": "Reduce screen count; quick item swaps during skill-point allocation flow. Manual #5: Replace existing Character screen but mark deprecated rather than deleting — user may want to refer back. Keep file in repo with a `// DEPRECATED M294` header and unwire from the menu."
+        },
+        {
+          "label": "Rename map \"Inventory\" button to \"Party\"",
+          "status": "done",
+          "tag": "done — m294",
+          "desc": "Opens unified Party + Inventory panel. Clearer intent; collapses the Inventory + Town notification-bubble overlap."
+        },
+        {
+          "label": "MapScreen zone fast-travel as dropdown",
+          "status": "done",
+          "tag": "done — m294",
+          "desc": "Reduce horizontal width on phones once 6+ zones are unlocked. Replace tabs with dropdown."
+        },
+        {
+          "label": "Boss-intro splash card before boss combat",
+          "status": "done",
+          "tag": "done — m294",
+          "desc": "Sells the moment; differentiates from regular fights. Manual #4: long boss names (e.g. Unraveler-of-Mortal-Threads) get cut off on iPhone — splash must wrap or scale-down on narrow viewports. Audit existing combat headers for the same overflow bug."
+        },
+        {
+          "label": "Dual-comparison mode in Inventory (rings / offhand)",
+          "status": "done",
+          "tag": "done — m294",
+          "desc": "Compare both rings or offhand at once for better multi-slot planning. Manual #2: desktop only — iPhone won't fit, gracefully fall back to single-compare on narrow viewports."
+        }
+      ],
+      "doneCount": 5,
+      "total": 5,
+      "shipped": true
+    },
+    {
+      "milestone": 293,
+      "title": "Small UI batch 1",
+      "items": [
+        {
+          "label": "Notification bubble disambiguation",
+          "status": "done",
+          "tag": "done — m293",
+          "desc": "Inventory tab gets bubble for unequipped/upgrades; map Town button shows level-up points only. Manual #1: after level-up in combat the unspent-skill-points bubble persists until visiting Character screen — clear it as soon as auto-allocation has run, or on first map render after combat ends."
+        },
+        {
+          "label": "Quick-equip toast on item pickup",
+          "status": "done",
+          "tag": "done — m293",
+          "desc": "\"Auto-equipped X to Y\" or \"X is an upgrade for Z — equip?\" when loot drops, so the player doesn't have to open inventory after every fight."
+        },
+        {
+          "label": "Combat preview tooltip on skill upgrade selection",
+          "status": "done",
+          "tag": "done — m293",
+          "desc": "\"This upgrade adds N% damage / changes targeting to AoE\" — contextual hint when picking talents."
+        },
+        {
+          "label": "Scroll-position memory on InventoryScreen tab switch",
+          "status": "done",
+          "tag": "done — m293",
+          "desc": "Preserve scroll depth when jumping between characters."
+        },
+        {
+          "label": "Status effect duration tooltips",
+          "status": "done",
+          "tag": "done — m293",
+          "desc": "Show duration remaining (rounds), not just type. Players can't tell when burns / blocks expire without counting rounds."
+        },
+        {
+          "label": "Party screen role icons",
+          "status": "done",
+          "tag": "done — m293",
+          "desc": "Tank / DPS / Support / Healer indicators. Manual #3: NO emoji — use SVG / Font Awesome / continue the existing class-icon style. User likes the current generated class icons."
+        }
+      ],
+      "doneCount": 6,
+      "total": 6,
+      "shipped": true
+    }
+  ]
+}

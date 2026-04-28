@@ -1,0 +1,37 @@
+{
+  "generated": "2026-04-28T18:00:22.543Z",
+  "entries": [
+    {
+      "slug": "2026-04-26-m309-news-pipeline",
+      "file": "2026-04-26-m309-news-pipeline.md",
+      "title": "M313 Dev Diary — News Pipeline, Asset Snapshots & Release Tooling",
+      "date": "2026-04-26",
+      "category": "dev-diary",
+      "summary": "M313 wires up four infrastructure features: a public/news/ content pipeline with a Latest News widget, versioned asset snapshots per milestone, changelog category tags in release.sh, and backward-compatibility notes surfaced in the What's New splash."
+    },
+    {
+      "slug": "2026-04-25-sets-and-uniques",
+      "file": "2026-04-25-sets-and-uniques.md",
+      "title": "Sets and Uniques System — Full Item Tier Overhaul in M305",
+      "date": "2026-04-25",
+      "category": "release",
+      "summary": "M305 shipped 24 set items (12 two-piece Sigon-style, 8 mid three-piece, 4 endgame four/five-piece), 24 unique items across 5 acts, 40 new affixes, and legendary mechanical effects with onCrit/onKill/onCast/onCombatStart hooks."
+    },
+    {
+      "slug": "2026-04-25-infinite-depths",
+      "file": "2026-04-25-infinite-depths.md",
+      "title": "Infinite Depths — Endless Dungeon Mode Ships in M306",
+      "date": "2026-04-25",
+      "category": "release",
+      "summary": "M306 introduced Infinite Run mode — a procedurally scaled endless dungeon that ramps difficulty every 5 floors, awards exclusive affixes, and persists a personal best score across sessions."
+    },
+    {
+      "slug": "2026-04-24-emberveil-m302-gameplay-batch",
+      "file": "2026-04-24-emberveil-m302-gameplay-batch.md",
+      "title": "M302 Gameplay Batch — Companion Sync, Flee Mechanic & New Rogue Skills",
+      "date": "2026-04-24",
+      "category": "release",
+      "summary": "M302 landed companion level-sync, a DEX-check flee mechanic, two new Rogue skills (Pilfer Magic and Hemorrhage), Warlock Soul Curse with curse-spread, skill-check map nodes, and a full node-overlay system for merchant, minigame, and bandit encounters."
+    }
+  ]
+}

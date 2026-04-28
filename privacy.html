@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy — Emberveil &amp; RSG Demos</title>
+<meta name="rsg-game" content="Emberveil">
+<style>
+  :root { color-scheme: dark; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif; line-height: 1.55;
+    background: linear-gradient(180deg, #0a0608, #120a10); color: #f0e8d8;
+    min-height: 100vh; padding: 1.25rem 1rem 4rem;
+  }
+  main { max-width: 720px; margin: 0 auto; }
+  h1 { font-family: 'Cinzel', Georgia, serif; color: #e8a020; font-size: 1.6rem; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+  .sub { color: #8a7a6a; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; }
+  h2 { font-family: 'Cinzel', Georgia, serif; color: #e8c860; font-size: 1.05rem; margin-top: 1.6rem; margin-bottom: 0.5rem; }
+  h3 { color: #e8a020; font-size: 0.92rem; margin-top: 1.1rem; margin-bottom: 0.35rem; }
+  p, li { font-size: 0.9rem; color: rgba(240,232,216,0.88); margin-bottom: 0.55rem; }
+  ul { padding-left: 1.4rem; }
+  code { background: rgba(232,160,32,0.12); border: 1px solid rgba(232,160,32,0.3); padding: 0.05rem 0.35rem; border-radius: 3px; font-size: 0.82rem; }
+  a { color: #e8c860; }
+  .actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  button, .btn {
+    display: inline-block; min-height: 44px; padding: 0.55rem 1rem;
+    background: rgba(232,160,32,0.18); border: 1px solid rgba(232,160,32,0.5);
+    color: #f8d880; border-radius: 4px; font-family: inherit; font-size: 0.85rem;
+    cursor: pointer; text-decoration: none;
+  }
+  button:hover, .btn:hover { background: rgba(232,160,32,0.3); }
+  .nav-back { color: #c8b89c; font-size: 0.8rem; margin-bottom: 1rem; display: inline-block; }
+  .badge { display: inline-block; padding: 0.05rem 0.4rem; background: rgba(232,160,32,0.12); border: 1px solid rgba(232,160,32,0.3); border-radius: 3px; font-size: 0.7rem; color: #e8c860; }
+</style>
+</head>
+<body>
+<main>
+  <a href="./" class="nav-back">← Back</a>
+  <h1>Privacy Policy</h1>
+  <div class="sub">Emberveil &amp; the RSG Demos hub</div>
+
+  <p><strong>Last updated:</strong> 2026-04-27</p>
+
+  <p>This page explains what data is collected when you visit Emberveil, the
+  RSG Demos hub on GitHub Pages, or any of the sister demos hosted under the
+  same property. The short version: we use Google Analytics 4 to count visits
+  and gameplay milestones, and only after you tap <em>Accept</em> on the
+  consent banner. Nothing leaves your browser otherwise.</p>
+
+  <h2>What we collect (only with consent)</h2>
+  <ul>
+    <li><strong>Page views</strong> via Google Analytics 4 (anonymised IP).</li>
+    <li><strong>Gameplay milestone events</strong> — run start, run win,
+      run death, level-up, boss kill, class unlock, fame thresholds. No
+      player names. <span class="badge">M330</span></li>
+    <li><strong>Browser metadata</strong> reported by GA4 (referrer, device
+      class, region at country level).</li>
+  </ul>
+
+  <h2>What we never collect</h2>
+  <ul>
+    <li>Email addresses (unless you sign up for cloud saves; in that case
+      Supabase stores your address against your account so we can sync your
+      saves — never shared with GA4).</li>
+    <li>Save-game contents (those live in your browser's localStorage and,
+      if you sign in, in your private Supabase row).</li>
+    <li>Character names or chat input.</li>
+  </ul>
+
+  <h2>Consent</h2>
+  <p>The first time you visit any page on this property, a banner asks
+  whether you want analytics. The choice is stored in
+  <code>localStorage.rsg_consent_v1</code> and a same-site cookie. While the
+  decision is <em>granted</em>, GA4 loads. While it is <em>denied</em> or
+  unset, no analytics scripts hit the wire.</p>
+
+  <p>Same-origin browsers (Emberveil &amp; the RSG Demos hub on
+  <code>radgh.github.io</code>) share that decision automatically — you only
+  consent once. The vanity domain
+  <code>emberveil.radgh.com</code> is a separate origin and would prompt you
+  again.</p>
+
+  <h3>Changing your mind</h3>
+  <p>Open <strong>Settings → Reset Progression</strong> in-game (which also
+  wipes the consent flag), or clear site data in your browser settings. The
+  banner re-appears on the next page load.</p>
+
+  <h2>Cloud saves &amp; account data</h2>
+  <p>If you sign in (email/password or Google), Supabase stores:</p>
+  <ul>
+    <li>Your account email and an opaque user id (managed by Supabase Auth).</li>
+    <li>Save slots in the <code>saves</code> table (one row per save you push).</li>
+    <li>Per-run statistics in the <code>run_stats</code> table — capped at
+      the latest 100 rows per account by an automatic trim trigger.</li>
+  </ul>
+  <p>All of those tables enforce row-level security so only your account can
+  read or modify your rows. Service-role access is internal only and not
+  used to look at individual users.</p>
+
+  <h2>Data retention</h2>
+  <ul>
+    <li>GA4: as configured in our GA property (default 14 months).</li>
+    <li>Cloud saves: stored as long as your account exists. Delete a save
+      slot in-game or close the account to remove.</li>
+    <li>Run stats: capped at 100 most recent rows per account; older rows
+      roll off automatically.</li>
+  </ul>
+
+  <h2>Your rights (GDPR / CCPA)</h2>
+  <ul>
+    <li><strong>Access</strong> — sign in and visit Settings to see your
+      stored saves and run history.</li>
+    <li><strong>Erase</strong> — Settings → Reset Progression wipes local
+      data; deleting your account removes everything in Supabase.</li>
+    <li><strong>Withdraw consent</strong> — clear the banner choice and
+      reject on the next visit.</li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p>Project owner: Radley Sustaire. Reach out via the
+    <a href="mailto:radleysustaire@zingmap.com">project email</a> for any
+    privacy or data-handling question.</p>
+
+  <div class="actions">
+    <button type="button" id="rsg-reset-consent">Reset consent &amp; reload</button>
+    <a class="btn" href="./">Back to demo</a>
+  </div>
+</main>
+<script>
+  document.getElementById('rsg-reset-consent').addEventListener('click', () => {
+    try { localStorage.removeItem('rsg_consent_v1'); } catch (_) {}
+    try { document.cookie = 'rsg_consent_v1=; path=/; max-age=0; samesite=lax'; } catch (_) {}
+    location.reload();
+  });
+</script>
+</body>
+</html>

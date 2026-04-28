@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Status Effect Matrix — Emberveil</title>
+<style>
+body { padding: 1rem 1rem 4rem; }
+.wrap { max-width: 100%; margin: 0 auto; }
+h1 {
+  font-family: 'Cinzel',Georgia,serif;
+  font-size: 1.4rem; margin: 0 0 0.2rem;
+  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+  background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+/* Scrollable matrix table */
+.matrix-scroll { overflow-x: auto; margin-bottom: 1.5rem; }
+table.matrix {
+  border-collapse: collapse; font-size: 0.72rem; min-width: 640px;
+  table-layout: fixed;
+}
+table.matrix th.row-header {
+  width: 90px; text-align: right; padding: 2px 6px 2px 2px;
+  font-size: 0.7rem; color: var(--muted); white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; vertical-align: bottom;
+}
+table.matrix th.col-header {
+  width: 48px; max-width: 48px; padding: 4px 2px; text-align: center;
+  font-size: 0.65rem; color: var(--muted); white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; writing-mode: vertical-rl; height: 80px;
+  vertical-align: bottom;
+}
+table.matrix td {
+  width: 48px; max-width: 48px; height: 36px; border: 1px solid var(--border-subtle,#2a1f30);
+  text-align: center; cursor: pointer; transition: filter 0.1s;
+}
+table.matrix td:hover { filter: brightness(1.3); }
+table.matrix td.same { background: rgba(120,120,200,0.15); }
+table.matrix td.selected { outline: 2px solid var(--gold); }
+
+/* Interaction type legend */
+.legend {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-bottom: 1rem;
+  font-size: 0.78rem;
+}
+.legend-item { display: flex; align-items: center; gap: 0.4rem; }
+.legend-swatch { width: 16px; height: 16px; border-radius: 3px; flex-shrink: 0; }
+
+/* Detail panel */
+.detail-panel {
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 9px; padding: 1rem 1.1rem; font-size: 0.82rem;
+  max-width: 500px; min-height: 120px;
+}
+.detail-panel h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--gold-bright); }
+.detail-panel .detail-row { display: flex; gap: 0.5rem; margin-bottom: 0.3rem; }
+.detail-label { color: var(--muted); min-width: 90px; font-size: 0.75rem; }
+.detail-value { color: var(--text); }
+.status-color-dot {
+  display: inline-block; width: 10px; height: 10px;
+  border-radius: 50%; margin-right: 4px; vertical-align: middle;
+}
+
+/* Mobile: hide matrix on tiny screens, show simplified list */
+@media (max-width: 480px) {
+  table.matrix th.row-header { width: 70px; }
+  table.matrix th.col-header, table.matrix td { width: 36px; max-width: 36px; height: 30px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Status Effect Interaction Matrix</h1>
+  <p class="sub">
+    NxN grid of 2-status combinations. Tap a cell to see the interaction detail.
+    Colors indicate the interaction class: synergy, conflict, independent, or stack.
+    Data comes from <code>src/game/statusEffects.js</code> and the built-in interaction map below.
+  </p>
+
+  <div class="legend" id="legend"></div>
+  <div class="matrix-scroll"><table class="matrix" id="matrixTable"></table></div>
+  <div class="detail-panel" id="detailPanel">
+    <div style="color:var(--muted)">Tap a cell to see interaction details.</div>
+  </div>
+</div>
+
+<script type="module">
+import { getStatusEffects } from './data/data-source.js';
+
+// ---- Interaction types ----
+const INTERACTION_TYPES = {
+  stack:       { label: 'Stacks',      color: '#4080c0', desc: 'Both effects apply simultaneously and stack.' },
+  synergy:     { label: 'Synergy',     color: '#40b060', desc: 'The two effects enhance each other significantly.' },
+  conflict:    { label: 'Conflict',    color: '#c06040', desc: 'The effects partially or fully negate each other.' },
+  absorb:      { label: 'Absorb',      color: '#6080e0', desc: 'One effect absorbs or mitigates the other.' },
+  independent: { label: 'Independent', color: '#606060', desc: 'The effects coexist without meaningful interaction.' },
+  cumulative:  { label: 'Cumulative',  color: '#c0a020', desc: 'Both damage-dealing effects contribute to total DPS.' },
+  same:        { label: 'Same effect', color: '#404040', desc: 'Same status applied twice — follows per-status stacking rule.' },
+};
+
+// ---- Known interaction pairs (bidirectional) ----
+// STATUS_INTERACTIONS: key = "A+B" (sorted alphabetically), value = interaction spec
+const STATUS_INTERACTIONS = {
+  'burn+poison':       { type:'cumulative', notes:'Both deal periodic damage; total DPS is additive. Burn also reduces fire resistance so Poison may benefit slightly.' },
+  'burn+barrier':      { type:'absorb',    notes:'Barrier absorbs incoming damage, including Burn damage, until the barrier is depleted.' },
+  'burn+bleed':        { type:'cumulative', notes:'All three damage-over-time effects stack additively on the same target.' },
+  'burn+regen':        { type:'conflict',  notes:'Burn deals damage each round; Regen heals each round. Net effect depends on magnitudes.' },
+  'stun+haste':        { type:'conflict',  notes:'Stun prevents all actions; Haste grants extra actions. Stun takes priority — the unit cannot act.' },
+  'stun+slow':         { type:'conflict',  notes:'Stun already prevents acting; Slow is redundant while Stun is active.' },
+  'haste+slow':        { type:'conflict',  notes:'Haste grants extra actions; Slow removes actions. The higher-magnitude effect wins.' },
+  'barrier+burn':      { type:'absorb',    notes:'Barrier absorbs incoming Burn damage before HP is reduced.' },
+  'barrier+bleed':     { type:'absorb',    notes:'Barrier does not stop Bleed (internal wound), but absorbs external hits that proc Bleed.' },
+  'rally+enchant':     { type:'synergy',   notes:'Rally (+damage%) and Enchant (+25% magic damage) both boost outgoing damage — multiplicative when combined.' },
+  'rally+marked':      { type:'synergy',   notes:'Rally boosts the attacker\'s damage; Marked makes the target take extra damage. Double amplification on that target.' },
+  'bleed+poison':      { type:'cumulative', notes:'Both are damage-over-time; Bleed is flat, Poison stacks doses. Combined DPS adds.' },
+  'bleed+regen':       { type:'conflict',  notes:'Bleed deals periodic damage; Regen heals periodically. Partial offset.' },
+  'poison+regen':      { type:'conflict',  notes:'Poison drains HP each round; Regen restores HP each round. Partial offset.' },
+  'blind+marked':      { type:'synergy',   notes:'Blinded attacker misses more often, but Marked target still receives amplified damage when hits land.' },
+  'silence+rally':     { type:'conflict',  notes:'Silenced units cannot cast spells — Rally on a silenced caster cannot be used to boost spell damage.' },
+  'soulbind+marked':   { type:'synergy',   notes:'Soul-Bind can transfer damage-amplifying effects; Marked on the bound target amplifies all incoming hits.' },
+  'curse+barrier':     { type:'conflict',  notes:'Curse applies harmful effects; Barrier mitigates damage. Barrier may absorb curse damage components.' },
+  'taunt_totem+slow':  { type:'independent', notes:'Taunt Totem redirects attacks; Slow affects action timing independently.' },
+  'deflect+stun':      { type:'synergy',   notes:'Deflect turns aside one hit; a stunned attacker is less likely to land the hit that triggers Deflect.' },
+  'root+slow':         { type:'independent', notes:'Root prevents movement; Slow affects action timing. Both apply simultaneously without conflict.' },
+  'holy_burn+barrier': { type:'absorb',    notes:'Barrier absorbs Holy Fire damage before HP loss.' },
+  'holy_burn+regen':   { type:'conflict',  notes:'Holy Fire drains HP each round; Regen restores it. Partial offset.' },
+  'disarm+enchant':    { type:'conflict',  notes:'Disarm removes weapon attacks; Enchant buffs weapon magic damage — Disarm negates the Enchant benefit.' },
+  'block+barrier':     { type:'synergy',   notes:'Block reduces a hit\'s damage; Barrier absorbs the remainder. Layered damage mitigation.' },
+  'block+deflect':     { type:'synergy',   notes:'Block reduces physical damage; Deflect turns aside one hit entirely. Excellent defensive combo.' },
+  'regen+enchant':     { type:'independent', notes:'Regen heals HP; Enchant buffs damage output. No interaction — both apply freely.' },
+};
+
+function interactionKey(a, b) {
+  return [a, b].sort().join('+');
+}
+
+function getInteraction(a, b) {
+  if (a === b) return { type: 'same', notes: 'Applying the same status twice follows its individual stacking rule (some stack doses, some reset duration, some are capped).' };
+  const key = interactionKey(a, b);
+  return STATUS_INTERACTIONS[key] || { type: 'independent', notes: 'No documented interaction — both effects coexist independently.' };
+}
+
+// ---- Build legend ----
+const legend = document.getElementById('legend');
+for (const [type, def] of Object.entries(INTERACTION_TYPES)) {
+  const item = document.createElement('div');
+  item.className = 'legend-item';
+  item.innerHTML = `<div class="legend-swatch" style="background:${def.color}"></div><span>${def.label}</span>`;
+  legend.appendChild(item);
+}
+
+// ---- Load status effects and build matrix ----
+function buildMatrix(statuses) {
+  const ids   = statuses.map(s => s.id);
+  const table = document.getElementById('matrixTable');
+  table.innerHTML = '';
+
+  // Header row
+  const thead = document.createElement('thead');
+  const hr    = document.createElement('tr');
+  const th0   = document.createElement('th');
+  th0.className = 'row-header';
+  hr.appendChild(th0);
+  for (const s of statuses) {
+    const th = document.createElement('th');
+    th.className = 'col-header';
+    th.title = s.name || s.id;
+    th.innerHTML = `<span style="color:${s.color || '#c0c0c0'}">${s.glyph || '?'}</span>`;
+    hr.appendChild(th);
+  }
+  thead.appendChild(hr);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  for (const rowStatus of statuses) {
+    const tr = document.createElement('tr');
+    const th = document.createElement('th');
+    th.className = 'row-header';
+    th.title = rowStatus.name || rowStatus.id;
+    th.innerHTML = `<span class="status-color-dot" style="background:${rowStatus.color || '#c0c0c0'}"></span>${rowStatus.name || rowStatus.id}`;
+    tr.appendChild(th);
+
+    for (const colStatus of statuses) {
+      const td    = document.createElement('td');
+      const inter = getInteraction(rowStatus.id, colStatus.id);
+      const itype = INTERACTION_TYPES[inter.type] || INTERACTION_TYPES.independent;
+      td.style.background = itype.color + (rowStatus.id === colStatus.id ? '' : '55');
+      if (rowStatus.id === colStatus.id) td.classList.add('same');
+      td.title = `${rowStatus.name} + ${colStatus.name}: ${itype.label}`;
+      td.dataset.a = rowStatus.id;
+      td.dataset.b = colStatus.id;
+      td.addEventListener('click', () => showDetail(rowStatus, colStatus, inter, td));
+      tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+  }
+  table.appendChild(tbody);
+}
+
+function showDetail(a, b, inter, td) {
+  // Deselect previous
+  document.querySelectorAll('table.matrix td.selected').forEach(el => el.classList.remove('selected'));
+  td.classList.add('selected');
+
+  const itype   = INTERACTION_TYPES[inter.type] || INTERACTION_TYPES.independent;
+  const panel   = document.getElementById('detailPanel');
+  const aName   = a.name || a.id;
+  const bName   = b.name || b.id;
+
+  panel.innerHTML = `
+    <h3>
+      <span class="status-color-dot" style="background:${a.color || '#c0c0c0'}"></span>${esc(aName)}
+      &nbsp;+&nbsp;
+      <span class="status-color-dot" style="background:${b.color || '#c0c0c0'}"></span>${esc(bName)}
+    </h3>
+    <div class="detail-row">
+      <span class="detail-label">Interaction</span>
+      <span class="detail-value" style="color:${itype.color};font-weight:600">${esc(itype.label)}</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Class</span>
+      <span class="detail-value">${esc(itype.desc)}</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Notes</span>
+      <span class="detail-value">${esc(inter.notes || 'No specific notes.')}</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">${esc(aName)}</span>
+      <span class="detail-value">${esc(a.plain || '—')}</span>
+    </div>
+    ${a.id !== b.id ? `
+    <div class="detail-row">
+      <span class="detail-label">${esc(bName)}</span>
+      <span class="detail-value">${esc(b.plain || '—')}</span>
+    </div>` : ''}
+  `;
+}
+
+function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+getStatusEffects().then(statuses => {
+  buildMatrix(statuses);
+}).catch(err => {
+  document.getElementById('matrixTable').innerHTML = `<tr><td colspan="20" style="color:#e06040;padding:1rem">Failed to load status effects: ${err.message}</td></tr>`;
+});
+</script>
+</body>
+</html>

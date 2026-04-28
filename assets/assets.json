@@ -37,8 +37,9 @@
       "name": "Bandit Portrait",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/portraits/bandit.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/bandit_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/bandit.png"
     },
     {
       "id": "bandit_captain",
@@ -53,8 +54,9 @@
       "name": "Bard Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/bard.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/bard_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/bard.png"
     },
     {
       "id": "bone_hound",
@@ -69,8 +71,9 @@
       "name": "Chronomancer Portrait",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/portraits/chronomancer.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/chronomancer_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/chronomancer.png"
     },
     {
       "id": "cinder_hound",
@@ -85,8 +88,9 @@
       "name": "Cleric Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/cleric.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/cleric_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/cleric.png"
     },
     {
       "id": "corrupted_bear",
@@ -189,8 +193,9 @@
       "name": "Druid Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/druid.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/druid_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/druid.png"
     },
     {
       "id": "ember_drake",
@@ -213,8 +218,9 @@
       "name": "Fighter Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/fighter.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/fighter_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/fighter.png"
     },
     {
       "id": "forest_owl",
@@ -317,8 +323,9 @@
       "name": "Imp Portrait",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/portraits/imp.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/imp_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/imp.png"
     },
     {
       "id": "lava_titan",
@@ -333,8 +340,9 @@
       "name": "Mage Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/mage.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/mage_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/mage.png"
     },
     {
       "id": "molten_golem",
@@ -349,24 +357,27 @@
       "name": "Necromancer Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/necromancer.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/necromancer_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/necromancer.png"
     },
     {
       "id": "oracle",
       "name": "Oracle Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/oracle.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/oracle_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/oracle.png"
     },
     {
       "id": "paladin",
       "name": "Paladin Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/paladin.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/paladin_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/paladin.png"
     },
     {
       "id": "primordial_elemental",
@@ -381,16 +392,18 @@
       "name": "Pyromancer Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/pyromancer.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/pyromancer_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/pyromancer.png"
     },
     {
       "id": "ranger",
       "name": "Ranger Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/ranger.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/ranger_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/ranger.png"
     },
     {
       "id": "reality_shard",
@@ -405,16 +418,18 @@
       "name": "Rogue Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/rogue.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/rogue_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/rogue.png"
     },
     {
       "id": "scavenger",
       "name": "Scavenger Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/scavenger.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/scavenger_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/scavenger.png"
     },
     {
       "id": "shadow_cat",
@@ -469,8 +484,9 @@
       "name": "Stormcaller Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/stormcaller.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/stormcaller_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/stormcaller.png"
     },
     {
       "id": "swamp_frog",
@@ -485,16 +501,18 @@
       "name": "Swashbuckler Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/swashbuckler.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/swashbuckler_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/swashbuckler.png"
     },
     {
       "id": "tactician",
       "name": "Tactician Portrait",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/portraits/tactician.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/tactician_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/tactician.png"
     },
     {
       "id": "the_architect",
@@ -572,25 +590,28 @@
       "id": "war_dog",
       "name": "War Dog Portrait",
       "category": "companions",
-      "source": "openai",
+      "source": "spritecook",
       "file": "../images/portraits/war_dog.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "prompt": "Muscular loyal war-hound, mastiff/pit-bull build, tan-brown fur, amber eyes. Studded leather collar with brass buckle, frayed red bandana, leather chest strap with brass ring. NO plate armor.",
+      "notes": "Redesigned 2026-04-22 via SpriteCook MCP (gemini-3.1-flash-image-preview). Replaced OpenAI 'dog in plate armor' original. See public/data/art_direction/war_dog.json."
     },
     {
       "id": "warlock",
       "name": "Warlock Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/warlock.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/warlock_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/warlock.png"
     },
     {
       "id": "warrior",
       "name": "Warrior Portrait",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/portraits/warrior.png",
-      "notes": "Auto-cataloged from ../images/portraits"
+      "file": "../images/spritecook/warrior_portrait.png",
+      "notes": "Auto-cataloged from ../images/portraits",
+      "_legacyFile": "../images/portraits/warrior.png"
     },
     {
       "id": "wyrm_warrior",
@@ -613,16 +634,18 @@
       "name": "Abyssal Knight Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/abyssal_knight_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/abyssal_knight_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/abyssal_knight_east.png"
     },
     {
       "id": "abyssal_knight_east_attack",
       "name": "Abyssal Knight East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/abyssal_knight_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/abyssal_knight_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/abyssal_knight_east_attack.png"
     },
     {
       "id": "abyssal_knight_east_flipped",
@@ -653,8 +676,9 @@
       "name": "Abyssal Knight Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/abyssal_knight_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/abyssal_knight_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/abyssal_knight_south.png"
     },
     {
       "id": "abyssal_knight_west",
@@ -677,16 +701,18 @@
       "name": "Ancient Dragon Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/ancient_dragon_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ancient_dragon_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ancient_dragon_east.png"
     },
     {
       "id": "ancient_dragon_east_attack",
       "name": "Ancient Dragon East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/ancient_dragon_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ancient_dragon_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ancient_dragon_east_attack.png"
     },
     {
       "id": "ancient_dragon_east_spell",
@@ -701,8 +727,9 @@
       "name": "Ancient Dragon Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/ancient_dragon_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ancient_dragon_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ancient_dragon_south.png"
     },
     {
       "id": "archfiend_malgrath_death",
@@ -717,16 +744,18 @@
       "name": "Archfiend Malgrath Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/archfiend_malgrath_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/archfiend_malgrath_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/archfiend_malgrath_east.png"
     },
     {
       "id": "archfiend_malgrath_east_attack",
       "name": "Archfiend Malgrath East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/archfiend_malgrath_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/archfiend_malgrath_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/archfiend_malgrath_east_attack.png"
     },
     {
       "id": "archfiend_malgrath_east_flipped",
@@ -757,8 +786,9 @@
       "name": "Archfiend Malgrath Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/archfiend_malgrath_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/archfiend_malgrath_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/archfiend_malgrath_south.png"
     },
     {
       "id": "archfiend_malgrath_west",
@@ -973,16 +1003,18 @@
       "name": "Bard Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/bard_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/bard_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/bard_east.png"
     },
     {
       "id": "bard_east_attack",
       "name": "Bard East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/bard_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/bard_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/bard_east_attack.png"
     },
     {
       "id": "bard_east_flipped",
@@ -997,8 +1029,9 @@
       "name": "Bard East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/bard_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/bard_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/bard_east_spell.png"
     },
     {
       "id": "bard_north",
@@ -1013,8 +1046,9 @@
       "name": "Bard Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/bard_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/bard_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/bard_south.png"
     },
     {
       "id": "bard_west",
@@ -1037,16 +1071,18 @@
       "name": "Bone Hound Sprite (East)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/bone_hound_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/bone_hound_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/bone_hound_east.png"
     },
     {
       "id": "bone_hound_east_attack",
       "name": "Bone Hound East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/bone_hound_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/bone_hound_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/bone_hound_east_attack.png"
     },
     {
       "id": "bone_hound_east_spell",
@@ -1061,8 +1097,9 @@
       "name": "Bone Hound Sprite (South)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/bone_hound_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/bone_hound_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/bone_hound_south.png"
     },
     {
       "id": "cinder_hound_death",
@@ -1141,16 +1178,18 @@
       "name": "Cleric Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/cleric_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/cleric_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/cleric_east.png"
     },
     {
       "id": "cleric_east_attack",
       "name": "Cleric East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/cleric_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/cleric_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/cleric_east_attack.png"
     },
     {
       "id": "cleric_east_flipped",
@@ -1165,8 +1204,9 @@
       "name": "Cleric East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/cleric_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/cleric_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/cleric_east_spell.png"
     },
     {
       "id": "cleric_north",
@@ -1181,8 +1221,9 @@
       "name": "Cleric Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/cleric_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/cleric_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/cleric_south.png"
     },
     {
       "id": "cleric_west",
@@ -1333,16 +1374,18 @@
       "name": "Cosmic Titan Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/cosmic_titan_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/cosmic_titan_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/cosmic_titan_east.png"
     },
     {
       "id": "cosmic_titan_east_attack",
       "name": "Cosmic Titan East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/cosmic_titan_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/cosmic_titan_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/cosmic_titan_east_attack.png"
     },
     {
       "id": "cosmic_titan_east_flipped",
@@ -1373,8 +1416,9 @@
       "name": "Cosmic Titan Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/cosmic_titan_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/cosmic_titan_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/cosmic_titan_south.png"
     },
     {
       "id": "cosmic_titan_west",
@@ -1397,16 +1441,18 @@
       "name": "Crystal Golem Sprite (East)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/crystal_golem_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/crystal_golem_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/crystal_golem_east.png"
     },
     {
       "id": "crystal_golem_east_attack",
       "name": "Crystal Golem East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/crystal_golem_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/crystal_golem_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/crystal_golem_east_attack.png"
     },
     {
       "id": "crystal_golem_east_spell",
@@ -1421,8 +1467,9 @@
       "name": "Crystal Golem Sprite (South)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/crystal_golem_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/crystal_golem_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/crystal_golem_south.png"
     },
     {
       "id": "demon_brute_death",
@@ -1501,16 +1548,18 @@
       "name": "Demon Hunter Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/demon_hunter_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/demon_hunter_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/demon_hunter_east.png"
     },
     {
       "id": "demon_hunter_east_attack",
       "name": "Demon Hunter East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/demon_hunter_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/demon_hunter_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/demon_hunter_east_attack.png"
     },
     {
       "id": "demon_hunter_east_flipped",
@@ -1525,8 +1574,9 @@
       "name": "Demon Hunter East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/demon_hunter_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/demon_hunter_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/demon_hunter_east_spell.png"
     },
     {
       "id": "demon_hunter_north",
@@ -1541,8 +1591,9 @@
       "name": "Demon Hunter Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/demon_hunter_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/demon_hunter_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/demon_hunter_south.png"
     },
     {
       "id": "demon_hunter_west",
@@ -1565,16 +1616,18 @@
       "name": "Dire Wolf Sprite (East)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/dire_wolf_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/dire_wolf_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/dire_wolf_east.png"
     },
     {
       "id": "dire_wolf_east_attack",
       "name": "Dire Wolf East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/dire_wolf_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/dire_wolf_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/dire_wolf_east_attack.png"
     },
     {
       "id": "dire_wolf_east_spell",
@@ -1589,8 +1642,9 @@
       "name": "Dire Wolf Sprite (South)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/dire_wolf_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/dire_wolf_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/dire_wolf_south.png"
     },
     {
       "id": "dragon_cultist_death",
@@ -1709,16 +1763,18 @@
       "name": "Dragon King Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/dragon_king_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/dragon_king_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/dragon_king_east.png"
     },
     {
       "id": "dragon_king_east_attack",
       "name": "Dragon King East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/dragon_king_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/dragon_king_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/dragon_king_east_attack.png"
     },
     {
       "id": "dragon_king_east_spell",
@@ -1733,8 +1789,9 @@
       "name": "Dragon King Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/dragon_king_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/dragon_king_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/dragon_king_south.png"
     },
     {
       "id": "dragon_knight_death",
@@ -1749,16 +1806,18 @@
       "name": "Dragon Knight Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/dragon_knight_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/dragon_knight_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/dragon_knight_east.png"
     },
     {
       "id": "dragon_knight_east_attack",
       "name": "Dragon Knight East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/dragon_knight_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/dragon_knight_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/dragon_knight_east_attack.png"
     },
     {
       "id": "dragon_knight_east_flipped",
@@ -1773,8 +1832,9 @@
       "name": "Dragon Knight East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/dragon_knight_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/dragon_knight_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/dragon_knight_east_spell.png"
     },
     {
       "id": "dragon_knight_north",
@@ -1789,8 +1849,9 @@
       "name": "Dragon Knight Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/dragon_knight_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/dragon_knight_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/dragon_knight_south.png"
     },
     {
       "id": "dragon_knight_west",
@@ -1877,16 +1938,18 @@
       "name": "Druid Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/druid_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/druid_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/druid_east.png"
     },
     {
       "id": "druid_east_attack",
       "name": "Druid East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/druid_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/druid_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/druid_east_attack.png"
     },
     {
       "id": "druid_east_flipped",
@@ -1901,8 +1964,9 @@
       "name": "Druid East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/druid_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/druid_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/druid_east_spell.png"
     },
     {
       "id": "druid_north",
@@ -1917,8 +1981,9 @@
       "name": "Druid Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/druid_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/druid_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/druid_south.png"
     },
     {
       "id": "druid_west",
@@ -1941,16 +2006,18 @@
       "name": "Ember Drake Sprite (East)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/ember_drake_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ember_drake_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ember_drake_east.png"
     },
     {
       "id": "ember_drake_east_attack",
       "name": "Ember Drake East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/ember_drake_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ember_drake_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ember_drake_east_attack.png"
     },
     {
       "id": "ember_drake_east_spell",
@@ -1965,8 +2032,9 @@
       "name": "Ember Drake Sprite (South)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/ember_drake_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ember_drake_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ember_drake_south.png"
     },
     {
       "id": "emberveil_sovereign_death",
@@ -1981,16 +2049,18 @@
       "name": "Emberveil Sovereign Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/emberveil_sovereign_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/emberveil_sovereign_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/emberveil_sovereign_east.png"
     },
     {
       "id": "emberveil_sovereign_east_attack",
       "name": "Emberveil Sovereign East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/emberveil_sovereign_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/emberveil_sovereign_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/emberveil_sovereign_east_attack.png"
     },
     {
       "id": "emberveil_sovereign_east_flipped",
@@ -2021,8 +2091,9 @@
       "name": "Emberveil Sovereign Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/emberveil_sovereign_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/emberveil_sovereign_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/emberveil_sovereign_south.png"
     },
     {
       "id": "emberveil_sovereign_west",
@@ -2045,16 +2116,18 @@
       "name": "Fighter Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/fighter_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/fighter_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/fighter_east.png"
     },
     {
       "id": "fighter_east_attack",
       "name": "Fighter East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/fighter_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/fighter_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/fighter_east_attack.png"
     },
     {
       "id": "fighter_east_flipped",
@@ -2069,8 +2142,9 @@
       "name": "Fighter East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/fighter_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/fighter_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/fighter_east_spell.png"
     },
     {
       "id": "fighter_north",
@@ -2085,8 +2159,9 @@
       "name": "Fighter Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/fighter_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/fighter_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/fighter_south.png"
     },
     {
       "id": "fighter_west",
@@ -2109,16 +2184,18 @@
       "name": "Forest Owl Sprite (East)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/forest_owl_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/forest_owl_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/forest_owl_east.png"
     },
     {
       "id": "forest_owl_east_attack",
       "name": "Forest Owl East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/forest_owl_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/forest_owl_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/forest_owl_east_attack.png"
     },
     {
       "id": "forest_owl_east_spell",
@@ -2133,8 +2210,9 @@
       "name": "Forest Owl Sprite (South)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/forest_owl_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/forest_owl_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/forest_owl_south.png"
     },
     {
       "id": "frost_wyrm_death",
@@ -2253,16 +2331,18 @@
       "name": "Genesis Worm Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/genesis_worm_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/genesis_worm_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/genesis_worm_east.png"
     },
     {
       "id": "genesis_worm_east_attack",
       "name": "Genesis Worm East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/genesis_worm_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/genesis_worm_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/genesis_worm_east_attack.png"
     },
     {
       "id": "genesis_worm_east_flipped",
@@ -2293,8 +2373,9 @@
       "name": "Genesis Worm Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/genesis_worm_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/genesis_worm_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/genesis_worm_south.png"
     },
     {
       "id": "genesis_worm_west",
@@ -2637,16 +2718,18 @@
       "name": "Grax Veil Touched Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/grax_veil_touched_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/grax_veil_touched_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/grax_veil_touched_east.png"
     },
     {
       "id": "grax_veil_touched_east_attack",
       "name": "Grax Veil Touched East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/grax_veil_touched_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/grax_veil_touched_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/grax_veil_touched_east_attack.png"
     },
     {
       "id": "grax_veil_touched_east_flipped",
@@ -2677,8 +2760,9 @@
       "name": "Grax Veil Touched Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/grax_veil_touched_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/grax_veil_touched_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/grax_veil_touched_south.png"
     },
     {
       "id": "grax_veil_touched_west",
@@ -2765,16 +2849,18 @@
       "name": "Ice Sprite Sprite (East)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/ice_sprite_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ice_sprite_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ice_sprite_east.png"
     },
     {
       "id": "ice_sprite_east_attack",
       "name": "Ice Sprite East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/ice_sprite_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ice_sprite_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ice_sprite_east_attack.png"
     },
     {
       "id": "ice_sprite_east_spell",
@@ -2789,8 +2875,9 @@
       "name": "Ice Sprite Sprite (South)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/ice_sprite_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ice_sprite_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ice_sprite_south.png"
     },
     {
       "id": "imp_death",
@@ -2869,16 +2956,18 @@
       "name": "Lava Titan Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/lava_titan_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/lava_titan_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/lava_titan_east.png"
     },
     {
       "id": "lava_titan_east_attack",
       "name": "Lava Titan East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/lava_titan_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/lava_titan_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/lava_titan_east_attack.png"
     },
     {
       "id": "lava_titan_east_flipped",
@@ -2909,8 +2998,9 @@
       "name": "Lava Titan Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/lava_titan_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/lava_titan_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/lava_titan_south.png"
     },
     {
       "id": "lava_titan_west",
@@ -2933,16 +3023,18 @@
       "name": "Mage Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/mage_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/mage_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/mage_east.png"
     },
     {
       "id": "mage_east_attack",
       "name": "Mage East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/mage_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/mage_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/mage_east_attack.png"
     },
     {
       "id": "mage_east_flipped",
@@ -2957,8 +3049,9 @@
       "name": "Mage East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/mage_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/mage_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/mage_east_spell.png"
     },
     {
       "id": "mage_north",
@@ -2973,8 +3066,9 @@
       "name": "Mage Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/mage_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/mage_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/mage_south.png"
     },
     {
       "id": "mage_west",
@@ -3061,16 +3155,18 @@
       "name": "Necromancer Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/necromancer_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/necromancer_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/necromancer_east.png"
     },
     {
       "id": "necromancer_east_attack",
       "name": "Necromancer East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/necromancer_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/necromancer_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/necromancer_east_attack.png"
     },
     {
       "id": "necromancer_east_flipped",
@@ -3085,8 +3181,9 @@
       "name": "Necromancer East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/necromancer_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/necromancer_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/necromancer_east_spell.png"
     },
     {
       "id": "necromancer_north",
@@ -3101,8 +3198,9 @@
       "name": "Necromancer Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/necromancer_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/necromancer_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/necromancer_south.png"
     },
     {
       "id": "necromancer_west",
@@ -3125,16 +3223,18 @@
       "name": "Oracle Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/oracle_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/oracle_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/oracle_east.png"
     },
     {
       "id": "oracle_east_attack",
       "name": "Oracle East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/oracle_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/oracle_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/oracle_east_attack.png"
     },
     {
       "id": "oracle_east_flipped",
@@ -3149,8 +3249,9 @@
       "name": "Oracle East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/oracle_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/oracle_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/oracle_east_spell.png"
     },
     {
       "id": "oracle_north",
@@ -3165,8 +3266,9 @@
       "name": "Oracle Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/oracle_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/oracle_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/oracle_south.png"
     },
     {
       "id": "oracle_west",
@@ -3189,16 +3291,18 @@
       "name": "Paladin Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/paladin_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/paladin_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/paladin_east.png"
     },
     {
       "id": "paladin_east_attack",
       "name": "Paladin East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/paladin_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/paladin_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/paladin_east_attack.png"
     },
     {
       "id": "paladin_east_flipped",
@@ -3213,8 +3317,9 @@
       "name": "Paladin East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/paladin_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/paladin_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/paladin_east_spell.png"
     },
     {
       "id": "paladin_north",
@@ -3229,8 +3334,9 @@
       "name": "Paladin Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/paladin_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/paladin_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/paladin_south.png"
     },
     {
       "id": "paladin_west",
@@ -3253,16 +3359,18 @@
       "name": "Primordial Elemental Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/primordial_elemental_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/primordial_elemental_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/primordial_elemental_east.png"
     },
     {
       "id": "primordial_elemental_east_attack",
       "name": "Primordial Elemental East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/primordial_elemental_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/primordial_elemental_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/primordial_elemental_east_attack.png"
     },
     {
       "id": "primordial_elemental_east_flipped",
@@ -3293,8 +3401,9 @@
       "name": "Primordial Elemental Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/primordial_elemental_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/primordial_elemental_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/primordial_elemental_south.png"
     },
     {
       "id": "primordial_elemental_west",
@@ -3317,16 +3426,18 @@
       "name": "Pyromancer Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/pyromancer_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/pyromancer_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/pyromancer_east.png"
     },
     {
       "id": "pyromancer_east_attack",
       "name": "Pyromancer East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/pyromancer_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/pyromancer_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/pyromancer_east_attack.png"
     },
     {
       "id": "pyromancer_east_flipped",
@@ -3341,8 +3452,9 @@
       "name": "Pyromancer East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/pyromancer_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/pyromancer_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/pyromancer_east_spell.png"
     },
     {
       "id": "pyromancer_north",
@@ -3357,8 +3469,9 @@
       "name": "Pyromancer Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/pyromancer_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/pyromancer_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/pyromancer_south.png"
     },
     {
       "id": "pyromancer_west",
@@ -3381,16 +3494,18 @@
       "name": "Ranger Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/ranger_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ranger_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ranger_east.png"
     },
     {
       "id": "ranger_east_attack",
       "name": "Ranger East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/ranger_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ranger_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ranger_east_attack.png"
     },
     {
       "id": "ranger_east_flipped",
@@ -3405,8 +3520,9 @@
       "name": "Ranger East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/ranger_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ranger_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ranger_east_spell.png"
     },
     {
       "id": "ranger_north",
@@ -3421,8 +3537,9 @@
       "name": "Ranger Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/ranger_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/ranger_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/ranger_south.png"
     },
     {
       "id": "ranger_west",
@@ -3445,16 +3562,18 @@
       "name": "Reality Shard Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/reality_shard_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/reality_shard_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/reality_shard_east.png"
     },
     {
       "id": "reality_shard_east_attack",
       "name": "Reality Shard East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/reality_shard_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/reality_shard_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/reality_shard_east_attack.png"
     },
     {
       "id": "reality_shard_east_flipped",
@@ -3485,8 +3604,9 @@
       "name": "Reality Shard Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/reality_shard_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/reality_shard_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/reality_shard_south.png"
     },
     {
       "id": "reality_shard_west",
@@ -3509,16 +3629,18 @@
       "name": "Rogue Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/rogue_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/rogue_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/rogue_east.png"
     },
     {
       "id": "rogue_east_attack",
       "name": "Rogue East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/rogue_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/rogue_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/rogue_east_attack.png"
     },
     {
       "id": "rogue_east_flipped",
@@ -3533,8 +3655,9 @@
       "name": "Rogue East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/rogue_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/rogue_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/rogue_east_spell.png"
     },
     {
       "id": "rogue_north",
@@ -3549,8 +3672,9 @@
       "name": "Rogue Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/rogue_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/rogue_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/rogue_south.png"
     },
     {
       "id": "rogue_west",
@@ -3573,16 +3697,18 @@
       "name": "Scavenger Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/scavenger_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/scavenger_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/scavenger_east.png"
     },
     {
       "id": "scavenger_east_attack",
       "name": "Scavenger East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/scavenger_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/scavenger_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/scavenger_east_attack.png"
     },
     {
       "id": "scavenger_east_flipped",
@@ -3597,8 +3723,9 @@
       "name": "Scavenger East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/scavenger_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/scavenger_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/scavenger_east_spell.png"
     },
     {
       "id": "scavenger_north",
@@ -3613,8 +3740,9 @@
       "name": "Scavenger Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/scavenger_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/scavenger_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/scavenger_south.png"
     },
     {
       "id": "scavenger_west",
@@ -3637,16 +3765,18 @@
       "name": "Shadow Cat Sprite (East)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/shadow_cat_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/shadow_cat_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/shadow_cat_east.png"
     },
     {
       "id": "shadow_cat_east_attack",
       "name": "Shadow Cat East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/shadow_cat_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/shadow_cat_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/shadow_cat_east_attack.png"
     },
     {
       "id": "shadow_cat_east_spell",
@@ -3661,8 +3791,9 @@
       "name": "Shadow Cat Sprite (South)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/shadow_cat_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/shadow_cat_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/shadow_cat_south.png"
     },
     {
       "id": "shadow_wyrm_death",
@@ -3741,16 +3872,18 @@
       "name": "Spirit Wisp Sprite (East)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/spirit_wisp_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/spirit_wisp_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/spirit_wisp_east.png"
     },
     {
       "id": "spirit_wisp_east_attack",
       "name": "Spirit Wisp East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/spirit_wisp_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/spirit_wisp_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/spirit_wisp_east_attack.png"
     },
     {
       "id": "spirit_wisp_east_spell",
@@ -3765,8 +3898,9 @@
       "name": "Spirit Wisp Sprite (South)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/spirit_wisp_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/spirit_wisp_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/spirit_wisp_south.png"
     },
     {
       "id": "star_horror_death",
@@ -3949,16 +4083,18 @@
       "name": "Stormcaller Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/stormcaller_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/stormcaller_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/stormcaller_east.png"
     },
     {
       "id": "stormcaller_east_attack",
       "name": "Stormcaller East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/stormcaller_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/stormcaller_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/stormcaller_east_attack.png"
     },
     {
       "id": "stormcaller_east_flipped",
@@ -3973,8 +4109,9 @@
       "name": "Stormcaller East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/stormcaller_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/stormcaller_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/stormcaller_east_spell.png"
     },
     {
       "id": "stormcaller_north",
@@ -3989,8 +4126,9 @@
       "name": "Stormcaller Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/stormcaller_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/stormcaller_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/stormcaller_south.png"
     },
     {
       "id": "stormcaller_west",
@@ -4013,16 +4151,18 @@
       "name": "Swamp Frog Sprite (East)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/swamp_frog_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/swamp_frog_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/swamp_frog_east.png"
     },
     {
       "id": "swamp_frog_east_attack",
       "name": "Swamp Frog East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/swamp_frog_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/swamp_frog_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/swamp_frog_east_attack.png"
     },
     {
       "id": "swamp_frog_east_spell",
@@ -4037,8 +4177,9 @@
       "name": "Swamp Frog Sprite (South)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/swamp_frog_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/swamp_frog_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/swamp_frog_south.png"
     },
     {
       "id": "swashbuckler_death",
@@ -4053,16 +4194,18 @@
       "name": "Swashbuckler Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/swashbuckler_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/swashbuckler_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/swashbuckler_east.png"
     },
     {
       "id": "swashbuckler_east_attack",
       "name": "Swashbuckler East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/swashbuckler_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/swashbuckler_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/swashbuckler_east_attack.png"
     },
     {
       "id": "swashbuckler_east_flipped",
@@ -4077,8 +4220,9 @@
       "name": "Swashbuckler East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/swashbuckler_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/swashbuckler_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/swashbuckler_east_spell.png"
     },
     {
       "id": "swashbuckler_north",
@@ -4093,8 +4237,9 @@
       "name": "Swashbuckler Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/swashbuckler_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/swashbuckler_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/swashbuckler_south.png"
     },
     {
       "id": "swashbuckler_west",
@@ -4117,16 +4262,18 @@
       "name": "The Architect Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/the_architect_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/the_architect_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/the_architect_east.png"
     },
     {
       "id": "the_architect_east_attack",
       "name": "The Architect East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/the_architect_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/the_architect_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/the_architect_east_attack.png"
     },
     {
       "id": "the_architect_east_flipped",
@@ -4157,8 +4304,9 @@
       "name": "The Architect Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/the_architect_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/the_architect_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/the_architect_south.png"
     },
     {
       "id": "the_architect_west",
@@ -4373,16 +4521,18 @@
       "name": "Veil Warden Sprite (East)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/veil_warden_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/veil_warden_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/veil_warden_east.png"
     },
     {
       "id": "veil_warden_east_attack",
       "name": "Veil Warden East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/veil_warden_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/veil_warden_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/veil_warden_east_attack.png"
     },
     {
       "id": "veil_warden_east_flipped",
@@ -4413,8 +4563,9 @@
       "name": "Veil Warden Sprite (South)",
       "category": "bosses",
       "source": "openai",
-      "file": "../images/sprites/veil_warden_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/veil_warden_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/veil_warden_south.png"
     },
     {
       "id": "veil_warden_west",
@@ -4437,16 +4588,18 @@
       "name": "Void Moth Sprite (East)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/void_moth_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/void_moth_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/void_moth_east.png"
     },
     {
       "id": "void_moth_east_attack",
       "name": "Void Moth East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/void_moth_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/void_moth_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/void_moth_east_attack.png"
     },
     {
       "id": "void_moth_east_spell",
@@ -4461,8 +4614,9 @@
       "name": "Void Moth Sprite (South)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/void_moth_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/void_moth_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/void_moth_south.png"
     },
     {
       "id": "void_prophet_death",
@@ -4669,16 +4823,18 @@
       "name": "War Dog Sprite (East)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/war_dog_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/war_dog_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/war_dog_east.png"
     },
     {
       "id": "war_dog_east_attack",
       "name": "War Dog East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/war_dog_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/war_dog_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/war_dog_east_attack.png"
     },
     {
       "id": "war_dog_east_flipped",
@@ -4709,8 +4865,9 @@
       "name": "War Dog Sprite (South)",
       "category": "companions",
       "source": "openai",
-      "file": "../images/sprites/war_dog_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/war_dog_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/war_dog_south.png"
     },
     {
       "id": "war_dog_west",
@@ -4733,16 +4890,18 @@
       "name": "Warlock Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/warlock_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/warlock_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/warlock_east.png"
     },
     {
       "id": "warlock_east_attack",
       "name": "Warlock East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/warlock_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/warlock_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/warlock_east_attack.png"
     },
     {
       "id": "warlock_east_flipped",
@@ -4757,8 +4916,9 @@
       "name": "Warlock East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/warlock_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/warlock_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/warlock_east_spell.png"
     },
     {
       "id": "warlock_north",
@@ -4773,8 +4933,9 @@
       "name": "Warlock Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/warlock_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/warlock_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/warlock_south.png"
     },
     {
       "id": "warlock_west",
@@ -4797,16 +4958,18 @@
       "name": "Warrior Sprite (East)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/warrior_east.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/warrior_east.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/warrior_east.png"
     },
     {
       "id": "warrior_east_attack",
       "name": "Warrior East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/warrior_east_attack.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/warrior_east_attack.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/warrior_east_attack.png"
     },
     {
       "id": "warrior_east_flipped",
@@ -4821,8 +4984,9 @@
       "name": "Warrior East Sprite (East)",
       "category": "enemies",
       "source": "openai",
-      "file": "../images/sprites/warrior_east_spell.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/warrior_east_spell.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/warrior_east_spell.png"
     },
     {
       "id": "warrior_north",
@@ -4837,8 +5001,9 @@
       "name": "Warrior Sprite (South)",
       "category": "heroes",
       "source": "openai",
-      "file": "../images/sprites/warrior_south.png",
-      "notes": "Auto-cataloged from ../images/sprites"
+      "file": "../images/spritecook/warrior_south.png",
+      "notes": "Auto-cataloged from ../images/sprites",
+      "_legacyFile": "../images/sprites/warrior_south.png"
     },
     {
       "id": "warrior_west",
@@ -9568,6 +9733,54 @@
   ],
   "reports": [
     {
+      "milestone": "M321 (labeled M315) — Balance Analysis + Rebalance Pass",
+      "date": "2026-04-27",
+      "summary": "Deep combat balance analysis of Act 5: identified trivial difficulty (party one-shotting enemies, 0 retaliation), fixed two simulator bugs, and rebalanced all enemies across Acts 1-5.",
+      "changes": [
+        "Analyzed save file (Rouge lv20 DEX45, Lorik lv20 INT43, Morgan lv20, Pyromancer Merc lv20) — party DPS ~500+/round vs enemy HP 280-800 → 1-2 round kills",
+        "Fixed simulator bug: encounterToCombatants was mapping act=5 to ng=4, giving enemies 410x HP (Genesis Worm: 328,050 instead of 800)",
+        "Fixed simulator bug: heroToCombatant not lowercasing class ID — save files store cls: Rogue but getUnlockedSkills() expects lowercase rogue, causing 0 skills to load",
+        "Raised balance-loader.js globalMultipliers.damage 1.0→1.3",
+        "Buffed Act 1-2 regular enemies: HP +30%, DMG +30% (goblin_scout hp 22→30, etc.)",
+        "Buffed Act 2-3 bosses: HP +50-75%, DMG +40-60% (emberveil_sovereign hp 800→1400, lava_titan hp 350→520)",
+        "Buffed Act 4 enemies: HP +50%, DMG +40% (the_unraveler hp 900→1600)",
+        "Buffed Act 5 enemies: HP doubled, DMG +60% (genesis_worm hp 400→800, the_architect hp 1400→2500)",
+        "Capped Backstab Assassinate: damageMult 3.20→2.50, conditionBonus 1.5→1.2 (peak was 577 dmg one-shotting all non-boss Act 5 enemies)",
+        "Reduced Reality Shard stun-on-hit 20%→10% (3 shards × 20% = 48.8% stun rate per round was eliminating all retaliation)",
+        "Added Combat Balance Targets section to FormulaCodexScreen.js Advanced Systems tab",
+        "Updated balance.test.js: realistic level progression (level 1→5 for Act 1 party), adjusted structural invariant thresholds to match M315 rebalance",
+        "Updated formulas.test.js inline snapshots for enemyScalingForNgPlus (dmg values reflect new 1.3x global multiplier)",
+        "Created public/docs/balance-analysis-M315.md with full analysis, tables, and post-rebalance sim results",
+        "Added balance follow-up items to brainstorm.html (stun DR, rogue DEX scaling cap, The Architect retuning)",
+        "Added M315 completion entry to wishlist.html"
+      ],
+      "bugs": [
+        "Act 1-2 still slightly easy for AoE parties — Chain Lightning / Meteor kill entire trash packs in round 1. Tracked in brainstorm.html.",
+        "The Architect boss: 0% win rate for the actual save party (rogue/stormcaller/cleric/pyromancer without tank). May need HP reduction 2500→2200 for non-tank builds.",
+        "Stun diminishing returns: CombatScreen.js comment says stun immunity triggers after priorStunCount but not verified. Reality Shard chance reduced to mitigate for now.",
+        "Sim vs real-game divergence: life steal (15-34% on save party) not captured in sim. Genesis Nest 32% sim win rate likely overstates real difficulty.",
+        "Per-class power curve: rogue at level 20 remains highest DPS class. DEX scaling above 30 for Backstab lacks diminishing returns."
+      ],
+      "suggestions": [
+        "Add diminishing returns for stun across the whole party (not per-target) — first stun applies normally, second costs 1 extra round cooldown, etc.",
+        "Consider DEX scaling cap for Backstab at DEX > 30: each point above 30 contributes 0.7x instead of 1.0x to damageMult",
+        "Act 1-2 early tension: consider 1-2 enemies with regeneration or shield mechanics to extend fights past round 1 for AoE builds",
+        "Lava Titan (Act 2 boss): 53% HP loss for level-9 party is on the high end — watch for player reports, may need HP reduction 520→460"
+      ],
+      "recommendations": [
+        "Run the playthrough sim monthly or after any gear/skill changes — the act-as-ng+ bug was silent for many milestones",
+        "Add sim results to the FormulaCodexScreen balance targets table so the AI can reference actual numbers, not just design goals",
+        "The Architect (2500 HP) should be reviewed next cycle — at 0% for the save party composition. Consider a 10% HP reduction or lowering its per-hit cap.",
+        "Backstab still the strongest single-target DPS by a significant margin at level 20. Class power-curve audit recommended for M330-M335 range."
+      ],
+      "ideas": [
+        "Sim could output HTML report to public/docs/sim-results.html (auto-generated on each release) so balance drift is visible",
+        "Phase 2 rebalance: act-specific min-enemy-count scaling (Act 1: 2-3, Act 3: 3-4, Act 5: 4-5) to prevent AoE one-shots",
+        "Boss mechanics: unique boss abilities (enrage at 30% HP, summon minions, phase transitions) to add decision-making beyond raw HP/DMG numbers"
+      ],
+      "notes": "This milestone had two silent sim bugs masking the true state for many prior milestones. The act-as-ng+ bug was particularly severe — the sim was showing Genesis Worm at 328,050 HP, which made Act 5 look balanced when it was actually trivial. Always validate sim output against ENCOUNTERS base stats before trusting balance reports."
+    },
+    {
       "milestone": "M120 — 25-item Mega-Batch",
       "date": "2026-04-16",
       "summary": "Combat rebalance (spell damage halved, multi-target falloff, crit-as-affix, healer AI priority), Blacksmith merge (Salvage/Craft/Upgrade tabs, materials-only), 18 new item bases incl. 4 shields, UI/UX overhaul (80×80 portraits, right-menu reorder, wider tooltips, Character Stats split, Codex margins), settings Export/Import single Save, Combat Simulator AI parity + Load from File + Main Menu button, and new Tools > Redesign Survey page.",
@@ -10310,6 +10523,285 @@
         "Appearance DLC packs — art + metadata bundled as a single JSON manifest the user can drop in."
       ],
       "notes": "M127 is the scaffolding release for the mod system that lands in M128: schemas under /schemas/v1/, effect DSL, event chains, loot specifier, and custom-content upload page. The wishlist tool is explicitly the anti-silent-shelving mechanism the user demanded after M46–M53."
+    },
+    {
+      "milestone": "Milestone 219 — Log Images Debug + Floating Debug Buttons",
+      "date": "2026-04-22",
+      "summary": "Wired the Log Images debug flag into all primary image/sprite render sites and added floating debug-gear buttons on CombatScreen and MapScreen.",
+      "changes": [
+        "Created src/utils/imageLog.js: logImage(context, opts) emits console.debug [img] lines when emberveil_dbg_log_images flag is set; no-op otherwise.",
+        "CombatScreen: wired logImage into combat-bg drawImage (context=combat-bg, entityId=zone) and sprite drawImage (context=combat-hero/combat-companion/combat-enemy with entityId, pose, file, x, y, w, h).",
+        "spriteUtils.portraitImg: added optional 4th param context (default portrait); calls logImage at call-time when flag is set.",
+        "InventoryScreen: passes context=inventory-grid to portraitImg.",
+        "TownScreen: party slot rows pass context=town-party; hireable/companion/fallen rows pass context=town-hire.",
+        "CombatScreen: floating 44x44 gear-icon button added bottom-right (position:absolute, z-index 900), shown only when debug.flags.enabled; opens placeholder Combat Debug modal (Coming in M220).",
+        "MapScreen: floating 44x44 gear-icon button added bottom-right (position:absolute, z-index 900), shown only when debug.flags.enabled; opens placeholder Map Debug modal (Coming in M221).",
+        "Both floating buttons dynamically import SettingsScreen._openPlaceholderModal with an inline fallback."
+      ],
+      "bugs": [
+        "Vite warns that SettingsScreen is dynamically imported by CombatScreen/MapScreen but also statically imported elsewhere — it stays in the main chunk, which is the correct behavior. Informational only.",
+        "assets.json had a pre-existing missing closing brace+comma on the war_dog entry (lines 578-579) — fixed as part of this milestone."
+      ],
+      "suggestions": [
+        "M220 Combat Debug modal should reuse the floating button entry point already wired here.",
+        "logImage fires every render frame for combat sprites (intended — noisy by design). A dedup guard keyed on (entityId+pose+file) could filter to log-on-change if noise becomes a problem.",
+        "PartyScreen and SkillTreeScreen portraitImg calls still use default context portrait — update if finer context needed."
+      ],
+      "recommendations": [
+        "The logImage no-op path has zero cost in production (single localStorage.getItem). Safe to leave always-imported.",
+        "Consider a ring-buffer accumulator in imageLog.js so users can dump a full manifest of what rendered, without relying on scrolling the console."
+      ],
+      "ideas": [
+        "imageLog could write to a session store so the user can download a full image manifest of what rendered during a session."
+      ],
+      "notes": "M218 placeholder stubs are intact. Combat Debug + Map Debug floating buttons are real wired entry points ready for M220/M221 implementation."
+    },
+    {
+      "milestone": "Milestone 220-245 - Fast Travel Overhaul, Character Redesign Sync, Questlines, Difficulty System",
+      "date": "2026-04-23",
+      "summary": "Ten weeks of changes consolidated. Fast-travel waypoints, always-visible Return-to-Town, seeded tavern rosters with gendered names, Normal/Hard difficulty, three recurring NPCs (Silas/Kaela/Marek) anchoring a 5-act main quest, loot chests at treasure nodes, magic find, Attack Speed runtime, Attribute Rating damage scaling, new cloud parallax, Map/Combat debug moved to Settings, 27 new gender-variant appearances wired, approved redesigns synced into in-game paths.",
+      "changes": [
+        "M222: Save-skip bug fix + front-page auto-updated Milestone badge.",
+        "M223-M227: Town sidebar overhaul, nav reorder with lime-green Guild Hall tab, seeded tavern rolls, slot-based merchant stock, gs.gameSeed, Recommend/Auto-build bar.",
+        "M228-M232: Attributes tab reorder, skill-check DC badges show percent, Attack Speed data model, character-redesign BG toggle + M217 snapshot dropdown.",
+        "M233-M234: Always-visible Back-to-Town, blue waypoint rings, instant teleport to visited towns, Normal/Hard difficulty.",
+        "M235: Questline scaffold with 3 recurring NPCs (Silas Veilward, Kaela Thorne, Marek Greel) and 5-act main quest + 10 side quests.",
+        "M236: Loot Chest modal (2-3 picks at Treasure nodes), Magic Find affix + Act-1 rebalance, sprite-404 audit script, assets.json migrated to spritecook paths (164 entries), attack-speed default ON, skill-check roll animation.",
+        "M236: clouds_08b.png dual-layer parallax on both front page hero and in-game title (0.65 alpha).",
+        "M236: 9 character-redesign regens after first pass drifted (canonical prompts now pulled from art_direction/ JSONs). 27 gender-variant appearances added.",
+        "M236: sync-pixellab-to-spritecook.cjs bridges approved art to in-game sprite paths; fixed necromancer + mage showing stale textures.",
+        "M242: Debug modals moved into Settings, transparent + draggable, combat starts paused when toggle is on, speed cycles pause/1x/2x/4x. Settings toggles use CSS grid so long hints do not wrap under the switch. Gendered name system (66 names tagged male/female/either). Dice random-name button on Create Hero and Hire Custom. Tavern hire + duplicate-name bugs fixed.",
+        "M242: Quest indicators on map (gold ! above active quest targets), Fast travel + Quest legend entries, cross-zone left arrow always visible (dimmed when inactive), thumbnail gen copies small sources through so the gallery stops 404ing, Unlock All Classes cheat fixed."
+      ],
+      "bugs": [
+        "In-game main-menu clouds tile seam fixed by tiling ceil(viewport/tileWidth)+2 copies.",
+        "Tavern Hire Custom template match is partial - full visual parity with Create Character still on next cycle.",
+        "Game info consolidation onto front page scheduled for next cycle; existing copy has known drift."
+      ],
+      "suggestions": [
+        "Add Tools catalogs for Affixes, Encounters, Quests (similar to the existing Spells/Enemies/Items pages).",
+        "Loot chest deserves a sprite + beam-of-light open animation."
+      ],
+      "recommendations": [
+        "Sprite approval workflow should auto-run sync-pixellab-to-spritecook.cjs at the end.",
+        "Regen prompts must come from art_direction/<id>.json verbatim (see public/docs/prompt-templates.md rule).",
+        "Map/Combat debug defaults live in settings files - tune defaults there, not hard-coded."
+      ],
+      "notes": "Long arc rolled up for the front-page News feed. Detailed per-milestone entries remain in game_meta.json changelog + fast_travel_overhaul.md."
+    },
+    {
+      "milestone": "Milestone 246-271 - Fast Travel, Difficulty, Balance Rebalance, Tinker Class",
+      "date": "2026-04-24",
+      "summary": "Six weeks of rapid iteration: rebuilt fast travel, added Hard difficulty, fixed a systemic skill-scaling bug affecting 43 of 63 damage skills, shipped a full DPS/Heal/Mitigation meter with drill-down, added the Tinker class with clockwork aesthetic + Clockwork Turret companion, and ran a simulator-driven balance pass landing bosses at the 10-round target.",
+      "changes": [
+        "M246-M254 Fast Travel Overhaul: town waypoints, Hard difficulty walk-only gating, difficulty toggle + per-mode save slots.",
+        "M255-M263 M256 batch: 19-item user request covering map expansion, quest indicators, Ember Watch visibility, Salvage All, completed-node indicators, cross-zone line fix, loot-chest-after-level-up fix, Scorched Hermit node-skip fix, Hard-mode Back-to-Town removal, XP x 0.2 global, Static Field damage alignment, 4 NPC art sets (Silas, Kaela, Marek, Mira), and more.",
+        "M264 Sim + combat AI respect member.skills. Fixes the biggest sim-vs-playtest divergence (knight casting Holy Strike in sim but Shield Bash in playtest).",
+        "M265 First balance pass. +150% enemy HP, +10% damage. Simulator gains shield block-parity. Balance-report + balance-sweep scripts committed for future tuning.",
+        "M266 Skill damageMult additive-stacking fix. Upgrades now REPLACE instead of ADD. 43 of 63 damage skills went from >=2x overrun to within 1.0-1.2x of tooltip value. Enemy HP re-tuned to 2.0x to compensate. Tooltip renders effective multiplier via mergeSkillForCast. HP persistence on Hard fixed (companions now sync by ID). Loot-chest timing fix (no more chests popping after town visits).",
+        "M267 Granular DPS/Heal/Mitigation meter. Three-mode toggle (DMG/HEAL/MIT), lifesteal + barrier counted as heals, armor/block/barrier/spell-resist/damage-reduction tracked as mitigation, dodge as a count. Post-combat Combat Report: character -> skill -> individual-hit drill-down. Rebalance report HTML page at /assets/rebalance-report.html with pure-SVG charts.",
+        "M268 Combat Report button on defeat + final-boss victory (previously only mid-game victories). Enemy tracking in meter + report via Show Enemies checkbox. Skill name attribution (Magic Missile now attributed to Magic Missile, not Attack). Tavern hires get skill+passive catch-up points per hire level, auto-spent via autoBuild.",
+        "M269 Tinker class: INT-primary clockwork mechanist. Four skills (Clockwork Bolt, Alchemical Grenade, Quick-Fix, Overcharge) with 2 talents + 2 upgrades each. Passive tree (manapool/manaflow/deadly/igniting/vampirism). Ysolde Cogwright hireable in taverns. Full 7-pose male+female art + 5-pose Clockwork Turret companion art via OpenAI gpt-image-1.5.",
+        "M270 Clockwork Turret re-flowed as a talent-unlock on Clockwork Bolt (Deploy Turret), matching Raise Skeleton / Forest Wolf / Bound Imp pattern. Removed from tavern companions.",
+        "M271 Comprehensive code-review pass produced a full audit at memory/code-review-m271.md (stale code, bugs, perf, refactor opportunities, security, testing gaps, ranked backlog). Wishlist updated with all shipped items + review findings for triage."
+      ],
+      "bugs": [
+        "Pyromancer + Stormcaller passives double-counted (passives.js:130) slotCount multiplier stacks on top of nodeId-keyed storage. Currently inflates igniting/stormcharged by 2x per rank purchased.",
+        "Combat Report under-reports enemy heal + mitigation (CombatScreen.js:904,918,928) only _meterAddDamage lazy-creates enemy entries; the other three meter helpers drop events for enemies.",
+        "Meter per-hit innerHTML rewrite may cause stutter in crowded fights. Should coalesce to once per frame."
+      ],
+      "suggestions": [
+        "Potions / consumables for glass builds builds that dump CON and lack lifesteal hit a wall in Act 3+. Either force-healer-at-Act-3 design, or add consumables.",
+        "Code review also flagged the CombatScreen is 4877 lines; splitting out damagePipeline.js / meter.js / aiTargeting.js / backgroundRenderer.js would unlock easier testing.",
+        "Boss-specific HP multiplier as a separate knob alongside globalMultipliers.hp, so bosses can be ~15 rounds while trash stays at 6-8 rounds.",
+        "Chase the remaining sim-vs-playtest damage gap (sim win rate caps at ~20% while playtest is much higher) likely missing affix Potency stacking and per-hit crit handling."
+      ],
+      "recommendations": [
+        "Triage code review findings in memory/code-review-m271.md the passives double-count is a 10-line fix and high-value. Enemy-entry lazy-create is a 4-line fix. The CombatScreen refactor is L-effort but high-value.",
+        "Run balance-sweep.mjs again after fixing the passives bug to see if the 2.0x enemy HP still holds, or if pyro/stormcaller inflation means the real HP knob wants to be 1.5x.",
+        "Keep the rebalance-report.html page live and add screenshots of the actual deployed UI for documentation value."
+      ],
+      "ideas": [
+        "A second tinker-themed talent could unlock an Automaton Servant a heavier, slower brass construct with shield-block affinity.",
+        "Simulator could grow a replay mode: load a real save, run it against a recorded encounter seed, diff against playtest log.",
+        "Per-class unit tests for mergeSkillForCast right now only Cleave is pinned."
+      ],
+      "notes": "Code review agent completed its pass during the same session. Top three findings flagged as wishlist items for triage. This report consolidates the changelog delta since M246 because prior reports fragmented the fast-travel work across several milestones and the recent rapid iteration deserved a consolidated summary."
+    },
+    {
+      "milestone": "M302 — Gameplay Batch 1: Combat Additions + New Node Types",
+      "date": "2026-04-26",
+      "summary": "Added 8 gameplay systems: companion level-sync, DEX-check flee, Pilfer Magic (Rogue), Hemorrhage (Rogue bleed burst), Soul Curse + death-spread (Warlock), skill-check map nodes, seeded node-overlay system (merchant/minigame/bandit), and per-spell DoT stacking modes.",
+      "changes": [
+        "Settings: Companion Level Sync toggle (localStorage-persisted); when ON, companions shadow party-average hero level in combat and recalculate initiative accordingly",
+        "LoadGameScreen: party average level shown on save slots when party has 2+ heroes",
+        "Flee rework: highest-DEX member rolls d20 + DEX vs DC (12 + avgEnemyLvl - partyAvgLvl); success flees; failure costs 10% gold (min 50, max 5000) + enemy counter-attack; bosses immune with tooltip",
+        "Rogue skill: Pilfer Magic (unlock 8, 18 MP) — strips first positive status from enemy, applies to self with bonus duration; 2 talents (dual-strip, damage on steal)",
+        "Rogue skill: Hemorrhage (unlock 13, 22 MP) — consumes all bleed stacks on target for 30 dmg each, deals base melee hit; 2 talents (higher stack bonus, rebleed after burst)",
+        "Warlock skill: Soul Curse (unlock 8, 20 MP) — applies global-stacking curse (damage output -10%, 4 rounds); curse spreads to random living enemy on cursed enemy death",
+        "Curse damage reduction wired into _basicAttack for enemy actors with curse status",
+        "_spreadCurseOnDeath called from both _applyDamage death block and _processStatusEffects DoT-kill block",
+        "mapData.js: SKILL_CHECK node type added; 4 skill-check nodes across acts (border_skill STR-DC13, wood_test DEX-DC12, dust_int_check INT-DC15, plateau_con_check CON-DC16)",
+        "MapScreen: SKILL_CHECK icon (#40c8e0 teal), _showSkillCheckModal shows flavor text, party best stat, d20 roll, applies success (gold/xp/lore) or failure (HP/gold/status) outcomes",
+        "Node-overlay system: _ensureZoneOverlays seeds 1-2 overlays per zone using seeded RNG (zone.id hash); stored in gs.nodeOverlays",
+        "_navigateToNode split into overlay check + _navigateToNodeCore; overlay fires first, underlying node always follows",
+        "Merchant overlay: 3-item shop from STOCK pool priced by zone tier",
+        "Memory minigame overlay: 4-card match with 6 flip limit; success +25 gold",
+        "Bandit patrol overlay: pushes CombatScreen with bandit encounter; gs._overlayPendingNodeId tracks pending node; onResume chains to _navigateToNodeCore after bandit fight",
+        "_applyDotStacked helper: per_source (independent stacks per srcId up to maxStacks), per_character (refresh on reapply), global (single stack regardless of source)",
+        "Status row updated to show stack count with x N superscript for multi-stack statuses",
+        "poison_blade and cleave assigned stackingMode per_source, maxStacks 5",
+        "gameState.js: nodeOverlays: {} in DEFAULT_STATE, init, and load migration"
+      ],
+      "bugs": [
+        "Release script incremented milestone counter twice (double invocation) — shipped as M303 internally but represents M302 content; game_meta.json summary and changelog are correct",
+        "dragon_king_fight boss shows 0% win rate in balance sim (pre-existing, Act 6 endgame tuned for near-impossible); not a regression",
+        "Node-overlay seeded RNG uses string charCode sum — could collide for zones with similar IDs; low practical risk with current zone set"
+      ],
+      "suggestions": [
+        "Pilfer Magic visual: show stolen buff name in combat log for clarity (currently silent)",
+        "Flee failure counter-attack could be animated more dramatically — currently uses the existing _basicAttack without special fanfare",
+        "Skill-check nodes could benefit from a visual challenge icon on the map node beyond just color differentiation",
+        "Memory minigame could scale difficulty (more cards, fewer flips) at higher acts"
+      ],
+      "recommendations": [
+        "Now that _applyDotStacked exists, migrate all legacy _applyStatus calls for bleed/poison/burn to use it for full stacking consistency",
+        "Companion level sync initiative recalc assumes attrs are available on the source member — add defensive fallback for companions without attrs",
+        "Node overlays are seeded once per zone ID — if a zone is revisited after save/load, overlays persist correctly via gs.nodeOverlays; confirm this survives the full save/load cycle in manual QA"
+      ],
+      "ideas": [
+        "Curse could have visual web/shadow vfx on the cursed enemy nameplate",
+        "A Warlock talent could increase curse spread radius (spreads to 2 enemies instead of 1)",
+        "Skill-check node outcomes could feed into a lore codex (collecting lore flag entries)",
+        "Bandit overlay could drop a random item instead of just triggering combat"
+      ],
+      "notes": "All 8 wishlist items for M302 marked done. 277/277 vitest tests pass. Clean Vite build. No new dependencies."
+    },
+    {
+      "milestone": "M305 — Set Items + Uniques + 40 Affixes",
+      "date": "2026-04-26",
+      "summary": "Shipped full set item system (24 sets), unique item system (24 items), 40 new affixes, legendary effect combat hooks, and UI color-coding for set/unique items.",
+      "changes": [
+        "Created src/game/sets.js with 24 sets: 12 low-tier 2-piece, 8 mid-tier 3-piece, 4 endgame 4-5-piece",
+        "Created src/game/uniques.js with 24 unique items across 5 acts, each with legendary effect + lore",
+        "Created src/game/affixes.js with exactly 40 new affixes (elemental combos, conditional triggers, set helpers, defensive, resource, advanced stats)",
+        "Created src/game/legendaryEffects.js with 10 legendary hook functions (mage_missile_aoe, crit_bleed_5, low_mana_shockwave, kill_party_heal, speed_combat_init, cheat_death_once, burn_extend, mana_on_attack, critical_armorpen, rally_on_kill, echo_cast, dragon_fury_breath)",
+        "Wired legendary hooks into CombatScreen: onCombatStart, onHit, onCrit, onKill, onCast",
+        "Updated _memberToCombatant to fold set partial bonuses into affix bonus bundle and stamp _legendaryEffectIds",
+        "Updated bossLoot.js: all 8 boss tables now include unique drop lists (15-35% chance per kill)",
+        "Updated boss loot call site to pass generateUnique from uniques.js",
+        "Updated InventoryScreen: set items render purple (#b060ff), unique items render orange (#ff8020), with Set/Unique tags on cards",
+        "Updated getItemTooltip (items.js): shows set membership line, partial bonus list, legendary effect block, and lore text",
+        "Added generateSetItem() and maybeDropSetItem() to items.js",
+        "Registered __rsgSetInfo and __rsgSets globals in main.js for tooltip lazy lookup",
+        "Updated affix-coverage.mjs to include M305 affixes in the tracked affix list",
+        "Updated wishlist.html: all 3 M305 items flipped to status-done",
+        "Released as milestone_307"
+      ],
+      "bugs": [
+        "Conditional affixes (cond_* stats) are declared and visible in tooltips but not yet fully mechanically active -- they will activate as the combat hook system is extended in M306+",
+        "set piece drop via maybeDropSetItem requires __rsgSets to be populated (set at main.js load) -- safe in-browser but not in headless test contexts without the global",
+        "cheat_death_once hook listens to onTakeDamage but _applyDamage does not currently call the hook -- implemented but needs CombatScreen _applyDamage wiring in a follow-up (currently only onHit/onCrit/onKill/onCast/onCombatStart are dispatched)"
+      ],
+      "suggestions": [
+        "Wire onTakeDamage hook into _applyDamage so cheat_death_once and mana_shield affixes can trigger",
+        "Add a Party screen set-summary panel showing all equipped sets with bonus status",
+        "Add set item drops to merchant and guild loot tables (not just bosses)",
+        "Consider a set-piece highlight in the equipped slot grid (dim non-set pieces when hovering a set item)"
+      ],
+      "recommendations": [
+        "The cond_* affix stats (conditional triggers) should be wired into equipBonuses.js STAT_TO_KEY or processed via the legendary hooks system -- currently they are declared but ignored by equipBonuses",
+        "Add unit tests for getActiveSetBonuses and applySetBonusStats with mock equipment data",
+        "Legendary effect dispatch context currently rebuilds allies/enemies arrays on every call -- cache on combatant for performance if hooks become frequent"
+      ],
+      "ideas": [
+        "Set transmog: let players equip set visual without set stats on top-tier items",
+        "Set piece drop rate scaling with zone difficulty (endgame sets only in Acts 4-5)",
+        "Unique item corruption mechanic for M307 crafting system",
+        "\"Set Completed\" fanfare animation when the last piece is equipped"
+      ],
+      "notes": "Sets follow the SETS schema in sets.js; uniques follow UNIQUES in uniques.js. Both are additive -- old saves work, new items do not appear retroactively. Legendary effect IDs are string-keyed in LEGENDARY_HOOKS map; new effects can be added without touching combat code. The 40 M305 affixes are exported as AFFIXES_M305 from affixes.js and must be merged into item generation pools manually (extendAffixPool helper provided)."
+    },
+    {
+      "milestone": "M311 — Number Rounding Audit + Fame-Locked Unlocks",
+      "date": "2026-04-27",
+      "summary": "Centralized number formatting helper deployed across all stat displays; fame-locked appearance unlocks added as a long-term carrot.",
+      "changes": [
+        "Created src/utils/numberFormat.js with formatStat(value, kind) supporting int/pct/mult/damage/time/gold/auto kinds.",
+        "formatPct(fraction) and formatGold(value) convenience helpers added.",
+        "Replaced ad-hoc toFixed(2)/toFixed(1) in InventoryScreen.js: Damage Reduction, Block Chance, fractional affix percents, Other Effects display.",
+        "Replaced toFixed in items.js getItemTooltip(): Block%, Block Power, all affix values under 1 now use formatPct().",
+        "Replaced toFixed in items.js getItemCompareTooltip(): renderAffix() uses formatPct for fractional values.",
+        "Updated CombatScreen.js: skill multiplier display now uses formatStat(mult, \"mult\") (×1.5x not ×1.500000x).",
+        "Updated CharacterBuilderScreen.js: spl calculation no longer uses toFixed(2) (no round-trip float artifacts).",
+        "Created src/game/fame.js: FAME_THRESHOLDS, getExtraUnlocks(), getTotalAppearanceSlots(), getUnlockedAppearances(), getUnlockedWeaponVarieties(), getNextFameThreshold(), fameSummaryText().",
+        "CharacterBuilderScreen fame banner above appearance grid showing Fame: N + next unlock target.",
+        "Appearances beyond slot 5 rendered as fame-locked (greyed, lock icon, unlock threshold tooltip, shake on click).",
+        "TitleScreen: _getFameBadge() reads max fame from saves, renders chip below subtitle (Fame: 1,250 | Next: 2,000).",
+        "GameMenuScreen: _buildFameChip() shows live fame + fame title + next threshold during active run."
+      ],
+      "bugs": [
+        "None introduced. Existing floating-point artifacts in stat display (e.g. 13.000000001%) resolved by the new helper."
+      ],
+      "suggestions": [
+        "The fame-locked appearance slots are unlocked globally (not per-class). Could tighten to per-class tracking in a future pass.",
+        "Weapon variety slots are gated per the same fame thresholds, but most classes only have 3-5 unique weapon keys so the gate rarely triggers.",
+        "Consider exposing a \"Fame History\" log so players can see which acts awarded the most fame."
+      ],
+      "recommendations": [
+        "Use formatStat() for all new numeric displays — never raw .toFixed() in UI code.",
+        "Wire fame.js getUnlockedWeaponVarieties() into HireBuilderScreen if we want hire-level weapon variety to also gate on fame."
+      ],
+      "ideas": [
+        "Fame leaderboard per save slot.",
+        "Fame decay or prestige at NG+ reset.",
+        "Fame-locked class skins (palette swaps) at higher thresholds (3000, 5000)."
+      ],
+      "notes": "M308 tasks shipped as M311 (build was at M310 when the session started). Both tasks complete with no deferrals."
+    },
+    {
+      "milestone": "M316 — Settings/Title/Save/Party UI Unification",
+      "date": "2026-04-27",
+      "summary": "18-item UI fix batch: HireCustom class-select CSS, title screen instant fade, save menu scrolling, Statistics Esc key, stats persistence, checkbox fix, confirm modal, TownScreen→PPS routing, PPS gold/brown redesign, portrait hide, auto-equip sweep, margin fix, DifficultyDialog lifecycle, settingsPanel component.",
+      "changes": [
+        "#13 HireBuilderScreen: class grid minmax raised to 160px, class-name uses clamp font + ellipsis, skill body gets min-height:0",
+        "#14 PartyPanelScreen: sub-screen panel-label color, inv-char-header margin, and scroll behavior normalized via CSS overrides",
+        "#16 Settings: difficulty row removed. DifficultyDialog: onLeave→onExit fix, Escape handler with cleanup, noGameMenuEsc, full lifecycle methods",
+        "#17 TitleScreen: CLOUDS/LOGO_DROP phases skipped immediately; menu fades in over 0.35s only",
+        "#18 TitleScreen: mid cloud layer heightFrac reduced 0.38→0.32 to stop 1px menu overlap",
+        "#19 LoadGameScreen: ls-slots max-height removed, ls-slot flex:0 1 auto, ls-panel bottom padding 6rem, floating Back button with safe-area-inset",
+        "#20 StatsDashboardScreen + StatsScreen: noGameMenuEsc=true so Escape pops screen instead of opening GameMenu",
+        "#21 stats.js: run stats flushed to emberveil_run_stats_cache_v1 (throttled 5s) on recordDamageDealt; ensureStats() restores from cache on reload",
+        "#22 style.css: checkbox checkmark tuned to left:6px, top:2px, 4x9px, border-width:2.5px — centered in 18x18 box",
+        "#27 SkillTreeScreen #recommend-auto: window.confirm() replaced with showConfirmModal()",
+        "#31 TownScreen: btn-inventory, btn-skills, btn-party, and party-slot menu all route to PartyPanelScreen with correct initialTab",
+        "#32 PartyPanelScreen: dark brown gradient background, Inter as primary font, Cinzel only for active tab, gold/brown border palette, char row updated",
+        "#33 PartyPanelScreen: char row click already correct; inv-char-tabs/skill-char-tabs hidden via CSS (no old-screen navigation)",
+        "#34 PartyPanelScreen: .pps-tab-inventory .equip-panel .inv-portrait-wrap { display:none !important } across all tabs",
+        "#35 PartyPanelScreen: .pps-tab-inventory .inv-autoequip-toggle gets green background/border/text styling",
+        "#36 InventoryScreen: _sweepAutoEquip() sweeps all inventory for upgrades when autoEquip toggled ON; plays purchase SFX",
+        "#37 InventoryScreen: .inv-char-class gets margin-bottom:0.6rem in both INV_STYLES and PPS override",
+        "#38 src/ui/components/settingsPanel.js created: createSettingsPanel({ title, rows }) with toggle/select/slider/html row types, destroy() cleanup"
+      ],
+      "bugs": [
+        "DifficultyDialog was using onLeave() — ScreenManager calls onExit() — so DOM element was never removed on pop. Fixed.",
+        "Title screen intro animations were still running even though #17 removed the visual need for them — now skipped in update()",
+        "Statistics Esc key was opening GameMenu instead of closing stats screen — missing noGameMenuEsc flag"
+      ],
+      "suggestions": [
+        "The settingsPanel component could be adopted in GameMenuScreen and future in-game settings panels",
+        "Run stats cache could be extended to save on beforeunload for more reliability",
+        "The PartyPanelScreen gold/brown theme could be extended to sub-screen headers (skill-screen, etc.)"
+      ],
+      "recommendations": [
+        "Consider wiring clearRunStatsCache() in stats.js when a new game starts to prevent stale run stats showing in fresh runs",
+        "The auto-equip sweep in InventoryScreen should de-duplicate: if multiple characters have autoEquip ON, each item should only be assigned once"
+      ],
+      "ideas": [
+        "A 'Party Quick Panel' floating button in town that shows PPS without full navigation",
+        "Keyboard shortcut I/S/P from TownScreen to jump to Inventory/Spells/Party tabs directly"
+      ],
+      "notes": "M316 is label M312 from the feedback batch. Release index 316 = actual game_meta release key. All 18 items from the batch implemented. The settingsPanel.js component is a new deliverable at src/ui/components/settingsPanel.js ready for reuse."
     }
   ],
   "assets": []

@@ -1,0 +1,85 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "sorcerer_female",
+  "displayName": "Sorcerer (Female)",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "identity": "Human female sorcerer, sharp intelligent adult female face, short neatly-styled raven-black hair in a sleek chin-length bob, glowing violet eyes, fair pale skin, slim athletic build.",
+  "outfit": "Deep indigo-purple robe with silver-trimmed hood worn down and silver arcane sigils embroidered along the front seam and hem, a silver clasp at the throat, a thin black belt with a violet gemstone buckle. Dark leather boots.",
+  "weapons": "A slender dark polished wooden staff topped with a faceted violet crystal orb glowing softly, held in the right hand.",
+  "attackStyle": "East-facing. Right hand thrust forward, crystal orb in front projecting a concentrated beam of violet arcane energy outward. CRITICAL: character must be MID-STRIKE, clearly in motion \u2014 weapon in the middle of a swing, thrust, shot, or spell-cast, NOT an idle/battle-ready stance. Pose must be visually distinct from the east idle.",
+  "spellStyle": "East-facing. Both hands raised, the violet crystal orb rising between them surrounded by a swirling arcane circle of gold runes.",
+  "blockStyle": "East-facing. Crystal orb floats in front, projecting a translucent violet hex-dome shield forward.",
+  "koStyle": "East-facing, slumped on one knee, crystal orb fallen beside him, pendant lying on the ground, robes splayed.",
+  "southStyle": "Facing camera (south), composed mystic idle. Crystal orb hovering above the right palm held at chest level. Violet eye-glow.",
+  "portraitStyle": "Bust shot from mid-chest up, three-quarter view. Raven hair, glowing violet eyes, amethyst pendant, violet shoulder cape, gold-embroidered robes.",
+  "bannedSubstrings": [
+    "sword",
+    "axe",
+    "bow",
+    "pointed hat",
+    "staff",
+    "beard"
+  ],
+  "referenceSheet": {
+    "path": "images/pixellab/sorcerer_female/reference.png",
+    "spritecookAssetId": "d5eeb0ba-68de-441f-8b03-f37e24181063",
+    "prompt": "IDENTITY (must match reference sheet exactly): Human female sorcerer, sharp intelligent adult female face, short neatly-styled raven-black hair in a sleek chin-length bob, glowing violet eyes, fair pale skin, slim athletic build.\n\nOUTFIT: Deep indigo-purple robe with silver-trimmed hood worn down and silver arcane sigils embroidered along the front seam and hem, a silver clasp at the throat, a thin black belt with a violet gemstone buckle. Dark leather boots.\n\nWEAPONS: A slender dark polished wooden staff topped with a faceted violet crystal orb glowing softly, held in the right hand.\n\nCLASS: humanoid. Full-body view, head to feet visible. Character occupies ~70% of the canvas height. Feet aligned near the bottom; headroom above.\n\nPOSE: full-body side profile facing right (east), calm combat-ready idle. Head up, eyes visible. NOT a portrait bust, NOT a close-up \u2014 entire character from head to feet.\n\nSTYLE: detailed pixel art with clean readable silhouette, warm pixel-art palette, transparent background, no ground shadow.",
+    "bitforgeAssetId": null,
+    "sourcePortraitPath": "images/portraits/sorcerer.png",
+    "generatedAt": "2026-04-21T18:00:00.000Z",
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait": {
+      "path": "images/spritecook/sorcerer_female_portrait.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human female sorcerer, sharp intelligent adult female face, short neatly-styled raven-black hair in a sleek chin-length bob, glowing violet eyes, fair pale skin, slim athletic build.\n\nOUTFIT: Deep indigo-purple robe with silver-trimmed hood worn down and silver arcane sigils embroidered along the front seam and hem, a silver clasp at the throat, a thin black belt with a violet gemstone buckle. Dark leather boots.\n\nWEAPONS: A slender dark polished wooden staff topped with a faceted violet crystal orb glowing softly, held in the right hand.\n\nPOSE (portrait): Bust shot from mid-chest up, three-quarter view. Raven hair, glowing violet eyes, amethyst pendant, violet shoulder cape, gold-embroidered robes.\n\nFRAMING: bust shot from mid-chest up, three-quarter view, centered in a 256x256 canvas, shoulders fill the lower third.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:50:21.000Z",
+      "approvedAt": "2026-04-22T05:50:21.000Z",
+      "spritecookAssetId": "9cbf7878-3bfe-40c4-82ad-101fdacb7541"
+    },
+    "south": {
+      "path": "images/spritecook/sorcerer_female_south.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human female sorcerer, sharp intelligent adult female face, short neatly-styled raven-black hair in a sleek chin-length bob, glowing violet eyes, fair pale skin, slim athletic build.\n\nOUTFIT: Deep indigo-purple robe with silver-trimmed hood worn down and silver arcane sigils embroidered along the front seam and hem, a silver clasp at the throat, a thin black belt with a violet gemstone buckle. Dark leather boots.\n\nWEAPONS: A slender dark polished wooden staff topped with a faceted violet crystal orb glowing softly, held in the right hand.\n\nPOSE (south): Facing camera (south), composed mystic idle. Crystal orb hovering above the right palm held at chest level. Violet eye-glow.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:50:21.000Z",
+      "approvedAt": "2026-04-22T05:50:21.000Z",
+      "spritecookAssetId": "5cd21eca-9e6b-4188-99d3-0cfc196bb017"
+    },
+    "east": {
+      "path": "images/spritecook/sorcerer_female_east.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human female sorcerer, sharp intelligent adult female face, short neatly-styled raven-black hair in a sleek chin-length bob, glowing violet eyes, fair pale skin, slim athletic build.\n\nOUTFIT: Deep indigo-purple robe with silver-trimmed hood worn down and silver arcane sigils embroidered along the front seam and hem, a silver clasp at the throat, a thin black belt with a violet gemstone buckle. Dark leather boots.\n\nWEAPONS: A slender dark polished wooden staff topped with a faceted violet crystal orb glowing softly, held in the right hand.\n\nPOSE (east): Neutral combat idle, consistent with reference sheet, full-body facing east.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:50:21.000Z",
+      "approvedAt": "2026-04-22T05:50:21.000Z",
+      "spritecookAssetId": "c0ceb776-670b-4f07-85bd-1005adc7e066"
+    },
+    "east_attack": {
+      "path": "images/spritecook/sorcerer_female_east_attack.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human female sorcerer, sharp intelligent adult female face, short neatly-styled raven-black hair in a sleek chin-length bob, glowing violet eyes, fair pale skin, slim athletic build.\n\nOUTFIT: Deep indigo-purple robe with silver-trimmed hood worn down and silver arcane sigils embroidered along the front seam and hem, a silver clasp at the throat, a thin black belt with a violet gemstone buckle. Dark leather boots.\n\nWEAPONS: A slender dark polished wooden staff topped with a faceted violet crystal orb glowing softly, held in the right hand.\n\nPOSE (east_attack): East-facing. Right hand thrust forward, crystal orb in front projecting a concentrated beam of violet arcane energy outward.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:50:21.000Z",
+      "approvedAt": "2026-04-22T05:50:21.000Z",
+      "spritecookAssetId": "ec21c762-7985-45e3-bcea-7d3c141aa04a"
+    },
+    "east_spell": {
+      "path": "images/spritecook/sorcerer_female_east_spell.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human female sorcerer, sharp intelligent adult female face, short neatly-styled raven-black hair in a sleek chin-length bob, glowing violet eyes, fair pale skin, slim athletic build.\n\nOUTFIT: Deep indigo-purple robe with silver-trimmed hood worn down and silver arcane sigils embroidered along the front seam and hem, a silver clasp at the throat, a thin black belt with a violet gemstone buckle. Dark leather boots.\n\nWEAPONS: A slender dark polished wooden staff topped with a faceted violet crystal orb glowing softly, held in the right hand.\n\nPOSE (east_spell): East-facing. Both hands raised, the violet crystal orb rising between them surrounded by a swirling arcane circle of gold runes.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:50:21.000Z",
+      "approvedAt": "2026-04-22T05:50:21.000Z",
+      "spritecookAssetId": "e5681ce9-3777-42c2-91a6-2469b58777ec"
+    },
+    "east_block": {
+      "path": "images/spritecook/sorcerer_female_east_block.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human female sorcerer, sharp intelligent adult female face, short neatly-styled raven-black hair in a sleek chin-length bob, glowing violet eyes, fair pale skin, slim athletic build.\n\nOUTFIT: Deep indigo-purple robe with silver-trimmed hood worn down and silver arcane sigils embroidered along the front seam and hem, a silver clasp at the throat, a thin black belt with a violet gemstone buckle. Dark leather boots.\n\nWEAPONS: A slender dark polished wooden staff topped with a faceted violet crystal orb glowing softly, held in the right hand.\n\nPOSE (east_block): East-facing. Crystal orb floats in front, projecting a translucent violet hex-dome shield forward.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:50:21.000Z",
+      "approvedAt": "2026-04-22T05:50:21.000Z",
+      "spritecookAssetId": "61d24751-1665-48b4-a6c1-1392fa94099e"
+    },
+    "east_ko": {
+      "path": "images/spritecook/sorcerer_female_east_ko.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Human female sorcerer, sharp intelligent adult female face, short neatly-styled raven-black hair in a sleek chin-length bob, glowing violet eyes, fair pale skin, slim athletic build.\n\nOUTFIT: Deep indigo-purple robe with silver-trimmed hood worn down and silver arcane sigils embroidered along the front seam and hem, a silver clasp at the throat, a thin black belt with a violet gemstone buckle. Dark leather boots.\n\nWEAPONS: A slender dark polished wooden staff topped with a faceted violet crystal orb glowing softly, held in the right hand.\n\nPOSE (east_ko): East-facing, slumped on one knee, crystal orb fallen beside her, pendant lying on the ground, robes splayed.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:50:21.000Z",
+      "approvedAt": "2026-04-22T05:50:21.000Z",
+      "spritecookAssetId": "13c9bca7-11c7-470c-8e09-b684dfadd692"
+    }
+  },
+  "notes": "Crystal-orb caster, more refined than the archetypal Mage (no hat/beard)."
+}

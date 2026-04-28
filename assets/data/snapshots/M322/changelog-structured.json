@@ -1,0 +1,2085 @@
+{
+  "generated": "2026-04-27T20:43:18.004Z",
+  "categories": [
+    {
+      "id": "Feature",
+      "label": "Feature",
+      "color": "#5080e0"
+    },
+    {
+      "id": "BugFix",
+      "label": "Bug Fix",
+      "color": "#c04030"
+    },
+    {
+      "id": "Balance",
+      "label": "Balance",
+      "color": "#e08020"
+    },
+    {
+      "id": "QoL",
+      "label": "QoL",
+      "color": "#40a860"
+    },
+    {
+      "id": "Art",
+      "label": "Art",
+      "color": "#a040c0"
+    }
+  ],
+  "entries": [
+    {
+      "milestone": 302,
+      "date": "2026-04-26",
+      "summary": "— Gameplay batch 1: companion level-sync toggle (Settings), party avg level on save slots, DEX-check flee with gold penalty + counter-attack on failure (boss immune), Pilfer Magic skill (Rogue, strips enemy buff), Hemorrhage skill (Rogue, consumes bleed stacks for burst damage), Soul Curse + death-spread mechanic (Warlock), skill-check map nodes (4 examples across acts), node-overlay system (seeded merchant/memory-minigame/bandit patrol overlays per zone, overlay fires before underlying node), DoT stacking modes per_source/per_character/global with _applyDotStacked helper, stack count display in status rows.",
+      "items": [
+        {
+          "text": "— Gameplay batch 1: companion level-sync toggle (Settings), party avg level on save slots, DEX-check flee with gold penalty + counter-attack on failure (boss immune), Pilfer Magic skill (Rogue, strips enemy buff), Hemorrhage skill (Rogue, consumes bleed stacks for burst damage), Soul Curse + death-spread mechanic (Warlock), skill-check map nodes (4 examples across acts), node-overlay system (seeded merchant/memory-minigame/bandit patrol overlays per zone, overlay fires before underlying node), DoT stacking modes per_source/per_character/global with _applyDotStacked helper, stack count display in status rows.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "M301 — Headless simulator + regression infra: scripts/lib/combat-sim.mjs API, parallel batch-rebalance + CSV, configurable per-act regression thresholds + release.sh hook, encounter difficulty ratings, item validator, affix coverage, save-load tester with milestone snapshots, loot audit (merchant/guild/black market), combat-replay export+HTML player, status-matrix grid, playthrough-sim with softlock detection.",
+          "categories": [
+            "BugFix",
+            "Balance"
+          ]
+        },
+        {
+          "text": "M300 — Devtool batch 2: skill-sim, affix-matrix, spell-catalog compare mode, asset-pipeline-trace (13 scripts), image-review-manifest cleanup (917→782), character-redesign-archive, rebalance-diff snapshot comparison.",
+          "categories": [
+            "Balance",
+            "Art"
+          ]
+        },
+        {
+          "text": "M299 — Devtool catalogs + live-data override system: emit-game-data.cjs prebuild → 10 JSON data files; data-source.js with localStorage override + revert; data-overrides.html manager. Five catalog pages: companion, dungeon, status-effect, achievement-roadmap, tools landing.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M298 — Changelog flow + lore + roadmap + monument: structured changelog with 5 category badges + /assets/changelog.html, Whats New splash on first boot after milestone, featureRegistry + newBadgeIfRecent() helper, /assets/roadmap.html derived from wishlist plan, new in-game LoreCompendiumScreen (25 entries), hardcore monument on TitleScreen with disabled-but-loadable Fallen save slots.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M297 — Keyboard navigation: new keyboardNav.js helper, full arrow-Tab-Enter-Escape across 13 menu screens, :focus-visible gold ring (pointer-suppressed). Combat: digit-key shortcuts for action buttons; full arrow-target selection scoped down per user direction.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M296 — Accessibility: colorblind palettes (default + 3 variants via CSS vars), 4-step font-size scaling, global 44px tap-target rule, 3-way reduce-motion toggle in Settings (Auto/On/Off) with expanded coverage, combat-captions mode (24px aria-live).",
+          "categories": [
+            "Balance",
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M295 — Polish: enchanter upgrade preview tooltip (before/after stats), 3-slot potion belt per character with combat-row quick access, achievement-unlock toasts (gold variant, tappable), Whats New modal in GameMenu pulling from auto-emitted release-summary.json (prebuild step), shared statusEffects.js module with plain-language descriptions, 11 boss intro preludes authored.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M294 — UI batch 2: PartyPanelScreen unifies Party/Inventory/Spells/Passives/Attributes under one tabbed view (old InventoryScreen + SkillTreeScreen marked DEPRECATED M294, kept in repo). Map 'Inventory' button renamed 'Party' and points at the new screen. Zone fast-travel collapses to a dropdown at 4+ zones unlocked. Boss-intro splash card uses clamp() font sizing + overflow-wrap so long names (Unraveler-of-Mortal-Threads etc.) wrap on iPhone instead of cutting off; canvas boss name renderer also clamps to 90% width. Dual-compare mode for rings/offhand activates on desktop viewports (min-width 700 + hover) and falls back to single-compare on narrow.",
+          "categories": [
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M293 — Small UI batch 1: skill-points notification bubble now clears immediately after combat level-up auto-allocation (root cause: MapScreen badges were baked-in HTML, fixed via _refreshHeaderBadges() in onResume()). Quick-equip toast on item pickup with tappable upgrade-available variant. Talent preview tooltips on skill-tree upgrade picker via formatTalentEffect(). Per-character scroll-position memory in InventoryScreen. Status-effect duration glyphs + plain-language tooltips on combat HUD. PartyScreen role badges (Tank/DPS/Support/Healer) as inline SVG with role-color coding (no emoji per CLAUDE.md).",
+          "categories": [
+            "BugFix",
+            "QoL"
+          ]
+        },
+        {
+          "text": "M292 — Brainstorm→wishlist migration. 74 approved items + 19 manual additions grouped by target milestone (M293–M309) under #approved-brainstorm in public/assets/wishlist.html. brainstorm.html now shows approved items in a separate non-interactive Approved section. CLAUDE.md updated so future Claude reads the wishlist plan first at session start.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M219 — Log Images debug tracing: new src/utils/imageLog.js helper (reads emberveil_dbg_log_images flag), wired into CombatScreen (combat-bg + hero/companion/enemy sprites), spriteUtils.portraitImg (town-party, town-hire, inventory-grid contexts), TownScreen, InventoryScreen. Added floating gear icon debug buttons on CombatScreen and MapScreen (bottom-right, 44x44, visible only when Debug mode is on), each opens the placeholder Combat Debug (M220) or Map Debug (M221) modal.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M217 — 14 frames regenerated across 8 classes: chronomancer_male east/east_attack/east_spell/east_block (bobblehead fix), chronomancer_female south (pose + color match), dragon_knight_male south (removed phantom 2nd hammer), runesmith_male east_attack (restored legs), runesmith_female south (smith build match), shadow_dancer_female south/east (full-canvas scale), swashbuckler_male south/east_block + swashbuckler_female east/east_block (legs visible). sorcerer_male east_spell adopted as canonical sizing reference. Wishlist: sorcerer_male other 4 frames, tactician_male east_attack, witch_hunter east_spell all flagged for future scale fixes.",
+          "categories": [
+            "BugFix",
+            "Balance"
+          ]
+        },
+        {
+          "text": "M216 — War Dog sprite redesigned via SpriteCook (5-pose set: portrait, south, east, east_attack, east_ko). Dropped the OpenAI 'bulldog in plate armor' look for a muscular scarred mastiff with studded leather collar, frayed red bandana, and leather chest strap. Matches other companion dog pose coverage (dire_wolf / bone_hound / shadow_cat). east/east_ko muzzle color drift flagged on wishlist for future touch-up.",
+          "categories": [
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 208,
+      "date": "",
+      "summary": "Tuning pass (rebalance arc M4 of 4). Enemies.globalMultipliers tuned (hp 0.55, damage 0.28, armor 0.75); ngPlus compression (hpBase 4.5→1.35, dmgBase 2.8→1.25, armorLinear 0.55→0.25); XP 3×, gold 1.2×. Sim verifies solos cap at Act 2-3, 3-hero parties reach Act 4-5. Ships as balance.tuned-M208.json, revertable via baseline-2026-04-21.json. Playtest memo in memory/rebalance-m4-playtest.md.",
+      "items": [
+        {
+          "text": "Tuning pass (rebalance arc M4 of 4). Enemies.globalMultipliers tuned (hp 0.55, damage 0.28, armor 0.75); ngPlus compression (hpBase 4.5→1.35, dmgBase 2.8→1.25, armorLinear 0.55→0.25); XP 3×, gold 1.2×. Sim verifies solos cap at Act 2-3, 3-hero parties reach Act 4-5. Ships as balance.tuned-M208.json, revertable via baseline-2026-04-21.json. Playtest memo in memory/rebalance-m4-playtest.md.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "**M207** (2026-04-22) — Rebalance Arc M3/4 (armor curve-DR + tap knob): Both live and simulator armor paths route to new applyCurveDr when combat.mitigation.{liveFormula,simulatorFormula}=curve-dr. DR = min(0.95, armor/(armor+100)), k and cap tunable via combat.mitigation.curveDr. Baseline preset keeps flat+legacy so revert is one-line. Added combat.tap.globalMult knob scaling tap damage + utility magnitude at _applyTapEffect. Tiered-affix Tap Power documented as deferred (globalMult sufficient for M4 targets). 202/202 vitest pass on DEFAULTS; active.json flips formulas to curve-dr. Sim confirms meaningful shift: balanced party now clears all Act 1 and dies in Act 2.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "**M206** (2026-04-22) — Rebalance Arc M2/4 (headless simulator CLI): New Node CLI at `sim/` plays full Act 1 → Act 6 runs for 3 policies (`balanced` 3-hero, `greedy-damage` solo monk, `greedy-tank` solo warrior). Uses existing `src/game/simulator.js` (seeded Mulberry32, already Node-safe), imports `ENCOUNTERS` from `mapData.js`, awards XP between fights via `awardXp`, rebuilds attrs/gear per policy after each level-up. Deterministic — same seed → same results. 100 iters × 3 policies in <1s. Writes timestamped reports to `sim/reports/`. Output: deaths/iters, avg act reached, avg encounters cleared, deaths-by-act histogram, top-5 first-loss encounters. Primary tuning harness for M208. Zero changes to `src/` — parity still at 202/202 vitest pass. Baseline signal: all 3 policies die in Act 1 currently; M3 (tap power, armor DR) and M4 (global multipliers) will move these numbers toward targets.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "**M205** (2026-04-22) — Rebalance Arc M1/4 (config extraction): Extracted all tuning-critical balance numbers into `public/data/balance/balance.active.json` with baseline snapshot `balance.baseline-2026-04-21.json`. New `src/game/balance-loader.js` provides typed frozen access. Wired hot paths in `formulas.js` (maxHp/maxMp/hit/dodge/crit/initiative/damage/spell/steal/mitigation/NG+), `xp.js` (xp table, talent cadence, stat points), `items.js` (quality/rarity tables), `HireBuilderScreen.js` (hire cost + creation budget), `passives.js` (HP/MP base formulas). Added global multiplier knobs (`enemies.globalMultipliers`, `economy.globalMultipliers`) applied at point-of-use — main M4 tuning surface. Zero behavior change: all 202 tests pass with identical per-encounter win-rate snapshots. Revert = `cp baseline-2026-04-21.json active.json`. New doc at `/assets/docs.html` (`balance-config.md`).",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "**M200** (2026-04-21) — Regenerate 2 flagged frames: stormcaller_female east_block and oracle_male south. Tightened stormcaller's lightning pose (shell hugs silhouette, no lateral overflow) and replaced oracle_male south's old 'do not stretch' scale clause with the canonical 85%-fill FRAMING block. Both valid RGBA/transparent but came back at 190×190 / 186×186 instead of canonical 200×200 — canvas drawImage normalizes display size, so in-game parity is preserved. 24 credits.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "**M199** (2026-04-21) — Fix M198 regression: 57 character sub-sprite frames were downloaded from the wrong SpriteCook endpoint (/raw, 1024×1024 RGB white bg) instead of /pixel (200×200 RGBA transparent). Re-downloaded from the correct endpoint — zero credits re-spent. Added strict post-download validation (200×200 + transparent corners required). Codified a rigid SpriteCook download contract in public/docs/image-policy.md and the pipeline memory so this cannot repeat. FLAGGED: stormcaller_female east_block and oracle_male south came back smart-cropped below 200px; removed pending regeneration decision.",
+          "categories": [
+            "BugFix",
+            "Art"
+          ]
+        },
+        {
+          "text": "**M198** (2026-04-21) — Character art redesign batch 12: promoted 8 classes (fighter_female, stormcaller_female, bard m/f, warlock m/f, knight m/f) to pending_approval with full 7-pose sub-sprite sets. Regenerated oracle_male south+east_spell (prior blanks) and fighter east_attack with forced mid-swing. Baked 15KB min-size check into the wire pipeline to prevent blank-PNG regressions. Strengthened bard and ranger east_attack prompts for clear MID-STRIKE reading. 59 frames, 708 credits.",
+          "categories": [
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 187,
+      "date": "",
+      "summary": "Settings page cleanup. Disable Backgrounds + Disable Sprites toggles relocated under Debug Mode submenu (only visible when Debug is on). When sprites are off, town/party portraits render as class icons via portraitImg fallback (appearance variants are intentionally collapsed to the base class icon). Main-menu background image now respects the __gfxDisableBg flag at draw-time (previously it was loaded once at TitleScreen construction and stayed visible after toggling). Music and SFX rows gained On/Off mute checkboxes — when off, _musicMuted/_sfxMuted block playSfx and the music start helpers, pause every registered HTMLAudioElement, and zero the gain nodes; this releases the iOS Safari media session so the user's external music plays through. Combat Simulator Data section is gated behind Debug Mode + Combat Simulator (sim-data-block .enabled class). Bug fix: dialog map nodes that fall back to the random-event pool now display the picked NPC's name on the map label and the hover tooltip; assignment is persisted per save in gs.assignedRandomEvents keyed by 'zoneId:nodeId' so reload/revisit shows the same NPC and the same event fires on click.",
+      "items": [
+        {
+          "text": "Settings page cleanup. Disable Backgrounds + Disable Sprites toggles relocated under Debug Mode submenu (only visible when Debug is on). When sprites are off, town/party portraits render as class icons via portraitImg fallback (appearance variants are intentionally collapsed to the base class icon). Main-menu background image now respects the __gfxDisableBg flag at draw-time (previously it was loaded once at TitleScreen construction and stayed visible after toggling). Music and SFX rows gained On/Off mute checkboxes — when off, _musicMuted/_sfxMuted block playSfx and the music start helpers, pause every registered HTMLAudioElement, and zero the gain nodes; this releases the iOS Safari media session so the user's external music plays through. Combat Simulator Data section is gated behind Debug Mode + Combat Simulator (sim-data-block .enabled class). Bug fix: dialog map nodes that fall back to the random-event pool now display the picked NPC's name on the map label and the hover tooltip; assignment is persisted per save in gs.assignedRandomEvents keyed by 'zoneId:nodeId' so reload/revisit shows the same NPC and the same event fires on click.",
+          "categories": [
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 175,
+      "date": "",
+      "summary": "Soulbind runtime wiring. CombatScreen._applyDamage redirects amount% of damage to a soulbind-bound partner (recursion-safe via _soulbindProcessing). Demo skill arch_soulbind (cleric, 50% split, 4r). 3 vitest cases (202/202 passing). Workflow fix — release.sh now enforces RELEASE_SUMMARY (warns loudly if releases[N].summary empty), sync_meta_hook.sh updated, CLAUDE.md documents the RELEASE_SUMMARY env var. Backfilled M171–M175 summaries so they show up in the RSG-Demos main-page changelog.",
+      "items": [
+        {
+          "text": "Soulbind runtime wiring. CombatScreen._applyDamage redirects amount% of damage to a soulbind-bound partner (recursion-safe via _soulbindProcessing). Demo skill arch_soulbind (cleric, 50% split, 4r). 3 vitest cases (202/202 passing). Workflow fix — release.sh now enforces RELEASE_SUMMARY (warns loudly if releases[N].summary empty), sync_meta_hook.sh updated, CLAUDE.md documents the RELEASE_SUMMARY env var. Backfilled M171–M175 summaries so they show up in the RSG-Demos main-page changelog.",
+          "categories": [
+            "BugFix",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 174,
+      "date": "",
+      "summary": "4-item UX batch from user. (1) batch-remove-bg.cjs: walks sprite dirs, detects opaque PNGs, runs corner-sampled chroma removal; 503/1262 sprites processed. (2) Homepage now single cloud layer (was 3). (3) SkillTreeScreen: dropped redundant hover tooltip on skill rows (clicking already opens details — tooltip blocked the panel on mobile). (4) SkillTreeScreen onEnter + character-tab switch auto-select the tab with pending points (priority: skill → passive → attr), and jumps to the first character that has any.",
+      "items": [
+        {
+          "text": "4-item UX batch from user. (1) batch-remove-bg.cjs: walks sprite dirs, detects opaque PNGs, runs corner-sampled chroma removal; 503/1262 sprites processed. (2) Homepage now single cloud layer (was 3). (3) SkillTreeScreen: dropped redundant hover tooltip on skill rows (clicking already opens details — tooltip blocked the panel on mobile). (4) SkillTreeScreen onEnter + character-tab switch auto-select the tab with pending points (priority: skill → passive → attr), and jumps to the first character that has any.",
+          "categories": [
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 173,
+      "date": "",
+      "summary": "Counter-stance runtime wiring. CombatScreen._applyDamage now consumes counterStance status (amount % reflected to attacker, stack-limited, recursion-safe). applyStatus DSL op extended to carry amount/power. Demo skill arch_counter_stance (Iron Counter): 2-stack, 150% reflect. 2 new tests (199/199 passing).",
+      "items": [
+        {
+          "text": "Counter-stance runtime wiring. CombatScreen._applyDamage now consumes counterStance status (amount % reflected to attacker, stack-limited, recursion-safe). applyStatus DSL op extended to carry amount/power. Demo skill arch_counter_stance (Iron Counter): 2-stack, 150% reflect. 2 new tests (199/199 passing).",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 172,
+      "date": "",
+      "summary": "stealStatus DSL op (dispel-and-transfer). New op moves statuses from any source to any destination, preserving duration/stacks/amount. Supports single type, array of types, or prefix match; optional max cap. Demo skill arch_dispel_steal (Thief's Whisper) in archetype-spells-2.json. 4 new tests (197/197 passing).",
+      "items": [
+        {
+          "text": "stealStatus DSL op (dispel-and-transfer). New op moves statuses from any source to any destination, preserving duration/stacks/amount. Supports single type, array of types, or prefix match; optional max cap. Demo skill arch_dispel_steal (Thief's Whisper) in archetype-spells-2.json. 4 new tests (197/197 passing).",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 171,
+      "date": "",
+      "summary": "Targeted silence wired end-to-end. statusModel.isSilenced() helper; CombatScreen._heroAI and simulator.simHeroAI now gate magic/heal/mp-costing skills behind isSilenced(); enemy healer branch respects it too. New arch_targeted_silence (Hush) skill in archetype-spells-2.json. 3 new tests (silence_m171.test.js), 193/193 passing.",
+      "items": [
+        {
+          "text": "Targeted silence wired end-to-end. statusModel.isSilenced() helper; CombatScreen._heroAI and simulator.simHeroAI now gate magic/heal/mp-costing skills behind isSilenced(); enemy healer branch respects it too. New arch_targeted_silence (Hush) skill in archetype-spells-2.json. 3 new tests (silence_m171.test.js), 193/193 passing.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 149,
+      "date": "",
+      "summary": "Mod skills merge into class rosters: getClassSkills() now augments vanilla SKILLS with registered mod skills whose classOrigin matches the classId. Non-breaking — vanilla entries take precedence; registry bootstrap skills are filtered out to avoid duplication. Enables mods to add skills to any class without touching hardcoded data.",
+      "items": [
+        {
+          "text": "Mod skills merge into class rosters: getClassSkills() now augments vanilla SKILLS with registered mod skills whose classOrigin matches the classId. Non-breaking — vanilla entries take precedence; registry bootstrap skills are filtered out to avoid duplication. Enables mods to add skills to any class without touching hardcoded data.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 148,
+      "date": "",
+      "summary": "Nav header links for Spell/Enemy/Item Catalog tools so they're discoverable from the shared header on every assets page.",
+      "items": [
+        {
+          "text": "Nav header links for Spell/Enemy/Item Catalog tools so they're discoverable from the shared header on every assets page.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 147,
+      "date": "",
+      "summary": "/assets/item-catalog.html tool: 35 weapons + 43 armor + 22 affixes + 4 sets browsable in tabbed UI with contextual filters, detail dialogs, and per-tab 'Export as mod pack' download. Completes the catalog trio (spell, enemy, item).",
+      "items": [
+        {
+          "text": "/assets/item-catalog.html tool: 35 weapons + 43 armor + 22 affixes + 4 sets browsable in tabbed UI with contextual filters, detail dialogs, and per-tab 'Export as mod pack' download. Completes the catalog trio (spell, enemy, item).",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 146,
+      "date": "",
+      "summary": "/assets/enemy-catalog.html tool: 39 vanilla enemies (ENEMIES + ENEMIES_ACT4/5/6) browsable with filter by tier/boss/regular, sort by name/hp/damage, detail dialog with encounter cross-references, and 'Export as mod pack' download. Mirrors spell-catalog.html UX.",
+      "items": [
+        {
+          "text": "/assets/enemy-catalog.html tool: 39 vanilla enemies (ENEMIES + ENEMIES_ACT4/5/6) browsable with filter by tier/boss/regular, sort by name/hp/damage, detail dialog with encounter cross-references, and 'Export as mod pack' download. Mirrors spell-catalog.html UX.",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 145,
+      "date": "",
+      "summary": "ENEMIES bootstrap: all vanilla enemies from mapData.js mirrored into the mod registry as characters (hp/dmg/armor/loot/xp preserved). Completes the vanilla-data schema surface (weapons/armor/affixes/classes/skills/enemies).",
+      "items": [
+        {
+          "text": "ENEMIES bootstrap: all vanilla enemies from mapData.js mirrored into the mod registry as characters (hp/dmg/armor/loot/xp preserved). Completes the vanilla-data schema surface (weapons/armor/affixes/classes/skills/enemies).",
+          "categories": [
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 144,
+      "date": "",
+      "summary": "Vanilla skill bootstrap + emoji purge: all 81 vanilla skills mirrored into the mod registry (class-tagged, talents+effects preserved). Removed stray emoji from CombatScreen (potion icon fallback, speed multiplier button, encounter start log, status-applied log) per 'No emoji!' rule.",
+      "items": [
+        {
+          "text": "Vanilla skill bootstrap + emoji purge: all 81 vanilla skills mirrored into the mod registry (class-tagged, talents+effects preserved). Removed stray emoji from CombatScreen (potion icon fallback, speed multiplier button, encounter start log, status-applied log) per 'No emoji!' rule.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 143,
+      "date": "",
+      "summary": "Vanilla data bootstrap: WEAPON_BASES (32), ARMOR_BASES (30), AFFIXES_ACT1 + SHIELD_AFFIXES (22), and all vanilla CLASSES are mirrored into the mod registry at app startup via bootstrapVanilla(). Non-invasive — existing game code paths unchanged; mods and tools can now enumerate and reference vanilla content through the schema surface.",
+      "items": [
+        {
+          "text": "Vanilla data bootstrap: WEAPON_BASES (32), ARMOR_BASES (30), AFFIXES_ACT1 + SHIELD_AFFIXES (22), and all vanilla CLASSES are mirrored into the mod registry at app startup via bootstrapVanilla(). Non-invasive — existing game code paths unchanged; mods and tools can now enumerate and reference vanilla content through the schema surface.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 142,
+      "date": "",
+      "summary": "Schema foundation pass: stat warn-mode normalization (registry.normalizeStatsDeep canonicalizes strength→str/dex/int/con), protected core-mechanics list (14 vanilla classes + status types locked against override), 24-spell mechanic catalog doc (public/docs/spell-mechanics.md), /assets/spell-catalog.html tool (81 skills × 20 classes, filter/archetype/export-as-pack), 3 new example mod packs (custom-weapons, custom-enemies, custom-event), schemas + examples linked in custom-content.html. 5 new registry tests.",
+      "items": [
+        {
+          "text": "Schema foundation pass: stat warn-mode normalization (registry.normalizeStatsDeep canonicalizes strength→str/dex/int/con), protected core-mechanics list (14 vanilla classes + status types locked against override), 24-spell mechanic catalog doc (public/docs/spell-mechanics.md), /assets/spell-catalog.html tool (81 skills × 20 classes, filter/archetype/export-as-pack), 3 new example mod packs (custom-weapons, custom-enemies, custom-event), schemas + examples linked in custom-content.html. 5 new registry tests.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 140,
+      "date": "2026-04-17",
+      "summary": "preserveScroll rollout :",
+      "items": [
+        {
+          "text": "preserveScroll rollout :",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "ForgeScreen._render now wraps its innerHTML build in preserveScroll via _renderImpl. Clicking an upgrade, switching tabs, or crafting keeps the Forge scroll position.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "PartyScreen._render same pattern. Active-bench swap + individual action clicks no longer jump to top.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Completes the first round of scroll-preservation rollout. Remaining screens (TownScreen, AchievementsScreen, CodexScreen, FormulaCodexScreen, LoadGameScreen) rarely trigger mid-scroll re-renders and can adopt preserveScroll if/when users report jumping.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 139,
+      "date": "2026-04-17",
+      "summary": "Codex formula pass + combat log damage-breakdown tooltip :",
+      "items": [
+        {
+          "text": "Codex formula pass + combat log damage-breakdown tooltip :",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "src/game/formulas.js: 10 new formulas registered with section metadata: computeSpellPower (INT*0.025), computeSpellDamage, computeHealAmount, computeDotTick (burn/poison/bleed), computeBarrierAbsorb (overheal-to-barrier), computeRegenTick, computeLifeSteal, computeManaSteal, computeCritChance, computeCritDamage. All 21 previously-registered formulas now carry a .section id (stats/armor/combat/dmgtypes/block/rewards/scaling/healing/status) so the Codex places them under the correct tab instead of defaulting to Combat Math.",
+          "categories": [
+            "BugFix",
+            "Balance"
+          ]
+        },
+        {
+          "text": "CombatScreen._resolveIncomingDamage now returns a structured {raw, afterBlock, armorReduction, resistReduction, final} breakdown alongside the existing {dmg, tag}. _basicAttack + _executeSkill pass the breakdown into _log_, which stamps data-breakdown JSON on the log entry and toggles .has-breakdown.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "StatColors.js: new buildDmgBreakdownHtml + attachDmgBreakdownTooltips — reuses the existing tooltip singleton, delegated pointerover/out/click, touch-open for mobile. Tooltip rows (Rolled / Armor / Resist / Blocked / Dealt) colour-coded; final=0 row goes red so absorbed hits read obviously.",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "Post-combat log overlay refactored from single innerHTML string to DOM-built rows so data-breakdown attributes survive.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "185 tests pass.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 138,
+      "date": "2026-04-17",
+      "summary": "Scroll preservation helper + wider rollout :",
+      "items": [
+        {
+          "text": "Scroll preservation helper + wider rollout :",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "src/ui/components/ScrollPreserve.js: new helper preserveScroll(root, fn). Before fn runs, snapshots scrollTop for every descendant with a non-zero scroll plus window.scrollY. After fn completes, restores by className lookup (survives innerHTML re-mount).",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "HireBuilderScreen._render now wraps the innerHTML build in preserveScroll. Stats step attribute +/- and Skills step talent buys no longer jump to top.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "InventoryScreen._render wraps via a new _renderImpl so the equip / swap-to-bench / slot-picker flows keep scroll position.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Complements SkillTreeScreen (M137) which has its own inline scroll snapshot. Future screens should use the shared helper.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 137,
+      "date": "2026-04-17",
+      "summary": "Sprite pipeline fix + scroll preservation :",
+      "items": [
+        {
+          "text": "Sprite pipeline fix + scroll preservation :",
+          "categories": [
+            "BugFix",
+            "Art"
+          ]
+        },
+        {
+          "text": "CombatScreen._loadSprite: primary base changed from /images/sprites/ to /images/spritecook/ with a per-image onerror fallback to /images/sprites/. Every sprite now tries the new SpriteCook asset first (7 variants each) and only falls back to the legacy pixellab dir if the spritecook variant 404s. Fixes all class pets (pet_wolf, pet_bear, pet_skeletal_warrior, pet_bone_golem, pet_imp, pet_demon, pet_war_hound, pet_fire_elemental, pet_lightning_elemental, pet_familiar) which had their files in /images/spritecook/ but were being looked up in /images/sprites/ and falling through to the SVG placeholder. Also picks up the new SpriteCook versions of heroes (cleric, mage, druid, necromancer, etc.) that previously silently kept rendering the older pixellab east/south frames.",
+          "categories": [
+            "BugFix",
+            "Art"
+          ]
+        },
+        {
+          "text": "SkillTreeScreen: capture + restore scrollTop of .skill-list-panel/.skill-detail-panel/.passive-panel/.attrs-panel and window.scrollY across innerHTML re-render. Fixes the long-standing scroll-to-top jump on every +1 Attribute / Buy Talent / tab switch.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "Hire Custom class grid min column width already at 150px (wishlist entry was stale).",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 136,
+      "date": "2026-04-17",
+      "summary": "Menu + /game-info/ polish :",
+      "items": [
+        {
+          "text": "Menu + /game-info/ polish :",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "Main-menu 'Visit Website' button now routes to the demos hub root (baseUrl) instead of /game-info/. TitleScreen.js href assignment dropped the 'game-info/' suffix.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Removed the play-triangle emoji (▶) from both 'Play Now' and 'Play Game' buttons on /game-info/ per no-emoji policy.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Fixed outdated narrative copy on /game-info/: 'Fourteen paths of power' -> 'Twenty paths' (matches the actual 20-class roster) and 'four increasingly harrowing acts' -> 'six' (matches ACT1-ACT6 in mapData). Stat counters were already accurate (20/10/10/10/6).",
+          "categories": [
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 135,
+      "date": "2026-04-17",
+      "summary": "Weapon tooltip type + shield rebalance + misc polish :",
+      "items": [
+        {
+          "text": "Weapon tooltip type + shield rebalance + misc polish :",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "Weapon tooltips now show HEAVY/LIGHT/MAGIC category + calculated damage: items.js/generateItem was dropping weaponCategory when building items from WEAPON_BASES, so getItemTooltip couldn't render the 'Type: STR/DEX/INT' line or the Base/Total damage split. Propagated base.weaponCategory onto every generated item; tooltip now consistently shows Type + Base Damage + Total Damage (live from computeHeroDamage for the selected hero).",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "'Melee (Light) — DEX' tooltip fixed: SkillTreeScreen + CharacterBuilderScreen both used data-stat='Melee' which resolved to the generic 'Base melee damage from STR' definition. Added 'Melee Heavy' (STR) and 'Melee Light' (DEX) tooltip defs; rewired both screens to the specific keys. Damage calc itself was already correct (computeHeroDamage reads DEX for weaponCategory==='light').",
+          "categories": [
+            "BugFix",
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "Shield block rebalance: base blockChance on every shield normalized to 20/30/40/50% (buckler/kite/tower/aegis), base shield 20%. Bulwark affix max lowered from +75% to +15% (min +5%), so the worst-case 'Base Block 20% + Bulwark 73%' scenario is now capped at 35%. Base `shield` also gains blockPower 10 for parity.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Block Chance / Block Power now surface in Character Stats > Other Effects when non-zero. InventoryScreen._renderCharStats calls getCharacterBlockStats() directly (these affixes live outside getEquipmentAffixBonuses by design so they don't double-count against the damage pipeline).",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Guildmaster Arrives popup now fires on every town entry, not just save-load. TownScreen.onResume() now re-runs _maybeShowFameEncounter() after the sub-screen return rerender, so fame thresholds (100/250/500) trigger immediately when the player walks back into town from combat or the world map.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Hire Custom + Create Hero + Skill Tree panel backgrounds changed from cool purple-blue (#06040a→#0e0818 / #08050a→#0d0a14 / #08060e→#100820) to warm brown (#0a0608→#120a10) matching Inventory. Town panel still uses its green variant; Black Market still uses its purple variant.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Notification summary in town now tags bench-only pending points as '(bench)' so users can see the source of 'phantom' skill-point counts. (Save inspection of the necroman-2026-04-17 save showed 2 real pendingSkillPoints=1 entries on bench characters; the summary previously didn't distinguish bench members from active party.)",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "185/185 vitest tests still green.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 134,
+      "date": "2026-04-17",
+      "summary": "Stats polish + stun immunity :",
+      "items": [
+        {
+          "text": "Stats polish + stun immunity :",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "Character Stats: STR/DEX/INT/CON now display gear-modified (affix-inflated) values and turn blue when they exceed base. Inventory screen was rendering char.attrs (raw) instead of effView (raw + affix), so any +STR/+DEX/+INT/+CON ring was invisible.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Other Effects filter hardened with case-insensitive SHOWN_IN_CORE check so legacy uppercase affix keys can no longer leak into the 'Other Effects' list as duplicate STR/CON rows.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Tooltip defs added for Life Steal, Mana Steal, Crit Chance, Crit Damage, Gold Find, XP Find, Mana Regen, Initiative, Trade Prices, Block Chance/Power — hover formula shown via shared attachStatTooltips.",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "Skills menu recolored: MP cost + sub-cost lines now gold (#c0a040) instead of the odd blue (#4080c0) that mismatched the rest of the brown/orange/gold scheme.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Skills detail panel now shows an 'Est. Damage'/'Est. Heal' row per skill using the selected character's actual stats (mirrors CombatScreen formula: mult × stat × (1 + spellPower)). Based stats include affixes and Potency.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Stun immunity (CombatScreen): when a stun expires, target gets stunImmuneRounds = 2 + priorStunCount. Each additional stun extends immunity further, so chain-stun has diminishing returns. _applyStatus('stun') short-circuits and logs a resist when immunity is active. Decay runs once per round in _processStatusEffects. Formula documented in the Status Effects section of the Formula Codex.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "wishlist.html: fixed unescaped <button> tag in 'Click handlers scroll to top' task (was rendering a real button inside the description text).",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "Shared nav-header: added Wishlist to the Tools dropdown for game13 so the continuously-updated wishlist is one click away.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "PartyScreen HP readout: Math.floor'd cur/max so values like '376.060000000000006' now read '376'.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Deferred to next cycle (logged to wishlist, not silently shelved): (a) skeleton / bone_golem / wolf / bear companion sprites — portraits OK, combat uses SVG fallback; skeleton + bone_golem missing SpriteCook files, pet_wolf/pet_bear exist but companion templateId may not route there. (b) User reports Necromancer + Druid still render old pixellab sprites even though SpriteCook files exist — needs SPRITE_MAP / resolver trace.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "Full vitest suite still 185/185 green.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 133,
+      "date": "2026-04-17",
+      "summary": "Event-chain flag ledger :",
+      "items": [
+        {
+          "text": "Event-chain flag ledger :",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "GameState gains four ledger primitives: hasFlag(key) (truthy-aware), incrementFlag(key, delta=1) (numeric accumulator with auto-init + non-numeric coercion), consumeFlag(key) (one-shot clear + return), requireFlags([...keys]) (AND list with '!' negation entries).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Effect DSL (src/mods/dsl.js) gains matching ops so mod-authored event chains can write through the ledger: incrementFlag, consumeFlag, requireFlags. Ops prefer ctx.gameState when available and fall back to ctx.flags scratch space for pure DSL tests.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "consumeFlag op respects a `required: true` hint — if the flag wasn't present, the step sets ctx._skip so downstream branches short-circuit (matches the existing requireFlag semantics).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Header comment + inline docs in dsl.js updated; setFlag/requireFlag remain unchanged for backwards compat.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "6 new unit tests in src/game/__tests__/flag_ledger.test.js cover truthiness edge cases, accumulator mutation, consume-returns-boolean, negation gating, and both DSL code paths. Full suite 185/185 green.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 132,
+      "date": "2026-04-17",
+      "summary": "Blacksmith grid + stat display fixes :",
+      "items": [
+        {
+          "text": "Blacksmith grid + stat display fixes :",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "Inventory Character Stats rounding: HP, Mana, Armor, Magic Resist, Hit, Dodge, Damage now Math.floor() to integers (was rendering raw floats like '315.849999999999997'). Attribute rows (STR/DEX/INT/CON) also floored.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Life Steal / Mana Steal display fix: the Other Effects section was multiplying values that are already stored as integer percents, so a 1.9% leech read as '190%'. Split InventoryScreen + SkillTreeScreen isPct branch into fractional-percent keys (goldFind/xpFind/critChance/critDamage/tradePrices — stored 0..1) and integer-percent keys (lifeSteal/manaSteal — stored 3..12). Now 1.9 displays as +1.9%.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "Affix rebalance: leeching/siphoning min:3 max:12 (was ~1.5..3 pre-cycle). Same keys, same storage convention, new numeric floor/ceiling.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Blacksmith Craft tab restructured as a 3-column desktop grid (Magic / Rare / Legendary). CRAFT_RECIPES now a 12-slot × 3-tier flatMap producing 36 recipes: Weapon (heavy=sword / light=dagger / magic=staff), Off-hand (shield, orb), Helm, Chest, Legs, Feet, Hands, Ring, Necklace. Tier cost schedule: magic→(4 iron+2 essence), rare→(4 essence+2 dust), legendary→(3 dust+1 core).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "void_staff / void_plate retired as named exotics; both folded into the legendary staff / legendary chest recipes on the new grid (no more void_shard dependency anywhere in the crafting pipeline).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Blacksmith Upgrade tab: disabled-state styling added (.bs-btn:disabled → opacity 0.35 + grayscale filter + not-allowed cursor). Already had the `disabled` attribute set correctly per-tier, but the CSS matched nothing so buttons looked active. Now visually matches Craft tab's behavior.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Spell Power baked-in affix: orbs, tomes, and amulet/necklace accessories now guarantee a base spellPower affix on item generation, mirroring how shield bases bake in block_chance / block_power via synthetic affixes. Off-hand orbs/tomes grant 15% base (scaled by item quality), caster amulets grant 8% base. Stacks with the optional rolled 'Potent' affix.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "All 179 balance tests still green.",
+          "categories": [
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 131,
+      "date": "2026-04-17",
+      "summary": "Per-skill cooldown map :",
+      "items": [
+        {
+          "text": "Per-skill cooldown map :",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Replaced the single shared `actor.skillCooldown` integer with a per-skill `actor.skillCooldowns` map (skillId → rounds remaining) in both CombatScreen and simulator. Fixes the long-standing behavior where using any skill locked a character out of ALL their other skills for 2 rounds.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "Each cast now stores `skill.cooldown` on its own key (default 2 rounds). The tick loop at the start of every turn decrements each active entry and deletes the key when it hits 0, so the usability filter (`!actor.skillCooldowns[skill.id]`) can do a cheap check.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Resurrect preserved: still uses a 12-round cooldown, but now only its own key is locked — the Cleric can Cleave, Heal, or Smite in the interim, matching how the ability was always supposed to feel.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Simulator parity maintained — Monte-Carlo balance runs still pass the full 179-test vitest suite with no regressions.",
+          "categories": [
+            "BugFix",
+            "Balance"
+          ]
+        },
+        {
+          "text": "Wishlist flipped two duplicate 'Per-skill cooldown map' entries to done with M131 tag.",
+          "categories": [
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 130,
+      "date": "2026-04-17",
+      "summary": "Deferred-items pass :",
+      "items": [
+        {
+          "text": "Deferred-items pass :",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Goblin shaman combat attack frame no longer mirrored — added 'goblin_shaman' to CombatScreen FLIP_EAST set so the east-facing attack pose renders horizontally flipped correctly.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Pet sprites (Skeletal Warrior, Wolf, Bear, Imp, Demon, War Hound, Bone Golem, Fire Elemental, Lightning Elemental, Familiar) now render their real art instead of placeholder SVG. Root cause: pet_* ids were missing from CombatScreen SPRITE_MAP. Added 10 explicit entries so the spritecook prefix resolves correctly for each.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "war_dog tavern portrait 404 confirmed resolved in M129 via the resolveSprite companion-marker branch (was returning literal 'companion' as a sprite key).",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "Druid + Necromancer desync: investigated. Files exist, manifest entries exist, SPRITE_MAP entries exist — no data mismatch found. Flagged in wishlist as 'investigated, need repro' rather than silently closed.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Combat reward text vs inventory grant mismatch: same drops[] array feeds the UI text and GameState.addToInventory (CombatScreen._victory ~L2137), so code path is internally consistent. If the user still sees the 'war bow → ring' mismatch, we need a specific save/encounter to reproduce. Kept open on wishlist.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "Wishlist: added one new non-priority request: restructure combat character placement to stagger columns L/R/L/R and spread vertically to use the bottom ~70% of the combat stage (currently ~20% utilized). Answered inline: AoE skills target by group/column (unaffected by placement changes), tap weapons target by pixel distance (will be affected).",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 129,
+      "date": "2026-04-17",
+      "summary": "Docs + Image-review polish + Spell Power clarity :",
+      "items": [
+        {
+          "text": "Docs + Image-review polish + Spell Power clarity :",
+          "categories": [
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "NEW: public/docs/ canonical markdown — image-policy, prompt-templates, schema-reference, mod-authoring, asset-types, no-silent-shelving. /assets/docs.html is a lean markdown viewer (~7KB, no external lib) under Tools > Documentation. Source-of-truth lives in versioned files; updates land in every session.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "CLAUDE.md: added Canonical Docs section pointing at /public/docs/, new-tool flag rule (≤25KB auto-approve, anything larger requires name/size/reason).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Spell Power display rewritten as a +% bonus. CharacterBuilderScreen preview + SkillTreeScreen Attributes tab both show e.g. '+30%' at 12 INT instead of the cryptic '+0.3'. Tooltip in StatColors expanded with the actual formula (base × (1 + 0.025×INT + 0.05×Potency)).",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "Image-review: per-category isolation on multi-select apply — hero-card details no longer leak onto background cards when bulk-editing. When selection spans categories, an action or detail edit only writes to cards of the template card's category.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "Stats Base-toggle now session-only. Reverts to 'calculated' on every page load so stale state can't trick users into thinking their starting-point allocation was lost (root-caused a user 'stats reverted to 8' bug).",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "Walk-anim waste cleaned up in M129 prep: 20 webp animations + 10 static walk PNGs removed from disk and assets.json. image-policy.md now explicitly forbids walk/attack animation generation unless requested.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "Wishlist: banked all user bugs/requests mid-cycle — Hire Custom class-grid + appearance picker parity; war_dog tavern portrait path; pet sprite placeholders (skeletal_warrior + wolf); Druid/Necromancer battle sprite desync from image-review; goblin shaman flipped attack frame; structural rewrite of image-review to read the real game dataset instead of a parallel manifest; scroll-to-top on spend clicks; combat reward text vs inventory grant mismatch; Base-toggle RESOLVED.",
+          "categories": [
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 128,
+      "date": "2026-04-16",
+      "summary": "Mod System v1 :",
+      "items": [
+        {
+          "text": "Mod System v1 :",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "NEW: /schemas/v1/ (9 JSON Schema files) — pack, skill, effect-dsl, class, item, event-chain, appearance, character, loot. Downloadable from Custom Content page; point your editor at them via $schema for completion + validation.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "NEW: Effect DSL runtime at src/mods/dsl.js — 15 ops: damage, heal, applyStatus, buff, setFlag, requireFlag, consumeStatus, resourceSwap, echo, ritual, modifyTurnOrder, onHit, onCrit, onKill, onEvent. Each op walks a ctx { caster, targets, rng, flags, log, emit }. Triggers attach to caster._triggers; rituals queue as caster._rituals.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "NEW: Pack registry at src/mods/registry.js — accepts canonical { id, version, <kind>: [] } packs, bare arrays (kind inferred), or single entities. Boot-wired via src/main.js (optional-by-default — no packs auto-load). Exposes window.__emberveilMods for console/debug.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "NEW: /assets/custom-content.html — 4-tab upload tool (Upload/Paste, Schemas, Example Packs, Loaded). Structural validation (unknown-op detection) + full pack load. Schemas and example packs downloadable. Works in built site via inlined registry logic.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "NEW: public/mods/examples/starter-pack.json — 24 mechanically distinct skills (firebolt, frost nova, blood rite, mend, consecrate, hasten, mirror strike, cleansing touch, stalker's mark, reaper's toll, shield wall, taunt, crippling shot, arcane volley, soul drain, phantom step, backstab, thunderclap, starfall, pact of ruin, radiant burst, ironwill, venom dart, echo cascade), 5 event chains (Cursed Coin, Bessa the Widow, Grenn the Drunk, Dragon Whelp, Rival Adventurer), 2 loot tables (deterministic + rolled).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "NEW: Supporting primitives — src/mods/statusModel.js (addStatus/removeStatus/hasStatus/tickStatuses/overhealToBarrier with legacy-field shims via telemetry), src/mods/seededRng.js (LCG + pickWeighted), src/mods/telemetry.js (shim-hit counter exposed as window.__emberveilShimTelemetry), src/mods/loot.js (resolveLoot for deterministic and rolled tables).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Wishlist: flipped 8 Mod System items to done (v1 schemas, effect DSL, custom content page, example mods + downloadable schemas, upload packs, seeded RNG, shim telemetry, overheal→barrier, loot specifier). Remaining open items (24 spell mechanics catalog, event chain flag ledger, JSON-Schema warn-mode normalization, unify status model into combat screen, per-skill cooldown map, combat sim diff view) visibly tracked — NOT silently shelved.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Nav: Custom Content tool added to shared header under Tools.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Not shipped this cycle (explicitly deferred, not silently shelved):",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Full CombatScreen migration to statusModel (shims in place; real call-site rewrites tracked on wishlist).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Per-skill cooldown map runtime migration (replaces actor.skillCooldown slot).",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Combat sim diff view vs nearest vanilla (hook points identified, UI not wired).",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "AJV/in-browser full JSON-Schema validation (structural check only for now; schemas downloadable for editor-side validation).",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 127,
+      "date": "2026-04-16",
+      "summary": "Class/Appearance Decouple + Wishlist :",
+      "items": [
+        {
+          "text": "Class/Appearance Decouple + Wishlist :",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "NEW: /assets/wishlist.html — AI-maintained tracker of planned/in-progress/done/dropped features. Claude flips boxes as work lands; user-read-only. NO SILENT SHELVING rule enforced.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Class/Appearance decouple: added src/game/appearances.js registry; member.appearance overrides class-derived sprite resolution. Cleric (class) can now look like a Mage (appearance). CharacterBuilderScreen grew an appearance picker on the stats step. CombatScreen spriteKey resolution now respects member.appearance.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "cleric_priestess — 2nd female cleric appearance generated via SpriteCook (7 frames: portrait/south/east/east_attack/east_spell/east_block/east_ko).",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "10 companion east sprites generated: dire_wolf, forest_owl, ember_drake, shadow_cat, crystal_golem, spirit_wisp, bone_hound, ice_sprite, swamp_frog, void_moth.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "mod-system-report portrait-mixer duplication bug fixed (inner list now cleared before repopulating).",
+          "categories": [
+            "BugFix",
+            "Art"
+          ]
+        },
+        {
+          "text": "milestone-report: 7 phantom classes with missing art removed (monk, shaman, witch_hunter, knight, sorcerer, runesmith, shadow_dancer); they are now tracked in the Wishlist \"New Characters\" section.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "/game-info/index.html: 15 portrait refs switched to /images/spritecook/{id}_portrait.png with onerror fallback to /images/portraits/{id}.png (turn-order, party diagram, class flip-cards, roster helpers).",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "Wishlist: added AI Integration section (content-gen AI with schema access; separate portrait-gen AI with reference + directional frames) + four image-review tool enhancement items.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "image-review.html: new \"Select whole sprite\" button per group (batch-prompt connected views); new Move-to-Library / Archive / Delete actions on Ready cards; new \"Unassigned Appearances\" + \"Archived / Unattached\" bottom sections.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "Memory: added wishlist_review.md and mod_system_shelving.md so future sessions know to audit the wishlist each milestone and shelve hard items with a reason.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 120,
+      "date": "2026-04-16",
+      "summary": "Mega Batch :",
+      "items": [
+        {
+          "text": "Mega Batch :",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Combat balance:",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Spell damage nerfed: spellPower = INT * 0.025 (was INT * 0.08). 40 INT mage Fireball on staff lands ~28-47 per target before mitigation (was 472). Unified display in InventoryScreen, CharacterBuilderScreen, SkillTreeScreen, simulator.js, FormulaCodexScreen.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Multi-target damage falloff: 1 target 100%, 2 targets 80%, 3 targets 60%, 4+ targets 50%. Applies to BOTH physical and magical AoE; documented in codex.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Burning DoT power = max(3, floor(INT * 0.15)) with burnMult honored; explicit tick log line so players see it land.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Healer AI priority: classes (cleric/druid/priest/oracle/paladin/bard) with any ally ≤ 40% HP pick biggest heal/barrier/shield over damage/debuff.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Crit is now AFFIX-only. New critChance + critDamage keys roll on weapons, gloves, amulets. Enemies baseline 5% crit at 1.5× (no critDamage bonus). critPct clamped to 75.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Sharp affix physical-only; new Potency affix magic-only (descriptor SPELL). items.js/generateItem filters by weapon category; ab.dmg vs ab.spellPower in _memberToCombatant.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Return to Town on defeat: _defeat button now this.manager.replace(new TownScreen(...)) (was manager.pop()).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Blacksmith + items:",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Forge service retired from town menu; Blacksmith now has three tabs: Salvage | Craft | Upgrade. Upgrade uses 2 materials of the same tier → +1 random affix of matching rarity (no gold). Max-affix and insufficient-material states disable the button with tooltip.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "6 new weapons (iron_mace, obsidian_scimitar, ember_focus, voidsteel_greatsword, starfall_bow, abyssal_rod), 4 new shields (buckler, kite_shield, tower_shield, aegis_shield — block_chance+block_power baked in via synthetic affixes), 8 new body pieces (2 each chest/legs/hands/feet), spanning Acts 1-5.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "UI + UX:",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "Hero portraits upsized to 80×80 with 5px padding across town cards, Party Management, Inventory, Skill tree, Character Builder. Town top-left party window now shows 40px portrait + HP/MP + class icon next to name. Class icon also added on Party slot/detail, Inventory header, Skill-tree char tabs, and Character Builder Stats title.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "Town right-menu order: View Map, (Return to Portal conditional), Inventory, Skills, Tap Items, Quests, Menu.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "In-game menu (GameMenuScreen) overlay now align-items:flex-start + padding + overflow-y:auto so the panel scrolls on mobile. Restyled with canonical palette (Cinzel/ember/gold/parchment) matching public news/assets pages.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Main Menu confirm replaced with custom gold-bordered dialog (OK/Cancel). Skipped automatically if a save wrote within the last 60 s (window.__lastSavedAt tracked in SaveManager).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Settings + Saves:",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Bulk buttons renamed Export Game Data / Import Game Data with description. New 'Export Save / Import Save' row above — single save file format { emberveilSingle:1, key, heroName, data } with party picker on export and overwrite / add-new / cancel on import collision.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Combat Simulator: '← Return to Game' replaced with styled 'Main Menu' button centered beside header. New 'Load from File' button next to Load from Save — accepts single-save JSON wrappers or raw records.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Combat Simulator AI parity:",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "heroToCombatant now folds passive + affix bonuses into effective stats before feeding damage/HP/MP formulas.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "simHeroAI mergeSkillForCast(skill, _member) applies talents/upgrades. Highest-cost AoE picked (strongest) instead of first-match; AoE vocabulary extended (chain, chain3, multi3, multi4, random3, random4, pierce_row, group2, row2, adjacent).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Healer/shield branch mirrors CombatScreen — Cleric/Oracle use Foresight/Fate Shield when ally low.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "autoAssignAttrs(classId, level) + autoGenerateEquipment(classId, level) for manually-added chars. Primary = 10+floor(lvl*2.2), CON = 8+floor(lvl*1.2); bard/tactician split DEX+INT. Equipment rarity bracketed by level.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "L20 mage probe now casts Blizzard (~100 dmg/target) instead of auto-attack 17→3.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Tooltips + Character Stats panel:",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Tooltip viewport clamping (two-pass getBoundingClientRect → window.innerWidth/Height - 8). Mobile close button via .rsg-tt-close / .inv-tt-close when touch-open set; desktop hover stays pure.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "Tooltip max-width: min(420px, calc(100vw - 16px)); .tt-affix white-space:nowrap prevents mid-property line wraps.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "Persistence bug fixed: pointerover/pointerout with relatedTarget singleton dismiss (matches item-tooltip lifecycle).",
+          "categories": [
+            "BugFix",
+            "QoL"
+          ]
+        },
+        {
+          "text": "Character Stats panel: removed 'Atts: (X/Y/Z/W)' one-liner. New Attributes group (STR/DEX/INT/CON rows with base-vs-buffed coloring) + new 'Other Effects' group iterating any non-zero key in getEquipmentAffixBonuses (auto-picks up critChance/critDamage/Potency spellPower). Same treatment in SkillTreeScreen Attributes tab.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Weapon tooltip: Type (STR/DEX/INT), Base Damage + Total Damage (live from computeHeroDamage) — collapses to single Damage line when base == total. Via globalThis.__rsgFormulas to avoid circular import.",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "Base checkbox scroll preserved (save/restore .equip-panel.scrollTop across _render).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Codex:",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Combat Math tab list styling fixed: padding-left 1.2em, margin-block-end 0.8rem, li margin 0.35rem; inline buttons reset to margin:0.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "Crit prose rewritten — crit chance/damage come only from item affixes and passive nodes (never base attrs); formula critMult = 1.5 + critDamage; default enemy 5% @ 1.5×. Stub _fBox entries for rollCrit/applyCritMultiplier.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Art + tooling:",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "Combat backgrounds wired: lazy manifest load from public/images/combat_bg/backgrounds.json, deterministic per-zone picker hashed by zoneId, drawn in _drawBackground with procedural palette fallback. Respects Disable Backgrounds toggle.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "re-redesign.html gains a full 'Combat backgrounds' section (12 zone cards, 26 images, per-image prompts).",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "assets.json refreshed: +189 SpriteCook entries (heroes + pets + poses). Dead-asset pruning beyond 'file missing' flagged for a dedicated cleanup pass.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "New Tools > Redesign Survey (public/assets/redesign-survey.html) with 40 rows (20 heroes + 20 bosses/enemies): OpenAI 40/40, PixelLab 36/40, Pixel Engine 1/40, SpriteCook 20/40. Mobile-friendly grid → card layout at 820px. Radio-style selection with gold glow; localStorage persistence under rsg.redesignSurvey.v1; Generate Report textarea with Copy/Download/Email actions. Registered in shared/nav-header.js TOOLS_BY_GAME.game13.",
+          "categories": [
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "Tests: 179/179 pass (was 178; +1 L20 mage parity test; formulas snapshot updated for new affix keys).",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 94,
+      "date": "",
+      "summary": "Skill Rewiring Pass (part 1):",
+      "items": [
+        {
+          "text": "Skill Rewiring Pass (part 1):",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Nine ghost-buff effect objects finally land (Sanctuary, Inspiring Tune, Ballad of Valor, Soul Pact, Fel Sight, Dragon Scales, Draconic Fury, Taunt, Poison Blade). New CombatScreen buff keys wired with decay: barrier, hpRegen, selfDamagePct, critBonus, hitBonus, armorBonus, magicResistBonus, tauntedBy, onHitStatus. Taunt applies as a timed status; enemy AI honoring deferred to m95 (documented).",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Eight missing statusEffects arrays added (Entangle stun, Hellfire burn, Glaive Toss bleed, Thrown Junk stun, Makeshift Bomb burn, Nature's Wrath bleed, Static Field slow, Blizzard slow with power). Slow wired into _buildTurnOrder (halves initiative roll).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Per-skill payload fixes: Smite/Holy Strike bonusVsUndead+Demon into effect, Lay on Hands/Heal/Rejuvenation/Rewind route healStat through _getSkillStat (no more hardcoded INT), Second Wind honors healAmount as a floor via max(flat, scaled), Rewind cleanse array with handler, Backstab conditionBonus 1.5× vs debuffed targets, Sunder Armor armorReduce + timed restore, Aimed Shot/Dragon Claw effect.armorPen flows through the damage pipeline, Demon Bolt effect.bonusVsDemon, Vengeance baseline +15% dmgBuff (per-death stacker deferred to m95).",
+          "categories": [
+            "BugFix",
+            "Balance"
+          ]
+        },
+        {
+          "text": "Death Coil replaced with Corpse Explosion — new target:'corpse' branch in _executeSkill that scans dead enemies, deals adjacent/group AoE scaled by the corpse's max HP, marks the corpse detonated, refunds MP on no-corpse.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Resurrect: cooldown 12 → 10. Two new talents: res_heal_60 (Greater Resurrection → 60% HP) and res_shield (Holy Shield → 1 full round of immunity after revive). Wired reviveImmuneRounds via existing _processStatusEffects decay.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Death Mark reworked to type:'damage' + new 'marked' status (1.3× incoming damage amplifier in _applyDamage, decays in _processStatusEffects). Proper type:'debuff' branch deferred to m95.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Tests: 46 new in src/game/__tests__/skills_m94.test.js (total 138, all green). Covers every ghost-buff payload, every new statusEffect array, Corpse Explosion detonation, Resurrect talent merges, marked amplifier, sunder armor restore, and combat-harness runs of Sanctuary/Soul Pact/Fel Sight/Dragon Scales/Poison Blade/Inspiring Tune/Ballad of Valor/Lay on Hands-with-healStat/Rewind cleanse.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Skill audit page (public/assets/skill-audit.html) updated: ~26 skills bumped partial/orphan → wired with m94 notes; Taunt stays partial pending m95 AI work; Vengeance stays partial pending m95 stacker.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Deferred to m95 (explicitly, with user consent — NOT silently shelved): six missing type branches (zone, trap, counter, utility, debuff, passive), status effects silence/blind, enemy AI taunt honoring, heavy per-skill rewires (Jackpot passive, Flourish/Grandeur stacks, Feint turn-order push, Fate Weave death-save, Corruption DoT tick + spreadOnDeath, Song of Ruin buff dispel, Rain of Arrows volley tick, Vengeance per-death stacker, Smoke Trap trap infra, Riposte counter infra, Scrounge utility infra, Void Rift/Consecration/Ignite zone infra, Discordant Wail silence). See public/assets/skill-audit.html for the live status pills.",
+          "categories": [
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 93,
+      "date": "",
+      "summary": "Affix Wiring Pass:",
+      "items": [
+        {
+          "text": "Affix Wiring Pass:",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Shared helper src/game/equipBonuses.js — single source of truth for summing item.affixes into a flat bonus bundle (str/dex/int/con, hp, mp, hit, dodge, initiative, dmg, armor, goldFind, manaRegen). Consumed by CombatScreen._memberToCombatant, passives.computeMaxHp/Mp, CombatScreen._regenMana (was an inline scan), and CombatScreen._victory gold calc. formulas.getEquipmentAffixBonuses now delegates here instead of returning zeros.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "computeGoldReward signature extended — accepts either raw party array or {goldFindBonus} options and multiplies the rolled drop by (1 + sum of hero goldFind affixes). Fixes the user-reported 2000% → ~80g bug. Hero-only — companions are not counted per the find/loot-stat rule.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "Removed 'burning' (burnChance) and 'bleeding' (bleedChance) affixes from AFFIXES_ACT1. Weapon-base burnChance/bleedChance on dragonfang/greataxe/battleaxe bases are untouched — those are weapon intrinsics still consumed by skill/status code. Legacy affixes on existing save data are silently ignored by the helper (no save migration needed).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Vitest: ~17 new tests — one per kept affix (13) + goldFind multiplier regression + HP/MP/CON flow tests + round-trip (generateItem → equip → helper lights up) + schema check (every AFFIXES_ACT1 stat key maps to a bonus key). Updated pinned affix-stub snapshot to new schema.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "Affix survey HTML status pills updated: all 13 kept affixes → WIRED, burning/bleeding → REMOVED (new grey badge style).",
+          "categories": [
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 84,
+      "date": "",
+      "summary": "Simulation Overhaul Part 1:",
+      "items": [
+        {
+          "text": "Simulation Overhaul Part 1:",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "src/game/formulas.js — single source of truth for combat math (rollToHit, applyMitigation, computeHero*, enemyScalingForNgPlus, gold/xp rewards). Every export carries .formula + .inputs metadata. CombatScreen refactored to call it — zero behavior change in this step.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Armor → StarCraft-style flat reduction: max(0, dmg - armor). Magic resist + magic penetration added as parallel system. Damage types: physical / magic / true. Hidden %pen path reserved for legendary affixes.",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "Combat log: 'deflected', 'resisted', 'blocked X' tags via mitigationLogTag.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Shield Block system: shields auto-roll Block Chance (10–75%) + Block Power (10–50 flat) at 100% on shield bases. Pipeline order: hit → block → mitigation → HP.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Cleric Resurrect rework: single target, 12-round per-combat cooldown, revives at 25% HP, damage immunity until next action. Two new talents (heal % bump + extended immunity round). revival_flask + phoenix_feather updated to match.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Vitest: 47 tests (was 0). release.sh now runs npm test and aborts on failure.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Combat Simulator v2 debug screen: Settings → Debug Mode toggle reveals Combat Simulator on title. Loads live party, swappable gear, encounter dropdown, act selector, single-run + 1000× Monte Carlo, Chart.js HP curves + dmg histogram, JSON preset save/load. Engine in src/game/simulator.js (pure, seeded RNG, calls formulas.js).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Tools dropdown in shared nav header. Affix Survey + Rebalance Survey moved under Tools.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "Shared /home/radgh/claude/shared/tool-styles.css matching Asset Gallery palette, copied into each game on release.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Affix audit deployed: 14 of 15 affixes are orphaned (only of_mana_regen wired). User survey at /assets/affix-survey.html captures rework decisions for M85.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Animated /assets/simulation-overhaul.html report: hero w/ pulsing rune, 10 flip cards, animated damage pipeline diagram, affix audit doughnut, armor model comparison chart, block explainer, Part 2 roadmap.",
+          "categories": [
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 79,
+      "date": "",
+      "summary": "(Redesign): Regenerated entire character roster (~68 chars × 5 variants = 340 images) via OpenAI gpt-image-1; added portrait, east_attack, east_spell, and death animation variants; reworked combat so party faces east and swaps sprites on attack/spell/death; raised HP bars above sprites; retroactive PixelLab fighter generated as baseline; all 69 SFX loudness-normalized to -16 LUFS via ffmpeg; new animated comparison report at /assets/m65-redesign-report.html with A/B audio playback.",
+      "items": [
+        {
+          "text": "(Redesign): Regenerated entire character roster (~68 chars × 5 variants = 340 images) via OpenAI gpt-image-1; added portrait, east_attack, east_spell, and death animation variants; reworked combat so party faces east and swaps sprites on attack/spell/death; raised HP bars above sprites; retroactive PixelLab fighter generated as baseline; all 69 SFX loudness-normalized to -16 LUFS via ffmpeg; new animated comparison report at /assets/m65-redesign-report.html with A/B audio playback.",
+          "categories": [
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 72,
+      "date": "",
+      "summary": "Tap Weapons & Combat Polish:",
+      "items": [
+        {
+          "text": "Tap Weapons & Combat Polish:",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "New Tap Weapons system: 10 tap weapons + 10 tap utilities with turn/round cooldowns and proximity-based targeting. Click near enemies to attack, near allies to support.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Party-wide tap inventory (unlimited), one weapon + one utility equipped at a time.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Tap Weapons vendor added to every town (sells Blade starter + basic utilities).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Boss drops: each act boss unlocks a powerful tap weapon (bow → fireball → catapult → star caller → spirit hammer → dragon call).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "4 new skill-check encounters reward tap utilities (heal, cleanse, phoenix feather, haste, etc.).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Animated standalone report at /assets/tap-weapons.html with SVG-animated icons for all 20 items.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Fixes:",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "AudioContext autoplay: title music now queues until first user gesture, then unlocks and plays correctly.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "Title screen clouds clamped to top 40% of viewport, no longer drift into the ground.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Missing dragons_reach.jpg and dragon companion sprites (dragon_hatchling, frost_wyrmling, storm_drake, shadow_wyrm, dragon_whelp, wyrm_warrior) now wired to existing dragon art.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "Bahamoth defeat no longer leaves the map unclickable: party is routed to nearest town and MapScreen.onResume recovers from stale nodeIds.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Towns reverted from mid-zone inserts back to one town per act (Emberglen, Cinderhold, Dreadhearth, Nullreach, Deepcradle, Drakegate), tavern rosters redistributed with dragon-kin escalation.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "#app horizontal scroll jump fixed: removed global scrollIntoView from MapScreen tab bar, added overflow guards on #app.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "Known partial (not silently shelved — flagged for next cycle):",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "4 tap utility effects (haste double-turn, taunt totem aggro, shield barrier absorb, rally +15%) apply status + cooldown + SFX but their combat-pipeline hooks need a unified applyDamage helper to be fully honored. Plays visually, plays flavor, but the mechanical pass-through lands next cycle.",
+          "categories": [
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 71,
+      "date": "",
+      "summary": "Towns, Fame & Polish:",
+      "items": [
+        {
+          "text": "Towns, Fame & Polish:",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "Multi-town system: 23 new themed towns, 2-3 per zone. 'Return to town' routes to nearest.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Town merchant stock now scales by act + NG+, deterministic per town.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Blacksmith quality upgrades auto-roll fresh affixes for new slots; single scrollbar on the panel.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "Themed gold/amber scrollbars globally.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Cleric rest is free; revive still costs 50g.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Fame reward encounters at 100/250/500 (free rare amulet, rare+ loot, Guild Hall unlock).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Guild Hall vendor: 12 fame-gated slots of rare/legendary gear (500 / +250 per additional slot).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Dragon-kin hireables now gated per act + per town: act 3 towns have one weak dragon, later towns escalate.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Characters now get +2 attributes per level; starting budget = 8 base per stat + 8 free points. Hireable mercs rebalanced.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Flavor encounters converted to skill-check events with real rewards.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Main menu: background visible from frame 0, red-tinted cloud drift across all phases, drop shadows on logo/subtitle/footer, milestone number in footer.",
+          "categories": [
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 66,
+      "date": "",
+      "summary": "(Dragon Expansion) — Added Act VI: The Dragon's Reach (zones dragons_reach + dragon_throne, 21 nodes, dragon dialogs with skill checks). 7 new dragon enemies (Dragon Whelp, Wyrm Warrior, Dragon Cultist, Frost Wyrm, Storm Dragon, Ancient Dragon, Bahamorth the Dragon King). 7 dragon encounter tables wired into zone pools. Drakehold (Act VI town) with full service slate. 4 unique dragon mercenaries at the tavern (Kaldrek the Dragonborn, Syra Wyrmsworn, Vorin Emberjaw, Maelis Drakeblood — all Dragon Knight class). 4 unique dragon companions (Crimson Dragon Hatchling, Frost Wyrmling, Storm Drake, Shadow Wyrm) sold at the tavern AND obtainable via random dragon-zone encounters. 7 dragon weapon bases + 8 dragon armor pieces (Dragonfang/Wyrmscale/Dragonbone/Drakehammer/Dragontooth/Dragonsteel/Dragonscale/Dragonheart variants). Dragon Knight hero class verified 2-talent compliant. 4 SVG dragon assets, 6 procedural dragon SFX, dragon expansion HTML release page, M65 milestone report appended.",
+      "items": [
+        {
+          "text": "(Dragon Expansion) — Added Act VI: The Dragon's Reach (zones dragons_reach + dragon_throne, 21 nodes, dragon dialogs with skill checks). 7 new dragon enemies (Dragon Whelp, Wyrm Warrior, Dragon Cultist, Frost Wyrm, Storm Dragon, Ancient Dragon, Bahamorth the Dragon King). 7 dragon encounter tables wired into zone pools. Drakehold (Act VI town) with full service slate. 4 unique dragon mercenaries at the tavern (Kaldrek the Dragonborn, Syra Wyrmsworn, Vorin Emberjaw, Maelis Drakeblood — all Dragon Knight class). 4 unique dragon companions (Crimson Dragon Hatchling, Frost Wyrmling, Storm Drake, Shadow Wyrm) sold at the tavern AND obtainable via random dragon-zone encounters. 7 dragon weapon bases + 8 dragon armor pieces (Dragonfang/Wyrmscale/Dragonbone/Drakehammer/Dragontooth/Dragonsteel/Dragonscale/Dragonheart variants). Dragon Knight hero class verified 2-talent compliant. 4 SVG dragon assets, 6 procedural dragon SFX, dragon expansion HTML release page, M65 milestone report appended.",
+          "categories": [
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 65,
+      "date": "",
+      "summary": "NG+ rebalance (enemies ~4.5× hp / 2.8× dmg per tier + boss multiplier, guarantees NG+ Act 1 > Normal Act 5), 3 calm combat music variants + dedicated boss theme (rotated by zone, boss triggers epic track), 28 new punchy combat SFX (clangs/booms/slashes) replacing procedural beeps via alias layer, back-to-town button sync fix (checks party zone not viewed tab).",
+      "items": [
+        {
+          "text": "NG+ rebalance (enemies ~4.5× hp / 2.8× dmg per tier + boss multiplier, guarantees NG+ Act 1 > Normal Act 5), 3 calm combat music variants + dedicated boss theme (rotated by zone, boss triggers epic track), 28 new punchy combat SFX (clangs/booms/slashes) replacing procedural beeps via alias layer, back-to-town button sync fix (checks party zone not viewed tab).",
+          "categories": [
+            "BugFix",
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 64,
+      "date": "",
+      "summary": "Skill talent rework (3/8/13/18/23/28 cadence, every skill has ≥2 talents, save migration), ring auto-slot, blue portal icons + portal-only return button, zone-specific travel indicator, 10 new companion encounters with AI-generated sprites, ~60 ElevenLabs SFX + 3 music tracks, 10 OpenAI map backgrounds, menu background + parallax clouds, purple black market (Act 4-5 unlock), forge as town service, town tab bar fix, Trophies→Achievements, weapon variety + starting equipment, split Disable Backgrounds/Sprites settings, demo-assets Play link → /game13/, level-up summary dialog per character.",
+      "items": [
+        {
+          "text": "Skill talent rework (3/8/13/18/23/28 cadence, every skill has ≥2 talents, save migration), ring auto-slot, blue portal icons + portal-only return button, zone-specific travel indicator, 10 new companion encounters with AI-generated sprites, ~60 ElevenLabs SFX + 3 music tracks, 10 OpenAI map backgrounds, menu background + parallax clouds, purple black market (Act 4-5 unlock), forge as town service, town tab bar fix, Trophies→Achievements, weapon variety + starting equipment, split Disable Backgrounds/Sprites settings, demo-assets Play link → /game13/, level-up summary dialog per character.",
+          "categories": [
+            "BugFix",
+            "Art"
+          ]
+        },
+        {
+          "text": "M63 (2026-04-13): M56 queue audit pass — verified and hardened the remaining items from the big 21-item queue. Added GameState.sanitizeRoster() invariant (hero entities cannot occupy the companions list; CombatScreen calls it on enter to defensively re-home any misplaced heroes to bench). Combat audio boop-loop root-cause fix: all procedural music now routes through a dedicated per-track _trackGain that is ramped to 0 and disconnected on _stopCurrentTrack, reliably silencing pre-scheduled oscillators created by _addPulse/_addPad instead of relying on node.stop() against oscillators that never started. _victory() now calls _stopCombatAudio() immediately on win (not just in onExit), matching _defeat(). TownScreen overview cards now use delegated click handlers on the service panel so Merchant/Tavern big buttons keep working across re-renders. /game-info timeline extended to M62 with M57–M62 chips and phase label updated to M46–M62. No changes needed to already-complete items (spell/attack power, attributes tab, dialog bg wiring, hire custom parity, blacksmith equipped items, party 4-group layout, inventory filter, war dog sprite, demo-assets categorization, reports layout, logo gradient, portal gating).",
+          "categories": [
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M62 (2026-04-13): Cross-map party-position root-cause fix — per-zone nodeId map (zoneNodeIds) persists per-zone positions so navigating back to a prior map restores the party indicator instead of wiping it; save migration handles legacy saves. Unlimited auto-named save slots — every New Game creates a unique save key (no more overwrites), Load Game lists all detected saves (not limited to 3), level indicator shows with fallback so it no longer reads blank. Cloud parallax layer removed from map screen. Expanded node graphs for variety — Act 1 border_roads preserved; thornwood gains a Queen-Spider mini-boss → Silk Cache detour; Acts 2–5 zones each add 3–5 nodes, branching paths, and a mini-boss-guarded treasure vault side route (buried_cache/ember_hoard/demon_reliquary/shard_vault/void_vault/oblivion_cache/sunken_vault/final_reliquary); progressive complexity with Act 5 reaching ~13 nodes per zone. Sneak skill-check on revisited combat/ambush nodes — deterministic per-node variants pull 2–3 options from DEX/INT/STR/CON with DCs scaling by act; success skips combat, failure enters combat; Fight/Cancel buttons available. Demo-assets Reports link fixed — href now points at #reports-section with scroll-padding-top offset so the section isn't hidden under the fixed nav.",
+          "categories": [
+            "BugFix",
+            "Balance"
+          ]
+        },
+        {
+          "text": "M56 (2026-04-13): Spell Power / Attack Power aggregates + Character Stats tooltips; Attributes tab in Skills menu for deferred points; dialog backgrounds wired (16 bg arts, rift_entry included); combat audio leak fixed (looping boop); Hire Custom parity with Create Hero (icons, descriptions, armor/weapon prefs); Town Merchant/Tavern buttons routed; Blacksmith & Enchanter accept equipped items with grouped display; Party screen 4-group layout (Active/Inactive × Heroes/Companions), tag pills hidden, Skills/Inventory detail buttons; Hire custom skill points scale +2/level; Inventory inactive-member filter; MapScreen Back-to-Town + portal gating; companion slot hero-reject invariant; war dog sprite wired; demo-assets recategorized (Heroes/Companions/Enemies/Bosses); milestone reports featured+accordion layout; shared header template across demo-assets & reports; in-game logo gold→ember gradient; /game-info updated with M46–M56 features. Bugs fixed: post-defeat map unclickable, inter-map node traversal.",
+          "categories": [
+            "BugFix",
+            "Balance",
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M53 (2026-04-12): Graphics expansion — 12 new PixelLab sprites shipped across M46–M48 window (stormcaller/druid/oracle × 4 directions), wired into combat SPRITE_MAP. Tactician/Chronomancer sprites queued and pending in the PixelLab job queue.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "M52 (2026-04-12): QoL — View Combat Log button on after-action dialog (formatted log overlay with color-coded entries by type).",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M51 (2026-04-12): Story & quests — quest turn-in flow with gold + fame rewards (four main quests now turn-in-able: Dangerous Roads 150g, Thornwood 250g, Ashen Wastes 400g, Descent to Hell 600g). Town Quests button shows number bubble counting turn-in-ready quests. QuestLogScreen.getCompletedCount() helper for bubble tracking.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M50 (2026-04-12): Combat polish — boss intro cinematic with '— BOSS —' flash, larger boss nameplate, dark overlay sweep, 3 s dramatic pause before round 1 (regular encounters still 1.2 s).",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M49 (2026-04-12): Map & travel rework — node-by-node travel enforced (no teleporting; only current node and direct exits are reachable), single-use treasure nodes (claimedTreasures tracked in save, 'Already Searched' state on revisit).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M48 (2026-04-12): Five new classes — Stormcaller (Chain Lightning, Static Field, Thunder Ring, Tempest), Druid (Rejuvenation, Entangle, Wild Shape, Nature's Wrath), Oracle (Foresight barriers, Prophecy dodge, Fate Weave, Ascendance), Tactician (Rally Action, Feint, Reposition, Masterstroke), Chronomancer (Haste, Slow Time, Rewind, Time Stop). Each class has 4 skills with 2+ upgrades + talents. Stormcaller/Druid/Oracle PixelLab sprites wired into CombatScreen SPRITE_MAP. Total playable classes: 19.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "M47 (2026-04-12): Party/Town/Inventory UX — new ESC-style Menu button opens GameMenuScreen (Resume, Save, Party, Quests, Codex, Trophies) reachable via ESC key. Town menu trimmed (Party, Codex, Save, Trophies, Daily, Pending Upgrades removed from right column; View Map bubble removed). Party screen now uses 2-column grid on desktop and renames 'active/bench' to 'party/reserve'. Warrior Shield Bash replaced with Cleave (3-target AoE with Bleed upgrades). Heal now has Radiant Splash + Shielding Prayer talents. Skill points now awarded 1 per 3 levels (was 1 per level). Necromancer Raise Dead replaced with Bone Spear (row AoE, 160% INT, pierce/bleed talents). Hire Custom renamed (from 'Build Mercenary') with <100g disable.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M46 (2026-04-12): Combat foundation & critical bug fixes — natural-20 crit system (2× dmg, CRIT label, screen shake), attack bob/hit recoil animation, mana regen per round scaled by INT + new 'of Regeneration' affix, formation targeting (companions first, list order), healer enemy AI heals wounded allies, boss sprite ×1.75 scale, hero/enemy sprite rebalance (heroes 56, enemies 62), HP bars raised, dead enemy HP bar hidden, enemy name label removed, lightning-bolt speed-button icon removed, 2×2 HUD grid on narrow viewports, companion sprite fallback lookup (fixes war-dog blank), TPK returns to town at full HP, combat SFX stop on exit, highest-party-stat skill check (excludes companions) with disabled ineligible choices, deferred attribute spend with autosave + queue fix for 3-levelup panels, PartyScreen autosave on swap, ChallengeScreen wave double-advance guard, TitleScreen per-session random stars, SaveManager v3 migration, accessory affix floor (rings/amulets always ≥1 affix), Enchanter rebuilds display name after affix add, post-encounter ⭐ emoji removed.",
+          "categories": [
+            "BugFix",
+            "Balance",
+            "Art"
+          ]
+        },
+        {
+          "text": "M40 (2026-04-11): Massive feature release — 100 random dialog events (merchants, combat, skill checks, lore, moral dilemmas, companion events, resources, supernatural), anti-repeat tracking via seenEvents in GameState. Town Portal Scroll system (30g consumable, opens reusable two-way portal between node and town, persists in save). Combat layout rework (heroes/companions in vertical columns left, enemy groups spread right, 25% max overlap, scale floors at 0.45). Party 'Stand Down' to reserves + 'Call to Arms' from bench. Companion overflow to bench when party full. SkillTree Close button always visible on mobile. Zone tabs horizontally scrollable. Character builder +1 per click (was +2). Ring slot picker dialog. Title screen click/key to skip intro. Shady wanderer no longer fallback for all maps (11 new zone-specific dialog events added). Suggestions form at /game-info/suggestions.html with checklist prompt generator.",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "M38 (2026-04-11): Bug fixes + 8 new sprites — Dialog bubble now hidden during choices (was showing empty bordered box above choice buttons). 2H weapon twoHanded/offHandOk properties now properly copied to generated items (fix: offhand was never disabled/unequipped because the flag was missing). Combat _drawUnit wrapped in try-catch for resilience. 8 new PixelLab sprites: Pyromancer (final hero class — all 14 now complete), Corrupted Bear, Demon Brute, Cinder Hound, Veil Cultist, Bandit, Grax the Veil-Touched, Lava Titan. Game info page emoji replaced with flat color symbols. Total: 30 characters with 4-direction pixel art (120 sprite PNGs).",
+          "categories": [
+            "BugFix",
+            "Art"
+          ]
+        },
+        {
+          "text": "M35 (2026-04-11): Game info website SPA at /game-info/ — 10-section showcase (hero landing with ember particles, story lore, 14-class grid with role filter, combat system infographic, 4-act journey map, equipment/crafting overview, companions, development timeline, sprite gallery). 8 new PixelLab sprites: Warlock, Demon Hunter, Scavenger, Swashbuckler, Dragon Knight (heroes) + Goblin Warlord, Void Shade, Ash Wraith (enemies) — all 4-direction, wired to SPRITE_MAP. Combat mobile portrait zoom (scale factor based on canvas height + unit count). Disable Textures toggle in Settings (skips background rendering). Companion inventory disabled slots ([Companion] label, can't equip).",
+          "categories": [
+            "Balance",
+            "Art"
+          ]
+        },
+        {
+          "text": "M34 (2026-04-11): Bug fixes — alreadyVisited check now captured BEFORE GameState.visitNode() (was always true causing every combat to give a random encounter); ctx.roundRect() replaced with ctx.rect() to fix silent crash on iOS < 16 that prevented character rendering in combat; pause button emoji replaced with inline SVG icon.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "M33 (2026-04-11): Potion system — 6 potion types (Healing Potion, Greater Healing, Mana Potion, Revival Flask, Group Tonic, Antidote) purchasable at Merchant. Potions displayed in combat pause menu; choose a potion then pick target(s). applyPotionEffect() handles HP/MP restore, revive, AoE, and cure poison.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M32 (2026-04-11): Custom mercenary hiring at Tavern — opens a mini character builder (choose class, name, distribute 10 attribute points), cost scales with attributes spent (100 + 15G per point). Double-tap / pinch zoom disabled on all interactive elements via touch-action: manipulation; canvas uses touch-action: none.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M31 (2026-04-11): Inventory weapon slot picker — 1H weapons show a dialog to choose Main Hand or Off Hand; 2H weapons auto-unequip the off hand; off hand slot shows as disabled (grayed with [2H] label) when a 2H weapon is equipped.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M30 (2026-04-11): Bug fixes + UX improvements — ScreenManager now only draws top screen (fixes title logo showing through combat on app resume); TitleScreen star positions fixed (Math.sin scatter, no more straight line); Map forward-available paths glow with animated gold dashes; random encounters on revisiting combat/ambush nodes from zone pool; zone tabs show NEW badge for unvisited unlocked zones; SkillTreeScreen mobile two-screen flow (list → detail with Back); first node of new zone always accessible; combat pause menu with resume/flee (10-75% chance based on party DEX vs enemies, free enemy attack on fail, disabled for boss fights)/surrender options.",
+          "categories": [
+            "BugFix",
+            "QoL"
+          ]
+        },
+        {
+          "text": "M25 (2026-04-11): Final polish — zone-specific combat music (7 variants: hell/void/standard), 7 new SFX (defeat, level_up, shrine, craft, ng_plus, purchase), CSS fade-in animations on all overlay screens, custom scrollbars, touch feedback, user-select disabled. All 25 milestones complete. Build: 266KB JS (71KB gzip), 33 modules.",
+          "categories": [
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M24 (2026-04-11): Daily Challenge mode — seeded 5-wave gauntlet, seed changes daily, local leaderboard tracking (per-day localStorage). Score = 100 × waves cleared × wave multiplier. Challenge button added to TownScreen. Daily Champion achievement added. Seeded PRNG (mulberry32) varies wave composition slightly per day while keeping difficulty consistent.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M23 (2026-04-11): Item Crafting (Forge) — salvage unequipped items into materials (Iron Scrap, Magic Essence, Rare Dust, Legendary Core, Void Shard), then forge new items from 9 recipes. Materials tracked in GameState. Forge button added to TownScreen action bar. Forge achievement added. Zone-scaled salvage yields (normal → legendary progressively better materials).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M22 (2026-04-11): World Codex screen — 12 lore entries across World, Factions, Bestiary, and Lore categories. Entries unlock based on zones visited, bosses defeated, and story flags. Tabbed category filter, split list/detail layout, progress counter (N/12 unlocked). Codex button added to TownScreen action bar. Lore Seeker achievement added.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M21 (2026-04-11): Party Management Screen — swap heroes/companions between active party and bench, reorder party with up/down controls, tap-to-select-then-tap-another to swap, companion slots visible separately. Party button added to TownScreen action bar. Fixed 4 achievement checks that referenced wrong boss node IDs. Added Act 4 and NG+ achievements (Cosmic Voyager, The Unraveler Falls, New Game+, Twice-Born Legend).",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "M20 (2026-04-11): Audit and polish pass — fixed isGameComplete boss detection (core_boss not 'sovereign'), armor soft cap (damage floors at 15% of raw, not 1), zone-scaled loot tables (Normal→Legendary by zone), zone-scaled drop chance (15%→25%), zone-scaled fame gain (1×→6× multiplier). Full NG+ completeness pass.",
+          "categories": [
+            "BugFix",
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "M19 (2026-04-11): New Game+ system — startNgPlus() resets zones/progress while keeping heroes, companions, inventory, and fame. NG+ scaling: enemies gain +35% HP/damage and +15% armor per tier with ✦ suffix on names. Victory screen shows 'New Game+ ✦' button when final boss is defeated. Title screen displays NG+ tier badge (✦ NG+N) when any save file has a NG+ run active. GameState tracks ngPlus tier. TownScreen shows NG+ indicator next to fame display.",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "M18 (2026-04-11): Act 4 complete — The Cosmic Rift and Eternal Void zones (14 nodes, 4 new enemy types: Void Wraith, Star Horror, Cosmic Titan, The Unraveler). Item sets system with 4 named sets (Goblin Slayer's Garb, Veil Warden's Regalia, Ashen Wanderer's Kit, Hell-Touched Armor) and tiered bonuses. Shrine map nodes — heal/empower/fullrestore with one-use mechanic. Challenge nodes — optional hard fights with bonus loot. Act 4 combat backgrounds (cosmic blue/void black). ZONE_UNLOCK_MAP extended through eternal_void.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "M17 (2026-04-11): AchievementsScreen — 18 achievements across combat, party, economy, fame, and quests. Progress bar and unlock tracking. Trophies button in TownScreen. Companion personality traits — Aela (Patient), Borin (Aggressive), Lysa (Protective), Rekk (Opportunist) — each affects combat skill AI selection. Personality shown in Tavern hire cards. 9 new PixelLab sprites (Goblin Shaman, Cleric, Molten Golem, Rogue + more queued).",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "M16 (2026-04-11): Town fame/reputation system — gained from combat victories (bonus for bosses), displayed in TownScreen header with title tiers (Unknown→Noticed→Known→Respected→Renowned→Legendary). 4 new quests added to QuestLogScreen (Veil Cultists' Purpose, Descent to Hell, The Emberveil Sovereign, plus new Act 3 objectives). Zone weather effects in combat — rain for Border Roads, fog for Thornwood, ash drift for Ashen Wastes, void sparks for Hell zones. Rogue + Cleric wired to sprite system.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "M15 (2026-04-11): Zone-specific combat backgrounds — 6 unique atmospheric scenes (Border Roads starfield, Thornwood tree silhouettes, Dust Roads mesa, Ember Plateau lava glow, Hell Breach spires, Shattered Core void). 2× speed toggle in combat HUD. Rest & Recover service at Cleric (restores all HP/MP for gold). Companion equipment support in InventoryScreen (companions now appear in character tabs). Ranger and Hell Knight sprites added (32 total). New PixelLab sprites queued (Rogue, Molten Golem).",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "M14 (2026-04-11): PixelLab character sprites integrated — Warrior, Mage, Goblin Scout (4-direction pixel art, 68×68px). Sprite-based rendering in CombatScreen with geometric shape fallback. Act 3 zones added: Hell Breach and Shattered Core (7 nodes each) with 6 new enemies (Imp, Hell Knight, Void Shade, Demon Brute, Archfiend Malgrath boss, Emberveil Sovereign final boss). ZONE_UNLOCK_MAP extended through Act 3. Sprite assets cataloged in /demo-assets/.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "M13 (2026-04-11): Quest Log screen — 4 authored quests (Dangerous Roads, Into the Thornwood, The Seer's Warning, Through the Ashen Wastes). Progress tracked via GameState.storyFlags and completedBosses. Per-quest objective checklist, progress bar, act/status badges, lore badge. Journal button in TownScreen now opens QuestLogScreen.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M12 (2026-04-11): Act 2 content — 6 new enemies (Ash Wraith, Cinder Hound, Molten Golem, Veil Cultist, Veil Sorcerer, Lava Titan). 2 new zones: The Dust Roads (7 nodes) and The Ember Plateau (7 nodes). Zone unlock chain: Border Roads → Thornwood → Dust Roads → Ember Plateau. MapScreen now pulls from ALL_ZONES (Act1+Act2). Act 2 zones auto-unlock after corresponding zone boss defeated.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M11 (2026-04-11): CRITICAL BUG FIX — DialogScreen._finish() called onComplete before manager.pop(), causing CombatScreen to be pushed then immediately popped (combat appeared to lock up with looping audio). Fixed by reversing order: pop first, then fire callback. Also fixed: companion hp/mp initialization in Tavern hire, SaveManager load restores unlockedZones/completedBosses, dlg-done uses this._el.querySelector (not document.getElementById).",
+          "categories": [
+            "BugFix",
+            "Art"
+          ]
+        },
+        {
+          "text": "M10 (2026-04-11): Zone progression — MapScreen shows zone tabs for unlocked zones, defeating a boss node unlocks next zone (Border Roads boss → Thornwood Forest). GameState tracks unlockedZones and completedBosses. Victory modal announces new zone unlock. MapScreen reads current zoneId from GameState on entry.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M9 (2026-04-11): Dialog UX overhaul — backdrop now fully opaque (no UI leaking behind), tap-anywhere-on-bubble advances lines, 'Tap to continue' button made large + visible with clear label. Opening cinematic added (shown once per new game: scrolling story text, starfield sky, ember particles, mountain silhouette). Zone progression tracked in GameState (unlockedZones, completedBosses arrays).",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M8 (2026-04-10): Blacksmith service — upgrade item rarity (Normal→Magic→Rare→Legendary) and quality (Low→Medium→High→Elite→Exotic) for gold. Enchanter service — add new stat affixes to Magic/Rare/Legendary items with open slots. Both services fully wired with gold deduction and stat recalculation.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M7 (2026-04-10): Fixed screen layering — TownScreen/MapScreen/InventoryScreen/SkillTree/Dialog/LevelUp all implement onPause (hide) and onResume (show) so pushing a new screen properly hides the one below. Full Act 1 enemy roster (Goblin Scout/Warrior/Shaman/Warlord, Corrupted Wolf/Bear, Bandits, Veil Wardens, Grax boss). Zone-specific encounter tables wired to map nodes. Status effects render as colored dots above HP bars.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "M6 (2026-04-10): Fixed critical bug — CharacterBuilderScreen called non-existent SaveManager.saveSlot; now uses GameState.init + saveCurrentGame. Hero skill AI in combat (45% chance per turn to use class skill). Status effects: Burn/Poison/Bleed (DoT per round), Stun (skip turn). AoE skill resolution (single/adjacent/group/row/all). Skill damage formulas respect damageStat + damageMult. Buff skills (Battle Cry party dmgBuff, Unbreakable dmgReduct). Status effect icons in log.",
+          "categories": [
+            "BugFix",
+            "Balance"
+          ]
+        },
+        {
+          "text": "M5 (2026-04-10): DialogScreen with typewriter text reveal, skill-check choices (DEX/STR/INT vs DC), outcome effects (gold, flags, items). LevelUpScreen for spending pending attribute points post-combat. Floating damage numbers in combat. Dialog nodes on map now route to DialogScreen instead of lore modal.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "M4 (2026-04-10): Skill tree UI (14 classes × 4 skills with talent nodes), inventory screen with equip/unequip logic per slot, save/load system (3 slots, versioned, migration), full GameState integration in combat (whole party fights, XP/gold awards, item drops, level-up detection).",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M3 (2026-04-10): Node map on canvas, zone system, encounter router, boss setup (Grax), combat screen with full turn order, hit/dodge/armor resolution, visual stances, victory/defeat flow, procedural item generation.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "M2 (2026-04-10): Town services (Merchant buy/sell, Tavern hiring, Cleric revive, Save modal), party panel, companion slots, map/inventory/skills navigation.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M1 (2026-04-10): Project scaffold, title screen cinematic (clouds→logo drop→menu), 14-class character builder, attribute distribution, first town, Web Audio procedural music. Pre-game design report at /demo-assets/pre-game-report.html.",
+          "categories": [
+            "Art"
+          ]
+        }
+      ]
+    }
+  ]
+}

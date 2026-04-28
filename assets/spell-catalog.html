@@ -213,7 +213,24 @@
     <label><input type="checkbox" id="f-modded"> Modded only</label>
     <button id="btn-export">Export as mod pack</button>
     <button id="btn-clear" class="secondary">Clear filters</button>
+    <button id="btn-compare-toggle" class="secondary">Compare Mode</button>
     <span class="count">Showing <b id="count-shown">0</b> / <b id="count-total">0</b></span>
+  </div>
+
+  <!-- Compare mode banner -->
+  <div id="compare-bar" style="display:none;background:var(--card,#1a1218);border:1px solid var(--border-subtle,#2a1f30);border-radius:8px;padding:0.6rem 0.9rem;margin:0 0 0.75rem;font-size:0.8rem;">
+    <span style="color:var(--muted);">Compare mode — click up to 4 skills to add them. </span>
+    <button id="btn-run-compare" style="background:var(--gold);color:#080507;border:none;border-radius:4px;padding:0.3rem 0.75rem;font:inherit;font-size:0.78rem;font-weight:700;cursor:pointer;margin-left:0.5rem;">Show Comparison</button>
+    <button id="btn-clear-compare" style="background:transparent;color:var(--muted,#9a8a70);border:1px solid var(--border-subtle,#2a1f30);border-radius:4px;padding:0.3rem 0.6rem;font:inherit;font-size:0.78rem;cursor:pointer;margin-left:0.35rem;">Clear</button>
+    <span id="compare-count" style="margin-left:0.5rem;color:var(--gold);">0 selected</span>
+  </div>
+
+  <!-- Compare table -->
+  <div id="compare-table-wrap" style="display:none;overflow-x:auto;margin-bottom:1rem;">
+    <table id="compare-table" style="border-collapse:collapse;font-size:0.78rem;min-width:500px;width:100%;">
+      <thead><tr id="compare-thead"><th style="text-align:left;padding:5px 8px;color:var(--muted);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.08);min-width:100px;">Stat</th></tr></thead>
+      <tbody id="compare-tbody"></tbody>
+    </table>
   </div>
 
   <div id="grid" class="grid"></div>
@@ -397,7 +414,15 @@
     }).join('');
     host.innerHTML = html;
     host.querySelectorAll('.card').forEach(el => {
-      el.addEventListener('click', () => openDetail(el.dataset.id));
+      if (compareSet.has(el.dataset.id)) el.classList.add('active');
+      el.addEventListener('click', () => {
+        if (compareMode) {
+          const sk = { id: el.dataset.id, ...SKILLS[el.dataset.id] };
+          toggleCompareSkill(sk);
+        } else {
+          openDetail(el.dataset.id);
+        }
+      });
     });
   }
 
@@ -500,6 +525,76 @@
     setTimeout(() => URL.revokeObjectURL(url), 500);
   }
 
+  // ---------- Compare mode ----------
+  let compareMode = false;
+  const compareSet = new Map(); // id → skill object
+
+  function toggleCompareMode() {
+    compareMode = !compareMode;
+    const bar = document.getElementById('compare-bar');
+    const btn = document.getElementById('btn-compare-toggle');
+    bar.style.display = compareMode ? '' : 'none';
+    btn.textContent = compareMode ? 'Exit Compare' : 'Compare Mode';
+    btn.style.background = compareMode ? 'var(--gold)' : '';
+    btn.style.color = compareMode ? '#080507' : '';
+    if (!compareMode) {
+      compareSet.clear();
+      document.getElementById('compare-table-wrap').style.display = 'none';
+      render();
+    }
+  }
+
+  function updateCompareCount() {
+    document.getElementById('compare-count').textContent = compareSet.size + ' selected';
+  }
+
+  function toggleCompareSkill(sk) {
+    if (compareSet.has(sk.id)) {
+      compareSet.delete(sk.id);
+    } else if (compareSet.size < 4) {
+      compareSet.set(sk.id, sk);
+    }
+    updateCompareCount();
+    render();
+  }
+
+  const COMPARE_ROWS = [
+    { label: 'Class',        fn: s => s.class || '—' },
+    { label: 'Type',         fn: s => s.type || '—' },
+    { label: 'MP Cost',      fn: s => s.mpCost !== undefined ? String(s.mpCost) : '—' },
+    { label: 'Unlock Lv.',   fn: s => String(s.unlockLevel || 1) },
+    { label: 'Damage Stat',  fn: s => s.damageStat ? s.damageStat.toUpperCase() : '—' },
+    { label: 'Damage Mult',  fn: s => s.damageMult ? (s.damageMult * 100).toFixed(0) + '%' : '—' },
+    { label: 'Target',       fn: s => s.target || s.aoe || '—' },
+    { label: 'Description',  fn: s => s.description || '—' },
+    { label: 'Talents',      fn: s => (s.talents || []).length ? (s.talents||[]).map(t => (t.name||t.id||t)).join(', ') : '—' },
+    { label: 'Upgrades',     fn: s => (s.upgrades || []).length ? (s.upgrades||[]).map(u => `Lv.${u.level}`).join(', ') : '—' },
+  ];
+
+  function renderCompareTable() {
+    const skills = [...compareSet.values()];
+    const wrap = document.getElementById('compare-table-wrap');
+    if (!skills.length) { wrap.style.display = 'none'; return; }
+    wrap.style.display = '';
+
+    const thRow = document.getElementById('compare-thead').querySelector('tr');
+    // Rebuild header
+    thRow.innerHTML = '<th style="text-align:left;padding:5px 8px;color:var(--muted);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.08);min-width:110px;">Stat</th>';
+    for (const sk of skills) {
+      thRow.innerHTML += `<th style="text-align:left;padding:5px 8px;color:var(--gold);font-family:var(--font-display,'Cinzel',Georgia,serif);font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.08);">${esc(sk.name)}</th>`;
+    }
+
+    const tbody = document.getElementById('compare-tbody');
+    tbody.innerHTML = COMPARE_ROWS.map((row, ri) => {
+      const cells = skills.map(sk => {
+        const val = row.fn(sk);
+        return `<td style="padding:5px 8px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top;white-space:${row.label==='Description'?'normal':'nowrap'};color:var(--text,#f0e8d8);max-width:220px;">${esc(val)}</td>`;
+      }).join('');
+      const bg = ri % 2 === 0 ? 'rgba(0,0,0,0.15)' : 'transparent';
+      return `<tr style="background:${bg};"><td style="padding:5px 8px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--muted,#8a7a6a);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;">${row.label}</td>${cells}</tr>`;
+    }).join('');
+  }
+
   // ---------- Wire controls ----------
   document.addEventListener('DOMContentLoaded', () => {
     initFilters();
@@ -532,6 +627,14 @@
     document.getElementById('btn-export').addEventListener('click', exportModPack);
     document.getElementById('btn-close-detail').addEventListener('click', () => {
       document.getElementById('detail').close();
+    });
+    document.getElementById('btn-compare-toggle').addEventListener('click', toggleCompareMode);
+    document.getElementById('btn-run-compare').addEventListener('click', renderCompareTable);
+    document.getElementById('btn-clear-compare').addEventListener('click', () => {
+      compareSet.clear();
+      updateCompareCount();
+      document.getElementById('compare-table-wrap').style.display = 'none';
+      render();
     });
   });
 })();

@@ -680,6 +680,73 @@
       font-size: 13px;
       font-style: italic;
     }
+
+    /* M313 Latest News widget */
+    #news-section {
+      max-width: 1200px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+    #news-section h2 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--accent-b);
+      margin: 0 0 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    #news-section h2 a {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      margin-left: auto;
+    }
+    #news-section h2 a:hover { color: var(--accent); }
+    .news-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .news-widget-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .news-widget-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .news-widget-cat {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .news-widget-cat.cat-release    { color: #60d880; }
+    .news-widget-cat.cat-dev-diary  { color: #80aaff; }
+    .news-widget-cat.cat-event      { color: #d880d8; }
+    .news-widget-title {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      color: var(--gold-bright);
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+    .news-widget-summary {
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.5;
+      opacity: 0.85;
+    }
+    .news-widget-date {
+      font-size: 11px; color: var(--muted); margin-top: 8px;
+    }
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5H26ZXKBCL"></script>
@@ -706,6 +773,44 @@
 
 <main id="main"></main>
 
+<section id="news-section">
+  <h2>Latest News <a href="news-archive.html">View all</a></h2>
+  <div class="news-cards" id="newsCards"><p style="color:var(--muted);font-size:13px;">Loading...</p></div>
+</section>
+
+<section id="story-section" style="max-width:1200px;margin:24px auto 0;padding:0 24px;">
+  <h2 style="font-family:var(--font-display);font-size:1.1rem;color:var(--accent-b);margin:0 0 12px;letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:6px;">The World of Emberveil</h2>
+  <blockquote style="border-left:3px solid var(--gold);padding:6px 14px;margin:12px 0;color:var(--text-dim);font-style:italic;">
+    "The Veil was not meant to break. It was woven by hands long dead to hold back that which should never have existed. But the corruption finds cracks. It always does."<br><span style="font-size:11px;color:var(--muted);">— The Seer, Thornwood Forest</span>
+  </blockquote>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Shattering Begins</h3>
+      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">For a thousand years the Emberveil held. Then rifts appeared in the frontier lands. Goblin clans, twisted by Veil-corruption, swept through the Border Roads. The Seer sent word: the barrier is unraveling from within.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Hero Answers</h3>
+      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">You are a wanderer drawn to the frontier. Twenty paths of power lie before you — steel, shadow, sorcery, or song. Companions join as you carve a path through six acts toward the corruption's source.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Corruption Spreads</h3>
+      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">Beyond the frontier sprawls the Volcanic Wastes — home to the Cinderborn cult. Deeper, the Shattered Hell yawns open. At the end of all things waits the Cosmic Void, where the Veil was first forged and first broken.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Price of Power</h3>
+      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">Every skill, every rarity, every companion comes with cost. Necromancers and Warlocks walk the razor edge between wielding the Veil's power and being consumed. Your choices determine whether civilization's last ember survives.</p>
+    </div>
+  </div>
+  <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--accent-b);margin:24px 0 10px;letter-spacing:0.08em;text-transform:uppercase;">The Six Acts</h3>
+  <ol style="font-size:13px;color:var(--text);line-height:1.6;margin:0;padding-left:22px;">
+    <li><strong>Border Roads &amp; Thornwood</strong> — Goblin warbands and corrupted wolves. Meet Mira the Seer.</li>
+    <li><strong>Ashen Wastes &amp; Ember Plateau</strong> — Volcanic flats; the Cinderborn cult prepares the Convergence.</li>
+    <li><strong>The Shattered Hell</strong> — Demon strongholds; find the Hell Breach and descend.</li>
+    <li><strong>The Core of Corruption</strong> — The wound at the Veil's center.</li>
+    <li><strong>Reach of the Dragon / Veil's Edge</strong> — Dragon cults and reality fractures.</li>
+    <li><strong>The Cosmic Void</strong> — Where the Veil was first forged.</li>
+  </ol>
+</section>
 <section id="audio-section">
   <h2 class="audio-h">Audio Library <span id="audio-count"></span></h2>
   <div class="audio-toolbar">
@@ -733,10 +838,15 @@
       <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Image Review</div>
       <div style="font-size:12px;color:var(--muted);line-height:1.45;">Audit all character sprite frames — missing poses, flip issues, quality flags.</div>
     </a>
-    <a href="pixellab-redesign.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+    <a href="character-redesign.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
       <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites</div>
-      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">PixelLab Redesign</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Per-character reference sheets and 7-pose candidate previews for the BitForge-only redesign pipeline.</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Character Redesign</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Rebuilt reference sheets per class with updated prompts, grouped by gender. Old portraits sit alongside the new SpriteCook references for easy comparison.</div>
+    </a>
+    <a href="sprite-adjust.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Sprite Adjust</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Per-(character,pose) scale + offset review tool. Compare against a locked reference and copy the resulting JSON into sprite_adjustments.json.</div>
     </a>
     <a href="bg-remove.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
       <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Images</div>
@@ -747,6 +857,11 @@
       <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Planning</div>
       <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Wishlist</div>
       <div style="font-size:12px;color:var(--muted);line-height:1.45;">Feature tracker — planned, in-progress, completed, and shelved items.</div>
+    </a>
+    <a href="rebalance-report.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Balance</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Rebalance Report</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">M264–M267 rebalance findings with charts, simulator sweep results, skill-scaling audit, and the new DPS/Heal/Mitigation meter.</div>
     </a>
     <a href="docs.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
       <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Docs</div>
@@ -778,6 +893,36 @@
 </div>
 
 <script>
+// M313 Latest News widget
+(function() {
+  var CAT_LABELS = { 'release': 'Release', 'dev-diary': 'Dev Diary', 'event': 'Event' };
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  fetch('../news/index.json').then(function(r){ return r.ok ? r.json() : null; }).then(function(data) {
+    var el = document.getElementById('newsCards');
+    if (!el) return;
+    if (!data || !Array.isArray(data.entries) || !data.entries.length) {
+      el.innerHTML = '<p style="color:var(--muted);font-size:13px;">No news yet.</p>';
+      return;
+    }
+    var top3 = data.entries.slice(0, 3);
+    el.innerHTML = top3.map(function(e) {
+      var catLabel = CAT_LABELS[e.category] || e.category;
+      var catCls   = 'cat-' + (e.category || 'release');
+      return '<div class="news-widget-card">' +
+        '<div class="news-widget-cat ' + catCls + '">' + catLabel + '</div>' +
+        '<div class="news-widget-title">' + escHtml(e.title) + '</div>' +
+        '<div class="news-widget-summary">' + escHtml(e.summary) + '</div>' +
+        '<div class="news-widget-date">' + escHtml(e.date) + '</div>' +
+      '</div>';
+    }).join('');
+  }).catch(function() {
+    var el = document.getElementById('newsCards');
+    if (el) el.innerHTML = '<p style="color:var(--muted);font-size:13px;">News unavailable.</p>';
+  });
+})();
+
 const BADGE_CLASSES = {
   openai:   'badge-openai',
   pixellab: 'badge-pixellab',
@@ -1046,30 +1191,39 @@ function indexAssetsByCharacter(assets) {
   return idx;
 }
 
+// M236: canonical pose set per /docs/image-policy.md. Only these poses
+// render — no more stale _east_flipped / _death frames leaking into the UI.
+const CANONICAL_POSES = ['south','east','east_attack','east_spell','east_block','east_ko'];
+
 function renderM79CharacterBlock(character, bundle) {
   const block = document.createElement('div');
   block.className = 'char-m79-block';
-  const portrait = bundle && bundle.portrait;
-  const frames = (bundle && bundle.frames) ? bundle.frames.slice(0, 6) : [];
-  const total = bundle ? bundle.all.length : 0;
 
-  const portraitHtml = portrait && portrait.file
-    ? `<img src="${thumbPath(portrait.file)}" data-orig="${portrait.file}" alt="${character.name}" loading="lazy" onerror="if(this.dataset.fallback){this.style.display='none';this.nextElementSibling.style.display='flex'}else{this.dataset.fallback=1;this.src=this.dataset.orig}">`
-      + `<div class="portrait-missing" style="display:none">?</div>`
-    : `<div class="portrait-missing">?</div>`;
+  // Portrait + reference sheet candidates. Prefer spritecook paths since
+  // that's where approved current sprites live. Fall back to pixellab
+  // reference if the portrait 404s.
+  const id = character.id;
+  const portraitSrc = `../images/spritecook/${id}_portrait.png`;
+  const refSrc = `../images/pixellab/${id}/reference.png`;
 
-  const framesHtml = frames.map(frame => {
-    const frameType = getFrameType(frame);
-    const thumbHtml = frame.file
-      ? `<img src="${thumbPath(frame.file)}" data-orig="${frame.file}" alt="${frameType}" loading="lazy" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src=this.dataset.orig}">`
-      : `<div class="frame-missing">.</div>`;
-    return `<div class="char-m79-frame" onclick="openModal(${JSON.stringify(frame).replace(/"/g, '&quot;')})">
-      ${thumbHtml}
-      <div class="frame-label">${frameType}</div>
+  // Each pose thumbnail tries the canonical spritecook path; onerror it
+  // falls back to the pixellab candidate, and if that also fails the cell
+  // shows "missing". Click opens the lightbox with the full-res image.
+  const poseCellHtml = (pose) => {
+    const sc = `../images/spritecook/${id}_${pose}.png`;
+    const pl = `../images/pixellab/${id}/${pose}.png`;
+    const asset = { id: `${id}_${pose}`, name: `${character.name} ${pose}`, file: sc };
+    return `<div class="char-m79-frame" onclick='openModal(${JSON.stringify(asset).replace(/"/g,"&quot;")})'>
+      <img src="${sc}" data-fb="${pl}" alt="${pose}" loading="lazy"
+           onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.dataset.fb}else{this.style.display='none';this.nextElementSibling.style.display='flex'}">
+      <div class="frame-missing" style="display:none">·</div>
+      <div class="frame-label">${pose.replace(/^east_/,'').replace('east','E').replace('south','S')}</div>
     </div>`;
-  }).join('');
+  };
 
-  const portraitClick = portrait ? `onclick="openModal(${JSON.stringify(portrait).replace(/"/g, '&quot;')})"` : '';
+  const portraitAsset = { id: `${id}_portrait`, name: character.name, file: portraitSrc };
+  const refAsset = { id: `${id}_reference`, name: `${character.name} reference`, file: refSrc };
+  const clickPortrait = `onclick='openModal(${JSON.stringify(portraitAsset).replace(/"/g,"&quot;")})'`;
 
   block.innerHTML = `
     <div class="char-m79-header">
@@ -1077,16 +1231,18 @@ function renderM79CharacterBlock(character, bundle) {
       <div class="char-m79-type">${character.type || ''}</div>
     </div>
     <div class="char-m79-content">
-      <div class="char-m79-portrait" ${portraitClick}>
-        ${portraitHtml}
+      <div class="char-m79-portrait" ${clickPortrait} title="Portrait">
+        <img src="${portraitSrc}" data-fb="${refSrc}" alt="${character.name}" loading="lazy"
+             onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.dataset.fb}else{this.style.display='none';this.nextElementSibling.style.display='flex'}">
+        <div class="portrait-missing" style="display:none">?</div>
       </div>
       <div class="char-m79-frames">
-        ${framesHtml || '<div style="font-size:11px;color:var(--muted)">no frames</div>'}
+        ${CANONICAL_POSES.map(poseCellHtml).join('')}
       </div>
     </div>
     <div class="char-m79-info">
-      <span>${total} assets</span>
-      <span>${character.className || ''}</span>
+      <span>${id}</span>
+      <span>${character.className || character.type || ''}</span>
     </div>
   `;
   return block;
@@ -1361,8 +1517,9 @@ async function render(assets) {
 
   const idx = indexAssetsByCharacter(assets);
 
-  // 1. Heroes
-  const heroesSection = renderCharacterGroup('Heroes', HERO_LIST, idx, 'heroes');
+  // 1. Classes (appearance set — one entry per playable-class appearance;
+  //    companions listed separately below). Renamed from "Heroes" in M236.
+  const heroesSection = renderCharacterGroup('Classes', HERO_LIST, idx, 'heroes');
   main.appendChild(heroesSection);
 
   // 2. Companions

@@ -45,6 +45,8 @@
       --ember: #ff6040;
       --text: #f0e8d8;
       --muted: #8a7a6a;
+      /* M254: matches in-game menu body text (parchment cream). */
+      --parchment: #dfd1c2;
       --panel: rgba(16,8,16,0.88);
       --border: rgba(232,160,32,0.22);
       --border-hover: rgba(232,160,32,0.6);
@@ -129,17 +131,22 @@
     }
     .cloud-layer .cloud-strip {
       position: absolute; top: 0; left: 0; height: 100%; width: 200%;
-      background-image: url('images/menu_bg/clouds_02.png');
       background-repeat: repeat-x;
       background-size: auto 100%;
       will-change: transform;
     }
-    .cloud-layer-1 { opacity: 0.45; }
-    .cloud-layer-1 .cloud-strip { top: 4%;  height: 40%; animation: cloudDrift 90s linear infinite; }
-    .cloud-layer-2 { opacity: 0.3; }
-    .cloud-layer-2 .cloud-strip { top: 18%; height: 46%; animation: cloudDrift 160s linear infinite; }
-    .cloud-layer-3 { opacity: 0.2; }
-    .cloud-layer-3 .cloud-strip { top: 0;   height: 34%; animation: cloudDriftRev 230s linear infinite; }
+    /* M213: new single-layer red-hue clouds_05.png (gpt-image-1.5) as the primary drift.
+       Legacy clouds_02.png still powers the two subtle background layers; swap those
+       to clouds_05.png later if the new asset looks good solo. */
+    /* M236: two parallax layers both using clouds_08b.png (user-tinted to the
+       right red hue). Both drift in the same direction at different speeds —
+       mid-layer drifts faster + closer, back-layer drifts slower + smaller
+       + higher in the hero band. 0.65α on both per user spec. */
+    .cloud-layer-1 { display: none; } /* clouds_06 deleted */
+    .cloud-layer-2 { opacity: 0.65; } /* mid layer */
+    .cloud-layer-2 .cloud-strip { top: 22%; height: 50%; animation: cloudDrift 140s linear infinite; background-image: url('images/menu_bg/clouds_08b.png'); }
+    .cloud-layer-3 { opacity: 0.65; } /* back layer — higher, smaller, slower, SAME direction */
+    .cloud-layer-3 .cloud-strip { top: 2%; height: 30%; animation: cloudDrift 260s linear infinite; background-image: url('images/menu_bg/clouds_08b.png'); }
     @keyframes cloudDrift    { from { transform: translate3d(0, 0, 0); }    to { transform: translate3d(-50%, 0, 0); } }
     @keyframes cloudDriftRev { from { transform: translate3d(-50%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
 
@@ -165,7 +172,7 @@
       font-size: clamp(0.85rem, 3vw, 1.2rem);
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--parchment);
       margin-top: 0.75rem;
       opacity: 0; animation: heroFadeUp 1.2s 0.7s ease-out forwards;
     }
@@ -173,6 +180,21 @@
       display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
       margin-top: 2.5rem;
       opacity: 0; animation: heroFadeUp 1.2s 1.1s ease-out forwards;
+    }
+    /* M222: auto-updated milestone badge — pulled from src/version.js at build time. */
+    .hero-milestone {
+      display: inline-flex; align-items: center; gap: 0.5em;
+      margin-top: 1.5rem;
+      font-family: var(--font-display);
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); opacity: 0;
+      animation: heroFadeUp 1.2s 1.4s ease-out forwards;
+    }
+    .hero-milestone::before {
+      content: ''; display: inline-block;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--ember);
+      box-shadow: 0 0 8px var(--ember);
     }
     .btn-primary {
       background: linear-gradient(135deg, var(--crimson) 0%, #8a1a0a 100%);
@@ -395,7 +417,12 @@
     }
     .hero-card-sm:hover { border-color: var(--border-hover); transform: translateY(-2px); }
     .hero-portrait-sm {
-      width: 100%; height: 100px; object-fit: cover;
+      width: 100%;
+      /* M250: was 100px fixed height with object-fit:cover → landscape
+         portraits were getting cropped. Match the playable-classes card
+         layout (1:1 aspect, contain) so every class reads the same. */
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
       image-rendering: pixelated; background: #0d0810;
     }
     .hero-info-sm { padding: 0.35rem 0.5rem; }
@@ -404,6 +431,54 @@
       color: var(--gold); text-transform: uppercase; letter-spacing: 0.05em;
     }
     .hero-role-sm { font-size: 0.6rem; color: var(--muted); }
+
+    /* ── M251: Tap / Combat / Acts shared feature-grid styles ──────── */
+    .tap-weapons-section, .combat-section { padding: var(--section-pad); background: var(--bg); }
+    .acts-section { padding: var(--section-pad); background: var(--bg2); }
+    .section-eyebrow { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .section-footnote { text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--muted); }
+    .section-footnote a { color: var(--gold); }
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem; max-width: 1100px; margin: 0 auto;
+    }
+    .feature-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.4rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .feature-card h3 { font-family: var(--font-display); font-size: 1rem; color: var(--gold-bright); margin-bottom: 0.5rem; letter-spacing: 0.06em; }
+    .feature-card p { font-size: 0.88rem; color: var(--text); opacity: 0.85; line-height: 1.55; }
+    .feature-card code { background: rgba(255,255,255,0.06); padding: 0 0.3rem; border-radius: 3px; font-size: 0.85em; color: var(--gold-bright); }
+    .acts-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem; max-width: 1200px; margin: 0 auto;
+    }
+    .act-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.5rem;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .act-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .act-card-optional { border-style: dashed; border-color: rgba(192,64,48,0.4); }
+    .act-num {
+      position: absolute; top: -0.5rem; left: 1rem;
+      font-family: var(--font-display); font-size: 1.2rem; font-weight: 900;
+      color: var(--gold-bright);
+      background: var(--bg); padding: 0 0.5rem;
+      letter-spacing: 0.15em;
+    }
+    .act-card h3 { font-family: var(--font-display); font-size: 1.15rem; color: var(--gold); margin: 0.3rem 0 0.2rem; letter-spacing: 0.05em; }
+    .act-sub { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .act-card p { font-size: 0.85rem; color: var(--text); opacity: 0.88; line-height: 1.6; }
+    .act-card em { color: var(--gold-bright); font-style: normal; }
+    .act-tag { display: inline-block; font-size: 0.6rem; background: rgba(192,64,48,0.2); border: 1px solid rgba(192,64,48,0.5); color: #ff8060; padding: 0.1rem 0.4rem; border-radius: 3px; margin-left: 0.4rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
 
     /* ── Companions / Bosses / Enemies Sections ────────────────────── */
     .companions-section { background: var(--bg); }
@@ -414,8 +489,11 @@
       grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
       gap: 0.75rem;
     }
+    /* M250: unified with heroes/enemies — auto-fill at 110px min so mobile
+       wraps to 2-3 cols instead of cramming 5 tiny columns. Still caps width
+       at 640px on desktop so the grid stays compact. */
     #companions-grid, #bosses-grid {
-      grid-template-columns: repeat(5, minmax(110px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
       max-width: 640px;
       margin: 0 auto;
     }
@@ -552,6 +630,9 @@
       color: var(--muted); margin-bottom: 1rem; margin-top: 2rem;
     }
   </style>
+  <script type="module" crossorigin src="/assets/marketing-C0ysEW2o.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/version-CVgknrSm.js">
 </head>
 <body>
 
@@ -563,7 +644,9 @@
   <!-- ── Hero ────────────────────────────────────────────────────── -->
   <section class="hero" aria-label="Hero banner">
     <div class="hero-bg" aria-hidden="true"></div>
-    <div class="cloud-layer cloud-layer-1" aria-hidden="true"><div class="cloud-strip"></div></div>
+    <!-- M236: clouds_08b layered at two scales, same drift direction. -->
+    <div class="cloud-layer cloud-layer-3" data-cloud="clouds_08b-back" aria-hidden="true"><div class="cloud-strip"></div></div>
+    <div class="cloud-layer cloud-layer-2" data-cloud="clouds_08b-mid" aria-hidden="true"><div class="cloud-strip"></div></div>
     <div class="hero-content">
       <h1 class="hero-logo">Emberveil</h1>
       <p class="hero-sub">A Dark-Fantasy Party RPG</p>
@@ -571,6 +654,7 @@
         <a href="./play.html" class="btn-primary">Play Now</a>
         <a href="./contact.html" class="btn-secondary">Contact</a>
       </div>
+      <div class="hero-milestone" id="hero-milestone" aria-label="Current milestone">Milestone —</div>
     </div>
     <div class="scroll-indicator" aria-hidden="true">
       <span>Explore</span>
@@ -689,28 +773,147 @@
 
   <div class="divider"></div>
 
-  <!-- ── Charts Section (moved below images, above News — M167) ──── -->
+  <!-- ── Tap Weapons & Utilities (M251 content migration) ────────────── -->
+  <section class="tap-weapons-section" id="tap-weapons">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Active Combat Layer</div>
+        <h2 class="section-title">Tap Weapons &amp; Utilities</h2>
+        <p class="section-sub">Auto-resolving rounds + a party-shared tap slot that never idles. Ten weapons, ten utilities, each on its own cooldown.</p>
+      </div>
+      <div class="feature-grid reveal">
+        <div class="feature-card">
+          <h3>Two Slots, Party-Wide</h3>
+          <p>Equip one Tap Weapon and one Tap Utility from the Tap Inventory. Every party member can trigger them — tap an enemy to fire the weapon, tap an ally to channel the utility.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Turn vs Round Cooldowns</h3>
+          <p>Fast items refresh per turn and can fire several times per round. Heavy hitters are gated per round — Dragon Call sits at an 8-round cooldown for act-boss moments.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Earned Not Bought</h3>
+          <p>New tap items drop from treasure nodes, boss fights, and the Black Market. Early-game you have one; by Act 4 you'll cycle through a dozen.</p>
+        </div>
+      </div>
+      <p class="section-footnote reveal"><a href="./assets/tap-weapons.html">Full tap-weapon catalog →</a></p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Combat System (M251 content migration) ────────────────────── -->
+  <section class="combat-section" id="combat">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Core Mechanic</div>
+        <h2 class="section-title">Combat System</h2>
+        <p class="section-sub">Auto-rounds with real decisions layered on top — skill selection, tap timing, difficulty-gated resource recovery.</p>
+      </div>
+      <div class="feature-grid reveal">
+        <div class="feature-card">
+          <h3>Turn Order by Initiative</h3>
+          <p>Every unit rolls <code>initiative + d10</code> at round start. Heroes and enemies interleave — no fixed party-first. Slow status halves the roll.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Skills → Basic → Tap</h3>
+          <p>On each turn a hero picks a skill (by personality heuristic), basic-attacks if no skill fits, or casts if mana allows. Tap items fire on YOUR schedule, not the AI's.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Attack Speed</h3>
+          <p>Daggers, rapiers, and shortbows carry the <em>Fast</em> tier — one bonus attack per round. Very-Fast (reserved for passives) stacks two. Fast wielders end every round ahead on DPS.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Attribute Rating</h3>
+          <p>Skill damage scales attributes 1:1 up to 20, then softens to 0.6× per point above. Caps late-game solo-caster one-shots without punishing the early game.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Armor + Magic Resist</h3>
+          <p>Armor follows the DR curve <code>armor / (armor + 100)</code>, capped at 95%. Magic resist subtracts flat from spell damage. Shields add a chance to block up to Block Power damage.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Difficulty: Normal vs Hard</h3>
+          <p>Normal auto-heals on town entry; the cleric is free. Hard preserves HP/MP between fights, charges the cleric per injured member, and disables fast-travel teleport.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Acts (M251 content migration, updated for M235 quests + Act 6) ── -->
+  <section class="acts-section" id="acts">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">The Journey</div>
+        <h2 class="section-title">Six Acts, Twelve Zones</h2>
+        <p class="section-sub">A 5-act main quest plus an optional dragon epilogue. Each act gates the next with a boss; side-board bounties fill the gaps.</p>
+      </div>
+      <div class="acts-grid reveal">
+        <div class="act-card">
+          <div class="act-num">I</div>
+          <h3>The Goblin Frontier</h3>
+          <div class="act-sub">Border Roads · Thornwood Forest</div>
+          <p>Silas Veilward meets you in Emberglen's square and confirms what you already suspected: the raids aren't goblins, they're a cover. <strong>Main quest:</strong> Blood at the Border — clear the Border Roads, take down the Veil Wardens. <strong>Act boss:</strong> Warlord's Vanguard, then The Veil Wardens.</p>
+        </div>
+        <div class="act-card">
+          <div class="act-num">II</div>
+          <h3>The Ashen Wastes</h3>
+          <div class="act-sub">Dust Roads · Ember Plateau</div>
+          <p>Silas confides his missing daughter Lysa. A hooded scholar named <em>Marek Greel</em> starts turning up with suspiciously helpful advice. <strong>Reveal:</strong> Lysa's body, and a letter. <strong>Act boss:</strong> The Lava Titan, then Veil High Priest.</p>
+        </div>
+        <div class="act-card">
+          <div class="act-num">III</div>
+          <h3>The Shattered Hell</h3>
+          <div class="act-sub">Hell Breach · Shattered Core</div>
+          <p>You confront Silas at Dreadhearth. He admits the Ashen Veil compromised him decades ago. <strong>Player choice:</strong> spare him or end it. <strong>Act boss:</strong> Archfiend Malgrath, then The Emberveil Sovereign.</p>
+        </div>
+        <div class="act-card">
+          <div class="act-num">IV</div>
+          <h3>The Cosmic Void</h3>
+          <div class="act-sub">Cosmic Rift · Eternal Void</div>
+          <p>Kaela Thorne — the smug ranger who kept beating you to bounties — shows up an ally this time. She's been tracking the cult through the portal. <strong>Act boss:</strong> The Void Herald, then The Unraveler.</p>
+        </div>
+        <div class="act-card">
+          <div class="act-num">V</div>
+          <h3>The Primordial Abyss</h3>
+          <div class="act-sub">Abyssal Depths · Primordial Nexus</div>
+          <p>The shards point at a scholar. Kaela recognises Marek. <strong>Climax:</strong> The Architect — Marek — in full. Silas was his puppet for decades. <strong>Act boss:</strong> The Primordial King, then The Architect.</p>
+        </div>
+        <div class="act-card act-card-optional">
+          <div class="act-num">VI</div>
+          <h3>The Dragon's Reach <span class="act-tag">optional epilogue</span></h3>
+          <div class="act-sub">Dragon's Reach · Dragon Throne</div>
+          <p>With the Veil sealed, the Dragon-kin stir. A separate arc with its own bosses, its own gear (dragonscale, dragonfang), and four dragon companions to recruit. <strong>Final boss:</strong> Bahamorth, the Dragon King.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Charts Section — reworked M251. Replaced the trivial HP&MP chart
+       with Attack Speed distribution + Rarity of drops. -->
   <section class="charts-section">
     <div class="container">
       <div class="section-header reveal">
         <h2 class="section-title">By the Numbers</h2>
-        <p class="section-sub">A look at the mechanics behind Emberveil</p>
+        <p class="section-sub">Mechanics at a glance</p>
       </div>
       <div class="charts-grid">
         <div class="chart-card reveal">
-          <div class="chart-title">HP &amp; MP by Attribute</div>
-          <div class="chart-wrap"><canvas id="chart-hpmp"></canvas></div>
-          <div class="chart-caption">Max HP scales with CON (50 + CON × 10) · Max MP scales with INT (30 + INT × 8)</div>
-        </div>
-        <div class="chart-card reveal">
           <div class="chart-title">Enemies per Act</div>
           <div class="chart-wrap"><canvas id="chart-enemies"></canvas></div>
-          <div class="chart-caption">Unique enemy types introduced per act</div>
+          <div class="chart-caption">Unique enemy types introduced per act — Act 1 ~7, Act 6 +5 dragon-kin.</div>
         </div>
         <div class="chart-card reveal">
           <div class="chart-title">Class Archetypes</div>
           <div class="chart-wrap"><canvas id="chart-archetypes"></canvas></div>
-          <div class="chart-caption">Party role distribution across 27 classes</div>
+          <div class="chart-caption">29 class/variant appearances split across melee / ranged / caster / hybrid.</div>
+        </div>
+        <div class="chart-card reveal">
+          <div class="chart-title">Act 1 Drop Rarity</div>
+          <div class="chart-wrap"><canvas id="chart-rarity"></canvas></div>
+          <div class="chart-caption">Post-M236 rebalance — border_roads settles at ~50% normal items; magic find shifts the odds.</div>
         </div>
       </div>
     </div>
@@ -936,22 +1139,8 @@
   };
 
   function initCharts() {
-    // 1. HP & MP by attribute (level 1–20 range of CON/INT 1–25)
-    // Formula: maxHp = 50 + CON*10, maxMp = 30 + INT*8
-    const attrs = Array.from({length:10}, (_,i) => i*2+2); // 2,4,6,...20
-    new Chart(document.getElementById('chart-hpmp'), {
-      type: 'line',
-      data: {
-        labels: attrs.map(v => `Attr ${v}`),
-        datasets: [
-          { label:'Max HP', data: attrs.map(v => 50 + v*10), borderColor:'#e8a020', backgroundColor:'rgba(232,160,32,0.1)', tension:0.3, fill:true },
-          { label:'Max MP', data: attrs.map(v => 30 + v*8),  borderColor:'#ff6040', backgroundColor:'rgba(255,96,64,0.07)', tension:0.3, fill:true },
-        ]
-      },
-      options: { ...CHART_DEFAULTS, plugins: { ...CHART_DEFAULTS.plugins, legend: { display: true, labels: { color:'#8a7a6a', font:{size:10} } } } }
-    });
-
-    // 2. Enemies per Act — CLAUDE: counted from mapData.js
+    // M251: HP & MP curve chart retired — trivial linear growth wasn't
+    // worth a dedicated panel. Replaced by Act-1 drop rarity (below).
     new Chart(document.getElementById('chart-enemies'), {
       type: 'bar',
       data: {
@@ -971,6 +1160,26 @@
       options: { responsive:true, maintainAspectRatio:false,
         plugins: { legend: { display:true, position:'right', labels:{ color:'#8a7a6a', font:{size:9}, padding:8 } }, tooltip: CHART_DEFAULTS.plugins.tooltip } }
     });
+
+    // M251: Act 1 drop rarity — shows the post-M236 rebalance. At 0%
+    // MF the border_roads zone rolls 50% normal; thornwood 35%. Each
+    // point of Magic Find shifts the curve toward magic+.
+    const rarityEl = document.getElementById('chart-rarity');
+    if (rarityEl) {
+      new Chart(rarityEl, {
+        type: 'bar',
+        data: {
+          labels: ['No MF','+10% MF','+20% MF','+30% MF'],
+          datasets: [
+            { label:'Normal',   data:[50,40,30,20],  backgroundColor:'rgba(192,192,192,0.7)' },
+            { label:'Magic',    data:[35,37,38,40],  backgroundColor:'rgba(106,156,255,0.7)' },
+            { label:'Rare',     data:[12,17,24,30],  backgroundColor:'rgba(232,224,96,0.7)' },
+            { label:'Legendary',data:[3, 6, 8,10],   backgroundColor:'rgba(255,128,32,0.7)'  },
+          ]
+        },
+        options: { ...CHART_DEFAULTS, scales: { x: { ...CHART_DEFAULTS.scales.x, stacked: true }, y: { ...CHART_DEFAULTS.scales.y, stacked: true } }, plugins: { ...CHART_DEFAULTS.plugins, legend: { display:true, position:'bottom', labels:{ color:'#8a7a6a', font:{size:9}, padding:6 } } } }
+      });
+    }
   }
 
   // ── Hero Cards ─────────────────────────────────────────────────────────
@@ -1147,5 +1356,9 @@
     });
   });
   </script>
+
+  <!-- M222: show current milestone on landing page. MILESTONE constant is regenerated
+       by /home/radgh/claude/release.sh before every build, so this stays in sync
+       automatically with the number shown in-game on the title screen footer. -->
 </body>
 </html>

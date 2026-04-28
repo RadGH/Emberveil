@@ -1,0 +1,182 @@
+{
+  "prefixes": [
+    {
+      "id": "of_str",
+      "name": "Sturdy",
+      "stat": "str",
+      "min": 1,
+      "max": 4
+    },
+    {
+      "id": "of_dex",
+      "name": "Swift",
+      "stat": "dex",
+      "min": 1,
+      "max": 4
+    },
+    {
+      "id": "of_int",
+      "name": "Wise",
+      "stat": "int",
+      "min": 1,
+      "max": 4
+    },
+    {
+      "id": "of_con",
+      "name": "Hardy",
+      "stat": "con",
+      "min": 1,
+      "max": 4
+    },
+    {
+      "id": "sharp",
+      "name": "Sharp",
+      "stat": "dmg",
+      "min": 1,
+      "max": 3,
+      "descriptor": "MELEE",
+      "physicalOnly": true
+    },
+    {
+      "id": "sturdy",
+      "name": "Reinforced",
+      "stat": "armor",
+      "min": 1,
+      "max": 3
+    },
+    {
+      "id": "potency",
+      "name": "Potent",
+      "stat": "spellPower",
+      "min": 0.05,
+      "max": 0.15,
+      "descriptor": "SPELL",
+      "magicOnly": true
+    },
+    {
+      "id": "lifeSteal",
+      "name": "Leeching",
+      "stat": "lifeSteal",
+      "min": 3,
+      "max": 12
+    },
+    {
+      "id": "manaSteal",
+      "name": "Siphoning",
+      "stat": "manaSteal",
+      "min": 3,
+      "max": 12
+    },
+    {
+      "id": "crit_chance",
+      "name": "Deadly",
+      "stat": "critChance",
+      "min": 0.02,
+      "max": 0.1,
+      "descriptor": "CRIT"
+    },
+    {
+      "id": "crit_damage",
+      "name": "Savage",
+      "stat": "critDamage",
+      "min": 0.1,
+      "max": 0.35,
+      "descriptor": "CRIT DMG"
+    }
+  ],
+  "suffixes": [
+    {
+      "id": "of_hp",
+      "name": "of Vitality",
+      "stat": "hp",
+      "min": 5,
+      "max": 20
+    },
+    {
+      "id": "of_mp",
+      "name": "of Focus",
+      "stat": "mp",
+      "min": 5,
+      "max": 15
+    },
+    {
+      "id": "of_hit",
+      "name": "of Accuracy",
+      "stat": "hit",
+      "min": 2,
+      "max": 8
+    },
+    {
+      "id": "of_dodge",
+      "name": "of Evasion",
+      "stat": "dodge",
+      "min": 2,
+      "max": 6
+    },
+    {
+      "id": "of_speed",
+      "name": "of Haste",
+      "stat": "initiative",
+      "min": 1,
+      "max": 3
+    },
+    {
+      "id": "of_gold",
+      "name": "of Fortune",
+      "stat": "goldFind",
+      "min": 0.05,
+      "max": 0.2
+    },
+    {
+      "id": "of_mana_regen",
+      "name": "of Regeneration",
+      "stat": "mana_regen",
+      "min": 1,
+      "max": 3
+    },
+    {
+      "id": "of_magic_resist",
+      "name": "of Warding",
+      "stat": "magicResist",
+      "min": 2,
+      "max": 8
+    }
+  ],
+  "shield": [
+    {
+      "id": "block_chance",
+      "name": "Bulwark",
+      "stat": "block_chance",
+      "min": 0.05,
+      "max": 0.15,
+      "shieldOnly": true,
+      "magicPlus": true
+    },
+    {
+      "id": "block_power",
+      "name": "Bracing",
+      "stat": "block_power",
+      "min": 10,
+      "max": 50,
+      "shieldOnly": true,
+      "magicPlus": true
+    },
+    {
+      "id": "shield_magic_resist",
+      "name": "Spellguard",
+      "stat": "magicResist",
+      "min": 5,
+      "max": 15,
+      "slots": [
+        "offhand",
+        "chest",
+        "legs"
+      ],
+      "armorTiers": [
+        "medium",
+        "heavy"
+      ],
+      "magicPlus": true
+    }
+  ]
+}

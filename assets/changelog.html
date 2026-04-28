@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="rsg-game" content="Emberveil">
+  <title>Emberveil — Changelog</title>
+  <link rel="stylesheet" href="./_tool-styles.css">
+  <style>
+    .cl-toolbar {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      margin-bottom: 20px;
+    }
+    .cl-filter-label {
+      font-family: var(--font-display);
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-right: 4px;
+    }
+    .cl-cat-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: 20px; border: 1px solid transparent;
+      font-family: var(--font-ui); font-size: 12px; cursor: pointer;
+      background: var(--surface); color: var(--text);
+      transition: opacity 0.15s, border-color 0.15s;
+    }
+    .cl-cat-btn.active { border-color: currentColor; }
+    .cl-cat-btn.inactive { opacity: 0.35; }
+    .cl-cat-icon {
+      width: 14px; height: 14px; flex-shrink: 0;
+    }
+    .cl-milestone {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px; margin-bottom: 16px;
+    }
+    .cl-milestone-header {
+      display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .cl-milestone-num {
+      font-family: var(--font-display); font-size: 16px;
+      color: var(--gold-bright); letter-spacing: 0.08em;
+    }
+    .cl-milestone-date {
+      font-size: 12px; color: var(--muted);
+    }
+    .cl-milestone-summary {
+      font-size: 13px; color: var(--muted); font-style: italic;
+      margin-bottom: 10px; line-height: 1.45;
+    }
+    .cl-items { list-style: none; margin: 0; padding: 0; }
+    .cl-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding: 5px 0; border-bottom: 1px solid rgba(232,160,32,0.07);
+      line-height: 1.5;
+    }
+    .cl-item:last-child { border-bottom: none; }
+    .cl-item-cats { display: flex; gap: 4px; flex-shrink: 0; padding-top: 2px; }
+    .cl-badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 2px 6px; border-radius: 10px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.06em;
+      color: #fff; white-space: nowrap;
+    }
+    .cl-badge svg { width: 9px; height: 9px; flex-shrink: 0; }
+    .cl-item-text { font-size: 13px; color: var(--text); flex: 1; }
+    .cl-item[data-hidden="1"] { display: none; }
+    .cl-empty { color: var(--muted); font-size: 13px; text-align: center; padding: 32px; }
+    .cl-milestone[data-hidden="1"] { display: none; }
+  </style>
+  <script src="./_header.js" defer></script>
+</head>
+<body>
+  <h1>Changelog</h1>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:20px">
+    All changes across every milestone. Filter by category below.
+  </p>
+
+  <div class="cl-toolbar" id="cl-toolbar">
+    <span class="cl-filter-label">Filter:</span>
+  </div>
+
+  <div id="cl-content">
+    <div class="cl-empty">Loading changelog...</div>
+  </div>
+
+  <script>
+  (async () => {
+    // ─── SVG icons per category (single-color, no emoji) ───────────────
+    const CAT_ICONS = {
+      Feature: `<svg viewBox="0 0 16 16" fill="currentColor"><polygon points="8,2 14,14 2,14"/></svg>`,
+      BugFix:  `<svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="6"/><rect x="7" y="4" width="2" height="5"/><rect x="7" y="10" width="2" height="2"/></svg>`,
+      Balance: `<svg viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="7" width="14" height="2"/><rect x="7" y="1" width="2" height="14"/></svg>`,
+      QoL:     `<svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`,
+      Art:     `<svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="8" r="3"/></svg>`,
+    };
+
+    const toolbar = document.getElementById('cl-toolbar');
+    const content = document.getElementById('cl-content');
+
+    let data;
+    try {
+      const r = await fetch('./changelog-structured.json');
+      data = r.ok ? await r.json() : null;
+    } catch (_) { data = null; }
+
+    if (!data || !data.entries || data.entries.length === 0) {
+      content.innerHTML = '<div class="cl-empty">No changelog entries found.</div>';
+      return;
+    }
+
+    const cats = data.categories || [];
+    const activeFilters = new Set(cats.map(c => c.id));
+
+    // Build filter buttons
+    for (const cat of cats) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'cl-cat-btn active';
+      btn.dataset.cat = cat.id;
+      btn.style.color = cat.color;
+      btn.innerHTML = `<svg class="cl-cat-icon" viewBox="0 0 16 16" style="color:${cat.color}">${(CAT_ICONS[cat.id] || '').replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '')}</svg>${cat.label}`;
+      btn.addEventListener('click', () => {
+        if (activeFilters.has(cat.id)) {
+          activeFilters.delete(cat.id);
+          btn.classList.remove('active');
+          btn.classList.add('inactive');
+        } else {
+          activeFilters.add(cat.id);
+          btn.classList.add('active');
+          btn.classList.remove('inactive');
+        }
+        applyFilters();
+      });
+      toolbar.appendChild(btn);
+    }
+
+    // Build milestone blocks
+    content.innerHTML = '';
+    for (const entry of data.entries) {
+      const block = document.createElement('div');
+      block.className = 'cl-milestone';
+      block.dataset.milestone = entry.milestone;
+
+      const headerEl = document.createElement('div');
+      headerEl.className = 'cl-milestone-header';
+      headerEl.innerHTML = `
+        <span class="cl-milestone-num">M${entry.milestone}</span>
+        ${entry.date ? `<span class="cl-milestone-date">${entry.date}</span>` : ''}
+      `;
+      block.appendChild(headerEl);
+
+      if (entry.summary) {
+        const sumEl = document.createElement('div');
+        sumEl.className = 'cl-milestone-summary';
+        sumEl.textContent = entry.summary;
+        block.appendChild(sumEl);
+      }
+
+      const ul = document.createElement('ul');
+      ul.className = 'cl-items';
+
+      const items = entry.items || [];
+      if (items.length === 0 && entry.summary) {
+        // summary already shown above; nothing more to show
+      }
+
+      for (const item of items) {
+        const li = document.createElement('li');
+        li.className = 'cl-item';
+        li.dataset.cats = (item.categories || ['Feature']).join(',');
+
+        // Category badges
+        const catsEl = document.createElement('div');
+        catsEl.className = 'cl-item-cats';
+        for (const catId of (item.categories || ['Feature'])) {
+          const catDef = cats.find(c => c.id === catId) || { id: catId, label: catId, color: '#666' };
+          const badge = document.createElement('span');
+          badge.className = 'cl-badge';
+          badge.style.background = catDef.color + '33';
+          badge.style.color = catDef.color;
+          badge.title = catDef.label;
+          badge.innerHTML = `<svg viewBox="0 0 16 16" width="9" height="9" fill="currentColor">${(CAT_ICONS[catId] || '').replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '')}</svg>`;
+          catsEl.appendChild(badge);
+        }
+        li.appendChild(catsEl);
+
+        const textEl = document.createElement('span');
+        textEl.className = 'cl-item-text';
+        textEl.textContent = item.text;
+        li.appendChild(textEl);
+
+        ul.appendChild(li);
+      }
+
+      block.appendChild(ul);
+      content.appendChild(block);
+    }
+
+    function applyFilters() {
+      for (const block of content.querySelectorAll('.cl-milestone')) {
+        let anyVisible = false;
+        for (const item of block.querySelectorAll('.cl-item')) {
+          const itemCats = (item.dataset.cats || '').split(',');
+          const show = itemCats.some(c => activeFilters.has(c));
+          item.dataset.hidden = show ? '0' : '1';
+          if (show) anyVisible = true;
+        }
+        // Show block if it has visible items or only a summary (no items)
+        const hasItems = block.querySelectorAll('.cl-item').length > 0;
+        block.dataset.hidden = (hasItems && !anyVisible) ? '1' : '0';
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

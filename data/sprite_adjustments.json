@@ -1,0 +1,42 @@
+{
+  "$schema": "../schemas/v1/sprite-adjustment.json",
+  "$comment": "Per-(character,pose) sprite scale + offset overrides. Edit via /assets/sprite-adjust.html. CombatScreen + InventoryScreen apply scale at draw time.",
+  "shaman_male": {
+    "perPose": {
+      "south":       { "scale": 1.05,  "offsetX":  24, "offsetY": -14 },
+      "east":        { "scale": 0.997, "offsetX":  32, "offsetY":  -9 },
+      "east_attack": { "scale": 1.103, "offsetX":  63, "offsetY": -37 },
+      "east_spell":  { "scale": 1.158, "offsetX": -11, "offsetY": -46 },
+      "east_block":  { "scale": 1,     "offsetX": -35, "offsetY": -13 },
+      "east_ko":     { "scale": 0.815, "offsetX":  25, "offsetY":  50 }
+    }
+  },
+  "sorcerer": {
+    "perPose": {
+      "east":        { "scale": 0.945, "offsetX":   6, "offsetY":   4 },
+      "east_attack": { "scale": 0.857, "offsetX":  18, "offsetY":   2 },
+      "east_spell":  { "scale": 0.945, "offsetX":  37, "offsetY":   7 },
+      "east_block":  { "scale": 0.902, "offsetX":  21, "offsetY":   8 },
+      "east_ko":     { "scale": 0.815, "offsetX":   1, "offsetY":  69 }
+    }
+  },
+  "sorcerer_female": {
+    "perPose": {
+      "south":       { "scale": 0.936, "offsetX":  22, "offsetY":   3 },
+      "east":        { "scale": 0.891, "offsetX":  18, "offsetY":  -1 },
+      "east_attack": { "scale": 0.95,  "offsetX":  -4, "offsetY":  -8 },
+      "east_spell":  { "scale": 0.891, "offsetX":  32, "offsetY":   5 },
+      "east_block":  { "scale": 0.898, "offsetX":  61, "offsetY":   1 },
+      "east_ko":     { "scale": 0.663, "offsetX":   6, "offsetY":  87 }
+    }
+  },
+  "stormcaller": {
+    "perPose": {
+      "south":      { "scale": 1.037, "offsetX": -16, "offsetY":  12 },
+      "east":       { "scale": 1,     "offsetX": -32, "offsetY":  -1 },
+      "east_spell": { "scale": 0.95,  "offsetX": -27, "offsetY":  -2 },
+      "east_block": { "scale": 0.95,  "offsetX": -27, "offsetY":  -9 },
+      "east_ko":    { "scale": 0.772, "offsetX":  17, "offsetY":  59 }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>Privacy Policy — Emberveil</title>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<style>
+  main { max-width: 780px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+  h1 { font-family: var(--font-display); color: var(--gold); margin-bottom: .25rem; }
+  h2 { color: var(--gold); margin-top: 1.8rem; font-size: 1.1rem; }
+  p, li { line-height: 1.6; }
+  code { background: #1c1218; padding: 0.1rem 0.35rem; border-radius: 3px; color: #e8a020; }
+  ul { padding-left: 1.2rem; }
+</style>
+</head>
+<body>
+<script src="./_header.js" defer></script>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="lead">What Emberveil collects, why, and how to opt out.</p>
+
+  <h2>Anonymous Gameplay Telemetry (opt-in)</h2>
+  <p>If you opt in, Emberveil sends anonymous gameplay events so we can balance classes, identify overpowered spells, and tune difficulty to real player experience. Opt-in is <strong>off by default</strong>. You are asked once on first launch and can flip the toggle anytime in Settings.</p>
+
+  <h2>What we collect when you opt in</h2>
+  <ul>
+    <li>Random session ID (a UUID generated on your device, stored in browser localStorage)</li>
+    <li>Game version (e.g. <code>M211</code>)</li>
+    <li>Combat encounter results: act number, encounter ID, outcome, rounds elapsed, party size</li>
+    <li>Level-up events: class, level, attribute allocation</li>
+    <li>Per-combat damage aggregates: class, weapon category, average and max damage dealt</li>
+    <li>Tap weapon usage: weapon ID, hit counts, average damage</li>
+    <li>Run summaries: act reached, encounters cleared, outcome</li>
+  </ul>
+
+  <h2>What we do NOT collect</h2>
+  <ul>
+    <li>No character names, hero names, or any text you enter</li>
+    <li>No email address, account ID, or login identifiers</li>
+    <li>No IP address logged server-side beyond what is required for the request to reach our backend</li>
+    <li>No device fingerprinting, cookies for tracking, or cross-site identifiers</li>
+    <li>No screenshots, save files, or chat content</li>
+  </ul>
+
+  <h2>How the data is used</h2>
+  <p>Only to tune game balance. Aggregated results may be published in milestone reports at <code>/assets/</code>. Raw events are never shared with third parties and are retained only as long as needed for the current balance patch analysis.</p>
+
+  <h2>How to opt out</h2>
+  <ul>
+    <li>Open <strong>Settings</strong> in-game</li>
+    <li>Toggle <strong>Share Anonymous Data</strong> off</li>
+    <li>No further events will be sent. Previously queued events on your device are discarded the next time the game loads.</li>
+  </ul>
+
+  <h2>Cloud account (separate feature)</h2>
+  <p>If you use the optional Cloud Saves feature, email + password are stored by our auth provider solely to authenticate your save file syncs. That system is independent from telemetry and is governed by our auth provider's own privacy policy.</p>
+
+  <h2>Questions</h2>
+  <p>For any questions, contact the developer via the GitHub repository linked in the footer.</p>
+</main>
+</body>
+</html>

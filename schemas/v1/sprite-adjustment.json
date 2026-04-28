@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://emberveil.rsg/schemas/v1/sprite-adjustment.json",
+  "title": "Emberveil Sprite Adjustment (v1)",
+  "description": "Per-(character, pose) scale + offset values applied at sprite-draw time. Used to fix sprites that fill their image frame too aggressively (e.g. goblins drawn at the same scale as humans). Authored via the /assets/sprite-adjust.html review tool.",
+  "type": "object",
+  "patternProperties": {
+    "^[a-z][a-z0-9_]{1,47}$": {
+      "type": "object",
+      "description": "Per-character entry. Key is the spriteId (matches appearances.js sprite field or enemy id).",
+      "additionalProperties": false,
+      "properties": {
+        "scale": { "type": "number", "minimum": 0.1, "maximum": 4, "description": "Default scale multiplier applied to every pose unless overridden in perPose." },
+        "offsetX": { "type": "number", "minimum": -200, "maximum": 200, "description": "Default x-offset in pixels (positive = right)." },
+        "offsetY": { "type": "number", "minimum": -200, "maximum": 200, "description": "Default y-offset in pixels (positive = down)." },
+        "perPose": {
+          "type": "object",
+          "description": "Per-pose overrides. Pose keys: portrait, south, east, east_attack, east_spell, east_block, east_ko.",
+          "patternProperties": {
+            "^(portrait|south|east|east_attack|east_spell|east_block|east_ko)$": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "scale":   { "type": "number", "minimum": 0.1, "maximum": 4 },
+                "offsetX": { "type": "number", "minimum": -200, "maximum": 200 },
+                "offsetY": { "type": "number", "minimum": -200, "maximum": 200 }
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

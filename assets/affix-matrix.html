@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Affix Interaction Matrix — Emberveil</title>
+<style>
+  body { padding: 1rem 1rem 5rem; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 40%, var(--ember1) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin: 0 0 0.25rem;
+  }
+  .page-sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+  /* Filters */
+  .filters {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    margin-bottom: 1rem;
+    position: sticky; top: 0; z-index: 20;
+  }
+  .filters label { color: var(--muted); font-size: 0.78rem; display: flex; align-items: center; gap: 0.3rem; }
+  .filters select {
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 0.3rem 0.5rem; font: inherit; font-size: 0.78rem;
+  }
+  .filters .legend { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-left: auto; align-items: center; }
+  .legend-chip {
+    display: inline-flex; align-items: center; gap: 0.25rem;
+    font-size: 0.7rem; padding: 2px 7px; border-radius: 3px;
+    font-weight: 600; letter-spacing: 0.04em;
+  }
+  .lc-stack    { background: rgba(80,200,120,0.15); color: #60e880; border: 1px solid rgba(80,200,120,0.3); }
+  .lc-conflict { background: rgba(220,80,80,0.15);  color: #ff8060; border: 1px solid rgba(220,80,80,0.3); }
+  .lc-multiply { background: rgba(200,160,40,0.15); color: #ffd060; border: 1px solid rgba(200,160,40,0.3); }
+  .lc-indep    { background: rgba(100,140,200,0.12); color: #80b0e0; border: 1px solid rgba(100,140,200,0.25); }
+  .lc-self     { background: rgba(120,120,120,0.1); color: var(--muted); border: 1px solid rgba(120,120,120,0.18); }
+
+  /* Matrix table */
+  .matrix-wrap { overflow-x: auto; }
+  table.matrix {
+    border-collapse: collapse;
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+  table.matrix th, table.matrix td {
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 0;
+  }
+  table.matrix th.corner { background: var(--surface); width: 100px; min-width: 100px; }
+  table.matrix th.col-hdr {
+    background: var(--card);
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 4px;
+    text-align: center;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    height: 90px;
+    vertical-align: bottom;
+    cursor: default;
+  }
+  table.matrix th.row-hdr {
+    background: var(--card);
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 5px 8px;
+    text-align: right;
+    white-space: nowrap;
+  }
+  table.matrix td.cell {
+    width: 36px; min-width: 36px; height: 32px;
+    text-align: center; vertical-align: middle;
+    cursor: pointer;
+    transition: filter 0.1s;
+    position: relative;
+  }
+  table.matrix td.cell:hover { filter: brightness(1.4); }
+  table.matrix td.cell .ci { font-size: 0.65rem; font-weight: 700; user-select: none; }
+
+  /* Cell colors */
+  .c-self     { background: rgba(120,120,120,0.08); }
+  .c-stack    { background: rgba(80,200,120,0.18); }
+  .c-conflict { background: rgba(220,80,80,0.18); }
+  .c-multiply { background: rgba(220,180,40,0.18); }
+  .c-indep    { background: rgba(100,140,200,0.12); }
+
+  /* Modal */
+  .modal-bg {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .modal-bg.open { display: flex; }
+  .modal {
+    background: var(--card);
+    border: 1px solid var(--border-hi);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+  }
+  .modal h2 {
+    font-family: var(--font-display);
+    color: var(--gold-bright);
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.5rem;
+  }
+  .modal .close-btn {
+    position: absolute; top: 0.75rem; right: 0.75rem;
+    background: transparent; border: 1px solid var(--border);
+    color: var(--muted); border-radius: 4px;
+    padding: 2px 8px; cursor: pointer; font: inherit; font-size: 0.8rem;
+  }
+  .modal-type { display: inline-block; margin-bottom: 0.6rem; }
+  .modal-detail { color: var(--text); font-size: 0.82rem; line-height: 1.6; }
+  .modal-stats {
+    margin-top: 0.75rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+  }
+  .modal-stats .ms-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.45rem 0.6rem;
+  }
+  .modal-stats .ms-label { color: var(--muted); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem; }
+  .modal-stats .ms-val { color: var(--gold); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page-title">Affix Interaction Matrix</h1>
+  <p class="page-sub">Visual grid showing how affix pairs interact on the same item. Heuristic-derived from stat targets and operation types. Click any cell for details. Uses live data from <code>getAffixes()</code>.</p>
+
+  <div class="filters">
+    <label>Pool: <select id="filterPool">
+      <option value="all">All pools</option>
+      <option value="prefix">Prefixes</option>
+      <option value="suffix">Suffixes</option>
+    </select></label>
+    <div class="legend">
+      <span class="legend-chip lc-stack">Stack</span>
+      <span class="legend-chip lc-conflict">Conflict</span>
+      <span class="legend-chip lc-multiply">Multiply</span>
+      <span class="legend-chip lc-indep">Independent</span>
+      <span class="legend-chip lc-self">Self</span>
+    </div>
+  </div>
+
+  <div class="matrix-wrap">
+    <div id="matrixContainer" style="color:var(--muted);font-size:0.82rem;padding:1rem;">Loading affix data…</div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" id="modal">
+    <button class="close-btn" id="modalClose">X</button>
+    <h2 id="modalTitle">Affix Interaction</h2>
+    <div id="modalTypeChip"></div>
+    <div class="modal-detail" id="modalDetail"></div>
+    <div class="modal-stats" id="modalStats"></div>
+  </div>
+</div>
+
+<script type="module">
+import { getAffixes } from './data/data-source.js';
+
+let allAffixes = [];
+let filteredAffixes = [];
+
+const INTERACTION_RULES = {
+  stack: { label: 'Stack', cls: 'c-stack', chipCls: 'lc-stack', ci: 'S',
+    desc: 'Both affixes apply the same stat bonus additively. Equipping two items with this affix combination adds both values.' },
+  conflict: { label: 'Conflict', cls: 'c-conflict', chipCls: 'lc-conflict', ci: 'X',
+    desc: 'Affixes target the same stat through different operations. Only the higher value applies; they cannot both be active simultaneously.' },
+  multiply: { label: 'Multiply', cls: 'c-multiply', chipCls: 'lc-multiply', ci: 'M',
+    desc: 'Affixes apply multiplicative bonuses to the same derived stat. Combined effect exceeds linear sum — high synergy.' },
+  indep: { label: 'Independent', cls: 'c-indep', chipCls: 'lc-indep', ci: 'I',
+    desc: 'Affixes target different stats. Both apply fully without interference.' },
+  self: { label: 'Self', cls: 'c-self', chipCls: 'lc-self', ci: '—',
+    desc: 'Same affix — cannot appear twice on the same item.' },
+};
+
+function getInteraction(a, b) {
+  if (a.id === b.id) return 'self';
+  const sameTarget = (a.stat === b.stat);
+  if (!sameTarget) {
+    // crit_chance + crit_damage → multiply (related multiplier chain)
+    const critPair = ['critChance','critDamage'];
+    if (critPair.includes(a.stat) && critPair.includes(b.stat)) return 'multiply';
+    // lifeSteal + manaSteal → independent (different resources)
+    return 'indep';
+  }
+  // same stat
+  // if both are additive range → stack
+  const isAdd = (x) => typeof x.min === 'number' && typeof x.max === 'number' && !x.physicalOnly && !x.magicOnly;
+  if (isAdd(a) && isAdd(b)) return 'stack';
+  // one has physicalOnly or magicOnly restriction → conflict (mutual exclusivity)
+  if ((a.physicalOnly || a.magicOnly) && (b.physicalOnly || b.magicOnly)) return 'conflict';
+  return 'stack';
+}
+
+function getInteractionDetail(a, b, iType) {
+  const base = INTERACTION_RULES[iType].desc;
+  if (iType === 'self') return base;
+  const rangeA = a.min !== undefined ? `${a.min}–${a.max}` : '?';
+  const rangeB = b.min !== undefined ? `${b.min}–${b.max}` : '?';
+  if (iType === 'stack') {
+    const combined = ((a.min||0)+(b.min||0)) + '–' + ((a.max||0)+(b.max||0));
+    return `${base} Combined ${a.stat} range: ${combined}.`;
+  }
+  if (iType === 'conflict') {
+    return `${base} ${a.name} gives ${a.stat} ${rangeA}; ${b.name} gives ${a.stat} ${rangeB}. Equip only one for maximum benefit.`;
+  }
+  if (iType === 'multiply') {
+    return `${base} ${a.name} (${a.stat} ${rangeA}) and ${b.name} (${b.stat} ${rangeB}) form a crit multiplier chain — highly recommended pairing for damage builds.`;
+  }
+  return `${base} ${a.name} targets [${a.stat}]; ${b.name} targets [${b.stat}].`;
+}
+
+function buildMatrix(affixes) {
+  const n = affixes.length;
+  if (!n) return '<p style="color:var(--muted)">No affixes found.</p>';
+
+  let html = '<table class="matrix"><thead><tr>';
+  html += '<th class="corner"></th>';
+  for (const a of affixes) {
+    html += `<th class="col-hdr" title="${a.name}">${a.name}</th>`;
+  }
+  html += '</tr></thead><tbody>';
+
+  for (let r = 0; r < n; r++) {
+    const ra = affixes[r];
+    html += `<tr><th class="row-hdr">${ra.name}</th>`;
+    for (let c = 0; c < n; c++) {
+      const ca = affixes[c];
+      const iType = getInteraction(ra, ca);
+      const rule = INTERACTION_RULES[iType];
+      html += `<td class="cell ${rule.cls}" data-r="${r}" data-c="${c}" title="${ra.name} × ${ca.name}: ${rule.label}"><span class="ci">${rule.ci}</span></td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  return html;
+}
+
+function openModal(r, c) {
+  const a = filteredAffixes[r];
+  const b = filteredAffixes[c];
+  const iType = getInteraction(a, b);
+  const rule = INTERACTION_RULES[iType];
+
+  document.getElementById('modalTitle').textContent = `${a.name}  ×  ${b.name}`;
+  document.getElementById('modalTypeChip').innerHTML =
+    `<span class="legend-chip ${rule.chipCls} modal-type">${rule.label}</span>`;
+  document.getElementById('modalDetail').textContent = getInteractionDetail(a, b, iType);
+
+  let statsHtml = '';
+  const renderBlock = (af, label) => {
+    const range = af.min !== undefined ? `${af.min} – ${af.max}` : 'n/a';
+    statsHtml += `<div class="ms-block">
+      <div class="ms-label">${label}</div>
+      <div class="ms-val">${af.name}</div>
+      <div style="color:var(--muted);font-size:0.72rem;margin-top:0.15rem;">stat: ${af.stat || '?'} &nbsp; range: ${range}</div>
+      ${af.descriptor ? `<div style="color:var(--muted);font-size:0.7rem;">[${af.descriptor}]</div>` : ''}
+    </div>`;
+  };
+  renderBlock(a, 'Affix A');
+  renderBlock(b, 'Affix B');
+  document.getElementById('modalStats').innerHTML = statsHtml;
+
+  document.getElementById('modalBg').classList.add('open');
+}
+
+function applyFilter() {
+  const pool = document.getElementById('filterPool').value;
+  if (pool === 'prefix') filteredAffixes = allAffixes.filter(a => a._pool === 'prefix');
+  else if (pool === 'suffix') filteredAffixes = allAffixes.filter(a => a._pool === 'suffix');
+  else filteredAffixes = allAffixes;
+  renderMatrix();
+}
+
+function renderMatrix() {
+  const container = document.getElementById('matrixContainer');
+  container.innerHTML = buildMatrix(filteredAffixes);
+  container.querySelectorAll('td.cell').forEach(cell => {
+    cell.addEventListener('click', () => {
+      openModal(+cell.dataset.r, +cell.dataset.c);
+    });
+  });
+}
+
+async function init() {
+  try {
+    const raw = await getAffixes();
+    const tag = (arr, pool) => arr.map(a => ({ ...a, _pool: pool }));
+    allAffixes = [
+      ...tag(raw.prefixes || [], 'prefix'),
+      ...tag(raw.suffixes || [], 'suffix'),
+      ...tag(raw.shield || [], 'shield'),
+    ];
+    filteredAffixes = allAffixes;
+  } catch (e) {
+    document.getElementById('matrixContainer').innerHTML =
+      `<p style="color:#ff6060">Failed to load affix data: ${e.message}</p>`;
+    return;
+  }
+
+  renderMatrix();
+
+  document.getElementById('filterPool').addEventListener('change', applyFilter);
+  document.getElementById('modalClose').addEventListener('click', () => {
+    document.getElementById('modalBg').classList.remove('open');
+  });
+  document.getElementById('modalBg').addEventListener('click', e => {
+    if (e.target === document.getElementById('modalBg'))
+      document.getElementById('modalBg').classList.remove('open');
+  });
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Combat Replay — Emberveil</title>
+<style>
+body { padding: 1rem 1rem 4rem; }
+.wrap { max-width: 720px; margin: 0 auto; }
+h1 {
+  font-family: 'Cinzel',Georgia,serif;
+  font-size: 1.4rem; margin: 0 0 0.2rem;
+  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+  background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+/* Drop zone */
+.drop-zone {
+  border: 2px dashed var(--border); border-radius: 10px;
+  padding: 2.5rem 1rem; text-align: center; color: var(--muted);
+  cursor: pointer; transition: border-color 0.15s, background 0.15s;
+  margin-bottom: 1rem;
+}
+.drop-zone.drag-over { border-color: var(--gold); background: rgba(232,160,32,0.07); }
+.drop-zone input[type=file] { display: none; }
+.drop-zone label {
+  cursor: pointer; color: var(--gold); font-size: 0.9rem;
+  text-decoration: underline; text-underline-offset: 2px;
+}
+.drop-zone .hint { font-size: 0.8rem; margin-top: 0.4rem; }
+
+/* Meta bar */
+.meta-bar {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 8px; padding: 0.6rem 0.9rem; margin-bottom: 0.75rem;
+  font-size: 0.8rem; color: var(--text);
+}
+.meta-item { display: flex; gap: 0.3rem; align-items: center; }
+.meta-label { color: var(--muted); font-size: 0.74rem; }
+
+/* HP bars area */
+.hp-section {
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 8px; padding: 0.75rem 0.9rem; margin-bottom: 0.75rem;
+}
+.hp-section h3 { font-size: 0.8rem; color: var(--muted); margin: 0 0 0.5rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.hp-track { margin-bottom: 0.5rem; }
+.hp-track-name { font-size: 0.78rem; color: var(--text); margin-bottom: 0.2rem; }
+.hp-bar-row { display: flex; gap: 0.4rem; align-items: center; flex-wrap: nowrap; overflow: hidden; }
+.hp-bar-segment {
+  height: 10px; min-width: 2px; border-radius: 2px;
+  transition: width 0.2s; flex-shrink: 0;
+}
+
+/* Controls */
+.replay-controls {
+  display: flex; gap: 0.5rem; align-items: center;
+  margin-bottom: 0.75rem; flex-wrap: wrap;
+}
+.replay-controls button {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text); font: inherit; font-size: 0.8rem; padding: 0.3rem 0.7rem;
+  cursor: pointer; min-height: 36px; min-width: 44px;
+}
+.replay-controls button:hover { border-color: var(--gold); }
+.replay-controls .step-info { color: var(--muted); font-size: 0.78rem; }
+input[type=range] { flex: 1; min-width: 100px; accent-color: var(--gold); }
+
+/* Log panel */
+.log-panel {
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 8px; padding: 0.6rem 0.9rem;
+  max-height: 360px; overflow-y: auto; font-size: 0.78rem; font-family: monospace;
+}
+.log-panel .log-entry { padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.log-entry.current { background: rgba(232,160,32,0.1); border-radius: 3px; }
+.log-entry.type-hit.is-hero { color: #80c0ff; }
+.log-entry.type-hit.is-enemy { color: #e0a060; }
+.log-entry.type-heal { color: #60d080; }
+.log-entry.type-miss { color: #707070; }
+.log-entry.type-round { color: #c0a020; font-weight: bold; }
+.log-entry.type-death { color: #e06040; }
+
+/* Round overview */
+.round-overview {
+  display: flex; gap: 0.4rem; flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+.round-pip {
+  width: 18px; height: 18px; border-radius: 3px;
+  border: 1px solid var(--border); cursor: pointer;
+  font-size: 0.6rem; display: flex; align-items: center;
+  justify-content: center; color: var(--muted); transition: background 0.1s;
+}
+.round-pip.active { border-color: var(--gold); background: rgba(232,160,32,0.2); }
+.round-pip.hero-win { background: rgba(60,160,60,0.3); border-color: #40c060; }
+.round-pip.enemy-win { background: rgba(200,60,60,0.3); border-color: #c04040; }
+
+/* Damage chart */
+.dmg-chart { margin-bottom: 0.75rem; }
+.dmg-chart h3 { font-size: 0.8rem; color: var(--muted); margin: 0 0 0.4rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.dmg-bar-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; font-size: 0.76rem; }
+.dmg-bar-label { min-width: 90px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dmg-bar-track { flex: 1; background: var(--surface); border-radius: 3px; height: 8px; overflow: hidden; }
+.dmg-bar-fill { height: 100%; border-radius: 3px; background: #4080c0; }
+.dmg-bar-val { min-width: 40px; text-align: right; color: var(--muted); }
+
+.empty-state { text-align: center; color: var(--muted); padding: 2rem; font-size: 0.9rem; }
+.error-msg { color: #e06040; background: rgba(224,96,64,0.1); border: 1px solid rgba(224,96,64,0.3); border-radius: 6px; padding: 0.6rem 0.9rem; font-size: 0.82rem; margin-bottom: 0.75rem; }
+
+@media (max-width: 480px) {
+  .hp-bar-row { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Combat Replay</h1>
+  <p class="sub">
+    Load a fight trace JSON exported from the "Save trace" button in the Combat Log overlay.
+    Replays step-by-step with HP bar visualisation, damage breakdown, and log highlighting.
+    No data is stored or uploaded — all processing is client-side.
+  </p>
+
+  <!-- Drop / file picker -->
+  <div class="drop-zone" id="dropZone">
+    <div>
+      <label for="fileInput">Choose a trace file</label>
+      <input type="file" id="fileInput" accept=".json,application/json">
+    </div>
+    <div class="hint">or drag a combat trace .json here</div>
+    <div id="dropMsg" style="margin-top:0.5rem;font-size:0.76rem;"></div>
+  </div>
+
+  <div id="errorMsg" class="error-msg" style="display:none"></div>
+  <div id="replayArea" style="display:none">
+
+    <!-- Meta bar -->
+    <div class="meta-bar" id="metaBar"></div>
+
+    <!-- Round pips -->
+    <div class="round-overview" id="roundPips"></div>
+
+    <!-- HP bars -->
+    <div class="hp-section" id="hpSection">
+      <h3>Party HP</h3>
+      <div id="hpTracks"></div>
+    </div>
+
+    <!-- Damage breakdown chart -->
+    <div class="dmg-chart" id="dmgChart">
+      <h3>Damage Dealt (up to current step)</h3>
+      <div id="dmgBars"></div>
+    </div>
+
+    <!-- Controls -->
+    <div class="replay-controls">
+      <button id="btnFirst" title="First step">&lt;&lt;</button>
+      <button id="btnPrev"  title="Previous">&lt;</button>
+      <button id="btnNext"  title="Next">&gt;</button>
+      <button id="btnLast"  title="Last step">&gt;&gt;</button>
+      <input type="range" id="stepSlider" min="0" value="0">
+      <span class="step-info" id="stepInfo"></span>
+    </div>
+
+    <!-- Log panel -->
+    <div class="log-panel" id="logPanel"></div>
+
+  </div>
+  <div id="emptyState" class="empty-state">Load a combat trace to begin replay.</div>
+</div>
+
+<script>
+// ---- State ----
+let _trace = null;
+let _step  = 0;
+
+// ---- DOM refs ----
+const dropZone   = document.getElementById('dropZone');
+const fileInput  = document.getElementById('fileInput');
+const dropMsg    = document.getElementById('dropMsg');
+const errorMsg   = document.getElementById('errorMsg');
+const replayArea = document.getElementById('replayArea');
+const emptyState = document.getElementById('emptyState');
+const metaBar    = document.getElementById('metaBar');
+const roundPips  = document.getElementById('roundPips');
+const hpTracks   = document.getElementById('hpTracks');
+const dmgBars    = document.getElementById('dmgBars');
+const logPanel   = document.getElementById('logPanel');
+const stepInfo   = document.getElementById('stepInfo');
+const stepSlider = document.getElementById('stepSlider');
+
+// ---- File loading ----
+fileInput.addEventListener('change', e => {
+  if (e.target.files[0]) loadFile(e.target.files[0]);
+});
+dropZone.addEventListener('dragover', e => {
+  e.preventDefault(); dropZone.classList.add('drag-over');
+});
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  const f = e.dataTransfer.files[0];
+  if (f) loadFile(f);
+});
+
+function loadFile(file) {
+  dropMsg.textContent = `Loading ${file.name}...`;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      initTrace(data);
+      dropMsg.textContent = `Loaded: ${file.name}`;
+    } catch (err) {
+      showError(`Parse error: ${err.message}`);
+    }
+  };
+  reader.onerror = () => showError('Could not read file.');
+  reader.readAsText(file);
+}
+
+function showError(msg) {
+  errorMsg.textContent = msg;
+  errorMsg.style.display = 'block';
+}
+function clearError() { errorMsg.style.display = 'none'; }
+
+// ---- Trace init ----
+function initTrace(data) {
+  clearError();
+  if (!data || !Array.isArray(data.log)) {
+    showError('Invalid trace: missing "log" array.');
+    return;
+  }
+  _trace = data;
+  _step  = 0;
+
+  // Infer HP history from log entries
+  _trace._hpHistory = buildHpHistory(data);
+
+  buildMetaBar(data);
+  buildRoundPips(data);
+  buildLogEntries(data);
+  buildHpTracks(data);
+  stepSlider.max = Math.max(0, data.log.length - 1);
+  stepSlider.value = 0;
+
+  replayArea.style.display = 'block';
+  emptyState.style.display = 'none';
+  render();
+}
+
+// Build per-combatant HP history by replaying log hits/heals
+function buildHpHistory(data) {
+  const party   = data.party   || [];
+  const enemies = data.enemies || [];
+  const allCombatants = [...party, ...enemies];
+
+  // Starting HP
+  const hpMap = {};
+  for (const c of allCombatants) hpMap[c.name] = c.maxHp || 100;
+
+  // History[step] = { name -> hp }
+  const history = [{ ...hpMap }];
+
+  for (const entry of (data.log || [])) {
+    if (entry.type === 'hit' && entry.target && entry.dmg != null) {
+      if (hpMap[entry.target] != null) hpMap[entry.target] = Math.max(0, hpMap[entry.target] - entry.dmg);
+    }
+    if (entry.type === 'heal' && entry.target && entry.heal != null) {
+      const combatant = allCombatants.find(c => c.name === entry.target);
+      const maxHp = combatant?.maxHp || 9999;
+      if (hpMap[entry.target] != null) hpMap[entry.target] = Math.min(maxHp, hpMap[entry.target] + entry.heal);
+    }
+    if (entry.type === 'revive' && entry.target) {
+      const combatant = allCombatants.find(c => c.name === entry.target);
+      if (combatant) hpMap[entry.target] = Math.round((combatant.maxHp || 100) * 0.25);
+    }
+    history.push({ ...hpMap });
+  }
+  return history;
+}
+
+function buildMetaBar(data) {
+  const enc   = data.encounter || {};
+  const party = data.party     || [];
+  const enemies = data.enemies || [];
+  metaBar.innerHTML = `
+    <div class="meta-item"><span class="meta-label">Encounter</span> <strong>${esc(enc.name || enc.id || 'Unknown')}</strong></div>
+    <div class="meta-item"><span class="meta-label">Party</span> ${esc(party.map(p => `${p.name}${p.level ? ' L' + p.level : ''}`).join(', ') || '—')}</div>
+    <div class="meta-item"><span class="meta-label">Enemies</span> ${esc(enemies.map(e => e.name).join(', ') || '—')}</div>
+    <div class="meta-item"><span class="meta-label">Steps</span> ${(data.log || []).length}</div>
+    <div class="meta-item"><span class="meta-label">Generated</span> ${esc(data.generated ? new Date(data.generated).toLocaleString() : '—')}</div>
+  `;
+}
+
+function buildRoundPips(data) {
+  const log    = data.log || [];
+  const rounds = new Set(log.map(e => e.round).filter(r => r != null));
+  roundPips.innerHTML = '';
+  for (const r of [...rounds].sort((a, b) => a - b)) {
+    const pip = document.createElement('div');
+    pip.className = 'round-pip';
+    pip.textContent = r;
+    pip.title = `Round ${r}`;
+    pip.dataset.round = r;
+    pip.addEventListener('click', () => {
+      const idx = log.findIndex(e => e.round === r);
+      if (idx >= 0) { _step = idx; stepSlider.value = idx; render(); }
+    });
+    roundPips.appendChild(pip);
+  }
+}
+
+function buildLogEntries(data) {
+  const log = data.log || [];
+  logPanel.innerHTML = '';
+  const partyNames = new Set((data.party || []).map(p => p.name));
+
+  for (let i = 0; i < log.length; i++) {
+    const e   = log[i];
+    const div = document.createElement('div');
+    const isHero = partyNames.has(e.actor);
+    let typeClass = '';
+    if (e.type === 'hit')    typeClass = `type-hit ${isHero ? 'is-hero' : 'is-enemy'}`;
+    else if (e.type === 'heal')   typeClass = 'type-heal';
+    else if (e.type === 'miss')   typeClass = 'type-miss';
+    else if (e.type === 'round')  typeClass = 'type-round';
+    else if (e.type === 'death')  typeClass = 'type-death';
+    div.className  = `log-entry ${typeClass}`;
+    div.dataset.step = i;
+
+    // Format message
+    let msg = '';
+    if (e.msg || e.text) {
+      msg = esc(e.msg || e.text);
+    } else if (e.type === 'hit') {
+      msg = `${esc(e.actor || '?')} hits ${esc(e.target || '?')}: ${e.dmg} dmg`;
+      if (e.skill) msg += ` (${esc(e.skill)})`;
+    } else if (e.type === 'heal') {
+      msg = `${esc(e.actor || '?')} heals ${esc(e.target || '?')}: ${e.heal ?? '?'} HP`;
+    } else if (e.type === 'miss') {
+      msg = `${esc(e.actor || '?')} misses ${esc(e.target || '?')}`;
+    } else if (e.type === 'revive') {
+      msg = `${esc(e.actor || '?')} revives ${esc(e.target || '?')}!`;
+    } else if (e.round) {
+      msg = `-- Round ${e.round} --`;
+    } else {
+      msg = esc(JSON.stringify(e));
+    }
+    const rndTag = e.round != null ? `<span style="color:#706050;font-size:0.68em;margin-right:0.3em">[R${e.round}]</span>` : '';
+    div.innerHTML = `${rndTag}${msg}`;
+    logPanel.appendChild(div);
+  }
+}
+
+function buildHpTracks(data) {
+  hpTracks.innerHTML = '';
+  const party   = data.party   || [];
+  const enemies = data.enemies || [];
+  const allCombatants = [...party, ...enemies];
+  const history = _trace._hpHistory;
+  const totalSteps = (data.log || []).length;
+
+  for (const c of allCombatants) {
+    const isHero  = party.some(p => p.name === c.name);
+    const track   = document.createElement('div');
+    track.className = 'hp-track';
+    track.dataset.name = c.name;
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'hp-track-name';
+    nameEl.textContent = c.name + (isHero ? '' : ' (enemy)');
+    nameEl.style.color = isHero ? '#80c0ff' : '#e0a060';
+
+    const rowEl = document.createElement('div');
+    rowEl.className = 'hp-bar-row';
+
+    // Build segments for each step (thin strips showing HP over time)
+    const MAX_SEGS = Math.min(totalSteps + 1, 200);
+    const step = Math.max(1, Math.floor((totalSteps + 1) / MAX_SEGS));
+    const maxHp = c.maxHp || 100;
+
+    for (let i = 0; i <= totalSteps; i += step) {
+      const snap = history[Math.min(i, history.length - 1)];
+      const hp   = snap[c.name] ?? 0;
+      const pct  = Math.max(0, Math.min(100, (hp / maxHp) * 100));
+      const seg  = document.createElement('div');
+      seg.className = 'hp-bar-segment';
+      seg.dataset.step = i;
+      const red   = Math.round(255 * (1 - pct / 100));
+      const green = Math.round(160 * (pct / 100));
+      seg.style.cssText = `flex:1;background:rgb(${red},${green},40);height:10px;border-radius:2px;`;
+      rowEl.appendChild(seg);
+    }
+
+    track.appendChild(nameEl);
+    track.appendChild(rowEl);
+    hpTracks.appendChild(track);
+  }
+}
+
+function updateDmgChart() {
+  const log   = _trace.log;
+  const party = _trace.party || [];
+  const partyNames = new Set(party.map(p => p.name));
+  const dmgByActor = {};
+  for (let i = 0; i <= _step; i++) {
+    const e = log[i];
+    if (e && e.type === 'hit' && e.dmg != null) {
+      dmgByActor[e.actor] = (dmgByActor[e.actor] || 0) + e.dmg;
+    }
+  }
+  const maxDmg = Math.max(1, ...Object.values(dmgByActor));
+  dmgBars.innerHTML = '';
+  const sorted = Object.entries(dmgByActor).sort((a, b) => b[1] - a[1]);
+  for (const [actor, dmg] of sorted) {
+    const isHero = partyNames.has(actor);
+    const row    = document.createElement('div');
+    row.className = 'dmg-bar-row';
+    const pct = (dmg / maxDmg) * 100;
+    const color = isHero ? '#4080c0' : '#c06040';
+    row.innerHTML = `
+      <div class="dmg-bar-label" title="${esc(actor)}">${esc(actor)}</div>
+      <div class="dmg-bar-track"><div class="dmg-bar-fill" style="width:${pct.toFixed(1)}%;background:${color}"></div></div>
+      <div class="dmg-bar-val">${dmg}</div>
+    `;
+    dmgBars.appendChild(row);
+  }
+  if (!sorted.length) dmgBars.innerHTML = '<div style="color:var(--muted);font-size:0.78rem">No damage dealt yet.</div>';
+}
+
+function render() {
+  if (!_trace) return;
+  const log  = _trace.log;
+  const hist = _trace._hpHistory;
+
+  // Update slider + step info
+  stepSlider.value = _step;
+  stepInfo.textContent = `Step ${_step + 1} / ${log.length}`;
+
+  // Highlight current log entry and scroll it into view
+  for (const el of logPanel.querySelectorAll('.log-entry')) {
+    const s = parseInt(el.dataset.step, 10);
+    el.classList.toggle('current', s === _step);
+    if (s === _step) el.scrollIntoView({ block: 'nearest' });
+  }
+
+  // Update HP bar highlighting (highlight segment closest to current step)
+  for (const track of hpTracks.querySelectorAll('.hp-track')) {
+    const segs = [...track.querySelectorAll('.hp-bar-segment')];
+    segs.forEach(seg => {
+      const sStep = parseInt(seg.dataset.step, 10);
+      seg.style.opacity = sStep <= _step ? '1' : '0.35';
+      seg.style.outline = sStep <= _step && sStep + 5 > _step ? '1px solid #f8d880' : 'none';
+    });
+  }
+
+  // Update round pip highlight
+  const curEntry = log[_step];
+  const curRound = curEntry?.round ?? null;
+  for (const pip of roundPips.querySelectorAll('.round-pip')) {
+    pip.classList.toggle('active', parseInt(pip.dataset.round, 10) === curRound);
+  }
+
+  updateDmgChart();
+}
+
+// ---- Controls ----
+document.getElementById('btnFirst').addEventListener('click', () => { _step = 0; render(); });
+document.getElementById('btnLast').addEventListener('click',  () => { if (_trace) { _step = _trace.log.length - 1; render(); } });
+document.getElementById('btnPrev').addEventListener('click',  () => { if (_step > 0) { _step--; render(); } });
+document.getElementById('btnNext').addEventListener('click',  () => { if (_trace && _step < _trace.log.length - 1) { _step++; render(); } });
+stepSlider.addEventListener('input', () => { _step = parseInt(stepSlider.value, 10); render(); });
+
+document.addEventListener('keydown', e => {
+  if (!_trace) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { if (_step < _trace.log.length - 1) { _step++; render(); } }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { if (_step > 0) { _step--; render(); } }
+  if (e.key === 'Home') { _step = 0; render(); }
+  if (e.key === 'End')  { _step = _trace.log.length - 1; render(); }
+});
+
+function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+</script>
+</body>
+</html>
