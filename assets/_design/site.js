@@ -79,7 +79,6 @@
         el('span', {}, 'EMB'),
         el('span', { class: 'e-large' }, 'E'),
         el('span', {}, 'R'),
-        el('br'),
         el('span', { class: 'e-large' }, 'V'),
         el('span', {}, 'EIL'),
       ),
