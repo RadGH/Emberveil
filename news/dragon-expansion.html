@@ -7,49 +7,43 @@
 
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Dragon Expansion — Emberveil M65</title>
-<meta name="rsg-game" content="Emberveil · M65 — Dragon Expansion">
+<title>Act VI Dragons: Bahamoth & Dragon Knight — Emberveil</title>
+<meta name="rsg-game" content="Emberveil">
 <script src="../assets/_header.js" defer></script>
+<script src="../assets/_footer.js" defer></script>
 <style>
   :root { color-scheme: dark; }
-  html, body { margin:0; padding:0; background:#0a0204; color:#e8d8c0; font-family: Georgia, 'Times New Roman', serif; line-height:1.55; }
-  body { background: radial-gradient(ellipse at top, #2a0410 0%, #0a0204 60%); min-height:100vh; }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-  h1 { font-family: 'Cinzel', Georgia, serif; font-size: 2.6rem; margin: 0 0 0.3rem; background: linear-gradient(180deg,#ffd060,#c04010); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: 0.04em; }
-  .sub { color:#c08060; font-style: italic; margin-bottom: 2rem; }
-  h2 { font-family:'Cinzel', Georgia, serif; color:#ffb040; border-bottom: 1px solid #401010; padding-bottom: 0.3rem; margin-top: 2.4rem; }
-  h3 { color:#e8a050; margin-top: 1.6rem; }
+  html, body { margin:0; padding:0; background: var(--rsg-bg, #0a0608); color: var(--rsg-text, #f0e8d8); font-family: var(--rsg-font-ui, 'Inter','Segoe UI',sans-serif); line-height:1.6; }
+  body { background: radial-gradient(ellipse at top, #1a0a10 0%, var(--rsg-bg, #0a0608) 60%); min-height:100vh; }
+  .wrap { max-width: var(--rsg-narrow-max, 860px); margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  h1 { font-family: var(--rsg-font-display, 'Cinzel',Georgia,serif); font-size: 2.6rem; margin: 0 0 0.3rem; background: linear-gradient(180deg, var(--rsg-gold-bright, #f8d880), var(--rsg-ember, #c04030)); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: 0.04em; }
+  .sub { color: var(--rsg-muted, #8a7a6a); font-style: italic; margin-bottom: 2rem; }
+  h2 { font-family: var(--rsg-font-display, 'Cinzel',Georgia,serif); color: var(--rsg-accent, #e8a020); border-bottom: 1px solid var(--rsg-border, rgba(232,160,32,0.2)); padding-bottom: 0.3rem; margin-top: 2.4rem; }
+  h3 { color: var(--rsg-accent-b, #f0c060); margin-top: 1.6rem; }
   ul { padding-left: 1.4rem; }
   li { margin: 0.3rem 0; }
-  a { color:#ffb040; }
+  a { color: var(--rsg-accent, #e8a020); }
   .hero { display:flex; gap:1rem; align-items:center; margin-bottom:1.5rem; }
   .hero svg, .hero img { width: 120px; height: 120px; flex: none; }
   .grid { display:grid; grid-template-columns: 1fr 1fr; gap: 0.6rem 1.4rem; }
-  .badge { display:inline-block; padding:0.15rem 0.6rem; border:1px solid #c04010; border-radius:999px; color:#ffb040; font-size:0.75rem; margin-right:0.3rem; }
-  .audit { background: #170408; border:1px solid #401010; border-radius:8px; padding:1rem 1.2rem; margin-top:1.5rem; }
+  .badge { display:inline-block; padding:0.15rem 0.6rem; border:1px solid var(--rsg-ember, #c04030); border-radius:999px; color: var(--rsg-accent, #e8a020); font-size:0.75rem; margin-right:0.3rem; }
+  .audit { background: var(--rsg-card, #1a1218); border:1px solid var(--rsg-border, rgba(232,160,32,0.2)); border-radius: var(--rsg-radius, 10px); padding:1rem 1.2rem; margin-top:1.5rem; }
   .ok { color:#60c060; }
-  code { background:#1a0408; padding:0.1rem 0.35rem; border-radius:4px; color:#ffc080; }
-  .cta { display:inline-block; margin-top:1.5rem; padding:0.7rem 1.4rem; background:linear-gradient(180deg,#c04010,#7a1808); color:#ffd060; text-decoration:none; border-radius:6px; font-family:'Cinzel',serif; letter-spacing:0.06em; border:1px solid #ffb040; }
+  code { background:rgba(255,255,255,0.06); padding:0.1rem 0.35rem; border-radius:4px; color: var(--rsg-gold-bright, #f8d880); }
+  .cta { display:inline-block; margin-top:1.5rem; padding:0.7rem 1.4rem; background:linear-gradient(180deg, var(--rsg-ember, #c04030), #7a1808); color: var(--rsg-gold-bright, #f8d880); text-decoration:none; border-radius:6px; font-family: var(--rsg-font-display, 'Cinzel',serif); letter-spacing:0.06em; border:1px solid var(--rsg-accent, #e8a020); }
   .imgs { display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin: 1rem 0; }
-  .imgs > div { background:#170408; border:1px solid #401010; border-radius:6px; overflow:hidden; }
+  .imgs > div { background: var(--rsg-card, #1a1218); border:1px solid var(--rsg-border, rgba(232,160,32,0.2)); border-radius:6px; overflow:hidden; }
   .imgs img, .imgs object { width:100%; display:block; }
 </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5H26ZXKBCL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag("js", new Date());
-  gtag("config", "G-5H26ZXKBCL");
-</script>
+
 </head>
-<body>
+<body class="ev-themed">
 <div class="wrap">
   <div class="hero">
     <img src="../images/dragon_expansion/dragon_knight_icon.png" alt="Dragon Knight" style="width:120px;height:120px;image-rendering:pixelated;">
     <div>
-      <h1>Dragon Expansion</h1>
-      <div class="sub">Emberveil — Milestone 65 — 2026-04-13</div>
+      <h1>Act VI Dragons: Bahamoth & Dragon Knight</h1>
+      <div class="sub">Milestone 65 · 2026-04-13</div>
       <div>
         <span class="badge">Act VI</span>
         <span class="badge">Dragon Knight</span>
@@ -147,10 +141,7 @@
   if(!m)return;
   var hero=document.querySelector(".hero");
   if(!hero)return;
-  var ov=document.createElement("div");
-  ov.style.cssText="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,5,8,0.55) 0%,rgba(8,5,8,0.3) 40%,rgba(8,5,8,0.85) 100%);pointer-events:none;z-index:0;";
   hero.style.position="relative";
-  hero.insertBefore(ov,hero.firstChild);
   var bgImg=new Image();bgImg.src=m.content;
   bgImg.onload=function(){hero.style.backgroundImage="url("+JSON.stringify(m.content)+")";
   hero.style.backgroundSize="cover";

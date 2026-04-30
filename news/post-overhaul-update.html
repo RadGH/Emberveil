@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="rsg-featured-image" content="../images/news_hero/post-overhaul-update.jpg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>Cloud Saves, UI Unification & a Balance Pass — Emberveil</title>
+<script src="../assets/_header.js" defer></script>
+<script src="../assets/_footer.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+body { padding: 0; overflow-x: hidden; background: #0a0608; color: #dfd1c2; font-family: 'Inter', sans-serif; }
+.report { max-width: 860px; margin: 0 auto; padding: 24px 16px 80px; }
+.hero { position: relative; min-height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 24px 48px; overflow: hidden; background: linear-gradient(180deg, #0a0608 0%, #1a0a10 30%, #2a1018 60%, #0a0608 100%); }
+.hero-eyebrow { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: #e8a020; margin-bottom: 0.5rem; position: relative; z-index: 2; }
+.hero-title { font-family: 'Cinzel', serif; font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 900; letter-spacing: 0.05em; background: linear-gradient(180deg, #ffd078 0%, #e8a040 40%, #c04030 100%); -webkit-background-clip: text; background-clip: text; color: transparent; max-width: 800px; position: relative; z-index: 2; }
+.hero-date { font-size: 0.75rem; color: #8a7a6a; margin-top: 1rem; letter-spacing: 0.1em; text-transform: uppercase; position: relative; z-index: 2; }
+h2 { font-family: 'Cinzel', serif; color: #e8a020; font-size: 1.2rem; margin: 2rem 0 0.6rem; letter-spacing: 0.06em; padding-bottom: 0.4rem; border-bottom: 1px solid rgba(232,160,32,0.2); }
+h3 { font-family: 'Cinzel', serif; color: #ffd078; font-size: 0.95rem; margin: 1.2rem 0 0.4rem; }
+p { line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem; }
+ul { padding-left: 1.5rem; margin: 0.4rem 0 0.8rem; }
+li { line-height: 1.6; margin-bottom: 0.35rem; font-size: 0.9rem; }
+code { background: rgba(255,255,255,0.06); padding: 0 0.3rem; border-radius: 3px; font-size: 0.85em; color: #ffd078; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+.stat { background: rgba(26,18,24,0.7); border: 1px solid rgba(232,160,32,0.2); border-radius: 6px; padding: 0.85rem 1rem; }
+.stat .n { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #ffd078; font-weight: 900; line-height: 1; }
+.stat .l { font-size: 0.72rem; color: #8a7a6a; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.3rem; }
+.chart-wrap { background: rgba(26,18,24,0.5); border: 1px solid rgba(232,160,32,0.15); border-radius: 8px; padding: 1rem; margin: 1.5rem 0; height: 340px; position: relative; }
+.damage-meter { background: rgba(26,18,24,0.7); border: 1px solid rgba(232,160,32,0.2); border-radius: 8px; padding: 1.2rem; margin: 1.5rem 0; font-family: 'Courier New', monospace; font-size: 0.85rem; }
+.damage-row { display: grid; grid-template-columns: 100px 1fr 90px; gap: 0.8rem; align-items: center; margin-bottom: 0.7rem; }
+.damage-bar { height: 18px; background: linear-gradient(90deg, #c04030 0%, #e8a020 100%); border-radius: 3px; }
+.damage-label { color: #ffd078; }
+.damage-value { color: #8a7a6a; text-align: right; font-size: 0.78rem; }
+strong { color: #ffd078; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,5,8,0.6) 0%, rgba(8,5,8,0.35) 40%, rgba(8,5,8,0.85) 100%); z-index: 1; pointer-events: none; }
+</style>
+</head>
+<body class="ev-themed">
+<section class="hero" id="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="hero-eyebrow">Development Update</div>
+  <h1 class="hero-title">Cloud Saves, UI Unification & a Balance Pass</h1>
+  <div class="hero-date">M254 → M353 · April 2026</div>
+</section>
+
+<div class="report">
+  <h2>TL;DR</h2>
+  <p>Since the fast-travel overhaul shipped in M254, Emberveil has landed eight major initiatives: <strong>cloud save integration</strong> (M325), <strong>NPC + class redesigns</strong> via SpriteCook (M260+), <strong>UI unification</strong> across settings/title/save/party/hire screens (M312+), <strong>telemetry + GA4 analytics</strong> with consent gating (M333), <strong>milestone-grouped wishlist</strong> (M345), a <strong>final balance pass</strong> (M349–M350), <strong>Image Review V2</strong> tooling (M351), and the new <strong>shared design tokens</strong> + footer (M354).</p>
+
+  <div class="grid">
+    <div class="stat"><div class="n">99</div><div class="l">milestones since fast-travel</div></div>
+    <div class="stat"><div class="n">8</div><div class="l">major initiatives</div></div>
+    <div class="stat"><div class="n">53%</div><div class="l">act 5 wins after balance pass</div></div>
+    <div class="stat"><div class="n">5</div><div class="l">UI screens unified</div></div>
+  </div>
+
+  <h2>Cloud saves & telemetry — opt-in by default</h2>
+  <p>M325 shipped Supabase-backed cloud saves; M333 layered telemetry + GA4 on top. Both are <strong>strictly gated on the privacy banner</strong>: nothing fires until the user clicks accept. <code>localStorage.rsg_consent_v1</code> is the gate; the GA snippet, telemetry events client, and saves writer all check it on every flush. Decline once and we never load <code>gtag.js</code> at all — no fingerprinting, no shadow tracking.</p>
+  <p>Each saved run captures <code>run_stats</code>: duration, kills, treasure found, companions deployed, talent picks, final hero level. This feeds the new Achievements panel + the per-property GA dashboards (G-XP7B7KVNY8 for staging, G-5H26ZXKBCL for emberveil.radgh.com).</p>
+
+  <h2>NPC + class art</h2>
+  <p>The redesign pipeline reached full maturity through M260+. <strong>Kaela Thorne</strong> and <strong>Marek Greel</strong> received seven-pose SpriteCook regens. Every regen now pulls verbatim from <code>public/data/art_direction/&lt;id&gt;.json</code> — the canonical source — so the prompts cannot drift. The M349 pyromancer regen taught us that ad-hoc MCP calls must obey the same image-policy rule as bulk runs: pixel mode, transparent background, download from <code>pixel_url</code> not <code>raw_url</code>. That contract is now in <code>public/docs/image-policy.md</code> with a reinforcement note.</p>
+
+  <h2>By the numbers</h2>
+
+  <h3>Act win rates — pre & post M350 balance pass</h3>
+  <div class="chart-wrap"><canvas id="chartWinRates"></canvas></div>
+  <p style="font-size: 0.85rem; color: #8a7a6a; margin-top: 0.5rem;">Pre-pass, Comp B (4 heroes + companion) was unwinnable in Act 5 (0.6%) and trivial in Act 6 (84.9%). Post-pass: Act 5 jumped to 53.4% and Act 6 dropped to 66.6%. Acts 1–4 deliberately untouched — they were already inside the target band.</p>
+
+  <h3>Damage share — Comp B heroes, Acts 1-6 averaged</h3>
+  <div class="chart-wrap"><canvas id="chartDamageShare"></canvas></div>
+  <p style="font-size: 0.85rem; color: #8a7a6a; margin-top: 0.5rem;">Mage leads at 24% of party damage, followed closely by Warrior (22%), Fighter (18%), Ranger (18%), and the companion (18%). The companion's contribution is meaningful but never dominant — the comp is still hero-driven.</p>
+
+  <h3>Status effect frequency in Monte Carlo runs</h3>
+  <div class="chart-wrap"><canvas id="chartStatusDist"></canvas></div>
+  <p style="font-size: 0.85rem; color: #8a7a6a; margin-top: 0.5rem;">Burn (35%) and Dazed (22%) dominate after M341 converted several stun skills to dazed. Stun (15%) is now reserved for crowd-control skills with longer cooldowns. Poison (10%) is rare by design — it's the long-game DoT, not the workhorse.</p>
+
+  <h2>Sample combat damage meter</h2>
+  <div class="damage-meter">
+    <div style="color: #e8a020; font-weight: bold; margin-bottom: 0.8rem;">Combat Log — Damage Meter (Act 4 boss kill)</div>
+    <div class="damage-row"><div class="damage-label">Mage</div><div class="damage-bar" style="width: 100%;"></div><div class="damage-value">2,615 (24%)</div></div>
+    <div class="damage-row"><div class="damage-label">Warrior</div><div class="damage-bar" style="width: 92%;"></div><div class="damage-value">2,340 (22%)</div></div>
+    <div class="damage-row"><div class="damage-label">Fighter</div><div class="damage-bar" style="width: 78%;"></div><div class="damage-value">2,180 (18%)</div></div>
+    <div class="damage-row"><div class="damage-label">Ranger</div><div class="damage-bar" style="width: 76%;"></div><div class="damage-value">2,105 (18%)</div></div>
+    <div class="damage-row"><div class="damage-label">Companion</div><div class="damage-bar" style="width: 65%;"></div><div class="damage-value">1,810 (18%)</div></div>
+  </div>
+
+  <h2>UI unification (M312+)</h2>
+  <ul>
+    <li><strong>Settings</strong> — grid layout, category tabs, debug flags pulled out into a separate Debug panel.</li>
+    <li><strong>Title screen</strong> — difficulty picker is the first option; Hard mode disables fast-travel teleport.</li>
+    <li><strong>Save / Load</strong> — date-stamped slots with preview stat panels; party portraits inline.</li>
+    <li><strong>Party overview</strong> — portrait grid with scroll sync to equipment + skill trees.</li>
+    <li><strong>Hire Custom</strong> — matches Create Hero; appearance grid + estimated stats.</li>
+  </ul>
+
+  <h2>Tooling — Image Review V2 + live tools index</h2>
+  <p>M351 launched <strong>Image Review V2</strong>, replacing the older Image Review and Character Redesign pages. It supports a Pending / Current / History mode toggle, multi-select with <em>copy as list</em> for approval handoff, and an image-left/sidebar-right lightbox with old/new comparison and prompts in the side panel. Approval is a two-step relay: select sprites in the page, paste the list back to Claude, who runs <code>scripts/approve-image-review-v2.cjs</code>. The first batch (m350 — pyromancer east_spell) is already in history.</p>
+  <p><strong>Tools page is now live data.</strong> <code>build-tools-list.cjs</code> scans <code>public/assets/*.html</code> on every release and rebuilds <code>tools.json</code>. New tools surface immediately with a placeholder description prompting curation.</p>
+
+  <h2>Looking ahead</h2>
+  <ul>
+    <li><strong>Branching dialog & quests</strong> — multi-outcome conversations with conditional combat triggers.</li>
+    <li><strong>Passive skill trees</strong> — talent picks persisted across level-ups, talent reset items.</li>
+    <li><strong>Polish pass</strong> — animation timing, sound feedback, micro-juiciness.</li>
+    <li><strong>Performance audit</strong> — combat scene rendering on low-end devices (M357 wishlist).</li>
+  </ul>
+  <p>The fast-travel overhaul was about navigation. The post-overhaul arc was about <em>foundation</em>: saves, telemetry, art pipeline, balance, tooling. With foundation set, the next phase can finally be content — story branches, companion arcs, scaling difficulty that feels adaptive instead of scripted.</p>
+
+  <p style="margin-top: 2rem; color: #8a7a6a; font-size: 0.8rem;">Previous reports: <a href="./m220-m254-consolidation.html">Fast-Travel Overhaul</a> · <a href="./milestone-report.html">Major Milestone</a> · <a href="./balance-report.html">Balance Report</a> · <a href="./index.html">All news</a>.</p>
+</div>
+
+<script>
+Chart.defaults.color = '#dfd1c2';
+Chart.defaults.borderColor = 'rgba(232,160,32,0.18)';
+Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+
+new Chart(document.getElementById('chartWinRates'), {
+  type: 'bar',
+  data: {
+    labels: ['Act 1', 'Act 2', 'Act 3', 'Act 4', 'Act 5', 'Act 6'],
+    datasets: [
+      { label: 'Pre-M350', data: [84.2, 83.1, 65.6, 64.1, 0.6, 84.9], backgroundColor: '#8a5a4a', borderColor: '#c08070', borderWidth: 1 },
+      { label: 'Post-M350', data: [84.2, 83.1, 65.6, 64.1, 53.4, 66.6], backgroundColor: '#5ef2a8', borderColor: '#3ab878', borderWidth: 1 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom' } },
+    scales: { y: { beginAtZero: true, max: 100, title: { display: true, text: 'Win rate %' } } }
+  }
+});
+
+new Chart(document.getElementById('chartDamageShare'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Mage', 'Warrior', 'Fighter', 'Ranger', 'Companion'],
+    datasets: [{ data: [24, 22, 18, 18, 18], backgroundColor: ['#ffc060', '#ff7030', '#e8a040', '#80d0ff', '#5ef2a8'] }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+});
+
+new Chart(document.getElementById('chartStatusDist'), {
+  type: 'pie',
+  data: {
+    labels: ['Burn', 'Dazed', 'Bleed', 'Stun', 'Poison'],
+    datasets: [{ data: [35, 22, 18, 15, 10], backgroundColor: ['#ff7030', '#ffc060', '#c04030', '#80d0ff', '#5ef2a8'] }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+});
+
+(function applyHero() {
+  const m = document.querySelector('meta[name=rsg-featured-image]');
+  if (!m) return;
+  const hero = document.getElementById('hero-section');
+  if (!hero) return;
+  const img = new Image();
+  img.onload = () => {
+    hero.style.backgroundImage = `url(${JSON.stringify(m.content)})`;
+    hero.style.backgroundSize = 'cover';
+    hero.style.backgroundPosition = 'center';
+  };
+  img.src = m.content;
+})();
+</script>
+</body>
+</html>

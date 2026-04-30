@@ -3,136 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Privacy Policy — Emberveil &amp; RSG Demos</title>
+<title>Privacy & Telemetry — Emberveil</title>
 <meta name="rsg-game" content="Emberveil">
+<script src="./assets/_header.js" defer></script>
+<script src="./assets/_footer.js" defer></script>
 <style>
   :root { color-scheme: dark; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Inter', system-ui, sans-serif; line-height: 1.55;
-    background: linear-gradient(180deg, #0a0608, #120a10); color: #f0e8d8;
-    min-height: 100vh; padding: 1.25rem 1rem 4rem;
-  }
-  main { max-width: 720px; margin: 0 auto; }
-  h1 { font-family: 'Cinzel', Georgia, serif; color: #e8a020; font-size: 1.6rem; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
-  .sub { color: #8a7a6a; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; }
-  h2 { font-family: 'Cinzel', Georgia, serif; color: #e8c860; font-size: 1.05rem; margin-top: 1.6rem; margin-bottom: 0.5rem; }
-  h3 { color: #e8a020; font-size: 0.92rem; margin-top: 1.1rem; margin-bottom: 0.35rem; }
-  p, li { font-size: 0.9rem; color: rgba(240,232,216,0.88); margin-bottom: 0.55rem; }
-  ul { padding-left: 1.4rem; }
-  code { background: rgba(232,160,32,0.12); border: 1px solid rgba(232,160,32,0.3); padding: 0.05rem 0.35rem; border-radius: 3px; font-size: 0.82rem; }
-  a { color: #e8c860; }
-  .actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  button, .btn {
-    display: inline-block; min-height: 44px; padding: 0.55rem 1rem;
-    background: rgba(232,160,32,0.18); border: 1px solid rgba(232,160,32,0.5);
-    color: #f8d880; border-radius: 4px; font-family: inherit; font-size: 0.85rem;
-    cursor: pointer; text-decoration: none;
-  }
-  button:hover, .btn:hover { background: rgba(232,160,32,0.3); }
-  .nav-back { color: #c8b89c; font-size: 0.8rem; margin-bottom: 1rem; display: inline-block; }
-  .badge { display: inline-block; padding: 0.05rem 0.4rem; background: rgba(232,160,32,0.12); border: 1px solid rgba(232,160,32,0.3); border-radius: 3px; font-size: 0.7rem; color: #e8c860; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--rsg-font-ui, 'Inter',system-ui,sans-serif); line-height: 1.6; background: var(--rsg-bg, #0a0608); color: var(--rsg-text, #f0e8d8); min-height: 100vh; padding: 1.25rem 1rem 2rem; }
+  main { max-width: var(--rsg-reading-max, 720px); margin: 0 auto; }
+  h1 { font-family: var(--rsg-font-display, 'Cinzel',Georgia,serif); color: var(--rsg-accent, #e8a020); font-size: 1.7rem; letter-spacing: 0.06em; margin: 0 0 0.4rem; }
+  .sub { color: var(--rsg-muted, #8a7a6a); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; }
+  h2 { font-family: var(--rsg-font-display, 'Cinzel',Georgia,serif); color: #e8c860; font-size: 1.1rem; margin: 1.8rem 0 0.5rem; }
+  h3 { color: var(--rsg-accent, #e8a020); font-size: 0.92rem; margin: 1.2rem 0 0.35rem; }
+  p, li { margin-bottom: 0.55rem; font-size: 0.92rem; }
+  ul { padding-left: 1.5rem; }
+  code { background: rgba(255,255,255,0.06); padding: 0.05rem 0.35rem; border-radius: 3px; font-size: 0.85em; color: #ffd078; }
+  .callout { background: rgba(232,160,32,0.08); border-left: 3px solid var(--rsg-accent, #e8a020); padding: 0.7rem 0.9rem; border-radius: 4px; margin: 0.9rem 0; font-size: 0.9rem; }
+  a { color: var(--rsg-accent, #e8a020); }
+  .actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 1.2rem 0 0.5rem; }
+  .actions button { background: rgba(232,160,32,0.12); color: #ffd078; border: 1px solid var(--rsg-border-hi, rgba(232,160,32,0.45)); padding: 0.5rem 0.95rem; border-radius: 5px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+  .actions button:hover { background: rgba(232,160,32,0.22); }
+  .actions button.danger { color: #ffb0b0; border-color: rgba(192,64,48,0.55); background: rgba(192,64,48,0.12); }
+  #consent-status { margin-top: 0.6rem; font-size: 0.82rem; color: var(--rsg-muted, #8a7a6a); }
 </style>
 </head>
-<body>
+<body class="ev-themed">
 <main>
-  <a href="./" class="nav-back">← Back</a>
-  <h1>Privacy Policy</h1>
-  <div class="sub">Emberveil &amp; the RSG Demos hub</div>
+  <h1>Privacy & Telemetry</h1>
+  <p class="sub">Last updated 2026-04-28</p>
 
-  <p><strong>Last updated:</strong> 2026-04-27</p>
+  <p>Emberveil is a single-developer hobby project. We collect the minimum information needed to operate cloud saves, understand what's broken, and improve the game. Everything optional is gated on the consent banner — declining keeps you in pure local-only mode.</p>
 
-  <p>This page explains what data is collected when you visit Emberveil, the
-  RSG Demos hub on GitHub Pages, or any of the sister demos hosted under the
-  same property. The short version: we use Google Analytics 4 to count visits
-  and gameplay milestones, and only after you tap <em>Accept</em> on the
-  consent banner. Nothing leaves your browser otherwise.</p>
-
-  <h2>What we collect (only with consent)</h2>
-  <ul>
-    <li><strong>Page views</strong> via Google Analytics 4 (anonymised IP).</li>
-    <li><strong>Gameplay milestone events</strong> — run start, run win,
-      run death, level-up, boss kill, class unlock, fame thresholds. No
-      player names. <span class="badge">M330</span></li>
-    <li><strong>Browser metadata</strong> reported by GA4 (referrer, device
-      class, region at country level).</li>
-  </ul>
-
-  <h2>What we never collect</h2>
-  <ul>
-    <li>Email addresses (unless you sign up for cloud saves; in that case
-      Supabase stores your address against your account so we can sync your
-      saves — never shared with GA4).</li>
-    <li>Save-game contents (those live in your browser's localStorage and,
-      if you sign in, in your private Supabase row).</li>
-    <li>Character names or chat input.</li>
-  </ul>
-
-  <h2>Consent</h2>
-  <p>The first time you visit any page on this property, a banner asks
-  whether you want analytics. The choice is stored in
-  <code>localStorage.rsg_consent_v1</code> and a same-site cookie. While the
-  decision is <em>granted</em>, GA4 loads. While it is <em>denied</em> or
-  unset, no analytics scripts hit the wire.</p>
-
-  <p>Same-origin browsers (Emberveil &amp; the RSG Demos hub on
-  <code>radgh.github.io</code>) share that decision automatically — you only
-  consent once. The vanity domain
-  <code>emberveil.radgh.com</code> is a separate origin and would prompt you
-  again.</p>
-
-  <h3>Changing your mind</h3>
-  <p>Open <strong>Settings → Reset Progression</strong> in-game (which also
-  wipes the consent flag), or clear site data in your browser settings. The
-  banner re-appears on the next page load.</p>
-
-  <h2>Cloud saves &amp; account data</h2>
-  <p>If you sign in (email/password or Google), Supabase stores:</p>
-  <ul>
-    <li>Your account email and an opaque user id (managed by Supabase Auth).</li>
-    <li>Save slots in the <code>saves</code> table (one row per save you push).</li>
-    <li>Per-run statistics in the <code>run_stats</code> table — capped at
-      the latest 100 rows per account by an automatic trim trigger.</li>
-  </ul>
-  <p>All of those tables enforce row-level security so only your account can
-  read or modify your rows. Service-role access is internal only and not
-  used to look at individual users.</p>
-
-  <h2>Data retention</h2>
-  <ul>
-    <li>GA4: as configured in our GA property (default 14 months).</li>
-    <li>Cloud saves: stored as long as your account exists. Delete a save
-      slot in-game or close the account to remove.</li>
-    <li>Run stats: capped at 100 most recent rows per account; older rows
-      roll off automatically.</li>
-  </ul>
-
-  <h2>Your rights (GDPR / CCPA)</h2>
-  <ul>
-    <li><strong>Access</strong> — sign in and visit Settings to see your
-      stored saves and run history.</li>
-    <li><strong>Erase</strong> — Settings → Reset Progression wipes local
-      data; deleting your account removes everything in Supabase.</li>
-    <li><strong>Withdraw consent</strong> — clear the banner choice and
-      reject on the next visit.</li>
-  </ul>
-
-  <h2>Contact</h2>
-  <p>Project owner: Radley Sustaire. Reach out via the
-    <a href="mailto:radleysustaire@zingmap.com">project email</a> for any
-    privacy or data-handling question.</p>
-
-  <div class="actions">
-    <button type="button" id="rsg-reset-consent">Reset consent &amp; reload</button>
-    <a class="btn" href="./">Back to demo</a>
+  <div class="callout">
+    <strong>Short version:</strong> nothing leaves your browser unless you click <em>Accept</em> on the consent banner. Local saves work either way; cloud saves, telemetry, and Google Analytics only run with your consent.
   </div>
+
+  <h2>1. The consent banner</h2>
+  <p>On first visit, a banner appears asking whether to enable analytics + telemetry. Your choice is stored in <code>localStorage.rsg_consent_v1</code> on your device, and is honored across this domain. The banner only appears once; it reappears if you clear browser data or click <em>Reset consent</em> below.</p>
+  <p>The same key is read by both staging (<code>radgh.github.io/RSG-Demos/game13/</code>) and the live build at <code>emberveil.radgh.com</code>, but only within each domain — GDPR consent is per-controller, so a separate banner appears on each origin.</p>
+
+  <h2>2. Google Analytics 4</h2>
+  <p>If consent is granted, the page loads <code>gtag.js</code> from Google and reports anonymous page-view + interaction events to one of two GA4 properties depending on host:</p>
+  <ul>
+    <li><code>G-XP7B7KVNY8</code> — staging (<code>radgh.github.io</code>)</li>
+    <li><code>G-5H26ZXKBCL</code> — production (<code>emberveil.radgh.com</code>)</li>
+  </ul>
+  <p>IP anonymization is on by default (<code>anonymize_ip: true</code>). If consent is <em>not</em> granted, gtag.js is never loaded — no requests to Google's servers are made and no cookies are set.</p>
+
+  <h2>3. Internal telemetry (Supabase)</h2>
+  <p>If consent is granted <em>and</em> you are signed in to a Supabase account (optional), the game records a small set of gameplay events to <code>telemetry_events</code>: combat outcomes, screen visits, reward acceptance, and run-end stats. We use this to spot bugs and tune balance — never to identify users.</p>
+  <p>Without consent the telemetry client silently no-ops. Without sign-in, no row is ever written. You can review the schema at <code>public/docs/supabase-setup.md</code>.</p>
+
+  <h2>4. Cloud saves & sign-in</h2>
+  <p>Cloud saves are a feature for signed-in users. They store an encrypted snapshot of your party, inventory, and run state in Supabase under your account. Local saves are not cloud-synced unless you explicitly use <em>Save to cloud</em>. Sign-in is via Supabase auth and uses the email you provide; we do not see your password.</p>
+  <ul>
+    <li>Local saves: always work. Stored in <code>localStorage</code>. Never leave your browser.</li>
+    <li>Cloud saves: opt-in per save. Encrypted before upload. Removable via account deletion.</li>
+  </ul>
+
+  <h2>5. What we don't collect</h2>
+  <ul>
+    <li>No precise location.</li>
+    <li>No advertising identifiers.</li>
+    <li>No keystroke or input recording.</li>
+    <li>No third-party trackers besides GA4 (and only with consent).</li>
+    <li>No cross-site fingerprinting.</li>
+  </ul>
+
+  <h2>6. Manage your data</h2>
+  <p>Use the buttons below to inspect or revoke your local choices.</p>
+  <div class="actions">
+    <button id="reset-consent">Reset consent (re-show banner)</button>
+    <button id="reveal-consent">Show stored consent</button>
+    <button id="clear-local" class="danger">Clear local saves & settings</button>
+  </div>
+  <div id="consent-status"></div>
+
+  <h2>7. Children & age</h2>
+  <p>Emberveil is not directed at children under 13. We do not knowingly collect data from anyone under 13. If you believe we have, contact us via the <a href="./contact.html">contact page</a> and we will delete it.</p>
+
+  <h2>8. Changes to this policy</h2>
+  <p>We update this page in place when something material changes. The <em>Last updated</em> date at the top reflects the most recent change.</p>
+
+  <h2>9. Contact</h2>
+  <p>Privacy questions, deletion requests, or feedback: <a href="./contact.html">/contact</a>.</p>
 </main>
+
 <script>
-  document.getElementById('rsg-reset-consent').addEventListener('click', () => {
-    try { localStorage.removeItem('rsg_consent_v1'); } catch (_) {}
-    try { document.cookie = 'rsg_consent_v1=; path=/; max-age=0; samesite=lax'; } catch (_) {}
-    location.reload();
-  });
+const KEY = 'rsg_consent_v1';
+function show() {
+  const v = localStorage.getItem(KEY);
+  const el = document.getElementById('consent-status');
+  if (!v) { el.textContent = 'No consent stored — banner will show on next page that requests it.'; return; }
+  try {
+    const o = JSON.parse(v);
+    el.textContent = 'Stored consent: ' + (o.consent || 'unknown') + ' (set ' + (o.at || '?') + ')';
+  } catch (e) { el.textContent = 'Stored consent: ' + v; }
+}
+document.getElementById('reset-consent').onclick = () => { localStorage.removeItem(KEY); show(); alert('Consent cleared. Reload any page to see the banner again.'); };
+document.getElementById('reveal-consent').onclick = show;
+document.getElementById('clear-local').onclick = () => {
+  if (!confirm('Clear ALL local saves and settings? This cannot be undone (cloud saves are unaffected).')) return;
+  localStorage.clear();
+  show();
+  alert('Local data cleared.');
+};
+show();
 </script>
 </body>
 </html>

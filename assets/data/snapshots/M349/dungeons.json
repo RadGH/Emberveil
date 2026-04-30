@@ -1,0 +1,72 @@
+[
+  {
+    "id": "goblin_warrens",
+    "name": "Goblin Warrens",
+    "parentZone": "thornwood",
+    "minLevel": 3,
+    "stageCount": 6,
+    "bossName": "Warren Hetman",
+    "bossEncounter": "border_boss",
+    "reward": {
+      "gold": 220,
+      "xp": 180,
+      "item": "medium_chest"
+    }
+  },
+  {
+    "id": "ash_catacombs",
+    "name": "Ash Catacombs",
+    "parentZone": "dust_roads",
+    "minLevel": 6,
+    "stageCount": 6,
+    "bossName": "The Smouldering King",
+    "bossEncounter": "lava_titan",
+    "reward": {
+      "gold": 360,
+      "xp": 280,
+      "item": "heavy_chest"
+    }
+  },
+  {
+    "id": "rift_oubliette",
+    "name": "Rift Oubliette",
+    "parentZone": "hell_breach",
+    "minLevel": 9,
+    "stageCount": 6,
+    "bossName": "The Pit Tyrant",
+    "bossEncounter": "archfiend_malgrath",
+    "reward": {
+      "gold": 540,
+      "xp": 420,
+      "item": "heavy_chest"
+    }
+  },
+  {
+    "id": "star_well",
+    "name": "The Star Well",
+    "parentZone": "cosmic_rift",
+    "minLevel": 12,
+    "stageCount": 6,
+    "bossName": "Star Warden",
+    "bossEncounter": "cosmic_assault",
+    "reward": {
+      "gold": 760,
+      "xp": 620,
+      "item": "heavy_chest"
+    }
+  },
+  {
+    "id": "abyssal_spiracle",
+    "name": "Abyssal Spiracle",
+    "parentZone": "abyssal_depths",
+    "minLevel": 14,
+    "stageCount": 6,
+    "bossName": "Spiracle Warden",
+    "bossEncounter": "abyssal_garrison",
+    "reward": {
+      "gold": 980,
+      "xp": 820,
+      "item": "heavy_chest"
+    }
+  }
+]

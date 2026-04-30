@@ -3,12 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="rsg-game" content="game13">
+<meta name="rsg-game" content="Emberveil">
 <title>Documentation — game13</title>
 <script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
 <link rel="stylesheet" href="./_shared-styles.css">
 <style>
+/* M376 — cap docs page at a comfortable reading width. Long-form prose
+   becomes hard to scan on ultrawide displays; 1100px keeps line length
+   under control while leaving room for the side nav. */
+main.container { max-width: 1100px; margin: 0 auto; }
 .doc-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem; margin-top: 1rem; }
+.doc-view { max-width: 760px; }
 .doc-nav { border-right: 1px solid var(--border-subtle); padding-right: 1rem; }
 .doc-nav h3 { font-family: var(--font-display); margin: 0 0 .6rem; font-size: .9rem; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; }
 .doc-nav a { display: block; padding: .4rem .6rem; color: var(--ink); text-decoration: none; border-radius: 4px; font-size: .9rem; }
@@ -36,7 +42,7 @@
 }
 </style>
 </head>
-<body>
+<body class="ev-themed">
 <main class="container">
   <header class="page-header">
     <h1>Documentation</h1>
@@ -45,7 +51,9 @@
 
   <div class="doc-wrap">
     <nav class="doc-nav" id="docNav">
-      <h3>Policies</h3>
+      <h3>Reviews</h3>
+      <a data-doc="ux-review-m367.md">UX Review (M367)</a>
+      <h3 style="margin-top:1rem">Policies</h3>
       <a data-doc="no-silent-shelving.md">No Silent Shelving</a>
       <a data-doc="image-policy.md">Image Policy</a>
       <a data-doc="asset-types.md">Asset Types</a>

@@ -1,0 +1,306 @@
+[
+  {
+    "id": "archfiend_malgrath",
+    "name": "Archfiend Malgrath",
+    "act": 1,
+    "hp": 900,
+    "armor": 32,
+    "hit": 76,
+    "dodge": 10,
+    "xpValue": 680,
+    "dmg": [
+      46,
+      72
+    ],
+    "gold": [
+      180,
+      300
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "emberveil_sovereign",
+    "name": "The Emberveil Sovereign",
+    "act": 1,
+    "hp": 1400,
+    "armor": 36,
+    "hit": 80,
+    "dodge": 12,
+    "xpValue": 1200,
+    "dmg": [
+      56,
+      88
+    ],
+    "gold": [
+      300,
+      520
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "lava_titan",
+    "name": "The Lava Titan",
+    "act": 1,
+    "hp": 520,
+    "armor": 24,
+    "hit": 85,
+    "dodge": 4,
+    "xpValue": 520,
+    "dmg": [
+      36,
+      56
+    ],
+    "gold": [
+      120,
+      200
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "grax_veil_touched",
+    "name": "Grax the Veil-Touched",
+    "act": 1,
+    "hp": 270,
+    "armor": 12,
+    "hit": 82,
+    "dodge": 8,
+    "xpValue": 340,
+    "dmg": [
+      29,
+      44
+    ],
+    "gold": [
+      85,
+      140
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "primordial_elemental",
+    "name": "Primordial Elemental",
+    "act": 5,
+    "hp": 320,
+    "armor": 22,
+    "hit": 82,
+    "dodge": 15,
+    "xpValue": 260,
+    "dmg": [
+      46,
+      72
+    ],
+    "gold": [
+      42,
+      75
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "abyssal_knight",
+    "name": "Abyssal Knight",
+    "act": 5,
+    "hp": 380,
+    "armor": 32,
+    "hit": 80,
+    "dodge": 10,
+    "xpValue": 300,
+    "dmg": [
+      50,
+      82
+    ],
+    "gold": [
+      52,
+      92
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "reality_shard",
+    "name": "Reality Shard",
+    "act": 5,
+    "hp": 200,
+    "armor": 12,
+    "hit": 90,
+    "dodge": 30,
+    "xpValue": 220,
+    "dmg": [
+      52,
+      84
+    ],
+    "gold": [
+      32,
+      58
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "genesis_worm",
+    "name": "Genesis Worm",
+    "act": 5,
+    "hp": 580,
+    "armor": 25,
+    "hit": 78,
+    "dodge": 5,
+    "xpValue": 350,
+    "dmg": [
+      44,
+      70
+    ],
+    "gold": [
+      65,
+      110
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "cosmic_titan",
+    "name": "Cosmic Titan",
+    "act": 4,
+    "hp": 480,
+    "armor": 30,
+    "hit": 73,
+    "dodge": 8,
+    "xpValue": 270,
+    "dmg": [
+      50,
+      78
+    ],
+    "gold": [
+      44,
+      82
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "void_prophet",
+    "name": "Void Prophet",
+    "act": 4,
+    "hp": 210,
+    "armor": 11,
+    "hit": 85,
+    "dodge": 15,
+    "xpValue": 215,
+    "dmg": [
+      36,
+      58
+    ],
+    "gold": [
+      36,
+      68
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "dragon_whelp",
+    "name": "Dragon Whelp",
+    "act": 6,
+    "hp": 120,
+    "armor": 14,
+    "hit": 82,
+    "dodge": 18,
+    "xpValue": 220,
+    "dmg": [
+      30,
+      52
+    ],
+    "gold": [
+      40,
+      80
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "wyrm_warrior",
+    "name": "Wyrm Warrior",
+    "act": 6,
+    "hp": 180,
+    "armor": 22,
+    "hit": 80,
+    "dodge": 10,
+    "xpValue": 260,
+    "dmg": [
+      40,
+      64
+    ],
+    "gold": [
+      50,
+      90
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "dragon_cultist",
+    "name": "Dragon Cultist",
+    "act": 6,
+    "hp": 140,
+    "armor": 8,
+    "hit": 85,
+    "dodge": 20,
+    "xpValue": 230,
+    "dmg": [
+      36,
+      58
+    ],
+    "gold": [
+      45,
+      85
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "frost_wyrm",
+    "name": "Frost Wyrm",
+    "act": 6,
+    "hp": 220,
+    "armor": 18,
+    "hit": 80,
+    "dodge": 12,
+    "xpValue": 300,
+    "dmg": [
+      42,
+      70
+    ],
+    "gold": [
+      60,
+      100
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "storm_dragon",
+    "name": "Storm Dragon",
+    "act": 6,
+    "hp": 260,
+    "armor": 16,
+    "hit": 86,
+    "dodge": 16,
+    "xpValue": 340,
+    "dmg": [
+      48,
+      78
+    ],
+    "gold": [
+      70,
+      120
+    ],
+    "isBoss": true
+  },
+  {
+    "id": "ancient_dragon",
+    "name": "Ancient Dragon",
+    "act": 6,
+    "hp": 520,
+    "armor": 28,
+    "hit": 88,
+    "dodge": 12,
+    "xpValue": 600,
+    "dmg": [
+      60,
+      100
+    ],
+    "gold": [
+      160,
+      260
+    ],
+    "isBoss": true
+  }
+]

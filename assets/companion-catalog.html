@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="rsg-game" content="Emberveil">
 <script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
 <link rel="stylesheet" href="./_shared-styles.css">
 <link rel="stylesheet" href="./_tool-styles.css">
 <title>Companion Catalog — Emberveil</title>
-<!-- TODO M299: migrate to data-source.js — this page already uses it -->
 <style>
 body { padding: 1rem 1rem 4rem; }
 .wrap { max-width: 1100px; margin: 0 auto; }
@@ -37,44 +37,68 @@ p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
   background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
   color: var(--text); padding: 0.3rem 0.5rem; font: inherit; font-size: 0.8rem;
 }
+.filters .sort-row { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--muted); font-size: 0.78rem; }
 .count { color: var(--muted); font-size: 0.78rem; margin-left: auto; }
 
-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-thead th {
-  background: var(--surface); color: var(--gold); font-family: 'Cinzel',Georgia,serif;
-  font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 0.55rem 0.6rem; text-align: left; border-bottom: 1px solid var(--border);
-  cursor: pointer; user-select: none; white-space: nowrap;
+/* M376 — card layout (was a wide table that broke on mobile). Mirrors the
+   class-catalog visual language: portrait + name header, type badge,
+   description, stat strip. */
+.cmp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.75rem;
 }
-thead th:hover { color: var(--gold-bright); }
-thead th.sort-asc::after  { content: ' \25B2'; font-size: 0.65rem; }
-thead th.sort-desc::after { content: ' \25BC'; font-size: 0.65rem; }
-tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); }
-tbody tr:hover { background: var(--card-h); }
-tbody td { padding: 0.5rem 0.6rem; vertical-align: top; color: var(--text); }
-.td-name { font-weight: 600; color: var(--gold-bright); white-space: nowrap; }
-.td-kind {
+.cmp-card {
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 8px; padding: 0.85rem 0.95rem;
+  display: grid; grid-template-columns: 64px 1fr; gap: 0.75rem;
+  align-items: start;
+}
+.cmp-card .portrait {
+  width: 64px; height: 64px; border-radius: 6px; overflow: hidden;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+}
+.cmp-card .portrait img { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; }
+.cmp-card .body { min-width: 0; }
+.cmp-card .name { font-family: 'Cinzel',Georgia,serif; font-size: 0.95rem; color: var(--gold-bright,#f8d880); font-weight: 600; line-height: 1.2; }
+.cmp-card .meta { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; margin-top: 0.25rem; font-size: 0.72rem; color: var(--muted); }
+.cmp-card .kind {
   display: inline-block; padding: 1px 6px; border-radius: 3px;
-  font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
   background: rgba(255,255,255,0.06); color: var(--muted);
 }
-.td-kind.pet      { background: rgba(90,60,180,0.2); color: #b090ff; }
-.td-kind.hireable { background: rgba(60,140,60,0.2); color: #80d880; }
-.td-kind.wild     { background: rgba(180,100,20,0.2); color: #e8a060; }
-.td-kind.companion{ background: rgba(60,100,180,0.2); color: #80b0ff; }
-.td-owner { color: var(--muted); font-size: 0.76rem; }
-.stat-bar { display: inline-flex; gap: 0.3rem; }
-.stat { min-width: 28px; text-align: center; padding: 1px 3px; border-radius: 3px; background: rgba(255,255,255,0.05); font-size: 0.76rem; }
-.stat-label { color: var(--muted); font-size: 0.68rem; display: block; text-align: center; }
-.td-desc { color: var(--muted); font-size: 0.76rem; max-width: 280px; }
-.td-cost { color: var(--gold); font-size: 0.82rem; }
+.cmp-card .kind.pet      { background: rgba(90,60,180,0.2); color: #b090ff; }
+.cmp-card .kind.hireable { background: rgba(60,140,60,0.2); color: #80d880; }
+.cmp-card .kind.wild     { background: rgba(180,100,20,0.2); color: #e8a060; }
+.cmp-card .kind.companion{ background: rgba(60,100,180,0.2); color: #80b0ff; }
+.cmp-card .owner { color: var(--muted); }
+.cmp-card .cost { color: var(--gold,#e8a040); }
+.cmp-card .desc { color: var(--text); font-size: 0.78rem; margin-top: 0.4rem; line-height: 1.5; }
+.cmp-card .stats {
+  display: flex; gap: 0.3rem; margin-top: 0.5rem;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+.cmp-card .stat {
+  flex: 1; text-align: center; padding: 3px 4px; border-radius: 3px;
+  background: rgba(255,255,255,0.04);
+  font-size: 0.72rem; color: var(--text);
+}
+.cmp-card .stat .lbl { display: block; color: var(--muted); font-size: 0.6rem; letter-spacing: 0.06em; }
+.cmp-card .stat .val { display: block; font-weight: 600; }
 .empty { text-align: center; color: var(--muted); padding: 2rem; }
+
+@media (max-width: 480px) {
+  .cmp-card { grid-template-columns: 56px 1fr; padding: 0.7rem 0.75rem; }
+  .cmp-card .portrait { width: 56px; height: 56px; }
+}
 </style>
 </head>
-<body>
+<body class="ev-themed">
 <div class="wrap">
   <h1>Companion Catalog</h1>
-  <p class="sub">All companions — class pets, hireables, wild companions, and dragon companions. Click column headers to sort.</p>
+  <p class="sub">All companions — class pets, hireables, wild companions, and dragon companions.</p>
 
   <div class="filters">
     <input type="text" id="search" placeholder="Search by name or description...">
@@ -88,26 +112,23 @@ tbody td { padding: 0.5rem 0.6rem; vertical-align: top; color: var(--text); }
     <select id="filterClass">
       <option value="">All classes</option>
     </select>
+    <span class="sort-row">
+      Sort:
+      <select id="sortBy">
+        <option value="name">Name</option>
+        <option value="kind">Type</option>
+        <option value="level">Level</option>
+        <option value="cost">Cost</option>
+        <option value="str">STR</option>
+        <option value="dex">DEX</option>
+        <option value="int">INT</option>
+        <option value="con">CON</option>
+      </select>
+    </span>
     <span class="count" id="count"></span>
   </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th data-col="name">Name</th>
-        <th data-col="kind">Type</th>
-        <th data-col="ownerClass">Owner / Class</th>
-        <th data-col="level">Lv</th>
-        <th data-col="cost">Cost</th>
-        <th data-col="str">STR</th>
-        <th data-col="dex">DEX</th>
-        <th data-col="int">INT</th>
-        <th data-col="con">CON</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody id="tbody"></tbody>
-  </table>
+  <div class="cmp-grid" id="grid"></div>
   <div class="empty" id="empty" style="display:none">No companions match the current filters.</div>
 </div>
 
@@ -116,27 +137,29 @@ import { getCompanions } from './data/data-source.js';
 
 let _all = [];
 let _sortCol = 'name';
-let _sortDir = 1;
 
-const tbody      = document.getElementById('tbody');
+const grid       = document.getElementById('grid');
 const searchEl   = document.getElementById('search');
 const filterKind = document.getElementById('filterKind');
 const filterClass= document.getElementById('filterClass');
+const sortByEl   = document.getElementById('sortBy');
 const countEl    = document.getElementById('count');
 const emptyEl    = document.getElementById('empty');
-const headers    = document.querySelectorAll('thead th[data-col]');
 
 function attrVal(c, col) {
   if (!c.attrs) return 0;
   const map = { str:'STR', dex:'DEX', int:'INT', con:'CON' };
   return c.attrs[map[col]] ?? 0;
 }
-
 function getVal(c, col) {
   if (['str','dex','int','con'].includes(col)) return attrVal(c, col);
   if (col === 'cost') return c.cost ?? 0;
   if (col === 'level') return c.level ?? 0;
   return (c[col] ?? '');
+}
+
+function portraitFor(id) {
+  return `../images/spritecook/${id}_portrait.png`;
 }
 
 function render() {
@@ -160,29 +183,40 @@ function render() {
   rows.sort((a, b) => {
     const av = getVal(a, _sortCol);
     const bv = getVal(b, _sortCol);
-    if (typeof av === 'number') return (av - bv) * _sortDir;
-    return String(av).localeCompare(String(bv)) * _sortDir;
+    if (typeof av === 'number') return bv - av;
+    return String(av).localeCompare(String(bv));
   });
 
-  tbody.innerHTML = '';
+  grid.innerHTML = '';
   for (const c of rows) {
     const attrs = c.attrs || {};
     const kindLabel = c.kind || 'companion';
     const ownerLabel = c.ownerClass || c.className || c.class || '';
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td class="td-name">${esc(c.name)}</td>
-      <td><span class="td-kind ${kindLabel}">${kindLabel}</span></td>
-      <td class="td-owner">${esc(ownerLabel)}</td>
-      <td>${c.level ?? ''}</td>
-      <td class="td-cost">${c.cost != null ? c.cost + 'g' : ''}</td>
-      <td class="stat">${attrs.STR ?? ''}</td>
-      <td class="stat">${attrs.DEX ?? ''}</td>
-      <td class="stat">${attrs.INT ?? ''}</td>
-      <td class="stat">${attrs.CON ?? ''}</td>
-      <td class="td-desc">${esc(c.description || '')}</td>
+    const card = document.createElement('div');
+    card.className = 'cmp-card';
+    card.innerHTML = `
+      <div class="portrait">
+        <img src="${portraitFor(c.id)}" alt="${esc(c.name)}"
+             onerror="this.onerror=null;this.src='../images/spritecook/${c.id}_south.png';this.onerror=()=>this.style.display='none';">
+      </div>
+      <div class="body">
+        <div class="name">${esc(c.name)}</div>
+        <div class="meta">
+          <span class="kind ${kindLabel}">${kindLabel}</span>
+          ${ownerLabel ? `<span class="owner">${esc(ownerLabel)}</span>` : ''}
+          ${c.level != null ? `<span>Lv ${c.level}</span>` : ''}
+          ${c.cost != null ? `<span class="cost">${c.cost}g</span>` : ''}
+        </div>
+        ${c.description ? `<div class="desc">${esc(c.description)}</div>` : ''}
+        <div class="stats">
+          <div class="stat"><span class="lbl">STR</span><span class="val">${attrs.STR ?? '—'}</span></div>
+          <div class="stat"><span class="lbl">DEX</span><span class="val">${attrs.DEX ?? '—'}</span></div>
+          <div class="stat"><span class="lbl">INT</span><span class="val">${attrs.INT ?? '—'}</span></div>
+          <div class="stat"><span class="lbl">CON</span><span class="val">${attrs.CON ?? '—'}</span></div>
+        </div>
+      </div>
     `;
-    tbody.appendChild(tr);
+    grid.appendChild(card);
   }
 
   countEl.textContent = `${rows.length} of ${_all.length} companions`;
@@ -193,25 +227,13 @@ function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-// Sort handlers
-headers.forEach(th => {
-  th.addEventListener('click', () => {
-    const col = th.dataset.col;
-    if (_sortCol === col) { _sortDir *= -1; }
-    else { _sortCol = col; _sortDir = 1; }
-    headers.forEach(h => h.classList.remove('sort-asc','sort-desc'));
-    th.classList.add(_sortDir === 1 ? 'sort-asc' : 'sort-desc');
-    render();
-  });
-});
-
 searchEl.addEventListener('input', render);
 filterKind.addEventListener('change', render);
 filterClass.addEventListener('change', render);
+sortByEl.addEventListener('change', () => { _sortCol = sortByEl.value; render(); });
 
 getCompanions().then(data => {
   _all = data;
-  // Populate class filter
   const classes = [...new Set(data.map(c => c.ownerClass || c.class || '').filter(Boolean))].sort();
   classes.forEach(cls => {
     const opt = document.createElement('option');
@@ -220,7 +242,7 @@ getCompanions().then(data => {
   });
   render();
 }).catch(err => {
-  tbody.innerHTML = `<tr><td colspan="10" class="empty">Failed to load companion data: ${err.message}</td></tr>`;
+  grid.innerHTML = `<div class="empty">Failed to load companion data: ${err.message}</div>`;
 });
 </script>
 </body>

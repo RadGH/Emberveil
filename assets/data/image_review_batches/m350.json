@@ -1,0 +1,23 @@
+{
+  "id": "m350",
+  "milestone": 350,
+  "openedAt": "2026-04-28T00:00:00Z",
+  "entries": [
+    {
+      "id": "hero_pyromancer_east_spell",
+      "category": "character",
+      "group": "pyromancer",
+      "pose": "east_spell",
+      "live": "../images/spritecook/pyromancer_east_spell.png",
+      "old": "../archive/m350/pyromancer_east_spell_old.png",
+      "new": "../archive/m350/pyromancer_east_spell_new.png",
+      "reason": "Feet were cut off in the original. Regenerated with explicit full-body framing rules using east_attack as a reference for character consistency.",
+      "assetId": "a190e0c8-8350-4c2d-95a2-25443058453e",
+      "referenceAssetId": "6b3dfef9-db60-4f8f-990b-2657fe47c213",
+      "oldPrompt": "POSE (east_spell): East-facing. Both palms held forward cupping a swirling orange-yellow flame, hood up, serene face.\n\n(Generated via SpriteCook MCP using the canonical art_direction prompt. Feet ended up cropped — framing rule was not strictly enforced.)",
+      "newPrompt": "IDENTITY: Human WOMAN, about 26 years old, long wavy auburn-red hair, warm brown eyes, calm confident adult face.\n\nOUTFIT: Deep-red hooded robe with a yellow-gold flame emblem on the chest, gold trim along the hood and front seam. Hood worn up.\n\nWEAPONS: No staff. A plume of orange-yellow fire flickers in the palms.\n\nPOSE (east_spell): East-facing side profile. Both palms held forward cupping a swirling orange-yellow flame, hood up, serene face. Mid-cast.\n\nFRAMING (non-negotiable): FULL-BODY head-to-toe. Feet fully visible with clearance above the bottom edge (NEVER cropped). Head with headroom above the hair. Figure occupies ~85% of canvas height, centered. Match cross-roster scale: same pixel height as every other adult humanoid in this sprite set.\n\nPROPORTIONS: realistic adult human, head ~1/7.5 of body, tall and slender adult legs, NOT chibi, NOT bobblehead.\n\nFOOTWEAR: leather/cloth shoes — never barefoot.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text, bright evenly-lit, match palette of reference.\n\nNEGATIVE: no staff, no sword, no bow, no skull, no male features, no beard, no blue, no ice, no scene background, no white background, no solid color background.",
+      "approved": true,
+      "approvedAt": "2026-04-29T01:28:20.234Z"
+    }
+  ]
+}

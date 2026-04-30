@@ -1,0 +1,246 @@
+{
+  "generatedAt": "2026-04-29T21:15:59.889Z",
+  "runsPerEncounter": 5,
+  "baseSeed": 1337,
+  "party": [
+    {
+      "id": "h-w",
+      "name": "War",
+      "class": "warrior",
+      "level": 12
+    },
+    {
+      "id": "h-c",
+      "name": "Clr",
+      "class": "cleric",
+      "level": 12
+    },
+    {
+      "id": "h-m",
+      "name": "Mag",
+      "class": "mage",
+      "level": 12
+    },
+    {
+      "id": "h-r",
+      "name": "Rng",
+      "class": "ranger",
+      "level": 12
+    }
+  ],
+  "structuralGaps": [
+    {
+      "id": "sim-not-instrumented",
+      "severity": "critical",
+      "detail": "src/game/simulator.js does not import or call combatDebug. All M377 instrumentation lives only in src/ui/screens/CombatScreen.js. Therefore (a) headless playtests via this harness CANNOT capture authentic events from the same code path the player sees, and (b) any divergence between simulator output and CombatScreen output is invisible to the parity check. Running the same {party, encounter, seed} through both produces independent results because the simulator reimplements the loop. To diagnose user-visible UI bugs this harness is necessarily a proxy — the next agent should either (1) extract a shared combat core both call into, or (2) instrument simulator.js with the same combatDebug.push call sites.",
+      "evidence": "grep -n \"combatDebug\" src/game/simulator.js → no matches"
+    },
+    {
+      "id": "simulator-no-status-ticks",
+      "severity": "high",
+      "detail": "Simulator decrements status durations at round start (see simulator.js:507-516) but never emits per-tick events. CombatScreen DOES push status_tick events. Status-DoT parity (poison, burn, bleed) cannot be audited from sim runs alone."
+    },
+    {
+      "id": "simulator-no-legendary-procs",
+      "severity": "high",
+      "detail": "Simulator does not invoke legendaryEffects.js dispatch hooks at all. CombatScreen pushes a legendary_proc event for every onAttack/onHit/onCrit/onKill firing. Legendary attribution bugs (the M369 Dragon Breath class of bug) are therefore undetectable from sim runs — they require browser playtest with localStorage emberveil_combat_debug_log = 1."
+    },
+    {
+      "id": "simulator-no-meter-mit-dodge",
+      "severity": "medium",
+      "detail": "Simulator never produces meter_add{kind:mit} or meter_add{kind:dodge} events. CombatScreen does. This means barrier/DR/dodge parity between Combat Log and Damage Meter cannot be tested headlessly."
+    },
+    {
+      "id": "simulator-no-crit-bucketing",
+      "severity": "medium",
+      "detail": "Simulator computes crits inline but does NOT mark hit log entries as crit (no e.crit field on the log push at simulator.js:468-471). CombatScreen pushes crit_check events with the roll vs threshold. Audit pattern (c) \"crit fired but rolled above threshold\" is therefore unprovable without UI data."
+    }
+  ],
+  "encounters": {
+    "goblin_camp": {
+      "label": "early Act 1",
+      "act": 1,
+      "winRate": 0,
+      "avgRounds": 9,
+      "aggregate": {
+        "meter": 10582,
+        "damageApply": 10582,
+        "logParsed": 10582,
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarningCount": 0
+    },
+    "corrupted_outpost": {
+      "label": "mid Act 1",
+      "act": 1,
+      "winRate": 0.4,
+      "avgRounds": 12,
+      "aggregate": {
+        "meter": 10799,
+        "damageApply": 10799,
+        "logParsed": 10799,
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarningCount": 0
+    },
+    "obsidian_garrison": {
+      "label": "Act 2",
+      "act": 2,
+      "winRate": 0,
+      "avgRounds": 22,
+      "aggregate": {
+        "meter": 17327,
+        "damageApply": 17327,
+        "logParsed": 17327,
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarningCount": 0
+    },
+    "archfiend_malgrath": {
+      "label": "Act 3 boss",
+      "act": 3,
+      "winRate": 0,
+      "avgRounds": 8.6,
+      "aggregate": {
+        "meter": 9001,
+        "damageApply": 9001,
+        "logParsed": 9001,
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarningCount": 0
+    },
+    "dragon_king_fight": {
+      "label": "Act 6 boss",
+      "act": 6,
+      "winRate": 0,
+      "avgRounds": 2.6,
+      "aggregate": {
+        "meter": 7136,
+        "damageApply": 7136,
+        "logParsed": 7136,
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarningCount": 0
+    }
+  },
+  "aggregateBugs": [
+    {
+      "encounter": "goblin_camp",
+      "seed": 1340,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "2 status_apply events in goblin_camp but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "goblin_camp",
+      "seed": 1341,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "3 status_apply events in goblin_camp but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "corrupted_outpost",
+      "seed": 1338,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "3 status_apply events in corrupted_outpost but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "corrupted_outpost",
+      "seed": 1340,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "3 status_apply events in corrupted_outpost but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "obsidian_garrison",
+      "seed": 1337,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "2 status_apply events in obsidian_garrison but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "obsidian_garrison",
+      "seed": 1338,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "3 status_apply events in obsidian_garrison but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "obsidian_garrison",
+      "seed": 1339,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "3 status_apply events in obsidian_garrison but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "obsidian_garrison",
+      "seed": 1340,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "2 status_apply events in obsidian_garrison but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "archfiend_malgrath",
+      "seed": 1337,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "2 status_apply events in archfiend_malgrath but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "archfiend_malgrath",
+      "seed": 1338,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "3 status_apply events in archfiend_malgrath but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "archfiend_malgrath",
+      "seed": 1339,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "3 status_apply events in archfiend_malgrath but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "archfiend_malgrath",
+      "seed": 1340,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "3 status_apply events in archfiend_malgrath but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "dragon_king_fight",
+      "seed": 1337,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "1 status_apply events in dragon_king_fight but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "dragon_king_fight",
+      "seed": 1339,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "1 status_apply events in dragon_king_fight but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    },
+    {
+      "encounter": "dragon_king_fight",
+      "seed": 1341,
+      "kind": "status_no_ticks",
+      "severity": "high",
+      "detail": "1 status_apply events in dragon_king_fight but 0 status_tick events. Simulator does not emit per-round tick events even though buff durations decrement; UI parity therefore cannot be verified through sim. CombatScreen does push status_tick — only sim is silent."
+    }
+  ],
+  "parityWarningsAcrossAll": [],
+  "totalEvents": 7053,
+  "totalRuns": 25
+}

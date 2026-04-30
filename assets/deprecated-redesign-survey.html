@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="rsg-game" content="Emberveil">
+<title>Redesign Survey — Emberveil</title>
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<style>
+  :root {
+    --bg0: #080507;
+    --bg1: #1a0a10;
+    --ink: #f0e8d0;
+    --muted: #9a8a70;
+    --gold: #e8a040;
+    --gold-glow: #ffc060;
+    --ember: #ff7030;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg0); color: var(--ink); font-family: Inter, system-ui, sans-serif; }
+  body {
+    background:
+      radial-gradient(ellipse at top, #1a0a10 0%, #080507 60%),
+      radial-gradient(ellipse at bottom, #200810 0%, transparent 70%);
+    min-height: 100vh;
+    padding-bottom: 120px;
+  }
+  main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1rem 2rem; }
+  h2 {
+    font-family: Cinzel, serif;
+    color: var(--gold);
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid rgba(232,160,64,0.25);
+    padding-bottom: 0.4rem;
+    margin-top: 2.5rem;
+  }
+  p { color: #d8ccb0; line-height: 1.55; font-size: 0.95rem; }
+  .muted { color: var(--muted); }
+  a { color: var(--gold-glow); }
+
+  .hero {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 2.2rem 1rem 2.6rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: radial-gradient(ellipse at center, rgba(232,160,64,0.12), transparent 65%);
+    border: 1px solid rgba(232,160,64,0.2);
+  }
+  .hero::before {
+    content:''; position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,192,96,0.15) 50%, transparent 70%);
+    transform: translateX(-100%);
+    animation: swipe 4.5s ease-in-out infinite;
+  }
+  @keyframes swipe { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+  .hero h1 {
+    font-family: Cinzel, serif;
+    font-size: clamp(1.8rem, 5.5vw, 3.2rem);
+    margin: 0;
+    letter-spacing: 0.12em;
+    color: var(--gold-glow);
+    text-shadow: 0 0 16px rgba(255,192,96,0.7), 0 0 30px rgba(255,112,48,0.4);
+    position: relative;
+  }
+  .hero .tag {
+    display: block;
+    margin-top: 0.6rem;
+    color: #c9b893;
+    letter-spacing: 0.3em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .intro {
+    margin-top: 1.5rem;
+    padding: 1rem 1.1rem;
+    background: linear-gradient(180deg, rgba(40,20,20,0.55), rgba(20,10,14,0.7));
+    border: 1px solid rgba(232,160,64,0.18);
+    border-radius: 12px;
+  }
+
+  .counter {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+  }
+  .counter strong { color: var(--gold-glow); }
+
+  /* Desktop: one row with 5 columns */
+  .survey-head, .survey-row {
+    display: grid;
+    grid-template-columns: 1.2fr 130px 130px;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: start;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .survey-head {
+    padding: 0.7rem 0.75rem;
+    font-family: Cinzel, serif;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(232,160,64,0.25);
+    position: sticky;
+    top: 52px;
+    background: rgba(10,6,8,0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+  .survey-head > div:first-child { text-align: left; }
+  .survey-head > div { text-align: center; }
+
+  .survey-row {
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(232,160,64,0.12);
+    background: rgba(20,12,14,0.35);
+    border-radius: 8px;
+    margin-bottom: 0.35rem;
+  }
+  .survey-row .sprite-name {
+    font-family: Cinzel, serif;
+    color: var(--gold-glow);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+  .thumb {
+    width: 96px;
+    height: 96px;
+    border-radius: 8px;
+    border: 2px solid rgba(232,160,64,0.25);
+    background: rgba(10,6,8,0.6);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+  }
+  .thumb:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,192,96,0.6);
+  }
+  .thumb.selected {
+    border-color: var(--gold-glow);
+    box-shadow: 0 0 14px rgba(255,192,96,0.75), inset 0 0 10px rgba(255,192,96,0.25);
+    animation: selectedGlow 1.8s ease-in-out infinite;
+  }
+  @keyframes selectedGlow {
+    0%,100% { box-shadow: 0 0 14px rgba(255,192,96,0.75), inset 0 0 10px rgba(255,192,96,0.25); }
+    50%     { box-shadow: 0 0 22px rgba(255,224,128,0.95), inset 0 0 14px rgba(255,192,96,0.35); }
+  }
+  .thumb.empty {
+    cursor: default;
+    color: var(--muted);
+    font-size: 1.5rem;
+    border-style: dashed;
+    border-color: rgba(154,138,112,0.25);
+  }
+  .thumb.empty:hover {
+    transform: none;
+    border-color: rgba(154,138,112,0.25);
+  }
+  .service-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-transform: uppercase;
+    display: none;
+  }
+
+  /* Mobile: card layout */
+  @media (max-width: 820px) {
+    .survey-head { display: none; }
+    .survey-row {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+      padding: 1rem;
+      border: 1px solid rgba(232,160,64,0.2);
+      background: rgba(20,12,14,0.5);
+      margin-bottom: 0.75rem;
+    }
+    .survey-row .sprite-name {
+      font-size: 1.05rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(232,160,64,0.2);
+      padding-bottom: 0.5rem;
+    }
+    .thumbs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+    .cell { min-height: 100px; }
+    .thumb { width: 80px; height: 80px; }
+    .service-label { display: block; }
+  }
+  /* Desktop: flat layout within grid */
+  @media (min-width: 821px) {
+    .thumbs-grid { display: contents; }
+  }
+
+  .generate-bar {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 1rem;
+    background: linear-gradient(180deg, rgba(10,6,8,0) 0%, rgba(10,6,8,0.92) 30%, rgba(10,6,8,0.98) 100%);
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: Cinzel, serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #e8a040 0%, #c06020 100%);
+    color: #120a0e;
+    border: 1px solid rgba(255,192,96,0.5);
+    border-radius: 8px;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(255,112,48,0.4);
+  }
+  .btn.ghost {
+    background: rgba(20,12,14,0.7);
+    color: var(--gold-glow);
+  }
+  .btn.ghost:hover { background: rgba(40,24,28,0.8); }
+
+  .report-wrap {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: linear-gradient(180deg, rgba(40,20,20,0.55), rgba(20,10,14,0.7));
+    border: 1px solid rgba(232,160,64,0.25);
+    border-radius: 12px;
+    display: none;
+  }
+  .report-wrap.visible { display: block; }
+  .report-wrap h3 {
+    font-family: Cinzel, serif;
+    color: var(--gold);
+    margin: 0 0 0.75rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+  }
+  textarea.report-output {
+    width: 100%;
+    min-height: 300px;
+    background: #0a0507;
+    color: var(--ink);
+    border: 1px solid rgba(232,160,64,0.25);
+    border-radius: 8px;
+    padding: 0.9rem;
+    font-family: "JetBrains Mono", Consolas, Menlo, monospace;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    resize: vertical;
+  }
+  .report-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .toast {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10,6,8,0.95);
+    color: var(--gold-glow);
+    border: 1px solid rgba(232,160,64,0.5);
+    padding: 0.6rem 1.1rem;
+    border-radius: 8px;
+    font-family: Cinzel, serif;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    z-index: 100;
+  }
+  .toast.visible { opacity: 1; }
+
+  .clear-link {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .clear-link:hover { color: var(--ember); }
+</style>
+</head>
+<body class="ev-themed">
+<div style="position:sticky;top:52px;z-index:50;background:#7a3030;color:#ffd0d0;padding:0.6rem 1rem;border-bottom:2px solid #c04030;font-size:0.9rem;text-align:center;font-family:system-ui,sans-serif;">⚠ DEPRECATED — this page is archived and may be out of date. See <a href='./image-review-v2.html' style='color:#ffd060;'>Image Review V2</a> instead.</div>
+<main>
+
+<div class="hero">
+  <h1>REDESIGN SURVEY</h1>
+  <span class="tag">Vote on the best sprite per character</span>
+</div>
+
+<div class="intro">
+  <p>Vote on which art-generation service produced the best sprite for each character. Your feedback helps determine which graphics to use for future projects. Skip any sprite you're unsure about &mdash; it will appear as "Skipped" in the report.</p>
+  <p class="muted" style="margin-bottom:0;">Two candidate services are compared: <strong style="color:var(--gold-glow);">OpenAI</strong> and <strong style="color:var(--gold-glow);">SpriteCook</strong>.</p>
+</div>
+
+<div class="counter">
+  <span id="progress"><strong>0</strong> of <strong>0</strong> voted</span>
+  <span class="clear-link" id="clear-link">Reset all</span>
+</div>
+
+<h2>Candidates</h2>
+
+<div class="survey-head">
+  <div>Sprite</div>
+  <div>OpenAI</div>
+  <div>SpriteCook</div>
+</div>
+
+<div id="survey-body"></div>
+
+<div class="report-wrap" id="report-wrap">
+  <h3>Survey Report</h3>
+  <textarea class="report-output" id="report-output" readonly></textarea>
+  <div class="report-actions">
+    <button class="btn" id="btn-copy">Copy to clipboard</button>
+    <button class="btn ghost" id="btn-download">Download .txt</button>
+    <button class="btn ghost" id="btn-email">Email report</button>
+  </div>
+</div>
+
+</main>
+
+<div class="generate-bar">
+  <button class="btn" id="btn-generate">Generate Report</button>
+</div>
+
+<div class="toast" id="toast">Copied to clipboard</div>
+
+<script>
+  // -------------------------------------------------------------------------
+  // Row data. Verified against disk at build time.
+  // Each row: { id, name, openai, spritecook }
+  // A null field means that service has no image for this sprite.
+  // -------------------------------------------------------------------------
+  const ROWS = [
+    // Heroes (20)
+    { id:'warrior',       name:'Warrior',        openai:'../images/portraits/warrior.png',       spritecook:'../images/spritecook/warrior_portrait.png' },
+    { id:'mage',          name:'Mage',           openai:'../images/portraits/mage.png',          spritecook:'../images/spritecook/mage_portrait.png' },
+    { id:'rogue',         name:'Rogue',          openai:'../images/portraits/rogue.png',         spritecook:'../images/spritecook/rogue_portrait.png' },
+    { id:'cleric',        name:'Cleric',         openai:'../images/portraits/cleric.png',        spritecook:'../images/spritecook/cleric_portrait.png' },
+    { id:'ranger',        name:'Ranger',         openai:'../images/portraits/ranger.png',        spritecook:'../images/spritecook/ranger_portrait.png' },
+    { id:'paladin',       name:'Paladin',        openai:'../images/portraits/paladin.png',       spritecook:'../images/spritecook/paladin_portrait.png' },
+    { id:'necromancer',   name:'Necromancer',    openai:'../images/portraits/necromancer.png',   spritecook:'../images/spritecook/necromancer_portrait.png' },
+    { id:'bard',          name:'Bard',           openai:'../images/portraits/bard.png',          spritecook:'../images/spritecook/bard_portrait.png' },
+    { id:'druid',         name:'Druid',          openai:'../images/portraits/druid.png',         spritecook:'../images/spritecook/druid_portrait.png' },
+    { id:'demon_hunter',  name:'Demon Hunter',   openai:'../images/portraits/demon_hunter.png',  spritecook:'../images/spritecook/demon_hunter_portrait.png' },
+    { id:'tactician',     name:'Tactician',      openai:'../images/portraits/tactician.png',     spritecook:'../images/spritecook/tactician_portrait.png' },
+    { id:'chronomancer',  name:'Chronomancer',   openai:'../images/portraits/chronomancer.png',  spritecook:'../images/spritecook/chronomancer_portrait.png' },
+    { id:'stormcaller',   name:'Stormcaller',    openai:'../images/portraits/stormcaller.png',   spritecook:'../images/spritecook/stormcaller_portrait.png' },
+    { id:'dragon_knight', name:'Dragon Knight',  openai:'../images/portraits/dragon_knight.png', spritecook:'../images/spritecook/dragon_knight_portrait.png' },
+    { id:'swashbuckler',  name:'Swashbuckler',   openai:'../images/portraits/swashbuckler.png',  spritecook:'../images/spritecook/swashbuckler_portrait.png' },
+    { id:'scavenger',     name:'Scavenger',      openai:'../images/portraits/scavenger.png',     spritecook:'../images/spritecook/scavenger_portrait.png' },
+    { id:'pyromancer',    name:'Pyromancer',     openai:'../images/portraits/pyromancer.png',    spritecook:'../images/spritecook/pyromancer_portrait.png' },
+    { id:'warlock',       name:'Warlock',        openai:'../images/portraits/warlock.png',       spritecook:'../images/spritecook/warlock_portrait.png' },
+    { id:'fighter',       name:'Fighter',        openai:'../images/portraits/fighter.png',       spritecook:'../images/spritecook/fighter_portrait.png' },
+    { id:'oracle',        name:'Oracle',         openai:'../images/portraits/oracle.png',        spritecook:'../images/spritecook/oracle_portrait.png' }
+  ];
+
+  const SERVICE_KEYS = ['openai', 'spritecook'];
+  const SERVICE_LABELS = {
+    openai: 'OpenAI',
+    spritecook: 'SpriteCook'
+  };
+
+  const STORAGE_KEY = 'rsg.redesignSurvey.v1';
+
+  let choices = {};
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) choices = JSON.parse(saved);
+  } catch (e) { choices = {}; }
+
+  function persist() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(choices)); } catch (e) {}
+  }
+
+  function updateProgress() {
+    const voted = Object.keys(choices).filter(k => choices[k]).length;
+    document.getElementById('progress').innerHTML =
+      `<strong>${voted}</strong> of <strong>${ROWS.length}</strong> voted`;
+  }
+
+  function renderRow(row) {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'survey-row';
+    rowEl.dataset.id = row.id;
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'sprite-name';
+    nameEl.textContent = row.name;
+    rowEl.appendChild(nameEl);
+
+    const thumbsWrap = document.createElement('div');
+    thumbsWrap.className = 'thumbs-grid';
+    rowEl.appendChild(thumbsWrap);
+
+    for (const svc of SERVICE_KEYS) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+
+      const thumb = document.createElement('div');
+      thumb.className = 'thumb';
+
+      const src = row[svc];
+      if (src) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `${row.name} — ${SERVICE_LABELS[svc]}`;
+        img.loading = 'lazy';
+        thumb.appendChild(img);
+        thumb.dataset.service = svc;
+        if (choices[row.id] === svc) thumb.classList.add('selected');
+        thumb.addEventListener('click', () => {
+          choices[row.id] = svc;
+          persist();
+          // clear siblings, mark this
+          thumbsWrap.querySelectorAll('.thumb').forEach(t => t.classList.remove('selected'));
+          thumb.classList.add('selected');
+          updateProgress();
+        });
+      } else {
+        thumb.classList.add('empty');
+        thumb.textContent = '—';
+        thumb.title = `${SERVICE_LABELS[svc]} has no sprite for ${row.name}`;
+      }
+      cell.appendChild(thumb);
+
+      const label = document.createElement('div');
+      label.className = 'service-label';
+      label.textContent = SERVICE_LABELS[svc];
+      cell.appendChild(label);
+
+      thumbsWrap.appendChild(cell);
+    }
+    return rowEl;
+  }
+
+  function render() {
+    const body = document.getElementById('survey-body');
+    body.innerHTML = '';
+    for (const row of ROWS) body.appendChild(renderRow(row));
+    updateProgress();
+  }
+
+  function pad(s) { return s.length >= 20 ? s.padEnd(20) : s.padEnd(20, ' '); }
+
+  function buildReport() {
+    const now = new Date();
+    const iso = now.toISOString().slice(0, 16).replace('T', ' ');
+    const counts = { openai: 0, spritecook: 0, skipped: 0 };
+    const lines = [];
+    for (const row of ROWS) {
+      const pick = choices[row.id];
+      if (pick) {
+        counts[pick]++;
+        lines.push('  ' + pad(row.name) + ' ' + SERVICE_LABELS[pick]);
+      } else {
+        counts.skipped++;
+      }
+    }
+    const out = [];
+    out.push('Redesign Survey — Emberveil');
+    out.push('Generated: ' + iso + ' UTC');
+    out.push('');
+    out.push('Summary:');
+    out.push('  OpenAI:        ' + counts.openai + ' choice' + (counts.openai === 1 ? '' : 's'));
+    out.push('  SpriteCook:    ' + counts.spritecook + ' choice' + (counts.spritecook === 1 ? '' : 's'));
+    out.push('  (Skipped):     ' + counts.skipped);
+    out.push('');
+    out.push('Choices:');
+    if (lines.length) out.push(...lines);
+    else out.push('  (none)');
+    out.push('');
+    out.push('Total sprites surveyed: ' + ROWS.length);
+    return out.join('\n');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('visible');
+    setTimeout(() => t.classList.remove('visible'), 1800);
+  }
+
+  document.getElementById('btn-generate').addEventListener('click', () => {
+    const text = buildReport();
+    const wrap = document.getElementById('report-wrap');
+    const ta = document.getElementById('report-output');
+    ta.value = text;
+    wrap.classList.add('visible');
+    wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('btn-copy').addEventListener('click', async () => {
+    const text = document.getElementById('report-output').value;
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast('Copied to clipboard');
+    } catch (e) {
+      // fallback
+      const ta = document.getElementById('report-output');
+      ta.select();
+      document.execCommand('copy');
+      showToast('Copied');
+    }
+  });
+
+  document.getElementById('btn-download').addEventListener('click', () => {
+    const text = document.getElementById('report-output').value;
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const ts = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `redesign-survey-${ts}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('btn-email').addEventListener('click', () => {
+    const text = document.getElementById('report-output').value;
+    const subject = encodeURIComponent('Emberveil Redesign Survey Results');
+    const body = encodeURIComponent(text);
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  });
+
+  document.getElementById('clear-link').addEventListener('click', () => {
+    if (!confirm('Clear all selections?')) return;
+    choices = {};
+    persist();
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

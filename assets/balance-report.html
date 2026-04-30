@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>Balance Report — Emberveil M350 / M369</title>
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  body { background: var(--rsg-bg, #0a0608); color: var(--rsg-text, #f0e8d8); font-family: var(--rsg-font-ui, 'Inter',system-ui,sans-serif); margin:0; padding:1rem; max-width: var(--rsg-container-max, 1200px); margin:0 auto; }
+  h1, h2 { color: var(--rsg-accent, #e8a020); font-family: var(--rsg-font-display, 'Cinzel',Georgia,serif); letter-spacing: 0.05em; }
+  .row { display:flex; gap:1rem; flex-wrap:wrap; }
+  .card { flex:1; min-width:320px; background: var(--rsg-card, #1a1218); border:1px solid var(--rsg-border, rgba(232,160,32,0.2)); border-radius: var(--rsg-radius, 10px); padding:1rem; margin:0.5rem 0; }
+  .toggle { display:inline-flex; gap:0; border:1px solid var(--rsg-border-hi, rgba(232,160,32,0.45)); border-radius:6px; overflow:hidden; }
+  .toggle button { background: var(--rsg-card, #1a1218); color: var(--rsg-text, #f0e8d8); border:none; padding:0.4rem 0.9rem; cursor:pointer; font-size:0.9rem; }
+  .toggle button.active { background: var(--rsg-accent, #e8a020); color: var(--rsg-bg, #0a0608); font-weight:600; }
+  table { width:100%; border-collapse:collapse; font-size:0.9rem; }
+  th, td { padding:0.4rem 0.5rem; text-align:right; border-bottom:1px solid var(--rsg-border, rgba(232,160,32,0.12)); }
+  th:first-child, td:first-child { text-align:left; }
+  th { color: var(--rsg-accent, #e8a020); font-weight:600; }
+  .delta-up { color:#5cd05c; }
+  .delta-down { color:#e07070; }
+  .summary-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:0.75rem; margin:1rem 0; }
+  .stat { background: var(--rsg-card, #1a1218); border:1px solid var(--rsg-border, rgba(232,160,32,0.2)); border-radius: var(--rsg-radius, 10px); padding:0.75rem 1rem; }
+  .stat .label { font-size:0.75rem; opacity:0.7; text-transform:uppercase; letter-spacing:0.05em; color: var(--rsg-muted, #8a7a6a); }
+  .stat .value { font-size:1.6rem; font-weight:600; color: var(--rsg-accent, #e8a020); }
+  .note { opacity:0.75; font-size:0.85rem; line-height:1.5; }
+  canvas { max-height:340px; }
+</style>
+</head>
+<body class="ev-themed">
+<h1>Balance Report — M350 / M369</h1>
+<p class="note">Monte Carlo simulation, N=1000 trials per encounter.
+<strong>A</strong> = warrior/rogue/mage/cleric (regression baseline).
+<strong>B</strong> = warrior/fighter/ranger/mage + companion (rebalance target).
+<strong>C</strong> = solo Knight (M369 hard-mode regression — single auto-piloted Knight per act).
+M350 target: ~75% win rate. M369 target: ≤5% solo survival on Act 3+ (the user wanted to feel the floor).</p>
+
+<div class="toggle" style="margin:0.5rem 0;">
+  <button data-view="post" class="active">After (M350)</button>
+  <button data-view="pre">Before</button>
+  <button data-view="compare">Side-by-side</button>
+  <button data-view="m369">M369 — Hard Mode</button>
+</div>
+
+<div id="summary-area"></div>
+
+<div class="row">
+  <div class="card" style="flex:2;">
+    <h2>Win rate by act</h2>
+    <canvas id="winChart"></canvas>
+  </div>
+  <div class="card">
+    <h2>Avg rounds per encounter</h2>
+    <canvas id="roundsChart"></canvas>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Per-encounter detail</h2>
+  <div id="detail-table"></div>
+</div>
+
+<div class="card">
+  <h2>XP audit</h2>
+  <div id="xp-audit"></div>
+  <p class="note">Combat XP outliers (&gt;2× combat median) are progressive-difficulty boss rewards and intentional. Dialog XP outliers fall within 2.5× of the dialog median — no action needed.</p>
+</div>
+
+<div class="card">
+  <h2>Edits applied (M369 — Hard Mode)</h2>
+  <ul>
+    <li><strong>All regular enemies</strong>: HP × 4.0, damage × 2.0 (54 enemy stat blocks across <code>ENEMIES</code>, <code>ENEMIES_ACT4</code>, <code>ENEMIES_ACT5</code>, <code>ENEMIES_ACT6</code>, and inline encounter entries).</li>
+    <li><strong>All boss enemies</strong> (19 bosses incl. hidden): HP × 7.0, damage × 2.0. Bosses identified by id (goblin_warlord, grax_veil_touched, veilspawn_herald, lava_titan, archfiend_malgrath, emberveil_sovereign, the_unraveler, the_architect, ancient_dragon, dragon_king, vault_guardian, void_scholar, echo_sovereign, the_first_ember) plus the "Veil High Priest" inline override.</li>
+    <li>Hero stats, items, skills, XP curve <em>unchanged</em> (per spec).</li>
+    <li>No difficulty toggle — buff applies unconditionally. The user wants to feel the floor.</li>
+    <li>Result: solo Knight (Comp C) survival 0% across Acts 1–6; Comp A/B 0% from Act 2 onward, ~10% Act 1.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Edits applied (M350)</h2>
+  <ul>
+    <li><strong>Act 5 enemies</strong> (<code>ENEMIES_ACT5</code>): HP −27% to −29%, dmg −15% to −17%. Comp A win rate 32.1% → 77.5%; comp B 0.6% → 53.4%.</li>
+    <li><strong>Act 6 dragons</strong>: HP +30% to +50% across whelp/ancient/king + regular dragon dmg slight bump. Comp A 88.4% → 85.8%; comp B 84.9% → 66.6%.</li>
+    <li>Act 3/4 untouched — already inside acceptable band.</li>
+    <li>Hero stats, items, skills, XP curve unchanged.</li>
+  </ul>
+</div>
+
+<script>
+const TARGET = 0.75;
+let pre = null, post = null, m369 = null;
+let winChart = null, roundsChart = null;
+let view = 'post';
+
+async function load() {
+  const [a, b, c] = await Promise.all([
+    fetch('./data/balance-snapshot/pre.json').then(r => r.json()),
+    fetch('./data/balance-snapshot/post.json').then(r => r.json()),
+    fetch('./data/balance-snapshot/post-m369-hard.json').then(r => r.json()).catch(() => null),
+  ]);
+  pre = a; post = b; m369 = c;
+  render();
+}
+
+// In M369 view, "before" is the M350 post snapshot and "after" is the m369 buff.
+function curPre()  { return view === 'm369' ? post  : pre; }
+function curPost() { return view === 'm369' ? m369 : post; }
+
+function actLabels(snap) {
+  return Object.keys(snap.parties.A.acts).map(a => `Act ${a}`);
+}
+
+function winSeries(snap, comp) {
+  return Object.values(snap.parties[comp].acts).map(a => a.summary.avgWinRate * 100);
+}
+
+function roundsSeries(snap, comp) {
+  return Object.values(snap.parties[comp].acts).map(a => {
+    const all = [...Object.values(a.regular), ...Object.values(a.boss)];
+    const sum = all.reduce((s, x) => s + (x.avgRounds || 0), 0);
+    return all.length ? sum / all.length : 0;
+  });
+}
+
+function render() {
+  renderToggle();
+  renderSummary();
+  renderCharts();
+  renderDetail();
+  renderXp();
+}
+
+function renderToggle() {
+  document.querySelectorAll('.toggle button').forEach(b => {
+    b.classList.toggle('active', b.dataset.view === view);
+    b.onclick = () => { view = b.dataset.view; render(); };
+  });
+}
+
+function renderSummary() {
+  const area = document.getElementById('summary-area');
+  const meanWin = (snap, comp) => {
+    if (!snap || !snap.parties[comp]) return 0;
+    const arr = winSeries(snap, comp);
+    return arr.reduce((a,b) => a+b, 0) / arr.length;
+  };
+  const minWin = (snap, comp) => {
+    if (!snap || !snap.parties[comp]) return 0;
+    return Math.min(...winSeries(snap, comp));
+  };
+
+  const fmt = n => `${n.toFixed(1)}%`;
+  const delta = (a, b) => {
+    const d = b - a;
+    const cls = Math.abs(d) < 0.5 ? '' : (d > 0 ? 'delta-up' : 'delta-down');
+    return `<span class="${cls}">${d >= 0 ? '+' : ''}${d.toFixed(1)}pt</span>`;
+  };
+
+  const stat = (label, value, sub='') => `
+    <div class="stat"><div class="label">${label}</div>
+      <div class="value">${value}</div>
+      ${sub ? `<div class="note">${sub}</div>` : ''}
+    </div>`;
+
+  let html = '<div class="summary-cards">';
+  if (view === 'm369') {
+    if (!m369) { area.innerHTML = '<p class="note">post-m369-hard.json not yet generated.</p>'; return; }
+    html += stat('Comp A mean win', fmt(meanWin(m369, 'A')),
+      `was ${fmt(meanWin(post,'A'))} (${delta(meanWin(post,'A'), meanWin(m369,'A'))})`);
+    html += stat('Comp B mean win', fmt(meanWin(m369, 'B')),
+      `was ${fmt(meanWin(post,'B'))} (${delta(meanWin(post,'B'), meanWin(m369,'B'))})`);
+    html += stat('Solo Knight (C) mean', fmt(meanWin(m369, 'C')), 'M369 regression');
+    html += stat('Solo Knight Act 3', fmt((m369.parties.C.acts[3]?.summary?.avgWinRate || 0) * 100), 'target ≤5%');
+  } else if (view === 'post' || view === 'compare') {
+    html += stat('Comp A mean win', fmt(meanWin(post, 'A')),
+      view === 'compare' ? `was ${fmt(meanWin(pre,'A'))} (${delta(meanWin(pre,'A'), meanWin(post,'A'))})` : '');
+    html += stat('Comp B mean win', fmt(meanWin(post, 'B')),
+      view === 'compare' ? `was ${fmt(meanWin(pre,'B'))} (${delta(meanWin(pre,'B'), meanWin(post,'B'))})` : '');
+    html += stat('Worst act (A)', fmt(minWin(post, 'A')));
+    html += stat('Worst act (B)', fmt(minWin(post, 'B')));
+  } else {
+    html += stat('Comp A mean win', fmt(meanWin(pre, 'A')));
+    html += stat('Comp B mean win', fmt(meanWin(pre, 'B')));
+    html += stat('Worst act (A)', fmt(minWin(pre, 'A')));
+    html += stat('Worst act (B)', fmt(minWin(pre, 'B')));
+  }
+  html += '</div>';
+  area.innerHTML = html;
+}
+
+function renderCharts() {
+  const refSnap = (view === 'm369' && m369) ? m369 : post;
+  const labels = actLabels(refSnap);
+  const target = labels.map(_ => TARGET * 100);
+
+  const datasets = [];
+  if (view === 'compare') {
+    datasets.push({ label: 'A — before', data: winSeries(pre, 'A'), borderColor: '#7090c0', backgroundColor: '#7090c040', borderDash: [6,3], tension:0.2 });
+    datasets.push({ label: 'A — after',  data: winSeries(post, 'A'), borderColor: '#5cd05c', backgroundColor: '#5cd05c40', tension:0.2 });
+    datasets.push({ label: 'B — before', data: winSeries(pre, 'B'), borderColor: '#c08070', backgroundColor: '#c0807040', borderDash: [6,3], tension:0.2 });
+    datasets.push({ label: 'B — after',  data: winSeries(post, 'B'), borderColor: '#ffd060', backgroundColor: '#ffd06040', tension:0.2 });
+  } else if (view === 'm369' && m369) {
+    datasets.push({ label: 'A — pre-M369 (M350 post)', data: winSeries(post, 'A'), borderColor: '#7090c0', backgroundColor: '#7090c040', borderDash:[6,3], tension:0.2 });
+    datasets.push({ label: 'A — post-M369 (hard)',     data: winSeries(m369, 'A'), borderColor: '#e07070', backgroundColor: '#e0707040', tension:0.2 });
+    datasets.push({ label: 'B — pre-M369',             data: winSeries(post, 'B'), borderColor: '#c08070', backgroundColor: '#c0807040', borderDash:[6,3], tension:0.2 });
+    datasets.push({ label: 'B — post-M369',            data: winSeries(m369, 'B'), borderColor: '#ffd060', backgroundColor: '#ffd06040', tension:0.2 });
+    datasets.push({ label: 'C — solo Knight (post)',   data: winSeries(m369, 'C'), borderColor: '#a050f0', backgroundColor: '#a050f040', tension:0.2 });
+  } else {
+    const snap = view === 'pre' ? pre : post;
+    datasets.push({ label: 'Comp A', data: winSeries(snap, 'A'), borderColor: '#5cd05c', backgroundColor: '#5cd05c40', tension:0.2 });
+    datasets.push({ label: 'Comp B', data: winSeries(snap, 'B'), borderColor: '#ffd060', backgroundColor: '#ffd06040', tension:0.2 });
+  }
+  datasets.push({ label: 'Target 75%', data: target, borderColor: '#888', borderDash:[3,3], pointRadius:0, fill:false });
+
+  const cfg = {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      scales: { y: { min: 0, max: 100, ticks: { color: '#bbb', callback: v => v + '%' } },
+                x: { ticks: { color: '#bbb' } } },
+      plugins: { legend: { labels: { color: '#ddd' } } },
+    },
+  };
+  if (winChart) winChart.destroy();
+  winChart = new Chart(document.getElementById('winChart'), cfg);
+
+  const snapForRounds = view === 'pre' ? pre : (view === 'm369' && m369 ? m369 : post);
+  const roundsDatasets = [
+    { label: 'Comp A', data: roundsSeries(snapForRounds, 'A'), backgroundColor: '#5cd05c80' },
+    { label: 'Comp B', data: roundsSeries(snapForRounds, 'B'), backgroundColor: '#ffd06080' },
+  ];
+  if (view === 'm369' && m369 && m369.parties.C) {
+    roundsDatasets.push({ label: 'Comp C — solo Knight', data: roundsSeries(m369, 'C'), backgroundColor: '#a050f080' });
+  }
+  const rcfg = {
+    type: 'bar',
+    data: { labels, datasets: roundsDatasets },
+    options: {
+      responsive: true,
+      scales: { y: { ticks: { color: '#bbb' } }, x: { ticks: { color: '#bbb' } } },
+      plugins: { legend: { labels: { color: '#ddd' } } },
+    },
+  };
+  if (roundsChart) roundsChart.destroy();
+  roundsChart = new Chart(document.getElementById('roundsChart'), rcfg);
+}
+
+function renderDetail() {
+  const target = document.getElementById('detail-table');
+  const snap = view === 'pre' ? pre : (view === 'm369' && m369 ? m369 : post);
+  if (!snap) { target.innerHTML = ''; return; }
+  const acts = Object.keys(snap.parties.A.acts);
+  const showC = view === 'm369' && m369 && m369.parties.C;
+  let html = `<table><thead><tr>
+    <th>Act</th><th>Encounter</th><th>Comp A win</th><th>A rounds</th><th>Comp B win</th><th>B rounds</th>
+    ${showC ? '<th>Solo Knight win</th><th>C rounds</th>' : ''}
+    ${view === 'compare' ? '<th>A Δ</th><th>B Δ</th>' : ''}
+    </tr></thead><tbody>`;
+  for (const act of acts) {
+    const aReg = snap.parties.A.acts[act];
+    const bReg = snap.parties.B.acts[act];
+    const cReg = showC ? m369.parties.C.acts[act] : null;
+    const allKeys = [...Object.keys(aReg.regular), ...Object.keys(aReg.boss)];
+    for (const k of allKeys) {
+      const a = aReg.regular[k] || aReg.boss[k];
+      const b = bReg.regular[k] || bReg.boss[k];
+      const c = cReg ? (cReg.regular[k] || cReg.boss[k]) : null;
+      let row = `<tr><td>${act}</td><td>${k}</td>
+        <td>${(a.winRate*100).toFixed(1)}%</td><td>${a.avgRounds.toFixed(1)}</td>
+        <td>${(b.winRate*100).toFixed(1)}%</td><td>${b.avgRounds.toFixed(1)}</td>`;
+      if (showC && c) {
+        row += `<td>${(c.winRate*100).toFixed(1)}%</td><td>${c.avgRounds.toFixed(1)}</td>`;
+      } else if (showC) {
+        row += `<td>—</td><td>—</td>`;
+      }
+      if (view === 'compare') {
+        const aPre = (pre.parties.A.acts[act].regular[k] || pre.parties.A.acts[act].boss[k] || {winRate:0});
+        const bPre = (pre.parties.B.acts[act].regular[k] || pre.parties.B.acts[act].boss[k] || {winRate:0});
+        const dA = (a.winRate - aPre.winRate) * 100;
+        const dB = (b.winRate - bPre.winRate) * 100;
+        const cls = d => Math.abs(d) < 0.5 ? '' : (d > 0 ? 'delta-up' : 'delta-down');
+        row += `<td class="${cls(dA)}">${dA >= 0 ? '+' : ''}${dA.toFixed(1)}</td>`;
+        row += `<td class="${cls(dB)}">${dB >= 0 ? '+' : ''}${dB.toFixed(1)}</td>`;
+      }
+      row += '</tr>';
+      html += row;
+    }
+  }
+  html += '</tbody></table>';
+  target.innerHTML = html;
+}
+
+function renderXp() {
+  const xp = post.xpAudit || {};
+  const el = document.getElementById('xp-audit');
+  el.innerHTML = `
+    <table>
+      <thead><tr><th>Type</th><th>Median</th><th>Outliers (&gt;2× median)</th></tr></thead>
+      <tbody>
+        <tr><td>Combat reward.xp</td><td>${xp.combatMedian || 0}</td><td>${(xp.combatOutliers || []).join(', ') || '—'}</td></tr>
+        <tr><td>Dialog outcomes.xp</td><td>${xp.dialogMedian || 0}</td><td>${(xp.dialogOutliers || []).join(', ') || '—'}</td></tr>
+      </tbody>
+    </table>`;
+}
+
+load();
+</script>
+</body>
+</html>

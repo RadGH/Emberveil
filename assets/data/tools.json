@@ -1,0 +1,403 @@
+{
+  "_meta": {
+    "generated": "2026-04-30T07:47:51.804Z"
+  },
+  "tools": [
+    {
+      "name": "Achievement Roadmap",
+      "href": "achievement-roadmap.html",
+      "desc": "All achievements sorted by tier (bronze / silver / gold). Unlock conditions and rarity.",
+      "tag": "catalog",
+      "milestone": "M299",
+      "updated": "2026-04-26",
+      "deprecated": false
+    },
+    {
+      "name": "Affix Interaction Matrix",
+      "href": "affix-matrix.html",
+      "desc": "Visualizes how prefix/suffix affixes stack across slots. Heatmap of compatible combinations.",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "AI Content Generator",
+      "href": "ai-content-gen.html",
+      "desc": "Generate dialogs, lore, and item names through the AI pipeline. Prompts driven by templates.",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "All Tools (Index)",
+      "href": "tools.html",
+      "desc": "This page. Live index of every tool, catalog, and admin page.",
+      "tag": "admin",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Asset Pipeline Trace",
+      "href": "asset-pipeline-trace.html",
+      "desc": "Trace each generated image through SpriteCook → review → approval → live. Used to debug pipeline drift.",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Audio Library",
+      "href": "audio.html",
+      "desc": "(no description — add one in tools-meta.json)",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Balance Report",
+      "href": "balance-report.html",
+      "desc": "Monte-Carlo win-rate report comparing pre/post per Act with chart.js. Runs from balance-snapshot.cjs output.",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "BG Remove",
+      "href": "bg-remove.html",
+      "desc": "Batch background removal for sprite images using the remove.bg API.",
+      "tag": "admin",
+      "milestone": "M150",
+      "updated": "2026-04-14",
+      "deprecated": false
+    },
+    {
+      "name": "Brainstorm",
+      "href": "brainstorm.html",
+      "desc": "Design brainstorm and planning notes for upcoming milestones.",
+      "tag": "docs",
+      "milestone": "M291",
+      "updated": "2026-04-26",
+      "deprecated": false
+    },
+    {
+      "name": "Character Redesign",
+      "href": "character-redesign.html",
+      "desc": "Submit characters for full SpriteCook redesign pipeline. Reference art + 7 canonical poses.",
+      "tag": "devtool",
+      "milestone": "M236",
+      "updated": "2026-04-21",
+      "deprecated": false
+    },
+    {
+      "name": "Character Redesign Archive",
+      "href": "redesign-archive.html",
+      "desc": "Snapshot history of the per-class re-designs (M217-era anchors). Read-only reference.",
+      "tag": "archived",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Class Catalog",
+      "href": "class-catalog.html",
+      "desc": "All 28 playable classes — portrait, 7-pose sprite strip, role, armor, primary attribute, full skill list with MP cost + unlock level, and class passive tree. Reads live from data-source.js (same source the in-game screens use).",
+      "tag": "catalog",
+      "milestone": "M331",
+      "updated": "2026-04-27",
+      "deprecated": false
+    },
+    {
+      "name": "Combat Replay",
+      "href": "combat-replay.html",
+      "desc": "Replay logged combats turn-by-turn. Useful for debugging skill ordering and damage roll edge cases.",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Companion Catalog",
+      "href": "companion-catalog.html",
+      "desc": "All companions — class pets, hireables, wild companions, and dragon companions. Sortable table with stat columns.",
+      "tag": "catalog",
+      "milestone": "M299",
+      "updated": "2026-04-26",
+      "deprecated": false
+    },
+    {
+      "name": "Custom Content",
+      "href": "custom-content.html",
+      "desc": "Author custom mod content via the JSON DSL — enemies, items, quests.",
+      "tag": "devtool",
+      "milestone": "M210",
+      "updated": "2026-04-15",
+      "deprecated": false
+    },
+    {
+      "name": "Data Catalogs (Legacy)",
+      "href": "data-catalogs.html",
+      "desc": "Old combined catalog landing page. Superseded by per-category catalog pages.",
+      "tag": "archived",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Data Overrides",
+      "href": "data-overrides.html",
+      "desc": "Upload custom JSON to override any catalog data type. Overrides persist via localStorage.",
+      "tag": "admin",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Documentation",
+      "href": "docs.html",
+      "desc": "Design and reference docs — image policy, schema reference, mod authoring.",
+      "tag": "docs",
+      "milestone": "M242",
+      "updated": "2026-04-23",
+      "deprecated": false
+    },
+    {
+      "name": "Dungeon Catalog",
+      "href": "dungeon-catalog.html",
+      "desc": "Side-branch dungeons: name, zone, stages, mini-boss, rewards. Card grid with click-to-expand.",
+      "tag": "catalog",
+      "milestone": "M299",
+      "updated": "2026-04-26",
+      "deprecated": false
+    },
+    {
+      "name": "Enemy Catalog",
+      "href": "enemy-catalog.html",
+      "desc": "All enemies by act — stats, loot tables, status-on-hit effects.",
+      "tag": "catalog",
+      "milestone": "M205",
+      "updated": "2026-04-22",
+      "deprecated": false
+    },
+    {
+      "name": "Image Review V2",
+      "href": "image-review-v2.html",
+      "desc": "Unified image catalog + pending-review queue. Replaces image-review.html and character-redesign.html.",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Images",
+      "href": "images.html",
+      "desc": "(no description — add one in tools-meta.json)",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Infinite Dungeon Catalog",
+      "href": "infinite-dungeon.html",
+      "desc": "Reference for the procedurally-generated post-game dungeon — floor scaling, modifiers, reward curves.",
+      "tag": "catalog",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Item Catalog",
+      "href": "item-catalog.html",
+      "desc": "All weapon and armor bases with stat ranges, categories, and affix eligibility.",
+      "tag": "catalog",
+      "milestone": "M205",
+      "updated": "2026-04-22",
+      "deprecated": false
+    },
+    {
+      "name": "Milestones",
+      "href": "milestones.html",
+      "desc": "(no description — add one in tools-meta.json)",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Mod System Report",
+      "href": "mod-system-report.html",
+      "desc": "Status of the mod authoring pipeline — supported ops, known limits, shelf items.",
+      "tag": "docs",
+      "milestone": "M210",
+      "updated": "2026-04-15",
+      "deprecated": false
+    },
+    {
+      "name": "News Archive",
+      "href": "news-archive.html",
+      "desc": "Index of all milestone reports / dev news posts.",
+      "tag": "docs",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Rebalance",
+      "href": "rebalance.html",
+      "desc": "Interactive balance sliders — adjust enemy and loot multipliers, preview changes.",
+      "tag": "sim",
+      "milestone": "M205",
+      "updated": "2026-04-22",
+      "deprecated": false
+    },
+    {
+      "name": "Rebalance Diff",
+      "href": "rebalance-diff.html",
+      "desc": "Diff viewer for the M205 rebalance arc — before/after enemy stats, hero curves, item drops.",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Rebalance Report",
+      "href": "rebalance-report.html",
+      "desc": "Auto-generated balance analysis report comparing milestones.",
+      "tag": "devtool",
+      "milestone": "M205",
+      "updated": "2026-04-22",
+      "deprecated": false
+    },
+    {
+      "name": "Roadmap",
+      "href": "roadmap.html",
+      "desc": "Milestone roadmap — completed and upcoming milestones.",
+      "tag": "docs",
+      "milestone": "M298",
+      "updated": "2026-04-26",
+      "deprecated": false
+    },
+    {
+      "name": "Skill Audit",
+      "href": "skill-audit.html",
+      "desc": "Audit class skills — mpCost, damage multipliers, talent coverage, missing descriptions.",
+      "tag": "devtool",
+      "milestone": "M242",
+      "updated": "2026-04-23",
+      "deprecated": false
+    },
+    {
+      "name": "Skill Interaction Simulator",
+      "href": "skill-sim.html",
+      "desc": "Run hypothetical skill rotations against a dummy target to see damage/heal output and status interactions.",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Spell Catalog",
+      "href": "spell-catalog.html",
+      "desc": "All class skills and spells — sorted by class, type, and MP cost.",
+      "tag": "catalog",
+      "milestone": "M242",
+      "updated": "2026-04-23",
+      "deprecated": false
+    },
+    {
+      "name": "Sprite Adjust",
+      "href": "sprite-adjust.html",
+      "desc": "Per-character sprite visual adjustment — offset, scale, flip overrides.",
+      "tag": "admin",
+      "milestone": "M290",
+      "updated": "2026-04-26",
+      "deprecated": false
+    },
+    {
+      "name": "Sprite Flip Review",
+      "href": "sprite-flip-review.html",
+      "desc": "Archived — review sprite horizontal flips. Superseded by Sprite Adjust.",
+      "tag": "admin",
+      "milestone": "M150",
+      "updated": "2026-04-14",
+      "deprecated": false
+    },
+    {
+      "name": "Sprite Replace",
+      "href": "sprite-replace.html",
+      "desc": "Upload replacement sprites for characters in bulk.",
+      "tag": "admin",
+      "milestone": "M150",
+      "updated": "2026-04-14",
+      "deprecated": false
+    },
+    {
+      "name": "Status Effect Catalog",
+      "href": "status-effect-catalog.html",
+      "desc": "Full glossary of all status effects with glyph, color, plain-language description. Grouped by category.",
+      "tag": "catalog",
+      "milestone": "M299",
+      "updated": "2026-04-26",
+      "deprecated": false
+    },
+    {
+      "name": "Status Effect Matrix",
+      "href": "status-matrix.html",
+      "desc": "Cross-reference of status interactions (e.g. burn + bleed stacking, dazed vs stun mechanics).",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Wishlist",
+      "href": "wishlist.html",
+      "desc": "Feature and bug wishlist organized by milestone target. Track status of every request.",
+      "tag": "docs",
+      "milestone": "M292",
+      "updated": "2026-04-26",
+      "deprecated": false
+    },
+    {
+      "name": "Affix Survey (deprecated)",
+      "href": "deprecated-affix-survey.html",
+      "desc": "Archived. Superseded by Affix Interaction Matrix.",
+      "tag": "archived",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": true
+    },
+    {
+      "name": "Enemy Audit (deprecated)",
+      "href": "deprecated-enemy-audit.html",
+      "desc": "Archived. Outdated — use Enemy Catalog instead.",
+      "tag": "archived",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": true
+    },
+    {
+      "name": "Image Review (deprecated)",
+      "href": "deprecated-image-review.html",
+      "desc": "Archived. Replaced by Image Review V2.",
+      "tag": "archived",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": true
+    },
+    {
+      "name": "Redesign Survey (deprecated)",
+      "href": "deprecated-redesign-survey.html",
+      "desc": "Archived. Superseded by Image Review V2 character pose grid.",
+      "tag": "archived",
+      "milestone": "",
+      "updated": "2026-04-29",
+      "deprecated": true
+    }
+  ]
+}

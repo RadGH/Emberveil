@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>Image Review V2 — Emberveil</title>
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<style>
+  :root {
+    --bg:#0a0608; --panel:#1a1218; --panel-alt:#241a20; --border:rgba(232,160,32,0.2); --border-strong:rgba(232,160,32,0.45);
+    --accent:#e8a020; --accent-dim:#a8853a; --muted:#8a7a6a; --parchment:#f0e8d8;
+    --warn:#c04030; --ok:#5cd05c; --pending:#e8a020;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--parchment); font-family: 'Inter',system-ui,sans-serif; padding:1rem; padding-bottom:5rem; }
+  .wrap { max-width:1280px; margin:0 auto; }
+  h1 { color:var(--accent); margin:0.25rem 0 0.5rem; }
+  h2 { color:var(--accent); font-size:1.1rem; margin:1rem 0 0.5rem; }
+  .sub { color:var(--muted); margin:0 0 1rem; font-size:0.9rem; }
+  a { color:var(--accent); }
+
+  /* Top bar */
+  .topbar { display:flex; gap:0.6rem; flex-wrap:wrap; align-items:center; margin-bottom:0.75rem; padding:0.5rem; background:var(--panel); border:1px solid var(--border); border-radius:6px; }
+  .seg { display:inline-flex; gap:0; border:1px solid var(--border-strong); border-radius:5px; overflow:hidden; }
+  .seg button { background:#222; color:#bbb; border:none; padding:0.4rem 0.85rem; cursor:pointer; font-size:0.8rem; font-weight:600; }
+  .seg button.active { background:var(--accent); color:#222; }
+  .seg button:not(.active):hover { background:#333; color:#eee; }
+  .topbar label { font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; }
+
+  /* Pending banner */
+  .pending-banner { background:rgba(255,208,96,0.1); border:2px solid var(--accent); border-radius:8px; padding:0.75rem 1rem; margin-bottom:0.75rem; }
+  .pending-banner h2 { margin:0 0 0.25rem; }
+  .pending-banner p { margin:0; font-size:0.85rem; opacity:0.85; }
+
+  /* Filter floating panel */
+  #filter-panel {
+    position:fixed; right:1rem; bottom:5rem; z-index:40;
+    background:rgba(20,20,28,0.96); border:1px solid var(--accent); border-radius:8px;
+    padding:0.6rem 0.75rem; min-width:200px; max-width:90vw;
+    box-shadow:0 8px 24px rgba(0,0,0,0.6); font-size:0.8rem;
+    backdrop-filter:blur(6px);
+  }
+  #filter-panel summary { cursor:pointer; color:var(--accent); font-weight:600; user-select:none; padding:0.1rem 0; }
+  #filter-panel summary::-webkit-details-marker { color:var(--accent); }
+  #filter-panel .filter-group { margin-top:0.5rem; padding-top:0.4rem; border-top:1px solid var(--border); }
+  #filter-panel .filter-group:first-of-type { border-top:none; padding-top:0; }
+  #filter-panel .filter-row { display:flex; gap:0.4rem; align-items:center; padding:0.15rem 0; }
+  #filter-panel input[type=checkbox] { accent-color:var(--accent); }
+  #filter-panel .group-title { font-size:0.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.2rem; }
+
+  /* Selection toolbar */
+  #select-bar {
+    position:fixed; left:0; right:0; bottom:0; z-index:50;
+    background:rgba(10,10,14,0.96); border-top:1px solid var(--accent);
+    padding:0.6rem 1rem; display:flex; gap:0.6rem; align-items:center; justify-content:center;
+    backdrop-filter:blur(6px);
+  }
+  #select-bar .count { font-weight:600; color:var(--accent); font-size:0.9rem; }
+  #select-bar button { background:var(--accent); color:#222; border:none; padding:0.5rem 1rem; border-radius:5px; font-weight:600; cursor:pointer; font-size:0.85rem; }
+  #select-bar button:disabled { background:#444; color:#888; cursor:not-allowed; }
+  #select-bar button.secondary { background:#333; color:#ddd; }
+  #select-bar .copy-hint { font-size:0.75rem; color:var(--muted); }
+
+  /* Card grid */
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:0.75rem; }
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:0.5rem; cursor:pointer; position:relative; transition:border-color 0.15s, transform 0.05s; }
+  .card:hover { border-color:var(--accent-dim); }
+  .card.selected { border-color:var(--accent); box-shadow:0 0 0 2px rgba(255,208,96,0.2); }
+  .card .img-wrap { width:100%; aspect-ratio:1; background:#0a0a0e; display:flex; align-items:center; justify-content:center; border-radius:4px; overflow:hidden; }
+  .card .img-wrap img { max-width:100%; max-height:100%; image-rendering:pixelated; }
+  .card .img-wrap.bg img { width:100%; height:100%; object-fit:cover; image-rendering:auto; }
+  .card .label { font-size:0.72rem; color:#bbb; margin-top:0.35rem; word-break:break-word; line-height:1.2; }
+  .card .badge { position:absolute; top:0.35rem; right:0.35rem; background:var(--pending); color:#222; font-size:0.6rem; font-weight:700; padding:0.15rem 0.4rem; border-radius:3px; text-transform:uppercase; letter-spacing:0.05em; }
+  .card .check { position:absolute; top:0.35rem; left:0.35rem; width:20px; height:20px; background:#000c; border:1px solid var(--accent-dim); border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:0.85rem; color:transparent; }
+  .card.selected .check { background:var(--accent); color:#222; }
+  .card.selected .check::before { content:'✓'; font-weight:700; }
+  .card .check-row { position:absolute; inset:0; display:none; }
+  .card .pose-tag { position:absolute; bottom:0.35rem; left:0.35rem; background:#0008; color:#bbb; font-size:0.6rem; padding:0.1rem 0.35rem; border-radius:2px; }
+
+  /* Character group blocks */
+  .char-group { margin-bottom:1rem; padding:0.5rem; background:var(--panel); border:1px solid var(--border); border-radius:6px; }
+  .char-group .group-head { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; }
+  .char-group .group-head h3 { margin:0; color:var(--accent); font-size:0.95rem; text-transform:capitalize; }
+  .char-group .group-head .count { color:var(--muted); font-size:0.75rem; }
+  .char-group .pose-row { display:grid; grid-template-columns:repeat(auto-fill, minmax(110px, 1fr)); gap:0.5rem; }
+  .char-group .pose-row .card { padding:0.35rem; }
+  .char-group .pose-row .card .label { font-size:0.6rem; }
+
+  /* Lightbox */
+  /* M375: lightbox sits BELOW the 72px sticky nav so its toolbar buttons +
+     close-X aren't clipped. */
+  .lightbox { display:none; position:fixed; inset:72px 0 0 0; z-index:200; background:rgba(0,0,0,0.94); padding:0.75rem; }
+  .lightbox.open { display:flex; flex-direction:column; }
+  .lb-close-x {
+    position:fixed; top:80px; right:0.5rem; z-index:210;
+    width:44px; height:44px; border-radius:6px;
+    background:#c04030; color:#fff; border:1px solid #ffd060;
+    font-size:1.4rem; line-height:1; cursor:pointer; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.5);
+  }
+  .lb-close-x:hover { background:#d05040; }
+  .lb-toolbar { display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap; padding:0.25rem 3rem 0.5rem 0.25rem; }
+  .lb-toolbar button { background:#222; color:#ddd; border:1px solid var(--border-strong); border-radius:4px; padding:0.5rem 0.85rem; cursor:pointer; font-size:0.85rem; min-height:40px; }
+  .lb-toolbar button:hover { background:#333; }
+  .lb-toolbar button:disabled { opacity:0.4; cursor:not-allowed; }
+  .lb-body { flex:1; display:grid; grid-template-columns:1.6fr 1fr; gap:1rem; min-height:0; }
+  .lb-body.stacked { grid-template-columns:1fr; grid-template-rows:1fr auto; }
+  .lb-stage { background:#0008; border:1px solid var(--border); border-radius:6px; display:flex; align-items:center; justify-content:center; min-height:0; overflow:hidden; }
+  .lb-stage img { max-width:100%; max-height:100%; image-rendering:pixelated; }
+  .lb-stage.bg img { image-rendering:auto; }
+  .lb-side { background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:0.75rem; overflow-y:auto; font-size:0.85rem; line-height:1.45; }
+  .lb-side h3 { margin:0 0 0.25rem; color:var(--accent); }
+  .lb-side .meta { color:var(--muted); font-size:0.75rem; margin-bottom:0.6rem; }
+  .lb-side .ref-thumb { width:100%; max-width:200px; margin-top:0.4rem; border:1px solid var(--border); border-radius:4px; image-rendering:pixelated; background:#0a0a0e; }
+  .lb-side .prompt { white-space:pre-wrap; font-size:0.7rem; opacity:0.8; max-height:200px; overflow:auto; padding:0.4rem; background:#0a0a0e; border:1px solid var(--border); border-radius:4px; }
+  .lb-counter { color:var(--muted); font-size:0.75rem; }
+  .lb-comparison { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
+  .lb-comparison > div { text-align:center; }
+  .lb-comparison img { max-width:100%; image-rendering:pixelated; background:#0a0a0e; border:1px solid var(--border); border-radius:3px; }
+  .lb-comparison .lbl { font-size:0.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.2rem; }
+  .lb-comparison .lbl.new { color:var(--accent); }
+
+  @media (max-width: 768px) {
+    .lb-body { grid-template-columns:1fr; grid-template-rows:1fr auto; }
+    .topbar { flex-direction:column; align-items:stretch; }
+    .seg { width:100%; }
+    .seg button { flex:1; }
+    #filter-panel { right:0.5rem; bottom:4.5rem; }
+  }
+</style>
+</head>
+<body class="ev-themed">
+<div class="wrap">
+  <h1>Image Review V2</h1>
+  <p class="sub">Live image catalog. Select images you want to act on, then click <strong>Copy as list</strong> and paste the result into a Claude prompt (e.g. "I approve these:" or "regen these:"). All client-side, no persistence between page loads.</p>
+
+  <div class="topbar">
+    <div>
+      <div style="font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.2rem;">Mode</div>
+      <div class="seg" id="mode-seg">
+        <button data-mode="pending" class="active">Pending</button>
+        <button data-mode="current">Current</button>
+        <button data-mode="history">History</button>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.2rem;">Category</div>
+      <div class="seg" id="cat-seg">
+        <button data-cat="characters" class="active">Characters</button>
+        <button data-cat="backgrounds">Backgrounds</button>
+        <button data-cat="tap_weapons">Tap Weapons</button>
+        <button data-cat="other">Other</button>
+      </div>
+    </div>
+    <div id="batch-select-wrap" style="display:none;">
+      <div style="font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.2rem;">Batch</div>
+      <select id="batch-select" style="background:var(--panel-alt); color:var(--parchment); border:1px solid var(--border-strong); padding:0.35rem 0.5rem; font-size:0.85rem; border-radius:4px;"></select>
+    </div>
+  </div>
+
+  <div id="pending-banner" class="pending-banner" style="display:none;"></div>
+
+  <div id="status" style="color:var(--muted); font-size:0.85rem; margin-bottom:0.5rem;">Loading…</div>
+
+  <div id="content"></div>
+</div>
+
+<details id="filter-panel" open>
+  <summary>Filters ▾</summary>
+  <div id="filter-body"></div>
+</details>
+
+<div id="select-bar">
+  <span class="count" id="select-count">0 selected</span>
+  <button id="copy-btn" disabled>Copy as list</button>
+  <button id="clear-btn" class="secondary" disabled>Clear</button>
+  <span class="copy-hint" id="copy-hint"></span>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close-x" id="lb-close-x" aria-label="Close lightbox">×</button>
+  <div class="lb-toolbar">
+    <div>
+      <button id="lb-prev" type="button">← Prev</button>
+      <button id="lb-next" type="button">Next →</button>
+      <span class="lb-counter" id="lb-counter"></span>
+    </div>
+    <div>
+      <button id="lb-toggle-layout" type="button">Toggle layout</button>
+      <button id="lb-close" type="button">× Close</button>
+    </div>
+  </div>
+  <div class="lb-body" id="lb-body">
+    <div class="lb-stage" id="lb-stage"><img id="lb-img" alt=""></div>
+    <div class="lb-side" id="lb-side"></div>
+  </div>
+</div>
+
+<script>
+const POSES = ['portrait','south','east','east_attack','east_spell','east_block','east_ko'];
+const DATA_URL = './data/image-review-v2.json';
+
+let DATA = null;
+let mode = 'pending';      // 'pending' | 'current' | 'history'
+let category = 'characters'; // 'characters' | 'backgrounds' | 'tap_weapons' | 'other'
+let historyBatchId = null;   // when mode === 'history'
+
+const filters = {
+  poses: new Set(POSES),
+  charCats: new Set(['hero','companion','boss','enemy']),
+  bgTypes: new Set(['combat','menu','map']),
+  showSubsprites: false,
+};
+
+const selected = new Set();   // entry ids
+let lbItems = [];
+let lbIdx = 0;
+let lbStacked = false;
+
+async function load() {
+  try {
+    const r = await fetch(DATA_URL, { cache: 'no-cache' });
+    if (!r.ok) throw new Error('failed to load data');
+    DATA = await r.json();
+  } catch (e) {
+    document.getElementById('status').innerHTML =
+      '<span style="color:var(--warn);">Failed to load image-review-v2.json. Run <code>node scripts/build-image-review-v2.cjs</code>.</span>';
+    return;
+  }
+  buildBatchSelect();
+  buildFilters();
+  wireTopbar();
+  wireSelectBar();
+  wireLightbox();
+  render();
+}
+
+function buildBatchSelect() {
+  const sel = document.getElementById('batch-select');
+  const hist = (DATA.batches.history || []).slice();
+  sel.innerHTML = hist.map(b => `<option value="${b.id}">${b.id.toUpperCase()} — ${b.entries?.length || 0} approved</option>`).join('');
+  if (hist.length) historyBatchId = hist[0].id;
+  sel.onchange = () => { historyBatchId = sel.value; render(); };
+}
+
+function buildFilters() {
+  const body = document.getElementById('filter-body');
+  body.innerHTML = `
+    <div class="filter-group" id="char-filters" ${category !== 'characters' ? 'style="display:none;"' : ''}>
+      <div class="group-title">Character categories</div>
+      ${['hero','companion','boss','enemy'].map(c => `
+        <label class="filter-row"><input type="checkbox" data-charcat="${c}" checked> ${c}s</label>
+      `).join('')}
+      <div class="group-title" style="margin-top:0.5rem;">Poses</div>
+      ${POSES.map(p => `
+        <label class="filter-row"><input type="checkbox" data-pose="${p}" checked> ${p}</label>
+      `).join('')}
+      <label class="filter-row" style="margin-top:0.4rem;"><input type="checkbox" id="show-sub"> Show sub-sprites (group all 7 poses)</label>
+    </div>
+    <div class="filter-group" id="bg-filters" ${category !== 'backgrounds' ? 'style="display:none;"' : ''}>
+      <div class="group-title">Background type</div>
+      ${['combat','menu','map'].map(t => `
+        <label class="filter-row"><input type="checkbox" data-bgtype="${t}" checked> ${t}</label>
+      `).join('')}
+    </div>
+  `;
+  body.querySelectorAll('input[data-pose]').forEach(el => {
+    el.onchange = () => {
+      el.checked ? filters.poses.add(el.dataset.pose) : filters.poses.delete(el.dataset.pose);
+      render();
+    };
+  });
+  body.querySelectorAll('input[data-charcat]').forEach(el => {
+    el.onchange = () => {
+      el.checked ? filters.charCats.add(el.dataset.charcat) : filters.charCats.delete(el.dataset.charcat);
+      render();
+    };
+  });
+  body.querySelectorAll('input[data-bgtype]').forEach(el => {
+    el.onchange = () => {
+      el.checked ? filters.bgTypes.add(el.dataset.bgtype) : filters.bgTypes.delete(el.dataset.bgtype);
+      render();
+    };
+  });
+  const ssEl = body.querySelector('#show-sub');
+  if (ssEl) ssEl.onchange = () => { filters.showSubsprites = ssEl.checked; render(); };
+}
+
+function wireTopbar() {
+  document.querySelectorAll('#mode-seg button').forEach(b => {
+    b.onclick = () => {
+      document.querySelectorAll('#mode-seg button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      mode = b.dataset.mode;
+      document.getElementById('batch-select-wrap').style.display = (mode === 'history') ? '' : 'none';
+      render();
+    };
+  });
+  document.querySelectorAll('#cat-seg button').forEach(b => {
+    b.onclick = () => {
+      document.querySelectorAll('#cat-seg button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      category = b.dataset.cat;
+      document.getElementById('char-filters').style.display = (category === 'characters') ? '' : 'none';
+      document.getElementById('bg-filters').style.display = (category === 'backgrounds') ? '' : 'none';
+      render();
+    };
+  });
+}
+
+function wireSelectBar() {
+  document.getElementById('copy-btn').onclick = copyList;
+  document.getElementById('clear-btn').onclick = () => {
+    selected.clear();
+    updateSelectBar();
+    document.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
+  };
+}
+
+function updateSelectBar() {
+  const n = selected.size;
+  document.getElementById('select-count').textContent = `${n} selected`;
+  document.getElementById('copy-btn').disabled = n === 0;
+  document.getElementById('clear-btn').disabled = n === 0;
+}
+
+function copyList() {
+  // Each line: id + path. Easy to paste back into a Claude prompt.
+  const lines = [];
+  for (const id of selected) {
+    const e = findEntryById(id);
+    if (!e) continue;
+    if (mode === 'pending' && e._batchEntry) {
+      lines.push(`${id}\t${e.new}`);
+    } else {
+      lines.push(`${id}\t${e.file}`);
+    }
+  }
+  const text = lines.join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const hint = document.getElementById('copy-hint');
+    hint.textContent = `copied ${lines.length} line(s)`;
+    setTimeout(() => { hint.textContent = ''; }, 2500);
+  });
+}
+
+function findEntryById(id) {
+  // Search current displayed dataset first
+  const all = currentEntries();
+  return all.find(e => e.id === id) || null;
+}
+
+function currentEntries() {
+  if (mode === 'pending') {
+    return (DATA.batches.open && DATA.batches.open.entries) ? DATA.batches.open.entries.map(e => ({ ...e, _batchEntry: true })) : [];
+  }
+  if (mode === 'history') {
+    const b = (DATA.batches.history || []).find(b => b.id === historyBatchId);
+    return b && b.entries ? b.entries.map(e => ({ ...e, _batchEntry: true })) : [];
+  }
+  // current
+  if (category === 'characters') return DATA.characters || [];
+  if (category === 'backgrounds') return DATA.backgrounds || [];
+  if (category === 'tap_weapons') return DATA.tap_weapons || [];
+  if (category === 'other') return DATA.other || [];
+  return [];
+}
+
+function render() {
+  const status = document.getElementById('status');
+  const content = document.getElementById('content');
+  const banner = document.getElementById('pending-banner');
+
+  const open = DATA.batches.open;
+  if (open && open.entries && open.entries.length) {
+    banner.style.display = '';
+    banner.innerHTML = `<h2>⚑ ${open.id.toUpperCase()} — ${open.entries.length} pending</h2>
+      <p>Opened ${open.openedAt?.slice(0,10) || '—'}. Click into Pending mode below to review.</p>`;
+  } else {
+    banner.style.display = 'none';
+  }
+
+  let entries = currentEntries();
+
+  // First: filter to the active category bucket. Batch entries carry e.category
+  // values like 'character', 'background', 'tap_weapon', 'other'.
+  const catMatchers = {
+    characters:  e => e.category === 'character' || ['hero','companion','boss','enemy'].includes(e.category),
+    backgrounds: e => e.category === 'background',
+    tap_weapons: e => e.category === 'tap_weapon' || e.category === 'tap-weapons',
+    other:       e => e.category === 'other',
+  };
+  entries = entries.filter(catMatchers[category] || (() => true));
+
+  // Then: sub-filters
+  if (category === 'characters') {
+    entries = entries.filter(e => {
+      const sub = e.category && e.category !== 'character' ? e.category : null;
+      if (sub && !filters.charCats.has(sub)) return false;
+      if (e.pose && !filters.poses.has(e.pose)) return false;
+      return true;
+    });
+  }
+  if (category === 'backgrounds') {
+    entries = entries.filter(e => !e.type || filters.bgTypes.has(e.type));
+  }
+
+  if (!entries.length) {
+    content.innerHTML = '';
+    status.textContent = mode === 'pending' ? 'No pending images.' : 'No images match filters.';
+    return;
+  }
+  status.textContent = `${entries.length} image(s)`;
+
+  if (mode !== 'current' || (category === 'characters' && filters.showSubsprites)) {
+    renderGroupedByGroup(entries);
+  } else if (mode === 'current' && category === 'characters' && !filters.showSubsprites) {
+    // Show one card per character (portrait pose)
+    const grouped = {};
+    for (const e of entries) {
+      if (e.pose !== 'portrait') continue;
+      if (!grouped[e.group]) grouped[e.group] = e;
+    }
+    renderFlat(Object.values(grouped));
+  } else if (category === 'backgrounds' && mode === 'current') {
+    renderBackgroundsByType(entries);
+  } else {
+    renderFlat(entries);
+  }
+  rebuildLbItems(entries);
+}
+
+function renderFlat(entries) {
+  const content = document.getElementById('content');
+  content.innerHTML = `<div class="grid">${entries.map(e => cardHtml(e)).join('')}</div>`;
+  wireCards();
+}
+
+function renderGroupedByGroup(entries) {
+  const content = document.getElementById('content');
+  const groups = {};
+  for (const e of entries) {
+    const key = e.group || e.id;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(e);
+  }
+  let html = '';
+  for (const [g, list] of Object.entries(groups)) {
+    html += `<div class="char-group">
+      <div class="group-head"><h3>${g}</h3><span class="count">${list.length} pose(s)</span></div>
+      <div class="pose-row">${list.map(e => cardHtml(e, true)).join('')}</div>
+    </div>`;
+  }
+  content.innerHTML = html;
+  wireCards();
+}
+
+function renderBackgroundsByType(entries) {
+  const content = document.getElementById('content');
+  const groups = { combat: [], menu: [], map: [] };
+  for (const e of entries) groups[e.type]?.push(e);
+  let html = '';
+  for (const [type, list] of Object.entries(groups)) {
+    if (!list.length) continue;
+    html += `<h2>${type} backgrounds <span style="color:var(--muted); font-size:0.8rem; font-weight:normal;">(${list.length})</span></h2>
+      <div class="grid">${list.map(e => cardHtml(e, false, true)).join('')}</div>`;
+  }
+  content.innerHTML = html;
+  wireCards();
+}
+
+function cardHtml(e, compact = false, isBg = false) {
+  const src = e._batchEntry ? e.new : e.file;
+  const label = e.pose ? `${e.pose}` : (e.name || e.id.replace(/_/g, ' '));
+  const badge = e._batchEntry ? '<span class="badge">pending</span>' : '';
+  const isSelected = selected.has(e.id) ? ' selected' : '';
+  return `<div class="card${isSelected}" data-id="${e.id}">
+    <span class="check"></span>
+    ${badge}
+    <div class="img-wrap${isBg ? ' bg' : ''}"><img src="${src}" alt="${e.id}" loading="lazy"></div>
+    ${compact ? `<div class="label">${label}</div>` : `<div class="label">${e.group || e.name || e.id}<br><small style="opacity:0.65;">${label}</small></div>`}
+  </div>`;
+}
+
+function wireCards() {
+  document.querySelectorAll('.card').forEach(card => {
+    const id = card.dataset.id;
+    // Click area: image opens lightbox; check area toggles select
+    const img = card.querySelector('img');
+    const check = card.querySelector('.check');
+    if (img) img.onclick = (ev) => { ev.stopPropagation(); openLb(id); };
+    if (check) check.onclick = (ev) => { ev.stopPropagation(); toggleSelect(id, card); };
+    // Click on card frame outside img toggles select for convenience
+    card.onclick = () => toggleSelect(id, card);
+  });
+}
+
+function toggleSelect(id, card) {
+  if (selected.has(id)) {
+    selected.delete(id);
+    card.classList.remove('selected');
+  } else {
+    selected.add(id);
+    card.classList.add('selected');
+  }
+  updateSelectBar();
+}
+
+function rebuildLbItems(entries) {
+  lbItems = entries.map(e => ({
+    id: e.id,
+    title: e.group || e.name || e.id,
+    subtitle: e.pose || e.type || e.category || '',
+    src: e._batchEntry ? e.new : e.file,
+    oldSrc: e.old || null,
+    newSrc: e.new || null,
+    prompt: e.prompt || null,
+    oldPrompt: e.oldPrompt || null,
+    newPrompt: e.newPrompt || null,
+    reason: e.reason || null,
+    assetId: e.assetId || null,
+    referenceAssetId: e.referenceAssetId || null,
+    isBg: (e.category === 'background' || e.type),
+  }));
+}
+
+function openLb(id) {
+  const i = lbItems.findIndex(x => x.id === id);
+  if (i < 0) return;
+  lbIdx = i;
+  showLb();
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function showLb() {
+  const it = lbItems[lbIdx];
+  if (!it) return;
+  const stage = document.getElementById('lb-stage');
+  const img = document.getElementById('lb-img');
+  const side = document.getElementById('lb-side');
+  stage.classList.toggle('bg', !!it.isBg);
+  img.src = it.src;
+  img.alt = it.title;
+  document.getElementById('lb-counter').textContent = `${lbIdx+1} / ${lbItems.length}`;
+  document.getElementById('lb-prev').disabled = lbItems.length < 2;
+  document.getElementById('lb-next').disabled = lbItems.length < 2;
+  let html = `<h3>${it.title}</h3><div class="meta">${it.subtitle}</div>`;
+  if (it.reason) html += `<div style="margin-bottom:0.6rem;"><strong>Reason:</strong> ${escapeHtml(it.reason)}</div>`;
+  if (it.oldSrc && it.newSrc) {
+    html += `<div class="lb-comparison">
+      <div><div class="lbl">Original</div><img src="${it.oldSrc}" alt="old"></div>
+      <div><div class="lbl new">Candidate</div><img src="${it.newSrc}" alt="new"></div>
+    </div>`;
+    if (it.oldPrompt) {
+      html += `<div style="margin-top:0.6rem;"><div class="meta">Original prompt</div><div class="prompt">${escapeHtml(it.oldPrompt)}</div></div>`;
+    }
+    if (it.newPrompt) {
+      html += `<div style="margin-top:0.4rem;"><div class="meta">Candidate prompt</div><div class="prompt">${escapeHtml(it.newPrompt)}</div></div>`;
+    }
+  }
+  if (!it.oldSrc && it.prompt) {
+    html += `<div style="margin-top:0.6rem;"><div class="meta">Prompt</div><div class="prompt">${escapeHtml(it.prompt)}</div></div>`;
+  }
+  if (it.assetId) {
+    html += `<div style="margin-top:0.5rem; font-size:0.7rem;"><span class="meta">SpriteCook asset:</span> <code>${it.assetId}</code></div>`;
+  }
+  if (it.referenceAssetId) {
+    html += `<div style="margin-top:0.2rem; font-size:0.7rem;"><span class="meta">Reference:</span> <code>${it.referenceAssetId}</code></div>`;
+  }
+  side.innerHTML = html;
+}
+
+function escapeHtml(s) { return String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+function closeLb() { document.getElementById('lightbox').classList.remove('open'); }
+function wireLightbox() {
+  const lb = document.getElementById('lightbox');
+  // Event delegation — survives any later DOM change
+  lb.addEventListener('click', (e) => {
+    const t = e.target.closest('button');
+    if (!t) {
+      // Click on backdrop (not on an interactive element) closes
+      if (e.target === lb) closeLb();
+      return;
+    }
+    if (t.id === 'lb-close' || t.id === 'lb-close-x') { closeLb(); return; }
+    if (t.id === 'lb-prev' && lbItems.length > 1) { lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; showLb(); return; }
+    if (t.id === 'lb-next' && lbItems.length > 1) { lbIdx = (lbIdx + 1) % lbItems.length; showLb(); return; }
+    if (t.id === 'lb-toggle-layout') {
+      lbStacked = !lbStacked;
+      document.getElementById('lb-body').classList.toggle('stacked', lbStacked);
+      return;
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft' && lbItems.length > 1) { lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; showLb(); }
+    if (e.key === 'ArrowRight' && lbItems.length > 1) { lbIdx = (lbIdx + 1) % lbItems.length; showLb(); }
+  });
+}
+
+load();
+</script>
+</body>
+</html>

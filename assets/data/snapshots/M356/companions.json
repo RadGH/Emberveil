@@ -1,0 +1,608 @@
+[
+  {
+    "id": "pet_skeletal_warrior",
+    "name": "Skeletal Warrior",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "necromancer",
+    "role": "Pet",
+    "attrs": {
+      "STR": 12,
+      "DEX": 8,
+      "INT": 4,
+      "CON": 14
+    },
+    "description": "Undead soldier bound by dark magic. Fights with hollow determination."
+  },
+  {
+    "id": "pet_bone_golem",
+    "name": "Bone Golem",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "necromancer",
+    "role": "Pet",
+    "attrs": {
+      "STR": 16,
+      "DEX": 4,
+      "INT": 2,
+      "CON": 18
+    },
+    "description": "Massive construct of fused bones. Slow but devastating."
+  },
+  {
+    "id": "pet_wolf",
+    "name": "Forest Wolf",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "druid",
+    "role": "Pet",
+    "attrs": {
+      "STR": 10,
+      "DEX": 14,
+      "INT": 4,
+      "CON": 10
+    },
+    "description": "A wild wolf bonded through nature magic. Swift and loyal."
+  },
+  {
+    "id": "pet_bear",
+    "name": "Cave Bear",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "druid",
+    "role": "Pet",
+    "attrs": {
+      "STR": 14,
+      "DEX": 6,
+      "INT": 4,
+      "CON": 16
+    },
+    "description": "A massive bear called from the deep woods. Absorbs punishment."
+  },
+  {
+    "id": "pet_imp",
+    "name": "Bound Imp",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "warlock",
+    "role": "Pet",
+    "attrs": {
+      "STR": 6,
+      "DEX": 12,
+      "INT": 12,
+      "CON": 6
+    },
+    "description": "A mischievous lesser demon. Small but cunning."
+  },
+  {
+    "id": "pet_demon",
+    "name": "Infernal Hound",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "warlock",
+    "role": "Pet",
+    "attrs": {
+      "STR": 14,
+      "DEX": 10,
+      "INT": 8,
+      "CON": 12
+    },
+    "description": "A summoned demon beast from the lower planes."
+  },
+  {
+    "id": "pet_war_hound",
+    "name": "Trained War Hound",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "ranger",
+    "role": "Pet",
+    "attrs": {
+      "STR": 10,
+      "DEX": 14,
+      "INT": 6,
+      "CON": 10
+    },
+    "description": "An armored hunting dog trained for battle."
+  },
+  {
+    "id": "pet_fire_elemental",
+    "name": "Fire Elemental",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "pyromancer",
+    "role": "Pet",
+    "attrs": {
+      "STR": 8,
+      "DEX": 8,
+      "INT": 16,
+      "CON": 8
+    },
+    "description": "A living flame summoned from the ember planes."
+  },
+  {
+    "id": "pet_lightning_elemental",
+    "name": "Lightning Elemental",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "stormcaller",
+    "role": "Pet",
+    "attrs": {
+      "STR": 6,
+      "DEX": 14,
+      "INT": 14,
+      "CON": 6
+    },
+    "description": "A crackling bolt given form and purpose."
+  },
+  {
+    "id": "pet_familiar",
+    "name": "Arcane Familiar",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "mage",
+    "role": "Pet",
+    "attrs": {
+      "STR": 4,
+      "DEX": 10,
+      "INT": 16,
+      "CON": 8
+    },
+    "description": "A mystical black cat wreathed in arcane runes, bound to its mage by ancient pact."
+  },
+  {
+    "id": "pet_clockwork_turret",
+    "name": "Clockwork Turret",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "tinker",
+    "role": "Pet",
+    "attrs": {
+      "STR": 12,
+      "DEX": 8,
+      "INT": 10,
+      "CON": 14
+    },
+    "description": "A brass tripod turret with a single arcane-blue eye. Springs wound tight, barrel loaded with rune-etched bolts."
+  },
+  {
+    "id": "aela",
+    "name": "Aela",
+    "kind": "hireable",
+    "class": "ranger",
+    "className": "Ranger",
+    "role": "Ranger",
+    "level": 1,
+    "cost": 80,
+    "personality": null,
+    "attrs": {
+      "STR": 8,
+      "DEX": 14,
+      "INT": 8,
+      "CON": 10
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "borin",
+    "name": "Borin",
+    "kind": "hireable",
+    "class": "warrior",
+    "className": "Warrior",
+    "role": "Warrior",
+    "level": 1,
+    "cost": 90,
+    "personality": null,
+    "attrs": {
+      "STR": 15,
+      "DEX": 8,
+      "INT": 8,
+      "CON": 9
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "lysa",
+    "name": "Lysa",
+    "kind": "hireable",
+    "class": "cleric",
+    "className": "Cleric",
+    "role": "Cleric",
+    "level": 2,
+    "cost": 120,
+    "personality": null,
+    "attrs": {
+      "STR": 8,
+      "DEX": 8,
+      "INT": 15,
+      "CON": 11
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "rekk",
+    "name": "Rekk",
+    "kind": "hireable",
+    "class": "rogue",
+    "className": "Rogue",
+    "role": "Rogue",
+    "level": 1,
+    "cost": 70,
+    "personality": null,
+    "attrs": {
+      "STR": 8,
+      "DEX": 14,
+      "INT": 9,
+      "CON": 9
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "kaldrek",
+    "name": "Kaldrek the Dragonborn",
+    "kind": "hireable",
+    "class": "dragon_knight",
+    "className": "Dragon Knight",
+    "role": "Dragon Knight",
+    "level": 6,
+    "cost": 600,
+    "personality": null,
+    "attrs": {
+      "STR": 16,
+      "DEX": 10,
+      "INT": 12,
+      "CON": 12
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "syra_wyrmsworn",
+    "name": "Syra Wyrmsworn",
+    "kind": "hireable",
+    "class": "dragon_knight",
+    "className": "Dragon Knight",
+    "role": "Dragon Knight",
+    "level": 7,
+    "cost": 750,
+    "personality": null,
+    "attrs": {
+      "STR": 15,
+      "DEX": 12,
+      "INT": 13,
+      "CON": 12
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "vorin_emberjaw",
+    "name": "Vorin Emberjaw",
+    "kind": "hireable",
+    "class": "dragon_knight",
+    "className": "Dragon Knight",
+    "role": "Dragon Knight",
+    "level": 8,
+    "cost": 900,
+    "personality": null,
+    "attrs": {
+      "STR": 16,
+      "DEX": 11,
+      "INT": 12,
+      "CON": 15
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "maelis_drakeblood",
+    "name": "Maelis Drakeblood",
+    "kind": "hireable",
+    "class": "dragon_knight",
+    "className": "Dragon Knight",
+    "role": "Dragon Knight",
+    "level": 9,
+    "cost": 1100,
+    "personality": null,
+    "attrs": {
+      "STR": 15,
+      "DEX": 14,
+      "INT": 15,
+      "CON": 12
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "ysolde_cogwright",
+    "name": "Ysolde Cogwright",
+    "kind": "hireable",
+    "class": "tinker",
+    "className": "Tinker",
+    "role": "Tinker",
+    "level": 3,
+    "cost": 220,
+    "personality": null,
+    "attrs": {
+      "STR": 8,
+      "DEX": 10,
+      "INT": 15,
+      "CON": 11
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "war_dog",
+    "name": "War Dog",
+    "kind": "companion",
+    "class": "companion",
+    "className": "Companion",
+    "role": "Companion",
+    "level": 1,
+    "cost": 50,
+    "attrs": {
+      "STR": 10,
+      "DEX": 12,
+      "INT": 2,
+      "CON": 10
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "shadow_cat",
+    "name": "Shadow Cat",
+    "kind": "wild",
+    "class": "companion",
+    "className": "Companion",
+    "role": "Companion",
+    "level": 2,
+    "cost": 80,
+    "attrs": {
+      "STR": 8,
+      "DEX": 15,
+      "INT": 4,
+      "CON": 8
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "dire_wolf",
+    "name": "Dire Wolf",
+    "kind": "wild",
+    "class": "companion",
+    "className": "Companion",
+    "role": "Companion",
+    "level": 3,
+    "cost": 110,
+    "attrs": {
+      "STR": 13,
+      "DEX": 13,
+      "INT": 3,
+      "CON": 11
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "forest_owl",
+    "name": "Forest Owl",
+    "kind": "wild",
+    "class": "companion",
+    "className": "Companion",
+    "role": "Companion",
+    "level": 2,
+    "cost": 60,
+    "attrs": {
+      "STR": 6,
+      "DEX": 14,
+      "INT": 8,
+      "CON": 7
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "ember_drake",
+    "name": "Ember Drake",
+    "kind": "wild",
+    "class": "companion",
+    "className": "Companion",
+    "role": "Companion",
+    "level": 4,
+    "cost": 220,
+    "attrs": {
+      "STR": 12,
+      "DEX": 11,
+      "INT": 10,
+      "CON": 11
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "crystal_golem",
+    "name": "Crystal Golem",
+    "kind": "wild",
+    "class": "companion",
+    "className": "Companion",
+    "role": "Companion",
+    "level": 5,
+    "cost": 320,
+    "attrs": {
+      "STR": 15,
+      "DEX": 5,
+      "INT": 2,
+      "CON": 16
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "spirit_wisp",
+    "name": "Spirit Wisp",
+    "kind": "wild",
+    "class": "companion",
+    "className": "Companion",
+    "role": "Companion",
+    "level": 4,
+    "cost": 240,
+    "attrs": {
+      "STR": 4,
+      "DEX": 12,
+      "INT": 14,
+      "CON": 8
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "bone_hound",
+    "name": "Bone Hound",
+    "kind": "wild",
+    "class": "companion",
+    "className": "Companion",
+    "role": "Companion",
+    "level": 4,
+    "cost": 180,
+    "attrs": {
+      "STR": 11,
+      "DEX": 13,
+      "INT": 3,
+      "CON": 10
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "ice_sprite",
+    "name": "Ice Sprite",
+    "kind": "wild",
+    "class": "companion",
+    "className": "Companion",
+    "role": "Companion",
+    "level": 3,
+    "cost": 160,
+    "attrs": {
+      "STR": 5,
+      "DEX": 13,
+      "INT": 13,
+      "CON": 7
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "swamp_frog",
+    "name": "Swamp Frog",
+    "kind": "wild",
+    "class": "companion",
+    "className": "Companion",
+    "role": "Companion",
+    "level": 3,
+    "cost": 90,
+    "attrs": {
+      "STR": 11,
+      "DEX": 10,
+      "INT": 4,
+      "CON": 12
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "void_moth",
+    "name": "Void Moth",
+    "kind": "wild",
+    "class": "companion",
+    "className": "Companion",
+    "role": "Companion",
+    "level": 5,
+    "cost": 280,
+    "attrs": {
+      "STR": 7,
+      "DEX": 14,
+      "INT": 11,
+      "CON": 9
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "dragon_hatchling",
+    "name": "Crimson Dragon Hatchling",
+    "kind": "companion",
+    "class": "companion",
+    "className": "Dragon Hatchling",
+    "role": "Companion",
+    "level": 5,
+    "cost": 500,
+    "attrs": {
+      "STR": 12,
+      "DEX": 11,
+      "INT": 14,
+      "CON": 12
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "frost_wyrmling",
+    "name": "Frost Wyrmling",
+    "kind": "companion",
+    "class": "companion",
+    "className": "Frost Wyrmling",
+    "role": "Companion",
+    "level": 5,
+    "cost": 550,
+    "attrs": {
+      "STR": 11,
+      "DEX": 12,
+      "INT": 13,
+      "CON": 13
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "storm_drake",
+    "name": "Storm Drake",
+    "kind": "companion",
+    "class": "companion",
+    "className": "Storm Drake",
+    "role": "Companion",
+    "level": 6,
+    "cost": 700,
+    "attrs": {
+      "STR": 12,
+      "DEX": 14,
+      "INT": 13,
+      "CON": 12
+    },
+    "description": null,
+    "encounterZone": null
+  },
+  {
+    "id": "shadow_wyrm",
+    "name": "Shadow Wyrm",
+    "kind": "companion",
+    "class": "companion",
+    "className": "Shadow Wyrm",
+    "role": "Companion",
+    "level": 7,
+    "cost": 850,
+    "attrs": {
+      "STR": 13,
+      "DEX": 13,
+      "INT": 15,
+      "CON": 12
+    },
+    "description": null,
+    "encounterZone": null
+  }
+]

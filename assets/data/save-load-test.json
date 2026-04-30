@@ -1,8 +1,8 @@
 {
-  "generated": "2026-04-28T07:30:04.952Z",
+  "generated": "2026-04-30T07:48:50.537Z",
   "savesDir": "/home/radgh/claude/assets/references/emberveil/saves",
-  "totalFiles": 7,
-  "pass": 7,
+  "totalFiles": 10,
+  "pass": 10,
   "fail": 0,
   "results": [
     {
@@ -19,6 +19,51 @@
       "saveVersion": 6,
       "act": 2,
       "partySize": 4
+    },
+    {
+      "file": "emberveil-save-knightly-2026-04-28-2.json",
+      "pass": true,
+      "errors": [],
+      "warnings": [],
+      "fields": {
+        "party": true,
+        "gold": true,
+        "act": true
+      },
+      "heroName": "Knightly",
+      "saveVersion": 6,
+      "act": 1,
+      "partySize": 1
+    },
+    {
+      "file": "emberveil-save-knightly-2026-04-28-3.json",
+      "pass": true,
+      "errors": [],
+      "warnings": [],
+      "fields": {
+        "party": true,
+        "gold": true,
+        "act": true
+      },
+      "heroName": "Knightly",
+      "saveVersion": 6,
+      "act": 4,
+      "partySize": 1
+    },
+    {
+      "file": "emberveil-save-knightly-2026-04-28.json",
+      "pass": true,
+      "errors": [],
+      "warnings": [],
+      "fields": {
+        "party": true,
+        "gold": true,
+        "act": true
+      },
+      "heroName": "Knightly",
+      "saveVersion": 6,
+      "act": 1,
+      "partySize": 1
     },
     {
       "file": "emberveil-save-necroman-2026-04-17.json",

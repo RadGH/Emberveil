@@ -1,10 +1,17 @@
 [
   {
+    "slug": "post-overhaul-update",
+    "title": "Cloud Saves, UI Unification & a Balance Pass",
+    "date": "2026-04-28",
+    "summary": "99 milestones since the fast-travel overhaul: cloud saves, telemetry with consent gating, UI unification across five screens, NPC art pipeline maturity, the M350 balance pass that smoothed Acts 5-6, Image Review V2 launch, and shared design tokens.",
+    "featured_image": "../images/news_hero/post-overhaul-update.jpg"
+  },
+  {
     "slug": "m220-m254-consolidation",
-    "title": "Fast-Travel Overhaul, Questline & Difficulty System",
+    "title": "Fast-Travel Overhaul, Questline & Difficulty",
     "date": "2026-04-23",
     "summary": "Forty-plus milestones rolled up: 6 new towns, always-visible Return-to-Town, Silas/Kaela/Marek 5-act main quest, Normal/Hard difficulty, Loot Chests, Magic Find, Attack Speed runtime, 27 gender variants, 5 data catalogs, sprite-approval \u2192 in-game sync bridge, and a dragon epilogue.",
-    "featured_image": "../images/combat_bg/cosmic_rift_1.png"
+    "featured_image": "../images/news_hero/m220-m254-consolidation.jpg"
   },
   {
     "slug": "seo-update",
@@ -15,65 +22,65 @@
   },
   {
     "slug": "milestone-report",
-    "title": "Emberveil Major Milestone Report",
+    "title": "20 Classes, 84 Skills & Combat Rework",
     "date": "2026-04-15",
     "summary": "20 hero classes, 84 skills, 10 companions, combat rebalance, 60+ SFX \u2014 a comprehensive look at the Emberveil journey so far.",
-    "featured_image": "../images/combat_bg/hell_breach_1.png"
+    "featured_image": "../images/news_hero/milestone-report.jpg"
   },
   {
     "slug": "re-redesign",
-    "title": "Re-redesign \u2014 SpriteCook",
+    "title": "Character Art Pipeline & Consistency",
     "date": "2026-04-14",
     "summary": "Full visual overhaul using SpriteCook's HD portrait and sprite pipeline \u2014 20 hero classes, 10 companions, and boss art all regenerated.",
-    "featured_image": "../images/combat_bg/ember_plateau_1.png"
+    "featured_image": "../images/news_hero/re-redesign.jpg"
   },
   {
     "slug": "m79-redesign",
-    "title": "M79 Redesign Report",
+    "title": "OpenAI Pixel Art & SFX Loudness Pass",
     "date": "2026-04-14",
     "summary": "Milestone 79 brought a sweeping UI redesign, refined combat feedback, and the new portrait-based character display system.",
     "featured_image": "../images/map_bg/border_roads.jpg"
   },
   {
     "slug": "balance-report",
-    "title": "Balance Report",
+    "title": "Combat DPS & Healing Analysis",
     "date": "2026-04-14",
     "summary": "Community survey on the M77 combat rebalance \u2014 burst vs sustain, target falloff, affix reshuffle.",
-    "featured_image": "../images/combat_bg/dust_roads_1.png"
+    "featured_image": "../images/news_hero/balance-report.jpg"
   },
   {
     "slug": "tap-weapons",
-    "title": "Tap Weapons Design",
+    "title": "Interactive Tap Combat System",
     "date": "2026-04-13",
     "summary": "Design document for the tap-to-attack weapons system \u2014 how real-time input layers on top of the turn-based combat loop.",
-    "featured_image": "../images/combat_bg/abyssal_depths_1.png"
+    "featured_image": "../images/news_hero/tap-weapons.jpg"
   },
   {
     "slug": "simulation-overhaul",
-    "title": "Simulation Overhaul",
+    "title": "Monte Carlo Combat Testing",
     "date": "2026-04-13",
     "summary": "Complete rewrite of the combat simulator with formula transparency, skill coverage, and statistical charting.",
-    "featured_image": "../images/combat_bg/cosmic_rift_1.png"
+    "featured_image": "../images/news_hero/simulation-overhaul.jpg"
   },
   {
     "slug": "dragon-expansion",
-    "title": "Dragon Expansion",
+    "title": "Act VI Dragons: Bahamoth & Dragon Knight",
     "date": "2026-04-13",
     "summary": "Act 6 Dragon's Reach expansion \u2014 new zones, boss encounters, and the Dragon Knight unlock chain.",
-    "featured_image": "../images/combat_bg/dragons_reach_1.png"
+    "featured_image": "../images/news_hero/dragon-expansion.jpg"
   },
   {
     "slug": "milestone-53",
-    "title": "Milestone 53 Report",
+    "title": "Deferred Resolution & Feature Completion",
     "date": "2026-04-11",
     "summary": "Blacksmith merge, UI overhaul, combat rebalance, simulation parity, and the new survey tool.",
-    "featured_image": "../images/map_bg/ember_plateau.jpg"
+    "featured_image": "../images/news_hero/milestone-53.jpg"
   },
   {
     "slug": "pre-game",
-    "title": "Pre-Game Brainstorm",
+    "title": "Emberveil Design Foundations",
     "date": "2026-04-10",
     "summary": "The original design document \u2014 party-based RPG with mobile-first combat and an atmospheric dark-fantasy world.",
-    "featured_image": "../images/map_bg/dust_roads.jpg"
+    "featured_image": "../images/news_hero/pre-game.jpg"
   }
 ]

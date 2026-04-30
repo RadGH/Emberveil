@@ -1,0 +1,720 @@
+{
+  "weapons": [
+    {
+      "id": "dagger",
+      "name": "Dagger",
+      "subtype": "dagger",
+      "weaponCategory": "light",
+      "dmg": [
+        3,
+        7
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "sword",
+      "name": "Sword",
+      "subtype": "sword",
+      "weaponCategory": "heavy",
+      "dmg": [
+        6,
+        14
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "wand",
+      "name": "Wand",
+      "subtype": "wand",
+      "weaponCategory": "magic",
+      "dmg": [
+        4,
+        10
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "scepter",
+      "name": "Scepter",
+      "subtype": "scepter",
+      "weaponCategory": "magic",
+      "dmg": [
+        5,
+        12
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "staff",
+      "name": "Staff",
+      "subtype": "staff",
+      "weaponCategory": "magic",
+      "dmg": [
+        8,
+        20
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "hammer",
+      "name": "Hammer",
+      "subtype": "hammer",
+      "weaponCategory": "heavy",
+      "dmg": [
+        8,
+        16
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "sword2h",
+      "name": "Greatsword",
+      "subtype": "sword2h",
+      "weaponCategory": "heavy",
+      "dmg": [
+        14,
+        28
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "axe2h",
+      "name": "Greataxe",
+      "subtype": "axe2h",
+      "weaponCategory": "heavy",
+      "dmg": [
+        16,
+        30
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "bow",
+      "name": "Bow",
+      "subtype": "bow",
+      "weaponCategory": "light",
+      "dmg": [
+        8,
+        16
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "crossbow",
+      "name": "Crossbow",
+      "subtype": "crossbow",
+      "weaponCategory": "light",
+      "dmg": [
+        12,
+        22
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "javelin",
+      "name": "Javelin",
+      "subtype": "javelin",
+      "weaponCategory": "light",
+      "dmg": [
+        9,
+        18
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "longsword",
+      "name": "Longsword",
+      "subtype": "sword",
+      "weaponCategory": "heavy",
+      "dmg": [
+        8,
+        16
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "rapier",
+      "name": "Rapier",
+      "subtype": "sword",
+      "weaponCategory": "light",
+      "dmg": [
+        5,
+        11
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "shortbow",
+      "name": "Shortbow",
+      "subtype": "bow",
+      "weaponCategory": "light",
+      "dmg": [
+        6,
+        12
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "warhammer",
+      "name": "Warhammer",
+      "subtype": "hammer",
+      "weaponCategory": "heavy",
+      "dmg": [
+        10,
+        18
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "battleaxe",
+      "name": "Battleaxe",
+      "subtype": "axe",
+      "weaponCategory": "heavy",
+      "dmg": [
+        9,
+        17
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "halberd",
+      "name": "Halberd",
+      "subtype": "polearm",
+      "weaponCategory": "heavy",
+      "dmg": [
+        13,
+        24
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "spear",
+      "name": "Spear",
+      "subtype": "spear",
+      "weaponCategory": "light",
+      "dmg": [
+        8,
+        15
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "quarterstaff",
+      "name": "Quarterstaff",
+      "subtype": "staff",
+      "weaponCategory": "magic",
+      "dmg": [
+        7,
+        14
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "orb",
+      "name": "Orb",
+      "subtype": "orb",
+      "weaponCategory": "magic",
+      "dmg": [
+        3,
+        8
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "tome",
+      "name": "Tome",
+      "subtype": "tome",
+      "weaponCategory": "magic",
+      "dmg": [
+        2,
+        6
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "greatsword",
+      "name": "Greatsword",
+      "subtype": "sword2h",
+      "weaponCategory": "heavy",
+      "dmg": [
+        15,
+        29
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "dragonfang_dagger",
+      "name": "Dragonfang Dagger",
+      "subtype": "dagger",
+      "weaponCategory": "light",
+      "dmg": [
+        14,
+        28
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "dragonfang_sword",
+      "name": "Dragonfang Sword",
+      "subtype": "sword",
+      "weaponCategory": "heavy",
+      "dmg": [
+        22,
+        38
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "dragonfang_greatsword",
+      "name": "Dragonfang Greatsword",
+      "subtype": "sword2h",
+      "weaponCategory": "heavy",
+      "dmg": [
+        38,
+        62
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "wyrmscale_bow",
+      "name": "Wyrmscale Bow",
+      "subtype": "bow",
+      "weaponCategory": "light",
+      "dmg": [
+        26,
+        46
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "dragonbone_staff",
+      "name": "Dragonbone Staff",
+      "subtype": "staff",
+      "weaponCategory": "magic",
+      "dmg": [
+        24,
+        50
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "drakehammer",
+      "name": "Drakehammer",
+      "subtype": "hammer",
+      "weaponCategory": "heavy",
+      "dmg": [
+        24,
+        42
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "dragontooth_wand",
+      "name": "Dragontooth Wand",
+      "subtype": "wand",
+      "weaponCategory": "magic",
+      "dmg": [
+        16,
+        34
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "iron_mace",
+      "name": "Iron Mace",
+      "subtype": "mace",
+      "weaponCategory": "heavy",
+      "dmg": [
+        9,
+        17
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "obsidian_scimitar",
+      "name": "Obsidian Scimitar",
+      "subtype": "sword",
+      "weaponCategory": "light",
+      "dmg": [
+        12,
+        22
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "ember_focus",
+      "name": "Ember Focus",
+      "subtype": "wand",
+      "weaponCategory": "magic",
+      "dmg": [
+        11,
+        21
+      ],
+      "twoHanded": false
+    },
+    {
+      "id": "voidsteel_greatsword",
+      "name": "Voidsteel Greatsword",
+      "subtype": "sword2h",
+      "weaponCategory": "heavy",
+      "dmg": [
+        28,
+        46
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "starfall_bow",
+      "name": "Starfall Bow",
+      "subtype": "bow",
+      "weaponCategory": "light",
+      "dmg": [
+        18,
+        32
+      ],
+      "twoHanded": true
+    },
+    {
+      "id": "abyssal_rod",
+      "name": "Abyssal Rod",
+      "subtype": "staff",
+      "weaponCategory": "magic",
+      "dmg": [
+        20,
+        40
+      ],
+      "twoHanded": true
+    }
+  ],
+  "armor": [
+    {
+      "id": "cloth_helm",
+      "name": "Hood",
+      "slot": "head",
+      "armorTier": null,
+      "armor": 1
+    },
+    {
+      "id": "light_helm",
+      "name": "Leather Cap",
+      "slot": "head",
+      "armorTier": null,
+      "armor": 3
+    },
+    {
+      "id": "medium_helm",
+      "name": "Chain Coif",
+      "slot": "head",
+      "armorTier": null,
+      "armor": 5
+    },
+    {
+      "id": "heavy_helm",
+      "name": "War Helm",
+      "slot": "head",
+      "armorTier": null,
+      "armor": 8
+    },
+    {
+      "id": "cloth_chest",
+      "name": "Robes",
+      "slot": "chest",
+      "armorTier": null,
+      "armor": 2
+    },
+    {
+      "id": "light_chest",
+      "name": "Leather Armor",
+      "slot": "chest",
+      "armorTier": null,
+      "armor": 6
+    },
+    {
+      "id": "medium_chest",
+      "name": "Chain Shirt",
+      "slot": "chest",
+      "armorTier": null,
+      "armor": 10
+    },
+    {
+      "id": "heavy_chest",
+      "name": "Plate Armor",
+      "slot": "chest",
+      "armorTier": null,
+      "armor": 16
+    },
+    {
+      "id": "cloth_legs",
+      "name": "Linen Leggings",
+      "slot": "legs",
+      "armorTier": null,
+      "armor": 1
+    },
+    {
+      "id": "light_legs",
+      "name": "Leather Legs",
+      "slot": "legs",
+      "armorTier": null,
+      "armor": 4
+    },
+    {
+      "id": "medium_legs",
+      "name": "Chain Legs",
+      "slot": "legs",
+      "armorTier": null,
+      "armor": 7
+    },
+    {
+      "id": "heavy_legs",
+      "name": "Plate Legs",
+      "slot": "legs",
+      "armorTier": null,
+      "armor": 11
+    },
+    {
+      "id": "shield",
+      "name": "Shield",
+      "slot": "offhand",
+      "armorTier": null,
+      "armor": 5
+    },
+    {
+      "id": "ring",
+      "name": "Ring",
+      "slot": "ring",
+      "armorTier": null,
+      "armor": 0
+    },
+    {
+      "id": "necklace",
+      "name": "Necklace",
+      "slot": "necklace",
+      "armorTier": null,
+      "armor": 0
+    },
+    {
+      "id": "plate_helm",
+      "name": "Plate Helm",
+      "slot": "head",
+      "armorTier": null,
+      "armor": 10
+    },
+    {
+      "id": "light_gauntlets",
+      "name": "Leather Gauntlets",
+      "slot": "hands",
+      "armorTier": null,
+      "armor": 3
+    },
+    {
+      "id": "heavy_gauntlets",
+      "name": "Plate Gauntlets",
+      "slot": "hands",
+      "armorTier": null,
+      "armor": 6
+    },
+    {
+      "id": "light_boots",
+      "name": "Leather Boots",
+      "slot": "feet",
+      "armorTier": null,
+      "armor": 3
+    },
+    {
+      "id": "heavy_boots",
+      "name": "Plate Boots",
+      "slot": "feet",
+      "armorTier": null,
+      "armor": 7
+    },
+    {
+      "id": "silver_amulet",
+      "name": "Silver Amulet",
+      "slot": "necklace",
+      "armorTier": null,
+      "armor": 0
+    },
+    {
+      "id": "gold_signet",
+      "name": "Gold Signet",
+      "slot": "ring",
+      "armorTier": null,
+      "armor": 0
+    },
+    {
+      "id": "quiver",
+      "name": "Quiver",
+      "slot": "offhand",
+      "armorTier": null,
+      "armor": 1
+    },
+    {
+      "id": "dragonscale_cloth",
+      "name": "Dragonscale Robes",
+      "slot": "chest",
+      "armorTier": null,
+      "armor": 8
+    },
+    {
+      "id": "wyrmscale_helm",
+      "name": "Wyrmscale Helm",
+      "slot": "head",
+      "armorTier": null,
+      "armor": 14
+    },
+    {
+      "id": "wyrmscale_chest",
+      "name": "Wyrmscale Plate",
+      "slot": "chest",
+      "armorTier": null,
+      "armor": 22
+    },
+    {
+      "id": "dragonsteel_chest",
+      "name": "Dragonsteel Plate",
+      "slot": "chest",
+      "armorTier": null,
+      "armor": 26
+    },
+    {
+      "id": "dragonhide_legs",
+      "name": "Dragonhide Legs",
+      "slot": "legs",
+      "armorTier": null,
+      "armor": 12
+    },
+    {
+      "id": "dragonclaw_gauntlets",
+      "name": "Dragonclaw Gauntlets",
+      "slot": "hands",
+      "armorTier": null,
+      "armor": 10
+    },
+    {
+      "id": "dragonheart_ring",
+      "name": "Dragonheart Ring",
+      "slot": "ring",
+      "armorTier": null,
+      "armor": 0
+    },
+    {
+      "id": "dragontooth_amulet",
+      "name": "Dragontooth Amulet",
+      "slot": "necklace",
+      "armorTier": null,
+      "armor": 0
+    },
+    {
+      "id": "buckler",
+      "name": "Buckler",
+      "slot": "offhand",
+      "armorTier": null,
+      "armor": 3
+    },
+    {
+      "id": "kite_shield",
+      "name": "Kite Shield",
+      "slot": "offhand",
+      "armorTier": null,
+      "armor": 7
+    },
+    {
+      "id": "tower_shield",
+      "name": "Tower Shield",
+      "slot": "offhand",
+      "armorTier": null,
+      "armor": 12
+    },
+    {
+      "id": "aegis_shield",
+      "name": "Aegis Shield",
+      "slot": "offhand",
+      "armorTier": null,
+      "armor": 18
+    },
+    {
+      "id": "warded_focus",
+      "name": "Warded Focus",
+      "slot": "offhand",
+      "armorTier": null,
+      "armor": 1
+    },
+    {
+      "id": "rune_aegis",
+      "name": "Rune Aegis",
+      "slot": "offhand",
+      "armorTier": null,
+      "armor": 2
+    },
+    {
+      "id": "spellguard_orb",
+      "name": "Spellguard Orb",
+      "slot": "offhand",
+      "armorTier": null,
+      "armor": 3
+    },
+    {
+      "id": "arcane_bulwark",
+      "name": "Arcane Bulwark",
+      "slot": "offhand",
+      "armorTier": null,
+      "armor": 4
+    },
+    {
+      "id": "scaled_chest",
+      "name": "Scaled Hauberk",
+      "slot": "chest",
+      "armorTier": null,
+      "armor": 13
+    },
+    {
+      "id": "runed_chest",
+      "name": "Runed Cuirass",
+      "slot": "chest",
+      "armorTier": null,
+      "armor": 20
+    },
+    {
+      "id": "scaled_legs",
+      "name": "Scaled Greaves",
+      "slot": "legs",
+      "armorTier": null,
+      "armor": 9
+    },
+    {
+      "id": "runed_legs",
+      "name": "Runed Greaves",
+      "slot": "legs",
+      "armorTier": null,
+      "armor": 14
+    },
+    {
+      "id": "medium_gauntlets",
+      "name": "Chain Gauntlets",
+      "slot": "hands",
+      "armorTier": null,
+      "armor": 5
+    },
+    {
+      "id": "runed_gauntlets",
+      "name": "Runed Gauntlets",
+      "slot": "hands",
+      "armorTier": null,
+      "armor": 8
+    },
+    {
+      "id": "medium_boots",
+      "name": "Chain Boots",
+      "slot": "feet",
+      "armorTier": null,
+      "armor": 5
+    },
+    {
+      "id": "runed_boots",
+      "name": "Runed Sabatons",
+      "slot": "feet",
+      "armorTier": null,
+      "armor": 9
+    }
+  ]
+}

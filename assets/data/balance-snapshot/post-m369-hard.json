@@ -1,0 +1,1192 @@
+{
+  "mode": "post-m369-hard",
+  "generatedAt": "2026-04-29T08:59:47.890Z",
+  "runs": 1000,
+  "baseSeed": 42,
+  "parties": {
+    "A": {
+      "acts": {
+        "1": {
+          "regular": {
+            "goblin_patrol": {
+              "winRate": 0.002,
+              "deathRate": 0.998,
+              "avgRounds": 8.202,
+              "dmgMean": 1251,
+              "dmgStdDev": 169
+            },
+            "corrupted_outpost": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 5.432,
+              "dmgMean": 1160,
+              "dmgStdDev": 114
+            },
+            "spider_nest": {
+              "winRate": 0.924,
+              "deathRate": 0.07599999999999996,
+              "avgRounds": 10.704,
+              "dmgMean": 1147,
+              "dmgStdDev": 161
+            },
+            "wolf_pack": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.984,
+              "dmgMean": 1245,
+              "dmgStdDev": 163
+            },
+            "bear_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.329,
+              "dmgMean": 1202,
+              "dmgStdDev": 152
+            },
+            "bandit_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.483,
+              "dmgMean": 1235,
+              "dmgStdDev": 148
+            }
+          },
+          "boss": {
+            "border_boss": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 5.321,
+              "dmgMean": 1112,
+              "dmgStdDev": 127
+            },
+            "thornwood_boss": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 5.314,
+              "dmgMean": 1144,
+              "dmgStdDev": 114
+            },
+            "grax_final": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.931,
+              "dmgMean": 1145,
+              "dmgStdDev": 123
+            }
+          },
+          "summary": {
+            "avgWinRate": 0.10288888888888889,
+            "encounterCount": 9,
+            "partyLevel": 5,
+            "partySize": 4
+          }
+        },
+        "2": {
+          "regular": {
+            "ash_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.918,
+              "dmgMean": 1671,
+              "dmgStdDev": 205
+            },
+            "obsidian_garrison": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.727,
+              "dmgMean": 1691,
+              "dmgStdDev": 221
+            },
+            "ember_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.283,
+              "dmgMean": 1678,
+              "dmgStdDev": 202
+            },
+            "veil_cult_camp": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 8.756,
+              "dmgMean": 1670,
+              "dmgStdDev": 216
+            }
+          },
+          "boss": {
+            "lava_titan": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 7.382,
+              "dmgMean": 1345,
+              "dmgStdDev": 172
+            },
+            "veil_high_priest": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.955,
+              "dmgMean": 1764,
+              "dmgStdDev": 209
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 6,
+            "partyLevel": 9,
+            "partySize": 4
+          }
+        },
+        "3": {
+          "regular": {
+            "demon_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 18.705,
+              "dmgMean": 3368,
+              "dmgStdDev": 738
+            },
+            "hell_garrison": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 13.074,
+              "dmgMean": 2813,
+              "dmgStdDev": 620
+            },
+            "rift_assault": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 8.311,
+              "dmgMean": 1806,
+              "dmgStdDev": 281
+            },
+            "void_nexus_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.098,
+              "dmgMean": 1815,
+              "dmgStdDev": 289
+            }
+          },
+          "boss": {
+            "archfiend_malgrath": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.048,
+              "dmgMean": 1831,
+              "dmgStdDev": 291
+            },
+            "emberveil_sovereign": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 5.943,
+              "dmgMean": 1607,
+              "dmgStdDev": 229
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 6,
+            "partyLevel": 13,
+            "partySize": 4
+          }
+        },
+        "4": {
+          "regular": {
+            "void_horde": {
+              "winRate": 0.011,
+              "deathRate": 0.989,
+              "avgRounds": 11.721,
+              "dmgMean": 4734,
+              "dmgStdDev": 1242
+            },
+            "cosmic_assault": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 11.052,
+              "dmgMean": 3268,
+              "dmgStdDev": 530
+            }
+          },
+          "boss": {
+            "unraveler": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.368,
+              "dmgMean": 4035,
+              "dmgStdDev": 1045
+            }
+          },
+          "summary": {
+            "avgWinRate": 0.0036666666666666666,
+            "encounterCount": 3,
+            "partyLevel": 17,
+            "partySize": 4
+          }
+        },
+        "5": {
+          "regular": {
+            "primordial_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.152,
+              "dmgMean": 2648,
+              "dmgStdDev": 430
+            },
+            "abyssal_garrison": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.288,
+              "dmgMean": 3497,
+              "dmgStdDev": 641
+            },
+            "genesis_nest": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 5.596,
+              "dmgMean": 2485,
+              "dmgStdDev": 417
+            }
+          },
+          "boss": {
+            "the_architect_final": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.226,
+              "dmgMean": 2821,
+              "dmgStdDev": 455
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 4,
+            "partyLevel": 21,
+            "partySize": 4
+          }
+        },
+        "6": {
+          "regular": {
+            "dragon_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 12.165,
+              "dmgMean": 4728,
+              "dmgStdDev": 978
+            },
+            "wyrm_citadel": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 10.276,
+              "dmgMean": 4303,
+              "dmgStdDev": 831
+            },
+            "frost_wyrm_pack": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 12.381,
+              "dmgMean": 4817,
+              "dmgStdDev": 1018
+            },
+            "storm_dragon_nest": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 12.806,
+              "dmgMean": 5075,
+              "dmgStdDev": 1066
+            },
+            "dragon_elite": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 7.561,
+              "dmgMean": 3687,
+              "dmgStdDev": 695
+            }
+          },
+          "boss": {
+            "ancient_dragon_fight": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 10.995,
+              "dmgMean": 4627,
+              "dmgStdDev": 906
+            },
+            "dragon_king_fight": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 4.979,
+              "dmgMean": 2989,
+              "dmgStdDev": 487
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 7,
+            "partyLevel": 25,
+            "partySize": 4
+          }
+        }
+      }
+    },
+    "B": {
+      "acts": {
+        "1": {
+          "regular": {
+            "goblin_patrol": {
+              "winRate": 0.009,
+              "deathRate": 0.991,
+              "avgRounds": 9.277,
+              "dmgMean": 1331,
+              "dmgStdDev": 106
+            },
+            "corrupted_outpost": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 5.988,
+              "dmgMean": 1265,
+              "dmgStdDev": 86
+            },
+            "spider_nest": {
+              "winRate": 0.994,
+              "deathRate": 0.006000000000000005,
+              "avgRounds": 9.632,
+              "dmgMean": 985,
+              "dmgStdDev": 104
+            },
+            "wolf_pack": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 7.585,
+              "dmgMean": 1334,
+              "dmgStdDev": 105
+            },
+            "bear_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.957,
+              "dmgMean": 1313,
+              "dmgStdDev": 119
+            },
+            "bandit_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 7.551,
+              "dmgMean": 1340,
+              "dmgStdDev": 109
+            }
+          },
+          "boss": {
+            "border_boss": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.314,
+              "dmgMean": 1215,
+              "dmgStdDev": 92
+            },
+            "thornwood_boss": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.102,
+              "dmgMean": 1270,
+              "dmgStdDev": 76
+            },
+            "grax_final": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 7.843,
+              "dmgMean": 1204,
+              "dmgStdDev": 73
+            }
+          },
+          "summary": {
+            "avgWinRate": 0.11144444444444443,
+            "encounterCount": 9,
+            "partyLevel": 5,
+            "partySize": 5
+          }
+        },
+        "2": {
+          "regular": {
+            "ash_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 10.313,
+              "dmgMean": 1483,
+              "dmgStdDev": 111
+            },
+            "obsidian_garrison": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.99,
+              "dmgMean": 1417,
+              "dmgStdDev": 105
+            },
+            "ember_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.658,
+              "dmgMean": 1475,
+              "dmgStdDev": 103
+            },
+            "veil_cult_camp": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.316,
+              "dmgMean": 1505,
+              "dmgStdDev": 108
+            }
+          },
+          "boss": {
+            "lava_titan": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 8.675,
+              "dmgMean": 1283,
+              "dmgStdDev": 85
+            },
+            "veil_high_priest": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 10.37,
+              "dmgMean": 1547,
+              "dmgStdDev": 115
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 6,
+            "partyLevel": 9,
+            "partySize": 5
+          }
+        },
+        "3": {
+          "regular": {
+            "demon_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 13.152,
+              "dmgMean": 2404,
+              "dmgStdDev": 306
+            },
+            "hell_garrison": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 10.453,
+              "dmgMean": 2019,
+              "dmgStdDev": 238
+            },
+            "rift_assault": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 7.743,
+              "dmgMean": 1788,
+              "dmgStdDev": 177
+            },
+            "void_nexus_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 8.172,
+              "dmgMean": 1769,
+              "dmgStdDev": 175
+            }
+          },
+          "boss": {
+            "archfiend_malgrath": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 8.466,
+              "dmgMean": 1664,
+              "dmgStdDev": 170
+            },
+            "emberveil_sovereign": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.131,
+              "dmgMean": 1752,
+              "dmgStdDev": 198
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 6,
+            "partyLevel": 13,
+            "partySize": 5
+          }
+        },
+        "4": {
+          "regular": {
+            "void_horde": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 8.554,
+              "dmgMean": 2111,
+              "dmgStdDev": 264
+            },
+            "cosmic_assault": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.134,
+              "dmgMean": 2251,
+              "dmgStdDev": 280
+            }
+          },
+          "boss": {
+            "unraveler": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.042,
+              "dmgMean": 2069,
+              "dmgStdDev": 242
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 3,
+            "partyLevel": 17,
+            "partySize": 5
+          }
+        },
+        "5": {
+          "regular": {
+            "primordial_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 5.314,
+              "dmgMean": 2154,
+              "dmgStdDev": 254
+            },
+            "abyssal_garrison": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 7.743,
+              "dmgMean": 2394,
+              "dmgStdDev": 288
+            },
+            "genesis_nest": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 5.095,
+              "dmgMean": 2125,
+              "dmgStdDev": 257
+            }
+          },
+          "boss": {
+            "the_architect_final": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 5.878,
+              "dmgMean": 2213,
+              "dmgStdDev": 260
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 4,
+            "partyLevel": 21,
+            "partySize": 5
+          }
+        },
+        "6": {
+          "regular": {
+            "dragon_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 8.844,
+              "dmgMean": 3011,
+              "dmgStdDev": 418
+            },
+            "wyrm_citadel": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 7.873,
+              "dmgMean": 2805,
+              "dmgStdDev": 377
+            },
+            "frost_wyrm_pack": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.159,
+              "dmgMean": 2932,
+              "dmgStdDev": 424
+            },
+            "storm_dragon_nest": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 9.198,
+              "dmgMean": 3187,
+              "dmgStdDev": 459
+            },
+            "dragon_elite": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 6.398,
+              "dmgMean": 2576,
+              "dmgStdDev": 307
+            }
+          },
+          "boss": {
+            "ancient_dragon_fight": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 8.527,
+              "dmgMean": 2995,
+              "dmgStdDev": 449
+            },
+            "dragon_king_fight": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 4.719,
+              "dmgMean": 2418,
+              "dmgStdDev": 276
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 7,
+            "partyLevel": 25,
+            "partySize": 5
+          }
+        }
+      }
+    },
+    "C": {
+      "acts": {
+        "1": {
+          "regular": {
+            "goblin_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.825,
+              "dmgMean": 195,
+              "dmgStdDev": 18
+            },
+            "corrupted_outpost": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.363,
+              "dmgMean": 215,
+              "dmgStdDev": 21
+            },
+            "spider_nest": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 3.095,
+              "dmgMean": 196,
+              "dmgStdDev": 16
+            },
+            "wolf_pack": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.748,
+              "dmgMean": 217,
+              "dmgStdDev": 23
+            },
+            "bear_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.565,
+              "dmgMean": 219,
+              "dmgStdDev": 32
+            },
+            "bandit_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.674,
+              "dmgMean": 208,
+              "dmgStdDev": 23
+            }
+          },
+          "boss": {
+            "border_boss": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.412,
+              "dmgMean": 209,
+              "dmgStdDev": 30
+            },
+            "thornwood_boss": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.386,
+              "dmgMean": 209,
+              "dmgStdDev": 20
+            },
+            "grax_final": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.746,
+              "dmgMean": 203,
+              "dmgStdDev": 21
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 9,
+            "partyLevel": 5,
+            "partySize": 1
+          }
+        },
+        "2": {
+          "regular": {
+            "ash_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 2.275,
+              "dmgMean": 228,
+              "dmgStdDev": 19
+            },
+            "obsidian_garrison": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 2.148,
+              "dmgMean": 227,
+              "dmgStdDev": 19
+            },
+            "ember_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 2.179,
+              "dmgMean": 228,
+              "dmgStdDev": 18
+            },
+            "veil_cult_camp": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 2.109,
+              "dmgMean": 230,
+              "dmgStdDev": 20
+            }
+          },
+          "boss": {
+            "lava_titan": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.84,
+              "dmgMean": 233,
+              "dmgStdDev": 22
+            },
+            "veil_high_priest": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 2.353,
+              "dmgMean": 229,
+              "dmgStdDev": 19
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 6,
+            "partyLevel": 9,
+            "partySize": 1
+          }
+        },
+        "3": {
+          "regular": {
+            "demon_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 2.736,
+              "dmgMean": 340,
+              "dmgStdDev": 58
+            },
+            "hell_garrison": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 2.302,
+              "dmgMean": 328,
+              "dmgStdDev": 54
+            },
+            "rift_assault": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.781,
+              "dmgMean": 281,
+              "dmgStdDev": 35
+            },
+            "void_nexus_ambush": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.897,
+              "dmgMean": 267,
+              "dmgStdDev": 29
+            }
+          },
+          "boss": {
+            "archfiend_malgrath": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.915,
+              "dmgMean": 303,
+              "dmgStdDev": 44
+            },
+            "emberveil_sovereign": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.413,
+              "dmgMean": 297,
+              "dmgStdDev": 49
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 6,
+            "partyLevel": 13,
+            "partySize": 1
+          }
+        },
+        "4": {
+          "regular": {
+            "void_horde": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.881,
+              "dmgMean": 354,
+              "dmgStdDev": 54
+            },
+            "cosmic_assault": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.97,
+              "dmgMean": 361,
+              "dmgStdDev": 55
+            }
+          },
+          "boss": {
+            "unraveler": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.34,
+              "dmgMean": 400,
+              "dmgStdDev": 73
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 3,
+            "partyLevel": 17,
+            "partySize": 1
+          }
+        },
+        "5": {
+          "regular": {
+            "primordial_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.316,
+              "dmgMean": 382,
+              "dmgStdDev": 60
+            },
+            "abyssal_garrison": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.754,
+              "dmgMean": 403,
+              "dmgStdDev": 62
+            },
+            "genesis_nest": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.266,
+              "dmgMean": 384,
+              "dmgStdDev": 62
+            }
+          },
+          "boss": {
+            "the_architect_final": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.333,
+              "dmgMean": 393,
+              "dmgStdDev": 74
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 4,
+            "partyLevel": 21,
+            "partySize": 1
+          }
+        },
+        "6": {
+          "regular": {
+            "dragon_patrol": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 2.029,
+              "dmgMean": 429,
+              "dmgStdDev": 60
+            },
+            "wyrm_citadel": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.804,
+              "dmgMean": 429,
+              "dmgStdDev": 60
+            },
+            "frost_wyrm_pack": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.974,
+              "dmgMean": 438,
+              "dmgStdDev": 56
+            },
+            "storm_dragon_nest": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 2.037,
+              "dmgMean": 447,
+              "dmgStdDev": 72
+            },
+            "dragon_elite": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.484,
+              "dmgMean": 424,
+              "dmgStdDev": 54
+            }
+          },
+          "boss": {
+            "ancient_dragon_fight": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.846,
+              "dmgMean": 446,
+              "dmgStdDev": 73
+            },
+            "dragon_king_fight": {
+              "winRate": 0,
+              "deathRate": 1,
+              "avgRounds": 1.181,
+              "dmgMean": 452,
+              "dmgStdDev": 74
+            }
+          },
+          "summary": {
+            "avgWinRate": 0,
+            "encounterCount": 7,
+            "partyLevel": 25,
+            "partySize": 1
+          }
+        }
+      }
+    }
+  },
+  "xpAudit": {
+    "combat": [
+      180,
+      280,
+      420,
+      620,
+      820,
+      1100,
+      15,
+      20,
+      25,
+      60,
+      10,
+      20,
+      120,
+      50,
+      80,
+      30,
+      60,
+      40,
+      70,
+      50,
+      40,
+      90,
+      70,
+      25,
+      20,
+      50,
+      60,
+      45,
+      80,
+      70,
+      40,
+      20,
+      50,
+      100,
+      60,
+      50,
+      60,
+      20,
+      120,
+      100,
+      20,
+      80,
+      60,
+      15,
+      60,
+      80,
+      30,
+      40,
+      90,
+      40,
+      55,
+      80,
+      50,
+      80,
+      120,
+      60,
+      150,
+      180,
+      200,
+      120,
+      160,
+      100,
+      50,
+      30,
+      200,
+      180,
+      100,
+      140,
+      200,
+      50,
+      150,
+      180,
+      200,
+      80,
+      160,
+      100,
+      180,
+      200,
+      250,
+      15,
+      40,
+      25,
+      50,
+      60,
+      45,
+      55,
+      40,
+      70,
+      80,
+      90,
+      120,
+      130,
+      160,
+      80,
+      170,
+      180,
+      170,
+      220
+    ],
+    "dialog": [
+      15,
+      25,
+      60,
+      20,
+      120,
+      50,
+      80,
+      30,
+      60,
+      40,
+      70,
+      50,
+      40,
+      90,
+      70,
+      25,
+      50,
+      60,
+      45,
+      80,
+      70,
+      20,
+      50,
+      100,
+      60,
+      50,
+      60,
+      20,
+      120,
+      100,
+      20,
+      80,
+      60,
+      15,
+      60,
+      80,
+      40,
+      90,
+      40,
+      55,
+      80,
+      80,
+      120,
+      60,
+      150,
+      180,
+      200,
+      120,
+      160,
+      100,
+      200,
+      180,
+      140,
+      200,
+      150,
+      180,
+      200,
+      160,
+      180,
+      200,
+      250,
+      15,
+      40,
+      50,
+      60,
+      45,
+      55,
+      70,
+      80,
+      90,
+      120,
+      130,
+      160,
+      170,
+      180,
+      170,
+      220
+    ],
+    "combatMedian": 80,
+    "dialogMedian": 80,
+    "combatOutliers": [
+      180,
+      280,
+      420,
+      620,
+      820,
+      1100,
+      180,
+      200,
+      200,
+      180,
+      200,
+      180,
+      200,
+      180,
+      200,
+      250,
+      170,
+      180,
+      170,
+      220
+    ],
+    "dialogOutliers": [
+      180,
+      200,
+      200,
+      180,
+      200,
+      180,
+      200,
+      180,
+      200,
+      250,
+      170,
+      180,
+      170,
+      220
+    ]
+  }
+}

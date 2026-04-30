@@ -1,0 +1,117 @@
+{
+  "id": "m351",
+  "milestone": 351,
+  "openedAt": "2026-04-29T01:28:20.237Z",
+  "entries": [
+    {
+      "assetId": "openai-gen-m220-m254-consolidation",
+      "category": "background",
+      "type": "combat",
+      "prompt": "Wide cinematic dark-fantasy western pixel illustration, dusty desert canyon at golden-hour, red sandstone monoliths against burning red-orange sky, faint silhouettes of distant mountains, foreground a wide flat midground (no characters in midground \u2014 must be empty for sprite overlay), painterly textures, deep shadows, ember particles drifting through warm air. ATMOSPHERE: sweeping questline trailmaps suggested by faint glowing ley-lines snaking across the canyon floor, distant signal-fires marking waypoints. Style: hand-painted dark-fantasy illustration, Emberveil red-desert palette, no text, no UI, no logos. The midground composition must be empty (focal area for sprite overlay) \u2014 this image will be reused as an in-game encounter or map background.",
+      "new": "images/news_hero/m220-m254-consolidation.jpg",
+      "old": "images/news_hero/m220-m254-consolidation.jpg",
+      "source": "openai-gpt-image-1",
+      "addedAt": "2026-04-29T02:56:57Z",
+      "note": "News hero image for /news/m220-m254-consolidation.html"
+    },
+    {
+      "assetId": "openai-gen-milestone-report",
+      "category": "background",
+      "type": "combat",
+      "prompt": "Wide cinematic dark-fantasy western pixel illustration, dusty desert canyon at golden-hour, red sandstone monoliths against burning red-orange sky, faint silhouettes of distant mountains, foreground a wide flat midground (no characters in midground \u2014 must be empty for sprite overlay), painterly textures, deep shadows, ember particles drifting through warm air. ATMOSPHERE: triumphant retrospective vista, banners catching low wind on a high mesa, long shadows from monoliths, sunbeams cutting through dust. Style: hand-painted dark-fantasy illustration, Emberveil red-desert palette, no text, no UI, no logos. The midground composition must be empty (focal area for sprite overlay) \u2014 this image will be reused as an in-game encounter or map background.",
+      "new": "images/news_hero/milestone-report.jpg",
+      "old": "images/news_hero/milestone-report.jpg",
+      "source": "openai-gpt-image-1",
+      "addedAt": "2026-04-29T02:56:57Z",
+      "note": "News hero image for /news/milestone-report.html"
+    },
+    {
+      "assetId": "openai-gen-re-redesign",
+      "category": "background",
+      "type": "combat",
+      "prompt": "Wide cinematic dark-fantasy western pixel illustration, dusty desert canyon at golden-hour, red sandstone monoliths against burning red-orange sky, faint silhouettes of distant mountains, foreground a wide flat midground (no characters in midground \u2014 must be empty for sprite overlay), painterly textures, deep shadows, ember particles drifting through warm air. ATMOSPHERE: artisan workshop hint \u2014 scattered chiseled stone fragments and faintly glowing rune-etched boulders, suggesting characters being re-sculpted from sandstone. Style: hand-painted dark-fantasy illustration, Emberveil red-desert palette, no text, no UI, no logos. The midground composition must be empty (focal area for sprite overlay) \u2014 this image will be reused as an in-game encounter or map background.",
+      "new": "images/news_hero/re-redesign.jpg",
+      "old": "images/news_hero/re-redesign.jpg",
+      "source": "openai-gpt-image-1",
+      "addedAt": "2026-04-29T02:56:57Z",
+      "note": "News hero image for /news/re-redesign.html"
+    },
+    {
+      "assetId": "openai-gen-balance-report",
+      "category": "background",
+      "type": "combat",
+      "prompt": "Wide cinematic dark-fantasy western pixel illustration, dusty desert canyon at golden-hour, red sandstone monoliths against burning red-orange sky, faint silhouettes of distant mountains, foreground a wide flat midground (no characters in midground \u2014 must be empty for sprite overlay), painterly textures, deep shadows, ember particles drifting through warm air. ATMOSPHERE: precise cosmic balance \u2014 twin red moons hanging in equilibrium above the canyon, scales of stone and shadow, mathematical aurora shimmer. Style: hand-painted dark-fantasy illustration, Emberveil red-desert palette, no text, no UI, no logos. The midground composition must be empty (focal area for sprite overlay) \u2014 this image will be reused as an in-game encounter or map background.",
+      "new": "images/news_hero/balance-report.jpg",
+      "old": "images/news_hero/balance-report.jpg",
+      "source": "openai-gpt-image-1",
+      "addedAt": "2026-04-29T02:56:57Z",
+      "note": "News hero image for /news/balance-report.html"
+    },
+    {
+      "assetId": "openai-gen-tap-weapons",
+      "category": "background",
+      "type": "combat",
+      "prompt": "Wide cinematic dark-fantasy western pixel illustration, dusty desert canyon at golden-hour, red sandstone monoliths against burning red-orange sky, faint silhouettes of distant mountains, foreground a wide flat midground (no characters in midground \u2014 must be empty for sprite overlay), painterly textures, deep shadows, ember particles drifting through warm air. ATMOSPHERE: volcanic forge glow \u2014 molten lava rivers cutting through the canyon floor, sparks flying upward, anvil-shaped rock formations, smoke-and-ember haze. Style: hand-painted dark-fantasy illustration, Emberveil red-desert palette, no text, no UI, no logos. The midground composition must be empty (focal area for sprite overlay) \u2014 this image will be reused as an in-game encounter or map background.",
+      "new": "images/news_hero/tap-weapons.jpg",
+      "old": "images/news_hero/tap-weapons.jpg",
+      "source": "openai-gpt-image-1",
+      "addedAt": "2026-04-29T02:56:57Z",
+      "note": "News hero image for /news/tap-weapons.html"
+    },
+    {
+      "assetId": "openai-gen-simulation-overhaul",
+      "category": "background",
+      "type": "combat",
+      "prompt": "Wide cinematic dark-fantasy western pixel illustration, dusty desert canyon at golden-hour, red sandstone monoliths against burning red-orange sky, faint silhouettes of distant mountains, foreground a wide flat midground (no characters in midground \u2014 must be empty for sprite overlay), painterly textures, deep shadows, ember particles drifting through warm air. ATMOSPHERE: shimmering reality-bend \u2014 faint geometric grid lines overlaying the canyon walls, dust motes following deterministic paths, fractal cliff edges. Style: hand-painted dark-fantasy illustration, Emberveil red-desert palette, no text, no UI, no logos. The midground composition must be empty (focal area for sprite overlay) \u2014 this image will be reused as an in-game encounter or map background.",
+      "new": "images/news_hero/simulation-overhaul.jpg",
+      "old": "images/news_hero/simulation-overhaul.jpg",
+      "source": "openai-gpt-image-1",
+      "addedAt": "2026-04-29T02:56:57Z",
+      "note": "News hero image for /news/simulation-overhaul.html"
+    },
+    {
+      "assetId": "openai-gen-dragon-expansion",
+      "category": "background",
+      "type": "combat",
+      "prompt": "Wide cinematic dark-fantasy western pixel illustration, dusty desert canyon at golden-hour, red sandstone monoliths against burning red-orange sky, faint silhouettes of distant mountains, foreground a wide flat midground (no characters in midground \u2014 must be empty for sprite overlay), painterly textures, deep shadows, ember particles drifting through warm air. ATMOSPHERE: dragon scale-shimmer in red sky \u2014 enormous serpentine silhouettes coiled around distant peaks, scattered gleaming red scales on the canyon floor, sky-fire breath in the high clouds. Style: hand-painted dark-fantasy illustration, Emberveil red-desert palette, no text, no UI, no logos. The midground composition must be empty (focal area for sprite overlay) \u2014 this image will be reused as an in-game encounter or map background.",
+      "new": "images/news_hero/dragon-expansion.jpg",
+      "old": "images/news_hero/dragon-expansion.jpg",
+      "source": "openai-gpt-image-1",
+      "addedAt": "2026-04-29T02:56:57Z",
+      "note": "News hero image for /news/dragon-expansion.html"
+    },
+    {
+      "assetId": "openai-gen-milestone-53",
+      "category": "background",
+      "type": "menu",
+      "prompt": "Wide cinematic dark-fantasy western pixel illustration, dusty desert canyon at golden-hour, red sandstone monoliths against burning red-orange sky, faint silhouettes of distant mountains, foreground a wide flat midground (no characters in midground \u2014 must be empty for sprite overlay), painterly textures, deep shadows, ember particles drifting through warm air. ATMOSPHERE: early-frontier feel \u2014 modest ember campfire smoke rising from a distant ridge, simple stone cairns, dawn light just touching the highest spires. Style: hand-painted dark-fantasy illustration, Emberveil red-desert palette, no text, no UI, no logos. The midground composition must be empty (focal area for sprite overlay) \u2014 this image will be reused as an in-game encounter or map background.",
+      "new": "images/news_hero/milestone-53.jpg",
+      "old": "images/news_hero/milestone-53.jpg",
+      "source": "openai-gpt-image-1",
+      "addedAt": "2026-04-29T02:56:57Z",
+      "note": "News hero image for /news/milestone-53.html"
+    },
+    {
+      "assetId": "openai-gen-pre-game",
+      "category": "background",
+      "type": "menu",
+      "prompt": "Wide cinematic dark-fantasy western pixel illustration, dusty desert canyon at golden-hour, red sandstone monoliths against burning red-orange sky, faint silhouettes of distant mountains, foreground a wide flat midground (no characters in midground \u2014 must be empty for sprite overlay), painterly textures, deep shadows, ember particles drifting through warm air. ATMOSPHERE: blank-slate brainstorming \u2014 pristine untouched canyon, faint sketch-like cloud wisps, blueprint-blue accents in the deep shadows hinting at unbuilt potential. Style: hand-painted dark-fantasy illustration, Emberveil red-desert palette, no text, no UI, no logos. The midground composition must be empty (focal area for sprite overlay) \u2014 this image will be reused as an in-game encounter or map background.",
+      "new": "images/news_hero/pre-game.jpg",
+      "old": "images/news_hero/pre-game.jpg",
+      "source": "openai-gpt-image-1",
+      "addedAt": "2026-04-29T02:56:57Z",
+      "note": "News hero image for /news/pre-game.html"
+    },
+    {
+      "assetId": "openai-gen-post-overhaul-update",
+      "category": "background",
+      "type": "combat",
+      "prompt": "Wide cinematic dark-fantasy western pixel illustration, dusty desert canyon at golden-hour, red sandstone monoliths against burning red-orange sky, faint silhouettes of distant mountains, foreground a wide flat midground (no characters in midground \u2014 must be empty for sprite overlay), painterly textures, deep shadows, ember particles drifting through warm air. ATMOSPHERE: Emberveil flag (deep crimson with a stylized ember sigil) planted atop a desert-cliff sunrise, sweeping vista feel, triumphant low-angle hero composition, banner catching the morning wind. Style: hand-painted dark-fantasy illustration, Emberveil red-desert palette, no text, no UI, no logos. The midground composition must be empty (focal area for sprite overlay) \u2014 this image will be reused as an in-game encounter or map background.",
+      "new": "images/news_hero/post-overhaul-update.jpg",
+      "old": "images/news_hero/post-overhaul-update.jpg",
+      "source": "openai-gpt-image-1",
+      "addedAt": "2026-04-29T02:56:57Z",
+      "note": "News hero image for /news/post-overhaul-update.html"
+    }
+  ]
+}

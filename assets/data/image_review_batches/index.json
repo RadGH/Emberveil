@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "note": "Batch index for Image Review V2. `open` is the active needs-review batch (rolls forward each milestone until approved). `history` lists frozen approved batches, newest first.",
+    "schema": "open: { id, milestone, openedAt } | null. history: [{ id, milestone, approvedAt }]"
+  },
+  "open": {
+    "id": "m351",
+    "milestone": 351,
+    "openedAt": "2026-04-29T01:28:20.237Z"
+  },
+  "history": [
+    {
+      "id": "m350",
+      "milestone": 350,
+      "approvedAt": "2026-04-29T01:28:20.237Z"
+    }
+  ]
+}

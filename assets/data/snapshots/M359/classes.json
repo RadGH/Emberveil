@@ -1,0 +1,567 @@
+[
+  {
+    "id": "warrior",
+    "name": "Warrior",
+    "role": "Frontline Tank",
+    "hook": "Shield Bash stuns enemies. Whirlwind hits all adjacent foes. Unbreakable when outnumbered.",
+    "armorType": "Heavy Armor · Sword / Hammer / 2H",
+    "primaryAttr": "STR",
+    "armorTier": "heavy",
+    "skills": [
+      "shield_bash",
+      "battle_cry",
+      "whirlwind",
+      "unbreakable"
+    ],
+    "starter": true
+  },
+  {
+    "id": "fighter",
+    "name": "Fighter",
+    "role": "Disciplined Duelist",
+    "hook": "Riposte counters parries. Tactical stances swap between offense and defense. Precise Strike never misses.",
+    "armorType": "Heavy Armor · Sword / Hammer / Shield",
+    "primaryAttr": "STR",
+    "armorTier": "heavy",
+    "skills": [
+      "precise_strike",
+      "defensive_stance",
+      "offensive_stance",
+      "riposte",
+      "second_wind",
+      "sunder_armor"
+    ],
+    "starter": true
+  },
+  {
+    "id": "paladin",
+    "name": "Paladin",
+    "role": "Holy Warrior",
+    "hook": "Holy Strike crits vs demons. Lay on Hands keeps allies alive. Consecration sustains long fights.",
+    "armorType": "Medium Armor · Sword / Scepter + Shield",
+    "primaryAttr": "STR",
+    "armorTier": "medium",
+    "skills": [
+      "holy_strike",
+      "lay_on_hands",
+      "divine_shield",
+      "consecration"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 1,
+      "label": "Complete Act 1"
+    }
+  },
+  {
+    "id": "ranger",
+    "name": "Ranger",
+    "role": "Precision Ranged",
+    "hook": "Aimed Shot ignores armor. Rain of Arrows blankets the entire enemy field for 3 rounds.",
+    "armorType": "Light Armor · Bow / Crossbow / Javelin",
+    "primaryAttr": "DEX",
+    "armorTier": "light",
+    "skills": [
+      "aimed_shot",
+      "multi_shot",
+      "smoke_trap",
+      "rain_of_arrows"
+    ],
+    "starter": true
+  },
+  {
+    "id": "rogue",
+    "name": "Rogue",
+    "role": "Burst Assassin",
+    "hook": "200% Backstab on stunned targets. Death Mark makes enemies take 50% more damage from all sources.",
+    "armorType": "Light Armor · Dagger (dual wield)",
+    "primaryAttr": "DEX",
+    "armorTier": "light",
+    "skills": [
+      "backstab",
+      "poison_blade",
+      "shadow_step",
+      "death_mark"
+    ],
+    "starter": true
+  },
+  {
+    "id": "cleric",
+    "name": "Cleric",
+    "role": "Primary Healer",
+    "hook": "Mass Resurrection can auto-trigger on wipe. Sanctuary makes an ally temporarily untargetable.",
+    "armorType": "Light Armor · Staff / Scepter / Wand",
+    "primaryAttr": "INT",
+    "armorTier": "light",
+    "skills": [
+      "heal",
+      "smite",
+      "sanctuary",
+      "mass_resurrection"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 1,
+      "label": "Complete Act 1"
+    }
+  },
+  {
+    "id": "bard",
+    "name": "Bard",
+    "role": "Support Maestro",
+    "hook": "Ballad of Valor gives one hero two turns per round. Song of Ruin strips all enemy buffs at once.",
+    "armorType": "Light Armor · Dagger / Wand",
+    "primaryAttr": "INT",
+    "armorTier": "light",
+    "skills": [
+      "inspiring_tune",
+      "discordant_wail",
+      "ballad_of_valor",
+      "song_of_ruin"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 2,
+      "label": "Complete Act 2"
+    }
+  },
+  {
+    "id": "mage",
+    "name": "Mage",
+    "role": "AoE Glass Cannon",
+    "hook": "Fireball torches entire enemy packs. Blizzard hits all enemies for 3 rounds. Arcane Surge: 400% INT.",
+    "armorType": "Cloth Armor · Staff / Wand",
+    "primaryAttr": "INT",
+    "armorTier": "cloth",
+    "skills": [
+      "magic_missile",
+      "fireball",
+      "blizzard",
+      "arcane_surge"
+    ],
+    "starter": true
+  },
+  {
+    "id": "necromancer",
+    "name": "Necromancer",
+    "role": "Army Builder",
+    "hook": "Raise Dead turns corpses into skeleton allies. Death Coil applies Poison AND Bleed to all enemies.",
+    "armorType": "Cloth Armor · Staff / Wand / Scepter",
+    "primaryAttr": "INT",
+    "armorTier": "cloth",
+    "skills": [
+      "bone_spike",
+      "bone_spear",
+      "life_drain",
+      "death_coil"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 2,
+      "label": "Complete Act 2"
+    }
+  },
+  {
+    "id": "warlock",
+    "name": "Warlock",
+    "role": "Chaos Dealer",
+    "hook": "Corruption spreads on enemy death. Soul Pact doubles all DoT at cost of own HP.",
+    "armorType": "Cloth Armor · Staff / Wand",
+    "primaryAttr": "INT",
+    "armorTier": "cloth",
+    "skills": [
+      "corruption",
+      "hellfire",
+      "soul_pact",
+      "void_rift"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "achievement",
+      "value": "low_hp_boss",
+      "label": "Kill a boss below 20% HP"
+    }
+  },
+  {
+    "id": "demon_hunter",
+    "name": "Demon Hunter",
+    "role": "Specialist Killer",
+    "hook": "+50% damage vs demons. Vengeance stacks from fallen allies then unleashes devastating burst.",
+    "armorType": "Light Armor · Crossbow / Dagger",
+    "primaryAttr": "DEX",
+    "armorTier": "light",
+    "skills": [
+      "demon_bolt",
+      "glaive_toss",
+      "fel_sight",
+      "vengeance"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 3,
+      "label": "Complete Act 3"
+    }
+  },
+  {
+    "id": "scavenger",
+    "name": "Scavenger",
+    "role": "Resource Specialist",
+    "hook": "Lucky Strike inflicts random statuses. Big Score is a high-variance gambling strike — crit huge or whiff.",
+    "armorType": "Light/Medium · Any 1H weapon",
+    "primaryAttr": "DEX",
+    "armorTier": "light",
+    "skills": [
+      "scrounge",
+      "thrown_junk",
+      "makeshift_bomb",
+      "jackpot"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "rareItems",
+      "value": 10,
+      "label": "Find 10 rare items"
+    }
+  },
+  {
+    "id": "swashbuckler",
+    "name": "Swashbuckler",
+    "role": "Flashy Duelist",
+    "hook": "Build Flair stacks with Flourish. Grandeur releases all stacks in one legendary strike.",
+    "armorType": "Light Armor · Sword / Dagger",
+    "primaryAttr": "DEX",
+    "armorTier": "light",
+    "skills": [
+      "riposte",
+      "flourish",
+      "taunt",
+      "grandeur"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "gold",
+      "value": 1000,
+      "label": "Accumulate 1,000 gold"
+    }
+  },
+  {
+    "id": "dragon_knight",
+    "name": "Dragon Knight",
+    "role": "Draconic Warrior",
+    "hook": "Choose fire/ice/lightning. Draconic Fury turns all attacks into group AoE for 2 rounds.",
+    "armorType": "Heavy/Medium · 2H Sword / 2H Axe",
+    "primaryAttr": "STR",
+    "armorTier": "heavy",
+    "skills": [
+      "dragon_claw",
+      "breath_weapon",
+      "dragon_scales",
+      "draconic_fury"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "boss",
+      "value": "dragon",
+      "label": "Defeat the Dragon boss"
+    }
+  },
+  {
+    "id": "pyromancer",
+    "name": "Pyromancer",
+    "role": "Fire Specialist",
+    "hook": "Stack Burn on multiple groups. Meteor ignites every enemy group simultaneously.",
+    "armorType": "Cloth Armor · Staff / Wand / Scepter",
+    "primaryAttr": "INT",
+    "armorTier": "cloth",
+    "skills": [
+      "flame_lance",
+      "ignite",
+      "pyroclasm",
+      "meteor"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "achievement",
+      "value": "kill_500",
+      "label": "Slay 500 enemies"
+    }
+  },
+  {
+    "id": "stormcaller",
+    "name": "Stormcaller",
+    "role": "Chain Lightning Mage",
+    "hook": "Chain Lightning jumps between enemies. Thunder Ring zones the battlefield.",
+    "armorType": "Cloth Armor · Staff / Wand",
+    "primaryAttr": "INT",
+    "armorTier": "cloth",
+    "skills": [
+      "chain_lightning",
+      "static_field",
+      "thunder_ring",
+      "tempest"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "level",
+      "value": 20,
+      "label": "Reach hero level 20"
+    }
+  },
+  {
+    "id": "druid",
+    "name": "Druid",
+    "role": "Shapeshifting Healer",
+    "hook": "Rejuvenation HoTs. Wild Shape for raw damage. Nature\\u2019s Wrath in the late game.",
+    "armorType": "Medium Armor · Staff / Scepter",
+    "primaryAttr": "INT",
+    "armorTier": "medium",
+    "skills": [
+      "rejuvenation",
+      "entangle",
+      "wild_shape",
+      "natures_wrath"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 2,
+      "label": "Complete Act 2"
+    }
+  },
+  {
+    "id": "oracle",
+    "name": "Oracle",
+    "role": "Predictive Protector",
+    "hook": "Foresight pre-shields allies against incoming damage. Prophecy reveals enemy intents.",
+    "armorType": "Cloth Armor · Staff / Scepter",
+    "primaryAttr": "INT",
+    "armorTier": "cloth",
+    "skills": [
+      "foresight",
+      "prophecy",
+      "fate_weave",
+      "ascendance"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "win",
+      "value": true,
+      "label": "Complete the game"
+    }
+  },
+  {
+    "id": "tactician",
+    "name": "Tactician",
+    "role": "Turn-Order Manipulator",
+    "hook": "Grants extra actions, repositions allies, reshuffles enemy turn order.",
+    "armorType": "Medium Armor · Sword / Scepter",
+    "primaryAttr": "INT",
+    "armorTier": "medium",
+    "skills": [
+      "rally_action",
+      "feint",
+      "reposition",
+      "masterstroke"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 3,
+      "label": "Complete Act 3"
+    }
+  },
+  {
+    "id": "chronomancer",
+    "name": "Chronomancer",
+    "role": "Time Mage",
+    "hook": "Haste allies, slow enemies, rewind HP, freeze the battlefield in Time Stop.",
+    "armorType": "Cloth Armor · Staff / Wand",
+    "primaryAttr": "INT",
+    "armorTier": "cloth",
+    "skills": [
+      "haste",
+      "slow_time",
+      "rewind",
+      "time_stop"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 4,
+      "label": "Complete Act 4"
+    }
+  },
+  {
+    "id": "monk",
+    "name": "Monk",
+    "role": "Martial Artist",
+    "hook": "Unarmed flurries stack chi. Inner Focus self-heals. Shadow Step dashes into crit range.",
+    "armorType": "Cloth Armor · Unarmed / Staff",
+    "primaryAttr": "DEX",
+    "armorTier": "cloth",
+    "skills": [
+      "palm_strike",
+      "flurry",
+      "inner_focus",
+      "monk_shadow_step"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "level",
+      "value": 10,
+      "label": "Reach hero level 10"
+    }
+  },
+  {
+    "id": "shaman",
+    "name": "Shaman",
+    "role": "Spirit Caster",
+    "hook": "Totems heal over time. Spirit bolts chain to nearby foes. Ancestral Shield wards the party.",
+    "armorType": "Medium Armor · Staff / Scepter",
+    "primaryAttr": "INT",
+    "armorTier": "medium",
+    "skills": [
+      "spirit_bolt",
+      "healing_totem",
+      "chain_lightning_spirit",
+      "ancestral_shield"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 1,
+      "label": "Complete Act 1"
+    }
+  },
+  {
+    "id": "witch_hunter",
+    "name": "Witch Hunter",
+    "role": "Anti-Magic Skirmisher",
+    "hook": "Silver bolts purge curses. Bonus damage vs demons and undead. Marks targets for the party.",
+    "armorType": "Medium Armor · Crossbow / Sword",
+    "primaryAttr": "DEX",
+    "armorTier": "medium",
+    "skills": [
+      "silver_bolt",
+      "dispel_curse",
+      "purge_strike",
+      "inquisitor_mark"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 2,
+      "label": "Complete Act 2"
+    }
+  },
+  {
+    "id": "knight",
+    "name": "Knight",
+    "role": "Sworn Tank",
+    "hook": "Shield Bash stuns, Taunt locks aggro, Holy Strike sears evil, Rally bolsters the party.",
+    "armorType": "Heavy Armor · Sword + Shield",
+    "primaryAttr": "STR",
+    "armorTier": "heavy",
+    "skills": [
+      "knight_shield_bash",
+      "knight_taunt",
+      "knight_holy_strike",
+      "rally"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 1,
+      "label": "Complete Act 1"
+    }
+  },
+  {
+    "id": "sorcerer",
+    "name": "Sorcerer",
+    "role": "Chaos Caster",
+    "hook": "Wild Bolt rolls a random element. Arcane Surge doubles spell power. Mana Burn punishes casters.",
+    "armorType": "Cloth Armor · Staff / Wand",
+    "primaryAttr": "INT",
+    "armorTier": "cloth",
+    "skills": [
+      "wild_bolt",
+      "sorc_arcane_surge",
+      "mana_burn",
+      "chaos_ward"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "level",
+      "value": 15,
+      "label": "Reach hero level 15"
+    }
+  },
+  {
+    "id": "runesmith",
+    "name": "Runesmith",
+    "role": "Rune-Forged Bulwark",
+    "hook": "Rune Hammer hits with imbued force. Wards protect allies. Forge Flame ignites weapons.",
+    "armorType": "Heavy Armor · Hammer",
+    "primaryAttr": "STR",
+    "armorTier": "heavy",
+    "skills": [
+      "rune_hammer",
+      "rune_of_warding",
+      "rune_of_might",
+      "forge_flame"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "rareItems",
+      "value": 5,
+      "label": "Find 5 rare items"
+    }
+  },
+  {
+    "id": "shadow_dancer",
+    "name": "Shadow Dancer",
+    "role": "Stealth Duelist",
+    "hook": "Smoke Veil grants evasion. Assassinate executes low-HP foes. Dance of Blades chains strikes.",
+    "armorType": "Light Armor · Dagger (dual wield)",
+    "primaryAttr": "DEX",
+    "armorTier": "light",
+    "skills": [
+      "sd_shadow_strike",
+      "smoke_veil",
+      "assassinate",
+      "dance_of_blades"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 2,
+      "label": "Complete Act 2"
+    }
+  },
+  {
+    "id": "tinker",
+    "name": "Tinker",
+    "role": "Clockwork Mechanist",
+    "hook": "Clockwork bolts, alchemical grenades, and a pocket-watch that patches wounds mid-fight. Overcharge the whole party with an arcane spring-wound battery.",
+    "armorType": "Medium Armor · Hand-Crossbow / Dagger",
+    "primaryAttr": "INT",
+    "armorTier": "medium",
+    "skills": [
+      "tinker_bolt",
+      "tinker_grenade",
+      "tinker_quick_fix",
+      "tinker_overcharge"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 1,
+      "label": "Complete Act 1"
+    }
+  }
+]

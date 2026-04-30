@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Accessibility statement for Emberveil — WCAG 2.1 AA compliance, keyboard navigation, reduced-motion support, and how to report issues." />
+  <meta name="rsg-game" content="Emberveil" />
+  <title>Accessibility — Emberveil</title>
+
+  <link rel="canonical" href="https://emberveil.radgh.com/accessibility.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./assets/_site-theme.css" />
+
+  <script src="./assets/_header.js" defer></script>
+  <script src="./assets/_footer.js" defer></script>
+  <script src="./assets/_design/site.js" defer></script>
+
+  <style>
+    .a11y-hero { padding: 140px 0 40px; position: relative; overflow: hidden; }
+    .a11y-hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background:
+        radial-gradient(70% 80% at 50% 0%, var(--accent-glow), transparent 70%),
+        linear-gradient(180deg, var(--sky-1), var(--bg-deep));
+      opacity: .55;
+    }
+    .a11y-hero h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: .04em; color: var(--ink-1); margin: 0 0 12px;
+    }
+    .a11y-hero p.lede { color: var(--ink-2); max-width: 720px; margin: 0 auto; font-size: 17px; line-height: 1.55; }
+    .a11y-body { max-width: 760px; margin: 0 auto; padding: 0 24px 120px; line-height: 1.65; color: var(--ink-2); }
+    .a11y-body h2 { font-family: var(--font-display); color: var(--accent-text); font-size: 1.4rem; margin: 36px 0 12px; letter-spacing: .04em; }
+    .a11y-body p, .a11y-body li { color: var(--ink-2); }
+    .a11y-body ul { padding-left: 1.4rem; }
+    .a11y-body code { background: rgba(255,255,255,0.06); color: var(--accent-text); padding: 0.05rem 0.35rem; border-radius: 3px; }
+    .a11y-body a { color: var(--accent-text); }
+  </style>
+</head>
+<body class="ev-themed">
+  <main>
+    <section class="a11y-hero" style="text-align:center;">
+      <div class="container">
+        <span class="eyebrow">Accessibility · Statement</span>
+        <h1>Built to be navigable for everyone.</h1>
+        <p class="lede">Emberveil targets <strong>WCAG 2.1 Level AA</strong>. The site is keyboard-friendly, respects reduced motion, and ships sensible defaults for low-vision users. Where we fall short, we say so here.</p>
+      </div>
+    </section>
+
+    <article class="a11y-body">
+      <h2>Compliance target</h2>
+      <p>Both the <strong>game</strong> (the React app at <a href="./play.html">/play</a>) and the <strong>marketing site</strong> (this page, news, tools, catalogs) target <strong>WCAG 2.1 Level AA</strong>. Compliance is verified per release through manual keyboard nav, screen-reader smoke tests, and contrast spot-checks.</p>
+
+      <h2>Keyboard navigation</h2>
+      <p>Every interactive element is reachable with <code>Tab</code>. Focus is visible at all times — the rune-circle cursor on the homepage is decorative only and does not hide focus rings.</p>
+      <ul>
+        <li><code>Tab</code> / <code>Shift+Tab</code> — move between focusable elements.</li>
+        <li><code>Enter</code> / <code>Space</code> — activate the focused button or link.</li>
+        <li><code>↑ ↓ ← →</code> — within the class picker, tab list, and image-review filter groups.</li>
+        <li><code>Home</code> / <code>End</code> — jump to the first / last item in a list group.</li>
+        <li><code>Esc</code> — close any open lightbox or modal.</li>
+      </ul>
+
+      <h2>Reduced motion</h2>
+      <p>If your OS reports <code>prefers-reduced-motion: reduce</code>, we automatically:</p>
+      <ul>
+        <li>Disable parallax scrolling in the hero.</li>
+        <li>Hide drifting ember particles entirely.</li>
+        <li>Pause the combat-preview auto-advance.</li>
+        <li>Clamp every CSS transition to 0.01ms (effectively static).</li>
+      </ul>
+      <p>The static fallback still conveys all content — only motion is removed.</p>
+
+      <h2>Screen readers</h2>
+      <p>Every chart on the homepage carries a textual <code>aria-label</code> describing the data. Form inputs have associated labels. Decorative icons are marked <code>aria-hidden</code>. We test with VoiceOver (Safari/iOS) and NVDA (Firefox/Windows). If a chart, button, or link reads ambiguously to your reader, please report it.</p>
+
+      <h2>Color &amp; contrast</h2>
+      <p>The Ember accent (<code>#e8612a</code>) is used for decorative borders and glows only. All interactive text and links use a brighter accent variant (<code>#ffa844</code>, <code>--accent-text</code>) that meets WCAG AA contrast on the dark background.</p>
+
+      <h2>Touch targets &amp; mobile</h2>
+      <p>Buttons, links, and tap surfaces are at least <strong>44×44 CSS pixels</strong> on mobile breakpoints. The site has been tested on iPhone 14 Pro Safari (393×852) and renders without horizontal scroll.</p>
+
+      <h2>Known limitations</h2>
+      <ul>
+        <li>The combat-preview auto-advance loop on the homepage runs while the page is visible. It pauses when you tab away or when reduced-motion is set, but cannot be paused independently of motion preferences via the UI yet.</li>
+        <li>The image-review tool's lightbox supports keyboard nav (Esc / arrows) but does not yet trap focus inside the modal — Tab will leak to the underlying page.</li>
+        <li>Pixel-art sprite zoom-in (in the asset gallery) does not yet have keyboard equivalents — only mouse hover.</li>
+      </ul>
+
+      <h2>Reporting issues</h2>
+      <p>Found something that's hard to use? Please mail <a href="mailto:radleygh@gmail.com">radleygh@gmail.com</a> or use the <a href="./contact.html">contact page</a>. We treat accessibility regressions as bugs, not enhancements — they go to the front of the queue.</p>
+
+      <h2>This page</h2>
+      <p>Last reviewed: 2026-04-29. Content is plain text + headings; no interactive widgets. Reading order matches visual order.</p>
+    </article>
+  </main>
+</body>
+</html>

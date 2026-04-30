@@ -1,0 +1,98 @@
+[
+  {
+    "id": "first_blood",
+    "name": "First Blood",
+    "desc": "Score your first kill.",
+    "tier": "bronze"
+  },
+  {
+    "id": "hundred_kills",
+    "name": "Centurion",
+    "desc": "Defeat 100 enemies.",
+    "tier": "silver"
+  },
+  {
+    "id": "thousand_kills",
+    "name": "Slayer",
+    "desc": "Defeat 1,000 enemies.",
+    "tier": "gold"
+  },
+  {
+    "id": "damage_10k",
+    "name": "Hard Hitter",
+    "desc": "Deal 10,000 total damage.",
+    "tier": "bronze"
+  },
+  {
+    "id": "damage_100k",
+    "name": "Wrath of Embers",
+    "desc": "Deal 100,000 total damage.",
+    "tier": "silver"
+  },
+  {
+    "id": "heal_10k",
+    "name": "Field Medic",
+    "desc": "Heal 10,000 HP across your career.",
+    "tier": "bronze"
+  },
+  {
+    "id": "heal_100k",
+    "name": "Lifebringer",
+    "desc": "Heal 100,000 HP.",
+    "tier": "silver"
+  },
+  {
+    "id": "gold_10k",
+    "name": "Pouch Heavy",
+    "desc": "Earn 10,000 gold lifetime.",
+    "tier": "silver"
+  },
+  {
+    "id": "fight_100",
+    "name": "Veteran",
+    "desc": "Win 100 fights.",
+    "tier": "silver"
+  },
+  {
+    "id": "perfect_10",
+    "name": "Untouchable",
+    "desc": "Win 10 fights with zero KOs.",
+    "tier": "gold"
+  },
+  {
+    "id": "run_complete_1",
+    "name": "Vigil Ended",
+    "desc": "Complete your first run.",
+    "tier": "gold"
+  },
+  {
+    "id": "hardcore_die_1",
+    "name": "Mortal Oath",
+    "desc": "Fall in Hardcore mode (RIP screen).",
+    "tier": "bronze"
+  },
+  {
+    "id": "big_hit_500",
+    "name": "Heavy Strike",
+    "desc": "Deal 500 damage in a single hit.",
+    "tier": "silver"
+  },
+  {
+    "id": "big_hit_2000",
+    "name": "Cataclysm",
+    "desc": "Deal 2,000 damage in a single hit.",
+    "tier": "gold"
+  },
+  {
+    "id": "streak_10",
+    "name": "Bloodstreak",
+    "desc": "Land a 10-kill streak in one run.",
+    "tier": "silver"
+  },
+  {
+    "id": "no_death_run",
+    "name": "Flawless March",
+    "desc": "Win 25 fights this run with zero deaths.",
+    "tier": "gold"
+  }
+]

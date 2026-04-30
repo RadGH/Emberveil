@@ -1158,11 +1158,11 @@
       "referenceStatus": "pending_approval",
       "framesStatus": {
         "portrait": "approved",
-        "south": "pending_approval",
+        "south": "approved",
         "east": "approved",
         "east_attack": "approved",
         "east_spell": "approved",
-        "east_block": "pending_approval",
+        "east_block": "approved",
         "east_ko": "approved"
       },
       "artDirectionPath": "data/art_direction/kaela_thorne.json",

@@ -5,9 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="rsg-game" content="Emberveil">
-<title>Emberveil — Major Milestone Report</title>
+<title>20 Classes, 84 Skills & Combat Rework — Emberveil</title>
 <link rel="stylesheet" href="../assets/_tool-styles.css">
 <script src="../assets/_header.js" defer></script>
+<script src="../assets/_footer.js" defer></script>
 <style>
 /* ── Layout ── */
 body { padding: 0; overflow-x: hidden; }
@@ -110,10 +111,11 @@ body { padding: 0; overflow-x: hidden; }
 /* ── Stats Bar ── */
 .stats-bar {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin: 32px 0;
 }
+@media (max-width: 600px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
 .stat-card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -334,7 +336,7 @@ body { padding: 0; overflow-x: hidden; }
 }
 </style>
 </head>
-<body>
+<body class="ev-themed">
 
 <!-- ── Hero ── -->
 <section class="hero">
@@ -342,7 +344,7 @@ body { padding: 0; overflow-x: hidden; }
     <div class="ember"></div><div class="ember"></div><div class="ember"></div><div class="ember"></div>
     <div class="ember"></div><div class="ember"></div><div class="ember"></div><div class="ember"></div>
   </div>
-  <h1 class="hero-title">Emberveil</h1>
+  <h1 class="hero-title">20 Classes, 84 Skills & Combat Rework</h1>
   <div class="hero-sub">Major Milestone Report</div>
   <p class="hero-tagline">From placeholder sprites to a fully realized dark fantasy RPG -- 20 hero classes, 84 skills, 10 companions, and a complete combat overhaul.</p>
 </section>

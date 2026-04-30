@@ -9733,6 +9733,40 @@
   ],
   "reports": [
     {
+      "milestone": "M381 — Act 3+ Difficulty Ramp & Skill-vs-Attack Rebalance",
+      "date": "2026-04-29",
+      "summary": "Sim-driven Acts 3-5 rebalance. Acts 1-2 untouched; Acts 3-5 enemy HP and damage scale per-act with a boss-HP damper. Hero skill damage globally scaled to 70%. Companions auto-scale stats with effective level so they keep pace into late game.",
+      "changes": [
+        "balance.active.json: enemies.globalMultipliers.hp 0.55→0.58, damage 0.28→0.36 (small global lift) plus new actMultipliers — Act 1 1.0x, Act 2 1.15x HP / 1.08x dmg, Act 3 1.85x / 1.22x, Act 4 2.15x / 1.30x, Act 5 2.40x / 1.38x.",
+        "balance.active.json: combat.skill.heroDamageMult = 0.70 — every hero skill/spell damage path multiplies by this knob, so Whirlwind / Tempest / Fireball / Smite no longer one-shot Act 3+ enemy waves.",
+        "balance.active.json: companions.statBonusPerLevel = { STR:1, DEX:1, CON:1.5, INT:0.5 }. With Companion Level Sync (already always-on per M357), an L1 War Dog gains +18 STR / +18 DEX / +27 CON when synced to L19, restoring presence in late combat.",
+        "balance-loader.js: defaults updated to match (combat.skill, enemies.actMultipliers, companions.statBonusPerLevel) with optional-section backfill in validate() so older balance JSONs still load.",
+        "src/game/simulator.js: encounterToCombatants now applies actMultipliers post-NG-scaling, with a boss damper (×0.35 of the per-act mult above 1.0) so bosses don't bloat to 80-round grinds. Boss heuristic in sim: explicit isBoss flag OR single-count enemy whose name matches the encounter.",
+        "src/game/simulator.js: heroToCombatant honors member._effectiveLevel when isCompanion, computing scaled stats and recomputed maxHp/Mp from the bonus CON/INT.",
+        "src/game/simulator.js: skill damage path multiplies skill.damageMult by combat.skill.heroDamageMult.",
+        "src/ui/screens/CombatScreen.js: _buildGroup applies actMultipliers (sourcing act from encounter or GameState.act) with boss damper. _memberToCombatant applies companion stat scaling for synced companions, with maxHp/Mp recomputed from the bonus stats. Skill damage path multiplies by heroDamageMult.",
+        "scripts/sim-act-balance.mjs: new validation tool. Builds a Fighter/Stormcaller/Cleric/Mage party + War Dog companion at the level expected per act, runs N seeded sims of representative encounters, and reports win-rate / avg rounds / survivors / near-deaths / companion deaths."
+      ],
+      "bugs": [
+        "Act 4 small encounters (void_horde, cosmic_assault) still resolve in 5-11 rounds — the encounters only contain 3 enemies with no boss, so even with the 2.15x HP ramp the sim party clears them quickly. The Big-Fight overlay (big_void_tide) fills this gap when partyAvgLevel >= 5.",
+        "Sim is approximate. Real save files have varied affixes / passives / talent picks that aren't fully reproduced by autoAssignAttrs+autoGenerateEquipment. Treat sim numbers as a relative balance signal, not exact gameplay round counts."
+      ],
+      "suggestions": [
+        "Once the player reports back, consider adding a 'difficulty' slider tied to actMultipliers so casual players can scale Act 3+ back down without editing JSON.",
+        "Boss damper currently uses a fixed 0.35 ratio. Could be promoted to balance config (enemies.actMultipliers.bossHpRamp) for finer control.",
+        "Static Field 'Magnetic Pulse' upgrade still hits all enemies for 100% INT — combined with heroDamageMult 0.70 it's well-tuned, but if user reports clear waves still feel too easy, drop the upgrade's bonus.damageMult from 1.0 → 0.7 directly."
+      ],
+      "recommendations": [
+        "Watch for archfiend_malgrath / unraveler / architect feeling like grinds. Sim shows 38-47 round bosses with ~70-93% win rate — fun on paper, but if the player loses 4 minutes of auto-combat to a single boss without near-death moments, dial actMultipliers Act 4-5 hp down 0.10.",
+        "Don't revert the heroDamageMult knob — even if Acts 3+ feel right, that knob is the lever for keeping spells from outscaling weapons as new skills are added later."
+      ],
+      "ideas": [
+        "Per-class skill multiplier override (combat.skill.classDamageMult.{warrior,mage,...}) for fine-grained tuning — e.g. nerf Mage AoE without touching Warrior.",
+        "Companion gear slots: now that companions auto-scale, give them 1-2 equippable accessories so the player can invest gold/loot into them as Acts 3-5 demand it."
+      ],
+      "notes": "Validation: scripts/sim-act-balance.mjs --runs=20. Acts 1-2 fights 7-14 rounds 100% wins (untouched). Act 3 trash 10-13 rounds 100% wins, big-fights 22-24 rounds, archfiend boss 38 rounds 100% wins. Act 4 unraveler 47 rounds 70% wins. Act 5 trash 13-19 rounds 40-50% wins, architect 24 rounds 15% wins. Companion deaths visible across Acts 3-5; near-deaths trigger in Act 4-5."
+    },
+    {
       "milestone": "M321 (labeled M315) — Balance Analysis + Rebalance Pass",
       "date": "2026-04-27",
       "summary": "Deep combat balance analysis of Act 5: identified trivial difficulty (party one-shotting enemies, 0 retaliation), fixed two simulator bugs, and rebalanced all enemies across Acts 1-5.",

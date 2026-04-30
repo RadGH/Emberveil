@@ -37,6 +37,7 @@ When generating character frames via SpriteCook MCP, the download step is the mo
 4. **On validation failure** — do NOT write the file, do NOT attempt background removal, do NOT retry against a different endpoint, do NOT crop/pad to force compliance. Stop the pipeline, list the failed asset IDs, and ask the user how to proceed (regenerate with different `smart_crop_mode`, adjust the prompt, or accept the non-standard size).
 5. **Background removal is banned.** If a frame has a white background, the frame is wrong; regenerate it, do not post-process it. (Prior bg-removal work on warlock_east_spell is the one exception that already shipped.)
 6. **Reference implementation** — `/tmp/wire_m198_fix.py` (M198 recovery). Use this as the template for any future bulk wire script.
+7. **M349 recurrence** — A one-off pyromancer regen shipped a 1024×1024 white-background candidate because the script downloaded from `raw_url`. This rule is *not* just for the bulk script; it applies to every single ad-hoc MCP call too. If you generate one frame, you still validate dimensions and source URL the same way.
 
 #### Background art (combat zones)
 

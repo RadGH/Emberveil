@@ -1,6 +1,6 @@
 {
-  "version": "2026-04-22-tuned-M208",
-  "note": "M208 tuned config. Solos cap at Act 2-3, balanced parties reach Act 4-5. Revert via: cp balance.baseline-2026-04-21.json balance.active.json",
+  "version": "2026-04-30-solo-and-ngplus-M382",
+  "note": "M382 follow-up to M381. Solo Act 1 was wiping (paladin couldn't beat goblin pair) — softened global enemy damage 0.36→0.30 and Act 1 dmg mult 1.0→0.92. Hero skill mult 0.70→0.78 so low-level skills feel meaningful again. Compensated by raising Act 4-5 dmg mults so end-game fights stay tense. NG+ Act 1 now uses the highest-act enemy multipliers (handled in code: enemyScalingForNgPlus shifts effectiveAct = min(6, act + 4*ng)).",
   "heroes": {
     "hireCost": {
       "base": 100,
@@ -104,6 +104,10 @@
       "dotMin": 3,
       "healBaseMult": 1.5
     },
+    "skill": {
+      "heroDamageMult": 0.82,
+      "note": "M382: 0.82 (was 0.70). Solo low-level players were getting wrecked because Holy Strike etc. did ~10 dmg vs 70-HP goblins. Higher mult restores low-level skill viability while still keeping AoE finishers from one-shotting Act 3+ waves."
+    },
     "steal": {
       "lifeStealDivisor": 100,
       "manaStealDivisor": 100
@@ -121,25 +125,43 @@
   },
   "enemies": {
     "globalMultipliers": {
-      "hp": 0.55,
-      "damage": 0.28,
-      "armor": 0.75,
+      "hp": 0.58,
+      "damage": 0.30,
+      "armor": 0.85,
       "hit": 1,
-      "dodge": 1
+      "dodge": 1,
+      "note": "M382: damage 0.36→0.30 to make Acts 1-2 survivable solo. Act-specific dmg mults below compensate for Acts 3+."
+    },
+    "actMultipliers": {
+      "1": { "hp": 1.0, "damage": 0.95 },
+      "2": { "hp": 1.15, "damage": 1.10 },
+      "3": { "hp": 1.85, "damage": 1.30 },
+      "4": { "hp": 2.15, "damage": 1.45 },
+      "5": { "hp": 2.45, "damage": 1.60 },
+      "6": { "hp": 2.60, "damage": 1.65 }
     },
     "ngPlus": {
-      "hpBase": 1.35,
-      "hpBossMult": 1.25,
-      "dmgBase": 1.25,
-      "dmgBossMult": 1.2,
-      "armorLinear": 0.25,
+      "hpBase": 4.5,
+      "hpBossMult": 1.35,
+      "dmgBase": 2.5,
+      "dmgBossMult": 1.25,
+      "armorLinear": 0.35,
       "hitBonusPerNg": 5,
       "dodgeBonusPerNg": 3,
       "hitCap": 95,
       "dodgeCap": 45,
       "xpBonusLinear": 0.8,
-      "xpBossAdder": 1
+      "xpBossAdder": 1,
+      "note": "M382: hpBase 1.35→2.5 and dmgBase 1.25→1.7 so NG+1 Act 1 actually feels like late-game combat. Combined with the act-shift (NG+1 Act 1 uses Act 5's actMultiplier), enemy effective HP is roughly Act 5 baseline × 2.5 in NG+1."
     }
+  },
+  "partySize": {
+    "enemyDmgMult": { "1": 0.40, "2": 0.65, "3": 0.85, "4": 1.0 },
+    "note": "M382: enemy damage scales with party size so a solo run isn't four-times harder than a four-hero run. Companions are NOT counted toward party size for this lookup — only heroes."
+  },
+  "companions": {
+    "statBonusPerLevel": { "STR": 1.0, "DEX": 1.0, "CON": 1.5, "INT": 0.5 },
+    "note": "M380: companions gain these attribute bonuses per (effective level − template level). Pairs with Companion Level Sync so an L1 War Dog hired in Act 1 actually scales into late game."
   },
   "economy": {
     "globalMultipliers": {

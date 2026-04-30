@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milestones — Emberveil</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+    :root {
+      --bg:        #0a0608;
+      --surface:   #12090d;
+      --card:      #1a1218;
+      --card-h:    #241a20;
+      --accent:    #e8a020;
+      --accent-b:  #f0c060;
+      --ember1:    #c04030;
+      --gold:      #e8a020;
+      --gold-bright:#f8d880;
+      --text:      #f0e8d8;
+      --muted:     #8a7a6a;
+      --border:    rgba(232,160,32,0.2);
+      --radius:    10px;
+      --font-display:'Cinzel',Georgia,serif;
+      --font-ui:'Inter','Segoe UI',sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    h1, h2, h3, .display { font-family: var(--font-display); }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 40%, var(--ember1) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .feature-reports { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .feature-report {
+      display: block;
+      background: linear-gradient(135deg, rgba(232,160,32,0.08), rgba(192,64,48,0.06));
+      border: 1px solid rgba(232,160,32,0.3);
+      border-radius: 12px;
+      padding: 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .feature-report:hover { transform: translateY(-2px); border-color: rgba(232,160,32,0.6); box-shadow: 0 8px 24px rgba(232,160,32,0.12); }
+    .feature-report .fr-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+    .feature-report .fr-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; margin: 6px 0 8px; color: var(--gold-bright); }
+    .feature-report .fr-summary { font-size: 13px; color: var(--text); opacity: 0.85; line-height: 1.5; }
+    .feature-report .fr-date { font-size: 11px; color: var(--muted); margin-top: 10px; }
+
+    header {
+      max-width: 1200px;
+      margin: 24px auto 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    header h1 { font-size: 20px; font-weight: 700; color: var(--accent-b); }
+    header .sub { font-size: 13px; color: var(--muted); }
+
+    .toolbar {
+      max-width: 1200px;
+      margin: 0 auto 20px;
+      padding: 14px 24px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+    main { margin-top: 0 !important; }
+    #audio-section, #reports-section { margin-top: 24px !important; }
+    .filter-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(232,160,32,0.04), rgba(192,64,48,0.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--muted);
+    }
+    .empty-state h2 { font-size: 18px; margin-bottom: 8px; color: var(--text); }
+    .empty-state p { font-size: 13px; max-width: 400px; margin: 0 auto; }
+    .empty-state code {
+      display: inline-block;
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--accent-b);
+    }
+
+    .section { margin-bottom: 40px; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title span {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      margin-left: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .asset-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    /* Character blocks styling */
+    .character-roster {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .character-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+
+    .character-block:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(232,160,32,0.18);
+    }
+
+    .character-block h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      text-transform: capitalize;
+      color: var(--accent-b);
+      font-family: var(--font-display);
+    }
+
+    /* M79 Report style - larger portraits + smaller attack frames */
+    .characters-section {
+      margin-bottom: 40px;
+    }
+
+    .char-m79-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 24px;
+    }
+
+    .char-m79-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+
+    .char-m79-block:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px rgba(232,160,32,0.15);
+    }
+
+    .char-m79-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .char-m79-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent-b);
+      font-family: var(--font-display);
+      text-transform: capitalize;
+    }
+
+    .char-m79-type {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .char-m79-content {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .char-m79-portrait {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      min-width: 120px;
+      min-height: 120px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+      transition: border-color .3s;
+    }
+
+    .char-m79-portrait:hover {
+      border-color: var(--accent);
+    }
+
+    .char-m79-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .char-m79-portrait .portrait-missing {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 24px;
+      background: rgba(232,160,32,0.05);
+    }
+
+    .char-m79-frames {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+      gap: 8px;
+      max-width: 200px;
+    }
+
+    .char-m79-frame {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+      transition: border-color .3s, transform .2s;
+    }
+
+    .char-m79-frame:hover {
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .char-m79-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .char-m79-frame .frame-missing {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+      background: rgba(232,160,32,0.03);
+    }
+
+    .char-m79-frame .frame-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 8px;
+      text-align: center;
+      padding: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .char-m79-info {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Background graphics section */
+    .bg-section {
+      margin-bottom: 40px;
+    }
+
+    .bg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .bg-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .3s, border-color .3s;
+    }
+
+    .bg-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .bg-preview {
+      width: 100%;
+      height: 120px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .bg-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bg-info {
+      padding: 12px;
+    }
+
+    .bg-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .bg-usage {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .character-variants {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 8px;
+    }
+
+    .variant-box {
+      background: linear-gradient(135deg, #1a0f08, #0a0504);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .variant-box:hover {
+      transform: scale(1.05);
+    }
+
+    .variant-box img {
+      max-width: 100%;
+      max-height: 100%;
+      image-rendering: pixelated;
+      transition: transform .3s;
+    }
+
+    .variant-box .variant-label {
+      position: absolute;
+      bottom: 2px;
+      left: 2px;
+      right: 2px;
+      font-size: 8px;
+      color: var(--muted);
+      text-align: center;
+      background: rgba(0,0,0,0.7);
+      border-radius: 3px;
+      padding: 1px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .variant-missing {
+      color: var(--muted);
+      font-size: 10px;
+      text-align: center;
+      opacity: 0.5;
+    }
+    .asset-card:hover { background: var(--card-h); border-color: var(--accent); }
+
+    .thumb, #modal-img,
+    .bg-preview img, .char-m79-portrait img, .char-m79-frame img {
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+    }
+    .thumb {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: var(--surface);
+    }
+    .thumb-missing {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 28px;
+    }
+
+    .card-body { padding: 10px 12px; }
+    .card-name { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-meta { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+    .badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .badge-openai  { background: #1a3a2a; color: #5cbf7f; border: 1px solid #2a5a3a; }
+    .badge-pixellab{ background: #2a1a3a; color: #bf80ff; border: 1px solid #4a2a6a; }
+    .badge-svg     { background: #1a2a3a; color: #60aaee; border: 1px solid #2a4a6a; }
+    .badge-manual  { background: #2a2a1a; color: #ccbb60; border: 1px solid #4a4a2a; }
+    .badge-other   { background: #2a1a1a; color: #cc7777; border: 1px solid #4a2a2a; }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-img { width: 100%; max-height: 400px; object-fit: contain; background: var(--surface); border-radius: 12px 12px 0 0; }
+    .modal-body { padding: 20px; }
+    .modal-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .modal-row { margin-bottom: 10px; }
+    .modal-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+    .modal-value { font-size: 13px; color: var(--text); }
+    .modal-prompt { font-family: monospace; font-size: 12px; background: var(--surface); padding: 10px 12px; border-radius: 6px; border: 1px solid var(--border); white-space: pre-wrap; word-break: break-word; }
+    .modal-close {
+      float: right;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    #total-count { color: var(--muted); font-size: 13px; }
+
+    /* Reports */
+    #audio-section {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(232,160,32,0.04), rgba(192,64,48,0.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    #audio-section .audio-h {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--gold-bright);
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .audio-toolbar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .audio-filter {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-size: 13px;
+    }
+    .audio-filter.active { background: var(--gold); color: #1a0a05; border-color: var(--gold-bright); font-weight: 600; }
+    .audio-group-title { font-family: var(--font-display); color: var(--accent-b); font-size: 1.05rem; margin: 18px 0 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .audio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+    .audio-row {
+      display: flex; flex-direction: column; gap: 6px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .audio-row .audio-name { font-size: 12px; color: var(--text); font-family: monospace; word-break: break-all; }
+    .audio-row audio, #modal-audio {
+      width: 100%;
+      height: 32px;
+      color-scheme: dark;
+      border-radius: 6px;
+    }
+    #reports-section {
+      max-width: 1200px;
+      margin: 0 auto 48px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(232,160,32,0.04), rgba(192,64,48,0.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      scroll-margin-top: 72px;
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    #reports-section h2 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .report-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .report-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .report-header:hover { background: var(--card-h); }
+    .report-milestone {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-b);
+    }
+    .report-date { font-size: 12px; color: var(--muted); }
+    .report-summary { font-size: 12px; color: var(--text); flex: 1; opacity: 0.8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .report-toggle { font-size: 11px; color: var(--muted); margin-left: auto; flex-shrink: 0; }
+    .report-body {
+      display: none;
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .report-body.open { display: block; }
+    .report-section-heading {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 14px 0 6px;
+    }
+    .report-text {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .report-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .report-list li {
+      font-size: 13px;
+      color: var(--text);
+      padding: 3px 0;
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .report-list li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    .reports-empty {
+      color: var(--muted);
+      font-size: 13px;
+      font-style: italic;
+    }
+
+    /* M313 Latest News widget */
+    #news-section {
+      max-width: 1200px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+    #news-section h2 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--accent-b);
+      margin: 0 0 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    #news-section h2 a {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      margin-left: auto;
+    }
+    #news-section h2 a:hover { color: var(--accent); }
+    .news-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .news-widget-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .news-widget-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .news-widget-cat {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .news-widget-cat.cat-release    { color: #60d880; }
+    .news-widget-cat.cat-dev-diary  { color: #80aaff; }
+    .news-widget-cat.cat-event      { color: #d880d8; }
+    .news-widget-title {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      color: var(--gold-bright);
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+    .news-widget-summary {
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.5;
+      opacity: 0.85;
+    }
+    .news-widget-date {
+      font-size: 11px; color: var(--muted); margin-top: 8px;
+    }
+  </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5H26ZXKBCL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-5H26ZXKBCL");
+</script>
+<style id="page-mode-style">#main, #audio-section, #news-section, #tools-section, #story-section, #combat-bg-section { display: none !important; }</style>
+</head>
+<body class="ev-themed">
+
+<script src="./_header.js?v=3" data-base="assets"></script>
+
+<header>
+  <h1 id="game-title" class="page-title">Emberveil</h1>
+  <div class="sub">— Assets</div>
+  <div id="total-count" style="margin-left:auto;"></div>
+</header>
+
+<div class="toolbar" id="toolbar">
+  <button class="filter-btn active" data-cat="all">All</button>
+</div>
+
+<main id="main"></main>
+
+<section id="news-section">
+  <h2>Latest News <a href="news-archive.html">View all</a></h2>
+  <div class="news-cards" id="newsCards"><p style="color:var(--muted);font-size:13px;">Loading...</p></div>
+</section>
+
+<section id="story-section" style="max-width:1200px;margin:24px auto 0;padding:0 24px;">
+  <h2 style="font-family:var(--font-display);font-size:1.1rem;color:var(--accent-b);margin:0 0 12px;letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:6px;">The World of Emberveil</h2>
+  <blockquote style="border-left:3px solid var(--gold);padding:6px 14px;margin:12px 0;color:var(--text-dim);font-style:italic;">
+    "The Veil was not meant to break. It was woven by hands long dead to hold back that which should never have existed. But the corruption finds cracks. It always does."<br><span style="font-size:11px;color:var(--muted);">— The Seer, Thornwood Forest</span>
+  </blockquote>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Shattering Begins</h3>
+      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">For a thousand years the Emberveil held. Then rifts appeared in the frontier lands. Goblin clans, twisted by Veil-corruption, swept through the Border Roads. The Seer sent word: the barrier is unraveling from within.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Hero Answers</h3>
+      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">You are a wanderer drawn to the frontier. Twenty paths of power lie before you — steel, shadow, sorcery, or song. Companions join as you carve a path through six acts toward the corruption's source.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Corruption Spreads</h3>
+      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">Beyond the frontier sprawls the Volcanic Wastes — home to the Cinderborn cult. Deeper, the Shattered Hell yawns open. At the end of all things waits the Cosmic Void, where the Veil was first forged and first broken.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Price of Power</h3>
+      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">Every skill, every rarity, every companion comes with cost. Necromancers and Warlocks walk the razor edge between wielding the Veil's power and being consumed. Your choices determine whether civilization's last ember survives.</p>
+    </div>
+  </div>
+  <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--accent-b);margin:24px 0 10px;letter-spacing:0.08em;text-transform:uppercase;">The Six Acts</h3>
+  <ol style="font-size:13px;color:var(--text);line-height:1.6;margin:0;padding-left:22px;">
+    <li><strong>Border Roads &amp; Thornwood</strong> — Goblin warbands and corrupted wolves. Meet Mira the Seer.</li>
+    <li><strong>Ashen Wastes &amp; Ember Plateau</strong> — Volcanic flats; the Cinderborn cult prepares the Convergence.</li>
+    <li><strong>The Shattered Hell</strong> — Demon strongholds; find the Hell Breach and descend.</li>
+    <li><strong>The Core of Corruption</strong> — The wound at the Veil's center.</li>
+    <li><strong>Reach of the Dragon / Veil's Edge</strong> — Dragon cults and reality fractures.</li>
+    <li><strong>The Cosmic Void</strong> — Where the Veil was first forged.</li>
+  </ol>
+</section>
+<section id="audio-section">
+  <h2 class="audio-h">Audio Library <span id="audio-count"></span></h2>
+  <div class="audio-toolbar">
+    <button class="audio-filter active" data-atype="all">All</button>
+    <button class="audio-filter" data-atype="music">Music</button>
+    <button class="audio-filter" data-atype="sfx">SFX</button>
+  </div>
+  <div id="audio-list"></div>
+</section>
+<section id="reports-section">
+  <h2>Milestone Reports <span id="report-count"></span></h2>
+  <div id="reports-list"><p class="reports-empty">No reports yet. Reports are added after each major milestone.</p></div>
+</section>
+
+<section id="tools-section" style="max-width:1200px;margin:24px auto 0;padding:0 24px;">
+  <h2 style="font-family:var(--font-display);font-size:1rem;color:var(--accent-b);margin:0 0 12px;letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:6px;">Developer Tools</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+    <a href="spell-catalog.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Skills</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Spell Catalog</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Browse all skills by class, tier, or effect type. Filter and export as mod pack.</div>
+    </a>
+    <a href="image-review.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Image Review</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Audit all character sprite frames — missing poses, flip issues, quality flags.</div>
+    </a>
+    <a href="character-redesign.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Character Redesign</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Rebuilt reference sheets per class with updated prompts, grouped by gender. Old portraits sit alongside the new SpriteCook references for easy comparison.</div>
+    </a>
+    <a href="sprite-adjust.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Sprite Adjust</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Per-(character,pose) scale + offset review tool. Compare against a locked reference and copy the resulting JSON into sprite_adjustments.json.</div>
+    </a>
+    <a href="bg-remove.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Images</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Background Remover</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Canvas-based BG removal with multi-sample picking and tolerance slider. Built for warlock_east_spell.</div>
+    </a>
+    <a href="wishlist.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Planning</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Wishlist</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Feature tracker — planned, in-progress, completed, and shelved items.</div>
+    </a>
+    <a href="rebalance-report.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Balance</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Rebalance Report</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">M264–M267 rebalance findings with charts, simulator sweep results, skill-scaling audit, and the new DPS/Heal/Mitigation meter.</div>
+    </a>
+    <a href="docs.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Docs</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Documentation</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Asset policy, mod schemas, SpriteCook prompt templates, and authoring guides.</div>
+    </a>
+  </div>
+
+  <details id="archived-tools" style="margin-top:18px;">
+    <summary style="cursor:pointer;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:6px 0;user-select:none;">Archived Tools</summary>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:10px;opacity:0.8;">
+      <a href="sprite-flip-review.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites (archived)</div>
+        <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Sprite Flip Review</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.45;">Superseded by Image Review which also handles flipping. Kept for reference.</div>
+      </a>
+    </div>
+  </details>
+</section>
+
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-body" style="padding-bottom:4px;">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+    </div>
+    <img id="modal-img" class="modal-img" src="" alt="">
+    <div class="modal-body" id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+// M313 Latest News widget
+(function() {
+  var CAT_LABELS = { 'release': 'Release', 'dev-diary': 'Dev Diary', 'event': 'Event' };
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  fetch('../news/index.json').then(function(r){ return r.ok ? r.json() : null; }).then(function(data) {
+    var el = document.getElementById('newsCards');
+    if (!el) return;
+    if (!data || !Array.isArray(data.entries) || !data.entries.length) {
+      el.innerHTML = '<p style="color:var(--muted);font-size:13px;">No news yet.</p>';
+      return;
+    }
+    var top3 = data.entries.slice(0, 3);
+    el.innerHTML = top3.map(function(e) {
+      var catLabel = CAT_LABELS[e.category] || e.category;
+      var catCls   = 'cat-' + (e.category || 'release');
+      return '<div class="news-widget-card">' +
+        '<div class="news-widget-cat ' + catCls + '">' + catLabel + '</div>' +
+        '<div class="news-widget-title">' + escHtml(e.title) + '</div>' +
+        '<div class="news-widget-summary">' + escHtml(e.summary) + '</div>' +
+        '<div class="news-widget-date">' + escHtml(e.date) + '</div>' +
+      '</div>';
+    }).join('');
+  }).catch(function() {
+    var el = document.getElementById('newsCards');
+    if (el) el.innerHTML = '<p style="color:var(--muted);font-size:13px;">News unavailable.</p>';
+  });
+})();
+
+const BADGE_CLASSES = {
+  openai:   'badge-openai',
+  pixellab: 'badge-pixellab',
+  svg:      'badge-svg',
+  manual:   'badge-manual',
+};
+
+// Rewrite a source image path to its 256x256 nearest-neighbor thumb under
+// public/images/_thumbs/. Generated at build time by scripts/generate_thumbnails.js.
+// Falls back to the original file via <img onerror> if a thumb is missing.
+function thumbPath(file) {
+  if (!file) return file;
+  const m = file.match(/^(\.\.\/)(images\/)(.+)$/);
+  if (!m) return file;
+  const rel = m[3].replace(/\.(jpe?g|png|webp)$/i, '.png');
+  return `${m[1]}${m[2]}_thumbs/${rel}`;
+}
+function thumbOnError(origFile) {
+  // On first error, swap to the original. Clear the handler so a broken
+  // original doesn't loop. Callers also append their own missing-state markup.
+  return `this.onerror=null;this.src='${origFile.replace(/'/g, "\\'")}'`;
+}
+
+function badgeClass(source) {
+  return BADGE_CLASSES[source?.toLowerCase()] ?? 'badge-other';
+}
+
+function sourceLabel(source) {
+  const map = { openai: 'OpenAI', pixellab: 'PixelLab', svg: 'SVG', manual: 'Manual' };
+  return map[source?.toLowerCase()] ?? (source || 'Other');
+}
+
+let allAssets = [];
+let activeFilter = 'all';
+
+// Canonical list of 20 playable hero classes (from src/game/classes.js)
+const HERO_LIST = [
+  { id: 'warrior', name: 'Warrior' },
+  { id: 'fighter', name: 'Fighter' },
+  { id: 'paladin', name: 'Paladin' },
+  { id: 'ranger', name: 'Ranger' },
+  { id: 'rogue', name: 'Rogue' },
+  { id: 'cleric', name: 'Cleric' },
+  { id: 'bard', name: 'Bard' },
+  { id: 'mage', name: 'Mage' },
+  { id: 'necromancer', name: 'Necromancer' },
+  { id: 'warlock', name: 'Warlock' },
+  { id: 'demon_hunter', name: 'Demon Hunter' },
+  { id: 'scavenger', name: 'Scavenger' },
+  { id: 'swashbuckler', name: 'Swashbuckler' },
+  { id: 'dragon_knight', name: 'Dragon Knight' },
+  { id: 'pyromancer', name: 'Pyromancer' },
+  { id: 'stormcaller', name: 'Stormcaller' },
+  { id: 'druid', name: 'Druid' },
+  { id: 'oracle', name: 'Oracle' },
+  { id: 'tactician', name: 'Tactician' },
+  { id: 'chronomancer', name: 'Chronomancer' },
+];
+
+// Canonical companion list (from TownScreen.js + randomEvents.js M56/M64)
+const COMPANION_LIST = [
+  { id: 'war_dog', name: 'War Dog' },
+  { id: 'dragon_hatchling', name: 'Crimson Dragon Hatchling' },
+  { id: 'frost_wyrmling', name: 'Frost Wyrmling' },
+  { id: 'storm_drake', name: 'Storm Drake' },
+  { id: 'shadow_wyrm', name: 'Shadow Wyrm' },
+  { id: 'dire_wolf', name: 'Dire Wolf' },
+  { id: 'forest_owl', name: 'Forest Owl' },
+  { id: 'ember_drake', name: 'Ember Drake' },
+  { id: 'shadow_cat', name: 'Shadow Cat' },
+  { id: 'crystal_golem', name: 'Crystal Golem' },
+  { id: 'spirit_wisp', name: 'Spirit Wisp' },
+  { id: 'bone_hound', name: 'Bone Hound' },
+  { id: 'ice_sprite', name: 'Ice Sprite' },
+  { id: 'swamp_frog', name: 'Swamp Frog' },
+  { id: 'void_moth', name: 'Void Moth' },
+];
+
+const HERO_IDS = new Set(HERO_LIST.map(h => h.id));
+const COMPANION_IDS = new Set(COMPANION_LIST.map(c => c.id));
+
+// Strip known variant suffixes to extract a character base id from an asset id
+const VARIANT_SUFFIX_RE = /_(north|south|east|west|attack|spell|death|idle|down|flipped|alpha)$/;
+function baseIdFromAsset(asset) {
+  let id = (asset.id || '').replace(/^(sprite_|portrait_|icon_)/, '');
+  // Strip chained suffixes: e.g. warrior_east_attack_alpha -> warrior
+  let prev;
+  do {
+    prev = id;
+    id = id.replace(VARIANT_SUFFIX_RE, '');
+  } while (id !== prev);
+  return id;
+}
+function isPortraitAsset(asset) {
+  return (asset.file || '').includes('/portraits/');
+}
+function isSpriteAsset(asset) {
+  return (asset.file || '').includes('/sprites');
+}
+
+function refineCategory(asset) {
+  // Prefer JSON category; re-classify companion_sprites + sprites_pixelengine.
+  const base = baseIdFromAsset(asset);
+  if (HERO_IDS.has(base)) return 'heroes';
+  if (COMPANION_IDS.has(base)) return 'companions';
+  const cat = (asset.category || 'other').toLowerCase();
+  if (cat === 'companion_sprites') return 'companions';
+  if (cat === 'heroes' || cat === 'companions' || cat === 'bosses' || cat === 'enemies') return cat;
+  if (cat === 'backgrounds' || cat === 'background') return 'backgrounds';
+  return cat || 'other';
+}
+
+function groupByCategory(assets) {
+  const groups = {};
+  for (const a of assets) {
+    const cat = refineCategory(a);
+    if (!groups[cat]) groups[cat] = [];
+    groups[cat].push(a);
+  }
+  return groups;
+}
+
+function extractCharacterName(asset) {
+  // Extract character name from asset id, name, or file path
+  const id = asset.id || '';
+  const name = asset.name || '';
+  const file = asset.file || '';
+
+  // Try to extract from id first
+  if (id) {
+    let charName = id.replace(/^(sprite_|portrait_|icon_)/, '');
+    charName = charName.replace(/_(north|south|east|west|attack|spell|death|idle|down)(_flipped|_alpha)?$/, '');
+    if (charName) return charName;
+  }
+
+  // Try to extract from file path
+  if (file) {
+    const filename = file.split('/').pop().replace(/\.[^.]+$/, '');
+    let charName = filename.replace(/_(north|south|east|west|attack|spell|death|idle|down)(_flipped|_alpha)?$/, '');
+    if (charName) return charName;
+  }
+
+  // Fallback to name
+  return name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+}
+
+function groupAssetsByCharacter(assets) {
+  const characters = {};
+  for (const asset of assets) {
+    const charName = extractCharacterName(asset);
+    if (!characters[charName]) {
+      characters[charName] = [];
+    }
+    characters[charName].push(asset);
+  }
+  return characters;
+}
+
+function detectVariantType(asset) {
+  const id = asset.id || '';
+  const file = asset.file || '';
+  const combined = id + ' ' + file;
+
+  if (combined.includes('portrait')) return 'portrait';
+  if (combined.includes('_east_attack') || combined.includes('_attack')) return 'attack';
+  if (combined.includes('_east_spell') || combined.includes('_spell')) return 'spell';
+  if (combined.includes('_east_block') || combined.includes('_block')) return 'block';
+  if (combined.includes('_east_ko') || combined.includes('_ko')) return 'ko';
+  if (combined.includes('_death') || combined.includes('_down')) return 'death';
+  if (combined.includes('_south')) return 'south';
+  if (combined.includes('_east')) return 'east';
+  // Legacy PixelLab directions (_north, _west) are no longer used in-game — skip.
+  if (combined.includes('_north') || combined.includes('_west')) return null;
+  if (combined.includes('_idle')) return 'idle';
+
+  return 'default';
+}
+
+function renderCharacterBlock(charName, assets) {
+  const block = document.createElement('div');
+  block.className = 'character-block';
+
+  const displayName = charName.replace(/_/g, ' ');
+
+  // Group assets by variant type
+  const variants = {};
+  assets.forEach(asset => {
+    const varType = detectVariantType(asset);
+    if (!varType) return; // skip unused legacy directions
+    if (!variants[varType]) variants[varType] = [];
+    variants[varType].push(asset);
+  });
+
+  // Preferred order of variants — matches the in-game sprite set.
+  const variantOrder = ['portrait', 'south', 'east', 'attack', 'spell', 'block', 'ko', 'death', 'idle', 'default'];
+
+  let variantsHtml = '';
+  variantOrder.forEach(varType => {
+    if (variants[varType]) {
+      variants[varType].forEach(asset => {
+        const thumbSrc = asset.file ? asset.file : null;
+        const label = varType === 'default' ? 'main' : varType;
+
+        if (thumbSrc) {
+          variantsHtml += `
+            <div class="variant-box" onclick="openModal(${JSON.stringify(asset).replace(/"/g, '&quot;')})">
+              <img src="${thumbPath(thumbSrc)}" data-orig="${thumbSrc}" alt="${asset.name || charName}" loading="lazy"
+                   onerror="if(this.dataset.fallback){this.parentElement.innerHTML='<div class=variant-missing>${label}</div>'}else{this.dataset.fallback=1;this.src=this.dataset.orig}">
+              <div class="variant-label">${label}</div>
+            </div>`;
+        } else {
+          variantsHtml += `<div class="variant-box"><div class="variant-missing">${label}</div></div>`;
+        }
+      });
+    }
+  });
+
+  block.innerHTML = `
+    <h3>${displayName}</h3>
+    <div class="character-variants">${variantsHtml}</div>
+  `;
+
+  return block;
+}
+
+const CATEGORY_ORDER = ['characters','heroes','companions','enemies','bosses','backgrounds','background','portrait','icon','ui','sprite','other'];
+function sortedCategoryEntries(groups) {
+  return Object.entries(groups).sort((a, b) => {
+    const ia = CATEGORY_ORDER.indexOf(a[0]); const ib = CATEGORY_ORDER.indexOf(b[0]);
+    return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+  });
+}
+
+// Build a { baseId -> {portrait, frames:[], all:[]} } index from assets.
+// Matches by EXACT base id (no substring regex — that was the Mage/Warrior bug).
+function indexAssetsByCharacter(assets) {
+  const idx = {};
+  for (const a of assets) {
+    const base = baseIdFromAsset(a);
+    if (!base) continue;
+    if (!idx[base]) idx[base] = { portrait: null, frames: [], all: [] };
+    idx[base].all.push(a);
+    if (isPortraitAsset(a) && !idx[base].portrait) {
+      idx[base].portrait = a;
+    } else if (isSpriteAsset(a)) {
+      // Drop legacy PixelLab directions we no longer use in-game.
+      const fid = (a.id || '').toLowerCase();
+      if (fid.endsWith('_north') || fid.endsWith('_west')) continue;
+      idx[base].frames.push(a);
+    }
+  }
+  // Dedup + sort frames: attack, spell, block, ko, directions, death.
+  const order = ['east_attack','east_spell','east_block','east_ko','south','east','death'];
+  for (const k of Object.keys(idx)) {
+    const seen = new Set();
+    idx[k].frames = idx[k].frames.filter(f => {
+      const key = (f.file || '').split('/').pop();
+      if (seen.has(key)) return false;
+      seen.add(key); return true;
+    }).sort((a, b) => {
+      const ka = order.findIndex(s => (a.id || '').endsWith('_' + s));
+      const kb = order.findIndex(s => (b.id || '').endsWith('_' + s));
+      return (ka === -1 ? 99 : ka) - (kb === -1 ? 99 : kb);
+    });
+  }
+  return idx;
+}
+
+// M236: canonical pose set per /docs/image-policy.md. Only these poses
+// render — no more stale _east_flipped / _death frames leaking into the UI.
+const CANONICAL_POSES = ['south','east','east_attack','east_spell','east_block','east_ko'];
+
+function renderM79CharacterBlock(character, bundle) {
+  const block = document.createElement('div');
+  block.className = 'char-m79-block';
+
+  // Portrait + reference sheet candidates. Prefer spritecook paths since
+  // that's where approved current sprites live. Fall back to pixellab
+  // reference if the portrait 404s.
+  const id = character.id;
+  const portraitSrc = `../images/spritecook/${id}_portrait.png`;
+  const refSrc = `../images/pixellab/${id}/reference.png`;
+
+  // Each pose thumbnail tries the canonical spritecook path; onerror it
+  // falls back to the pixellab candidate, and if that also fails the cell
+  // shows "missing". Click opens the lightbox with the full-res image.
+  const poseCellHtml = (pose) => {
+    const sc = `../images/spritecook/${id}_${pose}.png`;
+    const pl = `../images/pixellab/${id}/${pose}.png`;
+    const asset = { id: `${id}_${pose}`, name: `${character.name} ${pose}`, file: sc };
+    // M354: hover-swap (desktop, non-touch only) — temporarily replace the
+    // larger portrait image with this pose's image for at-a-glance comparison.
+    return `<div class="char-m79-frame" onclick='openModal(${JSON.stringify(asset).replace(/"/g,"&quot;")})'
+         onmouseenter="if(!matchMedia('(hover:none)').matches){const p=this.closest('.char-m79-content').querySelector('.char-m79-portrait img');if(p&&!p.dataset.origSrc){p.dataset.origSrc=p.src;}if(p)p.src='${sc}';}"
+         onmouseleave="if(!matchMedia('(hover:none)').matches){const p=this.closest('.char-m79-content').querySelector('.char-m79-portrait img');if(p&&p.dataset.origSrc){p.src=p.dataset.origSrc;delete p.dataset.origSrc;}}">
+      <img src="${sc}" data-fb="${pl}" alt="${pose}" loading="lazy"
+           onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.dataset.fb}else{this.style.display='none';this.nextElementSibling.style.display='flex'}">
+      <div class="frame-missing" style="display:none">·</div>
+      <div class="frame-label">${pose.replace(/^east_/,'').replace('east','E').replace('south','S')}</div>
+    </div>`;
+  };
+
+  const portraitAsset = { id: `${id}_portrait`, name: character.name, file: portraitSrc };
+  const refAsset = { id: `${id}_reference`, name: `${character.name} reference`, file: refSrc };
+  const clickPortrait = `onclick='openModal(${JSON.stringify(portraitAsset).replace(/"/g,"&quot;")})'`;
+
+  block.innerHTML = `
+    <div class="char-m79-header">
+      <div class="char-m79-name">${character.name}</div>
+      <div class="char-m79-type">${character.type || ''}</div>
+    </div>
+    <div class="char-m79-content">
+      <div class="char-m79-portrait" ${clickPortrait} title="Portrait">
+        <img src="${portraitSrc}" data-fb="${refSrc}" alt="${character.name}" loading="lazy"
+             onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.dataset.fb}else{this.style.display='none';this.nextElementSibling.style.display='flex'}">
+        <div class="portrait-missing" style="display:none">?</div>
+      </div>
+      <div class="char-m79-frames">
+        ${CANONICAL_POSES.map(poseCellHtml).join('')}
+      </div>
+    </div>
+    <div class="char-m79-info">
+      <span>${id}</span>
+      <span>${character.className || character.type || ''}</span>
+    </div>
+  `;
+  return block;
+}
+
+function getFrameType(asset) {
+  const id = (asset.id || '').toLowerCase();
+  if (id.endsWith('_east_attack')) return 'attack';
+  if (id.endsWith('_east_spell')) return 'spell';
+  if (id.endsWith('_east_block')) return 'block';
+  if (id.endsWith('_east_ko')) return 'ko';
+  if (id.endsWith('_death')) return 'death';
+  if (id.endsWith('_south')) return 'S';
+  if (id.endsWith('_east')) return 'E';
+  if (id.endsWith('_east_flipped')) return 'E-flip';
+  return 'frame';
+}
+
+// Background file lists — these dirs are not fully indexed in assets.json,
+// so we hardcode the directory listings here so the gallery always shows them.
+const DIALOG_BG_FILES = [
+  'blacksmith.jpg','cave.jpg','dark_alley.jpg','dungeon.jpg','forest.jpg',
+  'graveyard.jpg','harbor.jpg','library.jpg','market.jpg','mountain_pass.jpg',
+  'ruins.jpg','snowy_peak.jpg','swamp.jpg','tavern.jpg','temple.jpg','throne_room.jpg',
+];
+const MAP_BG_FILES = [
+  'abyssal_depths.jpg','border_roads.jpg','cosmic_rift.jpg','dust_roads.jpg',
+  'ember_plateau.jpg','eternal_void.jpg','hell_breach.jpg','primordial_nexus.jpg',
+  'shattered_core.jpg','thornwood.jpg',
+];
+
+function buildBgAsset(file, dir, label) {
+  const bare = file.replace(/\.[^.]+$/, '').replace(/_/g, ' ');
+  return {
+    id: `${dir}_${file}`,
+    name: bare.replace(/\b\w/g, c => c.toUpperCase()),
+    category: 'backgrounds',
+    source: 'openai',
+    file: `../images/${dir}/${file}`,
+    notes: label,
+  };
+}
+
+function renderBackgroundsSection(assets) {
+  const section = document.createElement('div');
+  section.className = 'section bg-section';
+  section.dataset.sectionKey = 'backgrounds';
+
+  const dialogAssets = DIALOG_BG_FILES.map(f => buildBgAsset(f, 'dialog_bg', 'Dialog scene'));
+  const mapAssets = MAP_BG_FILES.map(f => buildBgAsset(f, 'map_bg', 'World map zone'));
+  // Also pull any assets categorized as background from JSON (e.g. menu_bg).
+  const jsonBgs = assets.filter(a => {
+    const c = (a.category || '').toLowerCase();
+    const f = (a.file || '').toLowerCase();
+    return c === 'backgrounds' || c === 'background' || f.includes('/menu_bg/');
+  });
+
+  const total = dialogAssets.length + mapAssets.length + jsonBgs.length;
+  section.innerHTML = `<div class="section-title">Backgrounds <span>${total}</span></div>`;
+
+  function appendGroup(title, items) {
+    if (!items.length) return;
+    const h = document.createElement('div');
+    h.className = 'audio-group-title';
+    h.textContent = `${title} (${items.length})`;
+    section.appendChild(h);
+    const grid = document.createElement('div');
+    grid.className = 'bg-grid';
+    items.forEach(asset => {
+      const card = document.createElement('div');
+      card.className = 'bg-card';
+      card.onclick = () => openModal(asset);
+      card.innerHTML = `
+        <div class="bg-preview">
+          <img src="${thumbPath(asset.file)}" data-orig="${asset.file}" alt="${asset.name}" loading="lazy" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src=this.dataset.orig}">
+        </div>
+        <div class="bg-info">
+          <div class="bg-name">${asset.name}</div>
+          <div class="bg-usage">${asset.notes || ''}</div>
+        </div>`;
+      grid.appendChild(card);
+    });
+    section.appendChild(grid);
+  }
+  appendGroup('Dialog Backgrounds', dialogAssets);
+  appendGroup('World Map Backgrounds', mapAssets);
+  if (jsonBgs.length) appendGroup('Other Backgrounds', jsonBgs);
+
+  return section;
+}
+
+function inferBackgroundUsage(asset) {
+  const name = (asset.name || '').toLowerCase();
+  const file = (asset.file || '').toLowerCase();
+
+  if (name.includes('forest') || file.includes('forest')) return 'Forest areas';
+  if (name.includes('desert') || file.includes('desert')) return 'Desert zones';
+  if (name.includes('cave') || file.includes('cave')) return 'Underground areas';
+  if (name.includes('town') || file.includes('town')) return 'Town/settlement';
+  if (name.includes('menu') || file.includes('menu')) return 'Menu background';
+  if (name.includes('map') || file.includes('map')) return 'World map';
+  return 'Game background';
+}
+
+function detectUnusedAssets(assets) {
+  // More sophisticated heuristic for detecting potentially unused assets
+  return assets.filter(asset => {
+    const name = (asset.name || '').toLowerCase();
+    const file = (asset.file || '').toLowerCase();
+    const id = (asset.id || '').toLowerCase();
+
+    // Skip if it has clear usage patterns
+    if (asset.category && ['heroes', 'companions', 'enemies', 'bosses', 'background', 'ui', 'icon'].includes(asset.category)) return false;
+
+    // Skip character-related assets
+    if (name.includes('portrait') || name.includes('attack') || name.includes('spell') || name.includes('death')) return false;
+
+    // Skip background assets
+    if (file.includes('bg_') || file.includes('background') || file.includes('map_bg') || file.includes('menu_bg')) return false;
+
+    // Skip UI and icon assets
+    if (file.includes('icon') || file.includes('ui') || name.includes('icon') || name.includes('ui')) return false;
+
+    // Skip system assets
+    if (file.includes('font') || file.includes('system') || name.includes('font') || name.includes('system')) return false;
+
+    // Flag potential unused assets
+    const suspiciousPatterns = [
+      'test', 'unused', 'old', 'temp', 'draft', 'backup', 'copy', 'duplicate',
+      'experimental', 'wip', 'work_in_progress', 'sample', 'placeholder'
+    ];
+
+    const textToSearch = [name, file, id, asset.notes || ''].join(' ').toLowerCase();
+    return suspiciousPatterns.some(pattern => textToSearch.includes(pattern)) ||
+           (asset.notes && asset.notes.toLowerCase().includes('unused')) ||
+           (asset.notes && asset.notes.toLowerCase().includes('deprecated'));
+  });
+}
+
+function renderCard(asset) {
+  const card = document.createElement('div');
+  card.className = 'asset-card';
+  card.title = asset.name;
+
+  const thumbSrc = asset.file ? asset.file : null;
+  const thumbHtml = thumbSrc
+    ? `<img class="thumb" src="${thumbPath(thumbSrc)}" data-orig="${thumbSrc}" alt="${asset.name}" loading="lazy" onerror="if(this.dataset.fallback){this.style.display='none';this.nextElementSibling.style.display='flex'}else{this.dataset.fallback=1;this.src=this.dataset.orig}">`
+      + `<div class="thumb-missing" style="display:none">🖼</div>`
+    : `<div class="thumb-missing">🖼</div>`;
+
+  card.innerHTML = `
+    ${thumbHtml}
+    <div class="card-body">
+      <div class="card-name">${asset.name}</div>
+      <div class="card-meta">
+        <span class="badge ${badgeClass(asset.source)}">${sourceLabel(asset.source)}</span>
+        ${asset.category ? `<span class="badge badge-manual" style="background:#1e1e2a;color:var(--muted);border-color:var(--border)">${asset.category}</span>` : ''}
+      </div>
+    </div>`;
+
+  card.addEventListener('click', () => openModal(asset));
+  return card;
+}
+
+function isAudioFile(f) { return /\.(mp3|wav|ogg|m4a)$/i.test(f || ''); }
+function openModal(asset) {
+  const modal = document.getElementById('modal');
+  const img = document.getElementById('modal-img');
+  const audio = isAudioFile(asset.file);
+  img.src = audio ? '' : (asset.file || '');
+  img.alt = asset.name;
+  img.style.display = (asset.file && !audio) ? 'block' : 'none';
+  let existingAudio = document.getElementById('modal-audio');
+  if (existingAudio) existingAudio.remove();
+  if (audio) {
+    const el = document.createElement('audio');
+    el.id = 'modal-audio';
+    el.controls = true;
+    el.src = asset.file;
+    el.style.cssText = 'width:100%;margin:12px 0;';
+    img.parentNode.insertBefore(el, img.nextSibling);
+  }
+
+  let html = `<div class="modal-title">${asset.name}</div>`;
+
+  if (asset.source) {
+    html += `<div class="modal-row">
+      <div class="modal-label">Source</div>
+      <div class="modal-value"><span class="badge ${badgeClass(asset.source)}">${sourceLabel(asset.source)}</span></div>
+    </div>`;
+  }
+  if (asset.category) {
+    html += `<div class="modal-row">
+      <div class="modal-label">Category</div>
+      <div class="modal-value">${asset.category}</div>
+    </div>`;
+  }
+  if (asset.prompt) {
+    html += `<div class="modal-row">
+      <div class="modal-label">Prompt</div>
+      <div class="modal-prompt">${asset.prompt}</div>
+    </div>`;
+  }
+  if (asset.notes) {
+    html += `<div class="modal-row">
+      <div class="modal-label">Notes</div>
+      <div class="modal-value">${asset.notes}</div>
+    </div>`;
+  }
+  if (asset.file) {
+    html += `<div class="modal-row">
+      <div class="modal-label">File</div>
+      <div class="modal-value" style="font-family:monospace;font-size:12px;color:var(--muted)">${asset.file}</div>
+    </div>`;
+  }
+
+  document.getElementById('modal-content').innerHTML = html;
+  modal.classList.add('open');
+}
+
+document.getElementById('modal-close').addEventListener('click', () => {
+  document.getElementById('modal').classList.remove('open');
+});
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('modal').classList.remove('open');
+});
+
+function renderCharacterGroup(title, list, idx, key) {
+  const section = document.createElement('div');
+  section.className = 'section characters-section';
+  section.dataset.sectionKey = key;
+  const present = list.filter(c => idx[c.id]).length;
+  section.innerHTML = `<div class="section-title">${title} <span>${list.length} (${present} with art)</span></div>`;
+  const grid = document.createElement('div');
+  grid.className = 'char-m79-grid';
+  list.forEach(ch => {
+    ch.type = title.replace(/s$/, '').toLowerCase();
+    ch.className = ch.className || ch.name;
+    const bundle = idx[ch.id] || { portrait: null, frames: [], all: [] };
+    grid.appendChild(renderM79CharacterBlock(ch, bundle));
+  });
+  section.appendChild(grid);
+  return section;
+}
+
+// Derive boss + enemy character lists from whatever JSON assets show up.
+function deriveCharactersFromCategory(assets, category, excludeIds) {
+  const seen = new Map();
+  for (const a of assets) {
+    if ((a.category || '').toLowerCase() !== category) continue;
+    const base = baseIdFromAsset(a);
+    if (!base || excludeIds.has(base)) continue;
+    if (!seen.has(base)) {
+      const name = base.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      seen.set(base, { id: base, name });
+    }
+  }
+  return [...seen.values()].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+async function render(assets) {
+  const main = document.getElementById('main');
+  main.innerHTML = '';
+
+  if (!assets.length) {
+    main.innerHTML = `<div class="empty-state"><h2>No assets yet</h2><p>Add entries to <strong>public/assets/assets.json</strong>.</p></div>`;
+    return;
+  }
+
+  const idx = indexAssetsByCharacter(assets);
+
+  // 1. Classes (appearance set — one entry per playable-class appearance;
+  //    companions listed separately below). Renamed from "Heroes" in M236.
+  const heroesSection = renderCharacterGroup('Classes', HERO_LIST, idx, 'heroes');
+  main.appendChild(heroesSection);
+
+  // 2. Companions
+  const compSection = renderCharacterGroup('Companions', COMPANION_LIST, idx, 'companions');
+  main.appendChild(compSection);
+
+  // 3. Bosses (derived from category=bosses)
+  const exclude = new Set([...HERO_IDS, ...COMPANION_IDS]);
+  const bosses = deriveCharactersFromCategory(assets, 'bosses', exclude);
+  if (bosses.length) {
+    main.appendChild(renderCharacterGroup('Bosses', bosses, idx, 'bosses'));
+  }
+
+  // 4. Enemies (derived from category=enemies)
+  const enemies = deriveCharactersFromCategory(assets, 'enemies', exclude);
+  if (enemies.length) {
+    main.appendChild(renderCharacterGroup('Enemies', enemies, idx, 'enemies'));
+  }
+
+  // 5. Backgrounds
+  const bgSection = renderBackgroundsSection(assets);
+  if (bgSection) main.appendChild(bgSection);
+
+  // 6. Other (anything not heroes/companions/bosses/enemies/backgrounds)
+  const handledCats = new Set(['heroes','companions','bosses','enemies','backgrounds','background','companion_sprites']);
+  const otherAssets = assets.filter(a => {
+    const c = (a.category || 'other').toLowerCase();
+    if (handledCats.has(c)) return false;
+    const f = (a.file || '').toLowerCase();
+    if (f.includes('/menu_bg/') || f.includes('/map_bg/') || f.includes('/dialog_bg/')) return false;
+    return true;
+  });
+  if (otherAssets.length) {
+    const section = document.createElement('div');
+    section.className = 'section';
+    section.dataset.sectionKey = 'other';
+    section.innerHTML = `<div class="section-title">Other <span>${otherAssets.length}</span></div>`;
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    otherAssets.forEach(a => grid.appendChild(renderCard(a)));
+    section.appendChild(grid);
+    main.appendChild(section);
+  }
+}
+
+function applyFilter(cat) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+  // Show/hide sections by data-section-key rather than re-rendering.
+  document.querySelectorAll('#main > .section').forEach(sec => {
+    if (cat === 'all') { sec.style.display = ''; return; }
+    sec.style.display = (sec.dataset.sectionKey === cat) ? '' : 'none';
+  });
+}
+
+const REPORT_HTML_MAP = {
+  'pre-game design report': 'pre-game-report.html',
+  'milestone 53': 'milestone-53-report.html',
+  'milestone 65': 'dragon_expansion.html',
+  'milestone 72': 'tap-weapons.html',
+  'rebalance survey': '../news/balance-report.html',
+  'balance report': '../news/balance-report.html'
+};
+
+function reportHtmlFile(r) {
+  if (r.url) return r.url;
+  const name = (r.milestone || '').toLowerCase();
+  for (const key of Object.keys(REPORT_HTML_MAP)) {
+    if (name.startsWith(key)) return REPORT_HTML_MAP[key];
+  }
+  return null;
+}
+
+function milestoneSortKey(r) {
+  const name = (r.milestone || '').toLowerCase();
+  if (name.startsWith('pre-game')) return -1;
+  const m = name.match(/milestone\s*(\d+)/) || name.match(/\bm\s*(\d+)/);
+  return m ? parseInt(m[1], 10) : 9999;
+}
+
+function renderReports(reports) {
+  const container = document.getElementById('reports-list');
+  const countEl = document.getElementById('report-count');
+  if (!reports || !reports.length) {
+    container.innerHTML = '<p class="reports-empty">No reports yet. Reports are added after each major milestone.</p>';
+    return;
+  }
+  countEl.textContent = `(${reports.length})`;
+  container.innerHTML = '';
+
+  // Split: feature reports (have dedicated HTML) vs accordion
+  const featured = [];
+  const accordion = [];
+  reports.forEach(r => {
+    accordion.push(r);
+  });
+  featured.sort((a, b) => milestoneSortKey(a) - milestoneSortKey(b));
+  accordion.sort((a, b) => milestoneSortKey(a) - milestoneSortKey(b));
+
+  if (featured.length) {
+    const wrap = document.createElement('div');
+    wrap.className = 'feature-reports';
+    featured.forEach(r => {
+      const href = reportHtmlFile(r);
+      const a = document.createElement('a');
+      a.className = 'feature-report';
+      a.href = href;
+      a.innerHTML = `
+        <div class="fr-label">Featured Report</div>
+        <div class="fr-title">${r.milestone || 'Report'}</div>
+        <div class="fr-summary">${r.summary || ''}</div>
+        <div class="fr-date">${r.date || ''}</div>`;
+      wrap.appendChild(a);
+    });
+    container.appendChild(wrap);
+  }
+
+  accordion.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'report-card';
+
+    function listHtml(items) {
+      if (!items || !items.length) return '';
+      return '<ul class="report-list">' + items.map(i => `<li>${i}</li>`).join('') + '</ul>';
+    }
+    function textHtml(val) {
+      return val ? `<div class="report-text">${val}</div>` : '';
+    }
+
+    const sections = [
+      { key: 'changes',        label: 'Recent Changes' },
+      { key: 'bugs',           label: 'Known Bugs' },
+      { key: 'suggestions',    label: 'Suggestions' },
+      { key: 'recommendations',label: 'Recommendations' },
+      { key: 'ideas',          label: 'Ideas' },
+      { key: 'notes',          label: 'Notes' },
+    ];
+
+    let bodyHtml = '';
+    for (const { key, label } of sections) {
+      const val = r[key];
+      if (!val || (Array.isArray(val) && !val.length)) continue;
+      bodyHtml += `<div class="report-section-heading">${label}</div>`;
+      bodyHtml += Array.isArray(val) ? listHtml(val) : textHtml(val);
+    }
+
+    card.innerHTML = `
+      <div class="report-header" role="button" tabindex="0" aria-expanded="false">
+        <span class="report-milestone">${r.milestone || 'Milestone'}</span>
+        <span class="report-date">${r.date || ''}</span>
+        <span class="report-summary">${r.summary || ''}</span>
+        <span class="report-toggle">▸ expand</span>
+      </div>
+      <div class="report-body">${bodyHtml || '<span style="color:var(--muted);font-size:13px">No details recorded.</span>'}</div>`;
+
+    const header = card.querySelector('.report-header');
+    const body = card.querySelector('.report-body');
+    const toggle = card.querySelector('.report-toggle');
+    function toggleReport() {
+      const open = body.classList.toggle('open');
+      toggle.textContent = open ? '▾ collapse' : '▸ expand';
+      header.setAttribute('aria-expanded', open);
+    }
+    header.addEventListener('click', toggleReport);
+    header.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleReport(); } });
+
+    container.appendChild(card);
+  });
+}
+
+async function init() {
+  let data;
+  try {
+    const res = await fetch('assets.json?v=' + Date.now());
+    data = await res.json();
+  } catch {
+    render([]);
+    return;
+  }
+
+  if (data.game) document.getElementById('game-title').textContent = data.game;
+  document.title = `${data.game || 'game13'} — Assets`;
+
+  allAssets = (data.images || []).filter(a => !isAudioFile(a.file));
+  document.getElementById('total-count').textContent = allAssets.length
+    ? `${allAssets.length} asset${allAssets.length !== 1 ? 's' : ''}`
+    : '';
+
+  renderReports(data.reports || []);
+  renderAudio();
+
+  // Build filter buttons — fixed set matching the section keys.
+  const FILTER_CATS = ['heroes','companions','bosses','enemies','backgrounds','other'];
+  const toolbar = document.getElementById('toolbar');
+  FILTER_CATS.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.dataset.cat = cat;
+    btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+    btn.addEventListener('click', () => applyFilter(cat));
+    toolbar.appendChild(btn);
+  });
+  document.querySelector('[data-cat="all"]').addEventListener('click', () => applyFilter('all'));
+
+  render(allAssets).catch(error => {
+    console.error('Failed to render assets:', error);
+    // Fallback to basic rendering if advanced features fail
+    document.getElementById('main').innerHTML = '<div class="empty-state"><h2>Rendering Error</h2><p>Assets could not be displayed. Check console for details.</p></div>';
+  });
+}
+
+const AUDIO_FILES = {
+  music: ["boss_theme.ogg","combat_calm_01.ogg","combat_calm_02.ogg","combat_calm_03.ogg","combat_theme.ogg","intro_theme.ogg","overworld_act1.ogg","overworld_act2.ogg","overworld_act3.ogg","overworld_act4.ogg","overworld_act5.ogg","overworld_act6.ogg","title_theme.ogg"],
+  sfx: ["arrow_hit.mp3","arrow_shoot.mp3","axe_chop.mp3","block_shield.mp3","boss_roar.mp3","chest_open.mp3","crit_cue.mp3","crit_slash.mp3","dagger_stab.mp3","defeat.mp3","door_open.mp3","dragon_breath_fire.ogg","dragon_breath_ice.ogg","dragon_claw.ogg","dragon_death.ogg","dragon_roar.ogg","dragon_wing_flap.ogg","drake_screech.mp3","enemy_death.mp3","enemy_die.mp3","enemy_growl.mp3","fire_crackle.mp3","gold_gain.mp3","hero_death.mp3","hero_hurt.mp3","hero_hurt_f.mp3","hit_arrow.mp3","hit_blunt.mp3","hit_sword.mp3","item_pickup.mp3","level_up.mp3","melee_crit.mp3","melee_hit_heavy.mp3","melee_hit_light.mp3","melee_miss.mp3","melee_slash.mp3","owl_hoot.mp3","parry.mp3","portal_warp.mp3","potion_drink.mp3","potion_heal_cue.mp3","punch.mp3","quest_complete.mp3","rest_heal.mp3","shield_block.mp3","shrine_pray.mp3","spell_arcane.mp3","spell_buff.mp3","spell_dark.mp3","spell_debuff.mp3","spell_explode.mp3","spell_fire.mp3","spell_heal.mp3","spell_holy.mp3","spell_ice.mp3","spell_lightning.mp3","spell_shadow.mp3","spell_summon.mp3","status_burn.mp3","status_freeze.mp3","status_poison.mp3","status_stun.mp3","thunder_rumble.mp3","torch_lit.mp3","trap_spring.mp3","unlock.mp3","victory_fanfare.mp3","wind_gust.mp3","wolf_howl.mp3"],
+};
+let audioFilter = 'all';
+function renderAudio() {
+  const list = document.getElementById('audio-list');
+  const total = AUDIO_FILES.music.length + AUDIO_FILES.sfx.length;
+  document.getElementById('audio-count').textContent = `(${total})`;
+  function group(label, type, files) {
+    if (audioFilter !== 'all' && audioFilter !== type) return '';
+    const rows = files.map(f => `
+      <div class="audio-row">
+        <div class="audio-name">${f}</div>
+        <audio controls preload="none" src="../${type}/${f}"></audio>
+      </div>`).join('');
+    return `<div class="audio-group-title">${label} (${files.length})</div><div class="audio-grid">${rows}</div>`;
+  }
+  list.innerHTML = group('Music', 'music', AUDIO_FILES.music) + group('SFX', 'sfx', AUDIO_FILES.sfx);
+}
+document.querySelectorAll('.audio-filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    audioFilter = btn.dataset.atype;
+    document.querySelectorAll('.audio-filter').forEach(b => b.classList.toggle('active', b === btn));
+    renderAudio();
+  });
+});
+
+init();
+</script>
+</body>
+</html>
