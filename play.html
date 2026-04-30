@@ -28,6 +28,17 @@
 
 <!-- vibej.am 2026 jam widget -->
 <script async src="https://vibej.am/2026/widget.js"></script>
+<style>
+  /* M384 — temporary override (vibe.jam window only). Nudges the jam badge
+     up + reshapes it so it stops overlapping bottom-right "Next menu"
+     buttons. Remove after the jam closes along with the widget. */
+  a[href="https://vibej.am/"] {
+    bottom: 81px !important;
+    border-radius: 12px 0 0 12px;
+    min-height: 38px !important;
+    height: auto;
+  }
+</style>
   <script type="module" crossorigin src="/assets/play-B7EEPE2p.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/savesClient-DUFjgBxb.js">
   <link rel="stylesheet" crossorigin href="/assets/play-it207JdU.css">
