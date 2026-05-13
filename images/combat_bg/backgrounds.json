@@ -1,5 +1,10 @@
 {
   "zones": {
+    "prologue": {
+      "act": 0,
+      "name": "The Lonely Road",
+      "backgrounds": ["border_roads_hd.png"]
+    },
     "border_roads": {
       "act": 1,
       "name": "The Border Roads",
@@ -13,7 +18,12 @@
     "dust_roads": {
       "act": 2,
       "name": "The Dust Roads",
-      "backgrounds": ["desert_plateau_hd.png"]
+      "backgrounds": ["desert_plateau_hd.png", "ashen_gate_hd.jpg"]
+    },
+    "ash_gate": {
+      "act": 2,
+      "name": "Ashen Gate",
+      "backgrounds": ["ashen_gate_hd.jpg"]
     },
     "ember_plateau": {
       "act": 2,
