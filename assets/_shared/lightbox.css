@@ -1,0 +1,253 @@
+/*
+ * lightbox.css — Shared lightbox styles for images.html, image-review-v2.html,
+ * and any other gallery page that imports _shared/lightbox.js.
+ *
+ * The lightbox DOM is auto-created by Lightbox.create(); these selectors target
+ * the elements it builds. DO NOT duplicate any of these rules into the consuming
+ * pages.
+ *
+ * Sections:
+ *   1. Backdrop + open state
+ *   2. Floating close-X (fixed, top-right)
+ *   3. Toolbar (prev/next/counter/toggle/close)
+ *   4. Body (stage + side panel)
+ *   5. Side panel: meta, prompt, comparison, flag, key/value rows
+ *   6. Mobile (<768px) layout
+ */
+
+/* ----------------------------------------------------------------------------
+   1. Backdrop + open state
+   The lightbox sits BELOW the 72px sticky shared nav header so its toolbar
+   buttons + close-X aren't clipped (M375 origin). Pages that don't use the
+   shared nav still get a clean top inset.
+   ---------------------------------------------------------------------------- */
+.shared-lightbox {
+  display:    none;
+  position:   fixed;
+  inset:      72px 0 0 0;
+  z-index:    200;
+  background: rgba(0, 0, 0, 0.94);
+  padding:    0.75rem;
+}
+.shared-lightbox.open {
+  display:        flex;
+  flex-direction: column;
+}
+
+/* ----------------------------------------------------------------------------
+   2. Floating close-X — always visible top-right
+   ---------------------------------------------------------------------------- */
+.shared-lightbox .lb-close-x {
+  position:       fixed;
+  top:            80px;
+  right:          0.5rem;
+  z-index:        210;
+  width:          44px;
+  height:         44px;
+  border-radius:  6px;
+  background:     #c04030;
+  color:          #fff;
+  border:         1px solid #ffd060;
+  font-size:      1.4rem;
+  line-height:    1;
+  cursor:         pointer;
+  font-weight:    700;
+  display:        flex;
+  align-items:    center;
+  justify-content: center;
+  box-shadow:     0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.shared-lightbox .lb-close-x:hover { background: #d05040; }
+
+/* ----------------------------------------------------------------------------
+   3. Toolbar — prev/next + counter (left), toggle/close (right)
+   ---------------------------------------------------------------------------- */
+.shared-lightbox .lb-toolbar {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  gap:             0.5rem;
+  flex-wrap:       wrap;
+  padding:         0.25rem 3rem 0.5rem 0.25rem;
+}
+.shared-lightbox .lb-toolbar button {
+  background:    #222;
+  color:         #ddd;
+  border:        1px solid var(--border-strong, rgba(232, 160, 32, 0.45));
+  border-radius: 4px;
+  padding:       0.5rem 0.85rem;
+  cursor:        pointer;
+  font-size:     0.85rem;
+  min-height:    40px;
+}
+.shared-lightbox .lb-toolbar button:hover     { background: #333; }
+.shared-lightbox .lb-toolbar button:disabled  { opacity: 0.4; cursor: not-allowed; }
+.shared-lightbox .lb-counter {
+  color:     var(--muted, #8a7a6a);
+  font-size: 0.75rem;
+}
+
+/* ----------------------------------------------------------------------------
+   4. Body — stage (image) + side (panel)
+   ---------------------------------------------------------------------------- */
+.shared-lightbox .lb-body {
+  flex:                  1;
+  display:               grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap:                   1rem;
+  min-height:            0;
+}
+.shared-lightbox .lb-body.stacked {
+  grid-template-columns: 1fr;
+  grid-template-rows:    1fr auto;
+}
+.shared-lightbox .lb-body.no-side {
+  grid-template-columns: 1fr;
+}
+.shared-lightbox .lb-body.no-side .lb-side { display: none; }
+
+.shared-lightbox .lb-stage {
+  background:      #0008;
+  border:          1px solid var(--border, rgba(232, 160, 32, 0.2));
+  border-radius:   6px;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  min-height:      0;
+  overflow:        hidden;
+}
+.shared-lightbox .lb-stage img {
+  max-width:       100%;
+  max-height:      100%;
+  image-rendering: pixelated;
+}
+.shared-lightbox .lb-stage.bg img { image-rendering: auto; }
+
+.shared-lightbox .lb-side {
+  background:    var(--panel, #1a1218);
+  border:        1px solid var(--border, rgba(232, 160, 32, 0.2));
+  border-radius: 6px;
+  padding:       0.75rem;
+  overflow-y:    auto;
+  font-size:     0.85rem;
+  line-height:   1.45;
+}
+
+/* ----------------------------------------------------------------------------
+   5. Side-panel content
+   ---------------------------------------------------------------------------- */
+.shared-lightbox .lb-side h3 {
+  margin: 0 0 0.25rem;
+  color:  var(--accent, #e8a020);
+}
+.shared-lightbox .lb-side .meta {
+  color:         var(--muted, #8a7a6a);
+  font-size:     0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.shared-lightbox .lb-reason-row { margin-bottom: 0.6rem; }
+.shared-lightbox .lb-prompt-block { margin-top: 0.6rem; }
+.shared-lightbox .lb-prompt-block.prompt-sub { margin-top: 0.4rem; }
+.shared-lightbox .lb-prompt-block .prompt {
+  white-space:   pre-wrap;
+  font-size:     0.7rem;
+  opacity:       0.8;
+  max-height:    200px;
+  overflow:      auto;
+  padding:       0.4rem;
+  background:    #0a0a0e;
+  border:        1px solid var(--border, rgba(232, 160, 32, 0.2));
+  border-radius: 4px;
+}
+
+.shared-lightbox .lb-asset-line     { margin-top: 0.5rem; font-size: 0.7rem; }
+.shared-lightbox .lb-asset-line.sub { margin-top: 0.2rem; }
+
+.shared-lightbox .lb-comparison {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   0.5rem;
+}
+.shared-lightbox .lb-comparison > div { text-align: center; }
+.shared-lightbox .lb-comparison img {
+  max-width:       100%;
+  image-rendering: pixelated;
+  background:      #0a0a0e;
+  border:          1px solid var(--border, rgba(232, 160, 32, 0.2));
+  border-radius:   3px;
+}
+.shared-lightbox .lb-comparison .lbl {
+  font-size:      0.65rem;
+  color:          var(--muted, #8a7a6a);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom:  0.2rem;
+}
+.shared-lightbox .lb-comparison .lbl.new { color: var(--accent, #e8a020); }
+
+/* Generic key/value rows (used by simple-mode openers like images.html). */
+.shared-lightbox .lb-kv {
+  margin-bottom: 10px;
+}
+.shared-lightbox .lb-kv .lb-kv-label {
+  font-size:      11px;
+  font-weight:    700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color:          var(--muted, #8a7a6a);
+  margin-bottom:  2px;
+}
+.shared-lightbox .lb-kv .lb-kv-value {
+  font-size: 13px;
+  color:     var(--text, #f0e8d8);
+}
+.shared-lightbox .lb-kv.lb-kv-file .lb-kv-value {
+  font-family: monospace;
+  font-size:   12px;
+  color:       var(--muted, #8a7a6a);
+  word-break:  break-all;
+}
+
+/* Flag controls — review-v2 only, gated by enableFlags option */
+.shared-lightbox .lb-flag-row {
+  margin-top:  0.75rem;
+  padding-top: 0.5rem;
+  border-top:  1px solid var(--border, rgba(232, 160, 32, 0.2));
+}
+.shared-lightbox .lb-flag-row .lb-flag-btns {
+  display:    flex;
+  gap:        0.3rem;
+  margin-top: 0.3rem;
+}
+.shared-lightbox .lb-flag-btn {
+  flex:          1;
+  padding:       0.3rem;
+  border-radius: 3px;
+  font-size:     0.7rem;
+  cursor:        pointer;
+}
+.shared-lightbox .lb-flag-btn[data-flag-prio=""]        { background: #222;    border: 1px solid #444;    color: #888; }
+.shared-lightbox .lb-flag-btn[data-flag-prio="info"]    { background: #1a2a3a; border: 1px solid #3080d0; color: #5fa6e6; }
+.shared-lightbox .lb-flag-btn[data-flag-prio="warning"] { background: #3a2a1a; border: 1px solid #e8a020; color: #e8a020; }
+.shared-lightbox .lb-flag-btn[data-flag-prio="error"]   { background: #3a1a1a; border: 1px solid #c04030; color: #e07060; }
+.shared-lightbox .lb-flag-row input[type="text"] {
+  width:         100%;
+  margin-top:    0.4rem;
+  padding:       0.35rem;
+  background:    #0a0a0e;
+  border:        1px solid var(--border, rgba(232, 160, 32, 0.2));
+  color:         var(--parchment, var(--text, #f0e8d8));
+  font-size:     0.78rem;
+  border-radius: 3px;
+}
+
+/* ----------------------------------------------------------------------------
+   6. Mobile
+   ---------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .shared-lightbox .lb-body {
+    grid-template-columns: 1fr;
+    grid-template-rows:    1fr auto;
+  }
+}

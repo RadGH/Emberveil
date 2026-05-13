@@ -1,0 +1,22 @@
+{
+  "id": "m352",
+  "milestone": 352,
+  "openedAt": "2026-05-05T05:18:59.532Z",
+  "entries": [
+    {
+      "id": "hero_silas_veilward_portrait",
+      "category": "character",
+      "group": "silas_veilward",
+      "pose": "portrait",
+      "live": "../images/spritecook/silas_veilward_portrait.png",
+      "new": "../images/spritecook/silas_veilward_portrait_new.png",
+      "old": "../images/spritecook/silas_veilward_portrait.png",
+      "assetId": "7b987fe2-efcc-4c5b-b387-b0f36bd80f20",
+      "reason": "M412 portrait regen — old silver-haired-warlord portrait did not match the brown-haired sage in the east frame.",
+      "prompt": "Pixel art portrait bust of Silas Veilward — brown-haired adult sage with green hooded cloak and gray-silver mantle, three-quarter view, head-and-shoulders bust shot, transparent background. Matches existing east-facing pose.",
+      "approved": true,
+      "addedAt": "2026-05-05T05:30:00Z",
+      "approvedAt": "2026-05-05T05:50:52.474Z"
+    }
+  ]
+}

@@ -3,28 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="rsg-game" content="Emberveil">
   <title>Images — Emberveil Asset Gallery</title>
+  <link rel="stylesheet" href="./_shared/sprite-grid.css">
+  <link rel="stylesheet" href="./_shared/lightbox.css">
   <style>
+    /* =========================================================
+       DESIGN TOKENS
+       ========================================================= */
     @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
     :root {
-      --bg:        #0a0608;
-      --surface:   #12090d;
-      --card:      #1a1218;
-      --card-h:    #241a20;
-      --accent:    #e8a020;
-      --accent-b:  #f0c060;
-      --ember1:    #c04030;
-      --gold:      #e8a020;
-      --gold-bright:#f8d880;
-      --text:      #f0e8d8;
-      --muted:     #8a7a6a;
-      --border:    rgba(232,160,32,0.2);
-      --radius:    10px;
-      --font-display:'Cinzel',Georgia,serif;
-      --font-ui:'Inter','Segoe UI',sans-serif;
+      --bg:          #0a0608;
+      --surface:     #12090d;
+      --card:        #1a1218;
+      --card-h:      #241a20;
+      --accent:      #e8a020;
+      --accent-b:    #f0c060;
+      --ember1:      #c04030;
+      --gold:        #e8a020;
+      --gold-bright: #f8d880;
+      --text:        #f0e8d8;
+      --muted:       #8a7a6a;
+      --warn:        #c04030;
+      --ok:          #5cbf7f;
+      --border:      rgba(232,160,32,0.2);
+      --radius:      10px;
+      --font-display:'Cinzel', Georgia, serif;
+      --font-ui:     'Inter', 'Segoe UI', sans-serif;
+
+      /* Transparency checkerboard — theme-matched dark purple */
+      --checker-a:   #1a1218;
+      --checker-b:   #0f0b10;
+      --checker-size:20px;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
     body {
       background: var(--bg);
       color: var(--text);
@@ -34,6 +49,14 @@
       min-height: 100vh;
     }
     h1, h2, h3, .display { font-family: var(--font-display); }
+
+    /* =========================================================
+       TRANSPARENCY CHECKERBOARD — defined in _shared/sprite-grid.css
+       ========================================================= */
+
+    /* =========================================================
+       PAGE LAYOUT
+       ========================================================= */
     .page-title {
       font-family: var(--font-display);
       font-size: clamp(1.6rem, 4vw, 2.4rem);
@@ -44,24 +67,8 @@
       background-clip: text;
       color: transparent;
     }
-    .feature-reports { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 28px; }
-    .feature-report {
-      display: block;
-      background: linear-gradient(135deg, rgba(232,160,32,0.08), rgba(192,64,48,0.06));
-      border: 1px solid rgba(232,160,32,0.3);
-      border-radius: 12px;
-      padding: 20px;
-      text-decoration: none;
-      color: var(--text);
-      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    }
-    .feature-report:hover { transform: translateY(-2px); border-color: rgba(232,160,32,0.6); box-shadow: 0 8px 24px rgba(232,160,32,0.12); }
-    .feature-report .fr-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
-    .feature-report .fr-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; margin: 6px 0 8px; color: var(--gold-bright); }
-    .feature-report .fr-summary { font-size: 13px; color: var(--text); opacity: 0.85; line-height: 1.5; }
-    .feature-report .fr-date { font-size: 11px; color: var(--muted); margin-top: 10px; }
 
-    header {
+    .page-header {
       max-width: 1200px;
       margin: 24px auto 20px;
       background: var(--surface);
@@ -72,10 +79,20 @@
       align-items: baseline;
       gap: 12px;
     }
-    header h1 { font-size: 20px; font-weight: 700; color: var(--accent-b); }
-    header .sub { font-size: 13px; color: var(--muted); }
+    .page-header h1 { font-size: 20px; font-weight: 700; color: var(--accent-b); }
+    .page-header .sub { font-size: 13px; color: var(--muted); }
+    .page-header .total-count { color: var(--muted); font-size: 13px; margin-left: auto; }
 
-    .toolbar {
+    .page-main {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+
+    /* =========================================================
+       TOOLBAR (single instance — #lm-toolbar)
+       ========================================================= */
+    .toolbar-wrap {
       max-width: 1200px;
       margin: 0 auto 20px;
       padding: 14px 24px;
@@ -86,52 +103,90 @@
       border-radius: var(--radius);
       background: var(--surface);
     }
-    main { margin-top: 0 !important; }
-    #audio-section, #reports-section { margin-top: 24px !important; }
+
     .filter-btn {
       background: var(--card);
       border: 1px solid var(--border);
       color: var(--muted);
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 20px;
       cursor: pointer;
       font-size: 12px;
+      font-family: var(--font-ui);
       transition: all 0.15s;
     }
-    .filter-btn:hover, .filter-btn.active {
+    .filter-btn:hover { background: var(--card-h); color: var(--text); }
+    .filter-btn.active {
       background: var(--accent);
       border-color: var(--accent);
       color: #fff;
     }
 
-    main {
+    /* M463 — sprite-background toggle + bg-filter-bar defined in _shared/sprite-grid.css */
+    /* Mount point: center within page flow, constrain width to match page columns */
+    #bg-filter-mount {
       max-width: 1200px;
-      margin: 0 auto 40px;
-      padding: 24px;
-      background: linear-gradient(180deg, rgba(232,160,32,0.04), rgba(192,64,48,0.03));
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      margin: 0 auto 12px;
+      padding: 0 24px;
+    }
+    #bg-filter-mount .bg-filter-bar {
+      margin: 0;
     }
 
-    .empty-state {
-      text-align: center;
-      padding: 80px 24px;
-      color: var(--muted);
-    }
-    .empty-state h2 { font-size: 18px; margin-bottom: 8px; color: var(--text); }
-    .empty-state p { font-size: 13px; max-width: 400px; margin: 0 auto; }
-    .empty-state code {
-      display: inline-block;
-      margin-top: 16px;
+    /* search */
+    .search-input {
+      width: 100%;
+      max-width: 480px;
+      padding: 8px 12px;
       background: var(--card);
       border: 1px solid var(--border);
-      padding: 8px 16px;
-      border-radius: var(--radius);
+      color: var(--text);
+      border-radius: 6px;
+      font: inherit;
+      margin-bottom: 16px;
+    }
+    .search-input::placeholder { color: var(--muted); }
+
+    /* =========================================================
+       MANIFEST META BAR
+       ========================================================= */
+    .manifest-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .manifest-meta h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--gold-bright);
+      letter-spacing: 0.1em;
+    }
+    .manifest-meta .meta-total { color: var(--muted); font-size: 13px; }
+    .manifest-meta .meta-generated {
+      color: var(--muted);
+      font-size: 11px;
+      margin-left: auto;
       font-family: monospace;
+    }
+    .manifest-desc {
+      color: var(--muted);
       font-size: 12px;
+      margin-bottom: 12px;
+    }
+    .manifest-desc code {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
       color: var(--accent-b);
     }
 
+    /* =========================================================
+       SECTION HEADINGS
+       ========================================================= */
     .section { margin-bottom: 40px; }
     .section-title {
       font-size: 11px;
@@ -142,412 +197,190 @@
       margin-bottom: 12px;
       padding-bottom: 6px;
       border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .section-title span {
+    .section-count {
       background: var(--card);
       border: 1px solid var(--border);
       color: var(--text);
       padding: 2px 8px;
       border-radius: 10px;
       font-size: 10px;
-      margin-left: 8px;
+    }
+    .section-warn {
+      color: var(--warn);
+      font-size: 10px;
+      border: 1px solid rgba(192,64,48,0.4);
+      background: rgba(192,64,48,0.08);
+      padding: 2px 8px;
+      border-radius: 10px;
     }
 
-    .grid {
+    .subsection-title {
+      font-family: var(--font-display);
+      color: var(--accent-b);
+      font-size: 1.05rem;
+      margin: 18px 0 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* M472 — class-pair / appearance-row / gender-col styles retired; every
+       character now uses the unified single-row layout from _shared/sprite-grid.css
+       (.unified-char + .uc-row + .uc-tile). Display-font hooks for character
+       names so they keep the page's existing typography: */
+    .unified-char .uc-name { font-family: var(--font-display); font-size: 17px; color: var(--gold-bright); }
+    /* Gender badge colors (also used in unified-char heads for class appearances). */
+    .badge-gender-male    { color: #80aaff; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .badge-gender-female  { color: #f080c0; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* =========================================================
+       ENTITY GRID — companions, enemies, bosses (simpler layout)
+       ========================================================= */
+    .entity-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 14px;
     }
 
-    .asset-card {
+    .entity-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      overflow: hidden;
-      cursor: pointer;
-      transition: border-color 0.15s, background 0.15s;
+      padding: 12px;
+      transition: border-color 0.15s;
     }
-
-    /* Character blocks styling */
-    .character-roster {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 20px;
-    }
-
-    .character-block {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px;
-      transition: transform .3s, border-color .3s, box-shadow .3s;
-    }
-
-    .character-block:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent);
-      box-shadow: 0 8px 32px rgba(232,160,32,0.18);
-    }
-
-    .character-block h3 {
-      margin: 0 0 12px;
-      font-size: 18px;
-      text-transform: capitalize;
-      color: var(--accent-b);
-      font-family: var(--font-display);
-    }
-
-    /* M79 Report style - larger portraits + smaller attack frames */
-    .characters-section {
-      margin-bottom: 40px;
-    }
-
-    .char-m79-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-      gap: 24px;
-    }
-
-    .char-m79-block {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
-      transition: transform .3s, border-color .3s, box-shadow .3s;
-    }
-
-    .char-m79-block:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent);
-      box-shadow: 0 12px 40px rgba(232,160,32,0.15);
-    }
-
-    .char-m79-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-
-    .char-m79-name {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--accent-b);
-      font-family: var(--font-display);
-      text-transform: capitalize;
-    }
-
-    .char-m79-type {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 4px 8px;
-      border-radius: 4px;
-    }
-
-    .char-m79-content {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
-      align-items: start;
-    }
-
-    .char-m79-portrait {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      min-width: 120px;
-      min-height: 120px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 2px solid var(--border);
-      background: var(--bg);
-      cursor: pointer;
-      transition: border-color .3s;
-    }
-
-    .char-m79-portrait:hover {
-      border-color: var(--accent);
-    }
-
-    .char-m79-portrait img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .char-m79-portrait .portrait-missing {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 24px;
-      background: rgba(232,160,32,0.05);
-    }
-
-    .char-m79-frames {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
-      gap: 8px;
-      max-width: 200px;
-    }
-
-    .char-m79-frame {
-      position: relative;
-      width: 48px;
-      height: 48px;
-      border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      cursor: pointer;
-      transition: border-color .3s, transform .2s;
-    }
-
-    .char-m79-frame:hover {
-      border-color: var(--accent);
-      transform: scale(1.05);
-    }
-
-    .char-m79-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .char-m79-frame .frame-missing {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 14px;
-      background: rgba(232,160,32,0.03);
-    }
-
-    .char-m79-frame .frame-label {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0,0,0,0.7);
-      color: #fff;
-      font-size: 8px;
-      text-align: center;
-      padding: 2px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .char-m79-info {
-      margin-top: 12px;
-      font-size: 12px;
-      color: var(--muted);
+    .entity-card:hover { border-color: var(--accent); }
+    .entity-card-header {
       display: flex;
       justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
     }
-
-    /* Background graphics section */
-    .bg-section {
-      margin-bottom: 40px;
+    .entity-card-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
     }
-
+    .entity-card-id {
+      font-size: 10px;
+      color: var(--muted);
+      font-family: monospace;
+    }
+    .entity-card-frames {
+      display: grid;
+      grid-template-columns: repeat(4, 40px);
+      gap: 4px;
+    }
+    /* =========================================================
+       BACKGROUND IMAGE GRID
+       ========================================================= */
     .bg-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
     }
-
     .bg-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
       overflow: hidden;
       cursor: pointer;
-      transition: transform .3s, border-color .3s;
+      transition: border-color 0.2s, transform 0.2s;
     }
-
-    .bg-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent);
-    }
-
+    .bg-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .bg-preview {
       width: 100%;
-      height: 120px;
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      height: 110px;
       overflow: hidden;
     }
-
     .bg-preview img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+    .bg-info { padding: 10px 12px; }
+    .bg-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .bg-usage { font-size: 11px; color: var(--muted); }
 
-    .bg-info {
-      padding: 12px;
-    }
-
-    .bg-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .bg-usage {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .character-variants {
+    /* =========================================================
+       GENERIC SMALL-TILE GRID (UI, particles, spell icons, etc.)
+       ========================================================= */
+    .tile-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
     }
-
-    .variant-box {
-      background: linear-gradient(135deg, #1a0f08, #0a0504);
+    .tile-card {
+      display: block;
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 8px;
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s;
+      padding: 8px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 11px;
+      transition: border-color 0.15s;
     }
-
-    .variant-box:hover {
-      transform: scale(1.05);
-    }
-
-    .variant-box img {
-      max-width: 100%;
-      max-height: 100%;
+    .tile-card:hover { border-color: var(--accent); }
+    .tile-img {
+      width: 100%;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 4px;
+      display: block;
+      margin-bottom: 5px;
       image-rendering: pixelated;
-      transition: transform .3s;
-    }
-
-    .variant-box .variant-label {
-      position: absolute;
-      bottom: 2px;
-      left: 2px;
-      right: 2px;
-      font-size: 8px;
-      color: var(--muted);
-      text-align: center;
-      background: rgba(0,0,0,0.7);
-      border-radius: 3px;
-      padding: 1px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .variant-missing {
-      color: var(--muted);
-      font-size: 10px;
-      text-align: center;
-      opacity: 0.5;
-    }
-    .asset-card:hover { background: var(--card-h); border-color: var(--accent); }
-
-    .thumb, #modal-img,
-    .bg-preview img, .char-m79-portrait img, .char-m79-frame img {
-      image-rendering: pixelated;
-      image-rendering: -moz-crisp-edges;
       image-rendering: crisp-edges;
     }
-    .thumb {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      display: block;
-      background: var(--surface);
-    }
-    .thumb-missing {
-      width: 100%;
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--surface);
-      color: var(--muted);
-      font-size: 28px;
+    .tile-name {
+      font-family: monospace;
+      font-size: 9px;
+      color: var(--gold-bright);
+      word-break: break-all;
+      line-height: 1.3;
     }
 
-    .card-body { padding: 10px 12px; }
-    .card-name { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .card-meta { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+    /* =========================================================
+       ORPHAN SECTION
+       ========================================================= */
+    .orphan-note {
+      color: var(--muted);
+      font-size: 13px;
+      margin: -6px 0 14px;
+      line-height: 1.5;
+    }
+    .orphan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    /* =========================================================
+       BADGES
+       ========================================================= */
     .badge {
       font-size: 10px;
       padding: 2px 6px;
       border-radius: 10px;
       font-weight: 600;
       letter-spacing: 0.03em;
+      display: inline-block;
     }
-    .badge-openai  { background: #1a3a2a; color: #5cbf7f; border: 1px solid #2a5a3a; }
-    .badge-pixellab{ background: #2a1a3a; color: #bf80ff; border: 1px solid #4a2a6a; }
-    .badge-svg     { background: #1a2a3a; color: #60aaee; border: 1px solid #2a4a6a; }
-    .badge-manual  { background: #2a2a1a; color: #ccbb60; border: 1px solid #4a4a2a; }
-    .badge-other   { background: #2a1a1a; color: #cc7777; border: 1px solid #4a2a2a; }
+    .badge-ok       { background: #1a3a2a; color: var(--ok);    border: 1px solid #2a5a3a; }
+    .badge-warn     { background: rgba(192,64,48,0.12); color: var(--warn); border: 1px solid rgba(192,64,48,0.4); }
+    .badge-pending  { background: #2a2020; color: #cc8844; border: 1px solid #4a3030; }
+    .badge-npc      { background: #1a2a3a; color: #60aaee; border: 1px solid #2a4a6a; }
+    .badge-deprecated { background: #2a2a2a; color: var(--muted); border: 1px solid #3a3a3a; text-decoration: line-through; }
 
-    /* Modal */
-    .modal-overlay {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.8);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      max-width: 700px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    .modal-img { width: 100%; max-height: 400px; object-fit: contain; background: var(--surface); border-radius: 12px 12px 0 0; }
-    .modal-body { padding: 20px; }
-    .modal-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-    .modal-row { margin-bottom: 10px; }
-    .modal-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
-    .modal-value { font-size: 13px; color: var(--text); }
-    .modal-prompt { font-family: monospace; font-size: 12px; background: var(--surface); padding: 10px 12px; border-radius: 6px; border: 1px solid var(--border); white-space: pre-wrap; word-break: break-word; }
-    .modal-close {
-      float: right;
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-size: 20px;
-      cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 4px;
-    }
-    .modal-close:hover { color: var(--text); }
+    /* Lightbox CSS — moved to _shared/lightbox.css (M472). */
 
-    #total-count { color: var(--muted); font-size: 13px; }
-
-    /* Reports */
-    #audio-section {
+    /* =========================================================
+       AUDIO SECTION
+       ========================================================= */
+    .audio-section {
       max-width: 1200px;
       margin: 0 auto 40px;
       padding: 24px;
@@ -555,7 +388,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
     }
-    #audio-section .audio-h {
+    .audio-h {
       font-family: var(--font-display);
       font-size: 1.4rem;
       color: var(--gold-bright);
@@ -576,23 +409,36 @@
       font-size: 13px;
     }
     .audio-filter.active { background: var(--gold); color: #1a0a05; border-color: var(--gold-bright); font-weight: 600; }
-    .audio-group-title { font-family: var(--font-display); color: var(--accent-b); font-size: 1.05rem; margin: 18px 0 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .audio-group-title {
+      font-family: var(--font-display);
+      color: var(--accent-b);
+      font-size: 1.05rem;
+      margin: 18px 0 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
     .audio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
     .audio-row {
-      display: flex; flex-direction: column; gap: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 10px 12px;
     }
-    .audio-row .audio-name { font-size: 12px; color: var(--text); font-family: monospace; word-break: break-all; }
-    .audio-row audio, #modal-audio {
+    .audio-name { font-size: 12px; color: var(--text); font-family: monospace; word-break: break-all; }
+    .audio-row audio {
       width: 100%;
       height: 32px;
       color-scheme: dark;
       border-radius: 6px;
     }
-    #reports-section {
+
+    /* =========================================================
+       REPORTS SECTION
+       ========================================================= */
+    .reports-section {
       max-width: 1200px;
       margin: 0 auto 48px;
       padding: 24px;
@@ -601,8 +447,7 @@
       border-radius: var(--radius);
       scroll-margin-top: 72px;
     }
-    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-    #reports-section h2 {
+    .reports-section h2 {
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -629,19 +474,11 @@
       transition: background 0.15s;
     }
     .report-header:hover { background: var(--card-h); }
-    .report-milestone {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent-b);
-    }
+    .report-milestone { font-size: 13px; font-weight: 700; color: var(--accent-b); }
     .report-date { font-size: 12px; color: var(--muted); }
     .report-summary { font-size: 12px; color: var(--text); flex: 1; opacity: 0.8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .report-toggle { font-size: 11px; color: var(--muted); margin-left: auto; flex-shrink: 0; }
-    .report-body {
-      display: none;
-      padding: 0 16px 16px;
-      border-top: 1px solid var(--border);
-    }
+    .report-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
     .report-body.open { display: block; }
     .report-section-heading {
       font-size: 10px;
@@ -651,45 +488,27 @@
       color: var(--muted);
       margin: 14px 0 6px;
     }
-    .report-text {
-      font-size: 13px;
-      color: var(--text);
-      line-height: 1.6;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-    .report-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+    .report-text { font-size: 13px; color: var(--text); line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+    .report-list { list-style: none; padding: 0; margin: 0; }
     .report-list li {
       font-size: 13px;
       color: var(--text);
-      padding: 3px 0;
-      padding-left: 14px;
+      padding: 3px 0 3px 14px;
       position: relative;
       line-height: 1.5;
     }
-    .report-list li::before {
-      content: '›';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-    .reports-empty {
-      color: var(--muted);
-      font-size: 13px;
-      font-style: italic;
-    }
+    .report-list li::before { content: '›'; position: absolute; left: 0; color: var(--accent); }
+    .reports-empty { color: var(--muted); font-size: 13px; font-style: italic; }
 
-    /* M313 Latest News widget */
-    #news-section {
+    /* =========================================================
+       NEWS WIDGET
+       ========================================================= */
+    .news-section {
       max-width: 1200px;
       margin: 24px auto 0;
       padding: 0 24px;
     }
-    #news-section h2 {
+    .news-section h2 {
       font-family: var(--font-display);
       font-size: 1rem;
       color: var(--accent-b);
@@ -702,7 +521,7 @@
       align-items: baseline;
       gap: 12px;
     }
-    #news-section h2 a {
+    .news-section h2 a {
       font-family: var(--font-ui);
       font-size: 11px;
       font-weight: 400;
@@ -712,109 +531,135 @@
       text-transform: none;
       margin-left: auto;
     }
-    #news-section h2 a:hover { color: var(--accent); }
-    .news-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 12px;
-    }
-    .news-widget-card {
+    .news-section h2 a:hover { color: var(--accent); }
+    .news-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .news-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 14px 16px;
       transition: border-color 0.15s, transform 0.15s;
     }
-    .news-widget-card:hover { border-color: var(--accent); transform: translateY(-1px); }
-    .news-widget-cat {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; margin-bottom: 6px;
+    .news-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .news-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+    .cat-release   { color: #60d880; }
+    .cat-dev-diary { color: #80aaff; }
+    .cat-event     { color: #d880d8; }
+    .news-title { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--gold-bright); margin-bottom: 6px; line-height: 1.35; }
+    .news-summary { font-size: 12px; color: var(--text); line-height: 1.5; opacity: 0.85; }
+    .news-date { font-size: 11px; color: var(--muted); margin-top: 8px; }
+
+    /* =========================================================
+       DEVELOPER TOOLS GRID
+       ========================================================= */
+    .tools-section {
+      max-width: 1200px;
+      margin: 24px auto 0;
+      padding: 0 24px;
     }
-    .news-widget-cat.cat-release    { color: #60d880; }
-    .news-widget-cat.cat-dev-diary  { color: #80aaff; }
-    .news-widget-cat.cat-event      { color: #d880d8; }
-    .news-widget-title {
+    .tools-section h2 {
       font-family: var(--font-display);
-      font-size: 13px; font-weight: 700;
-      color: var(--gold-bright);
-      margin-bottom: 6px;
-      line-height: 1.35;
+      font-size: 1rem;
+      color: var(--accent-b);
+      margin: 0 0 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
     }
-    .news-widget-summary {
-      font-size: 12px;
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+    .tool-card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-decoration: none;
       color: var(--text);
-      line-height: 1.5;
-      opacity: 0.85;
+      transition: border-color 0.15s, transform 0.15s;
     }
-    .news-widget-date {
-      font-size: 11px; color: var(--muted); margin-top: 8px;
+    .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .tool-cat { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+    .tool-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--gold-bright); margin-bottom: 6px; }
+    .tool-desc { font-size: 12px; color: var(--muted); line-height: 1.45; }
+
+    /* =========================================================
+       EMPTY STATE
+       ========================================================= */
+    .empty-state {
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--muted);
     }
+    .empty-state h2 { font-size: 18px; margin-bottom: 8px; color: var(--text); }
+    .empty-state p { font-size: 13px; max-width: 400px; margin: 0 auto; }
+    .empty-state code {
+      display: inline-block;
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--accent-b);
+    }
+
+    /* Mode hide/show (audio, reports, etc.) */
+    .mode-hidden { display: none !important; }
   </style>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5H26ZXKBCL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag("js", new Date());
-  gtag("config", "G-5H26ZXKBCL");
+  gtag('js', new Date());
+  gtag('config', 'G-5H26ZXKBCL');
 </script>
-<style id="page-mode-style">#audio-section, #reports-section, #news-section, #tools-section, #story-section, #combat-bg-section { display: none !important; }</style>
+<script src="./_shared/sprite-grid.js"></script>
+<script src="./_shared/lightbox.js"></script>
 </head>
 <body class="ev-themed">
 
 <script src="./_header.js?v=3" data-base="assets"></script>
 
-<header>
+<header class="page-header">
   <h1 id="game-title" class="page-title">Emberveil</h1>
-  <div class="sub">— Assets</div>
-  <div id="total-count" style="margin-left:auto;"></div>
+  <div class="sub">— Images</div>
+  <div class="total-count" id="total-count"></div>
 </header>
 
-<div class="toolbar" id="toolbar">
-  <button class="filter-btn active" data-cat="all">All</button>
+<!-- Single filter toolbar — #lm-toolbar is the authoritative filter bar -->
+<div class="toolbar-wrap">
+  <div id="lm-toolbar"></div>
 </div>
 
-<main id="main"></main>
+<!-- Sprite background toggle — mounted by SpriteGrid.mountBgFilter() from _shared/sprite-grid.js -->
+<div id="bg-filter-mount"></div>
 
-<section id="news-section">
-  <h2>Latest News <a href="news-archive.html">View all</a></h2>
-  <div class="news-cards" id="newsCards"><p style="color:var(--muted);font-size:13px;">Loading...</p></div>
-</section>
-
-<section id="story-section" style="max-width:1200px;margin:24px auto 0;padding:0 24px;">
-  <h2 style="font-family:var(--font-display);font-size:1.1rem;color:var(--accent-b);margin:0 0 12px;letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:6px;">The World of Emberveil</h2>
-  <blockquote style="border-left:3px solid var(--gold);padding:6px 14px;margin:12px 0;color:var(--text-dim);font-style:italic;">
-    "The Veil was not meant to break. It was woven by hands long dead to hold back that which should never have existed. But the corruption finds cracks. It always does."<br><span style="font-size:11px;color:var(--muted);">— The Seer, Thornwood Forest</span>
-  </blockquote>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
-      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Shattering Begins</h3>
-      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">For a thousand years the Emberveil held. Then rifts appeared in the frontier lands. Goblin clans, twisted by Veil-corruption, swept through the Border Roads. The Seer sent word: the barrier is unraveling from within.</p>
-    </div>
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
-      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Hero Answers</h3>
-      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">You are a wanderer drawn to the frontier. Twenty paths of power lie before you — steel, shadow, sorcery, or song. Companions join as you carve a path through six acts toward the corruption's source.</p>
-    </div>
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
-      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Corruption Spreads</h3>
-      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">Beyond the frontier sprawls the Volcanic Wastes — home to the Cinderborn cult. Deeper, the Shattered Hell yawns open. At the end of all things waits the Cosmic Void, where the Veil was first forged and first broken.</p>
-    </div>
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
-      <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold-bright);margin:0 0 6px;">The Price of Power</h3>
-      <p style="font-size:13px;color:var(--text);line-height:1.5;margin:0;">Every skill, every rarity, every companion comes with cost. Necromancers and Warlocks walk the razor edge between wielding the Veil's power and being consumed. Your choices determine whether civilization's last ember survives.</p>
-    </div>
+<!-- ======================================================================
+     LIVE IMAGE MANIFEST — appearance-driven, data-sourced from
+     appearances-manifest.json (built by scripts/build-appearances-manifest.cjs)
+     ====================================================================== -->
+<section class="page-main" id="live-manifest">
+  <div class="manifest-meta">
+    <h2>Live Image Manifest</h2>
+    <span class="meta-total" id="lm-total"></span>
+    <span class="meta-generated" id="lm-generated"></span>
   </div>
-  <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--accent-b);margin:24px 0 10px;letter-spacing:0.08em;text-transform:uppercase;">The Six Acts</h3>
-  <ol style="font-size:13px;color:var(--text);line-height:1.6;margin:0;padding-left:22px;">
-    <li><strong>Border Roads &amp; Thornwood</strong> — Goblin warbands and corrupted wolves. Meet Mira the Seer.</li>
-    <li><strong>Ashen Wastes &amp; Ember Plateau</strong> — Volcanic flats; the Cinderborn cult prepares the Convergence.</li>
-    <li><strong>The Shattered Hell</strong> — Demon strongholds; find the Hell Breach and descend.</li>
-    <li><strong>The Core of Corruption</strong> — The wound at the Veil's center.</li>
-    <li><strong>Reach of the Dragon / Veil's Edge</strong> — Dragon cults and reality fractures.</li>
-    <li><strong>The Cosmic Void</strong> — Where the Veil was first forged.</li>
-  </ol>
+  <p class="manifest-desc">
+    Auto-generated from <code>public/images/</code> via the appearance registry.
+    Re-run <code>node scripts/build-appearances-manifest.cjs</code> to refresh.
+  </p>
+  <input class="search-input" id="lm-search" type="search" placeholder="Filter by name, id, or filename…">
+  <div id="lm-content"><p style="color:var(--muted)">Loading manifest…</p></div>
 </section>
-<section id="audio-section">
+
+<!-- ======================================================================
+     AUDIO SECTION
+     ====================================================================== -->
+<section class="audio-section mode-hidden" id="audio-section">
   <h2 class="audio-h">Audio Library <span id="audio-count"></span></h2>
   <div class="audio-toolbar">
     <button class="audio-filter active" data-atype="all">All</button>
@@ -823,474 +668,395 @@
   </div>
   <div id="audio-list"></div>
 </section>
-<section id="reports-section">
+
+<!-- ======================================================================
+     REPORTS SECTION
+     ====================================================================== -->
+<section class="reports-section mode-hidden" id="reports-section">
   <h2>Milestone Reports <span id="report-count"></span></h2>
   <div id="reports-list"><p class="reports-empty">No reports yet. Reports are added after each major milestone.</p></div>
 </section>
 
-<section id="tools-section" style="max-width:1200px;margin:24px auto 0;padding:0 24px;">
-  <h2 style="font-family:var(--font-display);font-size:1rem;color:var(--accent-b);margin:0 0 12px;letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:6px;">Developer Tools</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
-    <a href="spell-catalog.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
-      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Skills</div>
-      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Spell Catalog</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Browse all skills by class, tier, or effect type. Filter and export as mod pack.</div>
+<!-- ======================================================================
+     NEWS WIDGET
+     ====================================================================== -->
+<section class="news-section mode-hidden" id="news-section">
+  <h2>Latest News <a href="news-archive.html">View all</a></h2>
+  <div class="news-cards" id="newsCards"><p style="color:var(--muted);font-size:13px;">Loading…</p></div>
+</section>
+
+<!-- ======================================================================
+     DEVELOPER TOOLS
+     ====================================================================== -->
+<section class="tools-section mode-hidden" id="tools-section">
+  <h2>Developer Tools</h2>
+  <div class="tools-grid">
+    <a class="tool-card" href="spell-catalog.html">
+      <div class="tool-cat">Skills</div>
+      <div class="tool-title">Spell Catalog</div>
+      <div class="tool-desc">Browse all skills by class, tier, or effect type.</div>
     </a>
-    <a href="image-review.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
-      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites</div>
-      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Image Review</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Audit all character sprite frames — missing poses, flip issues, quality flags.</div>
+    <a class="tool-card" href="image-review.html">
+      <div class="tool-cat">Sprites</div>
+      <div class="tool-title">Image Review</div>
+      <div class="tool-desc">Audit all character sprite frames — missing poses, flip issues, quality flags.</div>
     </a>
-    <a href="character-redesign.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
-      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites</div>
-      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Character Redesign</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Rebuilt reference sheets per class with updated prompts, grouped by gender. Old portraits sit alongside the new SpriteCook references for easy comparison.</div>
+    <a class="tool-card" href="character-redesign.html">
+      <div class="tool-cat">Sprites</div>
+      <div class="tool-title">Character Redesign</div>
+      <div class="tool-desc">Reference sheets per class with updated prompts, grouped by gender.</div>
     </a>
-    <a href="sprite-adjust.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
-      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites</div>
-      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Sprite Adjust</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Per-(character,pose) scale + offset review tool. Compare against a locked reference and copy the resulting JSON into sprite_adjustments.json.</div>
+    <a class="tool-card" href="sprite-adjust.html">
+      <div class="tool-cat">Sprites</div>
+      <div class="tool-title">Sprite Adjust</div>
+      <div class="tool-desc">Per-(character,pose) scale + offset review tool.</div>
     </a>
-    <a href="bg-remove.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
-      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Images</div>
-      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Background Remover</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Canvas-based BG removal with multi-sample picking and tolerance slider. Built for warlock_east_spell.</div>
+    <a class="tool-card" href="bg-remove.html">
+      <div class="tool-cat">Images</div>
+      <div class="tool-title">Background Remover</div>
+      <div class="tool-desc">Canvas-based BG removal with multi-sample picking and tolerance slider.</div>
     </a>
-    <a href="wishlist.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
-      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Planning</div>
-      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Wishlist</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Feature tracker — planned, in-progress, completed, and shelved items.</div>
+    <a class="tool-card" href="wishlist.html">
+      <div class="tool-cat">Planning</div>
+      <div class="tool-title">Wishlist</div>
+      <div class="tool-desc">Feature tracker — planned, in-progress, completed, and shelved items.</div>
     </a>
-    <a href="rebalance-report.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
-      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Balance</div>
-      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Rebalance Report</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.45;">M264–M267 rebalance findings with charts, simulator sweep results, skill-scaling audit, and the new DPS/Heal/Mitigation meter.</div>
+    <a class="tool-card" href="rebalance-report.html">
+      <div class="tool-cat">Balance</div>
+      <div class="tool-title">Rebalance Report</div>
+      <div class="tool-desc">Rebalance findings with simulator sweep results and DPS meter.</div>
     </a>
-    <a href="docs.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);transition:border-color 0.15s,transform 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
-      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Docs</div>
-      <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Documentation</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.45;">Asset policy, mod schemas, SpriteCook prompt templates, and authoring guides.</div>
+    <a class="tool-card" href="docs.html">
+      <div class="tool-cat">Docs</div>
+      <div class="tool-title">Documentation</div>
+      <div class="tool-desc">Asset policy, mod schemas, SpriteCook prompt templates, and authoring guides.</div>
     </a>
   </div>
-
   <details id="archived-tools" style="margin-top:18px;">
     <summary style="cursor:pointer;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:6px 0;user-select:none;">Archived Tools</summary>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:10px;opacity:0.8;">
-      <a href="sprite-flip-review.html" style="display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--text);">
-        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Sprites (archived)</div>
-        <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gold-bright);margin-bottom:6px;">Sprite Flip Review</div>
-        <div style="font-size:12px;color:var(--muted);line-height:1.45;">Superseded by Image Review which also handles flipping. Kept for reference.</div>
+    <div class="tools-grid" style="margin-top:10px;opacity:0.75;">
+      <a class="tool-card" href="sprite-flip-review.html">
+        <div class="tool-cat">Sprites (archived)</div>
+        <div class="tool-title">Sprite Flip Review</div>
+        <div class="tool-desc">Superseded by Image Review. Kept for reference.</div>
       </a>
     </div>
   </details>
 </section>
 
-<div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
-  <div class="modal">
-    <div class="modal-body" style="padding-bottom:4px;">
-      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
-    </div>
-    <img id="modal-img" class="modal-img" src="" alt="">
-    <div class="modal-body" id="modal-content"></div>
-  </div>
-</div>
+<!-- Lightbox DOM auto-created by SharedLightbox.create() — see _shared/lightbox.js -->
 
 <script>
-// M313 Latest News widget
-(function() {
-  var CAT_LABELS = { 'release': 'Release', 'dev-diary': 'Dev Diary', 'event': 'Event' };
-  function escHtml(s) {
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-  fetch('../news/index.json').then(function(r){ return r.ok ? r.json() : null; }).then(function(data) {
-    var el = document.getElementById('newsCards');
-    if (!el) return;
-    if (!data || !Array.isArray(data.entries) || !data.entries.length) {
-      el.innerHTML = '<p style="color:var(--muted);font-size:13px;">No news yet.</p>';
-      return;
-    }
-    var top3 = data.entries.slice(0, 3);
-    el.innerHTML = top3.map(function(e) {
-      var catLabel = CAT_LABELS[e.category] || e.category;
-      var catCls   = 'cat-' + (e.category || 'release');
-      return '<div class="news-widget-card">' +
-        '<div class="news-widget-cat ' + catCls + '">' + catLabel + '</div>' +
-        '<div class="news-widget-title">' + escHtml(e.title) + '</div>' +
-        '<div class="news-widget-summary">' + escHtml(e.summary) + '</div>' +
-        '<div class="news-widget-date">' + escHtml(e.date) + '</div>' +
-      '</div>';
-    }).join('');
-  }).catch(function() {
-    var el = document.getElementById('newsCards');
-    if (el) el.innerHTML = '<p style="color:var(--muted);font-size:13px;">News unavailable.</p>';
-  });
-})();
+/* =============================================================================
+   IMAGES.HTML — Appearance-driven image manifest renderer
+   Data source: appearances-manifest.json (build-appearances-manifest.cjs)
+   Policy: NO inline style="" attributes for static values. JS-computed values
+   only (e.g. scroll positions, dynamic toggling) may use style properties.
+   ============================================================================= */
+'use strict';
 
-const BADGE_CLASSES = {
-  openai:   'badge-openai',
-  pixellab: 'badge-pixellab',
-  svg:      'badge-svg',
-  manual:   'badge-manual',
-};
+// Mount the shared background-filter toolbar.
+document.addEventListener('DOMContentLoaded', function() {
+  SpriteGrid.mountBgFilter(document.getElementById('bg-filter-mount'));
+});
 
-// Rewrite a source image path to its 256x256 nearest-neighbor thumb under
-// public/images/_thumbs/. Generated at build time by scripts/generate_thumbnails.js.
-// Falls back to the original file via <img onerror> if a thumb is missing.
+// ---------------------------------------------------------------------------
+// Utility
+// ---------------------------------------------------------------------------
+function esc(s) {
+  return String(s || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function imgPath(rel) {
+  // rel is like "spritecook/bard_portrait.png" — prepend ../images/
+  return '../images/' + rel;
+}
+
+// Rewrite a source image path to its _thumbs equivalent.
 function thumbPath(file) {
   if (!file) return file;
-  const m = file.match(/^(\.\.\/)(images\/)(.+)$/);
-  if (!m) return file;
-  const rel = m[3].replace(/\.(jpe?g|png|webp)$/i, '.png');
-  return `${m[1]}${m[2]}_thumbs/${rel}`;
-}
-function thumbOnError(origFile) {
-  // On first error, swap to the original. Clear the handler so a broken
-  // original doesn't loop. Callers also append their own missing-state markup.
-  return `this.onerror=null;this.src='${origFile.replace(/'/g, "\\'")}'`;
+  // file may be "../images/spritecook/foo.png" or "spritecook/foo.png"
+  const clean = file.replace(/^\.\.\/images\//, '');
+  const rel = clean.replace(/\.(jpe?g|png|webp)$/i, '.png');
+  return '../images/_thumbs/' + rel;
 }
 
-function badgeClass(source) {
-  return BADGE_CLASSES[source?.toLowerCase()] ?? 'badge-other';
-}
+// Shared lightbox controller — built once at DOMContentLoaded.
+// images.html opts out of flag controls / approve flow (review-v2 only).
+let LB = null;
+/** Current nav list of items for prev/next. Rebuilt at the end of render(). */
+let LB_NAV_ITEMS = [];
 
-function sourceLabel(source) {
-  const map = { openai: 'OpenAI', pixellab: 'PixelLab', svg: 'SVG', manual: 'Manual' };
-  return map[source?.toLowerCase()] ?? (source || 'Other');
-}
-
-let allAssets = [];
-let activeFilter = 'all';
-
-// Canonical list of 20 playable hero classes (from src/game/classes.js)
-// M375: complete class roster (28). Was missing Monk/Shaman/Witch Hunter/Knight/
-// Sorcerer/Runesmith/Shadow Dancer/Tinker. Single source of truth: data/classes.json
-// (auto-generated). The list is hydrated from that file at boot time, falling
-// back to this static list if the fetch fails.
-let HERO_LIST = [
-  { id: 'warrior', name: 'Warrior' },
-  { id: 'fighter', name: 'Fighter' },
-  { id: 'paladin', name: 'Paladin' },
-  { id: 'ranger', name: 'Ranger' },
-  { id: 'rogue', name: 'Rogue' },
-  { id: 'cleric', name: 'Cleric' },
-  { id: 'bard', name: 'Bard' },
-  { id: 'mage', name: 'Mage' },
-  { id: 'necromancer', name: 'Necromancer' },
-  { id: 'warlock', name: 'Warlock' },
-  { id: 'demon_hunter', name: 'Demon Hunter' },
-  { id: 'scavenger', name: 'Scavenger' },
-  { id: 'swashbuckler', name: 'Swashbuckler' },
-  { id: 'dragon_knight', name: 'Dragon Knight' },
-  { id: 'pyromancer', name: 'Pyromancer' },
-  { id: 'stormcaller', name: 'Stormcaller' },
-  { id: 'druid', name: 'Druid' },
-  { id: 'oracle', name: 'Oracle' },
-  { id: 'tactician', name: 'Tactician' },
-  { id: 'chronomancer', name: 'Chronomancer' },
-  { id: 'monk', name: 'Monk' },
-  { id: 'shaman', name: 'Shaman' },
-  { id: 'witch_hunter', name: 'Witch Hunter' },
-  { id: 'knight', name: 'Knight' },
-  { id: 'sorcerer', name: 'Sorcerer' },
-  { id: 'runesmith', name: 'Runesmith' },
-  { id: 'shadow_dancer', name: 'Shadow Dancer' },
-  { id: 'tinker', name: 'Tinker' },
-];
-// Try to overwrite from live data (so any future class additions surface
-// here automatically, before the manual HERO_LIST gets updated).
-fetch('./data/classes.json').then(r => r.ok ? r.json() : null).then(data => {
-  if (!data) return;
-  const arr = Array.isArray(data) ? data : (data.classes || []);
-  if (arr.length) {
-    HERO_LIST = arr.map(c => ({ id: c.id, name: c.name || c.id }));
-  }
-}).catch(() => {});
-
-// Canonical companion list (from TownScreen.js + randomEvents.js M56/M64)
-const COMPANION_LIST = [
-  { id: 'war_dog', name: 'War Dog' },
-  { id: 'dragon_hatchling', name: 'Crimson Dragon Hatchling' },
-  { id: 'frost_wyrmling', name: 'Frost Wyrmling' },
-  { id: 'storm_drake', name: 'Storm Drake' },
-  { id: 'shadow_wyrm', name: 'Shadow Wyrm' },
-  { id: 'dire_wolf', name: 'Dire Wolf' },
-  { id: 'forest_owl', name: 'Forest Owl' },
-  { id: 'ember_drake', name: 'Ember Drake' },
-  { id: 'shadow_cat', name: 'Shadow Cat' },
-  { id: 'crystal_golem', name: 'Crystal Golem' },
-  { id: 'spirit_wisp', name: 'Spirit Wisp' },
-  { id: 'bone_hound', name: 'Bone Hound' },
-  { id: 'ice_sprite', name: 'Ice Sprite' },
-  { id: 'swamp_frog', name: 'Swamp Frog' },
-  { id: 'void_moth', name: 'Void Moth' },
-];
-
-const HERO_IDS = new Set(HERO_LIST.map(h => h.id));
-const COMPANION_IDS = new Set(COMPANION_LIST.map(c => c.id));
-
-// Strip known variant suffixes to extract a character base id from an asset id
-const VARIANT_SUFFIX_RE = /_(north|south|east|west|attack|spell|death|idle|down|flipped|alpha)$/;
-function baseIdFromAsset(asset) {
-  let id = (asset.id || '').replace(/^(sprite_|portrait_|icon_)/, '');
-  // Strip chained suffixes: e.g. warrior_east_attack_alpha -> warrior
-  let prev;
-  do {
-    prev = id;
-    id = id.replace(VARIANT_SUFFIX_RE, '');
-  } while (id !== prev);
-  return id;
-}
-function isPortraitAsset(asset) {
-  return (asset.file || '').includes('/portraits/');
-}
-function isSpriteAsset(asset) {
-  return (asset.file || '').includes('/sprites');
-}
-
-function refineCategory(asset) {
-  // Prefer JSON category; re-classify companion_sprites + sprites_pixelengine.
-  const base = baseIdFromAsset(asset);
-  if (HERO_IDS.has(base)) return 'heroes';
-  if (COMPANION_IDS.has(base)) return 'companions';
-  const cat = (asset.category || 'other').toLowerCase();
-  if (cat === 'companion_sprites') return 'companions';
-  if (cat === 'heroes' || cat === 'companions' || cat === 'bosses' || cat === 'enemies') return cat;
-  if (cat === 'backgrounds' || cat === 'background') return 'backgrounds';
-  return cat || 'other';
-}
-
-function groupByCategory(assets) {
-  const groups = {};
-  for (const a of assets) {
-    const cat = refineCategory(a);
-    if (!groups[cat]) groups[cat] = [];
-    groups[cat].push(a);
-  }
-  return groups;
-}
-
-function extractCharacterName(asset) {
-  // Extract character name from asset id, name, or file path
-  const id = asset.id || '';
-  const name = asset.name || '';
-  const file = asset.file || '';
-
-  // Try to extract from id first
-  if (id) {
-    let charName = id.replace(/^(sprite_|portrait_|icon_)/, '');
-    charName = charName.replace(/_(north|south|east|west|attack|spell|death|idle|down)(_flipped|_alpha)?$/, '');
-    if (charName) return charName;
-  }
-
-  // Try to extract from file path
-  if (file) {
-    const filename = file.split('/').pop().replace(/\.[^.]+$/, '');
-    let charName = filename.replace(/_(north|south|east|west|attack|spell|death|idle|down)(_flipped|_alpha)?$/, '');
-    if (charName) return charName;
-  }
-
-  // Fallback to name
-  return name.toLowerCase().replace(/[^a-z0-9]/g, '_');
-}
-
-function groupAssetsByCharacter(assets) {
-  const characters = {};
-  for (const asset of assets) {
-    const charName = extractCharacterName(asset);
-    if (!characters[charName]) {
-      characters[charName] = [];
-    }
-    characters[charName].push(asset);
-  }
-  return characters;
-}
-
-function detectVariantType(asset) {
-  const id = asset.id || '';
-  const file = asset.file || '';
-  const combined = id + ' ' + file;
-
-  if (combined.includes('portrait')) return 'portrait';
-  if (combined.includes('_east_attack') || combined.includes('_attack')) return 'attack';
-  if (combined.includes('_east_spell') || combined.includes('_spell')) return 'spell';
-  if (combined.includes('_east_block') || combined.includes('_block')) return 'block';
-  if (combined.includes('_east_ko') || combined.includes('_ko')) return 'ko';
-  if (combined.includes('_death') || combined.includes('_down')) return 'death';
-  if (combined.includes('_south')) return 'south';
-  if (combined.includes('_east')) return 'east';
-  // Legacy PixelLab directions (_north, _west) are no longer used in-game — skip.
-  if (combined.includes('_north') || combined.includes('_west')) return null;
-  if (combined.includes('_idle')) return 'idle';
-
-  return 'default';
-}
-
-function renderCharacterBlock(charName, assets) {
-  const block = document.createElement('div');
-  block.className = 'character-block';
-
-  const displayName = charName.replace(/_/g, ' ');
-
-  // Group assets by variant type
-  const variants = {};
-  assets.forEach(asset => {
-    const varType = detectVariantType(asset);
-    if (!varType) return; // skip unused legacy directions
-    if (!variants[varType]) variants[varType] = [];
-    variants[varType].push(asset);
+document.addEventListener('DOMContentLoaded', function() {
+  LB = SharedLightbox.create({
+    enableFlags: false,
+    enableLayoutToggle: true,
   });
+});
 
-  // Preferred order of variants — matches the in-game sprite set.
-  const variantOrder = ['portrait', 'south', 'east', 'attack', 'spell', 'block', 'ko', 'death', 'idle', 'default'];
-
-  let variantsHtml = '';
-  variantOrder.forEach(varType => {
-    if (variants[varType]) {
-      variants[varType].forEach(asset => {
-        const thumbSrc = asset.file ? asset.file : null;
-        const label = varType === 'default' ? 'main' : varType;
-
-        if (thumbSrc) {
-          variantsHtml += `
-            <div class="variant-box" onclick="openModal(${JSON.stringify(asset).replace(/"/g, '&quot;')})">
-              <img src="${thumbPath(thumbSrc)}" data-orig="${thumbSrc}" alt="${asset.name || charName}" loading="lazy"
-                   onerror="if(this.dataset.fallback){this.parentElement.innerHTML='<div class=variant-missing>${label}</div>'}else{this.dataset.fallback=1;this.src=this.dataset.orig}">
-              <div class="variant-label">${label}</div>
-            </div>`;
-        } else {
-          variantsHtml += `<div class="variant-box"><div class="variant-missing">${label}</div></div>`;
-        }
-      });
-    }
-  });
-
-  block.innerHTML = `
-    <h3>${displayName}</h3>
-    <div class="character-variants">${variantsHtml}</div>
-  `;
-
-  return block;
+/** Open the lightbox for a given relative image path.
+ *  Used by every clickable image on the page — characters, backgrounds, UI tiles,
+ *  orphans. If the path matches an entry already in LB_NAV_ITEMS (rebuilt by
+ *  render()), prev/next walks the full visible set; otherwise it opens single-shot.
+ */
+/** Quick heuristic: treat dialog/map/combat backgrounds (and any non-pixel-art
+ *  JPG) as `isBg` so the lightbox renders them un-pixelated. */
+function isBgRelPath(rel) {
+  if (!rel) return false;
+  if (/^(dialog_bg|map_bg|combat_bg)\//.test(rel)) return true;
+  if (/\.jpe?g$/i.test(rel)) return true;
+  return false;
 }
 
-const CATEGORY_ORDER = ['characters','heroes','companions','enemies','bosses','backgrounds','background','portrait','icon','ui','sprite','other'];
-function sortedCategoryEntries(groups) {
-  return Object.entries(groups).sort((a, b) => {
-    const ia = CATEGORY_ORDER.indexOf(a[0]); const ib = CATEGORY_ORDER.indexOf(b[0]);
-    return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
-  });
-}
-
-// Build a { baseId -> {portrait, frames:[], all:[]} } index from assets.
-// Matches by EXACT base id (no substring regex — that was the Mage/Warrior bug).
-function indexAssetsByCharacter(assets) {
-  const idx = {};
-  for (const a of assets) {
-    const base = baseIdFromAsset(a);
-    if (!base) continue;
-    if (!idx[base]) idx[base] = { portrait: null, frames: [], all: [] };
-    idx[base].all.push(a);
-    if (isPortraitAsset(a) && !idx[base].portrait) {
-      idx[base].portrait = a;
-    } else if (isSpriteAsset(a)) {
-      // Drop legacy PixelLab directions we no longer use in-game.
-      const fid = (a.id || '').toLowerCase();
-      if (fid.endsWith('_north') || fid.endsWith('_west')) continue;
-      idx[base].frames.push(a);
-    }
-  }
-  // Dedup + sort frames: attack, spell, block, ko, directions, death.
-  const order = ['east_attack','east_spell','east_block','east_ko','south','east','death'];
-  for (const k of Object.keys(idx)) {
-    const seen = new Set();
-    idx[k].frames = idx[k].frames.filter(f => {
-      const key = (f.file || '').split('/').pop();
-      if (seen.has(key)) return false;
-      seen.add(key); return true;
-    }).sort((a, b) => {
-      const ka = order.findIndex(s => (a.id || '').endsWith('_' + s));
-      const kb = order.findIndex(s => (b.id || '').endsWith('_' + s));
-      return (ka === -1 ? 99 : ka) - (kb === -1 ? 99 : kb);
+function openModal(srcFile, title, meta) {
+  if (!LB) return;
+  const id = srcFile || title;
+  const idx = LB_NAV_ITEMS.findIndex(it => it.id === id);
+  if (idx >= 0) {
+    LB.setItems(LB_NAV_ITEMS);
+    LB.openByIndex(idx);
+  } else {
+    LB.openSingle({
+      id, title: title || 'Image', subtitle: '',
+      src: srcFile ? ('../images/' + srcFile) : '',
+      meta: meta || null,
+      isBg: isBgRelPath(srcFile),
     });
   }
-  return idx;
 }
 
-// M236: canonical pose set per /docs/image-policy.md. Only these poses
-// render — no more stale _east_flipped / _death frames leaking into the UI.
-const CANONICAL_POSES = ['south','east','east_attack','east_spell','east_block','east_ko'];
-
-function renderM79CharacterBlock(character, bundle) {
-  const block = document.createElement('div');
-  block.className = 'char-m79-block';
-
-  // Portrait + reference sheet candidates. Prefer spritecook paths since
-  // that's where approved current sprites live. Fall back to pixellab
-  // reference if the portrait 404s.
-  const id = character.id;
-  const portraitSrc = `../images/spritecook/${id}_portrait.png`;
-  const refSrc = `../images/pixellab/${id}/reference.png`;
-
-  // Each pose thumbnail tries the canonical spritecook path; onerror it
-  // falls back to the pixellab candidate, and if that also fails the cell
-  // shows "missing". Click opens the lightbox with the full-res image.
-  const poseCellHtml = (pose) => {
-    const sc = `../images/spritecook/${id}_${pose}.png`;
-    const pl = `../images/pixellab/${id}/${pose}.png`;
-    const asset = { id: `${id}_${pose}`, name: `${character.name} ${pose}`, file: sc };
-    // M354: hover-swap (desktop, non-touch only) — temporarily replace the
-    // larger portrait image with this pose's image for at-a-glance comparison.
-    return `<div class="char-m79-frame" onclick='openModal(${JSON.stringify(asset).replace(/"/g,"&quot;")})'
-         onmouseenter="if(!matchMedia('(hover:none)').matches){const p=this.closest('.char-m79-content').querySelector('.char-m79-portrait img');if(p&&!p.dataset.origSrc){p.dataset.origSrc=p.src;}if(p)p.src='${sc}';}"
-         onmouseleave="if(!matchMedia('(hover:none)').matches){const p=this.closest('.char-m79-content').querySelector('.char-m79-portrait img');if(p&&p.dataset.origSrc){p.src=p.dataset.origSrc;delete p.dataset.origSrc;}}">
-      <img src="${sc}" data-fb="${pl}" alt="${pose}" loading="lazy"
-           onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.dataset.fb}else{this.style.display='none';this.nextElementSibling.style.display='flex'}">
-      <div class="frame-missing" style="display:none">·</div>
-      <div class="frame-label">${pose.replace(/^east_/,'').replace('east','E').replace('south','S')}</div>
-    </div>`;
-  };
-
-  const portraitAsset = { id: `${id}_portrait`, name: character.name, file: portraitSrc };
-  const refAsset = { id: `${id}_reference`, name: `${character.name} reference`, file: refSrc };
-  const clickPortrait = `onclick='openModal(${JSON.stringify(portraitAsset).replace(/"/g,"&quot;")})'`;
-
-  block.innerHTML = `
-    <div class="char-m79-header">
-      <div class="char-m79-name">${character.name}</div>
-      <div class="char-m79-type">${character.type || ''}</div>
-    </div>
-    <div class="char-m79-content">
-      <div class="char-m79-portrait" ${clickPortrait} title="Portrait">
-        <img src="${portraitSrc}" data-fb="${refSrc}" alt="${character.name}" loading="lazy"
-             onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.dataset.fb}else{this.style.display='none';this.nextElementSibling.style.display='flex'}">
-        <div class="portrait-missing" style="display:none">?</div>
-      </div>
-      <div class="char-m79-frames">
-        ${CANONICAL_POSES.map(poseCellHtml).join('')}
-      </div>
-    </div>
-    <div class="char-m79-info">
-      <span>${id}</span>
-      <span>${character.className || character.type || ''}</span>
-    </div>
-  `;
-  return block;
+/** Build the lightbox nav list by collecting every visible (clickable) image in
+ *  the manifest content area. Each entry carries the relative path as its id,
+ *  matching the value openModal() will look up. */
+function rebuildLbNavItems() {
+  const items = [];
+  const seen = new Set();
+  function add(relPath, title, meta) {
+    if (!relPath || seen.has(relPath)) return;
+    seen.add(relPath);
+    items.push({
+      id: relPath,
+      title: title || relPath,
+      subtitle: '',
+      src: '../images/' + relPath,
+      meta: meta || null,
+      isBg: isBgRelPath(relPath),
+    });
+  }
+  // Collected by the various renderers via registerLbImage(); see callers below.
+  for (const e of LB_PENDING_REGISTRATIONS) add(e.relPath, e.title, e.meta);
+  LB_PENDING_REGISTRATIONS.length = 0;
+  LB_NAV_ITEMS = items;
+}
+const LB_PENDING_REGISTRATIONS = [];
+function registerLbImage(relPath, title, meta) {
+  LB_PENDING_REGISTRATIONS.push({ relPath, title, meta: meta || null });
 }
 
-function getFrameType(asset) {
-  const id = (asset.id || '').toLowerCase();
-  if (id.endsWith('_east_attack')) return 'attack';
-  if (id.endsWith('_east_spell')) return 'spell';
-  if (id.endsWith('_east_block')) return 'block';
-  if (id.endsWith('_east_ko')) return 'ko';
-  if (id.endsWith('_death')) return 'death';
-  if (id.endsWith('_south')) return 'S';
-  if (id.endsWith('_east')) return 'E';
-  if (id.endsWith('_east_flipped')) return 'E-flip';
-  return 'frame';
+// ---------------------------------------------------------------------------
+// Pose labels (matches image-review-v2.html so both pages use the same glyphs).
+// ---------------------------------------------------------------------------
+const POSE_LABELS = {
+  portrait:   'port',
+  south:      'S',
+  east:       'E',
+  east_attack:'atk',
+  east_spell: 'spl',
+  east_block: 'blk',
+  east_ko:    'ko',
+};
+const CANONICAL_POSES = ['portrait', 'south', 'east', 'east_attack', 'east_spell', 'east_block', 'east_ko'];
+
+/** Build the TileSpec array for a single appearance entry. Missing poses are
+ *  represented with src=null (shared renderer draws the missing-tile glyph).
+ *  Tile click → openModal(relPath, …) which routes through the shared lightbox. */
+function appearanceTiles(app) {
+  const tiles = [];
+  for (const pose of CANONICAL_POSES) {
+    const rel = app.sprites && app.sprites[pose];
+    tiles.push({
+      id: app.id + '_' + pose,
+      pose,
+      poseLabel: POSE_LABELS[pose] || pose,
+      src: rel ? thumbPath(rel) : null,
+      data: { relPath: rel || null, fullSrc: rel ? imgPath(rel) : null, name: app.name || app.id },
+    });
+    if (rel) registerLbImage(rel, (app.name || app.id) + ' — ' + pose, { File: rel });
+  }
+  return tiles;
 }
 
-// Background file lists — these dirs are not fully indexed in assets.json,
-// so we hardcode the directory listings here so the gallery always shows them.
+/** Decorate callback for character tiles. Adds onerror fallback (thumb → full)
+ *  and a click handler routed via openModal so prev/next of the lightbox works. */
+function decorateCharacterTile(tileEl, t /*, c */) {
+  if (!t.src) return;
+  const img = tileEl.querySelector('img');
+  if (img && t.data) {
+    img.dataset.orig = t.data.fullSrc || '';
+    img.onerror = function() {
+      if (!this.dataset.tried && t.data.fullSrc) { this.dataset.tried = '1'; this.src = t.data.fullSrc; }
+      else { this.style.display = 'none'; }
+    };
+  }
+}
+function onCharacterTileClick(t, c, ev) {
+  if (!t.src || !t.data || !t.data.relPath) return;
+  // M474 — defensive: not every caller passes a real Event.
+  if (ev && typeof ev.stopPropagation === 'function') ev.stopPropagation();
+  openModal(t.data.relPath, (c.name || c.id) + ' — ' + (t.pose || 'image'), { File: t.data.relPath });
+}
+
+/** Append a single appearance (warrior male, warrior female, npc, companion, …)
+ *  as its own unified-char section. */
+function renderUnifiedAppearance(container, app, opts) {
+  opts = opts || {};
+  const headBadges = [];
+  if (app.pendingReview)                         headBadges.push({ cls: 'badge badge-pending', text: 'Review' });
+  if (app.missingPoses && app.missingPoses.length) headBadges.push({ cls: 'badge badge-warn', text: app.missingPoses.length + ' missing' });
+  if (app.npc)                                   headBadges.push({ cls: 'badge badge-npc', text: 'NPC' });
+  if (app.deprecated)                            headBadges.push({ cls: 'badge badge-deprecated', text: 'deprecated' });
+  if (opts.genderLabel)                          headBadges.unshift({ cls: 'badge-gender-' + opts.genderLabel, text: opts.genderLabel[0].toUpperCase() + opts.genderLabel.slice(1) });
+
+  SpriteGrid.renderUnifiedCharacters(container, [{
+    id: app.id,
+    name: opts.displayName || app.name || app.id,
+    subtitle: app.id,
+    tiles: appearanceTiles(app),
+  }], {
+    decorateHead: (head /*, c */) => {
+      for (const b of headBadges) {
+        const span = document.createElement('span');
+        span.className = b.cls;
+        span.textContent = b.text;
+        head.appendChild(span);
+      }
+    },
+    decorateTile: decorateCharacterTile,
+    onTileClick: onCharacterTileClick,
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Classes section — every playable class appearance gets its own unified row,
+// ordered by classRegistry (then male before female).
+// ---------------------------------------------------------------------------
+function renderClassesSection(appearances, classes, q) {
+  // Build an ordered list of (class meta, appearance) pairs.
+  const byClass = new Map();
+  for (const a of appearances) {
+    if (a.npc) continue; // NPCs render in their own section
+    const cd = a.classDefault || a.id;
+    if (!byClass.has(cd)) byClass.set(cd, []);
+    byClass.get(cd).push(a);
+  }
+  // Sort each bucket: male, female, other (deprecated last).
+  function genderRank(a) {
+    if (a.deprecated) return 9;
+    if (a.gender === 'male')   return 0;
+    if (a.gender === 'female') return 1;
+    return 2;
+  }
+  for (const list of byClass.values()) list.sort((a, b) => genderRank(a) - genderRank(b));
+
+  // Order classes by classRegistry; append any unregistered ones at the end.
+  const ordered = [];
+  const seen = new Set();
+  for (const c of classes) {
+    if (byClass.has(c.id)) { ordered.push({ cls: c, apps: byClass.get(c.id) }); seen.add(c.id); }
+  }
+  for (const [cd, apps] of byClass) {
+    if (!seen.has(cd)) ordered.push({ cls: { id: cd, name: apps[0]?.name || cd }, apps });
+  }
+
+  // Query filter.
+  const qLow = (q || '').toLowerCase();
+  const filtered = qLow
+    ? ordered.map(o => ({ cls: o.cls, apps: o.apps.filter(a =>
+        a.id.toLowerCase().includes(qLow) || (a.name || '').toLowerCase().includes(qLow) ||
+        (o.cls.id || '').toLowerCase().includes(qLow) || (o.cls.name || '').toLowerCase().includes(qLow)
+      )})).filter(o => o.apps.length)
+    : ordered;
+
+  if (!filtered.length) return null;
+
+  const section = document.createElement('div');
+  section.className = 'section';
+  section.dataset.sectionKey = 'classes';
+
+  const totalApps = filtered.reduce((n, o) => n + o.apps.length, 0);
+  const titleEl = document.createElement('div');
+  titleEl.className = 'section-title';
+  titleEl.innerHTML = `Classes <span class="section-count">${filtered.length} classes · ${totalApps} appearances</span>`;
+  section.appendChild(titleEl);
+
+  for (const o of filtered) {
+    for (const app of o.apps) {
+      renderUnifiedAppearance(section, app, {
+        genderLabel: (app.gender === 'male' || app.gender === 'female') ? app.gender : null,
+      });
+    }
+  }
+  return section;
+}
+
+// ---------------------------------------------------------------------------
+// NPCs section — one unified row per NPC appearance.
+// ---------------------------------------------------------------------------
+function renderNpcSection(appearances, q) {
+  const npcs = appearances.filter(a => a.npc);
+  if (!npcs.length) return null;
+  const qLow = (q || '').toLowerCase();
+  const qFilt = qLow ? npcs.filter(a => a.id.toLowerCase().includes(qLow) || (a.name || '').toLowerCase().includes(qLow)) : npcs;
+  if (!qFilt.length) return null;
+
+  const section = document.createElement('div');
+  section.className = 'section';
+  section.dataset.sectionKey = 'npcs';
+
+  const titleEl = document.createElement('div');
+  titleEl.className = 'section-title';
+  titleEl.innerHTML = `NPCs <span class="section-count">${qFilt.length}</span>`;
+  section.appendChild(titleEl);
+
+  for (const npc of qFilt) renderUnifiedAppearance(section, npc);
+  return section;
+}
+
+// ---------------------------------------------------------------------------
+// Entity section (companions, enemies, bosses) — one unified row per entity.
+// ---------------------------------------------------------------------------
+function renderEntitySection(items, title, sectionKey, q) {
+  if (!items || !items.length) return null;
+  const qLow = (q || '').toLowerCase();
+  const qFilt = qLow ? items.filter(e => e.id.toLowerCase().includes(qLow) || (e.name || '').toLowerCase().includes(qLow)) : items;
+  if (!qFilt.length) return null;
+
+  const section = document.createElement('div');
+  section.className = 'section';
+  section.dataset.sectionKey = sectionKey;
+
+  const titleEl = document.createElement('div');
+  titleEl.className = 'section-title';
+  titleEl.innerHTML = `${esc(title)} <span class="section-count">${qFilt.length}</span>`;
+  section.appendChild(titleEl);
+
+  for (const ent of qFilt) {
+    // Adapt entity → appearance shape for the unified renderer.
+    const app = {
+      id: ent.id,
+      name: ent.name || ent.id,
+      sprites: ent.sprites || {},
+      missingPoses: ent.missingPoses || [],
+    };
+    renderUnifiedAppearance(section, app);
+  }
+  return section;
+}
+
+// ---------------------------------------------------------------------------
+// Backgrounds section
+// ---------------------------------------------------------------------------
 const DIALOG_BG_FILES = [
   'blacksmith.jpg','cave.jpg','dark_alley.jpg','dungeon.jpg','forest.jpg',
   'graveyard.jpg','harbor.jpg','library.jpg','market.jpg','mountain_pass.jpg',
@@ -1301,315 +1067,390 @@ const MAP_BG_FILES = [
   'ember_plateau.jpg','eternal_void.jpg','hell_breach.jpg','primordial_nexus.jpg',
   'shattered_core.jpg','thornwood.jpg',
 ];
+const COMBAT_BG_FILES = [
+  'abyssal_depths_hd.png','ashen_gate_hd.jpg','border_roads_hd.png',
+  'cosmic_rift_hd.png','desert_plateau_hd.png','dragons_reach_hd.png',
+  'dragon_throne_hd.png','eternal_void_hd.png','hell_breach_hd.png',
+  'primordial_nexus_hd.png','shattered_core_hd.png','thornwood_forest_hd.png',
+  'volcanic_waste_hd.png',
+];
 
-function buildBgAsset(file, dir, label) {
-  const bare = file.replace(/\.[^.]+$/, '').replace(/_/g, ' ');
-  return {
-    id: `${dir}_${file}`,
-    name: bare.replace(/\b\w/g, c => c.toUpperCase()),
-    category: 'backgrounds',
-    source: 'openai',
-    file: `../images/${dir}/${file}`,
-    notes: label,
-  };
-}
-
-function renderBackgroundsSection(assets) {
+function renderBgSection(q) {
   const section = document.createElement('div');
-  section.className = 'section bg-section';
+  section.className = 'section';
   section.dataset.sectionKey = 'backgrounds';
 
-  const dialogAssets = DIALOG_BG_FILES.map(f => buildBgAsset(f, 'dialog_bg', 'Dialog scene'));
-  const mapAssets = MAP_BG_FILES.map(f => buildBgAsset(f, 'map_bg', 'World map zone'));
-  // Also pull any assets categorized as background from JSON (e.g. menu_bg).
-  const jsonBgs = assets.filter(a => {
-    const c = (a.category || '').toLowerCase();
-    const f = (a.file || '').toLowerCase();
-    return c === 'backgrounds' || c === 'background' || f.includes('/menu_bg/');
-  });
+  const groups = [
+    { label: 'Dialog Backgrounds', files: DIALOG_BG_FILES, dir: 'dialog_bg', note: 'Dialog scene' },
+    { label: 'World Map Backgrounds', files: MAP_BG_FILES, dir: 'map_bg', note: 'World map zone' },
+    { label: 'Combat Backgrounds', files: COMBAT_BG_FILES, dir: 'combat_bg', note: 'Combat encounter backdrop' },
+  ];
 
-  const total = dialogAssets.length + mapAssets.length + jsonBgs.length;
-  section.innerHTML = `<div class="section-title">Backgrounds <span>${total}</span></div>`;
+  let total = 0;
+  const children = [];
+  for (const grp of groups) {
+    const qFiles = q ? grp.files.filter(f => f.toLowerCase().includes(q)) : grp.files;
+    if (!qFiles.length) continue;
+    total += qFiles.length;
 
-  function appendGroup(title, items) {
-    if (!items.length) return;
-    const h = document.createElement('div');
-    h.className = 'audio-group-title';
-    h.textContent = `${title} (${items.length})`;
-    section.appendChild(h);
+    const subTitle = document.createElement('div');
+    subTitle.className = 'subsection-title';
+    subTitle.textContent = `${grp.label} (${qFiles.length})`;
+    children.push(subTitle);
+
     const grid = document.createElement('div');
     grid.className = 'bg-grid';
-    items.forEach(asset => {
+    for (const f of qFiles) {
+      const relPath = `${grp.dir}/${f}`;
+      const fullSrc = `../images/${relPath}`;
+      const bareName = f.replace(/\.[^.]+$/, '').replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      registerLbImage(relPath, bareName, { Usage: grp.note, File: relPath });
       const card = document.createElement('div');
       card.className = 'bg-card';
-      card.onclick = () => openModal(asset);
-      card.innerHTML = `
-        <div class="bg-preview">
-          <img src="${thumbPath(asset.file)}" data-orig="${asset.file}" alt="${asset.name}" loading="lazy" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src=this.dataset.orig}">
-        </div>
-        <div class="bg-info">
-          <div class="bg-name">${asset.name}</div>
-          <div class="bg-usage">${asset.notes || ''}</div>
-        </div>`;
+      card.addEventListener('click', function() {
+        openModal(relPath, bareName, { Usage: grp.note, File: relPath });
+      });
+      const preview = document.createElement('div');
+      preview.className = 'bg-preview';
+      const img = document.createElement('img');
+      img.src = fullSrc;
+      img.alt = bareName;
+      img.loading = 'lazy';
+      preview.appendChild(img);
+      const info = document.createElement('div');
+      info.className = 'bg-info';
+      info.innerHTML = `<div class="bg-name">${esc(bareName)}</div><div class="bg-usage">${esc(grp.note)}</div>`;
+      card.appendChild(preview);
+      card.appendChild(info);
       grid.appendChild(card);
-    });
-    section.appendChild(grid);
+    }
+    children.push(grid);
   }
-  appendGroup('Dialog Backgrounds', dialogAssets);
-  appendGroup('World Map Backgrounds', mapAssets);
-  if (jsonBgs.length) appendGroup('Other Backgrounds', jsonBgs);
 
+  if (!total && q) return null;
+
+  const titleEl = document.createElement('div');
+  titleEl.className = 'section-title';
+  titleEl.innerHTML = `Backgrounds <span class="section-count">${total}</span>`;
+  section.appendChild(titleEl);
+  for (const c of children) section.appendChild(c);
   return section;
 }
 
-function inferBackgroundUsage(asset) {
-  const name = (asset.name || '').toLowerCase();
-  const file = (asset.file || '').toLowerCase();
+// ---------------------------------------------------------------------------
+// Generic tile grid (UI, particles, spell icons, misc)
+// ---------------------------------------------------------------------------
+function renderTileSection(items, title, sectionKey, q) {
+  if (!items || !items.length) return null;
+  const qFilt = q ? items.filter(f => {
+    const s = typeof f === 'string' ? f : (f.file + ' ' + (f.name || ''));
+    return s.toLowerCase().includes(q);
+  }) : items;
+  if (!qFilt.length) return null;
 
-  if (name.includes('forest') || file.includes('forest')) return 'Forest areas';
-  if (name.includes('desert') || file.includes('desert')) return 'Desert zones';
-  if (name.includes('cave') || file.includes('cave')) return 'Underground areas';
-  if (name.includes('town') || file.includes('town')) return 'Town/settlement';
-  if (name.includes('menu') || file.includes('menu')) return 'Menu background';
-  if (name.includes('map') || file.includes('map')) return 'World map';
-  return 'Game background';
-}
-
-function detectUnusedAssets(assets) {
-  // More sophisticated heuristic for detecting potentially unused assets
-  return assets.filter(asset => {
-    const name = (asset.name || '').toLowerCase();
-    const file = (asset.file || '').toLowerCase();
-    const id = (asset.id || '').toLowerCase();
-
-    // Skip if it has clear usage patterns
-    if (asset.category && ['heroes', 'companions', 'enemies', 'bosses', 'background', 'ui', 'icon'].includes(asset.category)) return false;
-
-    // Skip character-related assets
-    if (name.includes('portrait') || name.includes('attack') || name.includes('spell') || name.includes('death')) return false;
-
-    // Skip background assets
-    if (file.includes('bg_') || file.includes('background') || file.includes('map_bg') || file.includes('menu_bg')) return false;
-
-    // Skip UI and icon assets
-    if (file.includes('icon') || file.includes('ui') || name.includes('icon') || name.includes('ui')) return false;
-
-    // Skip system assets
-    if (file.includes('font') || file.includes('system') || name.includes('font') || name.includes('system')) return false;
-
-    // Flag potential unused assets
-    const suspiciousPatterns = [
-      'test', 'unused', 'old', 'temp', 'draft', 'backup', 'copy', 'duplicate',
-      'experimental', 'wip', 'work_in_progress', 'sample', 'placeholder'
-    ];
-
-    const textToSearch = [name, file, id, asset.notes || ''].join(' ').toLowerCase();
-    return suspiciousPatterns.some(pattern => textToSearch.includes(pattern)) ||
-           (asset.notes && asset.notes.toLowerCase().includes('unused')) ||
-           (asset.notes && asset.notes.toLowerCase().includes('deprecated'));
-  });
-}
-
-function renderCard(asset) {
-  const card = document.createElement('div');
-  card.className = 'asset-card';
-  card.title = asset.name;
-
-  const thumbSrc = asset.file ? asset.file : null;
-  const thumbHtml = thumbSrc
-    ? `<img class="thumb" src="${thumbPath(thumbSrc)}" data-orig="${thumbSrc}" alt="${asset.name}" loading="lazy" onerror="if(this.dataset.fallback){this.style.display='none';this.nextElementSibling.style.display='flex'}else{this.dataset.fallback=1;this.src=this.dataset.orig}">`
-      + `<div class="thumb-missing" style="display:none">🖼</div>`
-    : `<div class="thumb-missing">🖼</div>`;
-
-  card.innerHTML = `
-    ${thumbHtml}
-    <div class="card-body">
-      <div class="card-name">${asset.name}</div>
-      <div class="card-meta">
-        <span class="badge ${badgeClass(asset.source)}">${sourceLabel(asset.source)}</span>
-        ${asset.category ? `<span class="badge badge-manual" style="background:#1e1e2a;color:var(--muted);border-color:var(--border)">${asset.category}</span>` : ''}
-      </div>
-    </div>`;
-
-  card.addEventListener('click', () => openModal(asset));
-  return card;
-}
-
-function isAudioFile(f) { return /\.(mp3|wav|ogg|m4a)$/i.test(f || ''); }
-function openModal(asset) {
-  const modal = document.getElementById('modal');
-  const img = document.getElementById('modal-img');
-  const audio = isAudioFile(asset.file);
-  img.src = audio ? '' : (asset.file || '');
-  img.alt = asset.name;
-  img.style.display = (asset.file && !audio) ? 'block' : 'none';
-  let existingAudio = document.getElementById('modal-audio');
-  if (existingAudio) existingAudio.remove();
-  if (audio) {
-    const el = document.createElement('audio');
-    el.id = 'modal-audio';
-    el.controls = true;
-    el.src = asset.file;
-    el.style.cssText = 'width:100%;margin:12px 0;';
-    img.parentNode.insertBefore(el, img.nextSibling);
-  }
-
-  let html = `<div class="modal-title">${asset.name}</div>`;
-
-  if (asset.source) {
-    html += `<div class="modal-row">
-      <div class="modal-label">Source</div>
-      <div class="modal-value"><span class="badge ${badgeClass(asset.source)}">${sourceLabel(asset.source)}</span></div>
-    </div>`;
-  }
-  if (asset.category) {
-    html += `<div class="modal-row">
-      <div class="modal-label">Category</div>
-      <div class="modal-value">${asset.category}</div>
-    </div>`;
-  }
-  if (asset.prompt) {
-    html += `<div class="modal-row">
-      <div class="modal-label">Prompt</div>
-      <div class="modal-prompt">${asset.prompt}</div>
-    </div>`;
-  }
-  if (asset.notes) {
-    html += `<div class="modal-row">
-      <div class="modal-label">Notes</div>
-      <div class="modal-value">${asset.notes}</div>
-    </div>`;
-  }
-  if (asset.file) {
-    html += `<div class="modal-row">
-      <div class="modal-label">File</div>
-      <div class="modal-value" style="font-family:monospace;font-size:12px;color:var(--muted)">${asset.file}</div>
-    </div>`;
-  }
-
-  document.getElementById('modal-content').innerHTML = html;
-  modal.classList.add('open');
-}
-
-document.getElementById('modal-close').addEventListener('click', () => {
-  document.getElementById('modal').classList.remove('open');
-});
-document.getElementById('modal').addEventListener('click', e => {
-  if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.getElementById('modal').classList.remove('open');
-});
-
-function renderCharacterGroup(title, list, idx, key) {
   const section = document.createElement('div');
-  section.className = 'section characters-section';
-  section.dataset.sectionKey = key;
-  const present = list.filter(c => idx[c.id]).length;
-  section.innerHTML = `<div class="section-title">${title} <span>${list.length} (${present} with art)</span></div>`;
+  section.className = 'section';
+  section.dataset.sectionKey = sectionKey;
+
+  const titleEl = document.createElement('div');
+  titleEl.className = 'section-title';
+  titleEl.innerHTML = `${esc(title)} <span class="section-count">${qFilt.length}</span>`;
+  section.appendChild(titleEl);
+
   const grid = document.createElement('div');
-  grid.className = 'char-m79-grid';
-  list.forEach(ch => {
-    ch.type = title.replace(/s$/, '').toLowerCase();
-    ch.className = ch.className || ch.name;
-    const bundle = idx[ch.id] || { portrait: null, frames: [], all: [] };
-    grid.appendChild(renderM79CharacterBlock(ch, bundle));
-  });
+  grid.className = 'tile-grid';
+
+  for (const f of qFilt) {
+    const relFile = typeof f === 'string' ? f : f.file;
+    const fname   = relFile.split('/').pop();
+    const bareName = fname.replace(/\.[^.]+$/, '');
+    const fullSrc = '../images/' + relFile;
+    registerLbImage(relFile, bareName, { File: relFile });
+    const a = document.createElement('a');
+    a.className = 'tile-card checker-bg';
+    a.href = fullSrc;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal(relFile, bareName, { File: relFile });
+    });
+    const img = document.createElement('img');
+    img.className = 'tile-img';
+    img.src = thumbPath(relFile);
+    img.alt = bareName;
+    img.loading = 'lazy';
+    img.dataset.orig = fullSrc;
+    img.onerror = function() {
+      if (!this.dataset.tried) { this.dataset.tried = '1'; this.src = fullSrc; }
+    };
+    const nameEl = document.createElement('div');
+    nameEl.className = 'tile-name';
+    nameEl.textContent = bareName;
+    a.appendChild(img);
+    a.appendChild(nameEl);
+    grid.appendChild(a);
+  }
   section.appendChild(grid);
   return section;
 }
 
-// Derive boss + enemy character lists from whatever JSON assets show up.
-function deriveCharactersFromCategory(assets, category, excludeIds) {
-  const seen = new Map();
-  for (const a of assets) {
-    if ((a.category || '').toLowerCase() !== category) continue;
-    const base = baseIdFromAsset(a);
-    if (!base || excludeIds.has(base)) continue;
-    if (!seen.has(base)) {
-      const name = base.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-      seen.set(base, { id: base, name });
-    }
+// ---------------------------------------------------------------------------
+// Orphans section
+// ---------------------------------------------------------------------------
+function renderOrphanSection(orphans, q) {
+  if (!orphans || !orphans.length) return null;
+  const qFilt = q ? orphans.filter(o => o.file.toLowerCase().includes(q) || o.name.toLowerCase().includes(q)) : orphans;
+  if (!qFilt.length) return null;
+
+  const section = document.createElement('div');
+  section.className = 'section';
+  section.dataset.sectionKey = 'orphaned';
+
+  const titleEl = document.createElement('div');
+  titleEl.className = 'section-title';
+  titleEl.innerHTML = `Orphaned Files <span class="section-count">${qFilt.length}</span>
+    <span class="section-warn">Not referenced by any appearance or entity</span>`;
+  section.appendChild(titleEl);
+
+  const note = document.createElement('p');
+  note.className = 'orphan-note';
+  note.textContent = 'Files present on disk but not the resolved sprite for any appearance, companion, enemy, or boss. Safe to archive — files are not deleted automatically.';
+  section.appendChild(note);
+
+  const grid = document.createElement('div');
+  grid.className = 'orphan-grid';
+  for (const o of qFilt) {
+    const relFile = o.file.replace(/^images\//, '');  // strip leading "images/"
+    registerLbImage(relFile, o.name, { Dir: o.dir, File: o.file });
+    const a = document.createElement('a');
+    a.className = 'tile-card checker-bg';
+    a.href = '../' + o.file;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal(relFile, o.name, { Dir: o.dir, File: o.file });
+    });
+    const img = document.createElement('img');
+    img.className = 'tile-img';
+    const fullSrc = '../' + o.file;
+    img.src = thumbPath(relFile);
+    img.alt = o.name;
+    img.loading = 'lazy';
+    img.dataset.orig = fullSrc;
+    img.onerror = function() {
+      if (!this.dataset.tried) { this.dataset.tried = '1'; this.src = fullSrc; }
+    };
+    const nameEl = document.createElement('div');
+    nameEl.className = 'tile-name';
+    nameEl.textContent = o.name;
+    a.appendChild(img);
+    a.appendChild(nameEl);
+    grid.appendChild(a);
   }
-  return [...seen.values()].sort((a, b) => a.name.localeCompare(b.name));
+  section.appendChild(grid);
+  return section;
 }
 
-async function render(assets) {
-  const main = document.getElementById('main');
-  main.innerHTML = '';
+// ---------------------------------------------------------------------------
+// Main manifest renderer
+// ---------------------------------------------------------------------------
+const SECTION_ORDER = ['classes', 'npcs', 'companions', 'enemies', 'bosses', 'backgrounds',
+  'ui', 'particles', 'spells', 'orphaned'];
 
-  if (!assets.length) {
-    main.innerHTML = `<div class="empty-state"><h2>No assets yet</h2><p>Add entries to <strong>public/assets/assets.json</strong>.</p></div>`;
+var STATE = { manifest: null, tab: 'all', q: '' };
+
+function render() {
+  const root = document.getElementById('lm-content');
+  const m    = STATE.manifest;
+  if (!m) return;
+  const q = STATE.q.toLowerCase().trim();
+  const t = STATE.tab;
+  root.innerHTML = '';
+  // Reset the lightbox nav-item registry — each section renderer below calls
+  // registerLbImage() for every clickable image; rebuildLbNavItems() at the
+  // end consolidates them so prev/next walks the visible page.
+  LB_PENDING_REGISTRATIONS.length = 0;
+
+  function maybe(sectionKey, fn) {
+    if (t !== 'all' && t !== sectionKey) return;
+    const el = fn();
+    if (el) root.appendChild(el);
+  }
+
+  maybe('classes',     function() { return renderClassesSection(m.appearances, m.classRegistry || [], q); });
+  maybe('npcs',        function() { return renderNpcSection(m.appearances, q); });
+  maybe('companions',  function() {
+    // Filter out tavern hireables (Aela/Borin/Lysa/Rekk) — they're recruitable
+    // NPCs, not true companions. Their art lives in appearances-manifest as
+    // class-default/NPC entries, not in the companion section.
+    var trueComps = (m.companions || []).filter(function(c) { return c.kind !== 'hireable'; });
+    return renderEntitySection(trueComps, 'Companions', 'companions', q);
+  });
+  maybe('enemies',     function() { return renderEntitySection(m.enemies, 'Enemies', 'enemies', q); });
+  maybe('bosses',      function() { return renderEntitySection(m.bosses, 'Bosses', 'bosses', q); });
+  maybe('backgrounds', function() { return renderBgSection(q); });
+  maybe('ui',          function() { return renderTileSection(m.ui, 'UI', 'ui', q); });
+  maybe('particles',   function() { return renderTileSection(m.particles, 'Particles & FX', 'particles', q); });
+  maybe('spells',      function() { return renderTileSection(m.spell_icons, 'Spell Icons', 'spells', q); });
+  maybe('orphaned',    function() { return renderOrphanSection(m.orphans, q); });
+
+  if (!root.children.length) {
+    root.innerHTML = '<p style="color:var(--muted)">No matches.</p>';
+  }
+  rebuildLbNavItems();
+}
+
+function buildToolbar(m) {
+  const bar = document.getElementById('lm-toolbar');
+  bar.innerHTML = '';
+
+  const tabs = [
+    ['all',         'All',            m.totals.appearances + m.totals.companions + m.totals.enemies + m.totals.bosses + (m.totals.orphans || 0)],
+    ['classes',     'Classes',        (m.appearances || []).filter(function(a){return !a.npc && !a.deprecated;}).length],
+    ['npcs',        'NPCs',           (m.appearances || []).filter(function(a){return a.npc;}).length],
+    ['companions',  'Companions',     m.totals.companions],
+    ['enemies',     'Enemies',        m.totals.enemies],
+    ['bosses',      'Bosses',         m.totals.bosses],
+    ['backgrounds', 'Backgrounds',    DIALOG_BG_FILES.length + MAP_BG_FILES.length + COMBAT_BG_FILES.length],
+    ['ui',          'UI',             (m.ui || []).length],
+    ['particles',   'Particles',      (m.particles || []).length],
+    ['spells',      'Spells',         (m.spell_icons || []).length],
+    ['orphaned',    'Orphaned',       m.totals.orphans],
+  ];
+
+  for (var i = 0; i < tabs.length; i++) {
+    (function(tab) {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn' + (STATE.tab === tab[0] ? ' active' : '');
+      btn.dataset.tab = tab[0];
+      btn.textContent = tab[1] + ' (' + tab[2] + ')';
+      btn.addEventListener('click', function() {
+        STATE.tab = tab[0];
+        document.querySelectorAll('#lm-toolbar .filter-btn').forEach(function(b) {
+          b.classList.toggle('active', b.dataset.tab === STATE.tab);
+        });
+        render();
+      });
+      bar.appendChild(btn);
+    })(tabs[i]);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Fetch and boot
+// ---------------------------------------------------------------------------
+Promise.all([
+  fetch('appearances-manifest.json?v=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }),
+  fetch('./data/classes.json').then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; }),
+  // Also load the images-manifest.json for non-appearance content (UI, particles, spells, etc.)
+  fetch('images-manifest.json?v=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+  fetch('assets.json?v=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+]).then(function(results) {
+  var apM  = results[0];
+  var clsData = results[1];
+  var imgM    = results[2];
+  var assetsData = results[3];
+
+  if (!apM) {
+    document.getElementById('lm-content').innerHTML =
+      '<div class="empty-state"><h2>Manifest not found</h2><p>Run <code>node scripts/build-appearances-manifest.cjs</code> from the game13/ directory, then rebuild.</p></div>';
     return;
   }
 
-  const idx = indexAssetsByCharacter(assets);
-
-  // 1. Classes (appearance set — one entry per playable-class appearance;
-  //    companions listed separately below). Renamed from "Heroes" in M236.
-  const heroesSection = renderCharacterGroup('Classes', HERO_LIST, idx, 'heroes');
-  main.appendChild(heroesSection);
-
-  // 2. Companions
-  const compSection = renderCharacterGroup('Companions', COMPANION_LIST, idx, 'companions');
-  main.appendChild(compSection);
-
-  // 3. Bosses (derived from category=bosses)
-  const exclude = new Set([...HERO_IDS, ...COMPANION_IDS]);
-  const bosses = deriveCharactersFromCategory(assets, 'bosses', exclude);
-  if (bosses.length) {
-    main.appendChild(renderCharacterGroup('Bosses', bosses, idx, 'bosses'));
+  // Merge non-appearance content from images-manifest into apM
+  if (imgM) {
+    apM.ui          = imgM.ui          || [];
+    apM.particles   = imgM.particles   || [];
+    apM.spell_icons = imgM.spell_icons || [];
   }
 
-  // 4. Enemies (derived from category=enemies)
-  const enemies = deriveCharactersFromCategory(assets, 'enemies', exclude);
-  if (enemies.length) {
-    main.appendChild(renderCharacterGroup('Enemies', enemies, idx, 'enemies'));
+  // Attach class registry so renderClassesSection can sort by the canonical class order
+  apM.classRegistry = Array.isArray(clsData) ? clsData : [];
+
+  STATE.manifest = apM;
+
+  document.getElementById('lm-total').textContent =
+    apM.totals.appearances + ' appearances, ' + apM.totals.orphans + ' orphans';
+  document.getElementById('lm-generated').textContent =
+    'generated ' + (apM.generated || '').replace('T',' ').replace(/\..*$/, '') + ' UTC';
+
+  // Update page-level total
+  var total = apM.totals.appearances + apM.totals.companions + apM.totals.enemies + apM.totals.bosses;
+  document.getElementById('total-count').textContent = total + ' entries';
+
+  buildToolbar(apM);
+  render();
+
+  // Render audio + reports from assets.json
+  if (assetsData) {
+    if (assetsData.game) document.getElementById('game-title').textContent = assetsData.game;
+    renderReports(assetsData.reports || []);
   }
+  renderAudio();
 
-  // 5. Backgrounds
-  const bgSection = renderBackgroundsSection(assets);
-  if (bgSection) main.appendChild(bgSection);
-
-  // 6. Other (anything not heroes/companions/bosses/enemies/backgrounds)
-  const handledCats = new Set(['heroes','companions','bosses','enemies','backgrounds','background','companion_sprites']);
-  const otherAssets = assets.filter(a => {
-    const c = (a.category || 'other').toLowerCase();
-    if (handledCats.has(c)) return false;
-    const f = (a.file || '').toLowerCase();
-    if (f.includes('/menu_bg/') || f.includes('/map_bg/') || f.includes('/dialog_bg/')) return false;
-    return true;
+  // Search
+  var searchTimer;
+  document.getElementById('lm-search').addEventListener('input', function(e) {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function() { STATE.q = e.target.value; render(); }, 120);
   });
-  if (otherAssets.length) {
-    const section = document.createElement('div');
-    section.className = 'section';
-    section.dataset.sectionKey = 'other';
-    section.innerHTML = `<div class="section-title">Other <span>${otherAssets.length}</span></div>`;
-    const grid = document.createElement('div');
-    grid.className = 'grid';
-    otherAssets.forEach(a => grid.appendChild(renderCard(a)));
-    section.appendChild(grid);
-    main.appendChild(section);
+
+}).catch(function(err) {
+  document.getElementById('lm-content').innerHTML =
+    '<p style="color:var(--warn)">Failed to load manifest: ' + esc(err.message) + '</p>';
+});
+
+// ---------------------------------------------------------------------------
+// Audio
+// ---------------------------------------------------------------------------
+const AUDIO_FILES = {
+  music: ["boss_theme.ogg","combat_calm_01.ogg","combat_calm_02.ogg","combat_calm_03.ogg","combat_theme.ogg","intro_theme.ogg","overworld_act1.ogg","overworld_act2.ogg","overworld_act3.ogg","overworld_act4.ogg","overworld_act5.ogg","overworld_act6.ogg","title_theme.ogg"],
+  sfx: ["arrow_hit.mp3","arrow_shoot.mp3","axe_chop.mp3","block_shield.mp3","boss_roar.mp3","chest_open.mp3","crit_cue.mp3","crit_slash.mp3","dagger_stab.mp3","defeat.mp3","door_open.mp3","dragon_breath_fire.ogg","dragon_breath_ice.ogg","dragon_claw.ogg","dragon_death.ogg","dragon_roar.ogg","dragon_wing_flap.ogg","drake_screech.mp3","enemy_death.mp3","enemy_die.mp3","enemy_growl.mp3","fire_crackle.mp3","gold_gain.mp3","hero_death.mp3","hero_hurt.mp3","hero_hurt_f.mp3","hit_arrow.mp3","hit_blunt.mp3","hit_sword.mp3","item_pickup.mp3","level_up.mp3","melee_crit.mp3","melee_hit_heavy.mp3","melee_hit_light.mp3","melee_miss.mp3","melee_slash.mp3","owl_hoot.mp3","parry.mp3","portal_warp.mp3","potion_drink.mp3","potion_heal_cue.mp3","punch.mp3","quest_complete.mp3","rest_heal.mp3","shield_block.mp3","shrine_pray.mp3","spell_arcane.mp3","spell_buff.mp3","spell_dark.mp3","spell_debuff.mp3","spell_explode.mp3","spell_fire.mp3","spell_heal.mp3","spell_holy.mp3","spell_ice.mp3","spell_lightning.mp3","spell_shadow.mp3","spell_summon.mp3","status_burn.mp3","status_freeze.mp3","status_poison.mp3","status_stun.mp3","thunder_rumble.mp3","torch_lit.mp3","trap_spring.mp3","unlock.mp3","victory_fanfare.mp3","wind_gust.mp3","wolf_howl.mp3"],
+};
+var audioFilter = 'all';
+
+function renderAudio() {
+  const list = document.getElementById('audio-list');
+  const total = AUDIO_FILES.music.length + AUDIO_FILES.sfx.length;
+  document.getElementById('audio-count').textContent = '(' + total + ')';
+
+  function group(label, type, files) {
+    if (audioFilter !== 'all' && audioFilter !== type) return '';
+    const rows = files.map(function(f) {
+      return '<div class="audio-row">' +
+        '<div class="audio-name">' + esc(f) + '</div>' +
+        '<audio controls preload="none" src="../' + type + '/' + esc(f) + '"></audio>' +
+        '</div>';
+    }).join('');
+    return '<div class="audio-group-title">' + esc(label) + ' (' + files.length + ')</div>' +
+           '<div class="audio-grid">' + rows + '</div>';
   }
+  list.innerHTML = group('Music', 'music', AUDIO_FILES.music) +
+                   group('SFX',   'sfx',   AUDIO_FILES.sfx);
 }
 
-function applyFilter(cat) {
-  activeFilter = cat;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
-  // Show/hide sections by data-section-key rather than re-rendering.
-  document.querySelectorAll('#main > .section').forEach(sec => {
-    if (cat === 'all') { sec.style.display = ''; return; }
-    sec.style.display = (sec.dataset.sectionKey === cat) ? '' : 'none';
+document.querySelectorAll('.audio-filter').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    audioFilter = btn.dataset.atype;
+    document.querySelectorAll('.audio-filter').forEach(function(b) {
+      b.classList.toggle('active', b === btn);
+    });
+    renderAudio();
   });
-}
+});
 
+// ---------------------------------------------------------------------------
+// Reports
+// ---------------------------------------------------------------------------
 const REPORT_HTML_MAP = {
   'pre-game design report': 'pre-game-report.html',
   'milestone 53': 'milestone-53-report.html',
   'milestone 65': 'dragon_expansion.html',
   'milestone 72': 'tap-weapons.html',
   'rebalance survey': '../news/balance-report.html',
-  'balance report': '../news/balance-report.html'
+  'balance report':   '../news/balance-report.html',
 };
 
 function reportHtmlFile(r) {
@@ -1630,164 +1471,97 @@ function milestoneSortKey(r) {
 
 function renderReports(reports) {
   const container = document.getElementById('reports-list');
-  const countEl = document.getElementById('report-count');
+  const countEl   = document.getElementById('report-count');
   if (!reports || !reports.length) {
-    container.innerHTML = '<p class="reports-empty">No reports yet. Reports are added after each major milestone.</p>';
+    container.innerHTML = '<p class="reports-empty">No reports yet.</p>';
     return;
   }
-  countEl.textContent = `(${reports.length})`;
+  countEl.textContent = '(' + reports.length + ')';
   container.innerHTML = '';
 
-  // Split: feature reports (have dedicated HTML) vs accordion
-  const featured = [];
-  const accordion = [];
-  reports.forEach(r => {
-    accordion.push(r);
-  });
-  featured.sort((a, b) => milestoneSortKey(a) - milestoneSortKey(b));
-  accordion.sort((a, b) => milestoneSortKey(a) - milestoneSortKey(b));
+  const sorted = reports.slice().sort(function(a, b) { return milestoneSortKey(a) - milestoneSortKey(b); });
 
-  if (featured.length) {
-    const wrap = document.createElement('div');
-    wrap.className = 'feature-reports';
-    featured.forEach(r => {
-      const href = reportHtmlFile(r);
-      const a = document.createElement('a');
-      a.className = 'feature-report';
-      a.href = href;
-      a.innerHTML = `
-        <div class="fr-label">Featured Report</div>
-        <div class="fr-title">${r.milestone || 'Report'}</div>
-        <div class="fr-summary">${r.summary || ''}</div>
-        <div class="fr-date">${r.date || ''}</div>`;
-      wrap.appendChild(a);
-    });
-    container.appendChild(wrap);
-  }
-
-  accordion.forEach(r => {
+  for (const r of sorted) {
     const card = document.createElement('div');
     card.className = 'report-card';
 
     function listHtml(items) {
       if (!items || !items.length) return '';
-      return '<ul class="report-list">' + items.map(i => `<li>${i}</li>`).join('') + '</ul>';
+      return '<ul class="report-list">' + items.map(function(i){ return '<li>' + esc(i) + '</li>'; }).join('') + '</ul>';
     }
     function textHtml(val) {
-      return val ? `<div class="report-text">${val}</div>` : '';
+      return val ? '<div class="report-text">' + esc(val) + '</div>' : '';
     }
 
     const sections = [
-      { key: 'changes',        label: 'Recent Changes' },
-      { key: 'bugs',           label: 'Known Bugs' },
-      { key: 'suggestions',    label: 'Suggestions' },
-      { key: 'recommendations',label: 'Recommendations' },
-      { key: 'ideas',          label: 'Ideas' },
-      { key: 'notes',          label: 'Notes' },
+      { key: 'changes',         label: 'Recent Changes' },
+      { key: 'bugs',            label: 'Known Bugs' },
+      { key: 'suggestions',     label: 'Suggestions' },
+      { key: 'recommendations', label: 'Recommendations' },
+      { key: 'ideas',           label: 'Ideas' },
+      { key: 'notes',           label: 'Notes' },
     ];
-
     let bodyHtml = '';
-    for (const { key, label } of sections) {
-      const val = r[key];
+    for (const s of sections) {
+      const val = r[s.key];
       if (!val || (Array.isArray(val) && !val.length)) continue;
-      bodyHtml += `<div class="report-section-heading">${label}</div>`;
+      bodyHtml += '<div class="report-section-heading">' + esc(s.label) + '</div>';
       bodyHtml += Array.isArray(val) ? listHtml(val) : textHtml(val);
     }
 
-    card.innerHTML = `
-      <div class="report-header" role="button" tabindex="0" aria-expanded="false">
-        <span class="report-milestone">${r.milestone || 'Milestone'}</span>
-        <span class="report-date">${r.date || ''}</span>
-        <span class="report-summary">${r.summary || ''}</span>
-        <span class="report-toggle">▸ expand</span>
-      </div>
-      <div class="report-body">${bodyHtml || '<span style="color:var(--muted);font-size:13px">No details recorded.</span>'}</div>`;
+    card.innerHTML =
+      '<div class="report-header" role="button" tabindex="0" aria-expanded="false">' +
+        '<span class="report-milestone">' + esc(r.milestone || 'Milestone') + '</span>' +
+        '<span class="report-date">' + esc(r.date || '') + '</span>' +
+        '<span class="report-summary">' + esc(r.summary || '') + '</span>' +
+        '<span class="report-toggle">&#x25B8; expand</span>' +
+      '</div>' +
+      '<div class="report-body">' + (bodyHtml || '<span style="color:var(--muted);font-size:13px">No details recorded.</span>') + '</div>';
 
     const header = card.querySelector('.report-header');
-    const body = card.querySelector('.report-body');
+    const body   = card.querySelector('.report-body');
     const toggle = card.querySelector('.report-toggle');
     function toggleReport() {
       const open = body.classList.toggle('open');
-      toggle.textContent = open ? '▾ collapse' : '▸ expand';
-      header.setAttribute('aria-expanded', open);
+      toggle.innerHTML = open ? '&#x25BE; collapse' : '&#x25B8; expand';
+      header.setAttribute('aria-expanded', String(open));
     }
     header.addEventListener('click', toggleReport);
-    header.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleReport(); } });
-
+    header.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleReport(); }
+    });
     container.appendChild(card);
-  });
-}
-
-async function init() {
-  let data;
-  try {
-    const res = await fetch('assets.json?v=' + Date.now());
-    data = await res.json();
-  } catch {
-    render([]);
-    return;
   }
-
-  if (data.game) document.getElementById('game-title').textContent = data.game;
-  document.title = `${data.game || 'game13'} — Assets`;
-
-  allAssets = (data.images || []).filter(a => !isAudioFile(a.file));
-  document.getElementById('total-count').textContent = allAssets.length
-    ? `${allAssets.length} asset${allAssets.length !== 1 ? 's' : ''}`
-    : '';
-
-  renderReports(data.reports || []);
-  renderAudio();
-
-  // Build filter buttons — fixed set matching the section keys.
-  const FILTER_CATS = ['heroes','companions','bosses','enemies','backgrounds','other'];
-  const toolbar = document.getElementById('toolbar');
-  FILTER_CATS.forEach(cat => {
-    const btn = document.createElement('button');
-    btn.className = 'filter-btn';
-    btn.dataset.cat = cat;
-    btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
-    btn.addEventListener('click', () => applyFilter(cat));
-    toolbar.appendChild(btn);
-  });
-  document.querySelector('[data-cat="all"]').addEventListener('click', () => applyFilter('all'));
-
-  render(allAssets).catch(error => {
-    console.error('Failed to render assets:', error);
-    // Fallback to basic rendering if advanced features fail
-    document.getElementById('main').innerHTML = '<div class="empty-state"><h2>Rendering Error</h2><p>Assets could not be displayed. Check console for details.</p></div>';
-  });
 }
 
-const AUDIO_FILES = {
-  music: ["boss_theme.ogg","combat_calm_01.ogg","combat_calm_02.ogg","combat_calm_03.ogg","combat_theme.ogg","intro_theme.ogg","overworld_act1.ogg","overworld_act2.ogg","overworld_act3.ogg","overworld_act4.ogg","overworld_act5.ogg","overworld_act6.ogg","title_theme.ogg"],
-  sfx: ["arrow_hit.mp3","arrow_shoot.mp3","axe_chop.mp3","block_shield.mp3","boss_roar.mp3","chest_open.mp3","crit_cue.mp3","crit_slash.mp3","dagger_stab.mp3","defeat.mp3","door_open.mp3","dragon_breath_fire.ogg","dragon_breath_ice.ogg","dragon_claw.ogg","dragon_death.ogg","dragon_roar.ogg","dragon_wing_flap.ogg","drake_screech.mp3","enemy_death.mp3","enemy_die.mp3","enemy_growl.mp3","fire_crackle.mp3","gold_gain.mp3","hero_death.mp3","hero_hurt.mp3","hero_hurt_f.mp3","hit_arrow.mp3","hit_blunt.mp3","hit_sword.mp3","item_pickup.mp3","level_up.mp3","melee_crit.mp3","melee_hit_heavy.mp3","melee_hit_light.mp3","melee_miss.mp3","melee_slash.mp3","owl_hoot.mp3","parry.mp3","portal_warp.mp3","potion_drink.mp3","potion_heal_cue.mp3","punch.mp3","quest_complete.mp3","rest_heal.mp3","shield_block.mp3","shrine_pray.mp3","spell_arcane.mp3","spell_buff.mp3","spell_dark.mp3","spell_debuff.mp3","spell_explode.mp3","spell_fire.mp3","spell_heal.mp3","spell_holy.mp3","spell_ice.mp3","spell_lightning.mp3","spell_shadow.mp3","spell_summon.mp3","status_burn.mp3","status_freeze.mp3","status_poison.mp3","status_stun.mp3","thunder_rumble.mp3","torch_lit.mp3","trap_spring.mp3","unlock.mp3","victory_fanfare.mp3","wind_gust.mp3","wolf_howl.mp3"],
-};
-let audioFilter = 'all';
-function renderAudio() {
-  const list = document.getElementById('audio-list');
-  const total = AUDIO_FILES.music.length + AUDIO_FILES.sfx.length;
-  document.getElementById('audio-count').textContent = `(${total})`;
-  function group(label, type, files) {
-    if (audioFilter !== 'all' && audioFilter !== type) return '';
-    const rows = files.map(f => `
-      <div class="audio-row">
-        <div class="audio-name">${f}</div>
-        <audio controls preload="none" src="../${type}/${f}"></audio>
-      </div>`).join('');
-    return `<div class="audio-group-title">${label} (${files.length})</div><div class="audio-grid">${rows}</div>`;
-  }
-  list.innerHTML = group('Music', 'music', AUDIO_FILES.music) + group('SFX', 'sfx', AUDIO_FILES.sfx);
-}
-document.querySelectorAll('.audio-filter').forEach(btn => {
-  btn.addEventListener('click', () => {
-    audioFilter = btn.dataset.atype;
-    document.querySelectorAll('.audio-filter').forEach(b => b.classList.toggle('active', b === btn));
-    renderAudio();
-  });
-});
-
-init();
+// ---------------------------------------------------------------------------
+// News widget
+// ---------------------------------------------------------------------------
+(function() {
+  var CAT_LABELS = { 'release': 'Release', 'dev-diary': 'Dev Diary', 'event': 'Event' };
+  fetch('../news/index.json')
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(data) {
+      var el = document.getElementById('newsCards');
+      if (!el) return;
+      if (!data || !Array.isArray(data.entries) || !data.entries.length) {
+        el.innerHTML = '<p style="color:var(--muted);font-size:13px;">No news yet.</p>';
+        return;
+      }
+      el.innerHTML = data.entries.slice(0, 3).map(function(e) {
+        return '<div class="news-card">' +
+          '<div class="news-cat cat-' + esc(e.category || 'release') + '">' + esc(CAT_LABELS[e.category] || e.category) + '</div>' +
+          '<div class="news-title">' + esc(e.title) + '</div>' +
+          '<div class="news-summary">' + esc(e.summary) + '</div>' +
+          '<div class="news-date">' + esc(e.date) + '</div>' +
+          '</div>';
+      }).join('');
+    })
+    .catch(function() {
+      var el = document.getElementById('newsCards');
+      if (el) el.innerHTML = '<p style="color:var(--muted);font-size:13px;">News unavailable.</p>';
+    });
+})();
 </script>
 </body>
 </html>

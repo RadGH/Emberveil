@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>Todo List — Emberveil</title>
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<style>
+  body { background: var(--rsg-bg, #0a0608); color: var(--rsg-text, #f0e8d8); font-family: var(--rsg-font-ui, 'Inter',system-ui,sans-serif); margin:0; padding:1rem; max-width:1100px; margin:0 auto; }
+  h1, h2 { color: var(--rsg-accent, #e8a020); font-family: var(--rsg-font-display, 'Cinzel',Georgia,serif); }
+  .card { background: var(--rsg-card,#1a1218); border:1px solid rgba(232,160,32,0.2); border-radius:10px; padding:1rem; margin:0.6rem 0; }
+  .item { padding:0.55rem 0.7rem; margin:0.35rem 0; border-left:3px solid #6080a0; background:#100a0f; border-radius:4px; font-size:0.9rem; line-height:1.45; }
+  .item.high { border-left-color:#e07070; }
+  .item.med { border-left-color:#e0c050; }
+  .item.low { border-left-color:#80b080; }
+  .tag { display:inline-block; font-size:0.7rem; padding:0.1rem 0.4rem; border-radius:3px; background:rgba(232,160,32,0.18); color:#e8c060; margin-right:0.4rem; }
+  .note { opacity:0.75; font-size:0.85rem; line-height:1.5; }
+  code { background:#100a0f; padding:0.05rem 0.3rem; border-radius:3px; color:#a0c0e0; }
+</style>
+</head>
+<body class="ev-themed">
+<h1>Todo List</h1>
+<p class="note">
+  Holding pen for items the user wants to <strong>review before</strong> they get
+  promoted to the wishlist or implementation. Skill audit findings live here, as
+  do design questions, balance flags, and any other "this needs eyes" notes.
+  When an item is acted on, move it to <a href="./wishlist.html">wishlist.html</a>
+  or just delete it.
+</p>
+<p class="note">
+  When the user asks "what should I work on", check this page <strong>plus</strong>
+  <a href="./wishlist.html">wishlist.html</a> and
+  <a href="./brainstorm.html">brainstorm.html</a>.
+</p>
+
+<div class="card" id="supabase-combat-history-setup">
+  <h2 style="margin-top:0">REQUIRED SETUP — Combat Session Persistence (Supabase migration 0004)</h2>
+  <p class="note">
+    The Statistics screen now loads last-50 combat sessions from Supabase so they persist
+    across page refreshes and devices. The code is wired and waiting on a table migration.
+    Until you run the SQL below, the Combat tab shows local-only data (current run only).
+    No crash — the client gracefully returns an empty list until the column exists.
+  </p>
+
+  <div class="item" style="border-left-color:#40a060">
+    <span class="tag" style="background:rgba(64,160,96,0.18);color:#80e0a0">DONE</span>
+    Steps 1–3 (SQL migration, RLS policy verification, column-exists check) were
+    completed against the live Supabase project. Migration 0004 is applied.
+  </div>
+
+  <div class="item low">
+    <span class="tag">TEST</span>
+    <strong>Step 4 — Smoke test (local, no creds needed)</strong><br>
+    Run: <code>node /home/radgh/claude/game13/scripts/smoke-test-combat-sessions.mjs</code><br>
+    Should print 3 PASS lines. This runs mocked logic only — it does not hit live Supabase.
+  </div>
+
+  <div class="item low">
+    <span class="tag">VERIFY</span>
+    <strong>Step 5 — End-to-end persistence check</strong><br>
+    Play any combat in-game → refresh the page → open <strong>Statistics</strong> → confirm
+    the session appears in the Combat tab. If yes, persistence is working.
+  </div>
+
+  <div class="item" style="border-left-color:#40a060">
+    <span class="tag" style="background:rgba(64,160,96,0.18);color:#80e0a0">HOW IT WORKS</span>
+    <ul class="note" style="margin:0.3rem 0 0 1rem;padding:0">
+      <li><code>src/auth/runStatsClient.js</code> — new <code>listCombatHistory()</code> method.
+        Fetches last-50 run rows, flattens <code>combat_history[]</code> arrays, returns newest-first.</li>
+      <li><code>src/ui/screens/StatsDashboardScreen.js</code> — fetches cloud history on mount
+        (<code>_fetchCloudCombatHistory</code>), merges with live local data
+        (<code>_mergedCombatHistory</code>), renders in the Combat tab expandable table.</li>
+      <li>Write path: already wired since M415 via <code>runStatsClient.update()</code> /
+        <code>runStatsClient.finish()</code> in <code>src/game/stats.js</code>.
+        These pass <code>combatHistory: gs.stats.combatHistory.slice(-50)</code>.</li>
+      <li>The trim trigger caps each user to the last 50 <em>runs</em> (changed from 100 to 50).
+        Each run can have up to 200 fight entries in <code>combat_history</code>, but only the last
+        50 are uploaded per <code>stats.js: recordRunCompleted()</code>.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2 style="margin-top:0">Skill / Class Audit — M426 (dummies dmg=0 + caster reclassification)</h2>
+  <p class="note">Auto-generated from the M426 Damage Report snapshot. Median is per role at L20 single-target solo. Benchmark dummies now deal 0 damage so the lead never gets KO'd before measuring; Mage/Warlock/Sorcerer/Oracle moved to aoe_dps; Paladin/Tactician/Tinker/Shaman moved to support; Demon Hunter/Scavenger/Swashbuckler to single_dps; Dragon Knight to tank. Ranger nerfed (Aimed Shot 1.5/2.2/3.0 → 1.4/1.9/2.4, executeChance 0.3→0.15). <a href="./damage-report.html">Open Damage Report →</a></p>
+
+  <h3 style="color:#c0a070;font-size:0.95rem">Single-Target DPS — median 933 at L20 solo</h3>
+  <div class="item high">
+    <span class="tag">HIGH</span> <strong>Ranger</strong> — <strong>+193%</strong> (2737 vs 933). New outlier after M424 rebalance — needs nerf pass. Likely Multi-shot / poison crit interactions.
+  </div>
+  <div class="item med">
+    <span class="tag">MED</span> <strong>Fighter</strong> — <strong>+61%</strong> (1503 vs 933). On the high side; track.
+  </div>
+  <div class="item med">
+    <span class="tag">MED</span> <strong>Rogue</strong> — <strong>+42%</strong> (1321 vs 933). M424 nerfs brought it down from +243%; another small trim needed.
+  </div>
+  <div class="item med">
+    <span class="tag">MED</span> <strong>Monk</strong> — <strong>-32%</strong> (635 vs 933). M424 buffs brought it up from -89% — close but still flagged. Consider one more small bump on Palm Strike.
+  </div>
+  <div class="item low">
+    <span class="tag">OK</span> <strong>Witch Hunter</strong> — <strong>-14%</strong> (now in band). <strong>Shadow Dancer</strong> -23% (in band).
+  </div>
+
+  <h3 style="color:#c0a070;font-size:0.95rem">AoE DPS — median 4189 at L20 solo</h3>
+  <div class="item med">
+    <span class="tag">MED</span> <strong>Necromancer</strong> single.solo=6119 (+46%). Pyromancer reads 4189, Stormcaller 3509 (-16%). Reasonable spread. Necromancer may need a small trim or its single-target skill is just strong.
+  </div>
+
+  <h3 style="color:#c0a070;font-size:0.95rem">Tanks — median 861 at L20 solo</h3>
+  <div class="item high">
+    <span class="tag">CRITICAL</span> <strong>Paladin</strong> — <strong>-79%</strong> (184 vs 861) after Holy Strike buffs in M424. Still failing — strongly suggests <strong>AI is not picking damage skills</strong>. Diagnose: does benchmark AI prioritize Lay on Hands self-heal over Holy Strike when no one needs healing? Trace the auto-AI for solo Paladin scenario.
+  </div>
+
+  <h3 style="color:#c0a070;font-size:0.95rem">Healers</h3>
+  <div class="item">
+    <span class="tag">OK</span> <strong>Priest</strong> -13% from Cleric, both on the same scale (1599 / 1830). Healing now strong for both.
+  </div>
+
+  <h3 style="color:#c0a070;font-size:0.95rem">Companions (M425 — _effectiveLevel scaling now applied)</h3>
+  <div class="item">
+    <span class="tag">OK</span> Companions now register 276-330 single-target damage at L20 solo (~30% of single-DPS median). Before M425 the harness instantiated them at template L1 stats and they read as ~7-9 damage. Real-game observed Frost Wyrmling damage (2224 across ~22 rounds = ~100/round) is still higher than benchmark output — gap likely due to (1) benchmark dummy stats vs real bosses and (2) basic-attack-only profile. Acceptable for *trend* comparison; absolute parity with live combat is a follow-up.
+  </div>
+
+  <h3 style="color:#c0a070;font-size:0.95rem">Unclassified (need role tag)</h3>
+  <div class="item low">
+    <span class="tag">META</span> Still <code>unclassified</code>: Mage, Warlock, Demon Hunter, Scavenger, Swashbuckler, Dragon Knight, Oracle, Tactician, Shaman, Sorcerer, Tinker. Decide a role for each and update <code>ROLE_BY_CLASS</code> in <code>scripts/damage-report-snapshot.mjs</code>, then re-snapshot.
+  </div>
+  <div class="item high">
+    <span class="tag">HIGH</span> <strong>Shaman</strong> still strong post-M424 nerf to Spirit Bolt; <strong>Tactician / Tinker</strong> still &lt; 100 damage single-target. Likely an <strong>AI skill priority</strong> issue (these classes are buff-heavy and the AI may be casting buffs solo with no one to buff).
+  </div>
+  <div class="item high">
+    <span class="tag">HIGH</span> <strong>Mage / Warlock / Sorcerer / Oracle</strong> all 200-350% above their (TBD) role median. Likely AoE-DPS classes that should be re-classified.
+  </div>
+</div>
+
+<div class="card">
+  <h2 style="margin-top:0">Process notes</h2>
+  <div class="item">
+    <span class="tag">DONE</span>
+    <strong>Companion sim wiring (M425)</strong> — <code>_effectiveLevel</code>
+    scaling now applied; companions read 276-330 dmg at L20 solo. Trend
+    comparison usable; absolute parity with live combat still ~3× off.
+  </div>
+  <div class="item high">
+    <span class="tag">HIGH</span>
+    <strong>Benchmark AI ignores damage skills for some classes</strong> —
+    Paladin, Tactician, Tinker register near-zero damage even after multi-buff
+    rebalance. Suggests the auto-AI in solo benchmark mode picks self-heals or
+    party buffs (with no party to buff) instead of damage skills. Patch the
+    benchmark AI to weight damage skills higher when target list is non-empty
+    and ally HP &gt; 90%.
+  </div>
+  <div class="item low"><strong>Healing/mitigation in sim</strong> — currently we read healing from log events but mitigation is approximated from per-target preMitigation events (only present in some skill paths). Cross-check with the live Combat Report for parity.</div>
+  <div class="item low"><strong>Hit-chance softcap (M418)</strong> — verify in a real combat that L20 parties now see &gt;0% miss rate against base enemies. The user previously reported zero misses.</div>
+</div>
+</body>
+</html>

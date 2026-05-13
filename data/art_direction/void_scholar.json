@@ -1,0 +1,23 @@
+{
+  "spriteId": "void_scholar",
+  "displayName": "The Void Scholar",
+  "identity": "Gaunt mid-50s human male, pale skin, sharp cheekbones, completely white eyes glowing faintly with violet inner light, silver-white slicked-back hair pulled into a small knot, neat silver-white goatee.",
+  "outfit": "Cracked obsidian academic robe with a high stiff collar embroidered with violet runic glyphs, leather-bound books and tattered scroll-tubes hanging on chains across the chest, plain dark boots. Faint halo of violet-and-black void-mist rising from his shoulders.",
+  "weapons": "No physical weapon — casts violet-black void-orbs from outstretched hand.",
+  "portraitStyle": "Head-and-shoulders bust, three-quarter view facing camera-left, calm sympathetic expression.",
+  "southStyle": "Facing camera, calm idle, both hands held loosely in front, robe to ankle-length.",
+  "eastStyle": "Facing east in three-quarter side view, calm idle, robe to ankle-length, books visible on chest.",
+  "east_attackStyle": "Facing east, mid-spell-cast: right arm thrust forward hurling a violet-black void-orb the size of his head; left hand pulled back glowing with a violet rune.",
+  "east_koStyle": "Lying defeated on the ground facing east, robe sprawled, eyes closed (no glow), void-mist dispersed to a thin wisp.",
+  "frames": {
+    "portrait":     { "path": "images/spritecook/void_scholar_portrait.png" },
+    "south":        { "path": "images/spritecook/void_scholar_south.png" },
+    "east":         { "path": "images/spritecook/void_scholar_east.png" },
+    "east_attack":  { "path": "images/spritecook/void_scholar_east_attack.png" },
+    "east_ko":      { "path": "images/spritecook/void_scholar_east_ko.png" }
+  },
+  "referenceSheet": {
+    "path": "images/spritecook/void_scholar_portrait.png",
+    "note": "Portrait is the canonical reference sheet — all four pose generations used reference_asset_id from the portrait so identity is locked. Generated M412 because the in-game encounter showed no graphic."
+  }
+}

@@ -172,7 +172,7 @@
     "className": "Ranger",
     "role": "Ranger",
     "level": 1,
-    "cost": 80,
+    "cost": null,
     "personality": null,
     "attrs": {
       "STR": 8,
@@ -191,7 +191,7 @@
     "className": "Warrior",
     "role": "Warrior",
     "level": 1,
-    "cost": 90,
+    "cost": null,
     "personality": null,
     "attrs": {
       "STR": 15,
@@ -210,7 +210,7 @@
     "className": "Cleric",
     "role": "Cleric",
     "level": 2,
-    "cost": 120,
+    "cost": null,
     "personality": null,
     "attrs": {
       "STR": 8,
@@ -229,7 +229,7 @@
     "className": "Rogue",
     "role": "Rogue",
     "level": 1,
-    "cost": 70,
+    "cost": null,
     "personality": null,
     "attrs": {
       "STR": 8,
@@ -248,7 +248,7 @@
     "className": "Dragon Knight",
     "role": "Dragon Knight",
     "level": 6,
-    "cost": 600,
+    "cost": null,
     "personality": null,
     "attrs": {
       "STR": 16,
@@ -267,7 +267,7 @@
     "className": "Dragon Knight",
     "role": "Dragon Knight",
     "level": 7,
-    "cost": 750,
+    "cost": null,
     "personality": null,
     "attrs": {
       "STR": 15,
@@ -286,7 +286,7 @@
     "className": "Dragon Knight",
     "role": "Dragon Knight",
     "level": 8,
-    "cost": 900,
+    "cost": null,
     "personality": null,
     "attrs": {
       "STR": 16,
@@ -305,7 +305,7 @@
     "className": "Dragon Knight",
     "role": "Dragon Knight",
     "level": 9,
-    "cost": 1100,
+    "cost": null,
     "personality": null,
     "attrs": {
       "STR": 15,
@@ -324,7 +324,7 @@
     "className": "Tinker",
     "role": "Tinker",
     "level": 3,
-    "cost": 220,
+    "cost": null,
     "personality": null,
     "attrs": {
       "STR": 8,

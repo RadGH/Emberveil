@@ -6,7 +6,7 @@
   "type": "object",
   "required": ["op"],
   "oneOf": [
-    { "properties": { "op": { "const": "damage" }, "stat": { "enum": ["str","dex","int","flat"] }, "mult": { "type": "number" }, "amount": { "type": "number" }, "target": { "type": "string" } }, "required": ["op"] },
+    { "properties": { "op": { "const": "damage" }, "stat": { "enum": ["str","dex","int","wis","flat","str_int","str_dex","dex_int"] }, "mult": { "type": "number" }, "amount": { "type": "number" }, "target": { "type": "string" } }, "required": ["op"] },
     { "properties": { "op": { "const": "heal"   }, "stat": { "enum": ["int","wis","flat"] },      "mult": { "type": "number" }, "amount": { "type": "number" }, "target": { "type": "string" } }, "required": ["op"] },
     { "properties": { "op": { "const": "applyStatus" }, "status": { "type": "string" }, "duration": { "type": "integer" }, "chance": { "type": "number" }, "stacks": { "type": "integer" }, "target": { "type": "string" } }, "required": ["op","status"] },
     { "properties": { "op": { "const": "buff" }, "key": { "type": "string" }, "amount": { "type": "number" }, "duration": { "type": "integer" }, "target": { "type": "string" } }, "required": ["op","key","amount"] },

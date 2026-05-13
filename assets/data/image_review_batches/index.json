@@ -4,11 +4,31 @@
     "schema": "open: { id, milestone, openedAt } | null. history: [{ id, milestone, approvedAt }]"
   },
   "open": {
-    "id": "m351",
-    "milestone": 351,
-    "openedAt": "2026-04-29T01:28:20.237Z"
+    "id": "m355",
+    "milestone": 355,
+    "openedAt": "2026-05-13T20:18:07.295Z"
   },
   "history": [
+    {
+      "id": "m354",
+      "milestone": 354,
+      "approvedAt": "2026-05-13T20:18:07.295Z"
+    },
+    {
+      "id": "m353",
+      "milestone": 353,
+      "approvedAt": "2026-05-10T05:22:14.137Z"
+    },
+    {
+      "id": "m352",
+      "milestone": 352,
+      "approvedAt": "2026-05-05T05:50:52.477Z"
+    },
+    {
+      "id": "m351",
+      "milestone": 351,
+      "approvedAt": "2026-05-05T05:18:59.532Z"
+    },
     {
       "id": "m350",
       "milestone": 350,

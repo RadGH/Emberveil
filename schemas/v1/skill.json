@@ -14,6 +14,15 @@
     "description": { "type": "string", "maxLength": 280 },
     "mpCost": { "type": "integer", "minimum": 0, "default": 0 },
     "cooldown": { "type": "integer", "minimum": 0, "default": 0, "description": "Rounds between casts." },
+    "damageStat": {
+      "description": "Stat that drives this skill's damage scaling. Hybrids (str_int, str_dex, dex_int) average two stats — used by paladins, witch hunters, monks, etc.",
+      "enum": ["str", "dex", "int", "wis", "flat", "str_int", "str_dex", "dex_int"]
+    },
+    "damageMult": { "type": "number", "description": "Top-level damage multiplier; the runtime applies this in addition to per-effect mults." },
+    "damageCategory": {
+      "description": "Coarse category used by passives, items, and the combat HUD. heavy = 2H melee, light = 1H melee/dex, magic = INT/spell.",
+      "enum": ["heavy", "light", "magic"]
+    },
     "targeting": {
       "type": "object",
       "additionalProperties": false,

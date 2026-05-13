@@ -1,0 +1,23 @@
+{
+  "spriteId": "silas_veilward",
+  "displayName": "Silas Veilward",
+  "identity": "Adult human male wandering mage/sage, about 30-35 years old, short brown hair, neat short brown beard, kind serious face.",
+  "outfit": "Green hooded cloak open over a darker green long tunic, gray-silver shoulder mantle/cape draped across both shoulders, brown leather belt with small pouches at the chest, brown trousers, brown leather boots. NOT silver-haired, NOT old, NOT a graybeard, NOT armored.",
+  "weapons": "Wooden quarterstaff, plain dark wood with no metal cap.",
+  "portraitStyle": "Head-and-shoulders bust shot from mid-chest upward, three-quarter view facing slightly to camera-left. Hood down. Calm composed expression.",
+  "southStyle": "Facing camera (south), calm idle. Quarterstaff held vertical at his right side.",
+  "eastStyle": "Facing east (camera-right), calm idle. Quarterstaff held vertical, mantle visible over the trailing shoulder.",
+  "frames": {
+    "portrait": { "path": "images/spritecook/silas_veilward_portrait.png" },
+    "south":    { "path": "images/spritecook/silas_veilward_south.png" },
+    "east":     { "path": "images/spritecook/silas_veilward_east.png" },
+    "east_attack": { "path": "images/spritecook/silas_veilward_east_attack.png" },
+    "east_spell":  { "path": "images/spritecook/silas_veilward_east_spell.png" },
+    "east_block":  { "path": "images/spritecook/silas_veilward_east_block.png" },
+    "east_ko":     { "path": "images/spritecook/silas_veilward_east_ko.png" }
+  },
+  "referenceSheet": {
+    "path": "images/spritecook/silas_veilward_east.png",
+    "note": "East standing pose is the canonical reference — portrait was regenerated in M412 to match it after a drift was reported (silver-haired warlord vs the brown-haired green-cloaked sage)."
+  }
+}

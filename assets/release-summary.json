@@ -1,7 +1,7 @@
 {
-  "milestone": 382,
-  "date": "2026-04-30",
-  "summary": "M382 — solo + NG+ + hardcore fixes. Solo runs now scale enemy damage by hero count (solo 0.40x, duo 0.65x, trio 0.85x, full 1.0x) so a hardcore solo paladin can clear the prologue without being one-shot. NG+ Act 1 now uses Act 5's enemy multipliers and bumps the per-loop ngPlus values (hpBase 4.5, dmgBase 2.5) so NG+1 Act 1 actually feels like late-game combat (sim: prologue boss now 5.9 rounds vs 1.7). Hardcore mode disables the Cleric revive button (fallen stay fallen). NG+ map view now uses the dropdown zone selector instead of tabs. Tap weapon damage is now credited in the DPS meter. Hero skill mult bumped 0.70→0.82 so low-level skills feel meaningful.",
+  "milestone": 482,
+  "date": "2026-05-13",
+  "summary": "M482 — approved all image-review-v2 entries (batch m354 → history, m355 opened). No code changes; image data is now the canonical state.",
   "categories": [
     "feature"
   ],

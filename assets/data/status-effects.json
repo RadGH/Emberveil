@@ -173,5 +173,12 @@
     "color": "#a8b0e0",
     "name": "Dazed",
     "plain": "Disoriented — attacks have a much harder time finding their mark (-25% hit chance) for the duration."
+  },
+  {
+    "id": "sleep",
+    "glyph": "z",
+    "color": "#b070ff",
+    "name": "Asleep",
+    "plain": "Cannot act for up to 2 rounds. Any damage instantly wakes the target. Allies will avoid attacking sleeping enemies."
   }
 ]

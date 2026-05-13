@@ -183,6 +183,30 @@
   .cc-skills, .cc-passives {
     display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.78rem;
   }
+  /* M399 — Build presets section */
+  .cc-builds { display: flex; flex-direction: column; gap: 0.5rem; }
+  .cc-build {
+    background: rgba(160,80,255,0.06); border: 1px solid rgba(160,80,255,0.25);
+    border-radius: 4px; padding: 0.45rem 0.6rem; font-size: 0.78rem;
+  }
+  .cc-build-head { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.2rem; }
+  .cc-build-head strong { color: #c8a8ff; font-family: 'Cinzel', serif; }
+  .cc-build-tag {
+    font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.08em;
+    background: rgba(160,80,255,0.18); color: #c8a8ff;
+    padding: 0.05rem 0.35rem; border-radius: 3px;
+  }
+  .cc-build-attrs { display: flex; gap: 0.4rem; margin-bottom: 0.25rem; flex-wrap: wrap; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.7rem; }
+  .cc-build-attrs .attr-str { color: #e8a060; }
+  .cc-build-attrs .attr-dex { color: #80d090; }
+  .cc-build-attrs .attr-int { color: #80a8e8; }
+  .cc-build-attrs .attr-con { color: #e0c080; }
+  .cc-build-desc { color: var(--muted); line-height: 1.4; margin-bottom: 0.25rem; }
+  .cc-build-meta {
+    display: flex; flex-direction: column; gap: 0.1rem; font-size: 0.7rem;
+    color: rgba(232,200,128,0.6);
+  }
+  .cc-build-meta strong { color: #c8a8ff; font-weight: 600; }
   .cc-row { display: flex; gap: 0.4rem; align-items: baseline; }
   .cc-row .nm { color: var(--gold-bright,#f8d880); font-weight: 600; }
   .cc-row .ds { color: var(--muted); flex: 1; min-width: 0; line-height: 1.4; }
@@ -365,6 +389,7 @@ const emptyEl    = document.getElementById('empty');
 let _classes = [];
 let _skills  = [];
 let _passives = {};
+let _builds   = []; // M399 — flat list of build presets keyed by classId
 let _promptByClass = {};         // { classId: { portrait: 'prompt…', south: '…', … } }
 let _selected = new Set();       // class ids
 let _lbItems = [];               // [{ src, title, sub, prompt }, …] currently rebuilt per render
@@ -373,8 +398,26 @@ let _lbIdx = 0;
 function esc(s) {
   return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
+
+// Classes that have gender-variant sprites (classId_male_* / classId_female_*).
+// The sprite key is classId + '_' + variant, e.g. 'enchanter_male'.
+const GENDER_VARIANTS = {
+  enchanter: ['enchanter_male', 'enchanter_female'],
+  priest:    ['priest_male', 'priest_female'],
+  // warrior and cleric have a default set + optional female variant but default still works
+};
+
+// Per-class active gender variant selection, stored so toggling survives a re-render.
+const _genderVariant = {};
+
+function spriteKey(classId) {
+  const variants = GENDER_VARIANTS[classId];
+  if (!variants) return classId;
+  return _genderVariant[classId] || variants[0];
+}
+
 function spriteSrc(classId, pose) {
-  return `../images/spritecook/${classId}_${pose}.png`;
+  return `../images/spritecook/${spriteKey(classId)}_${pose}.png`;
 }
 function transparentDataUrl() {
   return 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22></svg>';
@@ -406,8 +449,9 @@ async function loadPromptsFor(classId) {
 }
 
 function buildLightboxItemsFor(cls) {
+  const key = spriteKey(cls.id);
   const items = POSES.map(p => ({
-    classId: cls.id,
+    classId: key,
     pose: p.id,
     src: spriteSrc(cls.id, p.id),
     title: `${cls.name} — ${p.label}`,
@@ -480,6 +524,16 @@ function renderCard(cls) {
   card.className = `cc-card mode-${mode}` + (_selected.has(cls.id) ? ' selected' : '');
   card.dataset.id = cls.id;
 
+  const variants = GENDER_VARIANTS[cls.id];
+  const genderToggle = variants ? `
+    <div class="cc-gender-toggle" style="display:flex;gap:0.35rem;margin-bottom:0.35rem;flex-wrap:wrap;">
+      ${variants.map(v => {
+        const label = v.endsWith('_female') ? 'Female' : 'Male';
+        const active = spriteKey(cls.id) === v;
+        return `<button type="button" class="cc-variant-btn${active ? ' active' : ''}" data-cls="${esc(cls.id)}" data-variant="${esc(v)}" style="background:${active ? 'rgba(232,160,32,0.25)' : 'rgba(232,160,32,0.07)'};border:1px solid rgba(232,160,32,${active ? '0.7' : '0.3'});color:${active ? '#f8d860' : '#c0a878'};padding:0.2rem 0.55rem;border-radius:4px;font-size:0.7rem;cursor:pointer;min-height:28px">${label}</button>`;
+      }).join('')}
+    </div>` : '';
+
   const sprites = POSES.map(p => `
     <div class="cc-sprite" data-pose="${p.id}" title="${esc(p.label)} — click to enlarge">
       <img src="${spriteSrc(cls.id, p.id)}" alt="${esc(cls.name)} ${p.label}"
@@ -543,7 +597,32 @@ function renderCard(cls) {
       </div>
     </div>
     <div class="cc-hook">${esc(cls.hook || '')}</div>
+    ${genderToggle}
     <div class="cc-sprites">${sprites}</div>
+    ${(() => {
+      const blds = _builds.filter(b => b.classId === cls.id);
+      if (!blds.length) return '';
+      return `<div class="cc-section-title">Build Presets (${blds.length})</div>
+        <div class="cc-builds">${blds.map(b => `
+          <div class="cc-build">
+            <div class="cc-build-head">
+              <strong>${esc(b.name)}</strong>
+              ${(b.tags || []).map(t => `<span class="cc-build-tag">${esc(t)}</span>`).join('')}
+            </div>
+            <div class="cc-build-attrs">
+              <span class="attr-str">STR ${b.targetAttrs.STR}%</span>
+              <span class="attr-dex">DEX ${b.targetAttrs.DEX}%</span>
+              <span class="attr-int">INT ${b.targetAttrs.INT}%</span>
+              <span class="attr-con">CON ${b.targetAttrs.CON}%</span>
+            </div>
+            <div class="cc-build-desc">${esc(b.description || '')}</div>
+            <div class="cc-build-meta">
+              <span><strong>Weapons:</strong> ${esc((b.weapons || []).join(' / '))}</span>
+              <span><strong>Shield:</strong> ${esc(b.shieldPref)}</span>
+              <span><strong>Skills:</strong> ${esc((b.preferredSkills || []).slice(0, 4).join(', '))}</span>
+            </div>
+          </div>`).join('')}</div>`;
+    })()}
     <div class="cc-section-title">Skills (${skills.length})</div>
     <div class="cc-skills">${skillRows}</div>
     <div class="cc-section-title">Passives (${passives.length})</div>
@@ -553,6 +632,34 @@ function renderCard(cls) {
     </div>
     ${reqBlock}
   `;
+
+  // Wire gender variant buttons.
+  card.querySelectorAll('.cc-variant-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const clsId = btn.dataset.cls;
+      const variant = btn.dataset.variant;
+      _genderVariant[clsId] = variant;
+      // Re-render the card's sprites and portrait in-place.
+      card.querySelectorAll('[data-pose]').forEach(el => {
+        const pose = el.dataset.pose;
+        const img = el.querySelector('img');
+        if (img) {
+          img.classList.remove('missing');
+          img.src = spriteSrc(clsId, pose);
+          img.onerror = function() { this.classList.add('missing'); this.src = transparentDataUrl(); };
+        }
+      });
+      // Update active state on buttons
+      card.querySelectorAll('.cc-variant-btn').forEach(b => {
+        const active = b.dataset.variant === variant;
+        b.style.background = active ? 'rgba(232,160,32,0.25)' : 'rgba(232,160,32,0.07)';
+        b.style.borderColor = active ? 'rgba(232,160,32,0.7)' : 'rgba(232,160,32,0.3)';
+        b.style.color = active ? '#f8d860' : '#c0a878';
+        b.classList.toggle('active', active);
+      });
+    });
+  });
 
   // Wire sprite-click → lightbox.
   card.querySelectorAll('[data-pose]').forEach(el => {
@@ -641,8 +748,13 @@ copyBtn.addEventListener('click', async () => {
   }
 });
 
-Promise.all([getClasses(), getSkills(), getPassives()])
-  .then(([classes, skills, passives]) => {
+// M399 — load builds.json alongside the existing data.
+function getBuilds() {
+  return fetch('./data/builds.json').then(r => r.ok ? r.json() : []).catch(() => []);
+}
+
+Promise.all([getClasses(), getSkills(), getPassives(), getBuilds()])
+  .then(([classes, skills, passives, builds]) => {
     _classes = classes.sort((a, b) => {
       const sa = isStarter(a) ? 0 : 1;
       const sb = isStarter(b) ? 0 : 1;
@@ -651,6 +763,7 @@ Promise.all([getClasses(), getSkills(), getPassives()])
     });
     _skills   = skills;
     _passives = passives || {};
+    _builds   = Array.isArray(builds) ? builds : [];
     render();
   })
   .catch(err => {

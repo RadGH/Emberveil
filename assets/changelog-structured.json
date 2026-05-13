@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-30T19:57:04.482Z",
+  "generated": "2026-05-13T20:19:53.204Z",
   "categories": [
     {
       "id": "Feature",
@@ -28,6 +28,1835 @@
     }
   ],
   "entries": [
+    {
+      "milestone": 482,
+      "date": "",
+      "summary": "Approval sweep. node scripts/approve-image-review-v2.cjs --all approved the remaining 627 entries in batch m354 covering all M467-M477 SpriteCook + OpenAI sprites. Batch rotated to history at m354; m355 opened empty for next regen cycle.",
+      "items": [
+        {
+          "text": "Approval sweep. node scripts/approve-image-review-v2.cjs --all approved the remaining 627 entries in batch m354 covering all M467-M477 SpriteCook + OpenAI sprites. Batch rotated to history at m354; m355 opened empty for next regen cycle.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 481,
+      "date": "",
+      "summary": "Two layout fixes. (1) All four sprite scales (characterScale/companionScale/enemyScale/bossScale) unified to 1.5 in combatDebugSettings.js. Added schema v2 migration in _load() so users with v1 saved 2.0/1.5/1.5/2.0 get wiped and re-defaulted (other customizations preserved). After M476 removed the orphan 2.5x bossBoost, bosses were rendering at bossScale=2.0 while enemyScale=1.5 — bosses ended up the same size as heroes but smaller than they used to look, reading as too small relative to the 1.5x enemies. (2) placeColumn now anchors small columns (n<=2) at 60% of gridH instead of bottom-padding. 3+ unit columns keep the bottom-anchored fill so back rows stay visible. 7/7 layout tests still pass.",
+      "items": [
+        {
+          "text": "Two layout fixes. (1) All four sprite scales (characterScale/companionScale/enemyScale/bossScale) unified to 1.5 in combatDebugSettings.js. Added schema v2 migration in _load() so users with v1 saved 2.0/1.5/1.5/2.0 get wiped and re-defaulted (other customizations preserved). After M476 removed the orphan 2.5x bossBoost, bosses were rendering at bossScale=2.0 while enemyScale=1.5 — bosses ended up the same size as heroes but smaller than they used to look, reading as too small relative to the 1.5x enemies. (2) placeColumn now anchors small columns (n<=2) at 60% of gridH instead of bottom-padding. 3+ unit columns keep the bottom-anchored fill so back rows stay visible. 7/7 layout tests still pass.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 480,
+      "date": "",
+      "summary": "Combat layout overflow fix. combatLayout.js fit check compared center-to-center span against gridW but ignored that the leftmost and rightmost sprites extend half-a-sprite-width beyond those centers. With 1 hero + 4 enemies on iPhone-14-pro viewport, the cluster scaled to exactly gridW center-to-center, leaving sprite halves outside on both ends. Now check uses trueWidth = centerSpan + SPRITE_W_AT_1; if that exceeds gridW, both gaps scale down proportionally and centerSpan recomputes. 7/7 layout tests still pass.",
+      "items": [
+        {
+          "text": "Combat layout overflow fix. combatLayout.js fit check compared center-to-center span against gridW but ignored that the leftmost and rightmost sprites extend half-a-sprite-width beyond those centers. With 1 hero + 4 enemies on iPhone-14-pro viewport, the cluster scaled to exactly gridW center-to-center, leaving sprite halves outside on both ends. Now check uses trueWidth = centerSpan + SPRITE_W_AT_1; if that exceeds gridW, both gaps scale down proportionally and centerSpan recomputes. 7/7 layout tests still pass.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 479,
+      "date": "",
+      "summary": "Dialog buildLoot rarity-color fix. DialogScreen._applyReward's buildLoot branch (the prologue Silas gift path) pushed +built.name with no span, falling back to the default gold color. The regular reward.item path already wrapped in var(--rarity-XXX). Now buildLoot matches. User caught this when a blue bow showed as gold in the gift dialog.",
+      "items": [
+        {
+          "text": "Dialog buildLoot rarity-color fix. DialogScreen._applyReward's buildLoot branch (the prologue Silas gift path) pushed +built.name with no span, falling back to the default gold color. The regular reward.item path already wrapped in var(--rarity-XXX). Now buildLoot matches. User caught this when a blue bow showed as gold in the gift dialog.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 478,
+      "date": "",
+      "summary": "images.html regression fix. The M473 lightbox/layout unification extracted renderUnifiedCharacters into _shared/sprite-grid.js with container.innerHTML = chr(39)chr(39) at function start. image-review-v2.html passes the whole character array in one call (safe). images.html iterates appearances and calls renderUnifiedAppearance per app (broken — each call wiped prior renders, leaving only the last). Fix: renderer is now append-only by default; image-review-v2 passes clear:true to opt into the previous behavior.",
+      "items": [
+        {
+          "text": "images.html regression fix. The M473 lightbox/layout unification extracted renderUnifiedCharacters into _shared/sprite-grid.js with container.innerHTML = chr(39)chr(39) at function start. image-review-v2.html passes the whole character array in one call (safe). images.html iterates appearances and calls renderUnifiedAppearance per app (broken — each call wiped prior renders, leaving only the last). Fix: renderer is now append-only by default; image-review-v2 passes clear:true to opt into the previous behavior.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 477,
+      "date": "",
+      "summary": "Overview Stats fix. After loading a save with one hero and returning to main menu, the Overview tab Damage/Kills/Taken/Healing charts only showed that one hero even with All slots selected. Root cause: chartMembers fallback only used cloud names when live party was empty; non-empty live party masked cloud heroes. Now: chartMembers unions both lists (dedup by id + lowercase name). Slot filter still narrows via _mergedCombatHistory() upstream.",
+      "items": [
+        {
+          "text": "Overview Stats fix. After loading a save with one hero and returning to main menu, the Overview tab Damage/Kills/Taken/Healing charts only showed that one hero even with All slots selected. Root cause: chartMembers fallback only used cloud names when live party was empty; non-empty live party masked cloud heroes. Now: chartMembers unions both lists (dedup by id + lowercase name). Slot filter still narrows via _mergedCombatHistory() upstream.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 476,
+      "date": "2026-05-13",
+      "summary": "M476 — stats fixes + tooltips + uniques + bosses + RELEASE_FAST. Slot dropdown refreshes on cloud load. damageTaken now actually records (was 0 for everyone). Overview tab adds Damage Taken + Healing charts. .ev-tooltip-card portaled to body (escapes .ev-hud stacking). Hover tooltip on enemies + companions showing statuses + blue-name modifiers. Unique items had no dmg/armor stats — now baked at gen time (auto-equip works, tooltips show damage). Bosses no longer double-scaled (hardcoded 2.5x boost removed). RELEASE_FAST=1 mode added — this very release uses it.",
+      "items": [
+        {
+          "text": "M476 — stats fixes + tooltips + uniques + bosses + RELEASE_FAST. Slot dropdown refreshes on cloud load. damageTaken now actually records (was 0 for everyone). Overview tab adds Damage Taken + Healing charts. .ev-tooltip-card portaled to body (escapes .ev-hud stacking). Hover tooltip on enemies + companions showing statuses + blue-name modifiers. Unique items had no dmg/armor stats — now baked at gen time (auto-equip works, tooltips show damage). Bosses no longer double-scaled (hardcoded 2.5x boost removed). RELEASE_FAST=1 mode added — this very release uses it.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 475,
+      "date": "",
+      "summary": "Lifetime Stats tab now shows per-hero charts (Damage Dealt / Kills / Damage Taken / Healing) + a sortable Hero Totals table, aggregating cloud combat_history (existing JSONB column on run_stats). Direct REST query confirmed the data has been persisting since M473 — the user couldn't see it because the Overview tab auto-hides on main-menu Stats (no party = nothing to chart) and Lifetime previously showed only global numbers. With multiple runs each row keeps up to 50 sessions; listCombatHistory caps at limit*10=500 entries across all runs, plenty for the \"history per hero\" use case. Also: my next release will add RELEASE_FAST=1 for code-only changes — most release time goes to gallery thumbnails / regression sims / data snapshots which don't need to run when only JS/CSS changed.",
+      "items": [
+        {
+          "text": "Lifetime Stats tab now shows per-hero charts (Damage Dealt / Kills / Damage Taken / Healing) + a sortable Hero Totals table, aggregating cloud combat_history (existing JSONB column on run_stats). Direct REST query confirmed the data has been persisting since M473 — the user couldn't see it because the Overview tab auto-hides on main-menu Stats (no party = nothing to chart) and Lifetime previously showed only global numbers. With multiple runs each row keeps up to 50 sessions; listCombatHistory caps at limit*10=500 entries across all runs, plenty for the \"history per hero\" use case. Also: my next release will add RELEASE_FAST=1 for code-only changes — most release time goes to gallery thumbnails / regression sims / data snapshots which don't need to run when only JS/CSS changed.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 474,
+      "date": "2026-05-12",
+      "summary": "M474 — REAL stats persistence fix (UPDATE→UPSERT in runStatsClient + Stats dashboard re-renders Overview after async cloud fetch lands), lightbox stopPropagation defensive guard, removed 135 stale openai_v2 boss entries from image-review (now only the 105 SpriteCook ones remain, correctly tagged category:boss)",
+      "items": [
+        {
+          "text": "M474 — REAL stats persistence fix (UPDATE→UPSERT in runStatsClient + Stats dashboard re-renders Overview after async cloud fetch lands), lightbox stopPropagation defensive guard, removed 135 stale openai_v2 boss entries from image-review (now only the 105 SpriteCook ones remain, correctly tagged category:boss)",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 473,
+      "date": "",
+      "summary": "Six parallel agents shipped. (1) SpriteCook bosses: 15 bosses (ancient_dragon, dragon_king, storm_dragon, frost_wyrm, archfiend_malgrath, emberveil_sovereign, grax_veil_touched, the_architect, the_unraveler, cosmic_titan, vault_guardian, void_scholar, echo_sovereign, the_first_ember, veilspawn_herald) regenerated via SpriteCook MCP, east-frame-first then 6 reference-locked siblings, transparent PNGs from pixel_url; old OpenAI versions archived to openai_v2/_pre_spritecook/. 105 entries enrolled in image-review batch m354 for approval. (2) Dialog skill-check fix: DialogScreen._showOutcome now routes outcomeKey to event.nodes[id] when the outcome map miss matches a node id; 7-test regression suite at src/ui/__tests__/dialog_skillcheck_node_routing.test.js. The Krix INT 14 silent-exit-to-map bug is closed. (3) Stats persistence: TWO root causes fixed. (a) recordFightEnd now pushes combat_history to Supabase after EVERY fight via _pushCombatHistoryToCloud (was only at run-end). (b) Kills-by-hero chart now reads from merged cloud history, not in-memory gs.stats.perChar (which resets on refresh). (4) Stats slot filter: dropdown shows hero name + class + level + per-slot fight count; \"Only last 50\" notice. (5) Lightbox unified: extracted public/assets/_shared/lightbox.{css,js}; both image-review-v2.html and images.html use the same component (next/prev/keyboard/close); 376 lines of duplication deleted. images.html character layout switched to unified single-row to match image-review-v2. (6) Dark-border bug: OpenAI was rendering thin dark frames between 3x3 sheet cells; chroma-key kept them. Added 3% inset to slice_3x3 + appended \"no dark frame/outline/borders\" to prompt. Reprocessed 18 sprites from raw archives. (7) UI fixes: town T letter dark on filled circles (visited OR isCurrent), Load Game shows actual difficulty in summary, status tooltip z-index 1200 + dies cleanly on icon removal, flee removes gold cost + queues for end-of-round + 1/round, Goblin Shaman flip override removed (was double-flipping post-M467 regen). (8) Dragon King reverted to pre-2x — the 1536x1024 attempt did not look better.",
+      "items": [
+        {
+          "text": "Six parallel agents shipped. (1) SpriteCook bosses: 15 bosses (ancient_dragon, dragon_king, storm_dragon, frost_wyrm, archfiend_malgrath, emberveil_sovereign, grax_veil_touched, the_architect, the_unraveler, cosmic_titan, vault_guardian, void_scholar, echo_sovereign, the_first_ember, veilspawn_herald) regenerated via SpriteCook MCP, east-frame-first then 6 reference-locked siblings, transparent PNGs from pixel_url; old OpenAI versions archived to openai_v2/_pre_spritecook/. 105 entries enrolled in image-review batch m354 for approval. (2) Dialog skill-check fix: DialogScreen._showOutcome now routes outcomeKey to event.nodes[id] when the outcome map miss matches a node id; 7-test regression suite at src/ui/__tests__/dialog_skillcheck_node_routing.test.js. The Krix INT 14 silent-exit-to-map bug is closed. (3) Stats persistence: TWO root causes fixed. (a) recordFightEnd now pushes combat_history to Supabase after EVERY fight via _pushCombatHistoryToCloud (was only at run-end). (b) Kills-by-hero chart now reads from merged cloud history, not in-memory gs.stats.perChar (which resets on refresh). (4) Stats slot filter: dropdown shows hero name + class + level + per-slot fight count; \"Only last 50\" notice. (5) Lightbox unified: extracted public/assets/_shared/lightbox.{css,js}; both image-review-v2.html and images.html use the same component (next/prev/keyboard/close); 376 lines of duplication deleted. images.html character layout switched to unified single-row to match image-review-v2. (6) Dark-border bug: OpenAI was rendering thin dark frames between 3x3 sheet cells; chroma-key kept them. Added 3% inset to slice_3x3 + appended \"no dark frame/outline/borders\" to prompt. Reprocessed 18 sprites from raw archives. (7) UI fixes: town T letter dark on filled circles (visited OR isCurrent), Load Game shows actual difficulty in summary, status tooltip z-index 1200 + dies cleanly on icon removal, flee removes gold cost + queues for end-of-round + 1/round, Goblin Shaman flip override removed (was double-flipping post-M467 regen). (8) Dragon King reverted to pre-2x — the 1536x1024 attempt did not look better.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 472,
+      "date": "",
+      "summary": "Combat-time Supabase write throttle. User reported a single 3-enemy encounter firing 27 PATCHes against the saves table. Root cause: SaveManager.save() (called on every turn-end / hp-change / stat tick) chains into cloudSaves.pushSave which immediately upserts to Supabase. Fix: new pendingPushes Map + window.__inCombat flag. While in combat, pushSave caches latest record per key instead of awaiting savesClient.write. CombatScreen.onEnter sets the flag; onExit clears it and calls cloudSaves.flushPendingPushes which fires one network round-trip per key with the freshest record. Local saves to localStorage still happen every turn so in-session play is unaffected; only the cloud round-trip is deferred. User explicitly accepted that combat interruption (page close mid-fight) loses run progress — they can start over.",
+      "items": [
+        {
+          "text": "Combat-time Supabase write throttle. User reported a single 3-enemy encounter firing 27 PATCHes against the saves table. Root cause: SaveManager.save() (called on every turn-end / hp-change / stat tick) chains into cloudSaves.pushSave which immediately upserts to Supabase. Fix: new pendingPushes Map + window.__inCombat flag. While in combat, pushSave caches latest record per key instead of awaiting savesClient.write. CombatScreen.onEnter sets the flag; onExit clears it and calls cloudSaves.flushPendingPushes which fires one network round-trip per key with the freshest record. Local saves to localStorage still happen every turn so in-session play is unaffected; only the cloud round-trip is deferred. User explicitly accepted that combat interruption (page close mid-fight) loses run progress — they can start over.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 471,
+      "date": "",
+      "summary": "Five parallel agents shipped. (1) Image review v2 unified layout: removed Group/List + Pose filters; every character category renders identically — name + single row of equal-size 96px tiles (same as Pending); fixed heros→heroes/enemys→enemies; collapsed OpenAI v2 accordion by default; checker-bg works on both image-review-v2 and images.html via shared !important rules. (2) Slice-bleed fix: new scripts/fix-sliced-bleed.py auto-detects vertical seams in OpenAI 3×3 sheets; applied to pet_fire_elemental, bandit_captain, the_first_ember. (3) Sprite work: forest_owl regen (bite not scratch, 2 legs), dragon_king regen at 1536x1024 (OpenAI gpt-image-1 rejects 2048 — max is 1536), giant_spider regen (was the ONLY missing enemy per comprehensive audit covering ENEMIES/ACT4-6/HIDDEN_BOSS/companions/infiniteDungeon). approve-image-review-v2.cjs gained --exclude flag; ran with 10 for-review ids excluded → 623 approved, 34 still pending. (4) Combat grid: new COL_GAP_TIGHT (20px within-faction) + COL_GAP_BATTLE_LINE (96px between factions) in combatLayout.js; heroes+companions cluster left, enemies cluster right. (5) NG+ isolation: new resetRunProgression(state) clears flags/cleared nodes/event seen/seen events/sneaked/visited while preserving party/inventory/achievements/lifetime stats; 5/5 Vitest pass. (6) Docs: README.md gained Supabase migrations section; deploy_pages.sh now mirrors README on every push; todo.html cleaned. (7) Damage analysis: M425→M469 Warrior L20 1002→3049 jump is INSTRUMENTATION change (M426 made dummy invulnerable so fragile classes can be measured) — Warrior class byte-identical; analysis written to memory/damage_regression_warrior_M425_to_M469.md; Act 2+ cakewalk needs separate real-roster TTK benchmark.",
+      "items": [
+        {
+          "text": "Five parallel agents shipped. (1) Image review v2 unified layout: removed Group/List + Pose filters; every character category renders identically — name + single row of equal-size 96px tiles (same as Pending); fixed heros→heroes/enemys→enemies; collapsed OpenAI v2 accordion by default; checker-bg works on both image-review-v2 and images.html via shared !important rules. (2) Slice-bleed fix: new scripts/fix-sliced-bleed.py auto-detects vertical seams in OpenAI 3×3 sheets; applied to pet_fire_elemental, bandit_captain, the_first_ember. (3) Sprite work: forest_owl regen (bite not scratch, 2 legs), dragon_king regen at 1536x1024 (OpenAI gpt-image-1 rejects 2048 — max is 1536), giant_spider regen (was the ONLY missing enemy per comprehensive audit covering ENEMIES/ACT4-6/HIDDEN_BOSS/companions/infiniteDungeon). approve-image-review-v2.cjs gained --exclude flag; ran with 10 for-review ids excluded → 623 approved, 34 still pending. (4) Combat grid: new COL_GAP_TIGHT (20px within-faction) + COL_GAP_BATTLE_LINE (96px between factions) in combatLayout.js; heroes+companions cluster left, enemies cluster right. (5) NG+ isolation: new resetRunProgression(state) clears flags/cleared nodes/event seen/seen events/sneaked/visited while preserving party/inventory/achievements/lifetime stats; 5/5 Vitest pass. (6) Docs: README.md gained Supabase migrations section; deploy_pages.sh now mirrors README on every push; todo.html cleaned. (7) Damage analysis: M425→M469 Warrior L20 1002→3049 jump is INSTRUMENTATION change (M426 made dummy invulnerable so fragile classes can be measured) — Warrior class byte-identical; analysis written to memory/damage_regression_warrior_M425_to_M469.md; Act 2+ cakewalk needs separate real-roster TTK benchmark.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 470,
+      "date": "",
+      "summary": "Five parallel agents shipped a wide cleanup pass. Combat sim correctness: enemies now actually cast spells and block in simulator.js (was hero-only); 100-trial verification shows bandit_captain 156 spells/63 blocks, void_shade 217 spells, etc.; damage report regenerated against corrected sim. Sprite roster: 48 more sheets generated today incl. star_horror, void_wraith, all Act4-6 enemies, all dragons, the 5 new NPC arcs (Iris/Garrick/Yssira/Tomek/Krix). Image review: extracted public/assets/_shared/sprite-grid.{css,js} as single source of truth; image-review-v2.html and images.html now both consume it; 247 lines of duplicated CSS deleted; heroes now visible in List+Current; transparency-grid default works on both pages; bg-filter centered with icon+tooltip buttons. Supabase damage persistence: new migration 0004 adds combat_history JSONB column to existing run_stats table; client-side write was already wired (silently no-op until column exists); read+merge+dedup logic added to Stats dashboard. User must paste SQL from /assets/todo.html into Supabase dashboard once to activate. News dropdown: viewport-clamped + Archive/All-News links removed. Auto-skill independence: template-aliasing root cause + defensive guard + Vitest. Post-combat 1-of-3 reward popup: removed across all encounters (victory modal already awards loot). Builds: 22 new second-builds added so every one of 30 classes has ≥2 options, mostly CON-tilted alternates.",
+      "items": [
+        {
+          "text": "Five parallel agents shipped a wide cleanup pass. Combat sim correctness: enemies now actually cast spells and block in simulator.js (was hero-only); 100-trial verification shows bandit_captain 156 spells/63 blocks, void_shade 217 spells, etc.; damage report regenerated against corrected sim. Sprite roster: 48 more sheets generated today incl. star_horror, void_wraith, all Act4-6 enemies, all dragons, the 5 new NPC arcs (Iris/Garrick/Yssira/Tomek/Krix). Image review: extracted public/assets/_shared/sprite-grid.{css,js} as single source of truth; image-review-v2.html and images.html now both consume it; 247 lines of duplicated CSS deleted; heroes now visible in List+Current; transparency-grid default works on both pages; bg-filter centered with icon+tooltip buttons. Supabase damage persistence: new migration 0004 adds combat_history JSONB column to existing run_stats table; client-side write was already wired (silently no-op until column exists); read+merge+dedup logic added to Stats dashboard. User must paste SQL from /assets/todo.html into Supabase dashboard once to activate. News dropdown: viewport-clamped + Archive/All-News links removed. Auto-skill independence: template-aliasing root cause + defensive guard + Vitest. Post-combat 1-of-3 reward popup: removed across all encounters (victory modal already awards loot). Builds: 22 new second-builds added so every one of 30 classes has ≥2 options, mostly CON-tilted alternates.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 469,
+      "date": "",
+      "summary": "Completed enemy/boss sprite regen (archfiend_malgrath, demon_brute, emberveil_sovereign, grax_veil_touched, hell_knight, lava_titan, molten_golem, veil_sorcerer, veilspawn_herald + bone_hound no-weapon fix). Added 5 recurring NPCs with multi-act branching arcs (Iris Vael scholar A1-3, Sir Garrick Ostmere knight A1-4, Mother Yssira seer A2-5, Tomek Halverin merchant A1-3, Krix Bonechewer goblin defector A1-3). 18 new dialog events spanning every zone (≥2 conversational per map). 24 party-member speaker lines with  templating. 10 startCombat follow-up encounters. New companion speaker type in DialogScreen. Enemy blockChance + blockMitigation now applies (was hero-only); 10/23 enemies block. 13 new enemy spells covering silence/blind/sleep/root/disarm/dazed/marked (all previously zero-coverage statuses now hit by 2+ enemies). 21/23 enemies cast spells.",
+      "items": [
+        {
+          "text": "Completed enemy/boss sprite regen (archfiend_malgrath, demon_brute, emberveil_sovereign, grax_veil_touched, hell_knight, lava_titan, molten_golem, veil_sorcerer, veilspawn_herald + bone_hound no-weapon fix). Added 5 recurring NPCs with multi-act branching arcs (Iris Vael scholar A1-3, Sir Garrick Ostmere knight A1-4, Mother Yssira seer A2-5, Tomek Halverin merchant A1-3, Krix Bonechewer goblin defector A1-3). 18 new dialog events spanning every zone (≥2 conversational per map). 24 party-member speaker lines with  templating. 10 startCombat follow-up encounters. New companion speaker type in DialogScreen. Enemy blockChance + blockMitigation now applies (was hero-only); 10/23 enemies block. 13 new enemy spells covering silence/blind/sleep/root/disarm/dazed/marked (all previously zero-coverage statuses now hit by 2+ enemies). 21/23 enemies cast spells.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 468,
+      "date": "",
+      "summary": "Regenerated 23 companions through the openai_v2 pipeline (no south-reference, fresh prompts, descriptors at 30–50 words each): 10 class pets (skeletal_warrior, bone_golem, wolf, bear, imp, demon, fire_elemental, lightning_elemental, familiar, clockwork_turret) and 13 encounter companions (bone_hound, crystal_golem, dire_wolf, dragon_hatchling, ember_drake, forest_owl, ice_sprite, shadow_cat, shadow_wyrm, spirit_wisp, storm_drake, swamp_frog, void_moth). 207 frames flagged for review in open batch m354. swamp_frog reprocessed with --no-despill --feather=14 to preserve its green hide against the chroma key. War Dog and Frost Wyrmling intentionally untouched. Fixed images.html Companions section showing the four tavern hireables (Aela / Borin / Lysa / Rekk) by filtering kind==='hireable' out of the renderEntitySection call (the filter that the front page got in M374 was missing here).",
+      "items": [
+        {
+          "text": "Regenerated 23 companions through the openai_v2 pipeline (no south-reference, fresh prompts, descriptors at 30–50 words each): 10 class pets (skeletal_warrior, bone_golem, wolf, bear, imp, demon, fire_elemental, lightning_elemental, familiar, clockwork_turret) and 13 encounter companions (bone_hound, crystal_golem, dire_wolf, dragon_hatchling, ember_drake, forest_owl, ice_sprite, shadow_cat, shadow_wyrm, spirit_wisp, storm_drake, swamp_frog, void_moth). 207 frames flagged for review in open batch m354. swamp_frog reprocessed with --no-despill --feather=14 to preserve its green hide against the chroma key. War Dog and Frost Wyrmling intentionally untouched. Fixed images.html Companions section showing the four tavern hireables (Aela / Borin / Lysa / Rekk) by filtering kind==='hireable' out of the renderEntitySection call (the filter that the front page got in M374 was missing here).",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 467,
+      "date": "",
+      "summary": "Regenerated 10 Act 1-2 enemies through the approved openai_v2 prompt + converter-style despill: goblin_scout, goblin_warrior, goblin_shaman, goblin_warlord, corrupted_wolf, corrupted_bear, cinder_hound, imp, veil_warden, veil_cultist. 90 frames flagged for review.",
+      "items": [
+        {
+          "text": "Regenerated 10 Act 1-2 enemies through the approved openai_v2 prompt + converter-style despill: goblin_scout, goblin_warrior, goblin_shaman, goblin_warlord, corrupted_wolf, corrupted_bear, cinder_hound, imp, veil_warden, veil_cultist. 90 frames flagged for review.",
+          "categories": [
+            "Feature",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 466,
+      "date": "2026-05-11",
+      "summary": "M466 — captions sit flush atop ev-hud (removed +4px buffer)",
+      "items": [
+        {
+          "text": "M466 — captions sit flush atop ev-hud (removed +4px buffer)",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 465,
+      "date": "2026-05-11",
+      "summary": "M464b — converter-style chroma despill (alpha-unmix) preserves robe detail; reprocessed all 4 M464 enemies from raw",
+      "items": [
+        {
+          "text": "M464b — converter-style chroma despill (alpha-unmix) preserves robe detail; reprocessed all 4 M464 enemies from raw",
+          "categories": [
+            "Feature",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 464,
+      "date": "",
+      "summary": "Removed JRPG keyword from openai-spritesheet-gen prompt; added explicit high-fantasy + 6-7 head-height + match-reference-proportions guidance. Regenerated ash_wraith (desert wraith), void_shade (shimmery purple arcane wisp), bandit and bandit_captain (knight-proportions) via the new prompt. All 36 frames flagged for review.",
+      "items": [
+        {
+          "text": "Removed JRPG keyword from openai-spritesheet-gen prompt; added explicit high-fantasy + 6-7 head-height + match-reference-proportions guidance. Regenerated ash_wraith (desert wraith), void_shade (shimmery purple arcane wisp), bandit and bandit_captain (knight-proportions) via the new prompt. All 36 frames flagged for review.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "*M463 (2026-05-11) — manifest-driven sprite loader + openai_v2 bucket**",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        },
+        {
+          "text": "Sprite loading now reads per-frame paths from appearances-manifest.json (`getSpritePath()` in spriteUtils.js); unlocks per-frame mixing across generator buckets. Migrated EvTurnStrip, EvCardRail, CombatScreen, DialogScreen, CharacterBuilderScreen, HireBuilderScreen.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        },
+        {
+          "text": "Created `public/images/openai_v2/` bucket. Moved frost_wyrmling, ash_wraith, bandit, bandit_captain, void_shade (50 files) out of spritecook/. Manifest builders (`build-appearances-manifest.cjs`, `build-image-review-manifest.cjs`, `build-images-manifest.cjs`) now scan openai_v2 first.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        },
+        {
+          "text": "Fixed bandit duplicate-images bug: `flag-openai-regens-for-review.py` glob `{char}_*.png` was prefix-matching longer ids. Cleaned 9 bad bandit entries from m354 batch + remapped 135 paths to openai_v2.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        },
+        {
+          "text": "Restored bandit's prior frames from git (M458^) as legacy backups so the Original/Candidate comparison shows the real prior art.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        },
+        {
+          "text": "Added blue-background chroma fallback: `chroma_despill()` now keys the top-left pixel as a second pass for cases where OpenAI ignores the #00FF00 instruction. Re-processed ash_wraith and bandit (18 files).",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        },
+        {
+          "text": "New canonical reference path `public/assets/openai_v2/reference.png` + dated archive `reference_YYYY-MM-DD.png`. Raw OpenAI sheets archived as lossless PNG to `public/assets/openai_v2/raw/<id>/<date>_raw.png`.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "Image-review-v2.html: background toggle (Checker/None/White/Black/Green, sticky), per-character bulk-select checkbox, flag system (error/warning/info + text, lightbox UI, subtle dot per tile), generator badges (openai_v2 / spritecook), Pipeline Overview cards (collapsible, with reference image inline).",
+          "categories": [
+            "Feature",
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "Same background toggle added to images.html.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 463,
+      "date": "2026-05-11",
+      "summary": "M463 — manifest-driven sprite loader + openai_v2 bucket + image-review-v2 background toggle / flag system / generator badges / bulk select / pipeline overview + bandit dedup + chroma fallback for blue-bg sprites.",
+      "items": [
+        {
+          "text": "M463 — manifest-driven sprite loader + openai_v2 bucket + image-review-v2 background toggle / flag system / generator badges / bulk select / pipeline overview + bandit dedup + chroma fallback for blue-bg sprites.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 462,
+      "date": "2026-05-11",
+      "summary": "M462 — Auto-flag openai regens for review + site overview doc. Critical workflow fix: openai-spritesheet-gen.py was writing only to the sidecar (Current tab) but never enrolling in the open review batch (Pending tab), so the user couldn't review the 5 already-regenerated characters (frost_wyrmling, ash_wraith, bandit_captain, bandit, void_shade). Added register_open_batch_entries() to the script so every future regen auto-enrolls. One-shot scripts/flag-openai-regens-for-review.py retroactively flagged 54 pose entries for the 5 existing characters. Also wrote game13/memory/SITE_OVERVIEW.md as the cold-start manual covering every tool page, image pipeline, manifest, build step, and maintenance location; added a memory pointer (emberveil_site_map.md) so I read SITE_OVERVIEW.md before acting on any Emberveil request.",
+      "items": [
+        {
+          "text": "M462 — Auto-flag openai regens for review + site overview doc. Critical workflow fix: openai-spritesheet-gen.py was writing only to the sidecar (Current tab) but never enrolling in the open review batch (Pending tab), so the user couldn't review the 5 already-regenerated characters (frost_wyrmling, ash_wraith, bandit_captain, bandit, void_shade). Added register_open_batch_entries() to the script so every future regen auto-enrolls. One-shot scripts/flag-openai-regens-for-review.py retroactively flagged 54 pose entries for the 5 existing characters. Also wrote game13/memory/SITE_OVERVIEW.md as the cold-start manual covering every tool page, image pipeline, manifest, build step, and maintenance location; added a memory pointer (emberveil_site_map.md) so I read SITE_OVERVIEW.md before acting on any Emberveil request.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 461,
+      "date": "2026-05-10",
+      "summary": "M460 — image-review-v2 List layout now shows full per-pose sub-sprites. List mode in current+characters previously showed only the lone portrait card per enemy/companion/boss (same root cause as the Grouped goblin bug). Added renderListAppearances() which walks appearances-manifest.json the same way Grouped does, but flattens every (appearance × pose) pair into a single flat grid. Prompt + manifest status data are merged in when present; pose + category filters still apply; falls back to the legacy renderGroupedByGroup when appearances haven't fetched yet.",
+      "items": [
+        {
+          "text": "M460 — image-review-v2 List layout now shows full per-pose sub-sprites. List mode in current+characters previously showed only the lone portrait card per enemy/companion/boss (same root cause as the Grouped goblin bug). Added renderListAppearances() which walks appearances-manifest.json the same way Grouped does, but flattens every (appearance × pose) pair into a single flat grid. Prompt + manifest status data are merged in when present; pose + category filters still apply; falls back to the legacy renderGroupedByGroup when appearances haven't fetched yet.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 460,
+      "date": "2026-05-10",
+      "summary": "M432: image-review-v2 Grouped layout with full 7-pose appearance cards (fixes Goblin 1-pic bug) + Layout button group (Grouped/List) + checkerboard pose frames matching images.html",
+      "items": [
+        {
+          "text": "M432: image-review-v2 Grouped layout with full 7-pose appearance cards (fixes Goblin 1-pic bug) + Layout button group (Grouped/List) + checkerboard pose frames matching images.html",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 459,
+      "date": "2026-05-10",
+      "summary": "image-review-v2.html — Grouped layout replaces show-sub-sprites checkbox. In Current+Characters mode, Grouped layout renders full 7-pose appearance cards (portrait + 6 pose frames with checkerboard background) sourced from appearances-manifest.json, fixing the Goblin showing only 1 portrait card. Layout button group (Grouped/List) added to topbar; List mode preserves prior flat-grid path. CSS class-pair-block / appearance-portrait / pose-frame names identical to images.html so one shared stylesheet governs both pages.",
+      "items": [
+        {
+          "text": "image-review-v2.html — Grouped layout replaces show-sub-sprites checkbox. In Current+Characters mode, Grouped layout renders full 7-pose appearance cards (portrait + 6 pose frames with checkerboard background) sourced from appearances-manifest.json, fixing the Goblin showing only 1 portrait card. Layout button group (Grouped/List) added to topbar; List mode preserves prior flat-grid path. CSS class-pair-block / appearance-portrait / pose-frame names identical to images.html so one shared stylesheet governs both pages.",
+          "categories": [
+            "Feature",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 458,
+      "date": "2026-05-10",
+      "summary": "M458 — 4 enemy sprite regens via openai-9pose (ash_wraith, bandit_captain, bandit, void_shade), --no-south-reference, kept previous prompts",
+      "items": [
+        {
+          "text": "M458 — 4 enemy sprite regens via openai-9pose (ash_wraith, bandit_captain, bandit, void_shade), --no-south-reference, kept previous prompts",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 457,
+      "date": "2026-05-09",
+      "summary": "M457 — Pyromancer 50 kills (was 500); Scavenger lifetime rare-item counter (gs.lifetimeRareCount, no longer gated by current-inventory snapshot); Dragon Knight unlock now matches any boss whose id contains dragon/wyrm/drake/bahamoth/dragonking/etc. (some saves had non-matching ids); style.css overscroll-refresh body min-height 100% (was 100%+1px which left a permanent desktop scrollbar); image-review-v2.html: hide .card .badge when in Pending mode (badges were redundant + covered the corner of the image), select-bar slimmed to Copy + Clear (removed Copy-approve-command + Approve-all), filter-panel lifted on mobile so the bar stops covering it. Void Scholar east_attack flipped + all Void Scholar entries approved. Frost wyrmling sprite sheet re-generated via the updated openai-9pose workflow (already shipped in M456 by parallel agent — no held shield, mouth-breath frost spell, wing-block).",
+      "items": [
+        {
+          "text": "M457 — Pyromancer 50 kills (was 500); Scavenger lifetime rare-item counter (gs.lifetimeRareCount, no longer gated by current-inventory snapshot); Dragon Knight unlock now matches any boss whose id contains dragon/wyrm/drake/bahamoth/dragonking/etc. (some saves had non-matching ids); style.css overscroll-refresh body min-height 100% (was 100%+1px which left a permanent desktop scrollbar); image-review-v2.html: hide .card .badge when in Pending mode (badges were redundant + covered the corner of the image), select-bar slimmed to Copy + Clear (removed Copy-approve-command + Approve-all), filter-panel lifted on mobile so the bar stops covering it. Void Scholar east_attack flipped + all Void Scholar entries approved. Frost wyrmling sprite sheet re-generated via the updated openai-9pose workflow (already shipped in M456 by parallel agent — no held shield, mouth-breath frost spell, wing-block).",
+          "categories": [
+            "Feature",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 456,
+      "date": "2026-05-09",
+      "summary": "M456 — Frost wyrmling re-generation via updated openai-9pose workflow (no shield, mouth-breath frost spell, wing-block)",
+      "items": [
+        {
+          "text": "M456 — Frost wyrmling re-generation via updated openai-9pose workflow (no shield, mouth-breath frost spell, wing-block)",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 455,
+      "date": "2026-05-09",
+      "summary": "Header/footer cleanup — News column removed from footer, Asset Gallery link removed, All Tools Index link removed; assets/index.html and assets/tools.html deleted; news/index.html replaced with redirect to news.html; news hero image paths fixed for GitHub Pages (relative paths, no leading ../); news.html two-column grid with 15px gap; images.html Companions/Enemies/Bosses now use portrait+6-pose layout matching Classes/NPCs; Portraits and Other filter tabs removed; count badges replaced with warn-only (only show when sprites missing); mobile hero stats swap to Zones/Skills/Enemies at ≤480px.",
+      "items": [
+        {
+          "text": "Header/footer cleanup — News column removed from footer, Asset Gallery link removed, All Tools Index link removed; assets/index.html and assets/tools.html deleted; news/index.html replaced with redirect to news.html; news hero image paths fixed for GitHub Pages (relative paths, no leading ../); news.html two-column grid with 15px gap; images.html Companions/Enemies/Bosses now use portrait+6-pose layout matching Classes/NPCs; Portraits and Other filter tabs removed; count badges replaced with warn-only (only show when sprites missing); mobile hero stats swap to Zones/Skills/Enemies at ≤480px.",
+          "categories": [
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M454: images.html refactored — fully appearance-driven (appearances-manifest.json), no inline CSS, gender fixed (male/female only, no unisex), transparency checkerboard on all sprite tiles, single filter toolbar, orphan detection, bosses/enemies/companions all data-driven.",
+          "categories": [
+            "BugFix",
+            "Art"
+          ]
+        },
+        {
+          "text": "M452 — Shared nav/footer refactor: footer now auto-mirrors all header dropdown sections (Tools, Catalog, Docs, News, Assets) via window.RSG_SITE_MENUS set by nav-header.js; changelog.html added to Docs dropdown and Docs footer column; paginated news.html archive at game root (12/page, ?page=N, category filter) powered by unified news/news.json (17 articles, full slug+hero+category schema); news/index.json merged into news.json as single truth; header News dropdown shows top 8 + All News link; release.sh now syncs _header.js/_footer.js into public/news/ on every build.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M411 — 22-item batch + image-review workflow: (1) spells & heals now scale off equipped weapon damage midpoint (Heavy/Light/Magic from weapon, not attribute), (2) priest AI no longer wastes Call Back when nobody is dead and surfaces a damage spell when the picked set has no offense, (3) enemy champion-affix info moved from click → hover (mouse only), (4) Items Found post-combat now uses correct rarity colors per item, (5) Silas Veilward portrait regenerated to match east frame, (6) images.html gains a Combat Backgrounds section + Other dedupe + new Orphaned section, (7) Hire Custom: Auto attribute spend tops up all points, vertically centers the toggle, and routes through a build-picker step before stats, (8) Trainer adds a +1 Level button + fixes the spendGold TypeError, (9) companions excluded from trainer level-up and now scale via a power tier (1-5) — cost = power × 100g, in-combat HP/dmg = 30P + 8PL / [3+P+PL, 5+2P+1.5PL], shown as star-rating in tavern, (10) hireable hero cost normalized to 100g × level, (11) ev-card class label now shows level, (12) per-encounter XP cap removed (Catch Up handles rate-limiting), (13) Ember Plateau + all zones get an edge-edge intersection detangle pass to fix line/node crossings, (14) Void Scholar boss got a 5-pose art set generated via SpriteCook, (15) Trainer companion bug + spendGold crash fixed, (16) Levelup screen made fully opaque so it no longer leaks dungeon UI behind it, (17) Hireable heroes 100g/level pricing rule, (18) Achievements wired to fire on combat victory + level-up + zone unlock; Hell Descends rename to The Hell Breach, (19) dg-screen DOM defensively purged after dungeon→town→boss transitions so a stale Iron Barricade panel no longer sits behind a fresh boss fight, (20) Hell Breach's Scholar's Sanctum demoted from boss → challenge so Archfiend Malgrath stays the sole act boss, (21) Companion power tier overhaul + visible star rating, (22) Mossy Cairn warden_charm fix (inventoryItem requirement now also scans equipped slots + questKey tags so equipped quest items still gate dialog choices); leave-without-resolving no longer consumes encounters. Image-review-v2 page gains an explicit two-step workflow callout + Copy approve command + Approve all buttons; approve script handles ghost entries gracefully.",
+          "categories": [
+            "BugFix",
+            "Balance",
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M381 - Act 3+ rebalance. Enemy HP & damage now ramp by act (Acts 1-2 unchanged at 1.0x; Act 3 1.85x HP / 1.22x dmg, Act 4 2.15x / 1.30x, Act 5 2.40x / 1.38x) with a boss-HP damper so single-target boss fights stay around 30-50 rounds instead of 80+. Hero skill/spell damage globally scaled to 70% (combat.skill.heroDamageMult) so AoE finishers are no longer 2-3x basic-attack damage. Companions auto-scale stats with Companion Level Sync — STR/DEX/CON/INT bonuses per (effective level - template level) so a Level-1 War Dog hired in Act 1 stays relevant in Act 5. New scripts/sim-act-balance.mjs validation tool runs the requested Fighter/Stormcaller/Cleric/Mage party against representative encounters per act. Sim shows Act 3 trash 10-13 rounds, big-fight encounters 22-24 rounds, bosses 38-47 rounds with companion deaths and occasional party wipes — matches user goal of suspenseful late-game combat.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "M348 - iPhone inventory tap targets (Equip/Compare/Close 44px+); boss combatants inherit isBoss from boss-tagged encounters so bossScale 2x applies (Veilspawn Herald was 1.5x); Combat Debug Reset uses shared defaults (was hardcoded 1x); hero column shifts toward centre when no companions in party; FTL grid depth renormalised so Act 1 zones do not have cluster-then-gap spacing.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M347 - Cleric AI overheal: skip self-heal when target HP >= 85pct (the user logged 7 heals with up to 17 overheal each on a single fight). Enemy XP cut roughly in half (goblin_scout 18->8, warrior 32->15, shaman 38->18, herald 60->28). Per-encounter XP cap tightened to 1.25 levels per fight. Prologue start node is now a no-op Trailhead. Traveling overlay moved to fixed-position DOM so it stays viewport-centered when the canvas is scrolled. Skill-check first-visit fixed via dedicated skillChecksAttempted set. Boss-chest modal repositioned to position:fixed so iPhone-portrait taps land correctly. Per-zone canvas min-width: prologue + small zones fit one screen.",
+          "categories": [
+            "BugFix",
+            "Art"
+          ]
+        },
+        {
+          "text": "M346 — Hotfix: Ancient Shrine first-visit (and any shrine) was showing Already Used because GameState.visitNode() fires before the modal builds, so visitedNodes.has(node.id) returned true even on first arrival. Now passes alreadyVisited captured pre-visit through to the modal. iPhone portrait map node spacing — canvas internal width clamped to ≥760px so the 14-col grid gives every node a ~50-55px gap (well above the 40px tap-target target the user requested), with .map-canvas-wrap scrolling horizontally on narrow viewports.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "M345 — Tools archive + wishlist audit. Removed Data Catalogs (Legacy), Data Overrides, AI Content Generator from the visible Tools list to shorten the menu (HTML preserved on disk for direct linking + existing bookmarks). public/assets/tools.html and shared/nav-header.js trimmed. Wishlist: new Continuous Release Run M331-M345 section with one-line entries per milestone + four pending follow-ups (empty Thornwood node, tab layout consistency, craft menu revert, fallen-hero sync, milestone glossary). Continuous-release run wraps with all primary user-facing wishlist items shipped.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M344 — NPC dialog portraits. DialogScreen renders an actual portrait next to the NPC name: priority is event.npcPortrait override -> hand-curated NAME_TO_SPRITE map (Silas Veilward, Kaela Thorne, Marek Greel, Mira the Seer, Forest Warden, Hedge-Mage, Garrison Lieutenant, Wounded Soldier, Faded Shade, etc) -> slugified-name lookup -> initials placeholder. Image onerror fallback swaps in the placeholder so a missing sprite never breaks the dialog flow. Portrait size 56 -> 64px and uses object-fit: cover.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "M343 — Skill check / shrine / dialog clarity. Skill-check modal previews Pass / Fail outcomes BEFORE attempting (two-column grid, green/red). When the partys best stat meets DC alone, the Attempt button becomes a green Auto-Pass affordance so the user can tell the challenge is winnable. Disabled dialog choices render an inline Requires: line (Requires: veil_lens in inventory; Requires: STR 12+; etc) so the user knows WHY a choice is greyed out. Shrine modals carry a clear Effect: block stating exactly what each shrine does.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M342 — XP cap + Riposte logging. xp.js awardXp caps memberXp at (currentLevel.remaining + 50% of next-level span) so one fight cannot catapult more than ~1 level (defensive guard against the user-reported level-7-at-prologue overflow). Riposte parry counter wired: target.parryStance was set but never consumed; now decrement one charge per incoming hit, deal damageMult * weapon-damage back to the attacker, fully absorb the incoming hit, log via recordDamageDealt + recordDamageBySkill + meter so the combat log and damage report show the counter accurately.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "M341 — Stun overhaul. New Dazed status (-25 percentage points hit chance for the duration; lighter than stun, never skips a turn). AoE stuns converted to Dazed: Tinker Barrage of Debris and Junk Avalanche, Demon Hunter Absolute Vengeance ult. Single-target stuns unchanged. Two skill talents that gave 2-round stun reworked — Thorn Wall now 1-round root + extended Bleed (3r); Bulwark Strike trades extended stun for higher damageMult (2.0 -> 2.4). Combat hit roll deducts 25 pts when the attacker has Dazed.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M340 — Magic shield system. Four new off-hand bases (Warded Focus / Rune Aegis / Spellguard Orb / Arcane Bulwark; Act 1-4+) with native Barrier and Barrier Regen on every base. Two magic-shield-only affixes added (Wardstone for Barrier, Conduit for Regen). equipBonuses now sums barrier/barrierRegen. CombatScreen seeds a persistent magic-shield barrier status at fight start; existing barrier-absorb path subtracts from it before HP; per-round regen at round-flip restores up to maxPower. Magic-shield barriers stay in the status list when depleted so they can refill (skill-cast one-shots still filtered).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M339 — Difficulty picker reorg + Hire estimate. New game and Change Difficulty both show three compact icon+name buttons (Easy/Normal/Hard) with a single description paragraph below that updates on selection. Hard difficulty surfaces +20pct MF / +10pct XP as inline chips. Hire Custom Estimated Stats block now uses the same .preview-stat markup (3-col grid + full-width rows) as Create Character; CSS mirrored locally so the screen renders consistently without depending on CharacterBuilder mounting first.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M338 — Map + dungeon. Dungeon nodes: anchor-aware return path (give-up was looping back into the dungeon entry because the player was using gs.nodeId AFTER it moved to the dungeon node; resolved up front by walking parent exits). Visible error fallback if dungeonId is missing or DungeonScreen fails to import. Map layout rewrite — _layoutZoneToFTLGrid caps each node's outgoing exits at 3 (closest by y); pins the boss to (COLS-1, mid-row); classifies thru-nodes via reaches-boss reverse walk; places thrus around a centred trunk with vertical drift capped to ±2 rows between adjacent columns; places one-offs in the SAME column as their parent at parent.row ± 1 so detours read as off-lane. Empty Thornwood node investigation flagged for M339.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M337 — UX batch (15 items): title fame chip color matches subtitle, WHATS NEW + SEND FEEDBACK in game menu now de-emphasized text links, Lore Compendium + Achievements fonts bumped, STR carry-capacity copy removed, map legend separated Shrine / Challenge / Skill Check labels with distinct glyphs, map top margin raised to 7 percent default, Damage meter E checkbox + combat log Secondary checkbox removed (live in Settings), Hire Custom card min-height removed, Hire Custom Level +/- on one row, diff dialog grid-template-columns auto 1fr, New Game Map Seed moved to end, Party screen XP bar below HP/MP per hero, fame-tier encounters made global once-per-account and no longer hand out items.",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "M336 — UX batch: sync toast no longer pops every refresh (digest dedupe per user, 24h window); Codex Enemy Scaling rewritten — Coming Soon replaced with role/tier/NG+ explanation incl. regular vs boss sample stats; Character Builder advanced options laid out as a 2-row grid per checkline (checkbox left, title row 1, help row 2 — all inside .cb-adv-checkline); PartyPanel hides the redundant inner skill-mode-tabs bar (outer PartyPanel tabs are authoritative); combat pause/end-modal z-indexes raised above captions and damage meter; fame curve capped at 2,000 fame; combat speed persisted across fights via localStorage; Next-Turn step button now shows whenever combat is paused (no longer gated on the Slow Combat setting).",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "M335 — UX batch: boss loot chest affix labels (8% Crit Chance instead of Deadly: 8%); Town header bubble no longer shows skill-pending count (Party-only; Town shows quest-ready / new-unlock count); Town node fast-travel animates the star to the node before opening the dialog; Skills/Passives/Attributes Auto button now spends remaining points immediately on click; Settings → Combat: Show Combat Log + Show Damage Meter toggles, with a paired Show Enemy Damage & Info toggle; in-game menu reorganized into Hero row + 3-column grid (Game / Library / Settings) + Footer (mobile collapses to single column), Load Game added alongside Save Game.",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "M334 — Backend fixes. (1) Supabase request-burst on Load Game: opening Load Game while signed in fired ~184 requests (1 listCloud + 92 readClouds + a redundant auth.getUser per row). New savesClient.listFull selects slot_name+state+updated_at+created_at in one query; savesClient caches auth.getUser for 30s and invalidates on auth state change. cloudSaves.mergeWithCloud and downloadAllMissing now use it. Net: 2 requests instead of 184. (2) Supabase telemetry mirror: new src/auth/telemetryEventsClient.js writes each consented analytics event into the 0003_telemetry_events table; consent.pushEvent now fires GA and lazy-imports the Supabase client so every milestone event lands in both. Anonymous (signed-out) inserts allowed via the migration RLS policy.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "M333 — Google Analytics wired. Hostname-based GA id resolver in src/main.js: emberveil.radgh.com -> G-5H26ZXKBCL, anything else (radgh.github.io/RSG-Demos, localhost) -> G-XP7B7KVNY8. Override path remains: window.__RSG_GA_ID or VITE_GA_ID. Demos hub generate_pages_index.js ships its own inline consent banner + GA snippet using the same rsg_consent_v1 localStorage key; same-origin so the decision shares with any game tab.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M332 — Class catalog page rebuild. Linked from the shared Catalogs nav. Sprite strip uses fixed flex-basis (4 across desktop, 2 across mobile). Unlockable classes stay full-opacity with an Unlock-Requirement section under the passives. Display-mode select (View: all / basic / images / attributes) hides per-card sections. Top-right Select toggle reveals per-card checkboxes; selected count shows next to the row count with a Copy List button (newline-separated names). Lightbox modeled on character-redesign.html: 7-pose nav, prev/next + arrow keys + Escape, mobile-safe scroll. Each frame fetches the matching pose-prompt from public/data/art_direction/<class>.json lazily and shows it as a Prompt block. emit-game-data.cjs now enriches classes.json with starter:true and unlockRequirement:{type,value,label} pulled from classUnlocks.js.",
+          "categories": [
+            "BugFix",
+            "Art"
+          ]
+        },
+        {
+          "text": "M331 — Class catalog page. New /assets/class-catalog.html shows all 28 playable classes with portrait, 7-pose sprite strip, role, armor type, primary attribute, lock state, full skill list (unlock level + MP cost + description), and class passive tree. Loads via data-source.js (same source as in-game screens; not a static copy). Filters: primary attr, armor tier, starter-vs-locked. Search matches class/role/hook/skill text. getPassives() added to data-source.js.",
+          "categories": [
+            "Balance",
+            "Art"
+          ]
+        },
+        {
+          "text": "M330 — Main-menu UX audit. Three signed-out auth buttons collapsed into one Sign In button + a unified modal (tabs for Sign In / Create Account, Google primary action up top). NG+ subtitle removed from the title screen, surfaced as a pill on Load Game cards instead. Fame chip shows just the number when fame > 0; the misleading \"Next: 2,000\" tier copy is gone since the unlock model is per-appearance. New GDPR consent banner with Accept / Reject / Privacy link; GA4 only loads on Accept; consent persists across the demos hub and game13 via same-origin localStorage + a 1-year same-site cookie. Major-milestone GA events wired: run_started, run_completed_win, run_completed_death, level_up, boss_killed, class_unlocked, fame_threshold_reached. New privacy.html in both game13 and the RSG-Demos hub, linked from the title-corner links and the hub footer. New ux-audit.html dev tool (linked from the hub footer only) renders the audit table + a live consent / dataLayer inspector. Optional 0003_telemetry_events.sql Supabase migration mirrors GA events into a first-party table; supabase-setup.md updated to cover it.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M329 — Title corner-links horizontal row on mobile (no more spaced-out vertical column on the right edge); combat victory modal soft-lock fixed by hiding CombatScreen root in onPause.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "M328 — Codex screen mobile layout. Horizontal scroll-tab bar of categories was unusable on iPhone (users had to side-scroll to discover categories). A real select dropdown takes over below 600px wide, plus the list/detail panels stack vertically on mobile so the entry list isn't crushed into a 38pct column on portrait.",
+          "categories": [
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M327 — Bug-fix follow-up. Appearance default-unlocks are now driven by the 5 starter classes (warrior/fighter/ranger/rogue/mage and their gender variants) instead of alphabetical-sort position; the gender filter is now display-only and no longer changes which appearances appear unlocked. Fame moved from per-save to GLOBAL localStorage (emberveil_fame_global_v1) — fame and any appearance unlocks now persist across new games and across saves. HireBuilderScreen class cards now reuse the CharacterBuilderScreen wrap-friendly CSS so mobile no longer ellipses class names down to just the role line. New public/docs/supabase-setup.md (linked from /assets/docs.html under Backend) walks through migration order, application options, verification, and rollback.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "M325 — Cloud-synced per-run statistics. New supabase/migrations/0002_run_stats.sql adds a run_stats table (RLS, after-insert trigger keeps last 100 rows per user). New src/auth/runStatsClient.js mirrors recordRunStarted / recordRunCompleted / recordHardcoreDeath into Supabase when signed in; failures are silent and never block local stats. localStorage life-stats stays the offline source of truth.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M324 — FTL-style map grid layout. Post-build _layoutZoneToFTLGrid pass snaps every Act 1-6 zone onto a 12-col x 12-row grid (6 logical rows x 2 alternating sublanes; even rows = thru-nodes, odd rows = one-offs/hidden bosses/dungeon entries). BFS depth assigns columns; original y-order preserved within column; zero edges added or removed.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M326 — Clockwork Turret + Tinker sprites regenerated via SpriteCook. Portraits act as reference assets so the 5 turret poses (portrait, south, east, east_attack, east_ko) and 7 tinker poses (portrait, south, east, east_attack, east_spell, east_block, east_ko) all share visual identity. New PNG art replaces the prior gpt-image-2 set; old files dropped.",
+          "categories": [
+            "Art"
+          ]
+        },
+        {
+          "text": "M323 follow-up — Checkbox checkmark glyph now rendered as an inline-SVG background-image at 70 percent size on the box itself, so it scales perfectly to whatever dimensions the checkbox has (the previous unicode-glyph approach kept the check tiny on 44x44 accessibility-sized checkboxes).",
+          "categories": [
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M323 — Combat depth + balance: Enable Slow Combat Options setting adds 0.5x/0.25x/pause + Next-Turn step button to combat speed cycle (default cycle stays 1x/2x/4x). XP curve slowed (level 2 = 120 XP, was 100). Prelude/Act-1 enemy damage bumped 50-70% so prologue enemies hit for 10+ effective damage post-mitigation against starter armor.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "M322 — UI/UX bulk pass (17 items): appearance unlock rework (own-class always free; cross-class unlocks individually on a per-appearance fame curve, replacing 2000-fame-unlocks-all). Reset Progression button (wipes unlocks/achievements/fame, keeps saves). Inventory Auto-Equip + Show Base Attributes converted to button-style toggles; global checkbox glyph rescaled via percentages so 44px accessibility boxes stay readable. HP/MP '?' new-game bug fixed (recalcPassiveStats runs in GameState.init). Party Attributes/Derived/Other split into 2-column max-width-720 grid on desktop. Boss intro double-overlay fixed (canvas BOSS flash removed; combat tick frozen until splash dismissed). Boss loot chest shows light-blue upgrade star left of card with 'Upgrade for X' tooltip + Auto Equip badge; rarity colors preserved on card. Boss chest auto-saves on pick. Town first-visit kick to main menu fixed (pushes TownScreen instead of popping into a missing parent). Town header button hidden until first town visit; Town badge counts new unlocks/quests, Party badge keeps skill points. Advanced new-game options laid out checkbox-left, title+desc-right. Map lines + labels boosted (text shadow, brighter dashes, wider strokes); Trailhead synthetic node guarantees ≥12% gap from first real node; travel-back popup pushed 15px down. Companion HP bars span full row width. Auto-equip toggle sweeps existing inventory on enable. prologue.jpg map background generated; per-zone 404 cache stops console spam.",
+          "categories": [
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M321 (labeled M315) — Balance analysis + full rebalance pass: Act 5 was trivial (party one-shots, 0 retaliation taken). Fixed simulator act-as-ng+ bug (was multiplying HP 410x) and class-casing bug (skills returned empty). Raised global damage multiplier 1.0→1.3, buffed all enemies Act 1-5 (HP +30-100%, DMG +30-60%), capped Backstab Assassinate damageMult 3.20→2.50, reduced Reality Shard stun 20%→10%. Post-rebalance: Act 5 regular 94-97% win, Architect final boss 87% win for level-appropriate party.",
+          "categories": [
+            "BugFix",
+            "Balance"
+          ]
+        },
+        {
+          "text": "M314 — XP catch-up multiplier (capped 3x) + account-wide achievement persistence (localStorage merged with saves; Reset button in Settings).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M313 — Consistency batch: removed Recommend/Auto bar, Show Base Attributes label, hidden skill-header bar, removed Skills- prefix, shop/craft auto-equip toasts, salvage margin, 3-step enchanter wizard, Whats New BASE_URL fix, codex Advanced Systems tab.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "M312 — UI unification: hire-custom card sizing, difficulty dialog fix + Settings removal, title fade-in, cloud overlap, save menu reflow + floating Back, stats Esc + persistence, custom confirm modal, tavern→PartyPanel routing, PartyPanel redesign, auto-equip sweep, reusable settingsPanel component.",
+          "categories": [
+            "BugFix",
+            "QoL"
+          ]
+        },
+        {
+          "text": "M316 — Settings/Title/Save/Party UI unification: 18 bug fixes. HireCustom class grid wider (160px min), class name ellipsis for long names. Title screen skips slide-in intro, fades in 0.35s. Cloud layer height reduced to avoid menu overlap. Save screen cards flex auto-height, no max-height, floating Back button with safe-area inset. Statistics screens get noGameMenuEsc=true so Escape closes them. Run stats flushed to localStorage on damage events, restored on page reload. Checkbox checkmark pseudo-element centered (left:6px, top:2px, 4x9px). SkillTree auto-recommend uses showConfirmModal() instead of window.confirm(). TownScreen Inventory/Party/Skills buttons route to PartyPanelScreen correct tab. PPS redesigned: dark brown bg, Inter primary font (Cinzel for active tab only), gold/brown borders. Portrait hidden inside equip-panel when in PPS. Auto-equip sweeps existing inventory when toggled ON. inv-char-class gets 0.6rem bottom margin. DifficultyDialog onLeave→onExit fix, Escape handler, noGameMenuEsc. settingsPanel.js reusable component created.",
+          "categories": [
+            "BugFix",
+            "Balance",
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M311 — Map/fog fixes: cross-zone back popup positioned below node with viewport clamping, per-zone last-position restored on return, fogged nodes non-hoverable, fog-of-war default ON.",
+          "categories": [
+            "BugFix"
+          ]
+        },
+        {
+          "text": "M310 — Critical combat/dungeon UI fixes: dg-screen unmount, combat 0px-height fix, victory scroll, boss-treasure pick-1-of-3 (rarity colors), achievement-pause-during-combat, boss-intro splash click-dismiss + HUD hide, fame popup teardown, combat-report rounding, Combat Settings pause panel, captions raised above HP bar.",
+          "categories": [
+            "BugFix",
+            "QoL"
+          ]
+        },
+        {
+          "text": "M309 — News pipeline (public/news/ + Latest News widget + news-archive.html), per-milestone asset snapshots, release.sh RELEASE_CATEGORY + BREAKING_CHANGES env vars, Whats New Migration Notes section.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M311 — Number rounding audit: src/utils/numberFormat.js formatStat() helper (int/pct/mult/damage/time/gold/auto kinds) deployed across CombatScreen, InventoryScreen, CharacterBuilderScreen, items.js tooltip. Fame-locked appearance unlocks: src/game/fame.js FAME_UNLOCKS map, CharacterBuilder shows fame counter + greyed locked tiles with unlock targets, TitleScreen fame chip, GameMenuScreen fame chip.",
+          "categories": [
+            "Balance",
+            "QoL"
+          ]
+        },
+        {
+          "text": "M307 — 25 unique-item recipes (boss/lore/always unlock) + 30 common-tier recipes (white/magic/rare gating), Blacksmith Unique tab, recipe-unlock toasts. Boss-defeat cinematic dialog (8 bosses, 3-line overlay, reduce-motion safe).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M306 — Infinite Depths post-game dungeon: scaling formula, 10 floor effects, anchor bosses every 5 floors with guaranteed legendary, local leaderboard, dedicated screen + catalog page.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "M305 — 24 sets (12 low / 8 mid / 4 endgame), 24 uniques tied to acts + bosses, 40 new affixes, 12 legendary effect hooks. onTakeDamage hook deferred to a follow-up cycle.",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M305 — Set items + uniques + 40 affixes: 24 sets (12 low 2-piece, 8 mid 3-piece, 4 endgame 4-5-piece), 24 unique items across Acts 1-5, 40 new affixes (elemental combos, conditional triggers, resource, defensive), legendary effect hooks (onCrit/onKill/onCast/onCombatStart) wired into combat, boss loot tables reference unique IDs, inventory UI purple/orange for set/unique items.",
+          "categories": [
+            "QoL"
+          ]
+        },
+        {
+          "text": "M304 — Multi-phase bosses (6 bosses w/2+ phases, HP tick markers), per-boss themed loot tables (8 bosses), 4 hidden boss encounters with stat/item/no-death gating, 40 new gated dialogue branches (8 per act).",
+          "categories": [
+            "Feature"
+          ]
+        },
+        {
+          "text": "M303 — Enemy spells (13 spells incl 3 boss wind-ups, interrupt+steal-buff support) + 10 blue-name champion modifiers with 5% spawn rate.",
+          "categories": [
+            "Balance"
+          ]
+        },
+        {
+          "text": "M302 — Gameplay batch 1: companion level-sync setting (party avg level on save slots), flee combat with DEX check (boss-immune), Rogue Pilfer Magic + Hemorrhage skills, Warlock Soul Curse with on-death spread, skill-check map nodes (4 examples), node-overlay system (merchant/minigame/bandit) that resolves before underlying node, per-spell DoT stacking modes.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 454,
+      "date": "2026-05-09",
+      "summary": "M432: images.html full refactor — appearance-driven manifest, no inline CSS, gender fixed (no unisex), orphan detection, transparency grid, single toolbar",
+      "items": [
+        {
+          "text": "M432: images.html full refactor — appearance-driven manifest, no inline CSS, gender fixed (no unisex), orphan detection, transparency grid, single toolbar",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 453,
+      "date": "2026-05-09",
+      "summary": "M431+: images.html full refactor — appearance-driven manifest, no inline CSS, gender fixed (no unisex), orphan detection, transparency grid, single toolbar, enemies/companions/bosses all appearance-driven",
+      "items": [
+        {
+          "text": "M431+: images.html full refactor — appearance-driven manifest, no inline CSS, gender fixed (no unisex), orphan detection, transparency grid, single toolbar, enemies/companions/bosses all appearance-driven",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 452,
+      "date": "2026-05-09",
+      "summary": "M452 — Shared nav/footer refactor: footer auto-mirrors header dropdowns from window.RSG_SITE_MENUS; changelog.html added to Docs; paginated news.html archive (12/page) at game root powered by unified news/news.json.",
+      "items": [
+        {
+          "text": "M452 — Shared nav/footer refactor: footer auto-mirrors header dropdowns from window.RSG_SITE_MENUS; changelog.html added to Docs; paginated news.html archive (12/page) at game root powered by unified news/news.json.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 451,
+      "date": "2026-05-09",
+      "summary": "M451 — Combat log fix (mobile only): padding-bottom: 1lh + pointer-events: auto on .cbt-log-entries so the last line shows + the panel is scrollable. Plus: frost_wyrmling sprite sheet regenerated via the new OpenAI 9-pose workflow (scripts/openai-spritesheet-gen.py). Sheet: 1024×1024, sliced into 9 256×256 cells (portrait, south, east, east_attack, east_spell, east_block, east_ko, east_cheer, east_wound), chroma-keyed against #00FF00 with tolerance 64 + despill, tagged for review on Image Review V2 with source='openai-9pose'. Pre-existing pixellab files backed up to spritecook/_pre_openai/.",
+      "items": [
+        {
+          "text": "M451 — Combat log fix (mobile only): padding-bottom: 1lh + pointer-events: auto on .cbt-log-entries so the last line shows + the panel is scrollable. Plus: frost_wyrmling sprite sheet regenerated via the new OpenAI 9-pose workflow (scripts/openai-spritesheet-gen.py). Sheet: 1024×1024, sliced into 9 256×256 cells (portrait, south, east, east_attack, east_spell, east_block, east_ko, east_cheer, east_wound), chroma-keyed against #00FF00 with tolerance 64 + despill, tagged for review on Image Review V2 with source='openai-9pose'. Pre-existing pixellab files backed up to spritecook/_pre_openai/.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 450,
+      "date": "2026-05-09",
+      "summary": "M450 — Six fixes + sprite workflow doc. (1) Combat log on mobile pushed below the turn-order strip (top:64) and given padding so the last line stops getting clipped. (2) Post-combat 'Items Found' list center-aligned (was right-aligned). (3) Cross-zone forward+back travel popups now position relative to the canvas content box (the wider scrollable area) instead of the visible viewport — popup sits next to the boss/start node regardless of scroll. (4) Filler combat nodes in late-act zones now use the zone's own ZONE_ENCOUNTER_POOLS first entry instead of the hardcoded 'goblin_patrol' default — Abyssal Depths fillers now use primordial_patrol etc. (5) HP-over-max bug fixed at the source: GameState.load + addToCompanions now run recalcPassiveStats which clamps current hp/mp to maxHp; PartyScreen._hpBar adds a defensive clamp at display. (6) Map auto-centers on the party's current node when MapScreen.onEnter fires (e.g. exiting Town). Plus: documented the OpenAI 9-pose sprite-sheet workflow in memory/openai-sprite-sheet-workflow.md and registered an auto-memory pointer.",
+      "items": [
+        {
+          "text": "M450 — Six fixes + sprite workflow doc. (1) Combat log on mobile pushed below the turn-order strip (top:64) and given padding so the last line stops getting clipped. (2) Post-combat 'Items Found' list center-aligned (was right-aligned). (3) Cross-zone forward+back travel popups now position relative to the canvas content box (the wider scrollable area) instead of the visible viewport — popup sits next to the boss/start node regardless of scroll. (4) Filler combat nodes in late-act zones now use the zone's own ZONE_ENCOUNTER_POOLS first entry instead of the hardcoded 'goblin_patrol' default — Abyssal Depths fillers now use primordial_patrol etc. (5) HP-over-max bug fixed at the source: GameState.load + addToCompanions now run recalcPassiveStats which clamps current hp/mp to maxHp; PartyScreen._hpBar adds a defensive clamp at display. (6) Map auto-centers on the party's current node when MapScreen.onEnter fires (e.g. exiting Town). Plus: documented the OpenAI 9-pose sprite-sheet workflow in memory/openai-sprite-sheet-workflow.md and registered an auto-memory pointer.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 449,
+      "date": "2026-05-09",
+      "summary": "M449 — Reverted M448 spell-rail-absolute change (broke desktop). Real fix for mobile bottom-panel expansion: when the player is in auto-combat mode (the default), the active-actor card is now display:none even when 'mobile-selected'. Previously we hid the card's CONTENTS (M444) but the card element itself still claimed padding inside .ev-hud__card-row, which is the empty-space expansion the user kept seeing each hero turn. Manual-combat mode still shows the card (needed for skill picking). Desktop unchanged.",
+      "items": [
+        {
+          "text": "M449 — Reverted M448 spell-rail-absolute change (broke desktop). Real fix for mobile bottom-panel expansion: when the player is in auto-combat mode (the default), the active-actor card is now display:none even when 'mobile-selected'. Previously we hid the card's CONTENTS (M444) but the card element itself still claimed padding inside .ev-hud__card-row, which is the empty-space expansion the user kept seeing each hero turn. Manual-combat mode still shows the card (needed for skill picking). Desktop unchanged.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 448,
+      "date": "2026-05-09",
+      "summary": "M448 — Mobile bottom panel no longer expands on a hero's turn. The spell rail was the only visible child of the active-actor card after M444's chrome strip; it lived in the .ev-hud's normal layout flow with bg+border+padding, adding ~48px when a hero turn fired. Combined with M447's live-hud-height groundY measurement, this shoved every sprite upward each turn. Fix: position:absolute the rail at bottom:100% of .ev-hud so it overlays the bottom of the canvas with a thin gutter without occupying any in-flow height. Active card itself now has height:0 so it stops reserving padding space. Portrait strip stays untouched.",
+      "items": [
+        {
+          "text": "M448 — Mobile bottom panel no longer expands on a hero's turn. The spell rail was the only visible child of the active-actor card after M444's chrome strip; it lived in the .ev-hud's normal layout flow with bg+border+padding, adding ~48px when a hero turn fired. Combined with M447's live-hud-height groundY measurement, this shoved every sprite upward each turn. Fix: position:absolute the rail at bottom:100% of .ev-hud so it overlays the bottom of the canvas with a thin gutter without occupying any in-flow height. Active card itself now has height:0 so it stops reserving padding space. Portrait strip stays untouched.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 447,
+      "date": "2026-05-08",
+      "summary": "M447 — Restored party-frame bottom strip; fixed canvas overlap. M446's panel-strip was the wrong fix — the user wanted the party frames KEPT, just not overlapping the canvas's bottom row. Reverted M446's .ev-hud chrome strip and the .ev-mobile-portrait-strip hide. Real fix: the canvas's groundY is now computed ABOVE the live .ev-hud height each frame (canvas.height/rect.height conversion + 6px breathing room, clamped to ≥40% sky band), so the front row of sprites clears the bottom panel cleanly instead of rendering behind it.",
+      "items": [
+        {
+          "text": "M447 — Restored party-frame bottom strip; fixed canvas overlap. M446's panel-strip was the wrong fix — the user wanted the party frames KEPT, just not overlapping the canvas's bottom row. Reverted M446's .ev-hud chrome strip and the .ev-mobile-portrait-strip hide. Real fix: the canvas's groundY is now computed ABOVE the live .ev-hud height each frame (canvas.height/rect.height conversion + 6px breathing room, clamped to ≥40% sky band), so the front row of sprites clears the bottom panel cleanly instead of rendering behind it.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 446,
+      "date": "2026-05-08",
+      "summary": "M446 — Kill the bottom combat panel on mobile (round 4). M438/M444/M445 hid pieces — the active-actor card, the .ev-corner ornaments, the .ev-companion-row — but the .ev-hud container itself still painted a bg gradient + border-top + box-shadow across the bottom of the screen, which IS the panel line the user kept seeing. M446 strips all of .ev-hud's chrome on mobile (background, border, box-shadow, padding, gap zeroed). The mobile portrait strip is also hidden (redundant with the turn-strip portraits at the top). Spell rail still works for manual targeting; nothing draws a panel line at the bottom anymore.",
+      "items": [
+        {
+          "text": "M446 — Kill the bottom combat panel on mobile (round 4). M438/M444/M445 hid pieces — the active-actor card, the .ev-corner ornaments, the .ev-companion-row — but the .ev-hud container itself still painted a bg gradient + border-top + box-shadow across the bottom of the screen, which IS the panel line the user kept seeing. M446 strips all of .ev-hud's chrome on mobile (background, border, box-shadow, padding, gap zeroed). The mobile portrait strip is also hidden (redundant with the turn-strip portraits at the top). Spell rail still works for manual targeting; nothing draws a panel line at the bottom anymore.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 445,
+      "date": "2026-05-08",
+      "summary": "M445 — Map: zero dead-ends, mobile combat panel completely hidden. Map: previous in-cap of 2 was saturating on shrinking-column transitions (3→2 / 4→3) leaving some from-nodes with 0 outgoing — the dead-end the user just hit. Replaced static cap with dynamic inCap = max(2, ceil(fromCount*2/toCount)) so 3→2 takes inCap=3, 4→2 takes inCap=4, etc. Added Pass 1.5 that guarantees every from-node has ≥1 outgoing (cap-bypass) and Pass 1.6 that guarantees ≥2 outgoing whenever toCount ≥ 2. Verified across 12 act zones: 0 dead-ends, 90%/238 trunk nodes have ≥2 forward paths (the remaining 10% are nodes feeding the single-node boss column where ≥2 is geometrically impossible). Mobile combat panel: companion row now hidden on ≤700px (.ev-companion-row {display:none}); defensive ev-companion-card chrome zeroed for any future row injection. The bottom .ev-hud no longer expands upward to mid-canvas when a companion is active.",
+      "items": [
+        {
+          "text": "M445 — Map: zero dead-ends, mobile combat panel completely hidden. Map: previous in-cap of 2 was saturating on shrinking-column transitions (3→2 / 4→3) leaving some from-nodes with 0 outgoing — the dead-end the user just hit. Replaced static cap with dynamic inCap = max(2, ceil(fromCount*2/toCount)) so 3→2 takes inCap=3, 4→2 takes inCap=4, etc. Added Pass 1.5 that guarantees every from-node has ≥1 outgoing (cap-bypass) and Pass 1.6 that guarantees ≥2 outgoing whenever toCount ≥ 2. Verified across 12 act zones: 0 dead-ends, 90%/238 trunk nodes have ≥2 forward paths (the remaining 10% are nodes feeding the single-node boss column where ≥2 is geometrically impossible). Mobile combat panel: companion row now hidden on ≤700px (.ev-companion-row {display:none}); defensive ev-companion-card chrome zeroed for any future row injection. The bottom .ev-hud no longer expands upward to mid-canvas when a companion is active.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 444,
+      "date": "2026-05-08",
+      "summary": "M444 — Mobile combat panel hidden properly + key-drift audit. Mobile fix: every child of the active-actor card except the spell rail is now display:none, including the .ev-corner ornaments and .ev-panel__seal; card itself loses bg/border/padding/box-shadow/min-width/transition; .ev-hud__card-row padding+gap zeroed and .ev-hud padding-top zeroed. Only the spell rail remains visible. Key-drift audit (see memory/key-drift-audit-m444.md): scanned every registry reference; found 57 issues, fixed 53 at the source: '2h_sword' → 'sword2h' (9 occurrences), '2h_axe' → 'axe2h' (5), 'mace' → 'iron_mace' (4), warrior class.skills[0] 'shield_bash' → 'cleave', necromancer class.skills 'death_coil' → 'corpse_explosion'. KEY_ALIAS in DialogScreen extended for defensive backup ('mace' added; 'unarmed' explicitly skipped for monks). 49 outstanding orphan ids in build.preferredSkills[] are display-only and reported in the audit md for triage via the new Dialog Inspector tool.",
+      "items": [
+        {
+          "text": "M444 — Mobile combat panel hidden properly + key-drift audit. Mobile fix: every child of the active-actor card except the spell rail is now display:none, including the .ev-corner ornaments and .ev-panel__seal; card itself loses bg/border/padding/box-shadow/min-width/transition; .ev-hud__card-row padding+gap zeroed and .ev-hud padding-top zeroed. Only the spell rail remains visible. Key-drift audit (see memory/key-drift-audit-m444.md): scanned every registry reference; found 57 issues, fixed 53 at the source: '2h_sword' → 'sword2h' (9 occurrences), '2h_axe' → 'axe2h' (5), 'mace' → 'iron_mace' (4), warrior class.skills[0] 'shield_bash' → 'cleave', necromancer class.skills 'death_coil' → 'corpse_explosion'. KEY_ALIAS in DialogScreen extended for defensive backup ('mace' added; 'unarmed' explicitly skipped for monks). 49 outstanding orphan ids in build.preferredSkills[] are display-only and reported in the audit md for triage via the new Dialog Inspector tool.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 443,
+      "date": "2026-05-08",
+      "summary": "M443 — Map: 2-incoming-per-node pass + Silas weapon-reward fix. Map: added Pass 3 to the FTL hex layout that pumps each to-node up to ≥2 incoming when there's a near-diagonal candidate with degree budget; in-cap tightened to 2 so total degree per node never exceeds 4 (verified 0 over-cap across 226 interior trunk nodes). 60%/65% of interior nodes now have ≥2 in/out paths. Silas weapon-reward fix: build-preset weapon keys ('2h_sword'/'2h_axe') were never matching WEAPON_BASES ('sword2h'/'axe2h'), so generateItem returned null and the prologue Silas gift dropped only 15 XP. Added KEY_ALIAS map + walks all the build's preferences in order until one resolves; fighter Execution (2H) now actually receives a Greatsword. Shield drop now respects two-handed weapons (no useless buckler when the build wants a 2H weapon).",
+      "items": [
+        {
+          "text": "M443 — Map: 2-incoming-per-node pass + Silas weapon-reward fix. Map: added Pass 3 to the FTL hex layout that pumps each to-node up to ≥2 incoming when there's a near-diagonal candidate with degree budget; in-cap tightened to 2 so total degree per node never exceeds 4 (verified 0 over-cap across 226 interior trunk nodes). 60%/65% of interior nodes now have ≥2 in/out paths. Silas weapon-reward fix: build-preset weapon keys ('2h_sword'/'2h_axe') were never matching WEAPON_BASES ('sword2h'/'axe2h'), so generateItem returned null and the prologue Silas gift dropped only 15 XP. Added KEY_ALIAS map + walks all the build's preferences in order until one resolves; fighter Execution (2H) now actually receives a Greatsword. Shield drop now respects two-handed weapons (no useless buckler when the build wants a 2H weapon).",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 442,
+      "date": "2026-05-08",
+      "summary": "M442 — Dialog & Encounter Inspector tool. Live data dump at public/assets/data/dialog-inspector.json regenerated on every release. New page at /assets/dialog-inspector.html lists every dialog (DIALOG_EVENTS, RANDOM_EVENTS, BOSS_DEATH_DIALOG), every encounter, and every map node grouped by type. Inline editor for choices, outcomes, and reward fields. Generate-Prompt button copies a paste-ready Claude Code instruction with file path, line hint, identifier, and only the dirty fields (not the full object).",
+      "items": [
+        {
+          "text": "M442 — Dialog & Encounter Inspector tool. Live data dump at public/assets/data/dialog-inspector.json regenerated on every release. New page at /assets/dialog-inspector.html lists every dialog (DIALOG_EVENTS, RANDOM_EVENTS, BOSS_DEATH_DIALOG), every encounter, and every map node grouped by type. Inline editor for choices, outcomes, and reward fields. Generate-Prompt button copies a paste-ready Claude Code instruction with file path, line hint, identifier, and only the dirty fields (not the full object).",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 441,
+      "date": "2026-05-08",
+      "summary": "M441 — FTL hex/staggered grid: every other column shifted down 50% so adjacent-column nodes never share visual y. All edges are diagonal — zero horizontal/vertical connections (verified: 196 total edges, 0 flat). Each from-node connects to its closest up-right + down-right diagonal in the next column → ≥2 forward paths per node (cap 1 only when next column has 1 node, e.g. into the boss). 1-node columns reach both diagonals of the next column for true 2-path branching. Dungeons + hidden bosses placed on the alternate (col+0.5, vy±0.5) grid so they sit between two trunk rows and never overlap a trunk edge. Boss forced to be the LAST entry in z.nodes so the forward cross-zone arrow only lights up on the boss node (was firing on whatever node ended up at array tail).",
+      "items": [
+        {
+          "text": "M441 — FTL hex/staggered grid: every other column shifted down 50% so adjacent-column nodes never share visual y. All edges are diagonal — zero horizontal/vertical connections (verified: 196 total edges, 0 flat). Each from-node connects to its closest up-right + down-right diagonal in the next column → ≥2 forward paths per node (cap 1 only when next column has 1 node, e.g. into the boss). 1-node columns reach both diagonals of the next column for true 2-path branching. Dungeons + hidden bosses placed on the alternate (col+0.5, vy±0.5) grid so they sit between two trunk rows and never overlap a trunk edge. Boss forced to be the LAST entry in z.nodes so the forward cross-zone arrow only lights up on the boss node (was firing on whatever node ended up at array tail).",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 440,
+      "date": "2026-05-08",
+      "summary": "M440 — True FTL diamond grid. ZONE_PROFILES table assigns each zone a (length, height) — Act 1a 5×3, Act 1b 6×3, Act 2a 6×4 etc. Column row-counts follow profile[c]=min(H,c+1,L-c) for a clean 1→2→3→4→3→2→1 taper. Adjacent columns differ by at most 1 row, so edges can only step ±1 row vertically — no jumps over center rows. Filler combat nodes inserted automatically when the authored trunk is shorter than the grid. Y range clamped to [0.10,0.84] so node labels stop getting cut off at the bottom edge. Removed the M406 detangle pass that was nudging snapped nodes back off-grid (root cause of the 'Shady Wanderer jumps to top row' bug). Verified across 12 act zones: zero >1-row jumps, zero backwards edges, zero degree-cap violations, zero broken exits.",
+      "items": [
+        {
+          "text": "M440 — True FTL diamond grid. ZONE_PROFILES table assigns each zone a (length, height) — Act 1a 5×3, Act 1b 6×3, Act 2a 6×4 etc. Column row-counts follow profile[c]=min(H,c+1,L-c) for a clean 1→2→3→4→3→2→1 taper. Adjacent columns differ by at most 1 row, so edges can only step ±1 row vertically — no jumps over center rows. Filler combat nodes inserted automatically when the authored trunk is shorter than the grid. Y range clamped to [0.10,0.84] so node labels stop getting cut off at the bottom edge. Removed the M406 detangle pass that was nudging snapped nodes back off-grid (root cause of the 'Shady Wanderer jumps to top row' bug). Verified across 12 act zones: zero >1-row jumps, zero backwards edges, zero degree-cap violations, zero broken exits.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 439,
+      "date": "2026-05-08",
+      "summary": "M439 — Battle status icons lifted above HP bar. Loot list shown one item per line with rarity colors (was comma-joined). World map rebuilt as a strict FTL-style staggered grid: every non-prologue zone now has 5-7 interior columns × 3 rows with a column-parity offset; every node is filled (filler 'Wandering Foes' combat encounters added where the authored zone was short); edges only go column c → c+1 (no backwards travel); per-column edge crossings prevented by a sign-test; total in+out connections capped at 4; dungeons + hidden bosses remain as single-edge off-shoots above/below the main band. Verified across all 12 act zones: zero >4-degree nodes, zero backwards edges, zero broken exits, zero node-position duplicates.",
+      "items": [
+        {
+          "text": "M439 — Battle status icons lifted above HP bar. Loot list shown one item per line with rarity colors (was comma-joined). World map rebuilt as a strict FTL-style staggered grid: every non-prologue zone now has 5-7 interior columns × 3 rows with a column-parity offset; every node is filled (filler 'Wandering Foes' combat encounters added where the authored zone was short); edges only go column c → c+1 (no backwards travel); per-column edge crossings prevented by a sign-test; total in+out connections capped at 4; dungeons + hidden bosses remain as single-edge off-shoots above/below the main band. Verified across all 12 act zones: zero >4-degree nodes, zero backwards edges, zero broken exits, zero node-position duplicates.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 438,
+      "date": "2026-05-08",
+      "summary": "M438 — Mobile combat: hide the active-actor 'hot card' frame (portrait + name + HP/MP + status row) — it was covering the bottom row of sprites and the bottom party HUD already shows party HP. Spell rail still floats below. Desktop unchanged. Also removed the legacy colored circle status indicators painted above each combatant's HP bar — the M434 DOM particle overlay (fire/poison/bleed/stun icons) is now the only status visualization on canvas.",
+      "items": [
+        {
+          "text": "M438 — Mobile combat: hide the active-actor 'hot card' frame (portrait + name + HP/MP + status row) — it was covering the bottom row of sprites and the bottom party HUD already shows party HP. Spell rail still floats below. Desktop unchanged. Also removed the legacy colored circle status indicators painted above each combatant's HP bar — the M434 DOM particle overlay (fire/poison/bleed/stun icons) is now the only status visualization on canvas.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 437,
+      "date": "2026-05-07",
+      "summary": "M437 — iPhone hero shrink. .hero min-height removed (was 100vh) and .hero-content min-height zeroed on ≤480px viewports; padding tightened to 60px top + 60px bottom with a 24px content gap so the hero sits at content height instead of leaving a tall empty band before scroll.",
+      "items": [
+        {
+          "text": "M437 — iPhone hero shrink. .hero min-height removed (was 100vh) and .hero-content min-height zeroed on ≤480px viewports; padding tightened to 60px top + 60px bottom with a 24px content gap so the hero sits at content height instead of leaving a tall empty band before scroll.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 436,
+      "date": "2026-05-07",
+      "summary": "M436 — Removed 'New Combat UI (Beta)' settings toggle (no alternate render path remains after M434/M435). isUiOverhaulEnabled() now returns true unconditionally. Removed vibej.am 2026 jam widget from index.html, play.html, contact.html, and the RSG Demos generate_pages_index.js. Restored the title-screen login UI (LOGIN_UI_DISABLED=false). iPhone 14 Pro front page: hero-stats grid forced to 3 columns (was 2 + orphan), top spacing above the '6 ACTS · 30 CLASSES · 35 COMPANIONS' tag tightened (24px top padding, 18px headline gap).",
+      "items": [
+        {
+          "text": "M436 — Removed 'New Combat UI (Beta)' settings toggle (no alternate render path remains after M434/M435). isUiOverhaulEnabled() now returns true unconditionally. Removed vibej.am 2026 jam widget from index.html, play.html, contact.html, and the RSG Demos generate_pages_index.js. Restored the title-screen login UI (LOGIN_UI_DISABLED=false). iPhone 14 Pro front page: hero-stats grid forced to 3 columns (was 2 + orphan), top spacing above the '6 ACTS · 30 CLASSES · 35 COMPANIONS' tag tightened (24px top padding, 18px headline gap).",
+          "categories": [
+            "Feature",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 435,
+      "date": "2026-05-07",
+      "summary": "M435 — Battle grid v3 cleanup: combat layout extracted into src/ui/combatLayout.js (pure function, 7 unit tests covering column ordering, no-companion shift, single-enemy centering, vertical stack, no-overlap guarantee, placement.x margin behavior, tall-column compression). Deleted src/ui/EvBattlefield.js, src/ui/ev-battlefield.css, the import in main.js, and the dead _evBattlefield destroy/listener cleanup branches in CombatScreen. Combat is now a single canvas-only rendering path: combatLayout → canvas sprites + canvas position tiles + DOM status overlay anchored to canvas coords + canvas-pointerdown spell targeting.",
+      "items": [
+        {
+          "text": "M435 — Battle grid v3 cleanup: combat layout extracted into src/ui/combatLayout.js (pure function, 7 unit tests covering column ordering, no-companion shift, single-enemy centering, vertical stack, no-overlap guarantee, placement.x margin behavior, tall-column compression). Deleted src/ui/EvBattlefield.js, src/ui/ev-battlefield.css, the import in main.js, and the dead _evBattlefield destroy/listener cleanup branches in CombatScreen. Combat is now a single canvas-only rendering path: combatLayout → canvas sprites + canvas position tiles + DOM status overlay anchored to canvas coords + canvas-pointerdown spell targeting.",
+          "categories": [
+            "Feature",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 434,
+      "date": "2026-05-07",
+      "summary": "M434 — Battle grid v3 reliability pass. Killed the legacy EvBattlefield SVG/DOM grid (the 'old squares') so canvas is the single rendering path: position tiles are drawn on canvas at the M433 column positions, status-effect particle indicators are anchored to live canvas (x,y) instead of SVG grid coords, and spell targeting now resolves through a canvas pointer-down hit-test (no SVG tile click). Combat backgrounds always paint (no transparent canvas over a missing SVG). EvBattlefield is no longer imported or mounted; remaining EvBattlefield references no-op until M435 deletes the file.",
+      "items": [
+        {
+          "text": "M434 — Battle grid v3 reliability pass. Killed the legacy EvBattlefield SVG/DOM grid (the 'old squares') so canvas is the single rendering path: position tiles are drawn on canvas at the M433 column positions, status-effect particle indicators are anchored to live canvas (x,y) instead of SVG grid coords, and spell targeting now resolves through a canvas pointer-down hit-test (no SVG tile click). Combat backgrounds always paint (no transparent canvas over a missing SVG). EvBattlefield is no longer imported or mounted; remaining EvBattlefield references no-op until M435 deletes the file.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 433,
+      "date": "2026-05-07",
+      "summary": "M433 — Battle grid v3: full restructure. Replaced the cumulative-patch placement code (M242→M431) with a clean column model. Heroes form a vertical column on the left; companions a vertical column to their right (and only when present — no phantom column); a 6% gap; then 1+ enemy columns filling the right zone evenly. Combat Debug placement.x/y/w/h are now true left/top/right/bottom margin percentages — +30% left margin shifts the whole grid right by 30%. Sprites scale down to fit both vertically (column height) and horizontally (column distance) so adjacent columns never overlap. Removed the legacy EvBattlefield position-override that was rewriting good canvas positions with the broken SVG grid coords.",
+      "items": [
+        {
+          "text": "M433 — Battle grid v3: full restructure. Replaced the cumulative-patch placement code (M242→M431) with a clean column model. Heroes form a vertical column on the left; companions a vertical column to their right (and only when present — no phantom column); a 6% gap; then 1+ enemy columns filling the right zone evenly. Combat Debug placement.x/y/w/h are now true left/top/right/bottom margin percentages — +30% left margin shifts the whole grid right by 30%. Sprites scale down to fit both vertically (column height) and horizontally (column distance) so adjacent columns never overlap. Removed the legacy EvBattlefield position-override that was rewriting good canvas positions with the broken SVG grid coords.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 432,
+      "date": "2026-05-07",
+      "summary": "M376 — Locked nav logo to 'Emberveil', added Todo + Damage Report + Balance Report to header & footer, capped global H1 size to 72px (hero-title preserved), built live images-manifest.json (every image on disk auto-listed with male/female class variants), and shipped a rebalance + battle grid news post with charts.",
+      "items": [
+        {
+          "text": "M376 — Locked nav logo to 'Emberveil', added Todo + Damage Report + Balance Report to header & footer, capped global H1 size to 72px (hero-title preserved), built live images-manifest.json (every image on disk auto-listed with male/female class variants), and shipped a rebalance + battle grid news post with charts.",
+          "categories": [
+            "Feature",
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 431,
+      "date": "2026-05-07",
+      "summary": "M431 — Battle grid: sprites are now sized to actually fit between adjacent columns. Hero column at 10%, companion at 34% (94px apart on phones), enemies pushed to 86% so a single-group encounter reaches the right edge. Within-column x-shift dropped to ~3px so heroes form a clean vertical column with y-stagger only — no more party-member-3 overlapping companion-2.",
+      "items": [
+        {
+          "text": "M431 — Battle grid: sprites are now sized to actually fit between adjacent columns. Hero column at 10%, companion at 34% (94px apart on phones), enemies pushed to 86% so a single-group encounter reaches the right edge. Within-column x-shift dropped to ~3px so heroes form a clean vertical column with y-stagger only — no more party-member-3 overlapping companion-2.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 430,
+      "date": "2026-05-07",
+      "summary": "M430 — Battle grid layout fix: ally zone hard-clamped to left 30%, enemy zone to right 50–94%; within each column every unit now gets a unique (x, y) so heroes and companions never overlap. Sprites are scaled to fit narrowest column on small screens.",
+      "items": [
+        {
+          "text": "M430 — Battle grid layout fix: ally zone hard-clamped to left 30%, enemy zone to right 50–94%; within each column every unit now gets a unique (x, y) so heroes and companions never overlap. Sprites are scaled to fit narrowest column on small screens.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 429,
+      "date": "2026-05-07",
+      "summary": "M429 — Recommended-weapon scoring now uses Total Damage with the wielder's primary attribute (no more Runesmiths auto-equipping wands), tooltips show Offense/Defense/Utility ratings, and the battle grid is rebuilt as a column-slot system that drops empty columns and never lets sprites overlap.",
+      "items": [
+        {
+          "text": "M429 — Recommended-weapon scoring now uses Total Damage with the wielder's primary attribute (no more Runesmiths auto-equipping wands), tooltips show Offense/Defense/Utility ratings, and the battle grid is rebuilt as a column-slot system that drops empty columns and never lets sprites overlap.",
+          "categories": [
+            "Feature",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 428,
+      "date": "2026-05-06",
+      "summary": "M428 — Border Roads 8-goblin warband cut to 3 (Goblin Vanguard); crowded fights now exclusive to Acts 4+. AI rewrite: hero AI now picks damage skills by expected damage (mult × hits × target count) instead of mp cost as proxy — Mage now correctly favors Fireball over Magic Missile against 6 targets. Mage Reality Shatter L20 4.5×→2.5×, Conflagration L15 2.5×→2.0× (Mage went +112%→+15%). Rogue Backstab L10 1.80→1.50 + condition bonus 0.7→0.5. Monk Palm Strike 1.8→2.0 + Flurry 1.0×3→1.2×3. Druid + Shaman classified as new 'hybrid_dps' role. Damage Report page filter updated.",
+      "items": [
+        {
+          "text": "M428 — Border Roads 8-goblin warband cut to 3 (Goblin Vanguard); crowded fights now exclusive to Acts 4+. AI rewrite: hero AI now picks damage skills by expected damage (mult × hits × target count) instead of mp cost as proxy — Mage now correctly favors Fireball over Magic Missile against 6 targets. Mage Reality Shatter L20 4.5×→2.5×, Conflagration L15 2.5×→2.0× (Mage went +112%→+15%). Rogue Backstab L10 1.80→1.50 + condition bonus 0.7→0.5. Monk Palm Strike 1.8→2.0 + Flurry 1.0×3→1.2×3. Druid + Shaman classified as new 'hybrid_dps' role. Damage Report page filter updated.",
+          "categories": [
+            "Feature",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 427,
+      "date": "2026-05-06",
+      "summary": "M427 — Companion star-rating now affects damage (P1=0.33×, P3=1.0×, P5=1.67× per-level stat scaling); War Dog/Shadow Cat/Dire Wolf/Ember Drake/Frost Wyrmling spread 457/688/970/1140/1292 at L20 (was all ~926). Live combat parity update so the rating shapes in-game numbers too. Skill rebalance: Mage Arcane Surge 4.0/5.5/7.0→2.5/3.5/4.5, Magic Missile L10 1.0×6→0.8×5; Fighter Killing Blow 2.6→2.2; Rogue Backstab L10 2.10→1.80, Shadow Step 1.27→1.10; Runesmith Sovereign Rune 2.4→2.0, Rune of Might 0.25/0.4→0.20/0.30; Monk Palm Strike 1.6→1.8, Flurry 0.8×3→1.0×3, Shadow Step 2.4→2.8; Scavenger Treasure Hunter 1.8→2.2, Big Score 2.5→3.0; Warlock Corruption 0.6→0.8, Hellfire 1.3→1.6.",
+      "items": [
+        {
+          "text": "M427 — Companion star-rating now affects damage (P1=0.33×, P3=1.0×, P5=1.67× per-level stat scaling); War Dog/Shadow Cat/Dire Wolf/Ember Drake/Frost Wyrmling spread 457/688/970/1140/1292 at L20 (was all ~926). Live combat parity update so the rating shapes in-game numbers too. Skill rebalance: Mage Arcane Surge 4.0/5.5/7.0→2.5/3.5/4.5, Magic Missile L10 1.0×6→0.8×5; Fighter Killing Blow 2.6→2.2; Rogue Backstab L10 2.10→1.80, Shadow Step 1.27→1.10; Runesmith Sovereign Rune 2.4→2.0, Rune of Might 0.25/0.4→0.20/0.30; Monk Palm Strike 1.6→1.8, Flurry 0.8×3→1.0×3, Shadow Step 2.4→2.8; Scavenger Treasure Hunter 1.8→2.2, Big Score 2.5→3.0; Warlock Corruption 0.6→0.8, Hellfire 1.3→1.6.",
+          "categories": [
+            "Feature",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 426,
+      "date": "2026-05-06",
+      "summary": "M426 — Benchmark AI fix + Ranger nerf + role reclassification + companion parity. Sim AI now picks zone-type damage skills (Paladin Consecration etc) and target=all_enemies; previously they were filtered out. Benchmark dummies set to dmg=[0,0] hit=0 so the lead survives the full sim window — Paladin / Monk / Tactician readings no longer truncated by mid-fight KO. Ranger Aimed Shot 1.5/2.2/3.0→1.4/1.9/2.4 + executeChance 0.3→0.15. Class roles updated: Mage/Warlock/Sorcerer/Oracle→aoe_dps; Demon Hunter/Scavenger/Swashbuckler→single_dps; Dragon Knight→tank; Paladin/Tactician/Tinker/Shaman→support. Companions now band 883-970 at L20 (vs 7-9 in M423), Healers 2011/2102 (parity).",
+      "items": [
+        {
+          "text": "M426 — Benchmark AI fix + Ranger nerf + role reclassification + companion parity. Sim AI now picks zone-type damage skills (Paladin Consecration etc) and target=all_enemies; previously they were filtered out. Benchmark dummies set to dmg=[0,0] hit=0 so the lead survives the full sim window — Paladin / Monk / Tactician readings no longer truncated by mid-fight KO. Ranger Aimed Shot 1.5/2.2/3.0→1.4/1.9/2.4 + executeChance 0.3→0.15. Class roles updated: Mage/Warlock/Sorcerer/Oracle→aoe_dps; Demon Hunter/Scavenger/Swashbuckler→single_dps; Dragon Knight→tank; Paladin/Tactician/Tinker/Shaman→support. Companions now band 883-970 at L20 (vs 7-9 in M423), Healers 2011/2102 (parity).",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 425,
+      "date": "2026-05-06",
+      "summary": "M425 — Companion sim wiring + benchmark improvements. Companions now use _effectiveLevel scaling so a L20 Frost Wyrmling reads as 300 dmg vs the prior 8 dmg. Benchmark dummies now have armor=0 so the chart measures raw class output instead of armor penetration. Re-snapshot generated; Todo List updated with current outliers (Ranger +193%, Paladin -79% suggesting AI skill-priority bug). Todo List link added to docs nav menu (shared/nav-header.js).",
+      "items": [
+        {
+          "text": "M425 — Companion sim wiring + benchmark improvements. Companions now use _effectiveLevel scaling so a L20 Frost Wyrmling reads as 300 dmg vs the prior 8 dmg. Benchmark dummies now have armor=0 so the chart measures raw class output instead of armor penetration. Re-snapshot generated; Todo List updated with current outliers (Ranger +193%, Paladin -79% suggesting AI skill-priority bug). Todo List link added to docs nav menu (shared/nav-header.js).",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 424,
+      "date": "2026-05-06",
+      "summary": "M424 — Extreme-class rebalance pass. Rogue NERFED: Backstab L10 2.50→2.10 + condition bonus 1.2→0.7, Shadow Step L18 2.53→1.9, Death Mark L20 dmgAmp 1.2→0.7. Monk BUFFED: Palm Strike 1.3→1.6, Flurry 0.6→0.8 (×3=2.4), Shadow Step 2.0→2.4. Paladin BUFFED: Holy Strike 1.1→1.5/2.0/2.6, Consecration 0.6→1.0/1.4/1.8. Shadow Dancer Shadow Strike 1.5→1.9 + Assassinate 2.2→2.6. Witch Hunter Silver Bolt 1.6→1.8 + Purge Strike 2.0→2.3. Shaman Spirit Bolt 1.5→1.0 (was hugely overperforming). Demon Hunter Demon Bolt 0.88→1.4 base. Todo List added to docs nav menu.",
+      "items": [
+        {
+          "text": "M424 — Extreme-class rebalance pass. Rogue NERFED: Backstab L10 2.50→2.10 + condition bonus 1.2→0.7, Shadow Step L18 2.53→1.9, Death Mark L20 dmgAmp 1.2→0.7. Monk BUFFED: Palm Strike 1.3→1.6, Flurry 0.6→0.8 (×3=2.4), Shadow Step 2.0→2.4. Paladin BUFFED: Holy Strike 1.1→1.5/2.0/2.6, Consecration 0.6→1.0/1.4/1.8. Shadow Dancer Shadow Strike 1.5→1.9 + Assassinate 2.2→2.6. Witch Hunter Silver Bolt 1.6→1.8 + Purge Strike 2.0→2.3. Shaman Spirit Bolt 1.5→1.0 (was hugely overperforming). Demon Hunter Demon Bolt 0.88→1.4 base. Todo List added to docs nav menu.",
+          "categories": [
+            "Feature",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 423,
+      "date": "2026-05-06",
+      "summary": "M423 — Todo List page (/assets/todo.html) with auto-generated skill audit findings from M422 baseline (Rogue +243%, Monk -89%, Paladin -95% etc); companion entries added to Damage Report snapshot (role=companion in graph filter); workflow memory entries for damage-report and todo pages. Companion accuracy flagged as critical TODO — synthetic companions in the harness use basic attacks only; needs class-skill wiring to match in-game numbers.",
+      "items": [
+        {
+          "text": "M423 — Todo List page (/assets/todo.html) with auto-generated skill audit findings from M422 baseline (Rogue +243%, Monk -89%, Paladin -95% etc); companion entries added to Damage Report snapshot (role=companion in graph filter); workflow memory entries for damage-report and todo pages. Companion accuracy flagged as critical TODO — synthetic companions in the harness use basic attacks only; needs class-skill wiring to match in-game numbers.",
+          "categories": [
+            "Feature",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 422,
+      "date": "2026-05-06",
+      "summary": "M422 — Damage Report tool page (/assets/damage-report.html): per-class damage/healing/mitigation graphed across levels (1,3,5,7,10,15,20,25,30) × {single,AoE} × {solo,group}. Multi-class overlay (per-color), milestone comparison (solid vs dotted), role filter. Snapshot generator at scripts/damage-report-snapshot.mjs (~1080 sims/run). Baseline M422 snapshot included.",
+      "items": [
+        {
+          "text": "M422 — Damage Report tool page (/assets/damage-report.html): per-class damage/healing/mitigation graphed across levels (1,3,5,7,10,15,20,25,30) × {single,AoE} × {solo,group}. Multi-class overlay (per-color), milestone comparison (solid vs dotted), role filter. Snapshot generator at scripts/damage-report-snapshot.mjs (~1080 sims/run). Baseline M422 snapshot included.",
+          "categories": [
+            "Feature",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 421,
+      "date": "2026-05-06",
+      "summary": "M421 — DPS rebalance pass: Stormcaller AoE pulled in (Static Field 0.5×→0.4×, Thunder Ring 1.8×→1.4×, Tempest 2.2×→1.6×); Witch Hunter single-target up (Silver Bolt 1.4×→1.6×, Purge Strike 1.7×→2.0×); Runesmith Rune Hammer 1.4×→1.6×; Priest Shadow Bolt 1.0×→1.3× so priests have meaningful damage between heals. Goal: AoE/single-target DPS within ±25% of role-mate median.",
+      "items": [
+        {
+          "text": "M421 — DPS rebalance pass: Stormcaller AoE pulled in (Static Field 0.5×→0.4×, Thunder Ring 1.8×→1.4×, Tempest 2.2×→1.6×); Witch Hunter single-target up (Silver Bolt 1.4×→1.6×, Purge Strike 1.7×→2.0×); Runesmith Rune Hammer 1.4×→1.6×; Priest Shadow Bolt 1.0×→1.3× so priests have meaningful damage between heals. Goal: AoE/single-target DPS within ±25% of role-mate median.",
+          "categories": [
+            "Feature",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 420,
+      "date": "2026-05-06",
+      "summary": "M420 — Healing rebalance: Dispel Curse heal nerfed 0.5×→0.20× Damage, Restorative Purge talent now adds 0.30× (max 0.50× total) instead of taking it to 1.5×; Mend buffed 200%→350% base, Steady Hand to 410%, Greater Mend 430%, Sanctuary Mend 590%. Priest is now the dominant healer; Witch Hunter cleanse is utility, not primary heal.",
+      "items": [
+        {
+          "text": "M420 — Healing rebalance: Dispel Curse heal nerfed 0.5×→0.20× Damage, Restorative Purge talent now adds 0.30× (max 0.50× total) instead of taking it to 1.5×; Mend buffed 200%→350% base, Steady Hand to 410%, Greater Mend 430%, Sanctuary Mend 590%. Priest is now the dominant healer; Witch Hunter cleanse is utility, not primary heal.",
+          "categories": [
+            "Feature",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 419,
+      "date": "2026-05-06",
+      "summary": "M419 — Combat Log save-trace and Combat Report buttons converted to floppy-disk download icons; new Combat Report download bundles meter data + log + party/enemy snapshots into one JSON",
+      "items": [
+        {
+          "text": "M419 — Combat Log save-trace and Combat Report buttons converted to floppy-disk download icons; new Combat Report download bundles meter data + log + party/enemy snapshots into one JSON",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 418,
+      "date": "2026-05-06",
+      "summary": "M418 — Hit chance soft-cap (knee 95, falloff 0.2, ceil 99); per-target min miss floor (3% normal, 4% champion, 6% boss); max level raised 20→30 with extended XP curve to 38160",
+      "items": [
+        {
+          "text": "M418 — Hit chance soft-cap (knee 95, falloff 0.2, ceil 99); per-target min miss floor (3% normal, 4% champion, 6% boss); max level raised 20→30 with extended XP curve to 38160",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 417,
+      "date": "2026-05-06",
+      "summary": "M412 — Auto-stat persistence fix + Auto Inventory/Passives/Spell-Talents checkboxes on New Character & Hire Custom + tavern hire post-hire auto-options popup + tavern hires now arrive with class starting gear",
+      "items": [
+        {
+          "text": "M412 — Auto-stat persistence fix + Auto Inventory/Passives/Spell-Talents checkboxes on New Character & Hire Custom + tavern hire post-hire auto-options popup + tavern hires now arrive with class starting gear",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 416,
+      "date": "2026-05-06",
+      "summary": "M416 — Hire Custom dialog redesign verified-and-closed (480 max-width + scrollable appearance grid + estimated stats + skill-points label all already shipped); Empty Thornwood node investigation closed (static-map audit clean); Craft menu gets gold-cost glyph + 'Craft (N)' count badge per recipe.",
+      "items": [
+        {
+          "text": "M416 — Hire Custom dialog redesign verified-and-closed (480 max-width + scrollable appearance grid + estimated stats + skill-points label all already shipped); Empty Thornwood node investigation closed (static-map audit clean); Craft menu gets gold-cost glyph + 'Craft (N)' count badge per recipe.",
+          "categories": [
+            "Feature",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 415,
+      "date": "2026-05-06",
+      "summary": "M415 — recursion guards on soulbind/counter/thorns wrapped in try/finally (no more deadlock-on-throw); M65 legacy sfx alias table dropped after audit confirmed no call sites; SPRITE_MAP audit deferred (defensive override, intentional).",
+      "items": [
+        {
+          "text": "M415 — recursion guards on soulbind/counter/thorns wrapped in try/finally (no more deadlock-on-throw); M65 legacy sfx alias table dropped after audit confirmed no call sites; SPRITE_MAP audit deferred (defensive override, intentional).",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 414,
+      "date": "2026-05-06",
+      "summary": "M414 — combat background now extends to top of party HUD via live --hud-h CSS var (matches caption-bar bottom anchor); last-node forward dashed connector now uses same DOM popup pattern as back-arrow with 'Travel forward to {Zone}' button; gameState._state initialized via factory to break DEFAULT_STATE reference sharing.",
+      "items": [
+        {
+          "text": "M414 — combat background now extends to top of party HUD via live --hud-h CSS var (matches caption-bar bottom anchor); last-node forward dashed connector now uses same DOM popup pattern as back-arrow with 'Travel forward to {Zone}' button; gameState._state initialized via factory to break DEFAULT_STATE reference sharing.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 413,
+      "date": "2026-05-05",
+      "summary": "M413 — verified pre-existing kill counters (warlock + pyromancer unlocks unblocked), maxMp fallback audit clean, flee-fail already canonical, cloud asset cleanup (deleted clouds_04/05 + thumbs + manifest scrub), milestone-jargon glossary doc.",
+      "items": [
+        {
+          "text": "M413 — verified pre-existing kill counters (warlock + pyromancer unlocks unblocked), maxMp fallback audit clean, flee-fail already canonical, cloud asset cleanup (deleted clouds_04/05 + thumbs + manifest scrub), milestone-jargon glossary doc.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 412,
+      "date": "2026-05-05",
+      "summary": "M412 — passives slot-mult bug fixed (pyro/stormcaller get unique replacement nodes), persistent per-combat statistics with Supabase mirror, attack-speed lines on item + compare tooltips, hero/companion split into separate 4-col HUD rows, fallen-hero ↔ save sync, dragon_hatchling 404 + zone-table cleanup.",
+      "items": [
+        {
+          "text": "M412 — passives slot-mult bug fixed (pyro/stormcaller get unique replacement nodes), persistent per-combat statistics with Supabase mirror, attack-speed lines on item + compare tooltips, hero/companion split into separate 4-col HUD rows, fallen-hero ↔ save sync, dragon_hatchling 404 + zone-table cleanup.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 411,
+      "date": "2026-05-05",
+      "summary": "M411 — 22-item batch: spell rewire to weapon-damage scaling, priest AI fixes (Call Back guard, surface offense), enemy hover tooltip (replaces click), companion power-tier balance + scaling, hireable-cost normalization (100g/level), trainer +1 button + spendGold crash + companion exclusion, build picker in custom hire + full point spend, levelup overlay opacity, dg-screen stale DOM cleanup, Void Scholar art set, Silas portrait regen, image-review-v2 page workflow callout + approve-command buttons, achievements wired to combat-victory + level-up + zone-unlock, Hell Breach duplicate boss demoted to challenge, level-up XP cap removed, ev-card class+level label, passives panel layout, items-found rarity colors, images.html combat-bg + orphaned section, Ember Plateau node-overlap pass-3 (edge-edge intersection nudge).",
+      "items": [
+        {
+          "text": "M411 — 22-item batch: spell rewire to weapon-damage scaling, priest AI fixes (Call Back guard, surface offense), enemy hover tooltip (replaces click), companion power-tier balance + scaling, hireable-cost normalization (100g/level), trainer +1 button + spendGold crash + companion exclusion, build picker in custom hire + full point spend, levelup overlay opacity, dg-screen stale DOM cleanup, Void Scholar art set, Silas portrait regen, image-review-v2 page workflow callout + approve-command buttons, achievements wired to combat-victory + level-up + zone-unlock, Hell Breach duplicate boss demoted to challenge, level-up XP cap removed, ev-card class+level label, passives panel layout, items-found rarity colors, images.html combat-bg + orphaned section, Ember Plateau node-overlap pass-3 (edge-edge intersection nudge).",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 410,
+      "date": "2026-05-04",
+      "summary": "M410 — priest overheal fix. Two bugs: (1) AI selection at low priest level had Mend as the only usable skill, so the default-personality fallback chain landed on usableSkills[0]=Mend even when nobody was hurt — now skips heal/buff fallbacks unless someone actually needs healing; (2) the 85% overheal-skip gate in _executeSkill required actor.autoBuild.auto_active or non-hero, so a regular AI hero priest bypassed it entirely — now triggers whenever the cast isn't a manual-mode hero. Combined: priests stop spamming Mend at full HP.",
+      "items": [
+        {
+          "text": "M410 — priest overheal fix. Two bugs: (1) AI selection at low priest level had Mend as the only usable skill, so the default-personality fallback chain landed on usableSkills[0]=Mend even when nobody was hurt — now skips heal/buff fallbacks unless someone actually needs healing; (2) the 85% overheal-skip gate in _executeSkill required actor.autoBuild.auto_active or non-hero, so a regular AI hero priest bypassed it entirely — now triggers whenever the cast isn't a manual-mode hero. Combined: priests stop spamming Mend at full HP.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 409,
+      "date": "2026-05-04",
+      "summary": "M409 — Lay on Hands AI fix. Heal/revive skills now bypass the partyMember.skills filter in the hero AI so a paladin with LoH unlocked but not in his manually-picked active list will still cast it on himself when wounded. Without this the picked-skills filter dropped LoH and the paladin let himself die instead of healing. Self-cast was already supported by the heal target picker (lowest-HP ally including self) — the bug was the AI never seeing the skill in the first place.",
+      "items": [
+        {
+          "text": "M409 — Lay on Hands AI fix. Heal/revive skills now bypass the partyMember.skills filter in the hero AI so a paladin with LoH unlocked but not in his manually-picked active list will still cast it on himself when wounded. Without this the picked-skills filter dropped LoH and the paladin let himself die instead of healing. Self-cast was already supported by the heal target picker (lowest-HP ally including self) — the bug was the AI never seeing the skill in the first place.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 408,
+      "date": "2026-05-04",
+      "summary": "M408 — combat grid mobile bottom-anchor. Previous attempts placed the grid by a top % which left ~300px of unused space below the front row on mobile because the grid's actual vertical span is small relative to the element height. Now the grid anchors by the element BOTTOM on portrait mobile so the front row sits just above the HUD with a 20px breathing margin and the back row sits just below the BG's horizon. Added a sky-floor clamp (top 20% of viewport) so back-row sprite heads can never appear in the sky band. Desktop layout untouched.",
+      "items": [
+        {
+          "text": "M408 — combat grid mobile bottom-anchor. Previous attempts placed the grid by a top % which left ~300px of unused space below the front row on mobile because the grid's actual vertical span is small relative to the element height. Now the grid anchors by the element BOTTOM on portrait mobile so the front row sits just above the HUD with a 20px breathing margin and the back row sits just below the BG's horizon. Added a sky-floor clamp (top 20% of viewport) so back-row sprite heads can never appear in the sky band. Desktop layout untouched.",
+          "categories": [
+            "Feature",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 407,
+      "date": "2026-05-04",
+      "summary": "M407 — combat grid mobile fix (followup to M406). Reverted the .ev-battlefield top:90px CSS hack which had desynced the SVG tile layer from the canvas character layer. Now both layers share the same mobile-aware sky percentage (0.42 in EvBattlefield, 0.40 in CombatScreen canvas) so tiles and characters move together. Added clamps so back-row sprite heads can't exit the viewport top and front-row tiles can't exceed the element height.",
+      "items": [
+        {
+          "text": "M407 — combat grid mobile fix (followup to M406). Reverted the .ev-battlefield top:90px CSS hack which had desynced the SVG tile layer from the canvas character layer. Now both layers share the same mobile-aware sky percentage (0.42 in EvBattlefield, 0.40 in CombatScreen canvas) so tiles and characters move together. Added clamps so back-row sprite heads can't exit the viewport top and front-row tiles can't exceed the element height.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 406,
+      "date": "2026-05-04",
+      "summary": "M406 — large batch across 6 parallel agents: Silas weapon reward fixed, combat grid recentered on iPhone 14 Pro, .cbt-hud z-index fix, dungeons overhauled (persistent HP/MP, 4-6 enemies/floor, +30-40% difficulty, victory dialog ordering, fluff floors removed), Weapon Scaling committed (INT/STR/DEX damage paths removed, Melee→Damage rename, ~150 skill descriptions updated), shrines reworked (no-op when used, revisitable when skipped, random buff pool replaces heal shrines), node detanglement post-pass (Wounded Soldier, Goblin Warrens, Ruined Watchtower), Forest Warden coins text, single auto-mode confirmation per save, auto checkbox moved next to tab title, Debug Map Nodes setting, combat stats persistence (3rd attempt — flush on fight end), parity warning fix (AoE log over-count), game speed persists across combats, mobile dropdown for Codex/Stats tabs, Achievements wired (War Dog → Trusty Companion + others), Achievements link on title, Enchanter/Priest sprites approved + class-catalog, warrior_east_block regenerated, Dust Roads + Ashen Gate backgrounds swapped.",
+      "items": [
+        {
+          "text": "M406 — large batch across 6 parallel agents: Silas weapon reward fixed, combat grid recentered on iPhone 14 Pro, .cbt-hud z-index fix, dungeons overhauled (persistent HP/MP, 4-6 enemies/floor, +30-40% difficulty, victory dialog ordering, fluff floors removed), Weapon Scaling committed (INT/STR/DEX damage paths removed, Melee→Damage rename, ~150 skill descriptions updated), shrines reworked (no-op when used, revisitable when skipped, random buff pool replaces heal shrines), node detanglement post-pass (Wounded Soldier, Goblin Warrens, Ruined Watchtower), Forest Warden coins text, single auto-mode confirmation per save, auto checkbox moved next to tab title, Debug Map Nodes setting, combat stats persistence (3rd attempt — flush on fight end), parity warning fix (AoE log over-count), game speed persists across combats, mobile dropdown for Codex/Stats tabs, Achievements wired (War Dog → Trusty Companion + others), Achievements link on title, Enchanter/Priest sprites approved + class-catalog, warrior_east_block regenerated, Dust Roads + Ashen Gate backgrounds swapped.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 405,
+      "date": "2026-05-03",
+      "summary": "M405 — Major batch follow-up: dialog hero/NPC banner side-swap, skill-rail flex-start, status-icon row above HP bar with proper PNG/SVG icons, hide skill rails when auto-combat (HUD shrinks, captions reflow dynamically via JS), 'Act N: Zone — unlocked' consolidated, faint-gold tile borders (no more green/red fills), speed button restored in auto-combat mode, full map untangle (79 → 6 crossings, dungeon nodes for Goblin Warrens + Ash Catacombs + Spider Queen no longer dropped by exit cap, stray hidden-node lines suppressed in renderer, debug log via __mapDebug), achievement screen merges registry-only entries (Untouchable, Hard Hitter, etc), shrine fail statuses now applied to next combat (was a no-op), Mage Arcane Familiar talent unlocks companion via auto-build path, Ash Wraith Deathchill does real damage + slow + bleed, DoT attribution per-source with stacking up to 3 + meter credit, Party screen sub-options Rename/Inventory/Spells/Passives/Attributes via manager.replace, gold-gradient XP bar, grid placement default OFF (incognito-clean) and bottom margin compresses upward, sprite-adjust nav-header height fix so foot is visible, bard_female sprite scaling JSON, .pp-tip-pop width cap + .passive-points-banner shrunk + skill-list-panel overflow-x:hidden.",
+      "items": [
+        {
+          "text": "M405 — Major batch follow-up: dialog hero/NPC banner side-swap, skill-rail flex-start, status-icon row above HP bar with proper PNG/SVG icons, hide skill rails when auto-combat (HUD shrinks, captions reflow dynamically via JS), 'Act N: Zone — unlocked' consolidated, faint-gold tile borders (no more green/red fills), speed button restored in auto-combat mode, full map untangle (79 → 6 crossings, dungeon nodes for Goblin Warrens + Ash Catacombs + Spider Queen no longer dropped by exit cap, stray hidden-node lines suppressed in renderer, debug log via __mapDebug), achievement screen merges registry-only entries (Untouchable, Hard Hitter, etc), shrine fail statuses now applied to next combat (was a no-op), Mage Arcane Familiar talent unlocks companion via auto-build path, Ash Wraith Deathchill does real damage + slow + bleed, DoT attribution per-source with stacking up to 3 + meter credit, Party screen sub-options Rename/Inventory/Spells/Passives/Attributes via manager.replace, gold-gradient XP bar, grid placement default OFF (incognito-clean) and bottom margin compresses upward, sprite-adjust nav-header height fix so foot is visible, bard_female sprite scaling JSON, .pp-tip-pop width cap + .passive-points-banner shrunk + skill-list-panel overflow-x:hidden.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 404,
+      "date": "2026-05-03",
+      "summary": "M404 — Major batch follow-up: status tooltips on party frames + compact +N points badge + async sim + .pps-char-badge live update + manual-combat default fixed; Manual Characters advanced option (replaces Hard-difficulty auto-lock); one-liner advanced descriptions; New Combat UI (BETA) default ON; Auto checkbox in char creation + custom hire; starting gold 50 + Silas gold gift 100; random-name dice icon in char creation; Load-game Advanced (N) collapsible; cleric_priestess flagged NPC; quest reward audit (Collapsed Passage + others) + Silas amulet/ring fix (was passing 'amulet' which isn't a valid item base); hybrid skill resolver always treats STR scaling as heavy (was falling to light); Holy Strike + 3 hybrid skill descriptions reworded; Combat Debug Show Grid Placement now lights ALL 7×6 cells; emit-game-data emits damageStat/damageMult/damageCategory; tavern roster genuinely depletes (no reshuffle); auto-toggle button parity between Inventory and Attributes.",
+      "items": [
+        {
+          "text": "M404 — Major batch follow-up: status tooltips on party frames + compact +N points badge + async sim + .pps-char-badge live update + manual-combat default fixed; Manual Characters advanced option (replaces Hard-difficulty auto-lock); one-liner advanced descriptions; New Combat UI (BETA) default ON; Auto checkbox in char creation + custom hire; starting gold 50 + Silas gold gift 100; random-name dice icon in char creation; Load-game Advanced (N) collapsible; cleric_priestess flagged NPC; quest reward audit (Collapsed Passage + others) + Silas amulet/ring fix (was passing 'amulet' which isn't a valid item base); hybrid skill resolver always treats STR scaling as heavy (was falling to light); Holy Strike + 3 hybrid skill descriptions reworded; Combat Debug Show Grid Placement now lights ALL 7×6 cells; emit-game-data emits damageStat/damageMult/damageCategory; tavern roster genuinely depletes (no reshuffle); auto-toggle button parity between Inventory and Attributes.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 403,
+      "date": "2026-05-03",
+      "summary": "M403 — Major batch: combat damage rolls per-hit, Multi-Shot fix, manual-combat clickable + tooltips repositioned + mana indicator, 24px desktop click targets, disabled-skill tooltips, captions positioning, hide auto-toggles in manual mode, 12-enemy battle grid, Party Skills/Inventory route to new PartyPanelScreen, stats Last Saved indicator, RSG-Demos card relinked (Home → index, Play Now → play.html), front page heroImg fix + live-data-driven class/companion counts + primary-attribute bubbles + 'By the numbers' Initiative removed + companion loyalty/Auto Rounds section removed, assets/images.html bosses/enemies split + new NPCs filter + ash_wraith hover-swap fix, sprite-adjust.html guides feature + Single compare mode + Bard Male sizing, custom-content.html updated for builds + hybrid skills + sleep status + new build-preset.json schema, Silas portrait regen (full bust shot), prologue + dust_roads + 8 other zone map_bg JPGs added, dialog conversation grid centered with 100px gap and 2x desktop sprites + NPC name in dedicated banner, prologue combat bg pointer added.",
+      "items": [
+        {
+          "text": "M403 — Major batch: combat damage rolls per-hit, Multi-Shot fix, manual-combat clickable + tooltips repositioned + mana indicator, 24px desktop click targets, disabled-skill tooltips, captions positioning, hide auto-toggles in manual mode, 12-enemy battle grid, Party Skills/Inventory route to new PartyPanelScreen, stats Last Saved indicator, RSG-Demos card relinked (Home → index, Play Now → play.html), front page heroImg fix + live-data-driven class/companion counts + primary-attribute bubbles + 'By the numbers' Initiative removed + companion loyalty/Auto Rounds section removed, assets/images.html bosses/enemies split + new NPCs filter + ash_wraith hover-swap fix, sprite-adjust.html guides feature + Single compare mode + Bard Male sizing, custom-content.html updated for builds + hybrid skills + sleep status + new build-preset.json schema, Silas portrait regen (full bust shot), prologue + dust_roads + 8 other zone map_bg JPGs added, dialog conversation grid centered with 100px gap and 2x desktop sprites + NPC name in dedicated banner, prologue combat bg pointer added.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 402,
+      "date": "2026-05-03",
+      "summary": "M402 — Hotfix: New Game black screen on iPhone caused by property/method name collision. Renamed CharacterBuilderScreen.this._build (chosen build preset) to this._buildChoice so it no longer shadows the _build() init method that onEnter() calls. The black screen with 'Uncaught TypeError: this._build is not a function' is gone.",
+      "items": [
+        {
+          "text": "M402 — Hotfix: New Game black screen on iPhone caused by property/method name collision. Renamed CharacterBuilderScreen.this._build (chosen build preset) to this._buildChoice so it no longer shadows the _build() init method that onEnter() calls. The black screen with 'Uncaught TypeError: this._build is not a function' is gone.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 401,
+      "date": "2026-05-03",
+      "summary": "M401 — Sprite review actions (6 flips, 2 regens), AoE per-target damage logging, lifetime stats sync to supabase, and rate-limited JS error telemetry. Flipped six sprites that were facing west (enchanter male spell + ko, enchanter female ko, priest female ko, priest male ko + spell). Regenerated priest_female_south as a full body (was cropped to portrait) and priest_female_east_attack with a single mace (was dual-wielding); both flagged for re-review. Approved the other 26 new-class poses per user review. Combat log now emits one line per AoE hit so a Whirlwind on 4 enemies reads as 4 separate outcomes plus a header summary instead of a single rolled-up line. Lifetime stats (LIFE_KEY) and run stats (RUN_STATS_KEY) are now allow-listed for cloud sync; saveLife pushes to supabase fire-and-forget after each local write (capped at 200 KB, oldest run history trimmed first). main.js pulls the lifetime stats from cloud on sign-in before merging save slots so the Stats panel character/run survives a hard refresh. New JS error capture in telemetry.js: window.onerror + unhandledrejection report to recordEvent('js_error',…) with per-fingerprint cap of 5 and per-session cap of 30 so a tight error loop can't spam telemetry. No PII.",
+      "items": [
+        {
+          "text": "M401 — Sprite review actions (6 flips, 2 regens), AoE per-target damage logging, lifetime stats sync to supabase, and rate-limited JS error telemetry. Flipped six sprites that were facing west (enchanter male spell + ko, enchanter female ko, priest female ko, priest male ko + spell). Regenerated priest_female_south as a full body (was cropped to portrait) and priest_female_east_attack with a single mace (was dual-wielding); both flagged for re-review. Approved the other 26 new-class poses per user review. Combat log now emits one line per AoE hit so a Whirlwind on 4 enemies reads as 4 separate outcomes plus a header summary instead of a single rolled-up line. Lifetime stats (LIFE_KEY) and run stats (RUN_STATS_KEY) are now allow-listed for cloud sync; saveLife pushes to supabase fire-and-forget after each local write (capped at 200 KB, oldest run history trimmed first). main.js pulls the lifetime stats from cloud on sign-in before merging save slots so the Stats panel character/run survives a hard refresh. New JS error capture in telemetry.js: window.onerror + unhandledrejection report to recordEvent('js_error',…) with per-fingerprint cap of 5 and per-session cap of 30 so a tight error loop can't spam telemetry. No PII.",
+          "categories": [
+            "Feature",
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 400,
+      "date": "2026-05-03",
+      "summary": "M400 — Hotfix: defensive try/catch on Character Builder steps + iOS Chrome pull-to-refresh on the title screen + Silas conversation moved to the actual first dialog node + buckler fix in build-aware loot. New Game flow on iPhone falls through to a safe step instead of black-screening if any single render throws (and logs the error). TitleScreen toggles overscroll on so iOS Chrome pull-to-refresh works on the main menu, off when entering the game so combat taps don't accidentally refresh.",
+      "items": [
+        {
+          "text": "M400 — Hotfix: defensive try/catch on Character Builder steps + iOS Chrome pull-to-refresh on the title screen + Silas conversation moved to the actual first dialog node + buckler fix in build-aware loot. New Game flow on iPhone falls through to a safe step instead of black-screening if any single render throws (and logs the error). TitleScreen toggles overscroll on so iOS Chrome pull-to-refresh works on the main menu, off when entering the game so combat taps don't accidentally refresh.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 399,
+      "date": "2026-05-03",
+      "summary": "M400 — Hotfix: defensive try/catch wrap on Character Builder steps so a render exception in any single step (build, stats, class) falls through to a safe step instead of black-screening the New Game flow on iPhone. Also moves the Silas conversation onto prologue_warning (the actual first dialog node players see) instead of the unused prologue_start, fixes a wood_shield item key reference (was undefined, would throw on the build-aware weapon gift path), and reuses the existing Silas Veilward sprite so the build-aware prologue gift actually fires.",
+      "items": [
+        {
+          "text": "M400 — Hotfix: defensive try/catch wrap on Character Builder steps so a render exception in any single step (build, stats, class) falls through to a safe step instead of black-screening the New Game flow on iPhone. Also moves the Silas conversation onto prologue_warning (the actual first dialog node players see) instead of the unused prologue_start, fixes a wood_shield item key reference (was undefined, would throw on the build-aware weapon gift path), and reuses the existing Silas Veilward sprite so the build-aware prologue gift actually fires.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 398,
+      "date": "2026-05-03",
+      "summary": "M398 — Surface 28 new class sprite entries in the image-review-v2 Pending filter. Enchanter male+female and Priest male+female (7 poses each = 28 entries) appended to the m351 open review batch with their referenceSheet prompts and pose-style hints; Pending mode at /assets/image-review-v2.html now shows them ready for approval/feedback.",
+      "items": [
+        {
+          "text": "M398 — Surface 28 new class sprite entries in the image-review-v2 Pending filter. Enchanter male+female and Priest male+female (7 poses each = 28 entries) appended to the m351 open review batch with their referenceSheet prompts and pose-style hints; Pending mode at /assets/image-review-v2.html now shows them ready for approval/feedback.",
+          "categories": [
+            "Feature",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 397,
+      "date": "2026-05-03",
+      "summary": "M397 — Image-review surfaces new class art with prompts + appearance picker shows unlocked portraits first. Backfilled the 28 Enchanter/Priest male+female sprite entries on /assets/image-review-v2.html with prompt context (was empty); the manifest builder now falls back to the art_direction reference-sheet prompt + per-pose style notes when a frame doesn't carry its own prompt yet. Character Builder appearance picker now lists all unlocked portraits before any fame-locked ones while keeping the existing class-grouped order within each band.",
+      "items": [
+        {
+          "text": "M397 — Image-review surfaces new class art with prompts + appearance picker shows unlocked portraits first. Backfilled the 28 Enchanter/Priest male+female sprite entries on /assets/image-review-v2.html with prompt context (was empty); the manifest builder now falls back to the art_direction reference-sheet prompt + per-pose style notes when a frame doesn't carry its own prompt yet. Character Builder appearance picker now lists all unlocked portraits before any fame-locked ones while keeping the existing class-grouped order within each band.",
+          "categories": [
+            "Feature",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 396,
+      "date": "2026-05-03",
+      "summary": "M396 — Weapon Scaling mode + skill rebalance + tooltips + Enchanter female / Priest male sprites. New advanced game-creation toggle Weapon Scaling drives skill damage off the equipped weapon's roll instead of STR/DEX/INT directly; INT spells still benefit from spell power but raw INT no longer multiplies spell damage. Adds standardized benchmark gear packs at L1/3/5/7/10/15/20/25 (no legendaries / uniques) plus a per-class skill benchmark sim that surfaced and trimmed several stacking-multiplier outliers (Cleric Smite, Knight Holy Strike, Tinker Bolt, Monk Shadow Step, Dragon Knight Claw / Breath). Spell tooltips on the new combat HUD now show estimated damage on the primary target plus the full formula breakdown (stat term × mult × (1 + spell/attack power) + weapon flavor); Skills menu picked up the same expanded formula. Damaging skills no longer mislabel as utility in the legacy popup. Generated review-flagged Enchanter (female) and Priest (male) sprite sets and deployed them.",
+      "items": [
+        {
+          "text": "M396 — Weapon Scaling mode + skill rebalance + tooltips + Enchanter female / Priest male sprites. New advanced game-creation toggle Weapon Scaling drives skill damage off the equipped weapon's roll instead of STR/DEX/INT directly; INT spells still benefit from spell power but raw INT no longer multiplies spell damage. Adds standardized benchmark gear packs at L1/3/5/7/10/15/20/25 (no legendaries / uniques) plus a per-class skill benchmark sim that surfaced and trimmed several stacking-multiplier outliers (Cleric Smite, Knight Holy Strike, Tinker Bolt, Monk Shadow Step, Dragon Knight Claw / Breath). Spell tooltips on the new combat HUD now show estimated damage on the primary target plus the full formula breakdown (stat term × mult × (1 + spell/attack power) + weapon flavor); Skills menu picked up the same expanded formula. Damaging skills no longer mislabel as utility in the legacy popup. Generated review-flagged Enchanter (female) and Priest (male) sprite sets and deployed them.",
+          "categories": [
+            "Feature",
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 395,
+      "date": "2026-05-03",
+      "summary": "M395 — Priest class + class tags + damage categories. Adds Priest (female art, review-flagged) with heal/revive/shadow-damage skills (Mend, Call Back, Shadow Bolt, Shadow Veil). Introduces a class-tag system (healer / reviver / arcane / dark / holy / tracker / shadow…) so quest gates like the wounded soldier accept any healer instead of only Cleric, and the mage-glyph apprentice accepts any arcane caster. Damage skills now resolve a heavy/light/magic category and apply per-category multipliers; magicMult set to 0.78 to bring spells closer to basic-attack damage (sim shows Act 1 dropping from 15.3 to 13.3 percent win rate, Act 4 18.0 to 9.0, Act 6 9.2 to 2.8 — spells were carrying late-act AoE disproportionately and now read 1.5-2x basic attacks instead of 4x+).",
+      "items": [
+        {
+          "text": "M395 — Priest class + class tags + damage categories. Adds Priest (female art, review-flagged) with heal/revive/shadow-damage skills (Mend, Call Back, Shadow Bolt, Shadow Veil). Introduces a class-tag system (healer / reviver / arcane / dark / holy / tracker / shadow…) so quest gates like the wounded soldier accept any healer instead of only Cleric, and the mage-glyph apprentice accepts any arcane caster. Damage skills now resolve a heavy/light/magic category and apply per-category multipliers; magicMult set to 0.78 to bring spells closer to basic-attack damage (sim shows Act 1 dropping from 15.3 to 13.3 percent win rate, Act 4 18.0 to 9.0, Act 6 9.2 to 2.8 — spells were carrying late-act AoE disproportionately and now read 1.5-2x basic attacks instead of 4x+).",
+          "categories": [
+            "Feature",
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 394,
+      "date": "2026-05-02",
+      "summary": "M398 — Enchanter class with sleep magic + status particles + bottom-pinned skill menu + hero rename. Combat now ships an Enchanter class (male sprites generated, art pending review) with new Sleep status that locks targets for 2 rounds and breaks on damage; AI auto-skips sleeping targets. Adds floating status particles (3 SpriteCook PNGs for burning/frozen/sleeping plus SVG fallbacks for poison, bleed, stun, slow, regen, curse, silence, blind, marked). Mobile manual-mode menu pins to the bottom strip without an overlay so the battlefield stays visible. Heroes can be renamed from the Party screen with a customName / defaultName split — clearing the field reverts to the original.",
+      "items": [
+        {
+          "text": "M398 — Enchanter class with sleep magic + status particles + bottom-pinned skill menu + hero rename. Combat now ships an Enchanter class (male sprites generated, art pending review) with new Sleep status that locks targets for 2 rounds and breaks on damage; AI auto-skips sleeping targets. Adds floating status particles (3 SpriteCook PNGs for burning/frozen/sleeping plus SVG fallbacks for poison, bleed, stun, slow, regen, curse, silence, blind, marked). Mobile manual-mode menu pins to the bottom strip without an overlay so the battlefield stays visible. Heroes can be renamed from the Party screen with a customName / defaultName split — clearing the field reverts to the original.",
+          "categories": [
+            "Feature",
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 393,
+      "date": "2026-05-02",
+      "summary": "M393 — combat HUD overhaul pass: 2.5D grid lifted above HUD, single-row spell rail, compact companion frames, AI badge dropped, manual-mode hides speed/step buttons, captions repositioned, tap-clicks bail on new HUD, portrait fallback chain prefers south then portrait then east, 1v1 placed face-to-face on same row, debug placement knobs feed grid spacing, Show Companion Frames toggle.",
+      "items": [
+        {
+          "text": "M393 — combat HUD overhaul pass: 2.5D grid lifted above HUD, single-row spell rail, compact companion frames, AI badge dropped, manual-mode hides speed/step buttons, captions repositioned, tap-clicks bail on new HUD, portrait fallback chain prefers south then portrait then east, 1v1 placed face-to-face on same row, debug placement knobs feed grid spacing, Show Companion Frames toggle.",
+          "categories": [
+            "Feature",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 392,
+      "date": "2026-05-01",
+      "summary": "M392 — 2.5D battlefield tiles now always visible at low intensity behind canvas sprites; occupied/targeting states ramp up from baseline.",
+      "items": [
+        {
+          "text": "M392 — 2.5D battlefield tiles now always visible at low intensity behind canvas sprites; occupied/targeting states ramp up from baseline.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 391,
+      "date": "2026-05-01",
+      "summary": "M391 — UI overhaul polish: settings 'Back' no longer leaks the prior panel after toggling New UI; canvas BG suppressed in overhaul mode so the painted 2.5D scene shows through; EvBattlefield now mounts behind the canvas (canvas-driven sprites, animations, enemies, war_dog, stance variants all visible again — no more 404s on broken sprite paths); 2.5D ground tiles now only render under occupied positions instead of a full 6×6 checkerboard; every hero's spell-rail icons populate on mount in cold state (instead of only the active hero); party-card portraits switched to _south pose with chained fallbacks (_south → _east → fallback_portrait.svg, which now exists); card-row padding added so corner ornaments stop triggering page scroll.",
+      "items": [
+        {
+          "text": "M391 — UI overhaul polish: settings 'Back' no longer leaks the prior panel after toggling New UI; canvas BG suppressed in overhaul mode so the painted 2.5D scene shows through; EvBattlefield now mounts behind the canvas (canvas-driven sprites, animations, enemies, war_dog, stance variants all visible again — no more 404s on broken sprite paths); 2.5D ground tiles now only render under occupied positions instead of a full 6×6 checkerboard; every hero's spell-rail icons populate on mount in cold state (instead of only the active hero); party-card portraits switched to _south pose with chained fallbacks (_south → _east → fallback_portrait.svg, which now exists); card-row padding added so corner ornaments stop triggering page scroll.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 390,
+      "date": "2026-05-01",
+      "summary": "M390 — manual-mode polish: extra-attack drain now staggers strikes (380ms apart) so each bonus swing paints with its own damage number; turn loop pauses via _drainingExtras flag mid-chain. Mobile HUD controls (weapon/utility/speed/pause) tighten under 700px and hide empty Tap Power buttons so they stop crowding the manual-mode card rail.",
+      "items": [
+        {
+          "text": "M390 — manual-mode polish: extra-attack drain now staggers strikes (380ms apart) so each bonus swing paints with its own damage number; turn loop pauses via _drainingExtras flag mid-chain. Mobile HUD controls (weapon/utility/speed/pause) tighten under 700px and hide empty Tap Power buttons so they stop crowding the manual-mode card rail.",
+          "categories": [
+            "Feature",
+            "Balance",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 389,
+      "date": "2026-05-01",
+      "summary": "M389 — manual-mode UI polish: hardcore lock + spell tooltips + mobile portrait strip + per-encounter BG variants. Hardcore difficulty now visibly locks Manual Combat on (lock badge in DifficultyDialog; gameState.load also enforces). Spell rail buttons get a flourish-cornered tooltip card (mobile: bottom sheet) showing name, MP/CD, AOE, est damage, and description. Below 700px the rail collapses to one expanded card plus a 36px portrait strip; AWAITING-INPUT forces selection to the active actor. EvBattlefield BG now picks 1 of 3 variants per act via a deterministic encounter-id hash; bosses anchor to v1.",
+      "items": [
+        {
+          "text": "M389 — manual-mode UI polish: hardcore lock + spell tooltips + mobile portrait strip + per-encounter BG variants. Hardcore difficulty now visibly locks Manual Combat on (lock badge in DifficultyDialog; gameState.load also enforces). Spell rail buttons get a flourish-cornered tooltip card (mobile: bottom sheet) showing name, MP/CD, AOE, est damage, and description. Below 700px the rail collapses to one expanded card plus a 36px portrait strip; AWAITING-INPUT forces selection to the active actor. EvBattlefield BG now picks 1 of 3 variants per act via a deterministic encounter-id hash; bosses anchor to v1.",
+          "categories": [
+            "Feature",
+            "Balance",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 388,
+      "date": "2026-05-01",
+      "summary": "M391 — Manual extra-attack drain + M392 — SVG corner ornaments. M391: extraAction and _speedExtraRemaining no longer splice the actor back while awaiting player input — instead they drain synchronously inside _dispatchManualAction so the player is prompted exactly once per turn. M392: lozenge corners on hero cards, simple corners on companion cards + the turn-order strip; defs injected once via evSymbols.js. Both behind 'New Combat UI (Beta)'.",
+      "items": [
+        {
+          "text": "M391 — Manual extra-attack drain + M392 — SVG corner ornaments. M391: extraAction and _speedExtraRemaining no longer splice the actor back while awaiting player input — instead they drain synchronously inside _dispatchManualAction so the player is prompted exactly once per turn. M392: lozenge corners on hero cards, simple corners on companion cards + the turn-order strip; defs injected once via evSymbols.js. Both behind 'New Combat UI (Beta)'.",
+          "categories": [
+            "Feature",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 387,
+      "date": "2026-05-01",
+      "summary": "M390 — Manual mode loop-pause + spell rail click-to-cast. When 'New Combat UI (Beta)' is on, manual-mode hero turns no longer open the legacy modal — instead the active hero's card-rail goes hot with Basic Attack + per-class spells (state-aware: ready/no-mana/on-cooldown/disabled) + Use Item (free action) + End Turn. Single-target spells engage the EvBattlefield grid for tile selection (ev:target-select). Item use stays awaiting input; turn timer freezes via a new _awaitingInput guard in update(dt). Legacy modal still drives manual mode when the flag is off.",
+      "items": [
+        {
+          "text": "M390 — Manual mode loop-pause + spell rail click-to-cast. When 'New Combat UI (Beta)' is on, manual-mode hero turns no longer open the legacy modal — instead the active hero's card-rail goes hot with Basic Attack + per-class spells (state-aware: ready/no-mana/on-cooldown/disabled) + Use Item (free action) + End Turn. Single-target spells engage the EvBattlefield grid for tile selection (ev:target-select). Item use stays awaiting input; turn timer freezes via a new _awaitingInput guard in update(dt). Legacy modal still drives manual mode when the flag is off.",
+          "categories": [
+            "Feature",
+            "Balance",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 386,
+      "date": "2026-05-01",
+      "summary": "M389 — Card rail skeleton: per-hero bottom-HUD cards (portrait, name/class, HP+barrier+MP bars, status row) replacing legacy .hud-members when 'New Combat UI (Beta)' is on. Companion row beneath, AI badge, dead/active state styling. Spell rail placeholder reserved for M390. Round/speed/pause controls untouched.",
+      "items": [
+        {
+          "text": "M389 — Card rail skeleton: per-hero bottom-HUD cards (portrait, name/class, HP+barrier+MP bars, status row) replacing legacy .hud-members when 'New Combat UI (Beta)' is on. Companion row beneath, AI badge, dead/active state styling. Spell rail placeholder reserved for M390. Round/speed/pause controls untouched.",
+          "categories": [
+            "Feature",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 385,
+      "date": "2026-05-01",
+      "summary": "M388 — Turn-order strip: top-of-screen initiative chips with portrait, HP fill, hero/companion/enemy color borders, and gold pulse on the active actor. Gated behind 'New Combat UI (Beta)' (gs.uiOverhaul). Rebuilds on each round; HP fills update with the existing _updateHud cadence. Existing canvas combat untouched when the flag is off.",
+      "items": [
+        {
+          "text": "M388 — Turn-order strip: top-of-screen initiative chips with portrait, HP fill, hero/companion/enemy color borders, and gold pulse on the active actor. Gated behind 'New Combat UI (Beta)' (gs.uiOverhaul). Rebuilds on each round; HP fills update with the existing _updateHud cadence. Existing canvas combat untouched when the flag is off.",
+          "categories": [
+            "Feature",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 384,
+      "date": "2026-05-01",
+      "summary": "M387 — Manual-mode + UI overhaul foundation. Adds the new design-system layer (palette tokens, .ev-panel SVG-corner border component, 18 background variants under public/images/map_bg/, 8 placeholder spell-icon SVGs, asset manifests with fallback rules) and a 6×6 SVG battlefield grid component (EvBattlefield class with debounced ResizeObserver, three-layer DOM, click-to-target event contract). Everything is gated behind a 'New Combat UI (Beta)' Settings toggle (gs.uiOverhaul) — the existing canvas combat path is untouched when off. Pre-overhaul revert tag at pre-overhaul-M386. The 12-phase planning tree, 24-slide deck, senior-reviewer roast, and per-act background gallery live at /plan/ on the release server. Two review passes (code-reviewer verifier + ui-designer UX) ran against M388 and M389; blockers fixed inline (event contract sourceCombatantId, hero-overflow row-binning, vanishY 0.15→0.22 to match BG horizon). Build clean, 277/277 tests pass.",
+      "items": [
+        {
+          "text": "M387 — Manual-mode + UI overhaul foundation. Adds the new design-system layer (palette tokens, .ev-panel SVG-corner border component, 18 background variants under public/images/map_bg/, 8 placeholder spell-icon SVGs, asset manifests with fallback rules) and a 6×6 SVG battlefield grid component (EvBattlefield class with debounced ResizeObserver, three-layer DOM, click-to-target event contract). Everything is gated behind a 'New Combat UI (Beta)' Settings toggle (gs.uiOverhaul) — the existing canvas combat path is untouched when off. Pre-overhaul revert tag at pre-overhaul-M386. The 12-phase planning tree, 24-slide deck, senior-reviewer roast, and per-act background gallery live at /plan/ on the release server. Two review passes (code-reviewer verifier + ui-designer UX) ran against M388 and M389; blockers fixed inline (event contract sourceCombatantId, hero-overflow row-binning, vanishY 0.15→0.22 to match BG horizon). Build clean, 277/277 tests pass.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 383,
+      "date": "2026-04-30",
+      "summary": "M386 — End-of-milestone audit fixes from parallel code-reviewer / performance-engineer / game-developer agents. CombatScreen _updateHud now dirty-checks every per-frame DOM write (status row innerHTML was the worst offender). meter.events ring capped at 2000 entries. Boss-intro splash gate replaced per-frame querySelector with a boolean flag. NG+ act-shift cap raised 6→10 with actMultipliers extended to acts 7-10 so NG+2+ no longer flatlines every zone to the Act-6 ceiling. Added partySize validate guard, prologue act-0 backfill default, and SkillTree _tabPinned reset. Workspace AGENTS.md added with subagent_type quickref for the vanilla-JS+Vite+canvas RPG stack, mirrored into CLAUDE.md and new_game_template/CLAUDE.md.",
+      "items": [
+        {
+          "text": "M386 — End-of-milestone audit fixes from parallel code-reviewer / performance-engineer / game-developer agents. CombatScreen _updateHud now dirty-checks every per-frame DOM write (status row innerHTML was the worst offender). meter.events ring capped at 2000 entries. Boss-intro splash gate replaced per-frame querySelector with a boolean flag. NG+ act-shift cap raised 6→10 with actMultipliers extended to acts 7-10 so NG+2+ no longer flatlines every zone to the Act-6 ceiling. Added partySize validate guard, prologue act-0 backfill default, and SkillTree _tabPinned reset. Workspace AGENTS.md added with subagent_type quickref for the vanilla-JS+Vite+canvas RPG stack, mirrored into CLAUDE.md and new_game_template/CLAUDE.md.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
     {
       "milestone": 382,
       "date": "2026-04-30",

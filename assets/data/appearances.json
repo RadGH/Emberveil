@@ -1,0 +1,1023 @@
+[
+  {
+    "id": "warrior",
+    "name": "Warrior",
+    "sprite": "warrior",
+    "gender": "male",
+    "classDefault": "warrior",
+    "tags": [
+      "heavy",
+      "male"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "fighter",
+    "name": "Fighter",
+    "sprite": "fighter",
+    "gender": "male",
+    "classDefault": "fighter",
+    "tags": [
+      "heavy",
+      "male"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "paladin",
+    "name": "Paladin",
+    "sprite": "paladin",
+    "gender": "male",
+    "classDefault": "paladin",
+    "tags": [
+      "holy",
+      "male"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "ranger",
+    "name": "Ranger",
+    "sprite": "ranger",
+    "gender": "female",
+    "classDefault": "ranger",
+    "tags": [
+      "light",
+      "female"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "rogue",
+    "name": "Rogue",
+    "sprite": "rogue",
+    "gender": "female",
+    "classDefault": "rogue",
+    "tags": [
+      "light",
+      "stealth"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "mage",
+    "name": "Mage",
+    "sprite": "mage",
+    "gender": "male",
+    "classDefault": "mage",
+    "tags": [
+      "robes",
+      "male"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "cleric",
+    "name": "Cleric",
+    "sprite": "cleric",
+    "gender": "female",
+    "classDefault": "cleric",
+    "tags": [
+      "robes",
+      "holy"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "cleric_priestess",
+    "name": "Cleric (Priestess)",
+    "sprite": "cleric_priestess",
+    "gender": "female",
+    "classDefault": "cleric",
+    "tags": [
+      "robes",
+      "holy",
+      "female",
+      "npc"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "bard",
+    "name": "Bard",
+    "sprite": "bard",
+    "gender": "male",
+    "classDefault": "bard",
+    "tags": [
+      "light"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "druid",
+    "name": "Druid",
+    "sprite": "druid",
+    "gender": "female",
+    "classDefault": "druid",
+    "tags": [
+      "nature"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "necromancer",
+    "name": "Necromancer",
+    "sprite": "necromancer",
+    "gender": "male",
+    "classDefault": "necromancer",
+    "tags": [
+      "dark",
+      "robes"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "warlock",
+    "name": "Warlock",
+    "sprite": "warlock",
+    "gender": "female",
+    "classDefault": "warlock",
+    "tags": [
+      "dark",
+      "robes"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "demon_hunter",
+    "name": "Demon Hunter",
+    "sprite": "demon_hunter",
+    "gender": "male",
+    "classDefault": "demon_hunter",
+    "tags": [
+      "light",
+      "female"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "dragon_knight",
+    "name": "Dragon Knight",
+    "sprite": "dragon_knight",
+    "gender": "female",
+    "classDefault": "dragon_knight",
+    "tags": [
+      "heavy",
+      "draconic"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "pyromancer",
+    "name": "Pyromancer",
+    "sprite": "pyromancer",
+    "gender": "female",
+    "classDefault": "pyromancer",
+    "tags": [
+      "fire",
+      "robes"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "stormcaller",
+    "name": "Stormcaller",
+    "sprite": "stormcaller",
+    "gender": "male",
+    "classDefault": "stormcaller",
+    "tags": [
+      "storm",
+      "robes"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "oracle",
+    "name": "Oracle",
+    "sprite": "oracle",
+    "gender": "female",
+    "classDefault": "oracle",
+    "tags": [
+      "prophetic",
+      "robes"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "oracle_old",
+    "name": "Oracle (Classic)",
+    "sprite": "oracle_old",
+    "gender": "female",
+    "classDefault": "oracle",
+    "tags": [
+      "prophetic",
+      "robes",
+      "deprecated"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": true,
+    "pendingReview": false
+  },
+  {
+    "id": "swashbuckler",
+    "name": "Swashbuckler",
+    "sprite": "swashbuckler",
+    "gender": "male",
+    "classDefault": "swashbuckler",
+    "tags": [
+      "light",
+      "flair"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "scavenger",
+    "name": "Scavenger",
+    "sprite": "scavenger",
+    "gender": "male",
+    "classDefault": "scavenger",
+    "tags": [
+      "light",
+      "ragtag"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "tactician",
+    "name": "Tactician",
+    "sprite": "tactician",
+    "gender": "male",
+    "classDefault": "tactician",
+    "tags": [
+      "medium",
+      "leader"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "chronomancer",
+    "name": "Chronomancer",
+    "sprite": "chronomancer",
+    "gender": "male",
+    "classDefault": "chronomancer",
+    "tags": [
+      "arcane",
+      "robes"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "monk",
+    "name": "Monk",
+    "sprite": "monk",
+    "gender": "male",
+    "classDefault": "monk",
+    "tags": [
+      "light",
+      "martial"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "knight",
+    "name": "Knight",
+    "sprite": "knight",
+    "gender": "female",
+    "classDefault": "knight",
+    "tags": [
+      "heavy",
+      "male"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "sorcerer",
+    "name": "Sorcerer",
+    "sprite": "sorcerer",
+    "gender": "male",
+    "classDefault": "sorcerer",
+    "tags": [
+      "arcane",
+      "robes",
+      "male"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "shaman",
+    "name": "Shaman",
+    "sprite": "shaman",
+    "gender": "female",
+    "classDefault": "shaman",
+    "tags": [
+      "nature",
+      "tribal"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "witch_hunter",
+    "name": "Witch Hunter",
+    "sprite": "witch_hunter",
+    "gender": "male",
+    "classDefault": "witch_hunter",
+    "tags": [
+      "dark",
+      "light",
+      "male"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "runesmith",
+    "name": "Runesmith",
+    "sprite": "runesmith",
+    "gender": "male",
+    "classDefault": "runesmith",
+    "tags": [
+      "heavy",
+      "craft"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "shadow_dancer",
+    "name": "Shadow Dancer",
+    "sprite": "shadow_dancer",
+    "gender": "female",
+    "classDefault": "shadow_dancer",
+    "tags": [
+      "light",
+      "stealth",
+      "dark"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "tinker",
+    "name": "Tinker",
+    "sprite": "tinker",
+    "gender": "male",
+    "classDefault": "tinker",
+    "tags": [
+      "medium",
+      "clockwork"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "tinker_female",
+    "name": "Tinker (Female)",
+    "sprite": "tinker_female",
+    "gender": "female",
+    "classDefault": "tinker",
+    "tags": [
+      "female",
+      "variant",
+      "clockwork"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "clockwork_turret",
+    "name": "Clockwork Turret",
+    "sprite": "clockwork_turret",
+    "gender": "companion",
+    "classDefault": "companion",
+    "tags": [
+      "companion",
+      "clockwork",
+      "construct"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "bard_female",
+    "name": "Bard (Female)",
+    "sprite": "bard_female",
+    "gender": "female",
+    "classDefault": "bard",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "chronomancer_female",
+    "name": "Chronomancer (Female)",
+    "sprite": "chronomancer_female",
+    "gender": "female",
+    "classDefault": "chronomancer",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "cleric_male",
+    "name": "Cleric (Male)",
+    "sprite": "cleric_male",
+    "gender": "male",
+    "classDefault": "cleric",
+    "tags": [
+      "male",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "demon_hunter_female",
+    "name": "Demon Hunter (Female)",
+    "sprite": "demon_hunter_female",
+    "gender": "female",
+    "classDefault": "demon_hunter",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "dragon_knight_male",
+    "name": "Dragon Knight (Male)",
+    "sprite": "dragon_knight_male",
+    "gender": "male",
+    "classDefault": "dragon_knight",
+    "tags": [
+      "male",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "druid_male",
+    "name": "Druid (Male)",
+    "sprite": "druid_male",
+    "gender": "male",
+    "classDefault": "druid",
+    "tags": [
+      "male",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "fighter_female",
+    "name": "Fighter (Female)",
+    "sprite": "fighter_female",
+    "gender": "female",
+    "classDefault": "fighter",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "knight_male",
+    "name": "Knight (Male)",
+    "sprite": "knight_male",
+    "gender": "male",
+    "classDefault": "knight",
+    "tags": [
+      "male",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "mage_female",
+    "name": "Mage (Female)",
+    "sprite": "mage_female",
+    "gender": "female",
+    "classDefault": "mage",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "monk_female",
+    "name": "Monk (Female)",
+    "sprite": "monk_female",
+    "gender": "female",
+    "classDefault": "monk",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "necromancer_female",
+    "name": "Necromancer (Female)",
+    "sprite": "necromancer_female",
+    "gender": "female",
+    "classDefault": "necromancer",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "oracle_male",
+    "name": "Oracle (Male)",
+    "sprite": "oracle_male",
+    "gender": "male",
+    "classDefault": "oracle",
+    "tags": [
+      "male",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "paladin_female",
+    "name": "Paladin (Female)",
+    "sprite": "paladin_female",
+    "gender": "female",
+    "classDefault": "paladin",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "pyromancer_male",
+    "name": "Pyromancer (Male)",
+    "sprite": "pyromancer_male",
+    "gender": "male",
+    "classDefault": "pyromancer",
+    "tags": [
+      "male",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "ranger_male",
+    "name": "Ranger (Male)",
+    "sprite": "ranger_male",
+    "gender": "male",
+    "classDefault": "ranger",
+    "tags": [
+      "male",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "rogue_male",
+    "name": "Rogue (Male)",
+    "sprite": "rogue_male",
+    "gender": "male",
+    "classDefault": "rogue",
+    "tags": [
+      "male",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "runesmith_female",
+    "name": "Runesmith (Female)",
+    "sprite": "runesmith_female",
+    "gender": "female",
+    "classDefault": "runesmith",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "scavenger_female",
+    "name": "Scavenger (Female)",
+    "sprite": "scavenger_female",
+    "gender": "female",
+    "classDefault": "scavenger",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "shadow_dancer_male",
+    "name": "Shadow Dancer (Male)",
+    "sprite": "shadow_dancer_male",
+    "gender": "male",
+    "classDefault": "shadow_dancer",
+    "tags": [
+      "male",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "shaman_male",
+    "name": "Shaman (Male)",
+    "sprite": "shaman_male",
+    "gender": "male",
+    "classDefault": "shaman",
+    "tags": [
+      "male",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "sorcerer_female",
+    "name": "Sorcerer (Female)",
+    "sprite": "sorcerer_female",
+    "gender": "female",
+    "classDefault": "sorcerer",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "stormcaller_female",
+    "name": "Stormcaller (Female)",
+    "sprite": "stormcaller_female",
+    "gender": "female",
+    "classDefault": "stormcaller",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "swashbuckler_female",
+    "name": "Swashbuckler (Female)",
+    "sprite": "swashbuckler_female",
+    "gender": "female",
+    "classDefault": "swashbuckler",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "tactician_female",
+    "name": "Tactician (Female)",
+    "sprite": "tactician_female",
+    "gender": "female",
+    "classDefault": "tactician",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "warlock_male",
+    "name": "Warlock (Male)",
+    "sprite": "warlock_male",
+    "gender": "male",
+    "classDefault": "warlock",
+    "tags": [
+      "male",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "warrior_female",
+    "name": "Warrior (Female)",
+    "sprite": "warrior_female",
+    "gender": "female",
+    "classDefault": "warrior",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "witch_hunter_female",
+    "name": "Witch Hunter (Female)",
+    "sprite": "witch_hunter_female",
+    "gender": "female",
+    "classDefault": "witch_hunter",
+    "tags": [
+      "female",
+      "variant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "enchanter_male",
+    "name": "Enchanter (Male)",
+    "sprite": "enchanter_male",
+    "gender": "male",
+    "classDefault": "enchanter",
+    "tags": [
+      "male",
+      "robes",
+      "arcane",
+      "enchant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": true
+  },
+  {
+    "id": "priest_female",
+    "name": "Priest (Female)",
+    "sprite": "priest_female",
+    "gender": "female",
+    "classDefault": "priest",
+    "tags": [
+      "female",
+      "robes",
+      "holy",
+      "shadow",
+      "healer"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": true
+  },
+  {
+    "id": "enchanter_female",
+    "name": "Enchanter (Female)",
+    "sprite": "enchanter_female",
+    "gender": "female",
+    "classDefault": "enchanter",
+    "tags": [
+      "female",
+      "robes",
+      "arcane",
+      "enchant"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": true
+  },
+  {
+    "id": "priest_male",
+    "name": "Priest (Male)",
+    "sprite": "priest_male",
+    "gender": "male",
+    "classDefault": "priest",
+    "tags": [
+      "male",
+      "robes",
+      "holy",
+      "shadow",
+      "healer"
+    ],
+    "playable": true,
+    "npc": false,
+    "deprecated": false,
+    "pendingReview": true
+  },
+  {
+    "id": "silas_veilward",
+    "name": "Silas Veilward",
+    "sprite": "silas_veilward",
+    "gender": "male",
+    "classDefault": "silas_veilward",
+    "tags": [
+      "npc",
+      "mentor"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "kaela_thorne",
+    "name": "Kaela Thorne",
+    "sprite": "kaela_thorne",
+    "gender": "female",
+    "classDefault": "kaela_thorne",
+    "tags": [
+      "npc",
+      "rival"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "marek_greel",
+    "name": "Marek Greel",
+    "sprite": "marek_greel",
+    "gender": "male",
+    "classDefault": "marek_greel",
+    "tags": [
+      "npc",
+      "villain"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "mira_seer",
+    "name": "Mira the Seer",
+    "sprite": "mira_seer",
+    "gender": "female",
+    "classDefault": "mira_seer",
+    "tags": [
+      "npc",
+      "oracle"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  }
+]

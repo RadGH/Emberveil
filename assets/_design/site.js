@@ -20,21 +20,74 @@
   // ────────────────────────────────────────────────────────────── DATA LOAD ──
   const DATA_URL = './assets/data/live.json';
   const NEWS_URL = './news/news.json';
+  const CLASSES_URL = './assets/data/classes.json';
+  const BUILDS_URL = './assets/data/builds.json';
+  const COMPANIONS_URL = './assets/data/companions.json';
+  const SKILLS_URL = './assets/data/skills.json';
 
   let LIVE = null;
   let NEWS = [];
+  let CLASSES = [];
+  let BUILDS = [];
+  let COMPANIONS = [];
+  let SKILLS = [];
 
   async function loadData() {
     try {
-      const [live, news] = await Promise.all([
+      const [live, news, classes, builds, companions, skills] = await Promise.all([
         fetch(DATA_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : null),
         fetch(NEWS_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : []),
+        fetch(CLASSES_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
+        fetch(BUILDS_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
+        fetch(COMPANIONS_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
+        fetch(SKILLS_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
       ]);
       LIVE = live;
       NEWS = Array.isArray(news) ? news : [];
+      CLASSES = Array.isArray(classes) ? classes : (classes ? Object.values(classes) : []);
+      BUILDS = Array.isArray(builds) ? builds : (builds ? Object.values(builds) : []);
+      COMPANIONS = Array.isArray(companions) ? companions : (companions ? Object.values(companions) : []);
+      SKILLS = Array.isArray(skills) ? skills : (skills ? Object.values(skills) : []);
     } catch (e) {
       console.error('[site] failed to load live data', e);
     }
+  }
+
+  // ────────────────────────────────────────────────── LIVE COUNTS ───
+  // Recompute counts from authoritative data files so the page never
+  // drifts from the live JSON.
+  function liveClassCount() { return CLASSES.length || LIVE?.counts?.classes || 0; }
+  function liveCompanionCount() { return COMPANIONS.length || LIVE?.counts?.companions || 0; }
+  function liveArchetypeCounts() {
+    // primaryAttr → archetype:
+    //   STR → Melee, DEX → Ranged, INT → Caster
+    // Hybrid is reserved for classes whose skills mix damage stats.
+    const out = { Melee: 0, Ranged: 0, Caster: 0, Hybrid: 0 };
+    const hybridClassIds = new Set();
+    SKILLS.forEach(s => {
+      if (s && typeof s.damageStat === 'string' && s.damageStat.includes('_')) {
+        if (s.class) hybridClassIds.add(s.class);
+      }
+    });
+    CLASSES.forEach(c => {
+      if (hybridClassIds.has(c.id)) { out.Hybrid += 1; return; }
+      if (c.primaryAttr === 'STR') out.Melee += 1;
+      else if (c.primaryAttr === 'DEX') out.Ranged += 1;
+      else if (c.primaryAttr === 'INT') out.Caster += 1;
+      else out.Hybrid += 1;
+    });
+    return out;
+  }
+  // Derive hybrid stat letters per class from skill damageStat (e.g. 'str_int').
+  function hybridStatsForClass(classId) {
+    const pairs = new Set();
+    SKILLS.forEach(s => {
+      if (s && s.class === classId && typeof s.damageStat === 'string' && s.damageStat.includes('_')) {
+        const letters = s.damageStat.split('_').map(x => x.toUpperCase()).join('/');
+        pairs.add(letters);
+      }
+    });
+    return Array.from(pairs);
   }
 
   // ───────────────────────────────────────────────────────────── HELPERS ────
@@ -59,12 +112,14 @@
   // ───────────────────────────────────────────────────────────── HERO ───────
   function mountHero(root) {
     const counts = LIVE?.counts || {};
+    const classCount = liveClassCount();
+    const companionCount = liveCompanionCount();
     const tag = el('span', { class: 'hero-tag' },
       el('span', {}, `${counts.acts || 6} ACTS`),
       el('span', { class: 'sep' }),
-      el('span', {}, `${counts.classes || 28} CLASSES`),
+      el('span', {}, `${classCount || 28} CLASSES`),
       el('span', { class: 'sep' }),
-      el('span', {}, `${counts.companions || 35} COMPANIONS`)
+      el('span', {}, `${companionCount || 35} COMPANIONS`)
     );
 
     const bg = el('div', { class: 'hero-bg' });
@@ -97,8 +152,8 @@
     // the Classes section below the fold.
     const stats = el('div', { class: 'hero-stats' },
       el('div', { class: 'row' }, [
-        { v: counts.classes || 28, l: 'Classes' },
-        { v: counts.companions || 35, l: 'Companions' },
+        { v: classCount || 28, l: 'Classes' },
+        { v: companionCount || 35, l: 'Companions' },
         { v: counts.acts || 6, l: 'Acts' },
         { v: counts.zones || 12, l: 'Zones' },
         { v: counts.skills ? counts.skills + '+' : '180+', l: 'Skills' },
@@ -127,7 +182,11 @@
         clouds1.style.transform = `translate3d(${y * 0.18}px, ${y * 0.12}px, 0)`;
         clouds2.style.transform = `translate3d(${y * -0.08}px, ${y * 0.18}px, 0) scale(1.4)`;
         mountains.style.transform = `translate3d(0, ${y * 0.32}px, 0)`;
-        heroImg.style.transform = `translate3d(0, ${y * -0.12}px, 0)`;
+        // M375 removed the hero portrait; heroImg no longer exists. Guard
+        // in case a future variant re-introduces it.
+        if (typeof heroImg !== 'undefined' && heroImg) {
+          heroImg.style.transform = `translate3d(0, ${y * -0.12}px, 0)`;
+        }
       });
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -192,20 +251,37 @@
           onerror: function () { this.style.opacity = 0.2; }
         })
       );
+      // Prefer the canonical hook from classes.json (live source of truth)
+      // so the description always reflects the current scaling system
+      // (heavy/light/magic) rather than a stale "INT scales spell damage"
+      // line baked into live.json.
+      const fullClass = CLASSES.find(x => x.id === c.id) || {};
+      const description = fullClass.hook || c.hook || c.desc || '';
+
+      // Primary Attribute badge. If any skill on this class has a hybrid
+      // damageStat (e.g. 'str_int'), render Hybrid (STR/INT) instead.
+      const hybrids = hybridStatsForClass(c.id);
+      const primaryAttr = fullClass.primaryAttr || c.primaryAttr || '';
+      const attrLabel = hybrids.length
+        ? 'Hybrid (' + hybrids.join(', ') + ')'
+        : (primaryAttr || '—');
+
       const info = el('div', { class: 'class-info' },
         el('div', {},
           el('span', { class: 'eyebrow' }, c.role || ''),
           el('h3', { class: 'name-big' }, c.name)
         ),
-        el('p', { class: 'desc' }, c.desc || ''),
-        el('div', { class: 'attrs' }, ['STR', 'DEX', 'INT', 'CON'].map(k => {
-          const v = c.attrs?.[k] || 0;
-          return el('div', { class: 'attr' },
-            el('div', { class: 'label' }, k),
-            el('div', { class: 'bar' }, el('div', { class: 'fill', style: { width: (v / 20 * 100) + '%' } })),
-            el('div', { class: 'v' }, String(v))
-          );
-        })),
+        el('div', { class: 'class-primary-attr', style: {
+          display: 'inline-flex', alignItems: 'center', gap: '8px',
+          padding: '4px 10px', margin: '0 0 12px',
+          border: '1px solid var(--line)', borderRadius: '4px',
+          fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '2px',
+          color: 'var(--accent-bright)', textTransform: 'uppercase',
+        } },
+          el('span', { style: { color: 'var(--ink-3)' } }, 'Primary Attribute'),
+          el('span', {}, attrLabel)
+        ),
+        el('p', { class: 'desc' }, description),
         el('div', { class: 'skills-list' }, (c.skills || []).map(s =>
           el('div', { class: 'skill-row' },
             el('div', { class: 'sk-name' }, s.name),
@@ -230,11 +306,14 @@
     }
 
     const counts = LIVE?.counts || {};
+    const totalClasses = liveClassCount() || counts.classes || 28;
+    const starterCount = classes.length;
+    const unlockable = Math.max(0, totalClasses - starterCount);
     const head = el('div', { class: 'section-head reveal' },
       el('span', { class: 'eyebrow' }, 'Heroes · Section 01'),
-      el('h2', { html: `${counts.classes || 28} classes.<br>One party of four.` }),
+      el('h2', { html: `${totalClasses} classes.<br>One party of four.` }),
       el('p', { class: 'lede' },
-        `Five starter classes shown below — ${counts.unlockableClasses || 23} more unlock as you play. `,
+        `${starterCount} starter classes shown below — ${unlockable} more unlock as you play. `,
         'Mix utility and healing characters to build an effective team.'
       )
     );
@@ -487,8 +566,7 @@
           el('div', { class: 'name' }, c.name),
           el('div', { class: 'desc' }, c.desc || ''),
           el('div', { class: 'meta' },
-            el('span', {}, 'ACT', el('span', { class: 'v' }, ' ' + (c.meta?.ACT || '—'))),
-            el('span', {}, 'LOY', el('span', { class: 'v' }, ' ' + (c.meta?.LOY || '—')))
+            el('span', {}, 'ACT', el('span', { class: 'v' }, ' ' + (c.meta?.ACT || '—')))
           )
         )
       ));
@@ -496,9 +574,9 @@
 
     const head = el('div', { class: 'section-head reveal' },
       el('span', { class: 'eyebrow' }, 'Companions · Section 03'),
-      el('h2', { html: `${LIVE?.counts?.companions || data.length} allies.<br>Recruit, equip, lose.` }),
+      el('h2', { html: `${liveCompanionCount() || data.length} allies.<br>Recruit, equip, farewell.` }),
       el('p', { class: 'lede' },
-        'Recruited across acts. Loyalty drifts based on your choices — every party slot is a commitment.'
+        'Recruited across acts. Companions can leave, fall in battle, or stick with you to the end — every party slot is a commitment.'
       )
     );
 
@@ -537,7 +615,6 @@
       { id: 'classes', label: 'Class Distribution' },
       { id: 'difficulty', label: 'Difficulty Curve' },
       { id: 'drops', label: 'Drop Rarity by Act' },
-      { id: 'initiative', label: 'Initiative Distribution' },
     ];
     let active = tabs[0].id;
 
@@ -562,14 +639,13 @@
       if (active === 'classes') canvasWrap.appendChild(radarClasses());
       else if (active === 'difficulty') canvasWrap.appendChild(difficultyCurve());
       else if (active === 'drops') canvasWrap.appendChild(dropStack());
-      else canvasWrap.appendChild(initiativeBell());
       sideWrap.appendChild(el('div', { class: 'lbl' }, 'Reading'));
       sideWrap.appendChild(el('h3', {}, tabs.find(t => t.id === active).label));
+      const arch = liveArchetypeCounts();
       const text = {
-        classes: `${LIVE?.counts?.classes || 28} classes split across role archetypes. Caster types lead the count, with hybrids closing the gap thanks to dragon-arc unlocks.`,
+        classes: `${liveClassCount() || 28} classes split across role archetypes. Casters lead at ${arch.Caster}, melee at ${arch.Melee}, ranged at ${arch.Ranged}${arch.Hybrid ? `, with ${arch.Hybrid} hybrids` : ''}.`,
         difficulty: 'Enemy power curve over six acts on Hard. Note the Act III spike — Malgrath forces a real party comp before Cosmic Void opens.',
         drops: 'Post-M350 rebalance. Border Roads settles at ~50% normal items; later acts shift toward magic and rare with diminishing junk drops.',
-        initiative: 'Initiative + d10 distribution for a balanced Act III party. Daggers carry the right tail with Fast tier; slow status halves the roll.',
       };
       sideWrap.appendChild(el('p', {}, text[active]));
       sideWrap.appendChild(el('div', { style: { marginTop: '14px' } },
@@ -608,13 +684,15 @@
   };
 
   function radarClasses() {
+    const arch = liveArchetypeCounts();
     const data = [
-      { label: 'Melee', v: 7 },
-      { label: 'Ranged', v: 5 },
-      { label: 'Caster', v: 9 },
-      { label: 'Hybrid', v: 7 },
+      { label: 'Melee', v: arch.Melee || 0 },
+      { label: 'Ranged', v: arch.Ranged || 0 },
+      { label: 'Caster', v: arch.Caster || 0 },
+      { label: 'Hybrid', v: arch.Hybrid || 0 },
     ];
-    const cx = 200, cy = 200, R = 140, max = 10;
+    const cx = 200, cy = 200, R = 140;
+    const max = Math.max(10, ...data.map(d => d.v));
     const angle = i => -Math.PI / 2 + (i / data.length) * Math.PI * 2;
     const pt = (i, v) => {
       const r = (v / max) * R;

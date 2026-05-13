@@ -1,4 +1,18 @@
 {
+  "damage-report.html": {
+    "name": "Damage Report",
+    "desc": "Per-class damage, healing, and mitigation graphed across levels and benchmark scenarios. Compare two milestones side-by-side (solid vs dotted) to verify rebalances. Filter by role (single DPS, AoE DPS, tank, healer, support). Snapshots produced by scripts/damage-report-snapshot.mjs.",
+    "tag": "devtool",
+    "milestone": "M422",
+    "updated": "2026-05-06"
+  },
+  "todo.html": {
+    "name": "Todo List",
+    "desc": "Holding pen for items the user wants to review before they land in wishlist or implementation. Skill audit findings (under/over-performing skills) and other pre-commit notes.",
+    "tag": "devtool",
+    "milestone": "M423",
+    "updated": "2026-05-06"
+  },
   "class-catalog.html": {
     "name": "Class Catalog",
     "desc": "All 28 playable classes — portrait, 7-pose sprite strip, role, armor, primary attribute, full skill list with MP cost + unlock level, and class passive tree. Reads live from data-source.js (same source the in-game screens use).",

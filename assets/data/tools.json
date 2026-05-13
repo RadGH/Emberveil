@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-04-30T07:47:51.804Z"
+    "generated": "2026-05-13T20:19:44.673Z"
   },
   "tools": [
     {
@@ -26,15 +26,6 @@
       "href": "ai-content-gen.html",
       "desc": "Generate dialogs, lore, and item names through the AI pipeline. Prompts driven by templates.",
       "tag": "devtool",
-      "milestone": "",
-      "updated": "2026-04-29",
-      "deprecated": false
-    },
-    {
-      "name": "All Tools (Index)",
-      "href": "tools.html",
-      "desc": "This page. Live index of every tool, catalog, and admin page.",
-      "tag": "admin",
       "milestone": "",
       "updated": "2026-04-29",
       "deprecated": false
@@ -139,6 +130,15 @@
       "deprecated": false
     },
     {
+      "name": "Damage Report",
+      "href": "damage-report.html",
+      "desc": "Per-class damage, healing, and mitigation graphed across levels and benchmark scenarios. Compare two milestones side-by-side (solid vs dotted) to verify rebalances. Filter by role (single DPS, AoE DPS, tank, healer, support). Snapshots produced by scripts/damage-report-snapshot.mjs.",
+      "tag": "devtool",
+      "milestone": "M422",
+      "updated": "2026-05-06",
+      "deprecated": false
+    },
+    {
       "name": "Data Catalogs (Legacy)",
       "href": "data-catalogs.html",
       "desc": "Old combined catalog landing page. Superseded by per-category catalog pages.",
@@ -175,6 +175,15 @@
       "deprecated": false
     },
     {
+      "name": "Emberveil",
+      "href": "dialog-inspector.html",
+      "desc": "(no description — add one in tools-meta.json)",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-05-09",
+      "deprecated": false
+    },
+    {
       "name": "Enemy Catalog",
       "href": "enemy-catalog.html",
       "desc": "All enemies by act — stats, loot tables, status-on-hit effects.",
@@ -189,7 +198,7 @@
       "desc": "Unified image catalog + pending-review queue. Replaces image-review.html and character-redesign.html.",
       "tag": "devtool",
       "milestone": "",
-      "updated": "2026-04-29",
+      "updated": "2026-05-13",
       "deprecated": false
     },
     {
@@ -198,7 +207,7 @@
       "desc": "(no description — add one in tools-meta.json)",
       "tag": "devtool",
       "milestone": "",
-      "updated": "2026-04-29",
+      "updated": "2026-05-13",
       "deprecated": false
     },
     {
@@ -352,6 +361,15 @@
       "tag": "devtool",
       "milestone": "",
       "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Todo List",
+      "href": "todo.html",
+      "desc": "Holding pen for items the user wants to review before they land in wishlist or implementation. Skill audit findings (under/over-performing skills) and other pre-commit notes.",
+      "tag": "devtool",
+      "milestone": "M423",
+      "updated": "2026-05-06",
       "deprecated": false
     },
     {

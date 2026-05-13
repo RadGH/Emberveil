@@ -1,0 +1,36 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "priest_female",
+  "displayName": "Priest (Female)",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "pendingReview": true,
+  "milestone": "M399",
+  "identity": "Human WOMAN (female), about 28 years old, calm solemn face, pale skin, long raven-black hair falling past her shoulders.",
+  "outfit": "Dark indigo-and-charcoal hooded ceremonial robe with silver moon-and-crescent embroidery on the chest. Hood worn UP framing the face but hair clearly visible at the front.",
+  "weapons": "Iron prayer-mace, dark wooden haft. Silver crescent pendant on a fine chain at the chest, faintly glowing.",
+  "attackStyle": "East-facing. Mid-swing downward arc with the iron prayer-mace, silver crescent pendant trailing a streak of pale violet shadow energy.",
+  "spellStyle": "East-facing. Both hands raised, prayer-mace held aloft as a brilliant silver crescent of holy light blooms with violet shadow tendrils curling outward, motes of pale silver and dusk-violet drifting.",
+  "blockStyle": "East-facing. Prayer-mace held horizontally in front of her chest as a translucent silver crescent ward shimmers along its length.",
+  "koStyle": "East-facing, lying on her back unconscious, prayer-mace fallen beside her, silver crescent pendant dim, raven-black hair fanned out.",
+  "southStyle": "Facing camera (south), calm idle. Prayer-mace held point-up in the right hand at her side, raven-black hair framing her face.",
+  "portraitStyle": "Bust shot, head-and-shoulders facing forward. Dark indigo hood up with silver crescent embroidery, raven-black hair visible at the front, eyes closed in soft prayer, pale skin, silver crescent pendant glowing softly at the chest.",
+  "palette": ["#0d0a1f", "#211a3a", "#3b2e6b", "#7a6db0", "#cdc5e8", "#a8b0d0", "#f0e8ff"],
+  "bannedSubstrings": ["male", "man", "he/him", "beard", "child", "elderly", "blonde", "shield", "sword"],
+  "referenceSheet": {
+    "spritecookAssetId": "d06e52de-3c29-436b-bd72-1082bfeb5836",
+    "path": "images/spritecook/priest_female_portrait.png",
+    "prompt": "A female human Priest (a Cleric of the dusk-vigil order), head-and-shoulders portrait facing forward. Dark indigo-and-charcoal hooded ceremonial robe with silver moon-and-crescent embroidery on the chest, long raven-black hair falling past her shoulders from beneath the hood, calm solemn face, pale skin, faint silver glow from a holy crescent pendant at her chest, eyes closed in soft prayer. Painted 16-bit SNES JRPG pixel art style, clean black outline, soft cel shading, transparent background.",
+    "generatedAt": "2026-05-03T00:01:00Z",
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait":   { "spritecookAssetId": "d06e52de-3c29-436b-bd72-1082bfeb5836", "path": "images/spritecook/priest_female_portrait.png",   "approvedAt": null },
+    "south":      { "spritecookAssetId": "fa6cf1e6-bde4-46c9-bbb3-53b51d617d98", "path": "images/spritecook/priest_female_south.png",      "approvedAt": null },
+    "east":       { "spritecookAssetId": "2d2e8323-8aab-4d16-abc3-3c9ec36beef1", "path": "images/spritecook/priest_female_east.png",       "approvedAt": null },
+    "east_attack":{ "spritecookAssetId": "0b92ea46-7277-4668-aea1-89eaeeee5f40", "path": "images/spritecook/priest_female_east_attack.png","approvedAt": null },
+    "east_spell": { "spritecookAssetId": "ce7b80f9-3436-4d79-9887-6402e6055daf", "path": "images/spritecook/priest_female_east_spell.png", "approvedAt": null },
+    "east_block": { "spritecookAssetId": "91c42f97-e6ed-4275-a8d7-e43ee6b658e4", "path": "images/spritecook/priest_female_east_block.png", "approvedAt": null },
+    "east_ko":    { "spritecookAssetId": "9d45d2be-368d-405d-8f4c-2dffd60ebfb4", "path": "images/spritecook/priest_female_east_ko.png",    "approvedAt": null }
+  }
+}

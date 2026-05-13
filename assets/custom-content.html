@@ -36,7 +36,18 @@
 <script src="./_footer.js" defer></script>
 <main>
   <h1>Custom Content Loader</h1>
-  <p class="lead">Upload a JSON pack to add skills, classes, items, events, appearances, characters, or loot tables. Packs are merged at runtime; the game never hardcodes around them.</p>
+  <p class="lead">Upload a JSON pack to add skills, classes, build presets, items, events, appearances, characters, or loot tables. Packs are merged at runtime; the game never hardcodes around them.</p>
+
+  <details style="margin-bottom:1rem;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.75rem 1rem;">
+    <summary style="cursor:pointer;color:var(--gold);font-weight:600;">What's new (M65) — recent schema additions</summary>
+    <ul style="margin:.6rem 0 0 1rem;color:var(--ink);line-height:1.55;font-size:13px;">
+      <li><b>Hybrid <code>damageStat</code> values on skills:</b> <code>str_int</code>, <code>str_dex</code>, <code>dex_int</code> (averages two stats). Used by paladins, witch hunters, monks. Plain stats <code>str</code>/<code>dex</code>/<code>int</code>/<code>wis</code>/<code>flat</code> still work.</li>
+      <li><b>Skill <code>damageCategory</code>:</b> one of <code>heavy</code> / <code>light</code> / <code>magic</code>. Used by passives, item bonuses, and the combat HUD to bucket skills.</li>
+      <li><b>Class <code>tags</code>:</b> already in the schema — see <code>CLASS_TAGS</code> in <code>src/game/classes.js</code>. Examples: <code>['heavy','melee','tank']</code>, <code>['arcane','time']</code>, <code>['holy','healer','reviver']</code>.</li>
+      <li><b>Status effect <code>sleep</code>:</b> the runtime now recognizes a <code>sleep</code> status (up to 2 rounds, any damage wakes the target). Use it via <code>{op:"applyStatus", status:"sleep", duration:2, target:"target"}</code>.</li>
+      <li><b>Build presets:</b> a new pack kind (<code>builds</code>) with its own schema (<code>schemas/v1/build-preset.json</code>). Each entry assigns a <code>classId</code>, <code>targetAttrs</code> (weights summing to 100 for STR/DEX/INT/CON), <code>plateaus</code>, preferred <code>weapons</code>, <code>shieldPref</code>, <code>preferredSkills</code>, and flavor <code>tags</code>. Drives the auto-allocator on hero creation.</li>
+    </ul>
+  </details>
 
   <div class="tabs" id="tabs">
     <button class="tab active" data-tab="upload">Upload / Paste</button>
@@ -77,7 +88,7 @@
 
 <script>
 // Inline registry + DSL op list so this tool works both in dev and in the built site.
-const KINDS = ['skills','classes','items','events','appearances','characters','loot'];
+const KINDS = ['skills','classes','builds','items','events','appearances','characters','loot'];
 const DSL_OPS = ['damage','heal','applyStatus','buff','setFlag','requireFlag','consumeStatus','resourceSwap','echo','ritual','modifyTurnOrder','onHit','onCrit','onKill','onEvent'];
 const availableOps = () => DSL_OPS;
 const store = Object.fromEntries(KINDS.map(k => [k, {}]));
@@ -85,6 +96,7 @@ const packs = {};
 function inferKind(e) {
   if (e.mpCost != null || e.targeting || Array.isArray(e.effects)) return 'skills';
   if (e.primaryAttr || e.startingStats) return 'classes';
+  if (e.targetAttrs && (e.classId || e.preferredSkills || e.weapons)) return 'builds';
   if (e.dmg || e.armor || e.weaponCategory) return 'items';
   if (Array.isArray(e.nodes) && e.actRange) return 'events';
   if (e.sprite && e.classDefault !== undefined) return 'appearances';
@@ -116,7 +128,7 @@ function registerPack(raw) {
 const getAll = (k) => Object.values(store[k] || {});
 const listPacks = () => Object.values(packs);
 const clear = () => { for (const k of KINDS) store[k] = {}; for (const id of Object.keys(packs)) delete packs[id]; };
-const SCHEMAS = ['pack','skill','effect-dsl','class','item','event-chain','appearance','character','loot'];
+const SCHEMAS = ['pack','skill','effect-dsl','class','build-preset','item','event-chain','appearance','character','loot'];
 const EXAMPLES = ['starter-pack', 'archetype-spells', 'archetype-spells-2', 'custom-weapons', 'custom-enemies', 'custom-event', 'event-chains'];
 
 document.querySelectorAll('.tab').forEach(btn => {

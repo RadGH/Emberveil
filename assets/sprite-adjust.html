@@ -10,7 +10,14 @@
     :root { font-variant-emoji: text; --pane-bg: #15101a; --pane-border: rgba(160,80,255,0.18); }
     html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
     body { background: linear-gradient(180deg, #0e0a14, #1a121e); color: #f0e8d8; font-family: 'Inter', system-ui, sans-serif; }
-    .sa-shell { display: flex; flex-direction: column; height: 100vh; }
+    /* M404 — the shared nav-header.js inserts a 72px-tall fixed nav at the
+       top of <body> and adds `body.rsg-nav-padded { padding-top: 72px }`.
+       The shell is height:100vh, so before this fix the bottom 72px of the
+       shell (i.e. `.sa-mode-bar` and most of `.sa-panel-foot`) sat below
+       the viewport and got clipped by `body { overflow:hidden }`. Subtract
+       the nav padding so head/stage/foot all fit in the visible area. */
+    .sa-shell { display: flex; flex-direction: column; height: calc(100vh - 72px); }
+    body:not(.rsg-nav-padded) .sa-shell { height: 100vh; }
     .sa-topbar { display: flex; align-items: center; gap: 14px; padding: 8px 14px; border-bottom: 1px solid var(--pane-border); background: rgba(0,0,0,0.35); flex: 0 0 auto; }
     .sa-title { font-family: var(--font-display); color: var(--gold-bright); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; margin-right: 8px; }
     .sa-topbar label { font-size: 11px; color: var(--muted); display: inline-flex; align-items: center; gap: 4px; }
@@ -62,14 +69,14 @@
     .sa-stack-op input[type=range] { width: 80px; accent-color: var(--gold); }
     .sa-stack-op .v { color: var(--gold); font-variant-numeric: tabular-nums; min-width: 30px; }
 
-    .sa-panel { background: var(--pane-bg); border-right: 1px solid var(--pane-border); display: flex; flex-direction: column; overflow: hidden; position: relative; }
+    .sa-panel { background: var(--pane-bg); border-right: 1px solid var(--pane-border); display: flex; flex-direction: column; overflow: hidden; position: relative; min-height: 0; }
     .sa-panel-target { border-right: 1px solid var(--pane-border); }
     .sa-panel-head { padding: 8px 12px; border-bottom: 1px solid var(--pane-border); display: flex; align-items: center; gap: 10px; flex: 0 0 auto; min-height: 30px; }
     .sa-panel-head .sa-pane-tag { font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
     .sa-panel-head .sa-pane-tag.ref { color: #80b0ff; }
     .sa-panel-head .sa-pane-name { font-weight: 700; color: var(--gold-bright); font-size: 13px; flex: 1; }
     .sa-panel-head .sa-pane-pose { font-size: 11px; color: var(--muted); }
-    .sa-panel-stage { flex: 1; position: relative; overflow: hidden; background:
+    .sa-panel-stage { flex: 1 1 auto; min-height: 0; position: relative; overflow: hidden; background:
       linear-gradient(45deg, rgba(255,255,255,0.025) 25%, transparent 25%),
       linear-gradient(-45deg, rgba(255,255,255,0.025) 25%, transparent 25%),
       linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.025) 75%),
@@ -79,13 +86,48 @@
     }
     .sa-stage-grid { position: absolute; inset: 0; pointer-events: none; opacity: 0.18; }
     .sa-sprite-canvas { position: absolute; inset: 0; }
-    .sa-panel-foot { padding: 6px 12px; border-top: 1px solid var(--pane-border); display: flex; gap: 12px; font-size: 11px; flex: 0 0 auto; }
+    .sa-panel-foot { padding: 6px 12px; border-top: 1px solid var(--pane-border); display: flex; align-items: center; gap: 12px; font-size: 11px; flex: 0 0 auto; min-height: 30px; background: rgba(8,4,12,0.6); }
     .sa-panel-foot .v { color: var(--gold); font-variant-numeric: tabular-nums; min-width: 38px; display: inline-block; }
-    .sa-panel-foot .reset { background: rgba(200,80,80,0.12); border: 1px solid rgba(200,80,80,0.35); color: #ff8a70; padding: 1px 8px; border-radius: 3px; font-size: 10px; cursor: pointer; }
+    .sa-panel-foot .reset { margin: 0; background: rgba(200,80,80,0.12); border: 1px solid rgba(200,80,80,0.35); color: #ff8a70; padding: 1px 8px; border-radius: 3px; font-size: 10px; cursor: pointer; }
     .sa-panel-foot .reset:hover { background: rgba(200,80,80,0.22); }
     .sa-panel-foot .sa-live-pill { font-size: 9.5px; letter-spacing: 0.18em; padding: 1px 7px; background: rgba(96,168,232,0.16); border: 1px solid rgba(96,168,232,0.5); color: #80b0ff; border-radius: 3px; font-weight: 700; }
     .sa-panel-ref .sa-sprite-canvas { cursor: default !important; }
     .sa-panel-ref .sa-panel-stage { cursor: default !important; }
+
+    /* M65 — Single compare mode: hide the reference panel entirely. */
+    .sa-main.single { grid-template-columns: 1fr 320px !important; grid-template-rows: 1fr !important; }
+    .sa-main.single .sa-panel-ref { display: none !important; }
+    .sa-main.single .sa-panel-target { grid-column: 1 !important; grid-row: 1 !important; }
+    .sa-main.single .sa-list { grid-column: 2 !important; grid-row: 1 !important; }
+    body.single-mode #ref-controls { display: none !important; }
+    body.single-mode #order-toggle { display: none !important; }
+    body.single-mode #stack-op-wrap { display: none !important; }
+
+    /* M65 — Guides overlay: horizontal + vertical draggable rules over the
+       sprite stage. When unlocked, the handle intercepts pointer events and
+       the canvas behind it ignores mouse moves; when locked, the guide
+       becomes a non-interactive overlay (pointer-events: none) so the sprite
+       drag/scroll works as before. */
+    .sa-guide { position: absolute; z-index: 5; pointer-events: auto; }
+    .sa-guide.locked { pointer-events: none; opacity: 0.65; }
+    .sa-guide-h { left: 0; right: 0; height: 0; border-top: 1px dashed #ffcc55; cursor: ns-resize; }
+    .sa-guide-v { top: 0; bottom: 0; width: 0; border-left: 1px dashed #ffcc55; cursor: ew-resize; }
+    .sa-guide.locked.sa-guide-h { border-top-style: solid; border-top-color: #b87fff; }
+    .sa-guide.locked.sa-guide-v { border-left-style: solid; border-left-color: #b87fff; }
+    .sa-guide .sa-guide-grip { position: absolute; background: #ffcc55; color: #1a0a05; font-size: 9px; padding: 1px 4px; border-radius: 2px; font-weight: 700; white-space: nowrap; }
+    .sa-guide.locked .sa-guide-grip { background: #b87fff; color: #fff; }
+    .sa-guide-h .sa-guide-grip { left: 6px; top: -8px; }
+    .sa-guide-v .sa-guide-grip { left: -2px; top: 6px; transform: rotate(-90deg); transform-origin: 0 0; }
+
+    .sa-guides-list { border-top: 1px solid var(--pane-border); padding: 6px 10px; max-height: 35%; overflow-y: auto; flex: 0 0 auto; background: rgba(8,4,12,0.55); }
+    .sa-guides-list h4 { margin: 0 0 4px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+    .sa-guides-list .sa-guide-row { display: flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .sa-guides-list .sa-guide-row .axis { color: var(--gold); font-weight: 700; min-width: 16px; }
+    .sa-guides-list .sa-guide-row .pos { font-variant-numeric: tabular-nums; min-width: 50px; color: var(--text); }
+    .sa-guides-list .sa-guide-row button { background: transparent; border: 1px solid rgba(160,80,255,0.35); color: var(--text); padding: 1px 5px; border-radius: 3px; font-size: 10px; cursor: pointer; }
+    .sa-guides-list .sa-guide-row button.locked { background: rgba(184,127,255,0.25); color: #d0b0ff; border-color: rgba(184,127,255,0.5); }
+    .sa-guides-list .sa-guide-row button.del { color: #ff8a70; border-color: rgba(200,80,80,0.4); }
+    .sa-guides-list .empty { color: var(--muted); font-size: 11px; font-style: italic; }
 
     .sa-list { background: rgba(8,4,12,0.7); border-left: 1px solid var(--pane-border); display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
     .sa-list-head { padding: 8px 12px; border-bottom: 1px solid var(--pane-border); display: flex; flex-wrap: wrap; align-items: center; gap: 8px; flex: 0 0 auto; }
@@ -163,11 +205,15 @@
       <input type="range" id="stack-op" min="0" max="100" value="50" step="5">
       <span class="v" id="stack-op-v">50%</span>
     </label>
-    <label>Reference
+    <label id="ref-controls">Reference
       <select id="ref-char-select"></select>
       <button id="lock-ref" type="button">🔓 Auto</button>
     </label>
     <label><input type="checkbox" id="show-raw"> Show raw (no adjust)</label>
+    <label>Guides
+      <button id="btn-add-h-guide" type="button" title="Add horizontal guide">+ H</button>
+      <button id="btn-add-v-guide" type="button" title="Add vertical guide">+ V</button>
+    </label>
     <span class="sa-spacer"></span>
     <button id="btn-anim" type="button">▶ Preview Animation</button>
     <button id="btn-prompt" type="button">Get Prompt</button>
@@ -219,6 +265,10 @@
         </select>
       </div>
       <div class="sa-list-body" id="list-body"></div>
+      <div class="sa-guides-list" id="guides-list">
+        <h4>Guides</h4>
+        <div id="guides-rows"><div class="empty">No guides — use + H / + V in the toolbar.</div></div>
+      </div>
     </div>
   </div>
 
@@ -269,7 +319,9 @@ const state = {
   // currently in the game). Read-only. The target keeps user edits in row.adj.
   // Kept as a computed getter helper (`getRefAdj`).
   // UI prefs (persisted)
-  layout: 'side',         // 'side' | 'stacked'
+  layout: 'side',         // 'side' | 'stacked' | 'single'
+  guides: [],             // [{ id, axis: 'h'|'v', pos: number (px from top/left of stage), locked: bool }]
+  guideDrag: null,
   orderSwapped: false,    // false = ref first, true = target first
   showRaw: false,
   controlSide: 'tgt',     // 'ref' | 'tgt'
@@ -695,8 +747,11 @@ function showToast(msg) {
 function applyLayout() {
   const main = document.getElementById('sa-main');
   main.classList.toggle('stacked', state.layout === 'stacked');
+  main.classList.toggle('single', state.layout === 'single');
   main.classList.toggle('swapped', state.orderSwapped);
-  document.getElementById('layout-toggle').textContent = state.layout === 'stacked' ? 'Stacked' : 'Side';
+  document.body.classList.toggle('single-mode', state.layout === 'single');
+  const layoutLabels = { side: 'Side', stacked: 'Stacked', single: 'Single' };
+  document.getElementById('layout-toggle').textContent = layoutLabels[state.layout] || 'Side';
   document.getElementById('order-toggle').textContent = state.orderSwapped ? 'Target → Ref' : 'Ref → Target';
   // M290 — Stack Opacity slider only meaningful in stacked layout.
   const stackWrap = document.getElementById('stack-op-wrap');
@@ -796,8 +851,10 @@ document.getElementById('btn-anim').addEventListener('click', () => {
 
 document.getElementById('layout-toggle').addEventListener('click', () => {
   if (state.anim.running) stopAnimation();
-  state.layout = state.layout === 'side' ? 'stacked' : 'side';
-  applyLayout(); savePrefs();
+  // M65: 3-way cycle — Side → Stacked → Single → Side.
+  const next = { side: 'stacked', stacked: 'single', single: 'side' };
+  state.layout = next[state.layout] || 'side';
+  applyLayout(); renderGuides(); savePrefs();
 });
 document.getElementById('order-toggle').addEventListener('click', () => {
   state.orderSwapped = !state.orderSwapped;
@@ -835,8 +892,109 @@ document.querySelectorAll('[data-reset]').forEach(b => {
   });
 });
 
+// ── Guides (M65) ─────────────────────────────────────────────────────────
+// Horizontal + vertical alignment lines drawn as DOM overlays inside each
+// .sa-panel-stage. Stored on state.guides as { id, axis, pos, locked }.
+// pos is in PIXELS, measured from the top of the stage (h-guides) or left
+// (v-guides). Position is shared across both target + ref stages so a
+// horizontal feet-line at y=400 lines up on both.
+let _guideId = 1;
+function addGuide(axis) {
+  // Default to mid-stage. Use the target stage's height/width as reference.
+  const stage = document.getElementById('tgt-stage');
+  const r = stage ? stage.getBoundingClientRect() : { width: 400, height: 400 };
+  const pos = Math.round(axis === 'h' ? r.height / 2 : r.width / 2);
+  state.guides.push({ id: _guideId++, axis, pos, locked: false });
+  renderGuides();
+}
+function deleteGuide(id) {
+  state.guides = state.guides.filter(g => g.id !== id);
+  renderGuides();
+}
+function toggleGuideLock(id) {
+  const g = state.guides.find(x => x.id === id);
+  if (g) { g.locked = !g.locked; renderGuides(); }
+}
+function renderGuides() {
+  // Draw guides as overlays inside both stages (target + ref). Same pos for
+  // both so they act as a shared world-space measurement.
+  const stages = ['tgt-stage', 'ref-stage'].map(id => document.getElementById(id)).filter(Boolean);
+  for (const stage of stages) {
+    // Strip existing guide nodes
+    [...stage.querySelectorAll('.sa-guide')].forEach(n => n.remove());
+    for (const g of state.guides) {
+      const div = document.createElement('div');
+      div.className = `sa-guide sa-guide-${g.axis}` + (g.locked ? ' locked' : '');
+      div.dataset.guideId = String(g.id);
+      div.dataset.axis = g.axis;
+      if (g.axis === 'h') div.style.top = g.pos + 'px';
+      else div.style.left = g.pos + 'px';
+      const grip = document.createElement('span');
+      grip.className = 'sa-guide-grip';
+      grip.textContent = `${g.axis.toUpperCase()} ${Math.round(g.pos)}`;
+      div.appendChild(grip);
+      if (!g.locked) attachGuideDrag(div, g, stage);
+      stage.appendChild(div);
+    }
+  }
+  // Render the list panel
+  const rows = document.getElementById('guides-rows');
+  if (!rows) return;
+  if (!state.guides.length) {
+    rows.innerHTML = '<div class="empty">No guides — use + H / + V in the toolbar.</div>';
+    return;
+  }
+  rows.innerHTML = '';
+  for (const g of state.guides) {
+    const row = document.createElement('div');
+    row.className = 'sa-guide-row';
+    row.innerHTML = `
+      <span class="axis">${g.axis.toUpperCase()}</span>
+      <span class="pos">${Math.round(g.pos)} px</span>
+      <button data-act="lock" class="${g.locked ? 'locked' : ''}" title="${g.locked ? 'Unlock (drag enabled)' : 'Lock (sprite drag passthrough)'}">${g.locked ? '🔒' : '🔓'}</button>
+      <button data-act="del" class="del" title="Delete">✕</button>
+    `;
+    row.querySelector('[data-act="lock"]').addEventListener('click', () => toggleGuideLock(g.id));
+    row.querySelector('[data-act="del"]').addEventListener('click', () => deleteGuide(g.id));
+    rows.appendChild(row);
+  }
+}
+function attachGuideDrag(node, guide, stage) {
+  node.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    node.setPointerCapture(e.pointerId);
+    state.guideDrag = { id: guide.id };
+    const move = (ev) => {
+      const r = stage.getBoundingClientRect();
+      if (guide.axis === 'h') guide.pos = Math.max(0, Math.min(r.height, ev.clientY - r.top));
+      else guide.pos = Math.max(0, Math.min(r.width, ev.clientX - r.left));
+      // Update both target + ref overlays in real time without rebuilding the list.
+      document.querySelectorAll(`.sa-guide[data-guide-id="${guide.id}"]`).forEach(g => {
+        if (guide.axis === 'h') g.style.top = guide.pos + 'px';
+        else g.style.left = guide.pos + 'px';
+        const grip = g.querySelector('.sa-guide-grip');
+        if (grip) grip.textContent = `${guide.axis.toUpperCase()} ${Math.round(guide.pos)}`;
+      });
+      const posRow = document.querySelector('#guides-rows .sa-guide-row');
+      // Easier: re-render the list rows on drag-end only.
+    };
+    const up = (ev) => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      state.guideDrag = null;
+      renderGuides(); // refresh list pos labels
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  });
+}
+
+document.getElementById('btn-add-h-guide').addEventListener('click', () => addGuide('h'));
+document.getElementById('btn-add-v-guide').addEventListener('click', () => addGuide('v'));
+
 // Resize handler keeps sprites centered
-window.addEventListener('resize', () => drawSprites());
+window.addEventListener('resize', () => { drawSprites(); renderGuides(); });
 
 // ── Boot ─────────────────────────────────────────────────────────────────
 loadPrefs();

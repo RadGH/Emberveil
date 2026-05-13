@@ -94,5 +94,155 @@
     "name": "Flawless March",
     "desc": "Win 25 fights this run with zero deaths.",
     "tier": "gold"
+  },
+  {
+    "id": "boss_slayer",
+    "name": "Boss Slayer",
+    "desc": "Defeat your first zone boss.",
+    "tier": "bronze"
+  },
+  {
+    "id": "act2_clear",
+    "name": "Into the Wastes",
+    "desc": "Reach the Ashen Wastes.",
+    "tier": "bronze"
+  },
+  {
+    "id": "act3_clear",
+    "name": "Hell Descends",
+    "desc": "Enter The Hell Breach.",
+    "tier": "silver"
+  },
+  {
+    "id": "sovereign",
+    "name": "World Savior",
+    "desc": "Defeat the Emberveil Sovereign.",
+    "tier": "gold"
+  },
+  {
+    "id": "full_party",
+    "name": "Strength in Numbers",
+    "desc": "Have a party of 4 heroes.",
+    "tier": "bronze"
+  },
+  {
+    "id": "companions",
+    "name": "Trusty Companions",
+    "desc": "Hire your first companion.",
+    "tier": "bronze"
+  },
+  {
+    "id": "full_roster",
+    "name": "Full Retinue",
+    "desc": "Have 4 heroes and 4 companions at once.",
+    "tier": "gold"
+  },
+  {
+    "id": "rich",
+    "name": "Golden Touch",
+    "desc": "Accumulate 1,000 gold.",
+    "tier": "bronze"
+  },
+  {
+    "id": "legendary_item",
+    "name": "Legendary Find",
+    "desc": "Obtain a Legendary rarity item.",
+    "tier": "gold"
+  },
+  {
+    "id": "enchanted",
+    "name": "Enchanter\\",
+    "desc": "Use the Enchanter service.",
+    "tier": "bronze"
+  },
+  {
+    "id": "blacksmith",
+    "name": "Fine Craftsmanship",
+    "desc": "Upgrade an item at the Blacksmith.",
+    "tier": "bronze"
+  },
+  {
+    "id": "noticed",
+    "name": "Making a Name",
+    "desc": "Reach 20 Fame.",
+    "tier": "bronze"
+  },
+  {
+    "id": "renowned",
+    "name": "Renowned Hero",
+    "desc": "Reach 250 Fame.",
+    "tier": "silver"
+  },
+  {
+    "id": "legendary_fame",
+    "name": "Living Legend",
+    "desc": "Reach 500 Fame.",
+    "tier": "gold"
+  },
+  {
+    "id": "first_quest",
+    "name": "Quest Seeker",
+    "desc": "Open the Quest Log.",
+    "tier": "bronze"
+  },
+  {
+    "id": "seer_met",
+    "name": "Seeker of Truth",
+    "desc": "Meet Mira the Seer.",
+    "tier": "bronze"
+  },
+  {
+    "id": "survived_defeat",
+    "name": "Brush with Death",
+    "desc": "Be defeated in combat and live to tell the tale.",
+    "tier": "bronze"
+  },
+  {
+    "id": "level_10",
+    "name": "Seasoned Veteran",
+    "desc": "Reach hero level 10.",
+    "tier": "silver"
+  },
+  {
+    "id": "act4_enter",
+    "name": "Cosmic Voyager",
+    "desc": "Enter the Cosmic Rift.",
+    "tier": "silver"
+  },
+  {
+    "id": "void_boss",
+    "name": "The Unraveler Falls",
+    "desc": "Defeat The Unraveler and seal the Eternal Void.",
+    "tier": "gold"
+  },
+  {
+    "id": "ng_plus",
+    "name": "New Game+",
+    "desc": "Begin a New Game+ run.",
+    "tier": "gold"
+  },
+  {
+    "id": "ng_plus_2",
+    "name": "Twice-Born Legend",
+    "desc": "Complete New Game+ twice.",
+    "tier": "gold"
+  },
+  {
+    "id": "codex_opened",
+    "name": "Lore Seeker",
+    "desc": "Open the Codex.",
+    "tier": "bronze"
+  },
+  {
+    "id": "forge_used",
+    "name": "The Forge Calls",
+    "desc": "Salvage or craft an item at the Forge.",
+    "tier": "bronze"
+  },
+  {
+    "id": "challenge_done",
+    "name": "Daily Champion",
+    "desc": "Complete the Daily Challenge.",
+    "tier": "silver"
   }
 ]

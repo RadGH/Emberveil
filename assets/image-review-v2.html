@@ -7,6 +7,8 @@
 <title>Image Review V2 — Emberveil</title>
 <script src="./_header.js" defer></script>
 <script src="./_footer.js" defer></script>
+<link rel="stylesheet" href="./_shared/sprite-grid.css">
+<link rel="stylesheet" href="./_shared/lightbox.css">
 <style>
   :root {
     --bg:#0a0608; --panel:#1a1218; --panel-alt:#241a20; --border:rgba(232,160,32,0.2); --border-strong:rgba(232,160,32,0.45);
@@ -57,6 +59,13 @@
     padding:0.6rem 1rem; display:flex; gap:0.6rem; align-items:center; justify-content:center;
     backdrop-filter:blur(6px);
   }
+  /* M455 — on mobile, lift the floating filter panel above the select-bar
+     so the bar doesn't cover the filter trigger when the user scrolls. */
+  @media (max-width: 720px) {
+    #select-bar { padding:0.5rem 0.75rem; gap:0.5rem; flex-wrap:wrap; }
+    #select-bar .copy-hint { width: 100%; text-align: center; }
+    #filter-panel { bottom: 64px !important; }
+  }
   #select-bar .count { font-weight:600; color:var(--accent); font-size:0.9rem; }
   #select-bar button { background:var(--accent); color:#222; border:none; padding:0.5rem 1rem; border-radius:5px; font-weight:600; cursor:pointer; font-size:0.85rem; }
   #select-bar button:disabled { background:#444; color:#888; cursor:not-allowed; }
@@ -73,13 +82,53 @@
   .card .img-wrap.bg img { width:100%; height:100%; object-fit:cover; image-rendering:auto; }
   .card .label { font-size:0.72rem; color:#bbb; margin-top:0.35rem; word-break:break-word; line-height:1.2; }
   .card .badge { position:absolute; top:0.35rem; right:0.35rem; background:var(--pending); color:#222; font-size:0.6rem; font-weight:700; padding:0.15rem 0.4rem; border-radius:3px; text-transform:uppercase; letter-spacing:0.05em; }
+  /* M455 — in Pending mode every card is pending by definition; the badge is
+     redundant and covers the corner of the image. Hide it. body[data-mode]
+     is set in the page script when mode flips. */
+  body[data-mode="pending"] .card .badge { display: none; }
   .card .check { position:absolute; top:0.35rem; left:0.35rem; width:20px; height:20px; background:#000c; border:1px solid var(--accent-dim); border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:0.85rem; color:transparent; }
   .card.selected .check { background:var(--accent); color:#222; }
   .card.selected .check::before { content:'✓'; font-weight:700; }
   .card .check-row { position:absolute; inset:0; display:none; }
   .card .pose-tag { position:absolute; bottom:0.35rem; left:0.35rem; background:#0008; color:#bbb; font-size:0.6rem; padding:0.1rem 0.35rem; border-radius:2px; }
 
-  /* Character group blocks */
+  /* Background filter bar inside topbar — remove the shared margin-bottom, no border */
+  .topbar .bg-filter-bar { margin:0; border:none; background:transparent; padding:0; }
+  /* Label above topbar segments */
+  .topbar-label { font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.2rem; }
+
+  /* Reusable replacements for prior inline `style=` attributes (M464). */
+  .approve-callout { background:rgba(232,160,32,0.08); border:1px solid var(--accent-dim); border-radius:6px; padding:0.75rem 1rem; margin-bottom:0.75rem; font-size:0.85rem; line-height:1.5; }
+  .approve-callout strong.callout-head { color:var(--accent); }
+  .approve-callout ol { margin:0.4rem 0 0 1.2rem; padding:0; }
+  .approve-callout .tip { margin-top:0.5rem; color:var(--muted); font-size:0.78rem; }
+  .status-line { color:var(--muted); font-size:0.85rem; margin-bottom:0.5rem; }
+  .status-line.error { color:var(--warn); }
+  .batch-select-input { background:var(--panel-alt); color:var(--parchment); border:1px solid var(--border-strong); padding:0.35rem 0.5rem; font-size:0.85rem; border-radius:4px; }
+  .lb-reason-row { margin-bottom:0.6rem; }
+  .lb-prompt-block { margin-top:0.6rem; }
+  .lb-prompt-block .prompt-sub { margin-top:0.4rem; }
+  .lb-asset-line { margin-top:0.5rem; font-size:0.7rem; }
+  .lb-asset-line.sub { margin-top:0.2rem; }
+  .lb-flag-row { margin-top:0.75rem; padding-top:0.5rem; border-top:1px solid var(--border); }
+  .lb-flag-row .lb-flag-btns { display:flex; gap:0.3rem; margin-top:0.3rem; }
+  .lb-flag-btn { flex:1; padding:0.3rem; border-radius:3px; font-size:0.7rem; cursor:pointer; }
+  .lb-flag-btn[data-flag-prio=""]        { background:#222; border:1px solid #444; color:#888; }
+  .lb-flag-btn[data-flag-prio="info"]    { background:#1a2a3a; border:1px solid #3080d0; color:#5fa6e6; }
+  .lb-flag-btn[data-flag-prio="warning"] { background:#3a2a1a; border:1px solid #e8a020; color:#e8a020; }
+  .lb-flag-btn[data-flag-prio="error"]   { background:#3a1a1a; border:1px solid #c04030; color:#e07060; }
+  .lb-flag-row input[type="text"] { width:100%; margin-top:0.4rem; padding:0.35rem; background:#0a0a0e; border:1px solid var(--border); color:var(--parchment); font-size:0.78rem; border-radius:3px; }
+  .topbar-col { display:flex; flex-direction:column; }
+  .bg-bg-heading { font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.2rem; }
+  .filter-note-muted  { opacity:0.55; }
+  .filter-note-italic { font-style:italic; }
+  .appearance-portrait-missing { font-size:22px; color:var(--muted); }
+  .h2-count { color:var(--muted); font-size:0.8rem; font-weight:normal; }
+  .label-sub { opacity:0.65; }
+
+  /* Unified single-row character CSS — moved to _shared/sprite-grid.css (M472) */
+
+  /* Character group blocks (List layout) */
   .char-group { margin-bottom:1rem; padding:0.5rem; background:var(--panel); border:1px solid var(--border); border-radius:6px; }
   .char-group .group-head { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; }
   .char-group .group-head h3 { margin:0; color:var(--accent); font-size:0.95rem; text-transform:capitalize; }
@@ -88,66 +137,108 @@
   .char-group .pose-row .card { padding:0.35rem; }
   .char-group .pose-row .card .label { font-size:0.6rem; }
 
-  /* Lightbox */
-  /* M375: lightbox sits BELOW the 72px sticky nav so its toolbar buttons +
-     close-X aren't clipped. */
-  .lightbox { display:none; position:fixed; inset:72px 0 0 0; z-index:200; background:rgba(0,0,0,0.94); padding:0.75rem; }
-  .lightbox.open { display:flex; flex-direction:column; }
-  .lb-close-x {
-    position:fixed; top:80px; right:0.5rem; z-index:210;
-    width:44px; height:44px; border-radius:6px;
-    background:#c04030; color:#fff; border:1px solid #ffd060;
-    font-size:1.4rem; line-height:1; cursor:pointer; font-weight:700;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 2px 8px rgba(0,0,0,0.5);
+  /* =====================================================================
+     GROUPED layout — shared CSS lives in _shared/sprite-grid.css
+     Only page-specific overrides below.
+     ===================================================================== */
+
+  /* M463 — Pipeline overview cards */
+  .pipeline-overview { display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:0.75rem; margin-bottom:1rem; }
+  .pipeline-card { background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:0.75rem; }
+  .pipeline-card summary { cursor:pointer; color:var(--accent); font-weight:700; font-size:0.95rem; user-select:none; padding:0.25rem 0; }
+  .pipeline-card summary::-webkit-details-marker { color:var(--accent); }
+  .pipeline-card .pc-body { padding-top:0.5rem; font-size:0.85rem; line-height:1.45; color:#cbb; }
+  .pipeline-card .pc-body p { margin:0.25rem 0 0.6rem; }
+  /* The pc-ref image inherits its background from the .checker-bg class so it
+     responds to the body[data-sprite-bg] toggle like every other tile.
+     Don't set background here — sprite-grid.css owns it. */
+  .pipeline-card .pc-ref { width:100%; max-width:360px; border:1px solid var(--border); border-radius:4px; image-rendering:pixelated; margin-top:0.4rem; }
+  .pipeline-card .pc-meta { color:var(--muted); font-size:0.7rem; margin-top:0.4rem; font-family:monospace; }
+
+  /* Badge (page-specific variant — shared class-pair/appearance/pose CSS lives in _shared/sprite-grid.css) */
+  .rv-badge {
+    font-size:9px; padding:1px 5px; border-radius:8px; font-weight:600;
+    letter-spacing:0.03em; display:inline-block;
   }
-  .lb-close-x:hover { background:#d05040; }
-  .lb-toolbar { display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap; padding:0.25rem 3rem 0.5rem 0.25rem; }
-  .lb-toolbar button { background:#222; color:#ddd; border:1px solid var(--border-strong); border-radius:4px; padding:0.5rem 0.85rem; cursor:pointer; font-size:0.85rem; min-height:40px; }
-  .lb-toolbar button:hover { background:#333; }
-  .lb-toolbar button:disabled { opacity:0.4; cursor:not-allowed; }
-  .lb-body { flex:1; display:grid; grid-template-columns:1.6fr 1fr; gap:1rem; min-height:0; }
-  .lb-body.stacked { grid-template-columns:1fr; grid-template-rows:1fr auto; }
-  .lb-stage { background:#0008; border:1px solid var(--border); border-radius:6px; display:flex; align-items:center; justify-content:center; min-height:0; overflow:hidden; }
-  .lb-stage img { max-width:100%; max-height:100%; image-rendering:pixelated; }
-  .lb-stage.bg img { image-rendering:auto; }
-  .lb-side { background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:0.75rem; overflow-y:auto; font-size:0.85rem; line-height:1.45; }
-  .lb-side h3 { margin:0 0 0.25rem; color:var(--accent); }
-  .lb-side .meta { color:var(--muted); font-size:0.75rem; margin-bottom:0.6rem; }
-  .lb-side .ref-thumb { width:100%; max-width:200px; margin-top:0.4rem; border:1px solid var(--border); border-radius:4px; image-rendering:pixelated; background:#0a0a0e; }
-  .lb-side .prompt { white-space:pre-wrap; font-size:0.7rem; opacity:0.8; max-height:200px; overflow:auto; padding:0.4rem; background:#0a0a0e; border:1px solid var(--border); border-radius:4px; }
-  .lb-counter { color:var(--muted); font-size:0.75rem; }
-  .lb-comparison { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
-  .lb-comparison > div { text-align:center; }
-  .lb-comparison img { max-width:100%; image-rendering:pixelated; background:#0a0a0e; border:1px solid var(--border); border-radius:3px; }
-  .lb-comparison .lbl { font-size:0.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.2rem; }
-  .lb-comparison .lbl.new { color:var(--accent); }
+  .rv-badge-warn     { background:rgba(192,64,48,0.12); color:var(--warn); border:1px solid rgba(192,64,48,0.4); }
+  .rv-badge-pending  { background:#2a2020; color:#cc8844; border:1px solid #4a3030; }
+  .rv-badge-ok       { background:#1a3a2a; color:var(--ok); border:1px solid #2a5a3a; }
+
+  /* Section title inside grouped layout */
+  .rv-section-title {
+    font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--muted); margin:1rem 0 0.5rem; padding-bottom:5px;
+    border-bottom:1px solid var(--border); display:flex; align-items:center; gap:6px;
+  }
+  .rv-section-count { background:var(--panel-alt); border:1px solid var(--border); color:var(--parchment); padding:1px 7px; border-radius:8px; font-size:9px; }
+
+  /* Lightbox CSS — moved to _shared/lightbox.css (M472) */
 
   @media (max-width: 768px) {
-    .lb-body { grid-template-columns:1fr; grid-template-rows:1fr auto; }
     .topbar { flex-direction:column; align-items:stretch; }
     .seg { width:100%; }
     .seg button { flex:1; }
     #filter-panel { right:0.5rem; bottom:4.5rem; }
   }
 </style>
+<script src="./_shared/sprite-grid.js"></script>
+<script src="./_shared/lightbox.js"></script>
 </head>
 <body class="ev-themed">
 <div class="wrap">
   <h1>Image Review V2</h1>
-  <p class="sub">Live image catalog. Select images you want to act on, then click <strong>Copy as list</strong> and paste the result into a Claude prompt (e.g. "I approve these:" or "regen these:"). All client-side, no persistence between page loads.</p>
+  <p class="sub">Live image catalog. Select images you want to act on, then choose how to send them to Claude.</p>
+
+  <!-- M412 — explicit approval workflow callout. Was missing before, which led
+       to "I approved these on the page but they stayed pending" because
+       clicking cards alone never persists anything — the page only builds a
+       copy-paste payload and Claude must run the approve script. -->
+  <div class="approve-callout">
+    <strong class="callout-head">Approving images is a two-step flow.</strong>
+    Selecting cards on this page does <em>not</em> persist anything — the page is read-only and your selections live only in this tab.
+    To actually approve:
+    <ol>
+      <li>Select the cards you want to approve.</li>
+      <li>Click <strong>Copy approve command</strong> (or <strong>Copy as list</strong> + tell Claude "approve these").</li>
+      <li>Paste into Claude. Claude runs <code>node scripts/approve-image-review-v2.cjs &lt;ids…&gt;</code>, which copies the candidate file into the live path and marks the entry approved. Pending status disappears on the next page reload.</li>
+    </ol>
+    <div class="tip">
+      Tip: <strong>Copy approve command</strong> produces a ready-to-run shell line with the script and IDs already filled in.
+      <strong>Approve all</strong> covers the entire open batch in one command.
+    </div>
+  </div>
+
+  <!-- M463 — pipeline overview cards (collapsible). One per current generator. -->
+  <div class="pipeline-overview">
+    <details class="pipeline-card">
+      <summary>SpriteCook</summary>
+      <div class="pc-body">
+        <p>Per-pose pixel art via the SpriteCook MCP. Default pipeline for established characters with a stable <code>art_direction/&lt;id&gt;.json</code> prompt set. No shared reference image — each character's prompt comes from the per-id JSON, so consistency is enforced by the prompt itself rather than a template.</p>
+        <p class="pc-meta">script: <code>scripts/spritecook-*.cjs</code> · output: <code>public/images/spritecook/</code></p>
+      </div>
+    </details>
+    <details class="pipeline-card">
+      <summary>OpenAI v2 (9-pose)</summary>
+      <div class="pc-body">
+        <p>Single-call 3×3 sprite-sheet generator (chroma-key #00FF00 + despill + slice + center-pad). Used for experimental / non-humanoid characters. Every regen enrols in the open review batch automatically (M462).</p>
+        <p>Reference template (current):</p>
+        <img class="pc-ref checker-bg" src="./openai_v2/reference.png" alt="OpenAI v2 reference template" loading="lazy">
+        <p class="pc-meta">Background updates with the global sprite-bg toggle. script: <code>scripts/openai-spritesheet-gen.py</code> · output: <code>public/images/openai_v2/</code> · raw: <code>public/assets/openai_v2/raw/&lt;id&gt;/</code></p>
+      </div>
+    </details>
+  </div>
 
   <div class="topbar">
-    <div>
-      <div style="font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.2rem;">Mode</div>
+    <div class="topbar-col">
+      <div class="bg-bg-heading">Mode</div>
       <div class="seg" id="mode-seg">
         <button data-mode="pending" class="active">Pending</button>
         <button data-mode="current">Current</button>
         <button data-mode="history">History</button>
       </div>
     </div>
-    <div>
-      <div style="font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.2rem;">Category</div>
+    <div class="topbar-col">
+      <div class="bg-bg-heading">Category</div>
       <div class="seg" id="cat-seg">
         <button data-cat="characters" class="active">Characters</button>
         <button data-cat="backgrounds">Backgrounds</button>
@@ -155,70 +246,64 @@
         <button data-cat="other">Other</button>
       </div>
     </div>
-    <div id="batch-select-wrap" style="display:none;">
-      <div style="font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.2rem;">Batch</div>
-      <select id="batch-select" style="background:var(--panel-alt); color:var(--parchment); border:1px solid var(--border-strong); padding:0.35rem 0.5rem; font-size:0.85rem; border-radius:4px;"></select>
+    <div class="topbar-col">
+      <div class="topbar-label">Background</div>
+      <div id="bg-filter-mount"></div>
+    </div>
+    <div class="topbar-col" id="batch-select-wrap" hidden>
+      <div class="bg-bg-heading">Batch</div>
+      <select id="batch-select" class="batch-select-input"></select>
     </div>
   </div>
 
-  <div id="pending-banner" class="pending-banner" style="display:none;"></div>
+  <div id="pending-banner" class="pending-banner" hidden></div>
 
-  <div id="status" style="color:var(--muted); font-size:0.85rem; margin-bottom:0.5rem;">Loading…</div>
+  <div id="status" class="status-line">Loading…</div>
 
   <div id="content"></div>
 </div>
 
-<details id="filter-panel" open>
-  <summary>Filters ▾</summary>
+<details id="filter-panel">
+  <summary>Filters</summary>
   <div id="filter-body"></div>
 </details>
 
+<!-- M455 — slimmer select-bar: just count + Copy + Clear, no Approve commands.
+     The "Copy as list" button name shortened to "Copy". -->
 <div id="select-bar">
   <span class="count" id="select-count">0 selected</span>
-  <button id="copy-btn" disabled>Copy as list</button>
-  <button id="clear-btn" class="secondary" disabled>Clear</button>
+  <button id="copy-btn" disabled title="Copy selected entry IDs + paths">Copy</button>
+  <button id="clear-btn" class="secondary" disabled>× Clear</button>
   <span class="copy-hint" id="copy-hint"></span>
 </div>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
-  <button class="lb-close-x" id="lb-close-x" aria-label="Close lightbox">×</button>
-  <div class="lb-toolbar">
-    <div>
-      <button id="lb-prev" type="button">← Prev</button>
-      <button id="lb-next" type="button">Next →</button>
-      <span class="lb-counter" id="lb-counter"></span>
-    </div>
-    <div>
-      <button id="lb-toggle-layout" type="button">Toggle layout</button>
-      <button id="lb-close" type="button">× Close</button>
-    </div>
-  </div>
-  <div class="lb-body" id="lb-body">
-    <div class="lb-stage" id="lb-stage"><img id="lb-img" alt=""></div>
-    <div class="lb-side" id="lb-side"></div>
-  </div>
-</div>
+<!-- Lightbox DOM is auto-created by SharedLightbox.create() — see _shared/lightbox.js -->
 
 <script>
 const POSES = ['portrait','south','east','east_attack','east_spell','east_block','east_ko'];
+const NON_PORTRAIT_POSES = POSES.filter(p => p !== 'portrait');
+const POSE_LABELS = { portrait:'port', south:'S', east:'E', east_attack:'atk', east_spell:'spl', east_block:'blk', east_ko:'ko' };
 const DATA_URL = './data/image-review-v2.json';
+const APPEARANCES_URL = './appearances-manifest.json';
 
 let DATA = null;
+let APPEARANCES = null;   // appearances-manifest.json keyed by entity id
 let mode = 'pending';      // 'pending' | 'current' | 'history'
 let category = 'characters'; // 'characters' | 'backgrounds' | 'tap_weapons' | 'other'
 let historyBatchId = null;   // when mode === 'history'
 
+// M464 — pose filter + layout toggle removed; ONE single-row layout for all
+// modes/categories. The only filters left are character categories + bg types.
 const filters = {
-  poses: new Set(POSES),
   charCats: new Set(['hero','companion','boss','enemy']),
   bgTypes: new Set(['combat','menu','map']),
-  showSubsprites: false,
 };
 
 const selected = new Set();   // entry ids
 let lbItems = [];
-let lbIdx = 0;
-let lbStacked = false;
+let lb = null;   // SharedLightbox controller (initialized in wireLightbox)
+/** Push the current lbItems array into the shared lightbox so prev/next works. */
+function syncLbItems() { if (lb) lb.setItems(lbItems); }
 
 async function load() {
   try {
@@ -227,13 +312,36 @@ async function load() {
     DATA = await r.json();
   } catch (e) {
     document.getElementById('status').innerHTML =
-      '<span style="color:var(--warn);">Failed to load image-review-v2.json. Run <code>node scripts/build-image-review-v2.cjs</code>.</span>';
+      '<span class="status-line error">Failed to load image-review-v2.json. Run <code>node scripts/build-image-review-v2.cjs</code>.</span>';
+    document.getElementById('status').className = 'status-line error';
     return;
+  }
+  // Load appearances-manifest for the Grouped layout — provides full 7-pose data
+  // for enemies/companions/bosses that image-review-manifest only has a portrait for.
+  try {
+    const ar = await fetch(APPEARANCES_URL, { cache: 'no-cache' });
+    if (ar.ok) {
+      const raw = await ar.json();
+      // Build a flat id→appearance lookup spanning appearances, enemies, companions, bosses
+      APPEARANCES = {};
+      const sections = ['appearances','enemies','companions','bosses'];
+      for (const sec of sections) {
+        const list = raw[sec] || [];
+        for (const a of list) {
+          if (a.id && !APPEARANCES[a.id]) APPEARANCES[a.id] = a;
+        }
+      }
+    }
+  } catch (_) {
+    // appearances-manifest is optional — fall back to portrait-only gracefully
+    APPEARANCES = null;
   }
   buildBatchSelect();
   buildFilters();
   wireTopbar();
   wireSelectBar();
+  wireBgSeg();          // M463
+  loadFlagsLocal();     // M463
   wireLightbox();
   render();
 }
@@ -248,31 +356,23 @@ function buildBatchSelect() {
 
 function buildFilters() {
   const body = document.getElementById('filter-body');
+  // M464 — pose filter removed; layout always single-row.
   body.innerHTML = `
-    <div class="filter-group" id="char-filters" ${category !== 'characters' ? 'style="display:none;"' : ''}>
+    <div class="filter-group" id="char-filters" ${category !== 'characters' ? 'hidden' : ''}>
       <div class="group-title">Character categories</div>
-      ${['hero','companion','boss','enemy'].map(c => `
-        <label class="filter-row"><input type="checkbox" data-charcat="${c}" checked> ${c}s</label>
-      `).join('')}
-      <div class="group-title" style="margin-top:0.5rem;">Poses</div>
-      ${POSES.map(p => `
-        <label class="filter-row"><input type="checkbox" data-pose="${p}" checked> ${p}</label>
-      `).join('')}
-      <label class="filter-row" style="margin-top:0.4rem;"><input type="checkbox" id="show-sub"> Show sub-sprites (group all 7 poses)</label>
+      ${['hero','companion','boss','enemy'].map(c => {
+        // Pluralisation map fixes "heros"/"enemys" typos.
+        const plurals = { hero:'heroes', companion:'companions', boss:'bosses', enemy:'enemies' };
+        return `<label class="filter-row"><input type="checkbox" data-charcat="${c}" ${filters.charCats.has(c) ? 'checked' : ''}> ${plurals[c]}</label>`;
+      }).join('')}
     </div>
-    <div class="filter-group" id="bg-filters" ${category !== 'backgrounds' ? 'style="display:none;"' : ''}>
+    <div class="filter-group" id="bg-filters" ${category !== 'backgrounds' ? 'hidden' : ''}>
       <div class="group-title">Background type</div>
       ${['combat','menu','map'].map(t => `
-        <label class="filter-row"><input type="checkbox" data-bgtype="${t}" checked> ${t}</label>
+        <label class="filter-row"><input type="checkbox" data-bgtype="${t}" ${filters.bgTypes.has(t) ? 'checked' : ''}> ${t}</label>
       `).join('')}
     </div>
   `;
-  body.querySelectorAll('input[data-pose]').forEach(el => {
-    el.onchange = () => {
-      el.checked ? filters.poses.add(el.dataset.pose) : filters.poses.delete(el.dataset.pose);
-      render();
-    };
-  });
   body.querySelectorAll('input[data-charcat]').forEach(el => {
     el.onchange = () => {
       el.checked ? filters.charCats.add(el.dataset.charcat) : filters.charCats.delete(el.dataset.charcat);
@@ -285,8 +385,41 @@ function buildFilters() {
       render();
     };
   });
-  const ssEl = body.querySelector('#show-sub');
-  if (ssEl) ssEl.onchange = () => { filters.showSubsprites = ssEl.checked; render(); };
+}
+
+// Background mode — delegated to SpriteGrid shared module.
+// SpriteGrid.applySpriteBg / SpriteGrid.mountBgFilter in _shared/sprite-grid.js.
+const BG_LS_KEY = SpriteGrid.BG_LS_KEY;
+function applySpriteBg(mode) { SpriteGrid.applySpriteBg(mode); }
+function wireBgSeg() {
+  SpriteGrid.mountBgFilter(document.getElementById('bg-filter-mount'));
+}
+
+// M463 — Image flag persistence (sibling sidecar JSON loaded once, mutated in
+// memory only — no network write. Saving requires copy-paste to a script for
+// now, identical to the approval workflow.)
+let FLAGS = {};   // { entryId: { prio: 'error'|'warning'|'info', text: '' } }
+const FLAGS_LS_KEY = 'evImgReview_flagsLocal';
+function loadFlagsLocal() {
+  try { FLAGS = JSON.parse(localStorage.getItem(FLAGS_LS_KEY) || '{}'); } catch (_) { FLAGS = {}; }
+}
+function saveFlagsLocal() {
+  try { localStorage.setItem(FLAGS_LS_KEY, JSON.stringify(FLAGS)); } catch (_) {}
+}
+function flagFor(id) { return FLAGS[id] || null; }
+function setFlag(id, prio, text) {
+  if (!prio) { delete FLAGS[id]; }
+  else FLAGS[id] = { prio, text: text || '' };
+  saveFlagsLocal();
+}
+
+// M463 — derive generator from a sprite path. Returns 'openai_v2' / 'spritecook' / 'sprites' / 'other'.
+function generatorOf(src) {
+  if (!src) return 'other';
+  if (src.includes('/openai_v2/')) return 'openai_v2';
+  if (src.includes('/spritecook/')) return 'spritecook';
+  if (src.includes('/sprites/'))    return 'sprites';
+  return 'other';
 }
 
 function wireTopbar() {
@@ -295,7 +428,8 @@ function wireTopbar() {
       document.querySelectorAll('#mode-seg button').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
       mode = b.dataset.mode;
-      document.getElementById('batch-select-wrap').style.display = (mode === 'history') ? '' : 'none';
+      document.body.dataset.mode = mode;  // M455: drives `body[data-mode] .card .badge` CSS
+      document.getElementById('batch-select-wrap').hidden = (mode !== 'history');
       render();
     };
   });
@@ -304,20 +438,29 @@ function wireTopbar() {
       document.querySelectorAll('#cat-seg button').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
       category = b.dataset.cat;
-      document.getElementById('char-filters').style.display = (category === 'characters') ? '' : 'none';
-      document.getElementById('bg-filters').style.display = (category === 'backgrounds') ? '' : 'none';
+      const charFilters = document.getElementById('char-filters');
+      const bgFilters = document.getElementById('bg-filters');
+      if (charFilters) charFilters.hidden = (category !== 'characters');
+      if (bgFilters)  bgFilters.hidden  = (category !== 'backgrounds');
+      buildFilters();
       render();
     };
   });
 }
 
 function wireSelectBar() {
+  // M455 — copy-cmd-btn + approve-all-btn removed from the bar; the
+  // approval workflow now copies a list of IDs and the user pastes them
+  // into Claude (which runs the approve script). Keep existing functions
+  // around in case they're referenced elsewhere; just don't wire them.
   document.getElementById('copy-btn').onclick = copyList;
   document.getElementById('clear-btn').onclick = () => {
     selected.clear();
     updateSelectBar();
     document.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
   };
+  // Set initial body[data-mode] so the page styling matches default 'pending'.
+  document.body.dataset.mode = mode;
 }
 
 function updateSelectBar() {
@@ -325,6 +468,14 @@ function updateSelectBar() {
   document.getElementById('select-count').textContent = `${n} selected`;
   document.getElementById('copy-btn').disabled = n === 0;
   document.getElementById('clear-btn').disabled = n === 0;
+}
+
+function _copyToClipboardWithHint(text, msg) {
+  navigator.clipboard.writeText(text).then(() => {
+    const hint = document.getElementById('copy-hint');
+    hint.textContent = msg;
+    setTimeout(() => { hint.textContent = ''; }, 2500);
+  });
 }
 
 function copyList() {
@@ -339,12 +490,28 @@ function copyList() {
       lines.push(`${id}\t${e.file}`);
     }
   }
-  const text = lines.join('\n');
-  navigator.clipboard.writeText(text).then(() => {
-    const hint = document.getElementById('copy-hint');
-    hint.textContent = `copied ${lines.length} line(s)`;
-    setTimeout(() => { hint.textContent = ''; }, 2500);
-  });
+  _copyToClipboardWithHint(lines.join('\n'), `copied ${lines.length} line(s)`);
+}
+
+// M412 — generate the exact `node scripts/approve-image-review-v2.cjs <ids…>`
+// command for the selected entries so the user can paste it directly into a
+// Claude prompt (or a shell). Solves the "I clicked Approve but nothing
+// happened" problem by making the script invocation explicit.
+function copyApproveCommand() {
+  const ids = [];
+  for (const id of selected) {
+    const e = findEntryById(id);
+    if (!e) continue;
+    ids.push(e.id || e.assetId);
+  }
+  if (!ids.length) return;
+  const cmd = `node scripts/approve-image-review-v2.cjs ${ids.join(' ')}`;
+  _copyToClipboardWithHint(cmd, `copied approve command for ${ids.length} entr${ids.length === 1 ? 'y' : 'ies'}`);
+}
+
+function copyApproveAllCommand() {
+  const cmd = `node scripts/approve-image-review-v2.cjs --all`;
+  _copyToClipboardWithHint(cmd, 'copied "approve --all" command');
 }
 
 function findEntryById(id) {
@@ -376,11 +543,11 @@ function render() {
 
   const open = DATA.batches.open;
   if (open && open.entries && open.entries.length) {
-    banner.style.display = '';
+    banner.hidden = false;
     banner.innerHTML = `<h2>⚑ ${open.id.toUpperCase()} — ${open.entries.length} pending</h2>
       <p>Opened ${open.openedAt?.slice(0,10) || '—'}. Click into Pending mode below to review.</p>`;
   } else {
-    banner.style.display = 'none';
+    banner.hidden = true;
   }
 
   let entries = currentEntries();
@@ -400,7 +567,6 @@ function render() {
     entries = entries.filter(e => {
       const sub = e.category && e.category !== 'character' ? e.category : null;
       if (sub && !filters.charCats.has(sub)) return false;
-      if (e.pose && !filters.poses.has(e.pose)) return false;
       return true;
     });
   }
@@ -415,27 +581,574 @@ function render() {
   }
   status.textContent = `${entries.length} image(s)`;
 
-  if (mode !== 'current' || (category === 'characters' && filters.showSubsprites)) {
-    renderGroupedByGroup(entries);
-  } else if (mode === 'current' && category === 'characters' && !filters.showSubsprites) {
-    // Show one card per character (portrait pose)
-    const grouped = {};
-    for (const e of entries) {
-      if (e.pose !== 'portrait') continue;
-      if (!grouped[e.group]) grouped[e.group] = e;
-    }
-    renderFlat(Object.values(grouped));
-  } else if (category === 'backgrounds' && mode === 'current') {
+  // M464 — Unified layout. Characters (across pending/current/history) all
+  // render as <character name> + single row of pose tiles. Backgrounds and
+  // tap-weapons still use renderFlat / renderBackgroundsByType.
+  if (category === 'characters') {
+    renderUnifiedCharacters(entries);
+    syncLbItems();
+    return;
+  }
+  if (category === 'backgrounds' && mode === 'current') {
     renderBackgroundsByType(entries);
   } else {
     renderFlat(entries);
   }
   rebuildLbItems(entries);
+  syncLbItems();
+}
+
+/**
+ * M464 — Unified renderer for all character modes (pending / current / history).
+ * For each character (grouped by entry.group), render one section:
+ *   <name>
+ *   [tile][tile][tile] ... one tile per pose entry
+ *
+ * In "current" mode, prefer pulling the canonical 7-pose set from
+ * appearances-manifest so missing poses are visualised; in pending/history,
+ * only the entries actually in the batch are shown (those are what the user
+ * is reviewing).
+ */
+function renderUnifiedCharacters(entries) {
+  const content = document.getElementById('content');
+
+  // Group by entity id (entry.group), preserve filter ordering.
+  const byGroup = new Map();
+  for (const e of entries) {
+    const key = e.group || e.id;
+    if (!byGroup.has(key)) byGroup.set(key, { id: key, cat: e.category, entries: [], byPose: {} });
+    const g = byGroup.get(key);
+    g.entries.push(e);
+    if (e.pose) g.byPose[e.pose] = e;
+  }
+
+  // Build CharRecord array for the shared renderer.
+  const allLbItems = [];
+  /** entityId → array of tile ids inside that group (for bulk-select). */
+  const tileIdsByGroup = {};
+  const characters = [];
+
+  for (const [groupId, g] of byGroup) {
+    const app = (mode === 'current' && APPEARANCES) ? APPEARANCES[groupId] : null;
+    const charName = (app && app.name) || groupId.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+    // Build tile descriptors.
+    const tilesToRender = [];
+    if (app && mode === 'current') {
+      for (const pose of POSES) {
+        const rel = app.sprites && app.sprites[pose];
+        const manEntry = g.byPose[pose] || null;
+        const id = manEntry ? manEntry.id : `${groupId}_${pose}`;
+        if (!rel) {
+          tilesToRender.push({ id, pose, src: null, poseLabel: POSE_LABELS[pose] || pose });
+        } else {
+          tilesToRender.push({
+            id, pose,
+            src: resolveAppearanceSrc(rel),
+            poseLabel: POSE_LABELS[pose] || pose,
+            data: { prompt: manEntry?.prompt || null },
+          });
+        }
+      }
+    } else {
+      for (const e of g.entries) {
+        const src = e._batchEntry ? e.new : e.file;
+        tilesToRender.push({
+          id: e.id, pose: e.pose || '',
+          poseLabel: e.pose ? (POSE_LABELS[e.pose] || e.pose) : '',
+          src,
+          data: {
+            prompt: e.prompt || null,
+            isBatch: !!e._batchEntry,
+            oldSrc: e.old || null, newSrc: e.new || null,
+            reason: e.reason || null,
+          },
+        });
+      }
+    }
+
+    // Stash tile ids for the bulk checkbox closure.
+    tileIdsByGroup[groupId] = tilesToRender.filter(t => t.src).map(t => t.id);
+
+    // Push lightbox items in the same order.
+    for (const t of tilesToRender) {
+      if (!t.src) continue;
+      const d = t.data || {};
+      allLbItems.push({
+        id: t.id,
+        title: charName,
+        subtitle: t.pose || '',
+        src: t.src,
+        oldSrc: d.oldSrc || null,
+        newSrc: d.newSrc || null,
+        prompt: d.prompt || null,
+        oldPrompt: null,
+        newPrompt: null,
+        reason: d.reason || null,
+        assetId: null,
+        referenceAssetId: null,
+        isBg: false,
+      });
+    }
+
+    characters.push({
+      id: groupId,
+      name: charName,
+      subtitle: groupId,
+      tiles: tilesToRender,
+      _meta: { app, cat: g.cat },
+    });
+  }
+
+  // Clear before rendering — image-review re-builds the whole list on every
+  // filter/mode change. images.html doesn't pass clear because it calls in a
+  // loop per appearance and manages its own container lifecycle.
+  SpriteGrid.renderUnifiedCharacters(content, characters, {
+    clear: true,
+    decorateHead: (head, c) => {
+      // Bulk checkbox at the start of the header.
+      const bulkChk = document.createElement('input');
+      bulkChk.type = 'checkbox';
+      bulkChk.className = 'group-bulk-check';
+      bulkChk.title = `Select/deselect all ${c.id}`;
+      const tileIds = tileIdsByGroup[c.id] || [];
+      bulkChk.checked = tileIds.length > 0 && tileIds.every(id => selected.has(id));
+      bulkChk.onclick = (ev) => {
+        ev.stopPropagation();
+        const turnOn = bulkChk.checked;
+        for (const id of tileIds) {
+          if (turnOn) selected.add(id); else selected.delete(id);
+        }
+        updateSelectBar();
+        render();
+      };
+      head.appendChild(bulkChk);
+    },
+    decorateTile: (tileEl, t /*, c */) => {
+      if (!t.src) return; // missing tiles get no decorations
+      // Generator badge
+      const gen = generatorOf(t.src);
+      if (gen !== 'other') {
+        const gb = document.createElement('span');
+        gb.className = `gen-badge gen-${gen}`;
+        gb.textContent = gen.replace('_', ' ');
+        tileEl.appendChild(gb);
+      }
+      // Flag dot
+      const f = flagFor(t.id);
+      if (f) {
+        const fd = document.createElement('span');
+        fd.className = 'flag-dot';
+        fd.dataset.prio = f.prio;
+        if (f.text) fd.dataset.text = f.text;
+        tileEl.appendChild(fd);
+      }
+      // Selection state
+      if (selected.has(t.id)) tileEl.classList.add('selected');
+    },
+    onTileClick: (t /*, c */, ev) => {
+      if (!t.src) return; // missing tiles: no-op
+      // M474 — defensive: a few caller paths invoke handlers without a real
+      // Event object; stopPropagation/shiftKey may be missing.
+      if (ev && typeof ev.stopPropagation === 'function') ev.stopPropagation();
+      // Single click = open lightbox; shift-click toggles selection.
+      if (ev && ev.shiftKey) {
+        const tileEl = ev.currentTarget;
+        toggleSelect(t.id, tileEl);
+      } else {
+        openLbById(t.id);
+      }
+    },
+  });
+
+  lbItems = allLbItems;
+}
+
+// ---------------------------------------------------------------------------
+// Grouped layout — images.html-compatible appearance card rendering
+// ---------------------------------------------------------------------------
+
+/** Build a synthetic entry id for an appearance pose for lightbox/selection. */
+function appearancePoseId(appId, pose) { return `${appId}_${pose}`; }
+
+/** Resolve the display file path for a pose from the appearances-manifest sprite map.
+ *  Returns null if missing. The manifest stores paths relative to images/ dir
+ *  (e.g. "spritecook/warrior_portrait.png"), so we prepend ../images/.
+ */
+function resolveAppearanceSrc(relPath) {
+  if (!relPath) return null;
+  return '../images/' + relPath;
+}
+
+/** Render a single pose tile (appearance-row style).
+ *  Returns an HTMLElement. Clicking opens the lightbox for that pose's synthetic id.
+ */
+function makePoseFrameEl(appId, appName, pose, relPath) {
+  const div = document.createElement('div');
+  div.className = 'pose-frame checker-bg';
+  const poseId = appearancePoseId(appId, pose);
+  div.dataset.id = poseId;
+  if (!relPath) {
+    div.classList.add('pose-missing');
+    div.innerHTML = `<span class="pose-missing-glyph">&#x2717;</span><span class="pose-label">${POSE_LABELS[pose] || pose}</span>`;
+    return div;
+  }
+  const src = resolveAppearanceSrc(relPath);
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = `${appName} ${pose}`;
+  img.loading = 'lazy';
+  const labelEl = document.createElement('div');
+  labelEl.className = 'pose-label';
+  labelEl.textContent = POSE_LABELS[pose] || pose;
+  div.appendChild(img);
+  div.appendChild(labelEl);
+  // M463 — generator badge + flag dot
+  const gen = generatorOf(src);
+  if (gen !== 'other') {
+    const gb = document.createElement('span');
+    gb.className = `gen-badge gen-${gen}`;
+    gb.textContent = gen.replace('_', ' ');
+    div.appendChild(gb);
+  }
+  const f = flagFor(poseId);
+  if (f) {
+    const fd = document.createElement('span');
+    fd.className = 'flag-dot';
+    fd.dataset.prio = f.prio;
+    if (f.text) fd.dataset.text = f.text;
+    div.appendChild(fd);
+  }
+  // Selection state
+  if (selected.has(poseId)) div.classList.add('selected-pose');
+  div.addEventListener('click', function(ev) {
+    ev.stopPropagation();
+    openLbById(poseId);
+  });
+  return div;
+}
+
+/** Render the portrait tile (larger, left-most in appearance-row). */
+function makePortraitEl(appId, appName, relPath) {
+  const div = document.createElement('div');
+  div.className = 'appearance-portrait checker-bg';
+  const poseId = appearancePoseId(appId, 'portrait');
+  div.dataset.id = poseId;
+  if (!relPath) {
+    div.innerHTML = '<span class="appearance-portrait-missing">?</span>';
+    return div;
+  }
+  const src = resolveAppearanceSrc(relPath);
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = appName;
+  img.loading = 'lazy';
+  div.appendChild(img);
+  // M463 — generator badge + flag dot on the larger portrait too
+  const gen = generatorOf(src);
+  if (gen !== 'other') {
+    const gb = document.createElement('span');
+    gb.className = `gen-badge gen-${gen}`;
+    gb.textContent = gen.replace('_', ' ');
+    div.appendChild(gb);
+  }
+  const f = flagFor(poseId);
+  if (f) {
+    const fd = document.createElement('span');
+    fd.className = 'flag-dot';
+    fd.dataset.prio = f.prio;
+    if (f.text) fd.dataset.text = f.text;
+    div.appendChild(fd);
+  }
+  if (selected.has(poseId)) div.classList.add('selected-portrait');
+  div.addEventListener('click', function(ev) {
+    ev.stopPropagation();
+    openLbById(poseId);
+  });
+  return div;
+}
+
+/** Render one appearance row (portrait + 6 poses) inside a class-pair-block.
+ *  app = entry from appearances-manifest (has .sprites map, .name, .id, .missingPoses)
+ *  manifestEntries = matching image-review-manifest entries for this group (for prompt/status)
+ */
+function makeAppearanceRow(app, manifestEntries) {
+  const row = document.createElement('div');
+  row.className = 'appearance-row';
+
+  // Portrait
+  row.appendChild(makePortraitEl(app.id, app.name || app.id, app.sprites && app.sprites.portrait));
+
+  // 6 pose frames
+  const frames = document.createElement('div');
+  frames.className = 'appearance-frames';
+  for (const pose of NON_PORTRAIT_POSES) {
+    frames.appendChild(makePoseFrameEl(
+      app.id, app.name || app.id, pose,
+      app.sprites && app.sprites[pose]
+    ));
+  }
+  row.appendChild(frames);
+  return row;
+}
+
+/** Build the lbItems entries for all poses of an appearance, merging manifest data. */
+function lbItemsForAppearance(app, manifestEntriesByPose, charCat) {
+  const items = [];
+  for (const pose of POSES) {
+    const relPath = app.sprites && app.sprites[pose];
+    const manEntry = manifestEntriesByPose[pose];
+    const src = relPath ? resolveAppearanceSrc(relPath) : null;
+    if (!src) continue; // skip missing poses in lightbox
+    items.push({
+      id: appearancePoseId(app.id, pose),
+      title: app.name || app.id,
+      subtitle: pose,
+      src,
+      oldSrc: null,
+      newSrc: null,
+      prompt: manEntry ? (manEntry.prompt || null) : null,
+      oldPrompt: null,
+      newPrompt: null,
+      reason: null,
+      assetId: null,
+      referenceAssetId: null,
+      isBg: false,
+      charCat,
+    });
+  }
+  return items;
+}
+
+/** Main Grouped layout renderer for current+characters mode.
+ *  Groups entries by charCat (hero, companion, boss, enemy), then per entity
+ *  renders a class-pair-block with full 7-pose appearance row sourced from
+ *  appearances-manifest.json. Falls back to the single manifest entry card
+ *  if the entity has no appearances-manifest entry.
+ */
+function renderGroupedAppearances(entries) {
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+
+  // Build a quick lookup of manifest entries by group+pose for prompt data
+  const manifestByGroupPose = {};
+  for (const e of entries) {
+    const key = (e.group || e.id) + '|' + (e.pose || '');
+    manifestByGroupPose[key] = e;
+  }
+
+  // Group entries by charCat then by group name
+  const catOrder = ['hero','companion','boss','enemy'];
+  const catNames = { hero:'Heroes', companion:'Companions', boss:'Bosses', enemy:'Enemies' };
+  const byCat = { hero:{}, companion:{}, boss:{}, enemy:{} };
+
+  // Collect unique groups per category from the manifest entries
+  for (const e of entries) {
+    const cat = e.category;
+    if (!byCat[cat]) continue;
+    if (!filters.charCats.has(cat)) continue;
+    const grp = e.group || e.id;
+    if (!byCat[cat][grp]) byCat[cat][grp] = { name: grp, entries: [] };
+    byCat[cat][grp].entries.push(e);
+  }
+
+  // Collect all lightbox items across all sections
+  const allLbItems = [];
+
+  for (const cat of catOrder) {
+    if (!filters.charCats.has(cat)) continue;
+    const groups = byCat[cat];
+    if (!groups || !Object.keys(groups).length) continue;
+
+    // Section title
+    const titleEl = document.createElement('div');
+    titleEl.className = 'rv-section-title';
+    const count = Object.keys(groups).length;
+    titleEl.innerHTML = `${catNames[cat]} <span class="rv-section-count">${count}</span>`;
+    content.appendChild(titleEl);
+
+    const grid = document.createElement('div');
+    grid.className = 'class-pair-grid';
+
+    for (const [grpId, grpData] of Object.entries(groups)) {
+      // Try to get the full appearance from appearances-manifest
+      const app = APPEARANCES && APPEARANCES[grpId];
+
+      // Build pose→manifest entry lookup for this group
+      const manifestEntriesByPose = {};
+      for (const e of grpData.entries) {
+        if (e.pose) manifestEntriesByPose[e.pose] = e;
+      }
+
+      const block = document.createElement('div');
+      block.className = 'class-pair-block';
+
+      // Header
+      const header = document.createElement('div');
+      header.className = 'class-pair-header';
+      // M463 — bulk-select checkbox for the whole character group
+      const bulkChk = document.createElement('input');
+      bulkChk.type = 'checkbox';
+      bulkChk.className = 'group-bulk-check';
+      bulkChk.title = `Select/deselect all ${grpId} poses`;
+      const groupPoseIds = (app ? POSES.filter(p => app.sprites?.[p]) : []).map(p => appearancePoseId(grpId, p));
+      bulkChk.checked = groupPoseIds.length > 0 && groupPoseIds.every(id => selected.has(id));
+      bulkChk.onclick = (ev) => {
+        ev.stopPropagation();
+        const turnOn = bulkChk.checked;
+        for (const id of groupPoseIds) {
+          if (turnOn) selected.add(id); else selected.delete(id);
+        }
+        updateSelectBar();
+        // Re-render to refresh selection visuals across all tiles in the group
+        render();
+      };
+      header.appendChild(bulkChk);
+      const nameEl = document.createElement('div');
+      nameEl.className = 'class-pair-name';
+      nameEl.textContent = (app && app.name) || grpId.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      const idEl = document.createElement('div');
+      idEl.className = 'class-pair-id';
+      idEl.textContent = grpId;
+      header.appendChild(nameEl);
+      header.appendChild(idEl);
+
+      if (app && app.missingPoses && app.missingPoses.length) {
+        const b = document.createElement('span');
+        b.className = 'rv-badge rv-badge-warn';
+        b.textContent = app.missingPoses.length + ' missing';
+        header.appendChild(b);
+      }
+      block.appendChild(header);
+
+      if (app) {
+        // Full 7-pose appearance row using appearances-manifest data
+        block.appendChild(makeAppearanceRow(app, manifestEntriesByPose));
+        const idRow = document.createElement('div');
+        idRow.className = 'appearance-id-row';
+        idRow.textContent = app.id;
+        block.appendChild(idRow);
+
+        // Collect lb items
+        allLbItems.push(...lbItemsForAppearance(app, manifestEntriesByPose, cat));
+      } else {
+        // Fallback: show the single portrait card from manifest
+        const portraitEntry = manifestEntriesByPose['portrait'] || grpData.entries[0];
+        if (portraitEntry) {
+          block.innerHTML += cardHtml(portraitEntry);
+          allLbItems.push({
+            id: portraitEntry.id,
+            title: grpId,
+            subtitle: portraitEntry.pose || '',
+            src: portraitEntry.file,
+            oldSrc: null, newSrc: null,
+            prompt: portraitEntry.prompt || null,
+            oldPrompt: null, newPrompt: null, reason: null,
+            assetId: null, referenceAssetId: null, isBg: false,
+          });
+        }
+      }
+
+      grid.appendChild(block);
+    }
+    content.appendChild(grid);
+  }
+
+  // Override the lbItems array so lightbox prev/next works over all poses
+  lbItems = allLbItems;
+
+  wireGroupedCards();
+}
+
+/** Wire click events for .appearance-portrait and .pose-frame tiles in Grouped layout. */
+function wireGroupedCards() {
+  // Portrait tiles
+  document.querySelectorAll('.appearance-portrait[data-id]').forEach(el => {
+    el.onclick = (ev) => {
+      ev.stopPropagation();
+      openLbById(el.dataset.id);
+    };
+  });
+  // Pose frames (non-missing)
+  document.querySelectorAll('.pose-frame:not(.pose-missing)[data-id]').forEach(el => {
+    el.onclick = (ev) => {
+      ev.stopPropagation();
+      openLbById(el.dataset.id);
+    };
+  });
+  // Fallback portrait cards from cardHtml (if appearances-manifest entry missing)
+  wireCards();
+}
+
+/** Open lightbox by entry id (supports both manifest ids and synthetic pose ids). */
+function openLbById(id) {
+  if (!lb) return;
+  lb.setItems(lbItems);
+  lb.openById(id);
 }
 
 function renderFlat(entries) {
   const content = document.getElementById('content');
   content.innerHTML = `<div class="grid">${entries.map(e => cardHtml(e)).join('')}</div>`;
+  wireCards();
+}
+
+/** M460 — List layout for current+characters. Walks the same data source
+ *  as Grouped (appearances-manifest.json) but flattens every (entity × pose)
+ *  pair into one big grid card, with prompt + status merged in from
+ *  image-review-manifest.json when present. Honors pose + category filters.
+ *  Falls back to the legacy renderGroupedByGroup if appearances aren't
+ *  loaded yet (first paint before fetch).
+ */
+function renderListAppearances(entries) {
+  const content = document.getElementById('content');
+  if (!APPEARANCES) {
+    // Appearances not loaded yet — fall back to the legacy flat-grouped
+    // view so the page isn't blank during the initial fetch.
+    renderGroupedByGroup(entries);
+    return;
+  }
+  // Build manifest lookup for prompt/status merging.
+  const manifestByGroupPose = {};
+  for (const e of entries) {
+    const key = (e.group || e.id) + '|' + (e.pose || '');
+    manifestByGroupPose[key] = e;
+  }
+  // Enumerate every (appearance × pose).
+  const tiles = [];
+  const allLbItems = [];
+  for (const [appId, app] of Object.entries(APPEARANCES)) {
+    // resolveAppearanceCategory maps 'class' kind → 'hero' filter category, etc.
+    const cat = SpriteGrid.resolveAppearanceCategory(app);
+    if (!cat || !filters.charCats.has(cat)) continue;
+    for (const pose of POSES) {
+      if (filters.poses && !filters.poses.has(pose)) continue;
+      const rel = app.sprites && app.sprites[pose];
+      if (!rel) continue; // skip missing — Grouped shows them, List hides
+      const manifestEntry = manifestByGroupPose[appId + '|' + pose];
+      const id = manifestEntry ? manifestEntry.id : appearancePoseId(appId, pose);
+      const src = resolveAppearanceSrc(rel);
+      const prompt = (manifestEntry && manifestEntry.prompt) || null;
+      tiles.push({
+        id, group: appId, pose, file: src, category: cat,
+        prompt, _appearance: true,
+      });
+      allLbItems.push({
+        id, title: app.name || appId, subtitle: pose,
+        src, oldSrc: null, newSrc: null,
+        prompt, oldPrompt: null, newPrompt: null, reason: null,
+        assetId: null, referenceAssetId: null, isBg: false,
+      });
+    }
+  }
+  if (!tiles.length) {
+    content.innerHTML = '';
+    document.getElementById('status').textContent = 'No matching appearances.';
+    return;
+  }
+  document.getElementById('status').textContent = `${tiles.length} image(s) (list)`;
+  content.innerHTML = `<div class="grid">${tiles.map(e => cardHtml(e)).join('')}</div>`;
+  lbItems = allLbItems;
   wireCards();
 }
 
@@ -465,7 +1178,7 @@ function renderBackgroundsByType(entries) {
   let html = '';
   for (const [type, list] of Object.entries(groups)) {
     if (!list.length) continue;
-    html += `<h2>${type} backgrounds <span style="color:var(--muted); font-size:0.8rem; font-weight:normal;">(${list.length})</span></h2>
+    html += `<h2>${type} backgrounds <span class="h2-count">(${list.length})</span></h2>
       <div class="grid">${list.map(e => cardHtml(e, false, true)).join('')}</div>`;
   }
   content.innerHTML = html;
@@ -477,13 +1190,23 @@ function cardHtml(e, compact = false, isBg = false) {
   const label = e.pose ? `${e.pose}` : (e.name || e.id.replace(/_/g, ' '));
   const badge = e._batchEntry ? '<span class="badge">pending</span>' : '';
   const isSelected = selected.has(e.id) ? ' selected' : '';
+  const gen = generatorOf(src);
+  const genBadge = (gen !== 'other')
+    ? `<span class="gen-badge gen-${gen}">${gen.replace('_', ' ')}</span>` : '';
+  const f = flagFor(e.id);
+  const flagDot = f
+    ? `<span class="flag-dot" data-prio="${f.prio}"${f.text ? ` data-text="${escapeHtmlAttr(f.text)}"` : ''}></span>` : '';
   return `<div class="card${isSelected}" data-id="${e.id}">
     <span class="check"></span>
     ${badge}
-    <div class="img-wrap${isBg ? ' bg' : ''}"><img src="${src}" alt="${e.id}" loading="lazy"></div>
-    ${compact ? `<div class="label">${label}</div>` : `<div class="label">${e.group || e.name || e.id}<br><small style="opacity:0.65;">${label}</small></div>`}
+    ${flagDot}
+    <div class="img-wrap${isBg ? ' bg' : ' checker-bg'}"><img src="${src}" alt="${e.id}" loading="lazy"></div>
+    ${genBadge}
+    ${compact ? `<div class="label">${label}</div>` : `<div class="label">${e.group || e.name || e.id}<br><small class="label-sub">${label}</small></div>`}
   </div>`;
 }
+
+function escapeHtmlAttr(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 function wireCards() {
   document.querySelectorAll('.card').forEach(card => {
@@ -527,79 +1250,21 @@ function rebuildLbItems(entries) {
   }));
 }
 
-function openLb(id) {
-  const i = lbItems.findIndex(x => x.id === id);
-  if (i < 0) return;
-  lbIdx = i;
-  showLb();
-  document.getElementById('lightbox').classList.add('open');
-}
+function openLb(id) { openLbById(id); }
 
-function showLb() {
-  const it = lbItems[lbIdx];
-  if (!it) return;
-  const stage = document.getElementById('lb-stage');
-  const img = document.getElementById('lb-img');
-  const side = document.getElementById('lb-side');
-  stage.classList.toggle('bg', !!it.isBg);
-  img.src = it.src;
-  img.alt = it.title;
-  document.getElementById('lb-counter').textContent = `${lbIdx+1} / ${lbItems.length}`;
-  document.getElementById('lb-prev').disabled = lbItems.length < 2;
-  document.getElementById('lb-next').disabled = lbItems.length < 2;
-  let html = `<h3>${it.title}</h3><div class="meta">${it.subtitle}</div>`;
-  if (it.reason) html += `<div style="margin-bottom:0.6rem;"><strong>Reason:</strong> ${escapeHtml(it.reason)}</div>`;
-  if (it.oldSrc && it.newSrc) {
-    html += `<div class="lb-comparison">
-      <div><div class="lbl">Original</div><img src="${it.oldSrc}" alt="old"></div>
-      <div><div class="lbl new">Candidate</div><img src="${it.newSrc}" alt="new"></div>
-    </div>`;
-    if (it.oldPrompt) {
-      html += `<div style="margin-top:0.6rem;"><div class="meta">Original prompt</div><div class="prompt">${escapeHtml(it.oldPrompt)}</div></div>`;
-    }
-    if (it.newPrompt) {
-      html += `<div style="margin-top:0.4rem;"><div class="meta">Candidate prompt</div><div class="prompt">${escapeHtml(it.newPrompt)}</div></div>`;
-    }
-  }
-  if (!it.oldSrc && it.prompt) {
-    html += `<div style="margin-top:0.6rem;"><div class="meta">Prompt</div><div class="prompt">${escapeHtml(it.prompt)}</div></div>`;
-  }
-  if (it.assetId) {
-    html += `<div style="margin-top:0.5rem; font-size:0.7rem;"><span class="meta">SpriteCook asset:</span> <code>${it.assetId}</code></div>`;
-  }
-  if (it.referenceAssetId) {
-    html += `<div style="margin-top:0.2rem; font-size:0.7rem;"><span class="meta">Reference:</span> <code>${it.referenceAssetId}</code></div>`;
-  }
-  side.innerHTML = html;
-}
-
-function escapeHtml(s) { return String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
-
-function closeLb() { document.getElementById('lightbox').classList.remove('open'); }
+/** Initialize the shared lightbox controller. Called once from load(). */
 function wireLightbox() {
-  const lb = document.getElementById('lightbox');
-  // Event delegation — survives any later DOM change
-  lb.addEventListener('click', (e) => {
-    const t = e.target.closest('button');
-    if (!t) {
-      // Click on backdrop (not on an interactive element) closes
-      if (e.target === lb) closeLb();
-      return;
-    }
-    if (t.id === 'lb-close' || t.id === 'lb-close-x') { closeLb(); return; }
-    if (t.id === 'lb-prev' && lbItems.length > 1) { lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; showLb(); return; }
-    if (t.id === 'lb-next' && lbItems.length > 1) { lbIdx = (lbIdx + 1) % lbItems.length; showLb(); return; }
-    if (t.id === 'lb-toggle-layout') {
-      lbStacked = !lbStacked;
-      document.getElementById('lb-body').classList.toggle('stacked', lbStacked);
-      return;
-    }
-  });
-  document.addEventListener('keydown', (e) => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLb();
-    if (e.key === 'ArrowLeft' && lbItems.length > 1) { lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; showLb(); }
-    if (e.key === 'ArrowRight' && lbItems.length > 1) { lbIdx = (lbIdx + 1) % lbItems.length; showLb(); }
+  lb = SharedLightbox.create({
+    enableFlags: true,
+    enableLayoutToggle: true,
+    flagAdapter: {
+      get: (id) => flagFor(id),
+      set: (id, prio, text) => {
+        setFlag(id, prio || null, text || '');
+        // Re-render the underlying cards so flag dots update immediately.
+        render();
+      },
+    },
   });
 }
 

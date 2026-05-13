@@ -2,77 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="rsg-game" content="Emberveil">
+<meta http-equiv="refresh" content="0; url=../news.html">
 <title>News — Emberveil</title>
-<style>
-  :root{
-    --bg:#0a0608;--bg2:#14080c;
-    --accent:#e8612a;--accent-text:#ffa844;--accent-bright:#ffb066;
-    --gold:#d8a85a;--gold-bright:#f8d880;--red:#c04030;
-    --text:#f0e8d8;--muted:#8a7a6a;
-    --panel:rgba(20,12,20,0.85);--border:rgba(232,97,42,0.22);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:"Inter","Segoe UI",sans-serif;line-height:1.6;min-height:100vh;padding:1.5rem}
-  main{max-width:860px;margin:0 auto}
-  h1{font-family:"Cinzel",Georgia,serif;color:var(--gold-bright);font-size:1.8rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.25rem}
-  .sub{color:var(--muted);font-size:0.8rem;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1.5rem}
-  .news-grid{display:grid;gap:0.85rem}
-  .news-card{
-    background:var(--panel);border:1px solid var(--border);border-radius:6px;
-    padding:1rem 1.2rem;text-decoration:none;color:inherit;
-    transition:border-color .18s, transform .05s;
-    display:block;
-  }
-  .news-card:hover{border-color:rgba(232,97,42,0.55); transform: translateY(-1px); }
-  .news-card h2{font-family:"Cinzel",Georgia,serif;font-size:1.1rem;margin-bottom:0.25rem;color:var(--accent-text);font-weight:600;letter-spacing:0.04em}
-  .news-card:hover h2{color:var(--accent-bright);text-decoration:underline;}
-  .news-date{color:var(--muted);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem}
-  .read-more{color:var(--accent-text);font-size:0.85rem;margin-top:0.5rem;display:inline-block}
-  .empty{color:var(--muted);text-align:center;padding:3rem 0}
-</style>
-<script src="../assets/_header.js" defer></script>
-<script src="../assets/_footer.js" defer></script>
+<script>window.location.replace('../news.html');</script>
 </head>
-<body class="ev-themed">
-<main>
-  <h1>News</h1>
-  <div class="sub">Latest updates and milestone reports</div>
-  <div class="news-grid" id="news-grid">
-    <div class="empty">Loading…</div>
-  </div>
-</main>
-
-<script>
-async function load() {
-  const grid = document.getElementById('news-grid');
-  try {
-    const r = await fetch('./news.json', { cache: 'no-cache' });
-    if (!r.ok) throw new Error('http ' + r.status);
-    const items = await r.json();
-    if (!Array.isArray(items) || !items.length) {
-      grid.innerHTML = '<div class="empty">No news yet.</div>';
-      return;
-    }
-    grid.innerHTML = '';
-    for (const n of items) {
-      const a = document.createElement('a');
-      a.className = 'news-card';
-      a.href = './' + n.slug + '.html';
-      a.innerHTML =
-        '<h2>' + esc(n.title || n.slug) + '</h2>' +
-        '<div class="news-date">' + esc(n.date || '') + '</div>' +
-        (n.summary ? '<p>' + esc(n.summary) + '</p>' : '') +
-        '<span class="read-more">Read more →</span>';
-      grid.appendChild(a);
-    }
-  } catch (e) {
-    grid.innerHTML = '<div class="empty">News unavailable.</div>';
-  }
-}
-function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-load();
-</script>
+<body>
+<p>Redirecting to <a href="../news.html">News Archive</a>…</p>
 </body>
 </html>

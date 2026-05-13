@@ -15,6 +15,7 @@
     "requires": { "type": "array", "items": { "type": "string" }, "description": "Pack ids that must load first." },
     "skills":      { "type": "array", "items": { "$ref": "skill.json" } },
     "classes":     { "type": "array", "items": { "$ref": "class.json" } },
+    "builds":      { "type": "array", "items": { "$ref": "build-preset.json" } },
     "items":       { "type": "array", "items": { "$ref": "item.json" } },
     "events":      { "type": "array", "items": { "$ref": "event-chain.json" } },
     "appearances": { "type": "array", "items": { "$ref": "appearance.json" } },

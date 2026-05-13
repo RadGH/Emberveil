@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://emberveil.rsg/schemas/v1/build-preset.json",
+  "title": "Emberveil Build Preset (v1)",
+  "description": "Per-class build preset that drives the auto-attribute allocator and starting-equipment roll. Source-of-truth: src/game/buildPresets.js, exported as builds.json via scripts/emit-game-data.cjs.",
+  "type": "object",
+  "required": ["id", "classId", "name", "targetAttrs"],
+  "additionalProperties": false,
+  "properties": {
+    "id":          { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,31}$" },
+    "classId":     { "type": "string", "description": "class id this build belongs to (warrior, mage, ...)" },
+    "name":        { "type": "string", "minLength": 1, "maxLength": 32 },
+    "description": { "type": "string", "maxLength": 280 },
+    "targetAttrs": {
+      "type": "object",
+      "description": "Weights summing to 100 — interpreted as the desired share of the post-base attribute budget at level cap.",
+      "properties": {
+        "STR": { "type": "number", "minimum": 0, "maximum": 100 },
+        "DEX": { "type": "number", "minimum": 0, "maximum": 100 },
+        "INT": { "type": "number", "minimum": 0, "maximum": 100 },
+        "CON": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "plateaus": {
+      "type": "object",
+      "description": "Optional per-stat caps. Examples: { DEX: { until: 'hit95' } }, { CON: { atLeast: 0.5 } }."
+    },
+    "weapons":         { "type": "array", "items": { "type": "string" }, "description": "Preferred weapon ids in priority order (drives starter equipment roll)." },
+    "shieldPref":      { "enum": ["always", "sometimes", "never"] },
+    "preferredSkills": { "type": "array", "items": { "type": "string" }, "description": "Auto-skill picker biases toward these skill ids." },
+    "tags":            { "type": "array", "items": { "type": "string" } }
+  }
+}

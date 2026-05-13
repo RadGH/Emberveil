@@ -9733,6 +9733,63 @@
   ],
   "reports": [
     {
+      "milestone": "Milestone 463 — Manifest-driven sprite loader + openai_v2 bucket + review tooling",
+      "date": "2026-05-11",
+      "summary": "Refactored in-game sprite loading to read per-frame paths from the appearances manifest, carved off a dedicated openai_v2/ image bucket so OpenAI regens no longer commingle with SpriteCook output, and overhauled image-review-v2.html with bg toggle / flag system / generator badges / bulk select / pipeline overview cards. Fixed bandit duplicate-images bug and added a chroma-key fallback for OpenAI runs that ignored the green-background instruction.",
+      "changes": [
+        "src/game/spriteUtils.js: added ensureSpriteManifest() + getSpritePath() — single source for in-game sprite URLs, manifest-driven with safe legacy fallback.",
+        "Migrated EvTurnStrip, EvCardRail, CombatScreen._loadSprite, DialogScreen (npc portrait + conv tiles), CharacterBuilderScreen, HireBuilderScreen to getSpritePath().",
+        "Created public/images/openai_v2/ and moved 50 files (frost_wyrmling, ash_wraith, bandit, bandit_captain, void_shade — 9 poses + 1 sheet each) out of public/images/spritecook/.",
+        "scripts/build-appearances-manifest.cjs: SPRITE_DIRS now [\"openai_v2\",\"spritecook\",\"sprites\"]; openai_v2 wins when same filename exists in both.",
+        "scripts/build-image-review-manifest.cjs + build-images-manifest.cjs: scan openai_v2 in addition to spritecook.",
+        "scripts/openai-spritesheet-gen.py: writes to openai_v2 instead of spritecook; reference image now read from public/assets/openai_v2/reference.png; raw 1024x1024 OpenAI output preserved as lossless PNG at public/assets/openai_v2/raw/<id>/<YYYY-MM-DD>_raw.png; backups taken from EITHER bucket (whichever holds the live frame) into openai_v2/_pre_openai/.",
+        "scripts/openai-spritesheet-gen.py chroma_despill(): added top-left-pixel fallback that keys whatever colour is in the corner if it survived the green pass — fixes ash_wraith and bandit blue-background result.",
+        "scripts/flag-openai-regens-for-review.py: fixed prefix-collision bug (glob {char}_*.png matched bandit_captain*); now restricts to exact <char>_<pose> from the known POSES list.",
+        "public/assets/data/image_review_batches/m354.json: dropped 9 bad bandit entries pointing to bandit_captain files; remapped 135 batch paths to openai_v2; restored bandit's prior frames from git (M458^) as openai_v2/_pre_openai/bandit_*_legacy.png so original-vs-candidate diff renders the real prior art.",
+        "public/assets/data/image-review-v2-openai-sidecar.json: remapped 45 paths to openai_v2.",
+        "image-review-v2.html: background toggle (Checker/None/White/Black/Green, sticky in localStorage as evImgReview_spriteBg), per-character bulk-select checkbox in the grouped header, image flag system (error/warning/info + optional text, lightbox setter, subtle corner dot, hover tooltip on desktop), generator badge per tile (openai_v2 / spritecook), Pipeline Overview section with collapsible SpriteCook + OpenAI v2 cards (reference image inline).",
+        "images.html: same background toggle (matching CSS class names + storage key).",
+        "Re-ran chroma+despill on ash_wraith and bandit (18 files) using the new fallback.",
+        "Memory updates: openai-sprite-sheet-workflow.md (file map, reference policy, raw archive, originals preservation, chroma fallback), SITE_OVERVIEW.md (new sections 8a manifest loader + 8b image-review-v2 tooling).",
+        "Reference image archived as public/assets/openai_v2/reference.png + reference_2026-05-11.png."
+      ],
+      "bugs": [
+        "Image flags currently persist only to localStorage (per-browser). Saving to a server-side sidecar JSON requires a new approve-script-style workflow which was out of scope; user must copy the localStorage payload manually if they want flags to survive a browser reset. Logged as follow-up.",
+        "Backups for bandit east_block / east_ko / east_cheer / east_wound do not exist in git history (those poses didn't exist pre-M458), so the Original card for those poses still equals the Candidate. Restored 5 of 9 from git; the other 4 have no prior version."
+      ],
+      "suggestions": [
+        "Move flags to a sidecar JSON sibling of image-review-manifest.json with the same approve-script copy-paste flow as approval. Then the data follows the repo, not the browser.",
+        "After the openai_v2 split settles, audit the remaining inline `images/spritecook/${id}_*` references in mapData.js / quests.js — they target NPC portraits unaffected today but should still go through getSpritePath() for consistency."
+      ],
+      "recommendations": [
+        "Consider deleting the legacy \"if exists in spritecook fallback to portraits/\" branches once everything is manifest-driven — they double-resolve and complicate debugging.",
+        "A future \"openai_v3\" or \"midjourney\" bucket should follow the same pattern: new dir under public/images/, prepend to SPRITE_DIRS, scan in build-image-review-manifest.cjs, no game code change needed."
+      ],
+      "ideas": [
+        "Pipeline overview cards could show a \"last 5 generations\" gallery per pipeline pulled from the open batch.",
+        "Reference image archive (reference_YYYY-MM-DD.png) could power a \"reference history\" subtab so we can see how the template evolved."
+      ],
+      "notes": "Build, regression check, save-load test all green. 5/5 OpenAI-generated characters now resolve through the manifest to openai_v2; the rest still resolve to spritecook (unchanged behaviour). Per-frame mixing now works automatically for any future regen."
+    },
+    {
+      "milestone": "M392 — 2.5D Battlefield Tiles Visible Behind Sprites",
+      "date": "2026-05-01",
+      "summary": "Restored the always-on 2.5D tile grid in combat so the isometric play surface reads behind canvas-driven sprites, instead of only painting under occupied tiles.",
+      "changes": [
+        "src/ui/ev-battlefield.css (.ev-tile base rule): fill rgba(46,36,56,0)→rgba(46,36,56,0.18); stroke rgba(26,17,40,0)→rgba(26,17,40,0.40). Occupied / targeting / active states still ramp up from this baseline (existing rules unchanged)."
+      ],
+      "bugs": [
+        "Tile-overlay tint sits in front of canvas sprites because the SVG grid is layered above the main canvas in the combat overlay; the 0.18α alpha keeps sprite legibility but is visible as a faint overlay rather than a true behind-sprite paint. Acceptable for the 2.5D readability goal; revisit if anyone reports the tiles muddying sprite art."
+      ],
+      "suggestions": [
+        "If the grid still feels too subtle on bright backgrounds, consider tinting only the diamond outline (raise stroke alpha, keep fill near 0)."
+      ],
+      "recommendations": [
+        "Don't push tile alpha above ~0.25 without re-checking sprite contrast on the darker map backgrounds (forest, dragon_throne) — sprites already share a similar palette."
+      ],
+      "notes": "Single CSS edit. Companion changes (canvas-driven sprites, occupied-only tiles) shipped in M391; this milestone reverts the 'occupied-only' half of M391 to the always-visible baseline the user asked for."
+    },
+    {
       "milestone": "M381 — Act 3+ Difficulty Ramp & Skill-vs-Attack Rebalance",
       "date": "2026-04-29",
       "summary": "Sim-driven Acts 3-5 rebalance. Acts 1-2 untouched; Acts 3-5 enemy HP and damage scale per-act with a boss-HP damper. Hero skill damage globally scaled to 70%. Companions auto-scale stats with effective level so they keep pace into late game.",
@@ -10838,5 +10895,24 @@
       "notes": "M316 is label M312 from the feedback batch. Release index 316 = actual game_meta release key. All 18 items from the batch implemented. The settingsPanel.js component is a new deliverable at src/ui/components/settingsPanel.js ready for reuse."
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "map_bg_dust_roads_v2",
+      "name": "Dust Roads Map Background",
+      "category": "background",
+      "source": "openai",
+      "file": "../images/map_bg/dust_roads.jpg",
+      "prompt": "Wide cinematic dark-fantasy pixel art illustration. Arid ancient dust road winding through a cracked sun-baked wasteland. Warm ochre and tan cracked earth in foreground. Distant dark rocky spires under a dim amber-gray sky with ash clouds drifting. No lava, no snow, no ice, no water. Ancient carved stone markers half-buried in dust at roadside. Dark-fantasy mood with muted warm dusty amber, burnt sienna, warm gray. 16-bit pixel art, landscape, no text.",
+      "notes": "Replaced lava-themed dust_roads.jpg (archived as dust_roads_old_lava.jpg). Generated via gpt-image-1. Used on dust_roads zone map screen."
+    },
+    {
+      "id": "combat_bg_ashen_gate",
+      "name": "Ashen Gate Combat Background",
+      "category": "background",
+      "source": "openai",
+      "file": "../images/combat_bg/ashen_gate_hd.jpg",
+      "prompt": "Wide cinematic dark-fantasy pixel art illustration. Ashen charred battlefield, ancient stone cobbles scorched black with dark gray ash. Smoldering embers and distant columns of dark smoke rising against a dim orange-gray sky. Ancient ruined stone archway in background. No snow, no ice, no blue tones. Palette: warm dark grays, charcoal, smoldering orange embers, ash-black stone. 16-bit pixel art, landscape, dark-fantasy mood, no text.",
+      "notes": "New combat background for dust_roads zone, used for Ash Gate encounters. Generated via gpt-image-1."
+    }
+  ]
 }

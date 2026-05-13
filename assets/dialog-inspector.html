@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="rsg-game" content="Emberveil">
+  <title>Emberveil — Dialog & Encounter Inspector</title>
+  <link rel="stylesheet" href="./_tool-styles.css">
+  <link rel="stylesheet" href="./_site-theme.css">
+  <script src="./_header.js" defer></script>
+  <script src="./_footer.js" defer></script>
+  <style>
+    body { padding-bottom: 96px; }
+    h1 { font-family: var(--font-display); color: var(--gold-bright); font-size: 22px; letter-spacing: 0.05em; margin: 12px 0 4px; }
+    .di-sub { color: var(--muted); font-size: 12.5px; margin-bottom: 10px; }
+    .di-filter { position: sticky; top: 64px; z-index: 30;
+      background: rgba(10,6,8,0.96); backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--border); padding: 8px 0; margin: 0 -8px 10px;
+      display: flex; gap: 6px; flex-wrap: wrap; align-items: center; padding-left: 8px; padding-right: 8px; }
+    .di-filter input[type=text], .di-filter select {
+      background: var(--card); border: 1px solid var(--border); color: var(--text);
+      padding: 6px 9px; border-radius: 4px; font: inherit; font-size: 12.5px;
+      min-height: 36px; }
+    .di-filter input[type=text] { flex: 1; min-width: 160px; }
+    .di-filter .seg { display: inline-flex; gap: 0; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .di-filter .seg button { background: var(--card); border: 0; color: var(--muted);
+      padding: 7px 10px; font: inherit; font-size: 11.5px; cursor: pointer; min-height: 36px;
+      border-right: 1px solid var(--border); }
+    .di-filter .seg button:last-child { border-right: 0; }
+    .di-filter .seg button.on { background: rgba(232,160,32,0.18); color: var(--gold-bright); }
+    .di-filter label { font-size: 11.5px; color: var(--muted); display: inline-flex; align-items: center; gap: 4px; }
+    .di-filter button.flat-btn { background: var(--card); border: 1px solid var(--border); color: var(--muted);
+      padding: 7px 10px; font: inherit; font-size: 11.5px; cursor: pointer; min-height: 36px; border-radius: 4px; }
+    .di-filter button.flat-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+    .di-layout { display: grid; grid-template-columns: 300px 1fr; gap: 14px; align-items: start; }
+    .di-tree { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 6px; max-height: calc(100vh - 200px); overflow-y: auto;
+      position: sticky; top: 120px; }
+    .di-tree details { margin-bottom: 4px; }
+    .di-tree summary { cursor: pointer; padding: 6px 8px; color: var(--gold);
+      font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+      font-family: var(--font-display); border-radius: 3px; user-select: none; list-style: revert; }
+    .di-tree summary:hover { background: rgba(232,160,32,0.08); }
+    .di-tree summary .count { color: var(--muted); font-weight: normal; margin-left: 4px; font-size: 11px; }
+    .di-tree .sub-h { padding: 4px 10px; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+    .di-tree button.tree-item { display: block; width: 100%; text-align: left;
+      background: transparent; border: 0; color: var(--text);
+      padding: 6px 10px; font: inherit; font-size: 12px; cursor: pointer; border-radius: 3px;
+      border-left: 2px solid transparent; }
+    .di-tree button.tree-item:hover { background: rgba(232,160,32,0.07); }
+    .di-tree button.tree-item.active { background: rgba(232,160,32,0.18); color: var(--gold-bright); border-left-color: var(--gold); }
+    .di-tree button.tree-item.dirty { font-weight: 700; color: var(--gold); }
+    .di-tree button.tree-item.dirty::before { content: "● "; color: var(--gold-bright); }
+    .di-tree button.tree-item .sub { color: var(--muted); font-size: 10.5px; display: block; }
+    .badge { display: inline-block; padding: 1px 6px; border-radius: 999px; font-size: 9.5px;
+      letter-spacing: 0.06em; text-transform: uppercase; margin-left: 4px; vertical-align: middle; font-weight: 700; }
+    .badge-combat   { background: rgba(192,64,48,0.22); color: #ff8870; }
+    .badge-dialog   { background: rgba(232,160,32,0.22); color: var(--gold-bright); }
+    .badge-boss     { background: rgba(192,64,48,0.35); color: #ffa090; }
+    .badge-shrine   { background: rgba(48,176,160,0.22); color: #80d8c8; }
+    .badge-treasure { background: rgba(232,200,64,0.22); color: #f0d870; }
+    .badge-challenge{ background: rgba(232,140,32,0.22); color: #ffb070; }
+    .badge-dungeon  { background: rgba(160,96,224,0.22); color: #c8a8f0; }
+    .badge-skillCheck{ background: rgba(64,176,224,0.22); color: #80c8f0; }
+    .badge-ambush   { background: rgba(128,40,40,0.30); color: #f08070; }
+    .badge-lore     { background: rgba(80,140,128,0.22); color: #80c0b0; }
+    .badge-town     { background: rgba(64,160,96,0.22); color: #80e0a0; }
+    .badge-flat     { background: rgba(120,120,140,0.20); color: #b0b0c0; }
+    .badge-branching{ background: rgba(160,96,224,0.22); color: #c8a8f0; }
+
+    .di-detail { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px; min-height: 300px; }
+    .di-detail .empty { color: var(--muted); font-style: italic; padding: 40px 20px; text-align: center; }
+    .di-id { font-family: var(--font-display); color: var(--gold-bright); font-size: 18px; margin: 0 0 4px; }
+    .di-meta { color: var(--muted); font-size: 11.5px; margin-bottom: 12px; }
+    .di-meta code { background: var(--surface); padding: 2px 5px; border-radius: 3px; color: var(--text); font-size: 11px; }
+    .di-section { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .di-section h3 { font-family: var(--font-display); color: var(--gold); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px; }
+    .field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+    .field-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .field label { color: var(--muted); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; display: flex; gap: 8px; align-items: center; }
+    .field .edited { color: var(--gold-bright); font-size: 10px; font-weight: 700; }
+    .field input[type=text], .field input[type=number], .field select, .field textarea {
+      background: var(--surface); border: 1px solid var(--border); color: var(--text);
+      padding: 6px 9px; border-radius: 4px; font: inherit; font-size: 12.5px; width: 100%;
+      font-family: inherit;
+    }
+    .field textarea { resize: vertical; min-height: 56px; line-height: 1.45; }
+    .field.dirty input, .field.dirty textarea, .field.dirty select { border-left: 3px solid var(--gold); }
+    .field input[type=number] { width: 90px; }
+
+    .node-block { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 10px; margin-bottom: 10px; }
+    .node-block .node-h { color: var(--gold-bright); font-family: var(--font-display); font-size: 13px; letter-spacing: 0.06em; margin: 0 0 6px; }
+    .line-item, .choice-item, .outcome-item { background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 3px; padding: 8px; margin-bottom: 6px; }
+    .line-item .speaker, .choice-item .label-tag { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+    .tag-flag    { color: #ffb060; font-weight: 700; }
+    .tag-reward  { color: var(--gold-bright); font-weight: 700; }
+    .tag-requires{ color: #f08070; font-weight: 700; }
+    .tag-skill   { color: #80c8f0; font-weight: 700; }
+
+    .enemy-row { display: grid; grid-template-columns: 1.4fr 0.5fr 0.7fr 0.9fr 0.6fr 0.55fr 0.55fr 0.55fr;
+      gap: 5px; align-items: center; padding: 6px; background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border); border-radius: 3px; margin-bottom: 4px; }
+    .enemy-row input { padding: 4px 6px; font-size: 11.5px; background: var(--card); border: 1px solid var(--border);
+      color: var(--text); border-radius: 3px; min-width: 0; width: 100%; box-sizing: border-box; font-family: inherit; }
+    .enemy-row .enemy-id { font-size: 11.5px; color: var(--gold); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .enemy-row .enemy-id.dirty { color: var(--gold-bright); border-left: 2px solid var(--gold); padding-left: 4px; }
+
+    .di-prompt-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+      background: rgba(10,6,8,0.97); backdrop-filter: blur(8px);
+      border-top: 1px solid var(--gold); padding: 10px 16px;
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .di-prompt-bar .count { color: var(--gold-bright); font-weight: 700; font-size: 13px; }
+    .di-prompt-bar .count.zero { color: var(--muted); font-weight: 400; }
+    .di-prompt-bar button.primary { background: rgba(232,160,32,0.25); border: 1px solid var(--gold);
+      color: var(--gold-bright); padding: 8px 16px; border-radius: 4px; cursor: pointer;
+      font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; min-height: 44px; min-width: 44px; }
+    .di-prompt-bar button.primary:hover { background: rgba(232,160,32,0.4); color: #fff; }
+    .di-prompt-bar button.primary:disabled { opacity: 0.4; cursor: not-allowed; }
+    .di-prompt-bar button.secondary { background: var(--card); border: 1px solid var(--border); color: var(--muted);
+      padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; min-height: 44px; }
+    .di-prompt-bar button.secondary:hover { color: var(--text); border-color: var(--gold); }
+    .di-prompt-bar .live { color: var(--gold-bright); font-size: 12px; }
+
+    .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100;
+      display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-bg.show { display: flex; }
+    .modal { background: var(--card); border: 1px solid var(--gold); border-radius: var(--radius);
+      padding: 16px; max-width: 800px; width: 100%; max-height: 80vh;
+      display: flex; flex-direction: column; gap: 10px; }
+    .modal h3 { color: var(--gold-bright); font-family: var(--font-display); margin: 0; font-size: 15px; letter-spacing: 0.06em; }
+    .modal textarea { flex: 1; background: var(--surface); border: 1px solid var(--border); color: var(--text);
+      padding: 10px; border-radius: 4px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11.5px; line-height: 1.5;
+      min-height: 300px; resize: vertical; }
+    .modal .row { display: flex; gap: 8px; justify-content: flex-end; }
+
+    /* Mobile: collapse tree into top dropdown. */
+    @media (max-width: 720px) {
+      .di-layout { grid-template-columns: 1fr; }
+      .di-tree { position: static; max-height: none; display: none; }
+      .di-tree.open { display: block; }
+      .di-mobile-tree-toggle { display: inline-flex !important; }
+    }
+    .di-mobile-tree-toggle { display: none; }
+
+    /* Hide groups/items that are filtered out. */
+    .hidden { display: none !important; }
+
+    .add-btn { background: transparent; border: 1px dashed var(--border); color: var(--muted);
+      padding: 5px 10px; border-radius: 3px; font-size: 11px; cursor: pointer; min-height: 32px; margin-top: 4px; }
+    .add-btn:hover { color: var(--gold); border-color: var(--gold); }
+    .reset-btn { background: transparent; border: 1px solid var(--border); color: var(--muted);
+      padding: 5px 10px; border-radius: 3px; font-size: 11px; cursor: pointer; min-height: 32px; margin-left: auto; }
+    .reset-btn:hover { color: #f08070; border-color: #f08070; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dialog &amp; Encounter Inspector</h1>
+    <p class="di-sub">Browse every dialog event, random encounter, boss-death cinematic, encounter, and map node sourced live from <code>src/maps/</code> + <code>src/game/bossDeathDialog.js</code>. Edit fields inline and use the prompt generator to ship a paste-ready Claude Code instruction with only the changes.</p>
+
+    <div class="di-filter">
+      <button class="flat-btn di-mobile-tree-toggle" id="treeToggle" type="button">Open Tree</button>
+      <div class="seg" id="typeSeg" role="group" aria-label="Entry type filter">
+        <button data-type="all" class="on" type="button">All</button>
+        <button data-type="dialogEvents" type="button">Dialogs</button>
+        <button data-type="randomEvents" type="button">Random</button>
+        <button data-type="bossDeathDialogs" type="button">Boss Death</button>
+        <button data-type="encounters" type="button">Encounters</button>
+        <button data-type="mapNodes" type="button">Map Nodes</button>
+      </div>
+      <select id="zoneFilter" aria-label="Zone filter"><option value="">All zones</option></select>
+      <select id="nodeTypeFilter" aria-label="Node type filter"><option value="">All node types</option></select>
+      <input type="text" id="searchBox" placeholder="Search id, name, NPC, text…" aria-label="Search">
+      <label><input type="checkbox" id="dirtyOnly"> Edited only</label>
+      <label><input type="checkbox" id="hasFlags"> Has flags</label>
+      <label><input type="checkbox" id="hasRewards"> Has rewards</label>
+      <button class="flat-btn" id="resetAllBtn" type="button">Reset All</button>
+    </div>
+
+    <div class="di-layout">
+      <nav class="di-tree" id="tree" aria-label="Entry tree"></nav>
+      <main class="di-detail" id="detail">
+        <div class="empty">Select an entry from the tree to view and edit its fields.</div>
+      </main>
+    </div>
+  </div>
+
+  <div class="di-prompt-bar">
+    <span class="count zero" id="editCount">0 edits pending</span>
+    <button class="primary" id="copyPromptBtn" type="button" disabled>Copy Prompt</button>
+    <button class="secondary" id="previewPromptBtn" type="button" disabled>Preview</button>
+    <span class="live" id="liveMsg" aria-live="polite"></span>
+  </div>
+
+  <div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <h3 id="modalTitle">Generated Prompt</h3>
+      <textarea id="modalText" readonly></textarea>
+      <div class="row">
+        <button class="flat-btn" id="modalCopyBtn" type="button">Copy</button>
+        <button class="flat-btn" id="modalCloseBtn" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const STORAGE_KEY = 'emberveil_dialog_inspector_edits_v1';
+  let DATA = null;
+  let activeKey = null;
+  const edits = new Map(); // entryKey -> { 'a.b.c[0]': newValue }
+
+  // ─── Boot ────────────────────────────────────────────────────────────────
+  fetch('data/dialog-inspector.json', { cache: 'no-cache' })
+    .then(r => r.json())
+    .then(j => { DATA = j; loadEdits(); buildZoneFilter(); buildNodeTypeFilter(); renderTree(); updateEditCount(); })
+    .catch(err => {
+      document.getElementById('detail').innerHTML = `<div class="empty">Failed to load data/dialog-inspector.json: ${escapeHtml(err.message)}</div>`;
+    });
+
+  function loadEdits() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const arr = JSON.parse(raw);
+      if (!Array.isArray(arr)) return;
+      for (const [k, v] of arr) edits.set(k, v);
+    } catch (e) { /* ignore */ }
+  }
+  function saveEdits() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([...edits.entries()]));
+    } catch (e) { /* ignore */ }
+  }
+
+  // ─── Filter wiring ───────────────────────────────────────────────────────
+  let activeType = 'all';
+  document.querySelectorAll('#typeSeg button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#typeSeg button').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      activeType = b.dataset.type;
+      renderTree();
+    });
+  });
+  ['searchBox', 'zoneFilter', 'nodeTypeFilter', 'dirtyOnly', 'hasFlags', 'hasRewards'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', () => renderTree());
+    el.addEventListener('change', () => renderTree());
+  });
+  document.getElementById('resetAllBtn').addEventListener('click', () => {
+    if (!confirm('Discard all unsaved edits?')) return;
+    edits.clear();
+    saveEdits();
+    updateEditCount();
+    renderTree();
+    if (activeKey) renderDetail(activeKey);
+  });
+  document.getElementById('treeToggle').addEventListener('click', () => {
+    document.getElementById('tree').classList.toggle('open');
+  });
+
+  function buildZoneFilter() {
+    const zones = new Set();
+    (DATA.mapNodes || []).forEach(n => zones.add(n.zoneId));
+    (DATA.randomEvents || []).forEach(r => {
+      if (Array.isArray(r.zone)) r.zone.forEach(z => zones.add(z));
+      else if (r.zone) zones.add(r.zone);
+    });
+    const sel = document.getElementById('zoneFilter');
+    [...zones].sort().forEach(z => {
+      const o = document.createElement('option');
+      o.value = z; o.textContent = z;
+      sel.appendChild(o);
+    });
+  }
+  function buildNodeTypeFilter() {
+    const types = new Set();
+    (DATA.mapNodes || []).forEach(n => { if (n.type) types.add(n.type); });
+    const sel = document.getElementById('nodeTypeFilter');
+    [...types].sort().forEach(t => {
+      const o = document.createElement('option');
+      o.value = t; o.textContent = t;
+      sel.appendChild(o);
+    });
+  }
+
+  // ─── Filter predicates ───────────────────────────────────────────────────
+  function passesFilter(category, item) {
+    if (activeType !== 'all' && activeType !== category) return false;
+    const search = document.getElementById('searchBox').value.trim().toLowerCase();
+    const zone = document.getElementById('zoneFilter').value;
+    const nodeType = document.getElementById('nodeTypeFilter').value;
+    const dirtyOnly = document.getElementById('dirtyOnly').checked;
+    const hasFlags = document.getElementById('hasFlags').checked;
+    const hasRewards = document.getElementById('hasRewards').checked;
+    if (dirtyOnly) {
+      const k = entryKey(category, item);
+      if (!edits.has(k)) return false;
+    }
+    if (hasFlags && !((item._meta && item._meta.setsFlags && item._meta.setsFlags.length) || (item._meta && item._meta.requiresFlags && item._meta.requiresFlags.length))) return false;
+    if (hasRewards && !(item._meta && item._meta.rewardsPresent)) return false;
+    if (zone) {
+      if (category === 'mapNodes' && item.zoneId !== zone) return false;
+      if (category === 'randomEvents') {
+        const z = item.zone;
+        if (z === 'any') {
+          // pass — applies everywhere
+        } else if (Array.isArray(z) ? !z.includes(zone) : z !== zone) return false;
+      }
+      if (category !== 'mapNodes' && category !== 'randomEvents') return false;
+    }
+    if (nodeType) {
+      if (category !== 'mapNodes') return false;
+      if (item.type !== nodeType) return false;
+    }
+    if (search) {
+      const blob = JSON.stringify(item).toLowerCase();
+      if (!blob.includes(search)) return false;
+    }
+    return true;
+  }
+
+  function entryKey(category, item) {
+    if (category === 'mapNodes') return `mapNodes/${item.zoneId}/${item.id}`;
+    return `${category}/${item.id}`;
+  }
+
+  // ─── Tree rendering ──────────────────────────────────────────────────────
+  function renderTree() {
+    const tree = document.getElementById('tree');
+    tree.innerHTML = '';
+
+    const cats = [
+      { id: 'dialogEvents',     label: 'Dialog Events',     items: DATA.dialogEvents || [] },
+      { id: 'randomEvents',     label: 'Random Events',     items: DATA.randomEvents || [] },
+      { id: 'bossDeathDialogs', label: 'Boss Death Dialog', items: DATA.bossDeathDialogs || [] },
+      { id: 'encounters',       label: 'Encounters',        items: DATA.encounters || [] },
+      { id: 'mapNodes',         label: 'Map Nodes',         items: DATA.mapNodes || [] },
+    ];
+
+    for (const cat of cats) {
+      const filtered = cat.items.filter(item => passesFilter(cat.id, item));
+      if (filtered.length === 0 && activeType !== 'all' && activeType !== cat.id) continue;
+      const det = document.createElement('details');
+      det.open = activeType === cat.id || (activeType === 'all' && filtered.length > 0 && filtered.length <= 30);
+
+      const sum = document.createElement('summary');
+      sum.innerHTML = `${cat.label}<span class="count">(${filtered.length})</span>`;
+      det.appendChild(sum);
+
+      if (cat.id === 'encounters') renderEncounterGroups(det, filtered);
+      else if (cat.id === 'mapNodes') renderMapNodeGroups(det, filtered);
+      else filtered.forEach(item => det.appendChild(makeTreeItem(cat.id, item)));
+
+      tree.appendChild(det);
+    }
+  }
+
+  function renderEncounterGroups(det, items) {
+    const groups = new Map();
+    for (const it of items) {
+      const g = it.encounterGroup || 'main';
+      if (!groups.has(g)) groups.set(g, []);
+      groups.get(g).push(it);
+    }
+    for (const [g, list] of groups) {
+      const h = document.createElement('div');
+      h.className = 'sub-h';
+      h.textContent = g;
+      det.appendChild(h);
+      list.forEach(item => det.appendChild(makeTreeItem('encounters', item)));
+    }
+  }
+
+  function renderMapNodeGroups(det, items) {
+    const groups = new Map();
+    for (const it of items) {
+      const g = `${it.zoneName || it.zoneId} (${it.zoneId})`;
+      if (!groups.has(g)) groups.set(g, []);
+      groups.get(g).push(it);
+    }
+    for (const [g, list] of [...groups.entries()].sort()) {
+      const h = document.createElement('div');
+      h.className = 'sub-h';
+      h.textContent = g;
+      det.appendChild(h);
+      list.forEach(item => det.appendChild(makeTreeItem('mapNodes', item)));
+    }
+  }
+
+  function makeTreeItem(category, item) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'tree-item';
+    const k = entryKey(category, item);
+    if (k === activeKey) btn.classList.add('active');
+    if (edits.has(k)) btn.classList.add('dirty');
+    let badge = '';
+    let title = item.id;
+    let sub = '';
+    if (category === 'dialogEvents') {
+      badge = `<span class="badge badge-${item.dialogType}">${item.dialogType}</span>`;
+      sub = item.npcName || '';
+    } else if (category === 'randomEvents') {
+      sub = item.npcName || '';
+      const z = Array.isArray(item.zone) ? item.zone.join(',') : (item.zone || '');
+      if (z) sub += ` · ${z}`;
+    } else if (category === 'encounters') {
+      sub = item.name + (item.isBoss ? ' · boss' : '');
+    } else if (category === 'mapNodes') {
+      badge = `<span class="badge badge-${item.type || 'lore'}">${item.type || 'lore'}</span>`;
+      sub = item.name;
+    }
+    btn.innerHTML = `${escapeHtml(title)}${badge}<span class="sub">${escapeHtml(sub)}</span>`;
+    btn.addEventListener('click', () => selectEntry(category, item));
+    btn.dataset.key = k;
+    btn.setAttribute('aria-selected', k === activeKey ? 'true' : 'false');
+    return btn;
+  }
+
+  function selectEntry(category, item) {
+    activeKey = entryKey(category, item);
+    document.querySelectorAll('.tree-item').forEach(b => {
+      b.classList.toggle('active', b.dataset.key === activeKey);
+      b.setAttribute('aria-selected', b.dataset.key === activeKey ? 'true' : 'false');
+    });
+    renderDetail(activeKey);
+    if (window.innerWidth <= 720) {
+      document.getElementById('tree').classList.remove('open');
+    }
+  }
+
+  // ─── Detail rendering ────────────────────────────────────────────────────
+  function getEntry(key) {
+    if (!DATA) return null;
+    const [cat, ...rest] = key.split('/');
+    if (cat === 'mapNodes') {
+      const [zone, id] = rest;
+      return { category: cat, item: (DATA.mapNodes || []).find(n => n.zoneId === zone && n.id === id) };
+    }
+    const id = rest.join('/');
+    const list = DATA[cat] || [];
+    return { category: cat, item: list.find(x => x.id === id) };
+  }
+
+  function getFieldValue(key, path, original) {
+    const patch = edits.get(key);
+    if (patch && Object.prototype.hasOwnProperty.call(patch, path)) return patch[path];
+    return original;
+  }
+  function isDirtyField(key, path) {
+    const patch = edits.get(key);
+    return !!(patch && Object.prototype.hasOwnProperty.call(patch, path));
+  }
+  function setFieldValue(key, path, newValue, originalValue) {
+    let patch = edits.get(key);
+    // If the new value matches the original, drop the patch entry instead of storing equal value.
+    const equal = JSON.stringify(newValue) === JSON.stringify(originalValue);
+    if (equal) {
+      if (patch && Object.prototype.hasOwnProperty.call(patch, path)) {
+        delete patch[path];
+        if (Object.keys(patch).length === 0) edits.delete(key);
+      }
+    } else {
+      if (!patch) { patch = {}; edits.set(key, patch); }
+      patch[path] = newValue;
+    }
+    saveEdits();
+    updateEditCount();
+    // Update tree dirty marker for this item.
+    document.querySelectorAll('.tree-item').forEach(b => {
+      b.classList.toggle('dirty', edits.has(b.dataset.key));
+    });
+  }
+
+  function renderDetail(key) {
+    const det = document.getElementById('detail');
+    const entry = getEntry(key);
+    if (!entry || !entry.item) {
+      det.innerHTML = '<div class="empty">Entry not found.</div>';
+      return;
+    }
+    const { category, item } = entry;
+    const meta = item._meta || {};
+    let html = `
+      <h2 class="di-id">${escapeHtml(item.id)}${item.dialogType ? ` <span class="badge badge-${item.dialogType}">${item.dialogType}</span>` : ''}${item.type ? ` <span class="badge badge-${item.type}">${item.type}</span>` : ''}</h2>
+      <div class="di-meta">
+        <code>${escapeHtml(meta.sourceFile || '')}:${meta.lineHint || '?'}</code>
+        &nbsp;·&nbsp;
+        <code>${escapeHtml(meta.exportName || '')}${meta.objectKey ? `["${meta.objectKey}"]` : meta.arrayIndex !== undefined ? `[${meta.arrayIndex}]` : meta.zoneId ? ` (zone: ${meta.zoneId}, node: ${meta.nodeId})` : ''}</code>
+        ${meta.injectedVia ? `&nbsp;·&nbsp;<span class="tag-flag">injected via ${meta.injectedVia}</span>` : ''}
+        <button class="reset-btn" id="resetEntryBtn" type="button">Reset entry</button>
+      </div>
+    `;
+    if (category === 'dialogEvents') html += renderDialogEvent(key, item);
+    else if (category === 'randomEvents') html += renderRandomEvent(key, item);
+    else if (category === 'bossDeathDialogs') html += renderBossDeath(key, item);
+    else if (category === 'encounters') html += renderEncounter(key, item);
+    else if (category === 'mapNodes') html += renderMapNode(key, item);
+    det.innerHTML = html;
+    wireFieldListeners(key);
+    const reset = document.getElementById('resetEntryBtn');
+    if (reset) reset.addEventListener('click', () => {
+      if (!confirm('Discard edits for this entry?')) return;
+      edits.delete(key);
+      saveEdits();
+      updateEditCount();
+      renderDetail(key);
+      document.querySelectorAll('.tree-item').forEach(b => {
+        b.classList.toggle('dirty', edits.has(b.dataset.key));
+      });
+    });
+  }
+
+  // ─── Detail templates ────────────────────────────────────────────────────
+  function fieldText(key, path, original, label, opts = {}) {
+    const cur = getFieldValue(key, path, original);
+    const dirty = isDirtyField(key, path);
+    const tag = opts.textarea ? 'textarea' : 'input';
+    const val = cur == null ? '' : String(cur);
+    return `
+      <div class="field${dirty ? ' dirty' : ''}">
+        <label>${escapeHtml(label)} ${dirty ? '<span class="edited">EDITED</span>' : ''}</label>
+        ${opts.textarea
+          ? `<textarea data-path="${escapeHtml(path)}" data-orig="${escapeHtml(JSON.stringify(original))}">${escapeHtml(val)}</textarea>`
+          : `<input type="${opts.type || 'text'}" data-path="${escapeHtml(path)}" data-orig="${escapeHtml(JSON.stringify(original))}" value="${escapeHtml(val)}">`
+        }
+      </div>
+    `;
+  }
+  function fieldNumber(key, path, original, label) {
+    const cur = getFieldValue(key, path, original);
+    const dirty = isDirtyField(key, path);
+    return `
+      <div class="field${dirty ? ' dirty' : ''}">
+        <label>${escapeHtml(label)} ${dirty ? '<span class="edited">EDITED</span>' : ''}</label>
+        <input type="number" data-path="${escapeHtml(path)}" data-orig="${escapeHtml(JSON.stringify(original))}" data-coerce="number" value="${cur == null ? '' : escapeHtml(String(cur))}">
+      </div>
+    `;
+  }
+  function fieldSelect(key, path, original, label, options) {
+    const cur = getFieldValue(key, path, original);
+    const dirty = isDirtyField(key, path);
+    return `
+      <div class="field${dirty ? ' dirty' : ''}">
+        <label>${escapeHtml(label)} ${dirty ? '<span class="edited">EDITED</span>' : ''}</label>
+        <select data-path="${escapeHtml(path)}" data-orig="${escapeHtml(JSON.stringify(original))}">
+          ${options.map(o => `<option value="${escapeHtml(o)}" ${o == cur ? 'selected' : ''}>${escapeHtml(o || '(none)')}</option>`).join('')}
+        </select>
+      </div>
+    `;
+  }
+
+  function renderDialogEvent(key, item) {
+    let h = `<div class="di-section"><h3>Identity</h3>`;
+    h += fieldText(key, 'npcName', item.npcName, 'NPC Name');
+    h += fieldText(key, 'npcPortrait', item.npcPortrait, 'Portrait Path');
+    h += fieldText(key, 'bg', item.bg, 'Background');
+    h += `</div>`;
+    if (item.dialogType === 'flat') {
+      h += renderLinesChoicesOutcomes(key, '', item);
+    } else {
+      h += `<div class="di-section"><h3>Nodes</h3>`;
+      h += fieldText(key, 'start', item.start, 'Start node');
+      for (const nodeKey of Object.keys(item.nodes || {})) {
+        const node = item.nodes[nodeKey];
+        h += `<div class="node-block"><h4 class="node-h">[${escapeHtml(nodeKey)}]${nodeKey === item.start ? ' <span class="badge badge-flat">root</span>' : ''}</h4>`;
+        h += renderLinesChoicesOutcomes(key, `nodes.${nodeKey}.`, node);
+        h += `</div>`;
+      }
+      h += `</div>`;
+    }
+    if (item._meta) {
+      h += `<div class="di-section"><h3>Meta</h3>`;
+      if (item._meta.setsFlags && item._meta.setsFlags.length) h += `<div>Sets flags: ${item._meta.setsFlags.map(f => `<span class="tag-flag">[${escapeHtml(f)}]</span>`).join(' ')}</div>`;
+      if (item._meta.requiresFlags && item._meta.requiresFlags.length) h += `<div>Requires flags: ${item._meta.requiresFlags.map(f => `<span class="tag-requires">[${escapeHtml(f)}]</span>`).join(' ')}</div>`;
+      if (item._meta.rewardsPresent) h += `<div><span class="tag-reward">Rewards present</span></div>`;
+      if (item._meta.hasSkillChecks) h += `<div><span class="tag-skill">Skill checks present</span></div>`;
+      h += `</div>`;
+    }
+    return h;
+  }
+
+  function renderLinesChoicesOutcomes(key, prefix, holder) {
+    let h = '';
+    if (Array.isArray(holder.lines)) {
+      h += `<div class="di-section" style="border-top: 0; padding-top: 0;"><h3>Lines</h3>`;
+      holder.lines.forEach((l, i) => {
+        h += `<div class="line-item">
+          <div class="speaker">speaker: ${escapeHtml(l.speaker || 'npc')}</div>
+          ${fieldText(key, `${prefix}lines[${i}].text`, l.text, 'Text', { textarea: true })}
+        </div>`;
+      });
+      h += `</div>`;
+    }
+    if (Array.isArray(holder.choices)) {
+      h += `<div class="di-section" style="border-top: 0; padding-top: 0;"><h3>Choices</h3>`;
+      holder.choices.forEach((c, i) => {
+        h += `<div class="choice-item">`;
+        h += fieldText(key, `${prefix}choices[${i}].text`, c.text, `Choice ${i + 1}`);
+        if (c.next != null) h += fieldText(key, `${prefix}choices[${i}].next`, c.next, '→ next node');
+        if (c.outcome != null) h += fieldText(key, `${prefix}choices[${i}].outcome`, c.outcome, '→ outcome');
+        if (c.reward) h += `<div class="label-tag tag-reward">Reward: ${escapeHtml(JSON.stringify(c.reward))}</div>`;
+        if (c.requires) h += `<div class="label-tag tag-requires">Requires: ${escapeHtml(JSON.stringify(c.requires))}</div>`;
+        if (c.effect) h += `<div class="label-tag">Effect: ${escapeHtml(JSON.stringify(c.effect))}</div>`;
+        if (c.skillCheck) h += `<div class="label-tag tag-skill">Skill: ${escapeHtml(JSON.stringify(c.skillCheck))}</div>`;
+        h += `</div>`;
+      });
+      h += `</div>`;
+    }
+    if (holder.outcomes && typeof holder.outcomes === 'object') {
+      h += `<div class="di-section" style="border-top: 0; padding-top: 0;"><h3>Outcomes</h3>`;
+      for (const oKey of Object.keys(holder.outcomes)) {
+        const o = holder.outcomes[oKey];
+        h += `<div class="outcome-item">`;
+        h += `<div class="label-tag">${escapeHtml(oKey)}</div>`;
+        h += fieldText(key, `${prefix}outcomes.${oKey}.text`, o.text, 'Text', { textarea: true });
+        if (o.setFlag != null) h += fieldText(key, `${prefix}outcomes.${oKey}.setFlag`, o.setFlag, 'Sets flag');
+        if (o.reward) h += `<div class="label-tag tag-reward">Reward: ${escapeHtml(JSON.stringify(o.reward))}</div>`;
+        if (o.startCombat) h += `<div class="label-tag">Start combat: ${escapeHtml(o.startCombat)}</div>`;
+        h += `</div>`;
+      }
+      h += `</div>`;
+    }
+    return h;
+  }
+
+  function renderRandomEvent(key, item) {
+    let h = `<div class="di-section"><h3>Identity</h3>`;
+    h += fieldNumber(key, 'minLevel', item.minLevel, 'Min Level');
+    const zoneStr = Array.isArray(item.zone) ? item.zone.join(',') : (item.zone || '');
+    h += fieldText(key, 'zone', zoneStr, 'Zone (csv or "any")');
+    h += fieldText(key, 'npcName', item.npcName, 'NPC Name');
+    h += fieldText(key, 'npcPortrait', item.npcPortrait, 'Portrait Path');
+    h += `</div>`;
+    h += renderLinesChoicesOutcomes(key, '', item);
+    return h;
+  }
+
+  function renderBossDeath(key, item) {
+    let h = `<div class="di-section"><h3>Lines</h3>`;
+    h += fieldText(key, 'bossLine', item.bossLine, 'Boss Line', { textarea: true });
+    h += fieldText(key, 'heroLine', item.heroLine, 'Hero Line', { textarea: true });
+    h += fieldText(key, 'narratorLine', item.narratorLine, 'Narrator Line', { textarea: true });
+    h += `</div>`;
+    return h;
+  }
+
+  function renderEncounter(key, item) {
+    let h = `<div class="di-section"><h3>Identity</h3>`;
+    h += fieldText(key, 'name', item.name, 'Display Name');
+    h += fieldText(key, 'introText', item.introText, 'Intro Text (cinematic)', { textarea: true });
+    h += `</div>`;
+    h += `<div class="di-section"><h3>Enemies</h3>`;
+    h += `<div class="enemy-row" style="background: transparent; border: 0; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 6px;">
+      <span>id</span><span>×count</span><span>hp</span><span>dmg [lo,hi]</span><span>armor</span><span>hit%</span><span>dodge%</span><span>xp</span></div>`;
+    (item.enemies || []).forEach((en, i) => {
+      const dmgStr = Array.isArray(en.dmg) ? en.dmg.join(',') : (en.dmg || '');
+      const idDirty = isDirtyField(key, `enemies[${i}].count`) || isDirtyField(key, `enemies[${i}].hp`) || isDirtyField(key, `enemies[${i}].dmg`) || isDirtyField(key, `enemies[${i}].armor`) || isDirtyField(key, `enemies[${i}].hit`) || isDirtyField(key, `enemies[${i}].dodge`) || isDirtyField(key, `enemies[${i}].xpValue`);
+      h += `<div class="enemy-row">
+        <span class="enemy-id ${idDirty ? 'dirty' : ''}" title="${escapeHtml(en.id || '')}">${escapeHtml(en.id || '?')}${en.isBoss ? ' ★' : ''}</span>
+        <input type="number" data-path="enemies[${i}].count"  data-orig="${escapeHtml(JSON.stringify(en.count))}"  data-coerce="number" value="${escapeHtml(String(getFieldValue(key, `enemies[${i}].count`, en.count) ?? ''))}">
+        <input type="number" data-path="enemies[${i}].hp"     data-orig="${escapeHtml(JSON.stringify(en.hp))}"     data-coerce="number" value="${escapeHtml(String(getFieldValue(key, `enemies[${i}].hp`, en.hp) ?? ''))}">
+        <input type="text"   data-path="enemies[${i}].dmg"    data-orig="${escapeHtml(JSON.stringify(en.dmg))}"    data-coerce="dmg"    value="${escapeHtml(Array.isArray(getFieldValue(key, `enemies[${i}].dmg`, en.dmg)) ? getFieldValue(key, `enemies[${i}].dmg`, en.dmg).join(',') : dmgStr)}">
+        <input type="number" data-path="enemies[${i}].armor"  data-orig="${escapeHtml(JSON.stringify(en.armor))}"  data-coerce="number" value="${escapeHtml(String(getFieldValue(key, `enemies[${i}].armor`, en.armor) ?? ''))}">
+        <input type="number" data-path="enemies[${i}].hit"    data-orig="${escapeHtml(JSON.stringify(en.hit))}"    data-coerce="number" value="${escapeHtml(String(getFieldValue(key, `enemies[${i}].hit`, en.hit) ?? ''))}">
+        <input type="number" data-path="enemies[${i}].dodge"  data-orig="${escapeHtml(JSON.stringify(en.dodge))}"  data-coerce="number" value="${escapeHtml(String(getFieldValue(key, `enemies[${i}].dodge`, en.dodge) ?? ''))}">
+        <input type="number" data-path="enemies[${i}].xpValue" data-orig="${escapeHtml(JSON.stringify(en.xpValue))}" data-coerce="number" value="${escapeHtml(String(getFieldValue(key, `enemies[${i}].xpValue`, en.xpValue) ?? ''))}">
+      </div>`;
+    });
+    h += `</div>`;
+    if (item.bossLoot) {
+      h += `<div class="di-section"><h3>Boss Loot</h3>`;
+      h += fieldText(key, 'bossLoot.bases', (item.bossLoot.bases || []).join(','), 'Bases (csv)');
+      h += fieldSelect(key, 'bossLoot.rarity', item.bossLoot.rarity || '', 'Rarity', ['', 'magic', 'rare', 'legendary']);
+      h += fieldSelect(key, 'bossLoot.quality', item.bossLoot.quality || '', 'Quality', ['', 'low', 'mid', 'high', 'elite', 'exotic']);
+      h += fieldNumber(key, 'bossLoot.rolls', item.bossLoot.rolls, 'Rolls');
+      h += `</div>`;
+    }
+    return h;
+  }
+
+  function renderMapNode(key, item) {
+    let h = `<div class="di-section"><h3>Identity</h3>`;
+    h += fieldText(key, 'name', item.name, 'Display Name');
+    h += fieldSelect(key, 'type', item.type, 'Node Type', ['combat', 'dialog', 'town', 'treasure', 'ambush', 'boss', 'lore', 'shrine', 'challenge', 'dungeon', 'skillCheck']);
+    h += `<div class="field-row">
+      ${fieldNumber(key, 'x', item.x, 'X (0–1)')}
+      ${fieldNumber(key, 'y', item.y, 'Y (0–1)')}
+    </div>`;
+    h += `<div class="field"><label>Exits (read-only)</label><div style="color: var(--muted); font-size: 12px;">${escapeHtml((item.exits || []).join(', ') || '(none)')}</div></div>`;
+    h += `</div>`;
+    if (item.type === 'combat' || item.type === 'ambush' || item.type === 'boss' || item.type === 'challenge') {
+      h += `<div class="di-section"><h3>Encounter</h3>`;
+      h += fieldText(key, 'encounter', item.encounter, 'Encounter ID');
+      h += `</div>`;
+    }
+    if (item.type === 'dialog') {
+      h += `<div class="di-section"><h3>Dialog Reference</h3>`;
+      h += fieldText(key, 'dialogEventId', item.dialogEventId, 'DIALOG_EVENTS key (optional)');
+      h += `</div>`;
+    }
+    if (item.type === 'shrine') {
+      h += `<div class="di-section"><h3>Shrine</h3>`;
+      h += fieldSelect(key, 'shrineType', item.shrineType || '', 'Shrine Type', ['', 'heal', 'empower', 'fullrestore']);
+      h += `</div>`;
+    }
+    if (item.type === 'lore') {
+      h += `<div class="di-section"><h3>Lore</h3>`;
+      h += `<div class="field"><label><input type="checkbox" data-path="noEvent" data-orig="${escapeHtml(JSON.stringify(item.noEvent))}" data-coerce="bool" ${item.noEvent ? 'checked' : ''}> No event (trailhead)</label></div>`;
+      h += `</div>`;
+    }
+    if (item.type === 'skillCheck' && item.skillCheck) {
+      h += `<div class="di-section"><h3>Skill Check</h3>`;
+      h += fieldSelect(key, 'skillCheck.stat', item.skillCheck.stat, 'Stat', ['STR', 'DEX', 'INT', 'CON', 'WIS']);
+      h += fieldNumber(key, 'skillCheck.dc', item.skillCheck.dc, 'DC');
+      h += fieldText(key, 'skillCheck.flavor', item.skillCheck.flavor, 'Flavor', { textarea: true });
+      if (item.skillCheck.success) {
+        h += `<h4 class="node-h" style="font-size:12px;margin-top:8px;">Success</h4>`;
+        if (item.skillCheck.success.gold !== undefined) h += fieldNumber(key, 'skillCheck.success.gold', item.skillCheck.success.gold, 'Gold');
+        if (item.skillCheck.success.xp !== undefined) h += fieldNumber(key, 'skillCheck.success.xp', item.skillCheck.success.xp, 'XP');
+        if (item.skillCheck.success.text !== undefined) h += fieldText(key, 'skillCheck.success.text', item.skillCheck.success.text, 'Text', { textarea: true });
+        if (item.skillCheck.success.loreFlag !== undefined) h += fieldText(key, 'skillCheck.success.loreFlag', item.skillCheck.success.loreFlag, 'Lore Flag');
+      }
+      if (item.skillCheck.failure) {
+        h += `<h4 class="node-h" style="font-size:12px;margin-top:8px;">Failure</h4>`;
+        if (item.skillCheck.failure.gold !== undefined) h += fieldNumber(key, 'skillCheck.failure.gold', item.skillCheck.failure.gold, 'Gold');
+        if (item.skillCheck.failure.hpLoss !== undefined) h += fieldNumber(key, 'skillCheck.failure.hpLoss', item.skillCheck.failure.hpLoss, 'HP Loss');
+        if (item.skillCheck.failure.hpLossPct !== undefined) h += fieldNumber(key, 'skillCheck.failure.hpLossPct', item.skillCheck.failure.hpLossPct, 'HP Loss %');
+        if (item.skillCheck.failure.statusType !== undefined) h += fieldText(key, 'skillCheck.failure.statusType', item.skillCheck.failure.statusType, 'Status Type');
+        if (item.skillCheck.failure.statusDur !== undefined) h += fieldNumber(key, 'skillCheck.failure.statusDur', item.skillCheck.failure.statusDur, 'Status Duration');
+        if (item.skillCheck.failure.text !== undefined) h += fieldText(key, 'skillCheck.failure.text', item.skillCheck.failure.text, 'Text', { textarea: true });
+      }
+      h += `</div>`;
+    }
+    if (item.hidden || item.precondition) {
+      h += `<div class="di-section"><h3>Hidden &amp; Precondition</h3>`;
+      h += `<div class="field"><label><input type="checkbox" data-path="hidden" data-orig="${escapeHtml(JSON.stringify(item.hidden))}" data-coerce="bool" ${item.hidden ? 'checked' : ''}> Hidden until unlocked</label></div>`;
+      const pre = item.precondition || {};
+      h += fieldText(key, 'precondition.requireItem', pre.requireItem, 'Require Item');
+      h += fieldText(key, 'precondition.requireFlag', pre.requireFlag, 'Require Flag');
+      if (pre.requireStat) {
+        h += fieldText(key, 'precondition.requireStat.stat', pre.requireStat.stat, 'Require Stat');
+        h += fieldNumber(key, 'precondition.requireStat.min', pre.requireStat.min, 'Stat Min');
+      }
+      if (pre.requireBossesAll) h += fieldText(key, 'precondition.requireBossesAll', (pre.requireBossesAll || []).join(','), 'Require Bosses (csv)');
+      if (pre.requireNoDeath !== undefined) h += `<div class="field"><label><input type="checkbox" data-path="precondition.requireNoDeath" data-orig="${escapeHtml(JSON.stringify(!!pre.requireNoDeath))}" data-coerce="bool" ${pre.requireNoDeath ? 'checked' : ''}> Require no hero death</label></div>`;
+      h += `</div>`;
+    }
+    return h;
+  }
+
+  // ─── Field event wiring ──────────────────────────────────────────────────
+  function wireFieldListeners(key) {
+    document.querySelectorAll('#detail [data-path]').forEach(el => {
+      const path = el.dataset.path;
+      let original;
+      try { original = JSON.parse(el.dataset.orig || 'null'); } catch { original = null; }
+      const coerce = el.dataset.coerce || 'string';
+      const handler = () => {
+        let v;
+        if (el.type === 'checkbox') v = el.checked;
+        else v = el.value;
+        if (coerce === 'number') v = v === '' ? null : Number(v);
+        else if (coerce === 'bool') v = !!v;
+        else if (coerce === 'dmg') {
+          const parts = String(v).split(',').map(s => Number(s.trim())).filter(n => !Number.isNaN(n));
+          v = parts.length === 2 ? parts : null;
+        }
+        else if (coerce === 'string' && original === null && v === '') v = null;
+        setFieldValue(key, path, v, original);
+        // Refresh dirty styling on this field's wrapper.
+        const wrap = el.closest('.field');
+        if (wrap) {
+          const dirty = isDirtyField(key, path);
+          wrap.classList.toggle('dirty', dirty);
+          const lbl = wrap.querySelector('label');
+          if (lbl) {
+            let badge = lbl.querySelector('.edited');
+            if (dirty && !badge) {
+              badge = document.createElement('span');
+              badge.className = 'edited';
+              badge.textContent = 'EDITED';
+              lbl.appendChild(document.createTextNode(' '));
+              lbl.appendChild(badge);
+            } else if (!dirty && badge) {
+              badge.remove();
+            }
+          }
+        }
+      };
+      el.addEventListener('input', handler);
+      el.addEventListener('change', handler);
+    });
+  }
+
+  // ─── Edit count + prompt wiring ──────────────────────────────────────────
+  function updateEditCount() {
+    const n = edits.size;
+    const el = document.getElementById('editCount');
+    el.textContent = `${n} edit${n === 1 ? '' : 's'} pending`;
+    el.classList.toggle('zero', n === 0);
+    document.getElementById('copyPromptBtn').disabled = n === 0;
+    document.getElementById('previewPromptBtn').disabled = n === 0;
+  }
+
+  document.getElementById('copyPromptBtn').addEventListener('click', () => {
+    const text = generatePrompt();
+    if (!text) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        () => liveMsg('Copied to clipboard.'),
+        () => showModal(text)
+      );
+    } else {
+      showModal(text);
+    }
+  });
+  document.getElementById('previewPromptBtn').addEventListener('click', () => {
+    const text = generatePrompt();
+    if (text) showModal(text);
+  });
+  document.getElementById('modalCloseBtn').addEventListener('click', () => {
+    document.getElementById('modalBg').classList.remove('show');
+  });
+  document.getElementById('modalCopyBtn').addEventListener('click', () => {
+    const ta = document.getElementById('modalText');
+    ta.select();
+    try { document.execCommand('copy'); liveMsg('Copied to clipboard.'); } catch { liveMsg('Select text and copy.'); }
+  });
+  function showModal(text) {
+    document.getElementById('modalText').value = text;
+    document.getElementById('modalBg').classList.add('show');
+  }
+  function liveMsg(s) {
+    const el = document.getElementById('liveMsg');
+    el.textContent = s;
+    setTimeout(() => { if (el.textContent === s) el.textContent = ''; }, 2500);
+  }
+
+  function generatePrompt() {
+    if (edits.size === 0) return '';
+    const blocks = [];
+    let n = 1;
+    for (const [k, patch] of edits) {
+      const entry = getEntry(k);
+      if (!entry || !entry.item) continue;
+      const item = entry.item;
+      const meta = item._meta || {};
+      const cat = entry.category;
+      const header = catLabel(cat);
+      const fileLine = `File: ${meta.sourceFile || '?'}\nLine hint: ~${meta.lineHint || '?'}`;
+      let locator;
+      if (cat === 'mapNodes') {
+        locator = `Export: ${meta.exportName} (zone: ${meta.zoneId})\nNode id: "${meta.nodeId}"`;
+      } else if (meta.objectKey != null) {
+        locator = `Export: ${meta.exportName}\nKey: "${meta.objectKey}"`;
+      } else if (meta.arrayIndex != null) {
+        locator = `Export: ${meta.exportName}\nArray index: ${meta.arrayIndex}  (id: "${item.id}")`;
+      } else {
+        locator = `Export: ${meta.exportName || '?'}`;
+      }
+      const fields = [];
+      for (const path of Object.keys(patch)) {
+        const oldV = readPath(item, path, /* via patches */ false);
+        const newV = patch[path];
+        fields.push(`  ${path}:\n    OLD: ${formatValue(oldV)}\n    NEW: ${formatValue(newV)}`);
+      }
+      const ctx = contextLine(cat, item);
+      blocks.push(`## CHANGE ${n} — ${header}\n\n${fileLine}\n${locator}\n\nFields to change:\n${fields.join('\n\n')}${ctx ? `\n\nContext: ${ctx}` : ''}`);
+      n++;
+    }
+    return [
+      `I've made edits to dialog, encounters, and map nodes in Emberveil (game13) using the Dialog Inspector tool at /assets/dialog-inspector.html. Please apply the following changes to the source files. Each change includes the file path, export name, object key, and the exact field(s) to update. Do not change anything outside what is listed.`,
+      ``,
+      `---`,
+      ``,
+      blocks.join('\n\n---\n\n'),
+      ``,
+      `---`,
+      ``,
+      `After applying all changes, run \`node scripts/build-dialog-inspector.cjs\` to regenerate public/assets/data/dialog-inspector.json so the tool reflects the updated source.`,
+    ].join('\n');
+  }
+
+  function catLabel(cat) {
+    return ({
+      dialogEvents: 'Dialog Event',
+      randomEvents: 'Random Event',
+      bossDeathDialogs: 'Boss Death Dialog',
+      encounters: 'Encounter',
+      mapNodes: 'Map Node',
+    })[cat] || cat;
+  }
+  function contextLine(cat, item) {
+    if (cat === 'dialogEvents') return `${item.dialogType === 'branching' ? 'Branching dialog' : 'Flat dialog'} for "${item.id}". Edit ${(item._meta && item._meta.setsFlags && item._meta.setsFlags.length) ? `sets flags ${item._meta.setsFlags.join(', ')}; ` : ''}preserve other fields untouched.`;
+    if (cat === 'randomEvents') return `Random event #${item._meta && item._meta.arrayIndex} (id "${item.id}") in zone "${Array.isArray(item.zone) ? item.zone.join(',') : item.zone}", min level ${item.minLevel}.`;
+    if (cat === 'bossDeathDialogs') return `Cinematic shown after defeating boss "${item.id}". Each line ~80 char target.`;
+    if (cat === 'encounters') return `${item.isBoss ? 'Boss encounter' : 'Encounter'} "${item.id}" used by map nodes that reference encounter:"${item.id}". Group: ${item.encounterGroup}.`;
+    if (cat === 'mapNodes') return `Node "${item.id}" of type "${item.type}" in zone "${item.zoneId}" (Act ${item.act}). Position is normalized 0–1 inside the zone bounds.`;
+    return '';
+  }
+
+  function readPath(obj, path) {
+    // Resolve "a.b[0].c" against obj.
+    const parts = path.replace(/\[(\d+)\]/g, '.$1').split('.');
+    let cur = obj;
+    for (const p of parts) {
+      if (cur == null) return undefined;
+      cur = cur[p];
+    }
+    return cur;
+  }
+  function formatValue(v) {
+    if (v == null) return 'null';
+    if (typeof v === 'string') return JSON.stringify(v);
+    if (Array.isArray(v) || typeof v === 'object') return JSON.stringify(v);
+    return String(v);
+  }
+
+  function escapeHtml(s) {
+    if (s == null) return '';
+    return String(s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+})();
+</script>
+</body>
+</html>

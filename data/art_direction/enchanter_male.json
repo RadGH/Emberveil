@@ -1,0 +1,36 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "enchanter_male",
+  "displayName": "Enchanter (Male)",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "pendingReview": true,
+  "milestone": "M398",
+  "identity": "Human MAN (male), about 30 years old, calm composed face, short dark hair, glowing pale-lavender eyes.",
+  "outfit": "Long midnight-violet hooded robe with silver rune embroidery along the collar, hem, and cuffs. Subtle deep-navy under-tunic.",
+  "weapons": "Slim silver staff topped with a floating violet enchantment glyph that pulses pale lavender when channeled.",
+  "attackStyle": "East-facing. Mid-swing horizontal staff strike with the violet enchantment glyph trailing energy from the staff tip.",
+  "spellStyle": "East-facing. Both hands raised, silver staff held aloft as a brilliant violet enchantment glyph blooms around it, motes of pale-lavender light drifting outward.",
+  "blockStyle": "East-facing. Silver staff held horizontally in front as a violet enchantment ward glows along its length.",
+  "koStyle": "East-facing. Lying on his back unconscious, silver staff fallen beside him, violet enchantment glyph dim.",
+  "southStyle": "Facing camera (south), calm idle, silver staff held at his side, faint violet glyph hovering near the staff tip.",
+  "portraitStyle": "Head-and-shoulders bust shot, three-quarter view. Long midnight-violet hooded robe with silver rune embroidery along the collar, calm face, short dark hair, glowing pale-lavender eyes, holding a small floating violet enchantment glyph beside his temple.",
+  "palette": ["#1a1235", "#2e1f5e", "#5b3aaa", "#a880ff", "#dccfff", "#c8c8e8", "#f0e8ff"],
+  "bannedSubstrings": ["female", "woman", "she/her", "robes_red", "fire", "demonic", "necromancer", "child", "elderly"],
+  "referenceSheet": {
+    "spritecookAssetId": "3169c379-a2f9-4145-b325-3d3471762e3c",
+    "path": "images/spritecook/enchanter_male_portrait.png",
+    "prompt": "A male human Enchanter wizard, head-and-shoulders portrait facing forward. Long midnight-violet hooded robe with silver rune embroidery along the collar, calm composed face, short dark hair, glowing pale-lavender eyes, holding a small floating violet enchantment glyph beside his temple. Painted 16-bit SNES JRPG pixel art style, clean black outline, soft cel shading, transparent background.",
+    "generatedAt": "2026-05-02T18:37:00Z",
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait": { "spritecookAssetId": "3169c379-a2f9-4145-b325-3d3471762e3c", "path": "images/spritecook/enchanter_male_portrait.png", "generatedAt": "2026-05-02T18:37:00Z", "approvedAt": null },
+    "south":      { "spritecookAssetId": "195bb101-36ae-4eee-88fc-198ff39b847d", "path": "images/spritecook/enchanter_male_south.png",      "generatedAt": "2026-05-02T18:44:00Z", "approvedAt": null },
+    "east":       { "spritecookAssetId": "fdbe72dd-3063-4a48-abf5-521a9d41f249", "path": "images/spritecook/enchanter_male_east.png",       "generatedAt": "2026-05-02T18:44:00Z", "approvedAt": null },
+    "east_attack":{ "spritecookAssetId": "d5937b2c-629c-431c-ac34-52e35018a06f", "path": "images/spritecook/enchanter_male_east_attack.png","generatedAt": "2026-05-02T18:44:00Z", "approvedAt": null },
+    "east_spell": { "spritecookAssetId": "65677def-477e-43dc-97f5-12a8862c43a9", "path": "images/spritecook/enchanter_male_east_spell.png", "generatedAt": "2026-05-02T18:44:00Z", "approvedAt": null },
+    "east_block": { "spritecookAssetId": "cb59e0b1-2593-4ef4-b635-83458285d325", "path": "images/spritecook/enchanter_male_east_block.png", "generatedAt": "2026-05-02T18:44:00Z", "approvedAt": null },
+    "east_ko":    { "spritecookAssetId": "fffcb245-2399-4b57-8008-2736f5fce97a", "path": "images/spritecook/enchanter_male_east_ko.png",    "generatedAt": "2026-05-02T18:44:00Z", "approvedAt": null }
+  }
+}

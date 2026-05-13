@@ -121,7 +121,12 @@ img.pixel, .pixel img { image-rendering: pixelated; image-rendering: -moz-crisp-
   letter-spacing: 0.02em;
   color: var(--ink-1);
 }
-:where(.ev-themed) h1 { font-size: clamp(48px, 8vw, 132px); line-height: .95; letter-spacing: 0.04em; }
+/* M376: Cap H1 at 72px globally. #hero-title (front page) keeps its 188px size
+   via the .hero-title rule below — hero-title intentionally overrides this. */
+:where(.ev-themed) h1 { font-size: clamp(40px, 5.5vw, 72px); line-height: 1.0; letter-spacing: 0.04em; }
+:where(.ev-themed) h1#hero-title,
+:where(.ev-themed) #hero-title.hero-title,
+:where(.ev-themed) h1.hero-title { font-size: clamp(64px, 11vw, 188px); line-height: .95; }
 :where(.ev-themed) h2 { font-size: clamp(34px, 4.5vw, 64px); line-height: 1.05; letter-spacing: 0.06em; }
 :where(.ev-themed) h3 { font-size: clamp(22px, 2.2vw, 30px); line-height: 1.15; letter-spacing: 0.04em; }
 
@@ -190,14 +195,17 @@ img.pixel, .pixel img { image-rendering: pixelated; image-rendering: -moz-crisp-
 .hero {
   position: relative;
   min-height: 100vh;
-  padding-top: 72px;
+  /* M383 — desktop padding-top removed; mobile breakpoint can restore. */
+  padding-top: 0;
   overflow: hidden;
   isolation: isolate;
 }
 .hero-bg {
   position: absolute; inset: 0;
   z-index: -2;
+  /* M383 — gradient softened so the mountain bg reads through. */
   background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 45%, var(--sky-3) 80%, var(--bg-deep) 100%);
+  opacity: 0.55;
 }
 .hero-mountains {
   position: absolute; inset: 0;
@@ -237,7 +245,8 @@ img.pixel, .pixel img { image-rendering: pixelated; image-rendering: -moz-crisp-
   grid-template-columns: 1.3fr .9fr;
   align-items: center;
   gap: 64px;
-  padding: 80px 0 120px;
+  /* M383 — desktop padding zeroed; mobile breakpoint restores spacing. */
+  padding: 0;
 }
 /* M375: when no portrait column, headline owns the full width — wider so
    "EMBER" / "VEIL" rendered at the giant font don't wrap to "Embe r". */
@@ -257,6 +266,8 @@ img.pixel, .pixel img { image-rendering: pixelated; image-rendering: -moz-crisp-
   letter-spacing: 0.04em;
   color: var(--ink-1);
   text-shadow: 0 4px 60px rgba(0,0,0,.8);
+  /* M383 — clear default h1 margin. */
+  margin: 0;
 }
 .hero-title .e-large {
   display: inline-block;
@@ -287,6 +298,8 @@ img.pixel, .pixel img { image-rendering: pixelated; image-rendering: -moz-crisp-
   font-size: clamp(17px, 1.3vw, 20px);
   line-height: 1.55;
   max-width: 56ch;
+  /* M383 — clear default p margin. */
+  margin: 0;
 }
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
 
@@ -320,7 +333,8 @@ img.pixel, .pixel img { image-rendering: pixelated; image-rendering: -moz-crisp-
    bottom of the hero. */
 .hero-stats {
   position: absolute;
-  left: 0; right: 0; bottom: 32px;
+  /* M383 — flush to bottom of hero. */
+  left: 0; right: 0; bottom: 0;
   z-index: 4;
 }
 .hero-stats .row {
@@ -339,6 +353,9 @@ img.pixel, .pixel img { image-rendering: pixelated; image-rendering: -moz-crisp-
   display: flex; flex-direction: column; gap: 6px;
 }
 .hero-stats .cell:last-child { border-right: 0; }
+/* M383 — left/right edge borders so the strip looks closed off at both ends. */
+.hero-stats .cell:first-child { border-left: 1px solid var(--line); }
+.hero-stats .cell:last-child  { border-right: 1px solid var(--line); }
 .hero-stats .cell .v {
   font-family: var(--font-display);
   font-size: 32px;
@@ -1174,8 +1191,27 @@ img.pixel, .pixel img { image-rendering: pixelated; image-rendering: -moz-crisp-
 
 /* M371 — iPhone 14 Pro (393px) and smaller */
 @media (max-width: 480px) {
-  .hero-stats .row { grid-template-columns: repeat(2, 1fr); }
-  .hero-stats .cell:nth-child(n+5) { display: none; } /* keep top 4 */
+  /* M436 — 3 cols on iPhone. Show secondary stats (Zones/Skills/Enemies),
+     since Acts/Classes/Companions already appear in the eyebrow tag above.
+     Re-show cells 4-6 (overrides the 880px hide-4+ rule), hide cells 1-3 + 7. */
+  .hero-stats .row { grid-template-columns: repeat(3, 1fr); }
+  .hero-stats .cell:nth-child(4),
+  .hero-stats .cell:nth-child(5),
+  .hero-stats .cell:nth-child(6) { display: flex; }
+  .hero-stats .cell:nth-child(1),
+  .hero-stats .cell:nth-child(2),
+  .hero-stats .cell:nth-child(3),
+  .hero-stats .cell:nth-child(7) { display: none; }
+  /* M437 — hero is no longer full-height on mobile. Mobile users were
+     looking at a tall empty band before scrolling reached anything; cap
+     the hero at its content height + 60px top/bottom breathing room. */
+  .hero { min-height: 0 !important; }
+  .hero-content {
+    min-height: 0 !important;
+    padding: 60px 0 60px !important;
+    gap: 24px !important;
+  }
+  .hero-headline { gap: 18px; }
   .hero-stormcaller img { height: 38vh; }
   .hero-title { font-size: clamp(2.6rem, 14vw, 4.5rem); }
   .acts-rail { grid-template-columns: 1fr; }

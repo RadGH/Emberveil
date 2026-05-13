@@ -8,7 +8,7 @@
     "primaryAttr": "STR",
     "armorTier": "heavy",
     "skills": [
-      "shield_bash",
+      "cleave",
       "battle_cry",
       "whirlwind",
       "unbreakable"
@@ -156,7 +156,7 @@
       "bone_spike",
       "bone_spear",
       "life_drain",
-      "death_coil"
+      "corpse_explosion"
     ],
     "starter": false,
     "unlockRequirement": {
@@ -287,8 +287,8 @@
     "starter": false,
     "unlockRequirement": {
       "type": "achievement",
-      "value": "kill_500",
-      "label": "Slay 500 enemies"
+      "value": "kill_50",
+      "label": "Slay 50 enemies"
     }
   },
   {
@@ -562,6 +562,48 @@
       "type": "act",
       "value": 1,
       "label": "Complete Act 1"
+    }
+  },
+  {
+    "id": "priest",
+    "name": "Priest",
+    "role": "Holy/Shadow Caster",
+    "hook": "Heals the living, calls back the fallen, and answers their killers with shadow. The party\\",
+    "armorType": "Light Armor · Mace / Scepter",
+    "primaryAttr": "INT",
+    "armorTier": "light",
+    "skills": [
+      "priest_mend",
+      "priest_call_back",
+      "shadow_bolt",
+      "shadow_veil"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 1,
+      "label": "Complete Act 1"
+    }
+  },
+  {
+    "id": "enchanter",
+    "name": "Enchanter",
+    "role": "Mind-Magic Controller",
+    "hook": "Lulls foes to sleep so the party can pick its fights. Drowse opens packs without alerting them. Arcane Jolt wakes targets only when you decide they should die.",
+    "armorType": "Light Armor · Staff / Wand",
+    "primaryAttr": "INT",
+    "armorTier": "light",
+    "skills": [
+      "lullaby",
+      "mind_charm",
+      "mass_drowse",
+      "arcane_jolt"
+    ],
+    "starter": false,
+    "unlockRequirement": {
+      "type": "act",
+      "value": 2,
+      "label": "Complete Act 2"
     }
   }
 ]
