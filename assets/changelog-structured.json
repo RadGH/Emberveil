@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-13T20:19:53.204Z",
+  "generated": "2026-05-14T07:27:06.896Z",
   "categories": [
     {
       "id": "Feature",
@@ -28,6 +28,50 @@
     }
   ],
   "entries": [
+    {
+      "milestone": 485,
+      "date": "",
+      "summary": "Combat sprite 404 cleanup. _loadSprite preloaded 7 variants including death — but no character has a <id>_death.png file (canonical death pose is east_ko). Every combat-enter generated 404s for every enemy. Removed death from preload list AND from east_ko fallback chain (was [death, east], now [south, east]). Renderer line 7302 already correctly maps stance===death → east_ko sprite, so the visual death frame still draws (at 35% alpha per line 7276).",
+      "items": [
+        {
+          "text": "Combat sprite 404 cleanup. _loadSprite preloaded 7 variants including death — but no character has a <id>_death.png file (canonical death pose is east_ko). Every combat-enter generated 404s for every enemy. Removed death from preload list AND from east_ko fallback chain (was [death, east], now [south, east]). Renderer line 7302 already correctly maps stance===death → east_ko sprite, so the visual death frame still draws (at 35% alpha per line 7276).",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 484,
+      "date": "",
+      "summary": "Four parallel cleanups. (1) Sprite 404 fix: enemy combatants get synthetic ids like goblin_warrior_2_1 (groupIdx_slotIdx); EvTurnStrip + EvCardRail resolvers now check c.enemyId before c.id so the manifest lookup hits the canonical key. (2) Manifest gap: 5 recurring NPCs (Iris/Garrick/Yssira/Tomek/Krix) had openai_v2 PNGs on disk but no entry in appearances-manifest, so getSpritePath fell back to legacy spritecook URLs that 404. Added explicit appearance entries in src/game/appearances.js, regenerated manifest. (3) Comprehensive sprite audit: 156 entities scanned. 9 hireables have zero files, 3 entities partial poses, 7 inline-encounter enemies have files but missing manifest entries. Full breakdown appended to public/assets/todo.html as #missing-sprite-frames-m483. (4) Deploy scripts switched to SSH default (HTTPS kept hitting HTTP 408 on 100MB+ pushes; SSH bypasses GitHub HTTP timeouts). USE_HTTPS=1 env var falls back to legacy token auth. (5) Guild hall + merchant rarity scaling: at L20 + 3677 fame the guild was selling whites because rarity tables were static. New _fameTierBonus(fame,heroLvl) helper bumps rarity by +1 at renown 500, +2 at 2000. Merchant table also gets the bump (was the actual cause of the all-white symptom).",
+      "items": [
+        {
+          "text": "Four parallel cleanups. (1) Sprite 404 fix: enemy combatants get synthetic ids like goblin_warrior_2_1 (groupIdx_slotIdx); EvTurnStrip + EvCardRail resolvers now check c.enemyId before c.id so the manifest lookup hits the canonical key. (2) Manifest gap: 5 recurring NPCs (Iris/Garrick/Yssira/Tomek/Krix) had openai_v2 PNGs on disk but no entry in appearances-manifest, so getSpritePath fell back to legacy spritecook URLs that 404. Added explicit appearance entries in src/game/appearances.js, regenerated manifest. (3) Comprehensive sprite audit: 156 entities scanned. 9 hireables have zero files, 3 entities partial poses, 7 inline-encounter enemies have files but missing manifest entries. Full breakdown appended to public/assets/todo.html as #missing-sprite-frames-m483. (4) Deploy scripts switched to SSH default (HTTPS kept hitting HTTP 408 on 100MB+ pushes; SSH bypasses GitHub HTTP timeouts). USE_HTTPS=1 env var falls back to legacy token auth. (5) Guild hall + merchant rarity scaling: at L20 + 3677 fame the guild was selling whites because rarity tables were static. New _fameTierBonus(fame,heroLvl) helper bumps rarity by +1 at renown 500, +2 at 2000. Merchant table also gets the bump (was the actual cause of the all-white symptom).",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Balance",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 483,
+      "date": "",
+      "summary": "Stats tab restoration. _availableTabs in StatsDashboardScreen had a no-party gate that returned only [lifetime, crossrun] when gs.party was empty. Result: after page refresh from main menu, user lost Overview/Characters/Damage/Loot/Power/Combat tabs entirely — only Lifetime+Cross-Run showed. After quit-to-menu mid-run those tabs were back because party was still in memory. Now main_menu always returns all tabs. Renderers that need party data (_renderCharacters, _renderDamage, _renderLoot, _renderPower) already have empty-state guards (\"No party members yet\", etc.) so they degrade gracefully. Charts that DO have cloud data (Overview kills/dmg/taken/heals from M477, Lifetime per-hero from M475) populate correctly.",
+      "items": [
+        {
+          "text": "Stats tab restoration. _availableTabs in StatsDashboardScreen had a no-party gate that returned only [lifetime, crossrun] when gs.party was empty. Result: after page refresh from main menu, user lost Overview/Characters/Damage/Loot/Power/Combat tabs entirely — only Lifetime+Cross-Run showed. After quit-to-menu mid-run those tabs were back because party was still in memory. Now main_menu always returns all tabs. Renderers that need party data (_renderCharacters, _renderDamage, _renderLoot, _renderPower) already have empty-state guards (\"No party members yet\", etc.) so they degrade gracefully. Charts that DO have cloud data (Overview kills/dmg/taken/heals from M477, Lifetime per-hero from M475) populate correctly.",
+          "categories": [
+            "Feature",
+            "Balance"
+          ]
+        }
+      ]
+    },
     {
       "milestone": 482,
       "date": "",

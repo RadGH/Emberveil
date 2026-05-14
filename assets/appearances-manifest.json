@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-13T15:32:13.246Z",
+  "generated": "2026-05-14T06:07:47.298Z",
   "spriteDirs": [
     "openai_v2",
     "spritecook",
@@ -1909,6 +1909,151 @@
       "spriteCount": 7,
       "missingPoses": [],
       "sourceDir": "spritecook"
+    },
+    {
+      "id": "iris_vael",
+      "name": "Iris Vael",
+      "kind": "npc",
+      "gender": "female",
+      "classDefault": "iris_vael",
+      "sprite": "iris_vael",
+      "tags": [
+        "npc",
+        "scholar",
+        "recurring"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "openai_v2/iris_vael_portrait.png",
+        "south": "openai_v2/iris_vael_south.png",
+        "east": "openai_v2/iris_vael_east.png",
+        "east_attack": "openai_v2/iris_vael_east_attack.png",
+        "east_spell": "openai_v2/iris_vael_east_spell.png",
+        "east_block": "openai_v2/iris_vael_east_block.png",
+        "east_ko": "openai_v2/iris_vael_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "garrick_ostmere",
+      "name": "Sir Garrick Ostmere",
+      "kind": "npc",
+      "gender": "male",
+      "classDefault": "garrick_ostmere",
+      "sprite": "garrick_ostmere",
+      "tags": [
+        "npc",
+        "knight",
+        "recurring"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "openai_v2/garrick_ostmere_portrait.png",
+        "south": "openai_v2/garrick_ostmere_south.png",
+        "east": "openai_v2/garrick_ostmere_east.png",
+        "east_attack": "openai_v2/garrick_ostmere_east_attack.png",
+        "east_spell": "openai_v2/garrick_ostmere_east_spell.png",
+        "east_block": "openai_v2/garrick_ostmere_east_block.png",
+        "east_ko": "openai_v2/garrick_ostmere_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "mother_yssira",
+      "name": "Mother Yssira",
+      "kind": "npc",
+      "gender": "female",
+      "classDefault": "mother_yssira",
+      "sprite": "mother_yssira",
+      "tags": [
+        "npc",
+        "seer",
+        "recurring"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "openai_v2/mother_yssira_portrait.png",
+        "south": "openai_v2/mother_yssira_south.png",
+        "east": "openai_v2/mother_yssira_east.png",
+        "east_attack": "openai_v2/mother_yssira_east_attack.png",
+        "east_spell": "openai_v2/mother_yssira_east_spell.png",
+        "east_block": "openai_v2/mother_yssira_east_block.png",
+        "east_ko": "openai_v2/mother_yssira_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "tomek_halverin",
+      "name": "Tomek Halverin",
+      "kind": "npc",
+      "gender": "male",
+      "classDefault": "tomek_halverin",
+      "sprite": "tomek_halverin",
+      "tags": [
+        "npc",
+        "merchant",
+        "recurring"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "openai_v2/tomek_halverin_portrait.png",
+        "south": "openai_v2/tomek_halverin_south.png",
+        "east": "openai_v2/tomek_halverin_east.png",
+        "east_attack": "openai_v2/tomek_halverin_east_attack.png",
+        "east_spell": "openai_v2/tomek_halverin_east_spell.png",
+        "east_block": "openai_v2/tomek_halverin_east_block.png",
+        "east_ko": "openai_v2/tomek_halverin_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "krix_bonechewer",
+      "name": "Krix Bonechewer",
+      "kind": "npc",
+      "gender": "male",
+      "classDefault": "krix_bonechewer",
+      "sprite": "krix_bonechewer",
+      "tags": [
+        "npc",
+        "defector",
+        "recurring"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "openai_v2/krix_bonechewer_portrait.png",
+        "south": "openai_v2/krix_bonechewer_south.png",
+        "east": "openai_v2/krix_bonechewer_east.png",
+        "east_attack": "openai_v2/krix_bonechewer_east_attack.png",
+        "east_spell": "openai_v2/krix_bonechewer_east_spell.png",
+        "east_block": "openai_v2/krix_bonechewer_east_block.png",
+        "east_ko": "openai_v2/krix_bonechewer_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
     }
   ],
   "companions": [
@@ -3853,29 +3998,9 @@
       "name": "frost_wyrmling_openai_sheet"
     },
     {
-      "file": "images/openai_v2/garrick_ostmere_east_attack.png",
-      "dir": "openai_v2",
-      "name": "garrick_ostmere_east_attack"
-    },
-    {
-      "file": "images/openai_v2/garrick_ostmere_east_block.png",
-      "dir": "openai_v2",
-      "name": "garrick_ostmere_east_block"
-    },
-    {
       "file": "images/openai_v2/garrick_ostmere_east_cheer.png",
       "dir": "openai_v2",
       "name": "garrick_ostmere_east_cheer"
-    },
-    {
-      "file": "images/openai_v2/garrick_ostmere_east_ko.png",
-      "dir": "openai_v2",
-      "name": "garrick_ostmere_east_ko"
-    },
-    {
-      "file": "images/openai_v2/garrick_ostmere_east_spell.png",
-      "dir": "openai_v2",
-      "name": "garrick_ostmere_east_spell"
     },
     {
       "file": "images/openai_v2/garrick_ostmere_east_wound.png",
@@ -3883,24 +4008,9 @@
       "name": "garrick_ostmere_east_wound"
     },
     {
-      "file": "images/openai_v2/garrick_ostmere_east.png",
-      "dir": "openai_v2",
-      "name": "garrick_ostmere_east"
-    },
-    {
       "file": "images/openai_v2/garrick_ostmere_openai_sheet.png",
       "dir": "openai_v2",
       "name": "garrick_ostmere_openai_sheet"
-    },
-    {
-      "file": "images/openai_v2/garrick_ostmere_portrait.png",
-      "dir": "openai_v2",
-      "name": "garrick_ostmere_portrait"
-    },
-    {
-      "file": "images/openai_v2/garrick_ostmere_south.png",
-      "dir": "openai_v2",
-      "name": "garrick_ostmere_south"
     },
     {
       "file": "images/openai_v2/genesis_worm_east_cheer.png",
@@ -4083,29 +4193,9 @@
       "name": "imp_openai_sheet"
     },
     {
-      "file": "images/openai_v2/iris_vael_east_attack.png",
-      "dir": "openai_v2",
-      "name": "iris_vael_east_attack"
-    },
-    {
-      "file": "images/openai_v2/iris_vael_east_block.png",
-      "dir": "openai_v2",
-      "name": "iris_vael_east_block"
-    },
-    {
       "file": "images/openai_v2/iris_vael_east_cheer.png",
       "dir": "openai_v2",
       "name": "iris_vael_east_cheer"
-    },
-    {
-      "file": "images/openai_v2/iris_vael_east_ko.png",
-      "dir": "openai_v2",
-      "name": "iris_vael_east_ko"
-    },
-    {
-      "file": "images/openai_v2/iris_vael_east_spell.png",
-      "dir": "openai_v2",
-      "name": "iris_vael_east_spell"
     },
     {
       "file": "images/openai_v2/iris_vael_east_wound.png",
@@ -4113,34 +4203,9 @@
       "name": "iris_vael_east_wound"
     },
     {
-      "file": "images/openai_v2/iris_vael_east.png",
-      "dir": "openai_v2",
-      "name": "iris_vael_east"
-    },
-    {
       "file": "images/openai_v2/iris_vael_openai_sheet.png",
       "dir": "openai_v2",
       "name": "iris_vael_openai_sheet"
-    },
-    {
-      "file": "images/openai_v2/iris_vael_portrait.png",
-      "dir": "openai_v2",
-      "name": "iris_vael_portrait"
-    },
-    {
-      "file": "images/openai_v2/iris_vael_south.png",
-      "dir": "openai_v2",
-      "name": "iris_vael_south"
-    },
-    {
-      "file": "images/openai_v2/krix_bonechewer_east_attack.png",
-      "dir": "openai_v2",
-      "name": "krix_bonechewer_east_attack"
-    },
-    {
-      "file": "images/openai_v2/krix_bonechewer_east_block.png",
-      "dir": "openai_v2",
-      "name": "krix_bonechewer_east_block"
     },
     {
       "file": "images/openai_v2/krix_bonechewer_east_cheer.png",
@@ -4148,39 +4213,14 @@
       "name": "krix_bonechewer_east_cheer"
     },
     {
-      "file": "images/openai_v2/krix_bonechewer_east_ko.png",
-      "dir": "openai_v2",
-      "name": "krix_bonechewer_east_ko"
-    },
-    {
-      "file": "images/openai_v2/krix_bonechewer_east_spell.png",
-      "dir": "openai_v2",
-      "name": "krix_bonechewer_east_spell"
-    },
-    {
       "file": "images/openai_v2/krix_bonechewer_east_wound.png",
       "dir": "openai_v2",
       "name": "krix_bonechewer_east_wound"
     },
     {
-      "file": "images/openai_v2/krix_bonechewer_east.png",
-      "dir": "openai_v2",
-      "name": "krix_bonechewer_east"
-    },
-    {
       "file": "images/openai_v2/krix_bonechewer_openai_sheet.png",
       "dir": "openai_v2",
       "name": "krix_bonechewer_openai_sheet"
-    },
-    {
-      "file": "images/openai_v2/krix_bonechewer_portrait.png",
-      "dir": "openai_v2",
-      "name": "krix_bonechewer_portrait"
-    },
-    {
-      "file": "images/openai_v2/krix_bonechewer_south.png",
-      "dir": "openai_v2",
-      "name": "krix_bonechewer_south"
     },
     {
       "file": "images/openai_v2/lava_titan_east_cheer.png",
@@ -4213,29 +4253,9 @@
       "name": "molten_golem_openai_sheet"
     },
     {
-      "file": "images/openai_v2/mother_yssira_east_attack.png",
-      "dir": "openai_v2",
-      "name": "mother_yssira_east_attack"
-    },
-    {
-      "file": "images/openai_v2/mother_yssira_east_block.png",
-      "dir": "openai_v2",
-      "name": "mother_yssira_east_block"
-    },
-    {
       "file": "images/openai_v2/mother_yssira_east_cheer.png",
       "dir": "openai_v2",
       "name": "mother_yssira_east_cheer"
-    },
-    {
-      "file": "images/openai_v2/mother_yssira_east_ko.png",
-      "dir": "openai_v2",
-      "name": "mother_yssira_east_ko"
-    },
-    {
-      "file": "images/openai_v2/mother_yssira_east_spell.png",
-      "dir": "openai_v2",
-      "name": "mother_yssira_east_spell"
     },
     {
       "file": "images/openai_v2/mother_yssira_east_wound.png",
@@ -4243,24 +4263,9 @@
       "name": "mother_yssira_east_wound"
     },
     {
-      "file": "images/openai_v2/mother_yssira_east.png",
-      "dir": "openai_v2",
-      "name": "mother_yssira_east"
-    },
-    {
       "file": "images/openai_v2/mother_yssira_openai_sheet.png",
       "dir": "openai_v2",
       "name": "mother_yssira_openai_sheet"
-    },
-    {
-      "file": "images/openai_v2/mother_yssira_portrait.png",
-      "dir": "openai_v2",
-      "name": "mother_yssira_portrait"
-    },
-    {
-      "file": "images/openai_v2/mother_yssira_south.png",
-      "dir": "openai_v2",
-      "name": "mother_yssira_south"
     },
     {
       "file": "images/openai_v2/pet_bear_east_cheer.png",
@@ -4573,29 +4578,9 @@
       "name": "the_unraveler_east_wound"
     },
     {
-      "file": "images/openai_v2/tomek_halverin_east_attack.png",
-      "dir": "openai_v2",
-      "name": "tomek_halverin_east_attack"
-    },
-    {
-      "file": "images/openai_v2/tomek_halverin_east_block.png",
-      "dir": "openai_v2",
-      "name": "tomek_halverin_east_block"
-    },
-    {
       "file": "images/openai_v2/tomek_halverin_east_cheer.png",
       "dir": "openai_v2",
       "name": "tomek_halverin_east_cheer"
-    },
-    {
-      "file": "images/openai_v2/tomek_halverin_east_ko.png",
-      "dir": "openai_v2",
-      "name": "tomek_halverin_east_ko"
-    },
-    {
-      "file": "images/openai_v2/tomek_halverin_east_spell.png",
-      "dir": "openai_v2",
-      "name": "tomek_halverin_east_spell"
     },
     {
       "file": "images/openai_v2/tomek_halverin_east_wound.png",
@@ -4603,24 +4588,9 @@
       "name": "tomek_halverin_east_wound"
     },
     {
-      "file": "images/openai_v2/tomek_halverin_east.png",
-      "dir": "openai_v2",
-      "name": "tomek_halverin_east"
-    },
-    {
       "file": "images/openai_v2/tomek_halverin_openai_sheet.png",
       "dir": "openai_v2",
       "name": "tomek_halverin_openai_sheet"
-    },
-    {
-      "file": "images/openai_v2/tomek_halverin_portrait.png",
-      "dir": "openai_v2",
-      "name": "tomek_halverin_portrait"
-    },
-    {
-      "file": "images/openai_v2/tomek_halverin_south.png",
-      "dir": "openai_v2",
-      "name": "tomek_halverin_south"
     },
     {
       "file": "images/openai_v2/vault_guardian_east_cheer.png",
@@ -9641,11 +9611,11 @@
     }
   ],
   "totals": {
-    "appearances": 67,
+    "appearances": 72,
     "companions": 35,
     "enemies": 20,
     "bosses": 16,
-    "orphans": 1190,
+    "orphans": 1155,
     "missing": 12
   }
 }

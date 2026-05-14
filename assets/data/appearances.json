@@ -1019,5 +1019,85 @@
     "npc": true,
     "deprecated": false,
     "pendingReview": false
+  },
+  {
+    "id": "iris_vael",
+    "name": "Iris Vael",
+    "sprite": "iris_vael",
+    "gender": "female",
+    "classDefault": "iris_vael",
+    "tags": [
+      "npc",
+      "scholar",
+      "recurring"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "garrick_ostmere",
+    "name": "Sir Garrick Ostmere",
+    "sprite": "garrick_ostmere",
+    "gender": "male",
+    "classDefault": "garrick_ostmere",
+    "tags": [
+      "npc",
+      "knight",
+      "recurring"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "mother_yssira",
+    "name": "Mother Yssira",
+    "sprite": "mother_yssira",
+    "gender": "female",
+    "classDefault": "mother_yssira",
+    "tags": [
+      "npc",
+      "seer",
+      "recurring"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "tomek_halverin",
+    "name": "Tomek Halverin",
+    "sprite": "tomek_halverin",
+    "gender": "male",
+    "classDefault": "tomek_halverin",
+    "tags": [
+      "npc",
+      "merchant",
+      "recurring"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "krix_bonechewer",
+    "name": "Krix Bonechewer",
+    "sprite": "krix_bonechewer",
+    "gender": "male",
+    "classDefault": "krix_bonechewer",
+    "tags": [
+      "npc",
+      "defector",
+      "recurring"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
   }
 ]

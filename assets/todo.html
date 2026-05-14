@@ -155,5 +155,53 @@
   <div class="item low"><strong>Healing/mitigation in sim</strong> — currently we read healing from log events but mitigation is approximated from per-target preMitigation events (only present in some skill paths). Cross-check with the live Combat Report for parity.</div>
   <div class="item low"><strong>Hit-chance softcap (M418)</strong> — verify in a real combat that L20 parties now see &gt;0% miss rate against base enemies. The user previously reported zero misses.</div>
 </div>
+
+<div class="card" id="missing-sprite-frames-m483">
+  <h2 style="margin-top:0">Missing sprite frames audit (M483)</h2>
+  <p class="note">
+    Comprehensive scan of every character referenced in <code>src/maps/mapData.js</code> (ENEMIES + ENCOUNTERS inline ids), <code>src/game/companions.js</code> (CLASS_PETS), <code>src/maps/randomEvents.js</code> (companion rewards), <code>src/maps/recurringNpcEvents.js</code> (npcAppearance), <code>src/game/infiniteDungeon.js</code> (ENEMIES_ACT4 references), and <code>src/game/quests.js</code> (npcPortrait paths). Total entities scanned: <strong>156</strong> (72 appearances, 35 companions, 20 enemies, 16 bosses, 12 inline encounter ids, plus the 5 recurring NPCs newly added in this audit).
+  </p>
+
+  <h3 style="color:#c0a070;font-size:0.95rem">Severity 1 — Entities with zero sprite files (9 hireables)</h3>
+  <p class="note">
+    All from <code>HIREABLES_ACT1</code> in <code>src/ui/screens/TownScreen.js</code>. Tavern hireable NPCs that have no portrait or pose sprites at all on disk. They are referenced in the companions registry and need a full 7-pose set generated (or to be wired to fall back to their <code>class</code> appearance, which they currently do not).
+  </p>
+  <div class="item high"><span class="tag">HIGH</span> <code>aela</code> — 7 missing poses</div>
+  <div class="item high"><span class="tag">HIGH</span> <code>borin</code> — 7 missing poses</div>
+  <div class="item high"><span class="tag">HIGH</span> <code>lysa</code> — 7 missing poses</div>
+  <div class="item high"><span class="tag">HIGH</span> <code>rekk</code> — 7 missing poses</div>
+  <div class="item high"><span class="tag">HIGH</span> <code>kaldrek</code> — 7 missing poses</div>
+  <div class="item high"><span class="tag">HIGH</span> <code>syra_wyrmsworn</code> — 7 missing poses</div>
+  <div class="item high"><span class="tag">HIGH</span> <code>vorin_emberjaw</code> — 7 missing poses</div>
+  <div class="item high"><span class="tag">HIGH</span> <code>maelis_drakeblood</code> — 7 missing poses</div>
+  <div class="item high"><span class="tag">HIGH</span> <code>ysolde_cogwright</code> — 7 missing poses</div>
+
+  <h3 style="color:#c0a070;font-size:0.95rem">Severity 2 — Entities with portrait but missing other poses (3 entries)</h3>
+  <div class="item"><span class="tag">MED</span> <code>clockwork_turret</code> (appearance) — missing <code>east_spell, east_block</code></div>
+  <div class="item"><span class="tag">MED</span> <code>pet_war_hound</code> (pet) — missing <code>east_spell, east_block</code></div>
+  <div class="item"><span class="tag">MED</span> <code>war_dog</code> (companion) — missing <code>east_block</code></div>
+
+  <h3 style="color:#c0a070;font-size:0.95rem">Severity 3 — Entities with full sprite sets on disk but no manifest entry (FIXED in this pass)</h3>
+  <p class="note">
+    Five recurring NPCs from M469 (<code>src/maps/recurringNpcEvents.js</code>) had openai_v2 PNG files on disk but no manifest entry, causing 404s when <code>getSpritePath()</code> fell back to the wrong directory. Now registered in <code>src/game/appearances.js</code> with full 7-pose entries each. Run <code>node scripts/build-appearances-manifest.cjs</code> to regenerate.
+  </p>
+  <div class="item"><span class="tag">DONE</span> <code>iris_vael</code> (npc) — added to APPEARANCES, manifest now resolves all 7 poses from <code>openai_v2/</code></div>
+  <div class="item"><span class="tag">DONE</span> <code>garrick_ostmere</code> (npc) — added, 7/7 poses</div>
+  <div class="item"><span class="tag">DONE</span> <code>mother_yssira</code> (npc) — added, 7/7 poses</div>
+  <div class="item"><span class="tag">DONE</span> <code>tomek_halverin</code> (npc) — added, 7/7 poses</div>
+  <div class="item"><span class="tag">DONE</span> <code>krix_bonechewer</code> (npc) — added, 7/7 poses (this was the 404 the user originally reported)</div>
+
+  <h3 style="color:#c0a070;font-size:0.95rem">Severity 3b — Inline-defined enemies in ENCOUNTERS not in the ENEMIES table (7 entries)</h3>
+  <p class="note">
+    These enemy ids are defined directly inside <code>enemies: [{id:'X', name:'Y',...}]</code> blocks in <code>src/maps/mapData.js</code> ENCOUNTERS (and the hidden boss section ~line 943). They have full 7-pose sprite sets on disk but aren't surfaced in the appearances manifest because the <code>extractEnemies()</code> regex in <code>scripts/emit-game-data.cjs</code> only walks <code>ENEMIES*</code> tables. Fix: either promote these to the ENEMIES table or extend <code>extractEnemies()</code> to scan the encounter inline-id pattern. They render fine in combat (sprites resolve via direct path), but they are missing from devtool catalogs and the orphan check considers their sprites unreferenced.
+  </p>
+  <div class="item low"><span class="tag">LOW</span> <code>giant_spider</code> — 7/7 poses on disk, no manifest/enemy-table entry</div>
+  <div class="item low"><span class="tag">LOW</span> <code>the_unraveler</code> — 7/7 on disk, no entry (Act 5 hidden boss)</div>
+  <div class="item low"><span class="tag">LOW</span> <code>dragon_king</code> — 7/7 on disk, no entry (Act 6 hidden boss)</div>
+  <div class="item low"><span class="tag">LOW</span> <code>vault_guardian</code> — 7/7 on disk, no entry (thornwood hidden boss)</div>
+  <div class="item low"><span class="tag">LOW</span> <code>void_scholar</code> — 7/7 on disk, no entry (hidden boss)</div>
+  <div class="item low"><span class="tag">LOW</span> <code>echo_sovereign</code> — 7/7 on disk, no entry (hidden boss)</div>
+  <div class="item low"><span class="tag">LOW</span> <code>the_first_ember</code> — 7/7 on disk, no entry (hidden boss)</div>
+</div>
 </body>
 </html>

@@ -1,30 +1,30 @@
 {
   "_meta": {
-    "generated": "2026-05-13T20:19:44.610Z",
+    "generated": "2026-05-14T06:46:00.476Z",
     "derivedFrom": {
-      "appearances": "src/game/appearances.js (66 entries)",
+      "appearances": "src/game/appearances.js (71 entries)",
       "classPets": "src/game/companions.js CLASS_PETS (11 entries)",
       "encounterCompanions": "src/maps/randomEvents.js reward.companion (14 unique)",
       "enemyIds": "src/maps/mapData.js ENEMIES + ENEMIES_ACT5 (19 non-boss enemies)",
       "bossIds": "src/maps/mapData.js map nodes type:'boss' encounter fields (19 bosses)"
     },
     "counts": {
-      "total": 1404,
+      "total": 1409,
       "by_status": {
-        "ready": 890,
+        "ready": 925,
         "pending": 2,
-        "orphaned": 448,
+        "orphaned": 418,
         "approved": 20,
         "candidate": 44
       },
       "by_category": {
-        "hero": 462,
+        "hero": 497,
         "companion": 125,
         "boss": 133,
         "enemy": 95,
         "background": 68,
         "tap-weapons": 9,
-        "orphan": 448,
+        "orphan": 418,
         "reference-sheet": 64
       }
     },
@@ -4187,6 +4187,321 @@
       "group": "mira_seer",
       "pose": "east_ko",
       "file": "../images/spritecook/mira_seer_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_iris_vael_portrait",
+      "category": "hero",
+      "group": "iris_vael",
+      "pose": "portrait",
+      "file": "../images/openai_v2/iris_vael_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_iris_vael_south",
+      "category": "hero",
+      "group": "iris_vael",
+      "pose": "south",
+      "file": "../images/openai_v2/iris_vael_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_iris_vael_east",
+      "category": "hero",
+      "group": "iris_vael",
+      "pose": "east",
+      "file": "../images/openai_v2/iris_vael_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_iris_vael_east_attack",
+      "category": "hero",
+      "group": "iris_vael",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/iris_vael_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_iris_vael_east_spell",
+      "category": "hero",
+      "group": "iris_vael",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/iris_vael_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_iris_vael_east_block",
+      "category": "hero",
+      "group": "iris_vael",
+      "pose": "east_block",
+      "file": "../images/openai_v2/iris_vael_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_iris_vael_east_ko",
+      "category": "hero",
+      "group": "iris_vael",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/iris_vael_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_garrick_ostmere_portrait",
+      "category": "hero",
+      "group": "garrick_ostmere",
+      "pose": "portrait",
+      "file": "../images/openai_v2/garrick_ostmere_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_garrick_ostmere_south",
+      "category": "hero",
+      "group": "garrick_ostmere",
+      "pose": "south",
+      "file": "../images/openai_v2/garrick_ostmere_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_garrick_ostmere_east",
+      "category": "hero",
+      "group": "garrick_ostmere",
+      "pose": "east",
+      "file": "../images/openai_v2/garrick_ostmere_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_garrick_ostmere_east_attack",
+      "category": "hero",
+      "group": "garrick_ostmere",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/garrick_ostmere_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_garrick_ostmere_east_spell",
+      "category": "hero",
+      "group": "garrick_ostmere",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/garrick_ostmere_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_garrick_ostmere_east_block",
+      "category": "hero",
+      "group": "garrick_ostmere",
+      "pose": "east_block",
+      "file": "../images/openai_v2/garrick_ostmere_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_garrick_ostmere_east_ko",
+      "category": "hero",
+      "group": "garrick_ostmere",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/garrick_ostmere_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_mother_yssira_portrait",
+      "category": "hero",
+      "group": "mother_yssira",
+      "pose": "portrait",
+      "file": "../images/openai_v2/mother_yssira_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_mother_yssira_south",
+      "category": "hero",
+      "group": "mother_yssira",
+      "pose": "south",
+      "file": "../images/openai_v2/mother_yssira_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_mother_yssira_east",
+      "category": "hero",
+      "group": "mother_yssira",
+      "pose": "east",
+      "file": "../images/openai_v2/mother_yssira_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_mother_yssira_east_attack",
+      "category": "hero",
+      "group": "mother_yssira",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/mother_yssira_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_mother_yssira_east_spell",
+      "category": "hero",
+      "group": "mother_yssira",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/mother_yssira_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_mother_yssira_east_block",
+      "category": "hero",
+      "group": "mother_yssira",
+      "pose": "east_block",
+      "file": "../images/openai_v2/mother_yssira_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_mother_yssira_east_ko",
+      "category": "hero",
+      "group": "mother_yssira",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/mother_yssira_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_tomek_halverin_portrait",
+      "category": "hero",
+      "group": "tomek_halverin",
+      "pose": "portrait",
+      "file": "../images/openai_v2/tomek_halverin_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_tomek_halverin_south",
+      "category": "hero",
+      "group": "tomek_halverin",
+      "pose": "south",
+      "file": "../images/openai_v2/tomek_halverin_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_tomek_halverin_east",
+      "category": "hero",
+      "group": "tomek_halverin",
+      "pose": "east",
+      "file": "../images/openai_v2/tomek_halverin_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_tomek_halverin_east_attack",
+      "category": "hero",
+      "group": "tomek_halverin",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/tomek_halverin_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_tomek_halverin_east_spell",
+      "category": "hero",
+      "group": "tomek_halverin",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/tomek_halverin_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_tomek_halverin_east_block",
+      "category": "hero",
+      "group": "tomek_halverin",
+      "pose": "east_block",
+      "file": "../images/openai_v2/tomek_halverin_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_tomek_halverin_east_ko",
+      "category": "hero",
+      "group": "tomek_halverin",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/tomek_halverin_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_krix_bonechewer_portrait",
+      "category": "hero",
+      "group": "krix_bonechewer",
+      "pose": "portrait",
+      "file": "../images/openai_v2/krix_bonechewer_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_krix_bonechewer_south",
+      "category": "hero",
+      "group": "krix_bonechewer",
+      "pose": "south",
+      "file": "../images/openai_v2/krix_bonechewer_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_krix_bonechewer_east",
+      "category": "hero",
+      "group": "krix_bonechewer",
+      "pose": "east",
+      "file": "../images/openai_v2/krix_bonechewer_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_krix_bonechewer_east_attack",
+      "category": "hero",
+      "group": "krix_bonechewer",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/krix_bonechewer_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_krix_bonechewer_east_spell",
+      "category": "hero",
+      "group": "krix_bonechewer",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/krix_bonechewer_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_krix_bonechewer_east_block",
+      "category": "hero",
+      "group": "krix_bonechewer",
+      "pose": "east_block",
+      "file": "../images/openai_v2/krix_bonechewer_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_krix_bonechewer_east_ko",
+      "category": "hero",
+      "group": "krix_bonechewer",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/krix_bonechewer_east_ko.png",
       "prompt": null,
       "status": "ready"
     },
@@ -9807,56 +10122,11 @@
       "status": "orphaned"
     },
     {
-      "id": "orphan_images_openai_v2_garrick_ostmere_east",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/garrick_ostmere_east.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_garrick_ostmere_east_attack",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/garrick_ostmere_east_attack.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_garrick_ostmere_east_block",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/garrick_ostmere_east_block.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
       "id": "orphan_images_openai_v2_garrick_ostmere_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/garrick_ostmere_east_cheer.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_garrick_ostmere_east_ko",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/garrick_ostmere_east_ko.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_garrick_ostmere_east_spell",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/garrick_ostmere_east_spell.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -9875,15 +10145,6 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/garrick_ostmere_openai_sheet.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_garrick_ostmere_south",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/garrick_ostmere_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10338,56 +10599,11 @@
       "status": "orphaned"
     },
     {
-      "id": "orphan_images_openai_v2_iris_vael_east",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/iris_vael_east.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_iris_vael_east_attack",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/iris_vael_east_attack.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_iris_vael_east_block",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/iris_vael_east_block.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
       "id": "orphan_images_openai_v2_iris_vael_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/iris_vael_east_cheer.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_iris_vael_east_ko",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/iris_vael_east_ko.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_iris_vael_east_spell",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/iris_vael_east_spell.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10410,65 +10626,11 @@
       "status": "orphaned"
     },
     {
-      "id": "orphan_images_openai_v2_iris_vael_south",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/iris_vael_south.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_krix_bonechewer_east",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/krix_bonechewer_east.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_krix_bonechewer_east_attack",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/krix_bonechewer_east_attack.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_krix_bonechewer_east_block",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/krix_bonechewer_east_block.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
       "id": "orphan_images_openai_v2_krix_bonechewer_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/krix_bonechewer_east_cheer.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_krix_bonechewer_east_ko",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/krix_bonechewer_east_ko.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_krix_bonechewer_east_spell",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/krix_bonechewer_east_spell.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10487,15 +10649,6 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/krix_bonechewer_openai_sheet.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_krix_bonechewer_south",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/krix_bonechewer_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10572,56 +10725,11 @@
       "status": "orphaned"
     },
     {
-      "id": "orphan_images_openai_v2_mother_yssira_east",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/mother_yssira_east.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_mother_yssira_east_attack",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/mother_yssira_east_attack.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_mother_yssira_east_block",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/mother_yssira_east_block.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
       "id": "orphan_images_openai_v2_mother_yssira_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/mother_yssira_east_cheer.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_mother_yssira_east_ko",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/mother_yssira_east_ko.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_mother_yssira_east_spell",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/mother_yssira_east_spell.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10640,15 +10748,6 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/mother_yssira_openai_sheet.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_mother_yssira_south",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/mother_yssira_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -11499,56 +11598,11 @@
       "status": "orphaned"
     },
     {
-      "id": "orphan_images_openai_v2_tomek_halverin_east",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/tomek_halverin_east.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_tomek_halverin_east_attack",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/tomek_halverin_east_attack.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_tomek_halverin_east_block",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/tomek_halverin_east_block.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
       "id": "orphan_images_openai_v2_tomek_halverin_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/tomek_halverin_east_cheer.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_tomek_halverin_east_ko",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/tomek_halverin_east_ko.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_tomek_halverin_east_spell",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/tomek_halverin_east_spell.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -11567,15 +11621,6 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/tomek_halverin_openai_sheet.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_tomek_halverin_south",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/tomek_halverin_south.png",
       "prompt": null,
       "status": "orphaned"
     },
