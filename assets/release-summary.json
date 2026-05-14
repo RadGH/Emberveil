@@ -1,7 +1,7 @@
 {
-  "milestone": 487,
+  "milestone": 488,
   "date": "2026-05-14",
-  "summary": "M487 — front-page class portraits use spritecook/ paths. M486 hardcoded openai_v2/ which only has enemy + companion regens; all 30 hero classes still live in spritecook/.",
+  "summary": "M488 — flipped two combat-HUD defaults: Show Companion Frames OFF (was ON; companion HP still shows on canvas sprites), Combat Captions ON (was OFF; subtitles narrate combat for new players). Users who explicitly set either before are preserved.",
   "categories": [
     "feature"
   ],

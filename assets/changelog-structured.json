@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-14T08:41:35.754Z",
+  "generated": "2026-05-14T19:31:50.766Z",
   "categories": [
     {
       "id": "Feature",
@@ -28,6 +28,20 @@
     }
   ],
   "entries": [
+    {
+      "milestone": 488,
+      "date": "",
+      "summary": "Default flips per UX feedback. Show Companion Frames was ON by default but ate screen real estate; flipped to OFF (companion HP bars on canvas sprites are still visible). Combat Captions was OFF by default; flipped to ON so the subtitle bar narrates combat events for new players. New isCombatCaptionsEnabled() helper in SettingsScreen.js (parallels isShowCompanionFramesEnabled). Wired both reads in CombatScreen.js. Existing players who explicitly toggled either preference keep their choice.",
+      "items": [
+        {
+          "text": "Default flips per UX feedback. Show Companion Frames was ON by default but ate screen real estate; flipped to OFF (companion HP bars on canvas sprites are still visible). Combat Captions was OFF by default; flipped to ON so the subtitle bar narrates combat events for new players. New isCombatCaptionsEnabled() helper in SettingsScreen.js (parallels isShowCompanionFramesEnabled). Wired both reads in CombatScreen.js. Existing players who explicitly toggled either preference keep their choice.",
+          "categories": [
+            "Feature",
+            "QoL"
+          ]
+        }
+      ]
+    },
     {
       "milestone": 487,
       "date": "",
