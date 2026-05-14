@@ -258,7 +258,10 @@
       name: c.name,
       role: c.role || '',
       primaryAttr: c.primaryAttr || '',
-      portrait: './images/openai_v2/' + c.id + '_portrait.png',
+      // M486b — class portraits live in spritecook/, not openai_v2/. Only
+      // enemies/companions got openai_v2 regens; the 30 hero classes stayed
+      // on their original spritecook art.
+      portrait: './images/spritecook/' + c.id + '_portrait.png',
       desc: c.hook || '',
       unlockHint: UNLOCK_REQUIREMENTS[c.id] || '',
       skills: (c.skills || []).slice(0, 4).map(buildSkillRow),

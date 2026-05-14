@@ -1,7 +1,7 @@
 {
-  "milestone": 486,
+  "milestone": 487,
   "date": "2026-05-14",
-  "summary": "M486 — Front-page polish: hybrid chart now reads builds.json (16 hybrid classes show), companions section uses openai_v2 portraits, h1 capped at 64px sitewide except the front-page hero, demo→game wording across CTAs and contact More-Links, Heroes section expanded to 10 + a View-All Catalog tile (real abilities + unlock requirements pulled from skills.json + classUnlocks), news.json hero images deduped/fixed (SEO entry + duplicate post-overhaul-update fixed), .news-grid CSS gap 15px and removed background/border, contact Send Feedback button switched to dark text on yellow.",
+  "summary": "M487 — front-page class portraits use spritecook/ paths. M486 hardcoded openai_v2/ which only has enemy + companion regens; all 30 hero classes still live in spritecook/.",
   "categories": [
     "feature"
   ],

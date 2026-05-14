@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-14T08:09:49.569Z",
+  "generated": "2026-05-14T08:41:35.754Z",
   "categories": [
     {
       "id": "Feature",
@@ -28,6 +28,21 @@
     }
   ],
   "entries": [
+    {
+      "milestone": 487,
+      "date": "",
+      "summary": "Hot-fix the M486 front-page hero portraits. Class images were 404ing because the renderer used images/openai_v2/{id}_portrait.png but openai_v2/ only contains enemies + companions + the 5 recurring NPCs. The 30 hero classes (warrior, paladin, etc.) still live in their original spritecook/ dir. Verified all 15 visible front-page class ids exist in spritecook/.",
+      "items": [
+        {
+          "text": "Hot-fix the M486 front-page hero portraits. Class images were 404ing because the renderer used images/openai_v2/{id}_portrait.png but openai_v2/ only contains enemies + companions + the 5 recurring NPCs. The 30 hero classes (warrior, paladin, etc.) still live in their original spritecook/ dir. Verified all 15 visible front-page class ids exist in spritecook/.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
     {
       "milestone": 486,
       "date": "",
