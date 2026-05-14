@@ -77,14 +77,19 @@
     .feedback-cta {
       display: inline-flex; align-items: center; gap: 10px;
       background: linear-gradient(180deg, var(--accent-bright), var(--accent));
-      color: var(--bg-deep);
-      font-family: var(--font-display); font-size: 15px; font-weight: 600;
+      /* M486: explicit dark text on the yellow gradient — previously the
+         button inherited var(--accent-bright) from .contact-card a,
+         producing yellow-on-yellow with near-zero contrast. */
+      color: #1a0e08;
+      font-family: var(--font-display); font-size: 15px; font-weight: 700;
       padding: 14px 24px; text-decoration: none;
       border: 1px solid var(--accent); letter-spacing: .04em;
       box-shadow: var(--glow);
       transition: transform .2s ease, box-shadow .2s ease;
     }
-    .feedback-cta:hover { transform: translateY(-1px); box-shadow: 0 0 32px var(--accent-glow); }
+    .feedback-cta:hover { transform: translateY(-1px); box-shadow: 0 0 32px var(--accent-glow); color: #1a0e08; }
+    .contact-card a.feedback-cta { color: #1a0e08; }
+    .contact-card a.feedback-cta:hover { color: #1a0e08; }
   </style>
 
   <!-- M436: vibej.am 2026 widget removed. -->
@@ -124,11 +129,14 @@
       <div class="contact-card">
         <h2>More links</h2>
         <ul class="contact-list">
-          <li><b>Play</b><a href="./play.html">Launch the demo</a></li>
-          <li><b>News</b><a href="./news/post-overhaul-update.html">Latest update</a></li>
-          <li><b>Assets</b><a href="./assets/">Asset gallery</a></li>
-          <li><b>Tools</b><a href="./assets/tools.html">All dev tools</a></li>
+          <li><b>Play</b><a href="./play.html">Play the game</a></li>
+          <li><b>News</b><a href="./news.html">Latest updates</a></li>
+          <li><b>Changelog</b><a href="./assets/changelog.html">Milestone-by-milestone changelog</a></li>
+          <li><b>Classes</b><a href="./assets/class-catalog.html">Class catalog</a></li>
+          <li><b>Images</b><a href="./assets/images.html">Image gallery</a></li>
+          <li><b>Wishlist</b><a href="./assets/wishlist.html">Roadmap &amp; wishlist</a></li>
           <li><b>Privacy</b><a href="./privacy.html">Privacy &amp; telemetry</a></li>
+          <li><b>Accessibility</b><a href="./accessibility.html">Accessibility</a></li>
         </ul>
       </div>
     </div>

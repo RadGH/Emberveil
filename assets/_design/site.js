@@ -61,14 +61,12 @@
   function liveArchetypeCounts() {
     // primaryAttr → archetype:
     //   STR → Melee, DEX → Ranged, INT → Caster
-    // Hybrid is reserved for classes whose skills mix damage stats.
+    // Hybrid is any class with at least one build tagged 'hybrid' in
+    // builds.json (the second-builds-per-class pass in M476 added many
+    // CON-tilted/hybrid alternates). Hybrid wins over the primaryAttr
+    // bucket so the chart reflects build flexibility, not raw stats.
     const out = { Melee: 0, Ranged: 0, Caster: 0, Hybrid: 0 };
-    const hybridClassIds = new Set();
-    SKILLS.forEach(s => {
-      if (s && typeof s.damageStat === 'string' && s.damageStat.includes('_')) {
-        if (s.class) hybridClassIds.add(s.class);
-      }
-    });
+    const hybridClassIds = hybridClassIdSet();
     CLASSES.forEach(c => {
       if (hybridClassIds.has(c.id)) { out.Hybrid += 1; return; }
       if (c.primaryAttr === 'STR') out.Melee += 1;
@@ -78,13 +76,30 @@
     });
     return out;
   }
-  // Derive hybrid stat letters per class from skill damageStat (e.g. 'str_int').
+  function hybridClassIdSet() {
+    const ids = new Set();
+    BUILDS.forEach(b => {
+      if (b && Array.isArray(b.tags) && b.tags.includes('hybrid') && b.classId) {
+        ids.add(b.classId);
+      }
+    });
+    return ids;
+  }
+  // Derive hybrid stat letters per class. Looks at any build tagged 'hybrid'
+  // for that class; the two highest stats among STR/DEX/INT are surfaced as
+  // the hybrid pair (e.g. STR/INT for a Dragon Knight Spellblade build).
   function hybridStatsForClass(classId) {
     const pairs = new Set();
-    SKILLS.forEach(s => {
-      if (s && s.class === classId && typeof s.damageStat === 'string' && s.damageStat.includes('_')) {
-        const letters = s.damageStat.split('_').map(x => x.toUpperCase()).join('/');
-        pairs.add(letters);
+    BUILDS.forEach(b => {
+      if (!b || b.classId !== classId) return;
+      if (!Array.isArray(b.tags) || !b.tags.includes('hybrid')) return;
+      const ta = b.targetAttrs || {};
+      const ranked = ['STR','DEX','INT']
+        .map(k => [k, ta[k] || 0])
+        .sort((a, b2) => b2[1] - a[1])
+        .filter(p => p[1] > 0);
+      if (ranked.length >= 2) {
+        pairs.add(ranked[0][0] + '/' + ranked[1][0]);
       }
     });
     return Array.from(pairs);
@@ -142,8 +157,7 @@
         'that never idles. Build the party, time the taps, close the Veil.'
       ),
       el('div', { class: 'hero-ctas reveal in delay-3' },
-        el('a', { class: 'cta primary', href: './play.html' }, 'Play the demo →'),
-        el('a', { class: 'cta', href: '#combat' }, 'See combat')
+        el('a', { class: 'cta primary', href: './play.html' }, 'Play for free →')
       )
     );
 
@@ -194,9 +208,70 @@
   }
 
   // ─────────────────────────────────────────────────────────── CLASSES ──────
+  // M486 — Build a 10-class list from live data: the 5 starters from
+  // live.json plus 5 marquee unlock classes pulled from classes.json +
+  // skills.json. Unlock requirements come from a small map mirrored from
+  // src/game/classUnlocks.js (the runtime data that gates these classes).
+  // Skill rows are real Name + "Lv N" tiers — never invented.
+  const UNLOCK_REQUIREMENTS = {
+    paladin:       'Complete Act 1 to unlock',
+    cleric:        'Complete Act 1 to unlock',
+    pyromancer:    'Slay 50 enemies to unlock',
+    necromancer:   'Complete Act 2 to unlock',
+    warlock:       'Kill a boss below 20% HP',
+    bard:          'Complete Act 2 to unlock',
+    druid:         'Complete Act 2 to unlock',
+    stormcaller:   'Reach hero level 20 to unlock',
+    dragon_knight: 'Defeat the Dragon boss to unlock',
+    demon_hunter:  'Complete Act 3 to unlock',
+    chronomancer:  'Complete Act 4 to unlock',
+    oracle:        'Complete the game to unlock',
+    tactician:     'Complete Act 3 to unlock',
+    swashbuckler:  'Accumulate 1,000 gold to unlock',
+    scavenger:     'Find 10 rare items to unlock',
+    monk:          'Reach hero level 10 to unlock',
+    shaman:        'Complete Act 1 to unlock',
+    witch_hunter:  'Complete Act 2 to unlock',
+    knight:        'Complete Act 1 to unlock',
+    sorcerer:      'Reach hero level 15 to unlock',
+    runesmith:     'Find 5 rare items to unlock',
+    shadow_dancer: 'Complete Act 2 to unlock',
+    tinker:        'Complete Act 1 to unlock',
+    enchanter:     'Complete Act 2 to unlock',
+    priest:        'Complete Act 1 to unlock',
+  };
+  // Marquee unlock classes shown alongside the 5 starters on the front page.
+  // Picked to span every primary attribute and surface the hybrid system.
+  const FRONT_PAGE_UNLOCK_IDS = ['paladin', 'cleric', 'necromancer', 'pyromancer', 'dragon_knight'];
+
+  function buildSkillRow(sid) {
+    const s = SKILLS.find(x => x && x.id === sid);
+    if (!s) return { name: sid, cost: '—', tier: '' };
+    const cost = (s.mpCost > 0) ? (s.mpCost + ' MP') : '—';
+    return { name: s.name || sid, cost, tier: 'Lv ' + (s.unlockLevel || 1) };
+  }
+  function buildUnlockClassEntry(id) {
+    const c = CLASSES.find(x => x && x.id === id);
+    if (!c) return null;
+    return {
+      id: c.id,
+      name: c.name,
+      role: c.role || '',
+      primaryAttr: c.primaryAttr || '',
+      portrait: './images/openai_v2/' + c.id + '_portrait.png',
+      desc: c.hook || '',
+      unlockHint: UNLOCK_REQUIREMENTS[c.id] || '',
+      skills: (c.skills || []).slice(0, 4).map(buildSkillRow),
+    };
+  }
+
   function mountClasses(root) {
-    const classes = LIVE?.starterClasses || [];
-    if (!classes.length) { root.remove(); return; }
+    const starters = (LIVE?.starterClasses || []).map(c => Object.assign({}, c));
+    if (!starters.length) { root.remove(); return; }
+    const unlockEntries = FRONT_PAGE_UNLOCK_IDS
+      .map(buildUnlockClassEntry)
+      .filter(Boolean);
+    const classes = starters.concat(unlockEntries).slice(0, 10);
 
     let active = 0;
 
@@ -206,9 +281,10 @@
     const list = el('div', { class: 'class-list reveal', role: 'tablist', 'aria-label': 'Hero classes' });
     const buttons = [];
     classes.forEach((c, i) => {
+      const isUnlock = i >= starters.length;
       const item = el('button', {
         type: 'button',
-        class: 'class-item' + (i === active ? ' active' : ''),
+        class: 'class-item' + (i === active ? ' active' : '') + (isUnlock ? ' is-unlock' : ''),
         'data-i': i,
         role: 'tab',
         'aria-selected': i === active ? 'true' : 'false',
@@ -216,11 +292,11 @@
         tabindex: i === active ? '0' : '-1',
       },
         el('span', { class: 'num' }, String(i + 1).padStart(2, '0')),
-        el('span', {},
+        el('span', { class: 'class-item-text' },
           el('span', { class: 'name' }, c.name),
-          el('span', { class: 'role' }, c.role || '')
+          el('span', { class: 'role' }, isUnlock ? (c.unlockHint || c.role || '') : (c.role || ''))
         ),
-        el('span', { class: 'num', style: { color: 'var(--accent)' } }, '→')
+        el('span', { class: 'num arrow' }, '→')
       );
       item.addEventListener('click', () => { setActive(i); item.focus(); });
       item.addEventListener('mouseenter', () => setActive(i));
@@ -240,6 +316,22 @@
       list.appendChild(item);
     });
 
+    // M486 — 11th tile: link to the full class catalog. Static link, not
+    // a tab — keyboard-focus uses the same .class-item visual but lands
+    // the user on a separate page so they can browse all 28+ classes.
+    const viewAll = el('a', {
+      href: './assets/class-catalog.html',
+      class: 'class-item class-item-viewall',
+    },
+      el('span', { class: 'num' }, '11'),
+      el('span', { class: 'class-item-text' },
+        el('span', { class: 'name' }, 'View all classes'),
+        el('span', { class: 'role' }, 'Full catalog · ' + (liveClassCount() || 28) + ' classes, every skill, every unlock')
+      ),
+      el('span', { class: 'num arrow' }, '→')
+    );
+    list.appendChild(viewAll);
+
     const detail = el('div', { class: 'class-detail reveal delay-1', id: 'class-detail' });
 
     function renderDetail() {
@@ -256,7 +348,10 @@
       // (heavy/light/magic) rather than a stale "INT scales spell damage"
       // line baked into live.json.
       const fullClass = CLASSES.find(x => x.id === c.id) || {};
-      const description = fullClass.hook || c.hook || c.desc || '';
+      const baseDesc = fullClass.hook || c.hook || c.desc || '';
+      const description = c.unlockHint
+        ? (baseDesc + ' · ' + c.unlockHint)
+        : baseDesc;
 
       // Primary Attribute badge. If any skill on this class has a hybrid
       // damageStat (e.g. 'str_int'), render Hybrid (STR/INT) instead.
@@ -307,13 +402,13 @@
 
     const counts = LIVE?.counts || {};
     const totalClasses = liveClassCount() || counts.classes || 28;
-    const starterCount = classes.length;
-    const unlockable = Math.max(0, totalClasses - starterCount);
+    const shownCount = classes.length;
+    const remaining = Math.max(0, totalClasses - shownCount);
     const head = el('div', { class: 'section-head reveal' },
       el('span', { class: 'eyebrow' }, 'Heroes · Section 01'),
       el('h2', { html: `${totalClasses} classes.<br>One party of four.` }),
       el('p', { class: 'lede' },
-        `${starterCount} starter classes shown below — ${unlockable} more unlock as you play. `,
+        `${shownCount} classes shown below — ${remaining} more in the full catalog. `,
         'Mix utility and healing characters to build an effective team.'
       )
     );
@@ -552,13 +647,32 @@
     const data = (LIVE?.companions || []).slice(0, 12);
     if (!data.length) { root.remove(); return; }
 
+    // M486: companion sprites were regenerated in M468 under
+    // public/images/openai_v2/<id>_portrait.png. Prefer that path; the
+    // <img onerror> hook downgrades to the legacy spritecook path so any
+    // companion not yet in the v2 set (e.g. war_dog) still renders.
+    const v2Path = id => './images/openai_v2/' + id + '_portrait.png';
+
     const track = el('div', { class: 'carousel-track' });
     data.forEach(c => {
-      const portrait = c.portrait
-        ? el('div', { class: 'companion-portrait' },
-          el('img', { src: c.portrait.replace(/^\.\.\//, './'), alt: c.name, class: 'pixel',
-            onerror: function () { this.replaceWith(document.createTextNode('[ portrait pending ]')); } }))
-        : el('div', { class: 'companion-portrait placeholder' }, '[ portrait pending ]');
+      const fallback = (c.portrait || '').replace(/^\.\.\//, './');
+      const primary = c.id ? v2Path(c.id) : fallback;
+      const img = el('img', {
+        src: primary, alt: c.name, class: 'pixel',
+        onerror: function () {
+          if (this.dataset.fallbackTried) {
+            this.replaceWith(document.createTextNode('[ portrait pending ]'));
+            return;
+          }
+          this.dataset.fallbackTried = '1';
+          if (fallback && fallback !== primary) {
+            this.src = fallback;
+          } else {
+            this.replaceWith(document.createTextNode('[ portrait pending ]'));
+          }
+        }
+      });
+      const portrait = el('div', { class: 'companion-portrait' }, img);
       track.appendChild(el('article', { class: 'companion-card' },
         portrait,
         el('div', { class: 'companion-info' },

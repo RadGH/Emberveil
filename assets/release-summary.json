@@ -1,7 +1,7 @@
 {
-  "milestone": 485,
-  "date": "2026-05-13",
-  "summary": "M485 — vestigial death-variant 404 fix. Sprite preload + fallback chain both referenced a non-existent _death.png variant; renderer correctly maps stance=death → east_ko at draw time. Removed both, no more 404s on combat enter.",
+  "milestone": 486,
+  "date": "2026-05-14",
+  "summary": "M486 — Front-page polish: hybrid chart now reads builds.json (16 hybrid classes show), companions section uses openai_v2 portraits, h1 capped at 64px sitewide except the front-page hero, demo→game wording across CTAs and contact More-Links, Heroes section expanded to 10 + a View-All Catalog tile (real abilities + unlock requirements pulled from skills.json + classUnlocks), news.json hero images deduped/fixed (SEO entry + duplicate post-overhaul-update fixed), .news-grid CSS gap 15px and removed background/border, contact Send Feedback button switched to dark text on yellow.",
   "categories": [
     "feature"
   ],
