@@ -1,7 +1,7 @@
 {
-  "milestone": 488,
-  "date": "2026-05-14",
-  "summary": "M488 — flipped two combat-HUD defaults: Show Companion Frames OFF (was ON; companion HP still shows on canvas sprites), Combat Captions ON (was OFF; subtitles narrate combat for new players). Users who explicitly set either before are preserved.",
+  "milestone": 492,
+  "date": "2026-05-15",
+  "summary": "M491b — back-to-spells inline button on the mobile spell-detail view. Header back button (#skill-back-mobile) was being obscured by the parent PartyPanelScreen header when SkillTreeScreen mounted as a sub-screen, leaving no way to return from talents to the spells list.",
   "categories": [
     "feature"
   ],

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-14T19:31:50.766Z",
+  "generated": "2026-05-15T18:59:30.027Z",
   "categories": [
     {
       "id": "Feature",
@@ -28,6 +28,71 @@
     }
   ],
   "entries": [
+    {
+      "milestone": 492,
+      "date": "2026-05-15",
+      "summary": "M491b — back-to-spells inline button on the mobile spell-detail view. Header back button (#skill-back-mobile) was being obscured by the parent PartyPanelScreen header when SkillTreeScreen mounted as a sub-screen, leaving no way to return from talents to the spells list.",
+      "items": [
+        {
+          "text": "M491b — back-to-spells inline button on the mobile spell-detail view. Header back button (#skill-back-mobile) was being obscured by the parent PartyPanelScreen header when SkillTreeScreen mounted as a sub-screen, leaving no way to return from talents to the spells list.",
+          "categories": [
+            "Feature"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 491,
+      "date": "",
+      "summary": "Image-review filter fix. M489 enrolled 12 sprites in batch m355 with category:class (hero classes) and category:npc (marek/mira). The Characters filter only matched [character, hero, companion, boss, enemy] so all 12 entries were silently filtered out. Now matches [character, hero, class, companion, boss, enemy, npc, hireable]. Sub-filter checkbox set + default Set updated to match.",
+      "items": [
+        {
+          "text": "Image-review filter fix. M489 enrolled 12 sprites in batch m355 with category:class (hero classes) and category:npc (marek/mira). The Characters filter only matched [character, hero, companion, boss, enemy] so all 12 entries were silently filtered out. Now matches [character, hero, class, companion, boss, enemy, npc, hireable]. Sub-filter checkbox set + default Set updated to match.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        },
+        {
+          "text": "M489b — Oracle re-roll. The M489 batch produced 12 sprites with feet-cut-off fixes; 11 came back at 150-250px range, but oracle_old_east_block came in at 98x98 — too small to read in combat. Re-rolled via SpriteCook with character_id=225eb053 (oracle_old_east_attack imported), platformer perspective, custom_animations with explicit FRAMING (CRITICAL) prompt forcing 90% canvas height. Result: 256x256 single frame extracted from the animation sheet, saved over the bad one. Backup at public/images/spritecook/_pre_regen_m489b/. Staging only — review at image-review-v2.html before approving for prod.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 490,
+      "date": "2026-05-14",
+      "summary": "M489b — re-rolled oracle_old_east_block sprite at full 256x256 (was 98x98 from M489 — too small to be readable in combat). Same SpriteCook reference (oracle_old_east_attack), aggressive framing prompt forcing ~90% canvas height. Staging only.",
+      "items": [
+        {
+          "text": "M489b — re-rolled oracle_old_east_block sprite at full 256x256 (was 98x98 from M489 — too small to be readable in combat). Same SpriteCook reference (oracle_old_east_attack), aggressive framing prompt forcing ~90% canvas height. Staging only.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 489,
+      "date": "2026-05-14",
+      "summary": "12 SpriteCook sprite regens to fix feet-cut-off/wrong-pose issues. Regenerated paladin_female_east_block, rogue_male_east_block, swashbuckler_female_south, oracle_old_east_block, tactician_female_south, monk_east, tinker_female_east_spell/east_block/east_ko, tinker_east_block, marek_greel_east_block, mira_seer_east. Backups saved to public/images/spritecook/_pre_regen_m489/. Each regen used the character's east_attack frame as the SpriteCook reference asset (the bad target frame could not be its own reference). All 12 enrolled in image-review-v2 batch m355 for user approval before any prod deploy.",
+      "items": [
+        {
+          "text": "12 SpriteCook sprite regens to fix feet-cut-off/wrong-pose issues. Regenerated paladin_female_east_block, rogue_male_east_block, swashbuckler_female_south, oracle_old_east_block, tactician_female_south, monk_east, tinker_female_east_spell/east_block/east_ko, tinker_east_block, marek_greel_east_block, mira_seer_east. Backups saved to public/images/spritecook/_pre_regen_m489/. Each regen used the character's east_attack frame as the SpriteCook reference asset (the bad target frame could not be its own reference). All 12 enrolled in image-review-v2 batch m355 for user approval before any prod deploy.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
     {
       "milestone": 488,
       "date": "",

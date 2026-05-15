@@ -295,7 +295,7 @@ let historyBatchId = null;   // when mode === 'history'
 // M464 — pose filter + layout toggle removed; ONE single-row layout for all
 // modes/categories. The only filters left are character categories + bg types.
 const filters = {
-  charCats: new Set(['hero','companion','boss','enemy']),
+  charCats: new Set(['hero','class','companion','boss','enemy','npc','hireable']),
   bgTypes: new Set(['combat','menu','map']),
 };
 
@@ -360,9 +360,8 @@ function buildFilters() {
   body.innerHTML = `
     <div class="filter-group" id="char-filters" ${category !== 'characters' ? 'hidden' : ''}>
       <div class="group-title">Character categories</div>
-      ${['hero','companion','boss','enemy'].map(c => {
-        // Pluralisation map fixes "heros"/"enemys" typos.
-        const plurals = { hero:'heroes', companion:'companions', boss:'bosses', enemy:'enemies' };
+      ${['hero','class','companion','boss','enemy','npc','hireable'].map(c => {
+        const plurals = { hero:'heroes', class:'classes', companion:'companions', boss:'bosses', enemy:'enemies', npc:'NPCs', hireable:'hireables' };
         return `<label class="filter-row"><input type="checkbox" data-charcat="${c}" ${filters.charCats.has(c) ? 'checked' : ''}> ${plurals[c]}</label>`;
       }).join('')}
     </div>
@@ -555,7 +554,7 @@ function render() {
   // First: filter to the active category bucket. Batch entries carry e.category
   // values like 'character', 'background', 'tap_weapon', 'other'.
   const catMatchers = {
-    characters:  e => e.category === 'character' || ['hero','companion','boss','enemy'].includes(e.category),
+    characters:  e => e.category === 'character' || ['hero','class','companion','boss','enemy','npc','hireable'].includes(e.category),
     backgrounds: e => e.category === 'background',
     tap_weapons: e => e.category === 'tap_weapon' || e.category === 'tap-weapons',
     other:       e => e.category === 'other',
