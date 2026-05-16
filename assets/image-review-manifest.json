@@ -1,30 +1,30 @@
 {
   "_meta": {
-    "generated": "2026-05-16T20:19:59.913Z",
+    "generated": "2026-05-16T21:09:55.402Z",
     "derivedFrom": {
-      "appearances": "src/game/appearances.js (76 entries)",
+      "appearances": "src/game/appearances.js (83 entries)",
       "classPets": "src/game/companions.js CLASS_PETS (11 entries)",
       "encounterCompanions": "src/maps/randomEvents.js reward.companion (14 unique)",
       "enemyIds": "src/maps/mapData.js ENEMIES + ENEMIES_ACT5 (19 non-boss enemies)",
       "bossIds": "src/maps/mapData.js map nodes type:'boss' encounter fields (19 bosses)"
     },
     "counts": {
-      "total": 1459,
+      "total": 1501,
       "by_status": {
-        "ready": 960,
+        "ready": 1009,
         "pending": 2,
-        "orphaned": 433,
+        "orphaned": 426,
         "approved": 20,
         "candidate": 44
       },
       "by_category": {
-        "hero": 532,
+        "hero": 581,
         "companion": 125,
         "boss": 133,
         "enemy": 95,
         "background": 68,
         "tap-weapons": 9,
-        "orphan": 433,
+        "orphan": 426,
         "reference-sheet": 64
       }
     },
@@ -4817,6 +4817,447 @@
       "group": "magnus_orre",
       "pose": "east_ko",
       "file": "../images/openai_v2/magnus_orre_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_giant_spider_portrait",
+      "category": "hero",
+      "group": "giant_spider",
+      "pose": "portrait",
+      "file": "../images/openai_v2/giant_spider_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_giant_spider_south",
+      "category": "hero",
+      "group": "giant_spider",
+      "pose": "south",
+      "file": "../images/openai_v2/giant_spider_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_giant_spider_east",
+      "category": "hero",
+      "group": "giant_spider",
+      "pose": "east",
+      "file": "../images/openai_v2/giant_spider_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_giant_spider_east_attack",
+      "category": "hero",
+      "group": "giant_spider",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/giant_spider_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_giant_spider_east_spell",
+      "category": "hero",
+      "group": "giant_spider",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/giant_spider_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_giant_spider_east_block",
+      "category": "hero",
+      "group": "giant_spider",
+      "pose": "east_block",
+      "file": "../images/openai_v2/giant_spider_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_giant_spider_east_ko",
+      "category": "hero",
+      "group": "giant_spider",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/giant_spider_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_unraveler_portrait",
+      "category": "hero",
+      "group": "the_unraveler",
+      "pose": "portrait",
+      "file": "../images/spritecook/the_unraveler_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_unraveler_south",
+      "category": "hero",
+      "group": "the_unraveler",
+      "pose": "south",
+      "file": "../images/spritecook/the_unraveler_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_unraveler_east",
+      "category": "hero",
+      "group": "the_unraveler",
+      "pose": "east",
+      "file": "../images/spritecook/the_unraveler_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_unraveler_east_attack",
+      "category": "hero",
+      "group": "the_unraveler",
+      "pose": "east_attack",
+      "file": "../images/spritecook/the_unraveler_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_unraveler_east_spell",
+      "category": "hero",
+      "group": "the_unraveler",
+      "pose": "east_spell",
+      "file": "../images/spritecook/the_unraveler_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_unraveler_east_block",
+      "category": "hero",
+      "group": "the_unraveler",
+      "pose": "east_block",
+      "file": "../images/spritecook/the_unraveler_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_unraveler_east_ko",
+      "category": "hero",
+      "group": "the_unraveler",
+      "pose": "east_ko",
+      "file": "../images/spritecook/the_unraveler_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_dragon_king_portrait",
+      "category": "hero",
+      "group": "dragon_king",
+      "pose": "portrait",
+      "file": "../images/spritecook/dragon_king_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_dragon_king_south",
+      "category": "hero",
+      "group": "dragon_king",
+      "pose": "south",
+      "file": "../images/spritecook/dragon_king_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_dragon_king_east",
+      "category": "hero",
+      "group": "dragon_king",
+      "pose": "east",
+      "file": "../images/spritecook/dragon_king_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_dragon_king_east_attack",
+      "category": "hero",
+      "group": "dragon_king",
+      "pose": "east_attack",
+      "file": "../images/spritecook/dragon_king_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_dragon_king_east_spell",
+      "category": "hero",
+      "group": "dragon_king",
+      "pose": "east_spell",
+      "file": "../images/spritecook/dragon_king_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_dragon_king_east_block",
+      "category": "hero",
+      "group": "dragon_king",
+      "pose": "east_block",
+      "file": "../images/spritecook/dragon_king_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_dragon_king_east_ko",
+      "category": "hero",
+      "group": "dragon_king",
+      "pose": "east_ko",
+      "file": "../images/spritecook/dragon_king_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_vault_guardian_portrait",
+      "category": "hero",
+      "group": "vault_guardian",
+      "pose": "portrait",
+      "file": "../images/spritecook/vault_guardian_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_vault_guardian_south",
+      "category": "hero",
+      "group": "vault_guardian",
+      "pose": "south",
+      "file": "../images/spritecook/vault_guardian_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_vault_guardian_east",
+      "category": "hero",
+      "group": "vault_guardian",
+      "pose": "east",
+      "file": "../images/spritecook/vault_guardian_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_vault_guardian_east_attack",
+      "category": "hero",
+      "group": "vault_guardian",
+      "pose": "east_attack",
+      "file": "../images/spritecook/vault_guardian_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_vault_guardian_east_spell",
+      "category": "hero",
+      "group": "vault_guardian",
+      "pose": "east_spell",
+      "file": "../images/spritecook/vault_guardian_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_vault_guardian_east_block",
+      "category": "hero",
+      "group": "vault_guardian",
+      "pose": "east_block",
+      "file": "../images/spritecook/vault_guardian_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_vault_guardian_east_ko",
+      "category": "hero",
+      "group": "vault_guardian",
+      "pose": "east_ko",
+      "file": "../images/spritecook/vault_guardian_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_void_scholar_portrait",
+      "category": "hero",
+      "group": "void_scholar",
+      "pose": "portrait",
+      "file": "../images/spritecook/void_scholar_portrait.png",
+      "prompt": "Gaunt mid-50s human male, pale skin, sharp cheekbones, completely white eyes glowing faintly with violet inner light, silver-white slicked-back hair pulled into a small knot, neat silver-white goatee.\n\nCracked obsidian academic robe with a high stiff collar embroidered with violet runic glyphs, leather-bound books and tattered scroll-tubes hanging on chains across the chest, plain dark boots. Faint halo of violet-and-black void-mist rising from his shoulders.\n\nNo physical weapon — casts violet-black void-orbs from outstretched hand.\n\nPOSE (portrait): Head-and-shoulders bust, three-quarter view facing camera-left, calm sympathetic expression.",
+      "status": "ready"
+    },
+    {
+      "id": "hero_void_scholar_south",
+      "category": "hero",
+      "group": "void_scholar",
+      "pose": "south",
+      "file": "../images/spritecook/void_scholar_south.png",
+      "prompt": "Gaunt mid-50s human male, pale skin, sharp cheekbones, completely white eyes glowing faintly with violet inner light, silver-white slicked-back hair pulled into a small knot, neat silver-white goatee.\n\nCracked obsidian academic robe with a high stiff collar embroidered with violet runic glyphs, leather-bound books and tattered scroll-tubes hanging on chains across the chest, plain dark boots. Faint halo of violet-and-black void-mist rising from his shoulders.\n\nNo physical weapon — casts violet-black void-orbs from outstretched hand.\n\nPOSE (south): Facing camera, calm idle, both hands held loosely in front, robe to ankle-length.",
+      "status": "ready"
+    },
+    {
+      "id": "hero_void_scholar_east",
+      "category": "hero",
+      "group": "void_scholar",
+      "pose": "east",
+      "file": "../images/spritecook/void_scholar_east.png",
+      "prompt": "Gaunt mid-50s human male, pale skin, sharp cheekbones, completely white eyes glowing faintly with violet inner light, silver-white slicked-back hair pulled into a small knot, neat silver-white goatee.\n\nCracked obsidian academic robe with a high stiff collar embroidered with violet runic glyphs, leather-bound books and tattered scroll-tubes hanging on chains across the chest, plain dark boots. Faint halo of violet-and-black void-mist rising from his shoulders.\n\nNo physical weapon — casts violet-black void-orbs from outstretched hand.\n\nPOSE (east): Facing east in three-quarter side view, calm idle, robe to ankle-length, books visible on chest.",
+      "status": "ready"
+    },
+    {
+      "id": "hero_void_scholar_east_attack",
+      "category": "hero",
+      "group": "void_scholar",
+      "pose": "east_attack",
+      "file": "../images/spritecook/void_scholar_east_attack.png",
+      "prompt": "Gaunt mid-50s human male, pale skin, sharp cheekbones, completely white eyes glowing faintly with violet inner light, silver-white slicked-back hair pulled into a small knot, neat silver-white goatee.\n\nCracked obsidian academic robe with a high stiff collar embroidered with violet runic glyphs, leather-bound books and tattered scroll-tubes hanging on chains across the chest, plain dark boots. Faint halo of violet-and-black void-mist rising from his shoulders.\n\nNo physical weapon — casts violet-black void-orbs from outstretched hand.\n\nPOSE (east_attack): Facing east, mid-spell-cast: right arm thrust forward hurling a violet-black void-orb the size of his head; left hand pulled back glowing with a violet rune.",
+      "status": "ready"
+    },
+    {
+      "id": "hero_void_scholar_east_spell",
+      "category": "hero",
+      "group": "void_scholar",
+      "pose": "east_spell",
+      "file": "../images/spritecook/void_scholar_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_void_scholar_east_block",
+      "category": "hero",
+      "group": "void_scholar",
+      "pose": "east_block",
+      "file": "../images/spritecook/void_scholar_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_void_scholar_east_ko",
+      "category": "hero",
+      "group": "void_scholar",
+      "pose": "east_ko",
+      "file": "../images/spritecook/void_scholar_east_ko.png",
+      "prompt": "Gaunt mid-50s human male, pale skin, sharp cheekbones, completely white eyes glowing faintly with violet inner light, silver-white slicked-back hair pulled into a small knot, neat silver-white goatee.\n\nCracked obsidian academic robe with a high stiff collar embroidered with violet runic glyphs, leather-bound books and tattered scroll-tubes hanging on chains across the chest, plain dark boots. Faint halo of violet-and-black void-mist rising from his shoulders.\n\nNo physical weapon — casts violet-black void-orbs from outstretched hand.\n\nPOSE (east_ko): Lying defeated on the ground facing east, robe sprawled, eyes closed (no glow), void-mist dispersed to a thin wisp.",
+      "status": "ready"
+    },
+    {
+      "id": "hero_echo_sovereign_portrait",
+      "category": "hero",
+      "group": "echo_sovereign",
+      "pose": "portrait",
+      "file": "../images/spritecook/echo_sovereign_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_echo_sovereign_south",
+      "category": "hero",
+      "group": "echo_sovereign",
+      "pose": "south",
+      "file": "../images/spritecook/echo_sovereign_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_echo_sovereign_east",
+      "category": "hero",
+      "group": "echo_sovereign",
+      "pose": "east",
+      "file": "../images/spritecook/echo_sovereign_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_echo_sovereign_east_attack",
+      "category": "hero",
+      "group": "echo_sovereign",
+      "pose": "east_attack",
+      "file": "../images/spritecook/echo_sovereign_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_echo_sovereign_east_spell",
+      "category": "hero",
+      "group": "echo_sovereign",
+      "pose": "east_spell",
+      "file": "../images/spritecook/echo_sovereign_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_echo_sovereign_east_block",
+      "category": "hero",
+      "group": "echo_sovereign",
+      "pose": "east_block",
+      "file": "../images/spritecook/echo_sovereign_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_echo_sovereign_east_ko",
+      "category": "hero",
+      "group": "echo_sovereign",
+      "pose": "east_ko",
+      "file": "../images/spritecook/echo_sovereign_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_first_ember_portrait",
+      "category": "hero",
+      "group": "the_first_ember",
+      "pose": "portrait",
+      "file": "../images/spritecook/the_first_ember_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_first_ember_south",
+      "category": "hero",
+      "group": "the_first_ember",
+      "pose": "south",
+      "file": "../images/spritecook/the_first_ember_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_first_ember_east",
+      "category": "hero",
+      "group": "the_first_ember",
+      "pose": "east",
+      "file": "../images/spritecook/the_first_ember_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_first_ember_east_attack",
+      "category": "hero",
+      "group": "the_first_ember",
+      "pose": "east_attack",
+      "file": "../images/spritecook/the_first_ember_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_first_ember_east_spell",
+      "category": "hero",
+      "group": "the_first_ember",
+      "pose": "east_spell",
+      "file": "../images/spritecook/the_first_ember_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_first_ember_east_block",
+      "category": "hero",
+      "group": "the_first_ember",
+      "pose": "east_block",
+      "file": "../images/spritecook/the_first_ember_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_the_first_ember_east_ko",
+      "category": "hero",
+      "group": "the_first_ember",
+      "pose": "east_ko",
+      "file": "../images/spritecook/the_first_ember_east_ko.png",
       "prompt": null,
       "status": "ready"
     },
@@ -10536,56 +10977,11 @@
       "status": "orphaned"
     },
     {
-      "id": "orphan_images_openai_v2_giant_spider_east",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/giant_spider_east.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_giant_spider_east_attack",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/giant_spider_east_attack.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_giant_spider_east_block",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/giant_spider_east_block.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
       "id": "orphan_images_openai_v2_giant_spider_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/giant_spider_east_cheer.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_giant_spider_east_ko",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/giant_spider_east_ko.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_giant_spider_east_spell",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/giant_spider_east_spell.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10604,24 +11000,6 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/giant_spider_openai_sheet.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_giant_spider_portrait",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/giant_spider_portrait.png",
-      "prompt": null,
-      "status": "orphaned"
-    },
-    {
-      "id": "orphan_images_openai_v2_giant_spider_south",
-      "category": "orphan",
-      "group": "images/openai_v2",
-      "pose": null,
-      "file": "../images/openai_v2/giant_spider_south.png",
       "prompt": null,
       "status": "orphaned"
     },

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-16T20:20:44.105Z",
+  "generated": "2026-05-16T21:10:42.804Z",
   "categories": [
     {
       "id": "Feature",
@@ -28,6 +28,21 @@
     }
   ],
   "entries": [
+    {
+      "milestone": 495,
+      "date": "",
+      "summary": "Multi-fix. (1) GameMenu save: #gm-msg now gets .gm-msg--ok gold pill + gmSavePop keyframe (clearly confirms save; .gm-msg--err red on failure). (2) HireBuilderScreen: new _skillsStepSkippable() — when not manualCharacters AND autoPassive && autoActive, the stats-step Next button confirms hire/recruit directly instead of opening an empty Skills step; button relabels to Confirm Hire / Recruit <name> live as the auto toggles change. (3) appearances.js: registered giant_spider + the_unraveler/dragon_king/vault_guardian/void_scholar/echo_sovereign/the_first_ember (inline ENCOUNTERS enemies the manifest enemy-scan missed — the M484 audit flagged them). emit-game-data + build-appearances-manifest re-run; giant_spider resolves openai_v2, the 6 bosses resolve their M473 spritecook regens. Game getSpritePath + images.html now同 source. (4) Recruit-builder agent fixes: classChoices schema (Halden fighter/warrior/paladin etc.), cancel is fully recoverable (event no longer marked seen until confirm), white back-button replaced with themed class-choice step, cb-* styles extracted to characterBuilderStyles.js so they apply when opened from a loaded save. (5) DialogScreen: panel z-index 2→8 + bubble fully opaque so long text is never overlapped by the conversation-grid sprites/name banners.",
+      "items": [
+        {
+          "text": "Multi-fix. (1) GameMenu save: #gm-msg now gets .gm-msg--ok gold pill + gmSavePop keyframe (clearly confirms save; .gm-msg--err red on failure). (2) HireBuilderScreen: new _skillsStepSkippable() — when not manualCharacters AND autoPassive && autoActive, the stats-step Next button confirms hire/recruit directly instead of opening an empty Skills step; button relabels to Confirm Hire / Recruit <name> live as the auto toggles change. (3) appearances.js: registered giant_spider + the_unraveler/dragon_king/vault_guardian/void_scholar/echo_sovereign/the_first_ember (inline ENCOUNTERS enemies the manifest enemy-scan missed — the M484 audit flagged them). emit-game-data + build-appearances-manifest re-run; giant_spider resolves openai_v2, the 6 bosses resolve their M473 spritecook regens. Game getSpritePath + images.html now同 source. (4) Recruit-builder agent fixes: classChoices schema (Halden fighter/warrior/paladin etc.), cancel is fully recoverable (event no longer marked seen until confirm), white back-button replaced with themed class-choice step, cb-* styles extracted to characterBuilderStyles.js so they apply when opened from a loaded save. (5) DialogScreen: panel z-index 2→8 + bubble fully opaque so long text is never overlapped by the conversation-grid sprites/name banners.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
     {
       "milestone": 494,
       "date": "",

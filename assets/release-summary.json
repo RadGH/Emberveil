@@ -1,7 +1,7 @@
 {
-  "milestone": 494,
+  "milestone": 495,
   "date": "2026-05-16",
-  "summary": "M494 — Approved the m356 image-review batch (45 recruitable-NPC frames + earlier). Prologue reordered: start → Lone Goblin → Goblin Pair → Silas Veilward dialog → Veilspawn Herald boss (the misnamed Lost Merchant node is now correctly Silas Veilward and lands right before the boss where his warning + build-gift matter). Mobile party portrait strip now shows a blue mana bar beneath the HP bar for mana-using classes (martial classes unaffected — no empty rail).",
+  "summary": "M495 — Save-game now shows a gold confirmation pop (was a near-invisible grey line). Hiring/recruiting with Auto Passives + Auto Spell Talents both on now skips the empty Skills step and confirms directly. giant_spider + 6 inline-encounter bosses (the_unraveler/dragon_king/vault_guardian/void_scholar/echo_sovereign/the_first_ember) added to the appearances manifest so the GAME and images.html read the same source (giant_spider now shows its openai_v2 sprite, not the stale axe one). Recruit builder: class-choice step, no soft-lock on cancel, gold/brown theming via extracted shared cb-styles module. Dialog text no longer rendered behind character sprites.",
   "categories": [
     "feature"
   ],

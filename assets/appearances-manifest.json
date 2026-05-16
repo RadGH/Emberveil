@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-16T19:29:41.509Z",
+  "generated": "2026-05-16T20:44:00.846Z",
   "spriteDirs": [
     "openai_v2",
     "spritecook",
@@ -2199,6 +2199,208 @@
       "spriteCount": 7,
       "missingPoses": [],
       "sourceDir": "openai_v2"
+    },
+    {
+      "id": "giant_spider",
+      "name": "Giant Spider",
+      "kind": "npc",
+      "gender": "none",
+      "classDefault": "giant_spider",
+      "sprite": "giant_spider",
+      "tags": [
+        "enemy",
+        "beast"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "openai_v2/giant_spider_portrait.png",
+        "south": "openai_v2/giant_spider_south.png",
+        "east": "openai_v2/giant_spider_east.png",
+        "east_attack": "openai_v2/giant_spider_east_attack.png",
+        "east_spell": "openai_v2/giant_spider_east_spell.png",
+        "east_block": "openai_v2/giant_spider_east_block.png",
+        "east_ko": "openai_v2/giant_spider_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "the_unraveler",
+      "name": "The Unraveler",
+      "kind": "npc",
+      "gender": "none",
+      "classDefault": "the_unraveler",
+      "sprite": "the_unraveler",
+      "tags": [
+        "enemy",
+        "boss",
+        "void"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "spritecook/the_unraveler_portrait.png",
+        "south": "spritecook/the_unraveler_south.png",
+        "east": "spritecook/the_unraveler_east.png",
+        "east_attack": "spritecook/the_unraveler_east_attack.png",
+        "east_spell": "spritecook/the_unraveler_east_spell.png",
+        "east_block": "spritecook/the_unraveler_east_block.png",
+        "east_ko": "spritecook/the_unraveler_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "dragon_king",
+      "name": "Dragon King",
+      "kind": "npc",
+      "gender": "none",
+      "classDefault": "dragon_king",
+      "sprite": "dragon_king",
+      "tags": [
+        "enemy",
+        "boss",
+        "dragon"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "spritecook/dragon_king_portrait.png",
+        "south": "spritecook/dragon_king_south.png",
+        "east": "spritecook/dragon_king_east.png",
+        "east_attack": "spritecook/dragon_king_east_attack.png",
+        "east_spell": "spritecook/dragon_king_east_spell.png",
+        "east_block": "spritecook/dragon_king_east_block.png",
+        "east_ko": "spritecook/dragon_king_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "vault_guardian",
+      "name": "Vault Guardian",
+      "kind": "npc",
+      "gender": "none",
+      "classDefault": "vault_guardian",
+      "sprite": "vault_guardian",
+      "tags": [
+        "enemy",
+        "boss",
+        "construct"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "spritecook/vault_guardian_portrait.png",
+        "south": "spritecook/vault_guardian_south.png",
+        "east": "spritecook/vault_guardian_east.png",
+        "east_attack": "spritecook/vault_guardian_east_attack.png",
+        "east_spell": "spritecook/vault_guardian_east_spell.png",
+        "east_block": "spritecook/vault_guardian_east_block.png",
+        "east_ko": "spritecook/vault_guardian_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "void_scholar",
+      "name": "Void Scholar",
+      "kind": "npc",
+      "gender": "none",
+      "classDefault": "void_scholar",
+      "sprite": "void_scholar",
+      "tags": [
+        "enemy",
+        "boss",
+        "void"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "spritecook/void_scholar_portrait.png",
+        "south": "spritecook/void_scholar_south.png",
+        "east": "spritecook/void_scholar_east.png",
+        "east_attack": "spritecook/void_scholar_east_attack.png",
+        "east_spell": "spritecook/void_scholar_east_spell.png",
+        "east_block": "spritecook/void_scholar_east_block.png",
+        "east_ko": "spritecook/void_scholar_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "echo_sovereign",
+      "name": "Echo Sovereign",
+      "kind": "npc",
+      "gender": "none",
+      "classDefault": "echo_sovereign",
+      "sprite": "echo_sovereign",
+      "tags": [
+        "enemy",
+        "boss",
+        "hidden"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "spritecook/echo_sovereign_portrait.png",
+        "south": "spritecook/echo_sovereign_south.png",
+        "east": "spritecook/echo_sovereign_east.png",
+        "east_attack": "spritecook/echo_sovereign_east_attack.png",
+        "east_spell": "spritecook/echo_sovereign_east_spell.png",
+        "east_block": "spritecook/echo_sovereign_east_block.png",
+        "east_ko": "spritecook/echo_sovereign_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "the_first_ember",
+      "name": "The First Ember",
+      "kind": "npc",
+      "gender": "none",
+      "classDefault": "the_first_ember",
+      "sprite": "the_first_ember",
+      "tags": [
+        "enemy",
+        "boss",
+        "fire"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "spritecook/the_first_ember_portrait.png",
+        "south": "spritecook/the_first_ember_south.png",
+        "east": "spritecook/the_first_ember_east.png",
+        "east_attack": "spritecook/the_first_ember_east_attack.png",
+        "east_spell": "spritecook/the_first_ember_east_spell.png",
+        "east_block": "spritecook/the_first_ember_east_block.png",
+        "east_ko": "spritecook/the_first_ember_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
     }
   ],
   "companions": [
@@ -4188,29 +4390,9 @@
       "name": "genesis_worm_openai_sheet"
     },
     {
-      "file": "images/openai_v2/giant_spider_east_attack.png",
-      "dir": "openai_v2",
-      "name": "giant_spider_east_attack"
-    },
-    {
-      "file": "images/openai_v2/giant_spider_east_block.png",
-      "dir": "openai_v2",
-      "name": "giant_spider_east_block"
-    },
-    {
       "file": "images/openai_v2/giant_spider_east_cheer.png",
       "dir": "openai_v2",
       "name": "giant_spider_east_cheer"
-    },
-    {
-      "file": "images/openai_v2/giant_spider_east_ko.png",
-      "dir": "openai_v2",
-      "name": "giant_spider_east_ko"
-    },
-    {
-      "file": "images/openai_v2/giant_spider_east_spell.png",
-      "dir": "openai_v2",
-      "name": "giant_spider_east_spell"
     },
     {
       "file": "images/openai_v2/giant_spider_east_wound.png",
@@ -4218,24 +4400,9 @@
       "name": "giant_spider_east_wound"
     },
     {
-      "file": "images/openai_v2/giant_spider_east.png",
-      "dir": "openai_v2",
-      "name": "giant_spider_east"
-    },
-    {
       "file": "images/openai_v2/giant_spider_openai_sheet.png",
       "dir": "openai_v2",
       "name": "giant_spider_openai_sheet"
-    },
-    {
-      "file": "images/openai_v2/giant_spider_portrait.png",
-      "dir": "openai_v2",
-      "name": "giant_spider_portrait"
-    },
-    {
-      "file": "images/openai_v2/giant_spider_south.png",
-      "dir": "openai_v2",
-      "name": "giant_spider_south"
     },
     {
       "file": "images/openai_v2/goblin_scout_east_cheer.png",
@@ -7688,41 +7855,6 @@
       "name": "dragon_boss_portrait"
     },
     {
-      "file": "images/spritecook/dragon_king_east_attack.png",
-      "dir": "spritecook",
-      "name": "dragon_king_east_attack"
-    },
-    {
-      "file": "images/spritecook/dragon_king_east_block.png",
-      "dir": "spritecook",
-      "name": "dragon_king_east_block"
-    },
-    {
-      "file": "images/spritecook/dragon_king_east_ko.png",
-      "dir": "spritecook",
-      "name": "dragon_king_east_ko"
-    },
-    {
-      "file": "images/spritecook/dragon_king_east_spell.png",
-      "dir": "spritecook",
-      "name": "dragon_king_east_spell"
-    },
-    {
-      "file": "images/spritecook/dragon_king_east.png",
-      "dir": "spritecook",
-      "name": "dragon_king_east"
-    },
-    {
-      "file": "images/spritecook/dragon_king_portrait.png",
-      "dir": "spritecook",
-      "name": "dragon_king_portrait"
-    },
-    {
-      "file": "images/spritecook/dragon_king_south.png",
-      "dir": "spritecook",
-      "name": "dragon_king_south"
-    },
-    {
       "file": "images/spritecook/dragon_throne_boss_east_attack.png",
       "dir": "spritecook",
       "name": "dragon_throne_boss_east_attack"
@@ -7786,41 +7918,6 @@
       "file": "images/spritecook/dust_boss_portrait.png",
       "dir": "spritecook",
       "name": "dust_boss_portrait"
-    },
-    {
-      "file": "images/spritecook/echo_sovereign_east_attack.png",
-      "dir": "spritecook",
-      "name": "echo_sovereign_east_attack"
-    },
-    {
-      "file": "images/spritecook/echo_sovereign_east_block.png",
-      "dir": "spritecook",
-      "name": "echo_sovereign_east_block"
-    },
-    {
-      "file": "images/spritecook/echo_sovereign_east_ko.png",
-      "dir": "spritecook",
-      "name": "echo_sovereign_east_ko"
-    },
-    {
-      "file": "images/spritecook/echo_sovereign_east_spell.png",
-      "dir": "spritecook",
-      "name": "echo_sovereign_east_spell"
-    },
-    {
-      "file": "images/spritecook/echo_sovereign_east.png",
-      "dir": "spritecook",
-      "name": "echo_sovereign_east"
-    },
-    {
-      "file": "images/spritecook/echo_sovereign_portrait.png",
-      "dir": "spritecook",
-      "name": "echo_sovereign_portrait"
-    },
-    {
-      "file": "images/spritecook/echo_sovereign_south.png",
-      "dir": "spritecook",
-      "name": "echo_sovereign_south"
     },
     {
       "file": "images/spritecook/plateau_boss_east_block.png",
@@ -7888,76 +7985,6 @@
       "name": "the_architect_south"
     },
     {
-      "file": "images/spritecook/the_first_ember_east_attack.png",
-      "dir": "spritecook",
-      "name": "the_first_ember_east_attack"
-    },
-    {
-      "file": "images/spritecook/the_first_ember_east_block.png",
-      "dir": "spritecook",
-      "name": "the_first_ember_east_block"
-    },
-    {
-      "file": "images/spritecook/the_first_ember_east_ko.png",
-      "dir": "spritecook",
-      "name": "the_first_ember_east_ko"
-    },
-    {
-      "file": "images/spritecook/the_first_ember_east_spell.png",
-      "dir": "spritecook",
-      "name": "the_first_ember_east_spell"
-    },
-    {
-      "file": "images/spritecook/the_first_ember_east.png",
-      "dir": "spritecook",
-      "name": "the_first_ember_east"
-    },
-    {
-      "file": "images/spritecook/the_first_ember_portrait.png",
-      "dir": "spritecook",
-      "name": "the_first_ember_portrait"
-    },
-    {
-      "file": "images/spritecook/the_first_ember_south.png",
-      "dir": "spritecook",
-      "name": "the_first_ember_south"
-    },
-    {
-      "file": "images/spritecook/the_unraveler_east_attack.png",
-      "dir": "spritecook",
-      "name": "the_unraveler_east_attack"
-    },
-    {
-      "file": "images/spritecook/the_unraveler_east_block.png",
-      "dir": "spritecook",
-      "name": "the_unraveler_east_block"
-    },
-    {
-      "file": "images/spritecook/the_unraveler_east_ko.png",
-      "dir": "spritecook",
-      "name": "the_unraveler_east_ko"
-    },
-    {
-      "file": "images/spritecook/the_unraveler_east_spell.png",
-      "dir": "spritecook",
-      "name": "the_unraveler_east_spell"
-    },
-    {
-      "file": "images/spritecook/the_unraveler_east.png",
-      "dir": "spritecook",
-      "name": "the_unraveler_east"
-    },
-    {
-      "file": "images/spritecook/the_unraveler_portrait.png",
-      "dir": "spritecook",
-      "name": "the_unraveler_portrait"
-    },
-    {
-      "file": "images/spritecook/the_unraveler_south.png",
-      "dir": "spritecook",
-      "name": "the_unraveler_south"
-    },
-    {
       "file": "images/spritecook/thornwood_boss_east_block.png",
       "dir": "spritecook",
       "name": "thornwood_boss_east_block"
@@ -7971,41 +7998,6 @@
       "file": "images/spritecook/thornwood_boss_portrait.png",
       "dir": "spritecook",
       "name": "thornwood_boss_portrait"
-    },
-    {
-      "file": "images/spritecook/vault_guardian_east_attack.png",
-      "dir": "spritecook",
-      "name": "vault_guardian_east_attack"
-    },
-    {
-      "file": "images/spritecook/vault_guardian_east_block.png",
-      "dir": "spritecook",
-      "name": "vault_guardian_east_block"
-    },
-    {
-      "file": "images/spritecook/vault_guardian_east_ko.png",
-      "dir": "spritecook",
-      "name": "vault_guardian_east_ko"
-    },
-    {
-      "file": "images/spritecook/vault_guardian_east_spell.png",
-      "dir": "spritecook",
-      "name": "vault_guardian_east_spell"
-    },
-    {
-      "file": "images/spritecook/vault_guardian_east.png",
-      "dir": "spritecook",
-      "name": "vault_guardian_east"
-    },
-    {
-      "file": "images/spritecook/vault_guardian_portrait.png",
-      "dir": "spritecook",
-      "name": "vault_guardian_portrait"
-    },
-    {
-      "file": "images/spritecook/vault_guardian_south.png",
-      "dir": "spritecook",
-      "name": "vault_guardian_south"
     },
     {
       "file": "images/spritecook/veilspawn_herald_east_attack.png",
@@ -8056,41 +8048,6 @@
       "file": "images/spritecook/void_boss_portrait.png",
       "dir": "spritecook",
       "name": "void_boss_portrait"
-    },
-    {
-      "file": "images/spritecook/void_scholar_east_attack.png",
-      "dir": "spritecook",
-      "name": "void_scholar_east_attack"
-    },
-    {
-      "file": "images/spritecook/void_scholar_east_block.png",
-      "dir": "spritecook",
-      "name": "void_scholar_east_block"
-    },
-    {
-      "file": "images/spritecook/void_scholar_east_ko.png",
-      "dir": "spritecook",
-      "name": "void_scholar_east_ko"
-    },
-    {
-      "file": "images/spritecook/void_scholar_east_spell.png",
-      "dir": "spritecook",
-      "name": "void_scholar_east_spell"
-    },
-    {
-      "file": "images/spritecook/void_scholar_east.png",
-      "dir": "spritecook",
-      "name": "void_scholar_east"
-    },
-    {
-      "file": "images/spritecook/void_scholar_portrait.png",
-      "dir": "spritecook",
-      "name": "void_scholar_portrait"
-    },
-    {
-      "file": "images/spritecook/void_scholar_south.png",
-      "dir": "spritecook",
-      "name": "void_scholar_south"
     },
     {
       "file": "images/sprites/abyssal_knight_death.png",
@@ -8433,26 +8390,6 @@
       "name": "dragon_king_death"
     },
     {
-      "file": "images/sprites/dragon_king_east_attack.png",
-      "dir": "sprites",
-      "name": "dragon_king_east_attack"
-    },
-    {
-      "file": "images/sprites/dragon_king_east_spell.png",
-      "dir": "sprites",
-      "name": "dragon_king_east_spell"
-    },
-    {
-      "file": "images/sprites/dragon_king_east.png",
-      "dir": "sprites",
-      "name": "dragon_king_east"
-    },
-    {
-      "file": "images/sprites/dragon_king_south.png",
-      "dir": "sprites",
-      "name": "dragon_king_south"
-    },
-    {
       "file": "images/sprites/dragon_knight_death.png",
       "dir": "sprites",
       "name": "dragon_knight_death"
@@ -8638,34 +8575,14 @@
       "name": "giant_spider_death"
     },
     {
-      "file": "images/sprites/giant_spider_east_attack.png",
-      "dir": "sprites",
-      "name": "giant_spider_east_attack"
-    },
-    {
       "file": "images/sprites/giant_spider_east_flipped.png",
       "dir": "sprites",
       "name": "giant_spider_east_flipped"
     },
     {
-      "file": "images/sprites/giant_spider_east_spell.png",
-      "dir": "sprites",
-      "name": "giant_spider_east_spell"
-    },
-    {
-      "file": "images/sprites/giant_spider_east.png",
-      "dir": "sprites",
-      "name": "giant_spider_east"
-    },
-    {
       "file": "images/sprites/giant_spider_north.png",
       "dir": "sprites",
       "name": "giant_spider_north"
-    },
-    {
-      "file": "images/sprites/giant_spider_south.png",
-      "dir": "sprites",
-      "name": "giant_spider_south"
     },
     {
       "file": "images/sprites/giant_spider_west.png",
@@ -9263,34 +9180,14 @@
       "name": "the_unraveler_death"
     },
     {
-      "file": "images/sprites/the_unraveler_east_attack.png",
-      "dir": "sprites",
-      "name": "the_unraveler_east_attack"
-    },
-    {
       "file": "images/sprites/the_unraveler_east_flipped.png",
       "dir": "sprites",
       "name": "the_unraveler_east_flipped"
     },
     {
-      "file": "images/sprites/the_unraveler_east_spell.png",
-      "dir": "sprites",
-      "name": "the_unraveler_east_spell"
-    },
-    {
-      "file": "images/sprites/the_unraveler_east.png",
-      "dir": "sprites",
-      "name": "the_unraveler_east"
-    },
-    {
       "file": "images/sprites/the_unraveler_north.png",
       "dir": "sprites",
       "name": "the_unraveler_north"
-    },
-    {
-      "file": "images/sprites/the_unraveler_south.png",
-      "dir": "sprites",
-      "name": "the_unraveler_south"
     },
     {
       "file": "images/sprites/the_unraveler_west.png",
@@ -9896,11 +9793,11 @@
     }
   ],
   "totals": {
-    "appearances": 77,
+    "appearances": 84,
     "companions": 35,
     "enemies": 20,
     "bosses": 16,
-    "orphans": 1183,
+    "orphans": 1122,
     "missing": 12
   }
 }

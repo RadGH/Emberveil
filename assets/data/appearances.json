@@ -1179,5 +1179,116 @@
     "npc": true,
     "deprecated": false,
     "pendingReview": false
+  },
+  {
+    "id": "giant_spider",
+    "name": "Giant Spider",
+    "sprite": "giant_spider",
+    "gender": "none",
+    "classDefault": "giant_spider",
+    "tags": [
+      "enemy",
+      "beast"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "the_unraveler",
+    "name": "The Unraveler",
+    "sprite": "the_unraveler",
+    "gender": "none",
+    "classDefault": "the_unraveler",
+    "tags": [
+      "enemy",
+      "boss",
+      "void"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "dragon_king",
+    "name": "Dragon King",
+    "sprite": "dragon_king",
+    "gender": "none",
+    "classDefault": "dragon_king",
+    "tags": [
+      "enemy",
+      "boss",
+      "dragon"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "vault_guardian",
+    "name": "Vault Guardian",
+    "sprite": "vault_guardian",
+    "gender": "none",
+    "classDefault": "vault_guardian",
+    "tags": [
+      "enemy",
+      "boss",
+      "construct"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "void_scholar",
+    "name": "Void Scholar",
+    "sprite": "void_scholar",
+    "gender": "none",
+    "classDefault": "void_scholar",
+    "tags": [
+      "enemy",
+      "boss",
+      "void"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "echo_sovereign",
+    "name": "Echo Sovereign",
+    "sprite": "echo_sovereign",
+    "gender": "none",
+    "classDefault": "echo_sovereign",
+    "tags": [
+      "enemy",
+      "boss",
+      "hidden"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "the_first_ember",
+    "name": "The First Ember",
+    "sprite": "the_first_ember",
+    "gender": "none",
+    "classDefault": "the_first_ember",
+    "tags": [
+      "enemy",
+      "boss",
+      "fire"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
   }
 ]
