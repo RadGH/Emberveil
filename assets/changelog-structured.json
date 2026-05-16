@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-16T19:38:12.858Z",
+  "generated": "2026-05-16T20:20:44.105Z",
   "categories": [
     {
       "id": "Feature",
@@ -28,6 +28,20 @@
     }
   ],
   "entries": [
+    {
+      "milestone": 494,
+      "date": "",
+      "summary": "Three changes. (1) Image approval: node scripts/approve-image-review-v2.cjs --all rotated batch m356 (recruitable NPCs Halden/Veya/Dorn/Kessa/Magnus + prior) to history; opened m357. (2) Prologue node reorder in mapData.js: was start→warning(dialog)→1 goblin→2 goblins→boss; now start→first_combat→second_combat→warning→prologue_boss. Node name Lost Merchant → Silas Veilward (it was always the prologue_warning Silas conversation; the merchant name was vestigial). x-positions re-spaced left→right. (3) EvCardRail mobile portrait strip: added .ev-mobile-mp-strip/.ev-mobile-mp-fill under the HP bar, gated on maxMp>0 so only casters show it; live MP update wired into the same per-frame loop as HP.",
+      "items": [
+        {
+          "text": "Three changes. (1) Image approval: node scripts/approve-image-review-v2.cjs --all rotated batch m356 (recruitable NPCs Halden/Veya/Dorn/Kessa/Magnus + prior) to history; opened m357. (2) Prologue node reorder in mapData.js: was start→warning(dialog)→1 goblin→2 goblins→boss; now start→first_combat→second_combat→warning→prologue_boss. Node name Lost Merchant → Silas Veilward (it was always the prologue_warning Silas conversation; the merchant name was vestigial). x-positions re-spaced left→right. (3) EvCardRail mobile portrait strip: added .ev-mobile-mp-strip/.ev-mobile-mp-fill under the HP bar, gated on maxMp>0 so only casters show it; live MP update wired into the same per-frame loop as HP.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
     {
       "milestone": 493,
       "date": "",

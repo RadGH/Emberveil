@@ -4,11 +4,16 @@
     "schema": "open: { id, milestone, openedAt } | null. history: [{ id, milestone, approvedAt }]"
   },
   "open": {
-    "id": "m356",
-    "milestone": 356,
-    "openedAt": "2026-05-14T22:56:48.286Z"
+    "id": "m357",
+    "milestone": 357,
+    "openedAt": "2026-05-16T20:08:49.472Z"
   },
   "history": [
+    {
+      "id": "m356",
+      "milestone": 356,
+      "approvedAt": "2026-05-16T20:08:49.472Z"
+    },
     {
       "id": "m355",
       "milestone": 355,
