@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-15T18:59:30.027Z",
+  "generated": "2026-05-16T19:38:12.858Z",
   "categories": [
     {
       "id": "Feature",
@@ -28,6 +28,28 @@
     }
   ],
   "entries": [
+    {
+      "milestone": 493,
+      "date": "",
+      "summary": "Roadside hero recruitment system. New recruitHero dialog-outcome schema handled in MapScreen (_handleRecruitHeroOutcome): computes avg party level, opens HireBuilderScreen in recruit mode (class/level/name/appearance pre-filled, no gold gate, full build+auto-opts UI), grants class starting gear + a level-scaled bonus weapon (magic <L8 / rare >=L8). Party<4 joins directly; party==4 shows a modal: keep-on-call (gs.bench, swappable from Party screen) or replace-4th (4th benched). Optional thenCombat fires after recruit (Halden joins then the bandit ambush starts). Garrick redemption rewritten — he stays oath-bound NPC, sends Halden; garrick_saved/dead/left flags preserved so his A2-A4 arc is intact. 4 new recruitment events (Veya/Dorn/Kessa/Magnus) with WIS/STR/DEX/INT skill-check OR class/tag gates, wired as roadside dialog nodes in Border Roads/Thornwood (A1) + Dust Roads/Ember Plateau (A2). Decline branch = 3-way player choice (gold scaled by act / class-appropriate magic weapon / send off +20xp); non-committal exit does not consume the encounter. 5 sprite sheets (45 frames) via openai_v2 flow, enrolled in review batch m356.",
+      "items": [
+        {
+          "text": "Roadside hero recruitment system. New recruitHero dialog-outcome schema handled in MapScreen (_handleRecruitHeroOutcome): computes avg party level, opens HireBuilderScreen in recruit mode (class/level/name/appearance pre-filled, no gold gate, full build+auto-opts UI), grants class starting gear + a level-scaled bonus weapon (magic <L8 / rare >=L8). Party<4 joins directly; party==4 shows a modal: keep-on-call (gs.bench, swappable from Party screen) or replace-4th (4th benched). Optional thenCombat fires after recruit (Halden joins then the bandit ambush starts). Garrick redemption rewritten — he stays oath-bound NPC, sends Halden; garrick_saved/dead/left flags preserved so his A2-A4 arc is intact. 4 new recruitment events (Veya/Dorn/Kessa/Magnus) with WIS/STR/DEX/INT skill-check OR class/tag gates, wired as roadside dialog nodes in Border Roads/Thornwood (A1) + Dust Roads/Ember Plateau (A2). Decline branch = 3-way player choice (gold scaled by act / class-appropriate magic weapon / send off +20xp); non-committal exit does not consume the encounter. 5 sprite sheets (45 frames) via openai_v2 flow, enrolled in review batch m356.",
+          "categories": [
+            "Feature",
+            "QoL",
+            "Art"
+          ]
+        },
+        {
+          "text": "M491b hot-fix — Mobile party > spells > talents had no way back. Root cause: SkillTreeScreen mounted as sub-screen inside PartyPanelScreen. The header back button (#skill-back-mobile) lives in skill-header-btns row, which got covered by the PartyPanelScreen header. Fix: added a second back button (#sd-back-inline) AT THE TOP of the spell-detail content itself — full-width gold-tinted, mobile only via @media(max-width:600px). Click clears _selectedSkill + _mobileDetailView and re-renders to the spell list. Header button stays for parity.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
     {
       "milestone": 492,
       "date": "2026-05-15",

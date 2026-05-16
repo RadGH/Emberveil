@@ -1,30 +1,30 @@
 {
   "_meta": {
-    "generated": "2026-05-15T18:58:44.211Z",
+    "generated": "2026-05-16T19:29:49.032Z",
     "derivedFrom": {
-      "appearances": "src/game/appearances.js (71 entries)",
+      "appearances": "src/game/appearances.js (76 entries)",
       "classPets": "src/game/companions.js CLASS_PETS (11 entries)",
       "encounterCompanions": "src/maps/randomEvents.js reward.companion (14 unique)",
       "enemyIds": "src/maps/mapData.js ENEMIES + ENEMIES_ACT5 (19 non-boss enemies)",
       "bossIds": "src/maps/mapData.js map nodes type:'boss' encounter fields (19 bosses)"
     },
     "counts": {
-      "total": 1409,
+      "total": 1459,
       "by_status": {
-        "ready": 925,
+        "ready": 960,
         "pending": 2,
-        "orphaned": 418,
+        "orphaned": 433,
         "approved": 20,
         "candidate": 44
       },
       "by_category": {
-        "hero": 497,
+        "hero": 532,
         "companion": 125,
         "boss": 133,
         "enemy": 95,
         "background": 68,
         "tap-weapons": 9,
-        "orphan": 418,
+        "orphan": 433,
         "reference-sheet": 64
       }
     },
@@ -4502,6 +4502,321 @@
       "group": "krix_bonechewer",
       "pose": "east_ko",
       "file": "../images/openai_v2/krix_bonechewer_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_halden_man_at_arms_portrait",
+      "category": "hero",
+      "group": "halden_man_at_arms",
+      "pose": "portrait",
+      "file": "../images/openai_v2/halden_man_at_arms_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_halden_man_at_arms_south",
+      "category": "hero",
+      "group": "halden_man_at_arms",
+      "pose": "south",
+      "file": "../images/openai_v2/halden_man_at_arms_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_halden_man_at_arms_east",
+      "category": "hero",
+      "group": "halden_man_at_arms",
+      "pose": "east",
+      "file": "../images/openai_v2/halden_man_at_arms_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_halden_man_at_arms_east_attack",
+      "category": "hero",
+      "group": "halden_man_at_arms",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/halden_man_at_arms_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_halden_man_at_arms_east_spell",
+      "category": "hero",
+      "group": "halden_man_at_arms",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/halden_man_at_arms_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_halden_man_at_arms_east_block",
+      "category": "hero",
+      "group": "halden_man_at_arms",
+      "pose": "east_block",
+      "file": "../images/openai_v2/halden_man_at_arms_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_halden_man_at_arms_east_ko",
+      "category": "hero",
+      "group": "halden_man_at_arms",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/halden_man_at_arms_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_sister_veya_portrait",
+      "category": "hero",
+      "group": "sister_veya",
+      "pose": "portrait",
+      "file": "../images/openai_v2/sister_veya_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_sister_veya_south",
+      "category": "hero",
+      "group": "sister_veya",
+      "pose": "south",
+      "file": "../images/openai_v2/sister_veya_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_sister_veya_east",
+      "category": "hero",
+      "group": "sister_veya",
+      "pose": "east",
+      "file": "../images/openai_v2/sister_veya_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_sister_veya_east_attack",
+      "category": "hero",
+      "group": "sister_veya",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/sister_veya_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_sister_veya_east_spell",
+      "category": "hero",
+      "group": "sister_veya",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/sister_veya_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_sister_veya_east_block",
+      "category": "hero",
+      "group": "sister_veya",
+      "pose": "east_block",
+      "file": "../images/openai_v2/sister_veya_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_sister_veya_east_ko",
+      "category": "hero",
+      "group": "sister_veya",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/sister_veya_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_bulwark_dorn_portrait",
+      "category": "hero",
+      "group": "bulwark_dorn",
+      "pose": "portrait",
+      "file": "../images/openai_v2/bulwark_dorn_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_bulwark_dorn_south",
+      "category": "hero",
+      "group": "bulwark_dorn",
+      "pose": "south",
+      "file": "../images/openai_v2/bulwark_dorn_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_bulwark_dorn_east",
+      "category": "hero",
+      "group": "bulwark_dorn",
+      "pose": "east",
+      "file": "../images/openai_v2/bulwark_dorn_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_bulwark_dorn_east_attack",
+      "category": "hero",
+      "group": "bulwark_dorn",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/bulwark_dorn_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_bulwark_dorn_east_spell",
+      "category": "hero",
+      "group": "bulwark_dorn",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/bulwark_dorn_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_bulwark_dorn_east_block",
+      "category": "hero",
+      "group": "bulwark_dorn",
+      "pose": "east_block",
+      "file": "../images/openai_v2/bulwark_dorn_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_bulwark_dorn_east_ko",
+      "category": "hero",
+      "group": "bulwark_dorn",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/bulwark_dorn_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_kessa_quill_portrait",
+      "category": "hero",
+      "group": "kessa_quill",
+      "pose": "portrait",
+      "file": "../images/openai_v2/kessa_quill_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_kessa_quill_south",
+      "category": "hero",
+      "group": "kessa_quill",
+      "pose": "south",
+      "file": "../images/openai_v2/kessa_quill_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_kessa_quill_east",
+      "category": "hero",
+      "group": "kessa_quill",
+      "pose": "east",
+      "file": "../images/openai_v2/kessa_quill_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_kessa_quill_east_attack",
+      "category": "hero",
+      "group": "kessa_quill",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/kessa_quill_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_kessa_quill_east_spell",
+      "category": "hero",
+      "group": "kessa_quill",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/kessa_quill_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_kessa_quill_east_block",
+      "category": "hero",
+      "group": "kessa_quill",
+      "pose": "east_block",
+      "file": "../images/openai_v2/kessa_quill_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_kessa_quill_east_ko",
+      "category": "hero",
+      "group": "kessa_quill",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/kessa_quill_east_ko.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_magnus_orre_portrait",
+      "category": "hero",
+      "group": "magnus_orre",
+      "pose": "portrait",
+      "file": "../images/openai_v2/magnus_orre_portrait.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_magnus_orre_south",
+      "category": "hero",
+      "group": "magnus_orre",
+      "pose": "south",
+      "file": "../images/openai_v2/magnus_orre_south.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_magnus_orre_east",
+      "category": "hero",
+      "group": "magnus_orre",
+      "pose": "east",
+      "file": "../images/openai_v2/magnus_orre_east.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_magnus_orre_east_attack",
+      "category": "hero",
+      "group": "magnus_orre",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/magnus_orre_east_attack.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_magnus_orre_east_spell",
+      "category": "hero",
+      "group": "magnus_orre",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/magnus_orre_east_spell.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_magnus_orre_east_block",
+      "category": "hero",
+      "group": "magnus_orre",
+      "pose": "east_block",
+      "file": "../images/openai_v2/magnus_orre_east_block.png",
+      "prompt": null,
+      "status": "ready"
+    },
+    {
+      "id": "hero_magnus_orre_east_ko",
+      "category": "hero",
+      "group": "magnus_orre",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/magnus_orre_east_ko.png",
       "prompt": null,
       "status": "ready"
     },
@@ -9402,6 +9717,33 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_bulwark_dorn_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bulwark_dorn_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bulwark_dorn_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bulwark_dorn_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bulwark_dorn_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bulwark_dorn_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_cinder_hound_east_block",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -10464,6 +10806,33 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_halden_man_at_arms_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/halden_man_at_arms_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_halden_man_at_arms_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/halden_man_at_arms_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_halden_man_at_arms_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/halden_man_at_arms_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_hell_knight_east_block",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -10626,6 +10995,33 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_kessa_quill_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/kessa_quill_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_kessa_quill_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/kessa_quill_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_kessa_quill_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/kessa_quill_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_krix_bonechewer_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -10676,6 +11072,33 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/lava_titan_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_magnus_orre_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/magnus_orre_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_magnus_orre_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/magnus_orre_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_magnus_orre_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/magnus_orre_openai_sheet.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -11360,6 +11783,33 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/shadow_wyrm_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_sister_veya_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/sister_veya_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_sister_veya_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/sister_veya_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_sister_veya_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/sister_veya_openai_sheet.png",
       "prompt": null,
       "status": "orphaned"
     },

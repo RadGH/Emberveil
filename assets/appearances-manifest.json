@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-14T06:07:47.298Z",
+  "generated": "2026-05-16T19:29:41.509Z",
   "spriteDirs": [
     "openai_v2",
     "spritecook",
@@ -2054,6 +2054,151 @@
       "spriteCount": 7,
       "missingPoses": [],
       "sourceDir": "openai_v2"
+    },
+    {
+      "id": "halden_man_at_arms",
+      "name": "Halden",
+      "kind": "npc",
+      "gender": "male",
+      "classDefault": "fighter",
+      "sprite": "halden_man_at_arms",
+      "tags": [
+        "npc",
+        "recruitable",
+        "fighter"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "openai_v2/halden_man_at_arms_portrait.png",
+        "south": "openai_v2/halden_man_at_arms_south.png",
+        "east": "openai_v2/halden_man_at_arms_east.png",
+        "east_attack": "openai_v2/halden_man_at_arms_east_attack.png",
+        "east_spell": "openai_v2/halden_man_at_arms_east_spell.png",
+        "east_block": "openai_v2/halden_man_at_arms_east_block.png",
+        "east_ko": "openai_v2/halden_man_at_arms_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "sister_veya",
+      "name": "Sister Veya",
+      "kind": "npc",
+      "gender": "female",
+      "classDefault": "cleric",
+      "sprite": "sister_veya",
+      "tags": [
+        "npc",
+        "recruitable",
+        "healer"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "openai_v2/sister_veya_portrait.png",
+        "south": "openai_v2/sister_veya_south.png",
+        "east": "openai_v2/sister_veya_east.png",
+        "east_attack": "openai_v2/sister_veya_east_attack.png",
+        "east_spell": "openai_v2/sister_veya_east_spell.png",
+        "east_block": "openai_v2/sister_veya_east_block.png",
+        "east_ko": "openai_v2/sister_veya_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "bulwark_dorn",
+      "name": "Bulwark Dorn",
+      "kind": "npc",
+      "gender": "male",
+      "classDefault": "paladin",
+      "sprite": "bulwark_dorn",
+      "tags": [
+        "npc",
+        "recruitable",
+        "tank"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "openai_v2/bulwark_dorn_portrait.png",
+        "south": "openai_v2/bulwark_dorn_south.png",
+        "east": "openai_v2/bulwark_dorn_east.png",
+        "east_attack": "openai_v2/bulwark_dorn_east_attack.png",
+        "east_spell": "openai_v2/bulwark_dorn_east_spell.png",
+        "east_block": "openai_v2/bulwark_dorn_east_block.png",
+        "east_ko": "openai_v2/bulwark_dorn_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "kessa_quill",
+      "name": "Kessa Quill",
+      "kind": "npc",
+      "gender": "female",
+      "classDefault": "ranger",
+      "sprite": "kessa_quill",
+      "tags": [
+        "npc",
+        "recruitable",
+        "ranged"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "openai_v2/kessa_quill_portrait.png",
+        "south": "openai_v2/kessa_quill_south.png",
+        "east": "openai_v2/kessa_quill_east.png",
+        "east_attack": "openai_v2/kessa_quill_east_attack.png",
+        "east_spell": "openai_v2/kessa_quill_east_spell.png",
+        "east_block": "openai_v2/kessa_quill_east_block.png",
+        "east_ko": "openai_v2/kessa_quill_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "magnus_orre",
+      "name": "Magnus Orre",
+      "kind": "npc",
+      "gender": "male",
+      "classDefault": "mage",
+      "sprite": "magnus_orre",
+      "tags": [
+        "npc",
+        "recruitable",
+        "caster"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "openai_v2/magnus_orre_portrait.png",
+        "south": "openai_v2/magnus_orre_south.png",
+        "east": "openai_v2/magnus_orre_east.png",
+        "east_attack": "openai_v2/magnus_orre_east_attack.png",
+        "east_spell": "openai_v2/magnus_orre_east_spell.png",
+        "east_block": "openai_v2/magnus_orre_east_block.png",
+        "east_ko": "openai_v2/magnus_orre_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
     }
   ],
   "companions": [
@@ -3768,6 +3913,21 @@
       "name": "bone_hound_openai_sheet"
     },
     {
+      "file": "images/openai_v2/bulwark_dorn_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "bulwark_dorn_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/bulwark_dorn_east_wound.png",
+      "dir": "openai_v2",
+      "name": "bulwark_dorn_east_wound"
+    },
+    {
+      "file": "images/openai_v2/bulwark_dorn_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "bulwark_dorn_openai_sheet"
+    },
+    {
       "file": "images/openai_v2/cinder_hound_east_cheer.png",
       "dir": "openai_v2",
       "name": "cinder_hound_east_cheer"
@@ -4148,6 +4308,21 @@
       "name": "grax_veil_touched_east_wound"
     },
     {
+      "file": "images/openai_v2/halden_man_at_arms_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "halden_man_at_arms_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/halden_man_at_arms_east_wound.png",
+      "dir": "openai_v2",
+      "name": "halden_man_at_arms_east_wound"
+    },
+    {
+      "file": "images/openai_v2/halden_man_at_arms_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "halden_man_at_arms_openai_sheet"
+    },
+    {
       "file": "images/openai_v2/hell_knight_east_cheer.png",
       "dir": "openai_v2",
       "name": "hell_knight_east_cheer"
@@ -4208,6 +4383,21 @@
       "name": "iris_vael_openai_sheet"
     },
     {
+      "file": "images/openai_v2/kessa_quill_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "kessa_quill_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/kessa_quill_east_wound.png",
+      "dir": "openai_v2",
+      "name": "kessa_quill_east_wound"
+    },
+    {
+      "file": "images/openai_v2/kessa_quill_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "kessa_quill_openai_sheet"
+    },
+    {
       "file": "images/openai_v2/krix_bonechewer_east_cheer.png",
       "dir": "openai_v2",
       "name": "krix_bonechewer_east_cheer"
@@ -4236,6 +4426,21 @@
       "file": "images/openai_v2/lava_titan_openai_sheet.png",
       "dir": "openai_v2",
       "name": "lava_titan_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/magnus_orre_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "magnus_orre_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/magnus_orre_east_wound.png",
+      "dir": "openai_v2",
+      "name": "magnus_orre_east_wound"
+    },
+    {
+      "file": "images/openai_v2/magnus_orre_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "magnus_orre_openai_sheet"
     },
     {
       "file": "images/openai_v2/molten_golem_east_cheer.png",
@@ -4476,6 +4681,21 @@
       "file": "images/openai_v2/shadow_wyrm_openai_sheet.png",
       "dir": "openai_v2",
       "name": "shadow_wyrm_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/sister_veya_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "sister_veya_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/sister_veya_east_wound.png",
+      "dir": "openai_v2",
+      "name": "sister_veya_east_wound"
+    },
+    {
+      "file": "images/openai_v2/sister_veya_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "sister_veya_openai_sheet"
     },
     {
       "file": "images/openai_v2/spirit_wisp_east_cheer.png",
@@ -7233,6 +7453,71 @@
       "name": "south"
     },
     {
+      "file": "images/spritecook/_pre_regen_m489/marek_greel_east_block.png",
+      "dir": "spritecook",
+      "name": "marek_greel_east_block"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489/mira_seer_east.png",
+      "dir": "spritecook",
+      "name": "mira_seer_east"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489/monk_east.png",
+      "dir": "spritecook",
+      "name": "monk_east"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489/oracle_old_east_block.png",
+      "dir": "spritecook",
+      "name": "oracle_old_east_block"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489/paladin_female_east_block.png",
+      "dir": "spritecook",
+      "name": "paladin_female_east_block"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489/rogue_male_east_block.png",
+      "dir": "spritecook",
+      "name": "rogue_male_east_block"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489/swashbuckler_female_south.png",
+      "dir": "spritecook",
+      "name": "swashbuckler_female_south"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489/tactician_female_south.png",
+      "dir": "spritecook",
+      "name": "tactician_female_south"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489/tinker_east_block.png",
+      "dir": "spritecook",
+      "name": "tinker_east_block"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489/tinker_female_east_block.png",
+      "dir": "spritecook",
+      "name": "tinker_female_east_block"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489/tinker_female_east_ko.png",
+      "dir": "spritecook",
+      "name": "tinker_female_east_ko"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489/tinker_female_east_spell.png",
+      "dir": "spritecook",
+      "name": "tinker_female_east_spell"
+    },
+    {
+      "file": "images/spritecook/_pre_regen_m489b/oracle_old_east_block.png",
+      "dir": "spritecook",
+      "name": "oracle_old_east_block"
+    },
+    {
       "file": "images/spritecook/abyss_boss_east_attack.png",
       "dir": "spritecook",
       "name": "abyss_boss_east_attack"
@@ -9611,11 +9896,11 @@
     }
   ],
   "totals": {
-    "appearances": 72,
+    "appearances": 77,
     "companions": 35,
     "enemies": 20,
     "bosses": 16,
-    "orphans": 1155,
+    "orphans": 1183,
     "missing": 12
   }
 }

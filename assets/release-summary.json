@@ -1,7 +1,7 @@
 {
-  "milestone": 492,
-  "date": "2026-05-15",
-  "summary": "M491b — back-to-spells inline button on the mobile spell-detail view. Header back button (#skill-back-mobile) was being obscured by the parent PartyPanelScreen header when SkillTreeScreen mounted as a sub-screen, leaving no way to return from talents to the spells list.",
+  "milestone": 493,
+  "date": "2026-05-16",
+  "summary": "M493 — Recruitable heroes from roadside events. Garrick stays an NPC (A1-A4 arc preserved) but sends his man-at-arms Halden, a recruitable fighter who joins + immediately enters the bandit fight. 4 new OpenAI-generated NPCs fill party gaps: Sister Veya (cleric/healer), Bulwark Dorn (paladin/tank), Kessa Quill (ranger/ranged), Magnus Orre (mage/caster) — each with a skill-check-gated recruitment dialog across Acts 1-2. Recruits spawn at average party level, open the Hire builder (pick build + auto skills/passives/attributes/items), get class starting gear plus a magic (<L8) or rare (>=L8) weapon. Full party: keep on call (bench) or replace 4th hero. Decline gives player choice: gold purse / their gear / send off for XP.",
   "categories": [
     "feature"
   ],

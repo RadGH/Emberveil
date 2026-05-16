@@ -1099,5 +1099,85 @@
     "npc": true,
     "deprecated": false,
     "pendingReview": false
+  },
+  {
+    "id": "halden_man_at_arms",
+    "name": "Halden",
+    "sprite": "halden_man_at_arms",
+    "gender": "male",
+    "classDefault": "fighter",
+    "tags": [
+      "npc",
+      "recruitable",
+      "fighter"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "sister_veya",
+    "name": "Sister Veya",
+    "sprite": "sister_veya",
+    "gender": "female",
+    "classDefault": "cleric",
+    "tags": [
+      "npc",
+      "recruitable",
+      "healer"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "bulwark_dorn",
+    "name": "Bulwark Dorn",
+    "sprite": "bulwark_dorn",
+    "gender": "male",
+    "classDefault": "paladin",
+    "tags": [
+      "npc",
+      "recruitable",
+      "tank"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "kessa_quill",
+    "name": "Kessa Quill",
+    "sprite": "kessa_quill",
+    "gender": "female",
+    "classDefault": "ranger",
+    "tags": [
+      "npc",
+      "recruitable",
+      "ranged"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
+  },
+  {
+    "id": "magnus_orre",
+    "name": "Magnus Orre",
+    "sprite": "magnus_orre",
+    "gender": "male",
+    "classDefault": "mage",
+    "tags": [
+      "npc",
+      "recruitable",
+      "caster"
+    ],
+    "playable": false,
+    "npc": true,
+    "deprecated": false,
+    "pendingReview": false
   }
 ]

@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-05-15T18:58:44.676Z",
+  "generatedAt": "2026-05-16T19:29:49.508Z",
   "dialogEvents": [
     {
       "_meta": {
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "shady_wanderer",
-        "lineHint": 1566,
+        "lineHint": 1574,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -74,7 +74,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "forest_enter",
-        "lineHint": 1586,
+        "lineHint": 1594,
         "setsFlags": [
           "thornwood_brave",
           "knows_rift_origin",
@@ -205,7 +205,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "seer_hut",
-        "lineHint": 1640,
+        "lineHint": 1648,
         "setsFlags": [
           "seer_met",
           "seer_challenged",
@@ -340,7 +340,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "ash_gate",
-        "lineHint": 1688,
+        "lineHint": 1696,
         "setsFlags": [
           "ash_gate_blessed",
           "ash_gate_rude"
@@ -466,7 +466,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "plateau_enter",
-        "lineHint": 1735,
+        "lineHint": 1743,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -509,7 +509,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "rift_access",
-        "lineHint": 1752,
+        "lineHint": 1760,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -545,7 +545,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "breach_gate",
-        "lineHint": 1767,
+        "lineHint": 1775,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -588,7 +588,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "void_altar",
-        "lineHint": 1784,
+        "lineHint": 1792,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -631,7 +631,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "core_enter",
-        "lineHint": 1801,
+        "lineHint": 1809,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -667,7 +667,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "ancient_seal",
-        "lineHint": 1816,
+        "lineHint": 1824,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -703,7 +703,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "rift_entry",
-        "lineHint": 1831,
+        "lineHint": 1839,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -739,7 +739,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "prophet_sanctum",
-        "lineHint": 1846,
+        "lineHint": 1854,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -790,7 +790,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "void_gates",
-        "lineHint": 1863,
+        "lineHint": 1871,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -826,7 +826,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "abyss_gate",
-        "lineHint": 1878,
+        "lineHint": 1886,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -862,7 +862,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "nexus_gates",
-        "lineHint": 1893,
+        "lineHint": 1901,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -898,7 +898,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "reach_gate",
-        "lineHint": 1909,
+        "lineHint": 1917,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": false,
@@ -952,7 +952,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "dragon_cult_altar",
-        "lineHint": 1927,
+        "lineHint": 1935,
         "setsFlags": [
           "dragon_weak_scale"
         ],
@@ -1035,7 +1035,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "throne_gate",
-        "lineHint": 1948,
+        "lineHint": 1956,
         "setsFlags": [
           "dragon_knight_ally"
         ],
@@ -1100,7 +1100,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "dragon_oracle",
-        "lineHint": 1967,
+        "lineHint": 1975,
         "setsFlags": [
           "dragon_rhythm_known",
           "dragon_fear_known"
@@ -1190,7 +1190,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act1_dying_soldier",
-        "lineHint": 1993,
+        "lineHint": 2001,
         "setsFlags": [
           "saved_soldier",
           "stayed_with_soldier",
@@ -1342,7 +1342,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act1_warden_reward",
-        "lineHint": 2036,
+        "lineHint": 2044,
         "setsFlags": [
           "seek_apprentice",
           "seek_apprentice_paid"
@@ -1451,7 +1451,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act1_hedge_mage",
-        "lineHint": 2075,
+        "lineHint": 2083,
         "setsFlags": [
           "bought_enchantment",
           "smart_enchantment"
@@ -1592,7 +1592,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act1_charm_cache",
-        "lineHint": 2117,
+        "lineHint": 2125,
         "setsFlags": [
           "charm_cache_opened"
         ],
@@ -1648,7 +1648,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act1_ghost_pact",
-        "lineHint": 2136,
+        "lineHint": 2144,
         "setsFlags": [
           "ghost_pact",
           "ghost_pact_informed"
@@ -1782,7 +1782,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act1_merchant_resurfaces",
-        "lineHint": 2179,
+        "lineHint": 2187,
         "setsFlags": [
           "merchant_friend"
         ],
@@ -1844,7 +1844,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act1_lieutenant",
-        "lineHint": 2199,
+        "lineHint": 2207,
         "setsFlags": [
           "garrison_friend"
         ],
@@ -1908,7 +1908,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act1_spell_seeker",
-        "lineHint": 2218,
+        "lineHint": 2226,
         "setsFlags": [
           "taught_apprentice",
           "sketched_form"
@@ -2040,7 +2040,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act2_shrine_desecrated",
-        "lineHint": 2257,
+        "lineHint": 2265,
         "setsFlags": [
           "purified_shrine",
           "unraveled_binding",
@@ -2208,7 +2208,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act2_sentinel_comrade",
-        "lineHint": 2303,
+        "lineHint": 2311,
         "setsFlags": [
           "sentinel_thanks"
         ],
@@ -2266,7 +2266,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act2_bard_crowd",
-        "lineHint": 2322,
+        "lineHint": 2330,
         "setsFlags": [
           "sang_for_refugees",
           "told_story_refugees"
@@ -2424,7 +2424,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act2_thief_encounter",
-        "lineHint": 2365,
+        "lineHint": 2373,
         "setsFlags": [
           "helped_thief"
         ],
@@ -2546,7 +2546,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act2_veil_lens_activates",
-        "lineHint": 2401,
+        "lineHint": 2409,
         "setsFlags": [
           "saw_through_veil"
         ],
@@ -2598,7 +2598,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act2_mass_grave",
-        "lineHint": 2420,
+        "lineHint": 2428,
         "setsFlags": [
           "sealed_mass_grave"
         ],
@@ -2717,7 +2717,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act2_mira_vision_paid",
-        "lineHint": 2457,
+        "lineHint": 2465,
         "setsFlags": [
           "found_mira_clue"
         ],
@@ -2775,7 +2775,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act2_forgemaster",
-        "lineHint": 2476,
+        "lineHint": 2484,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": true,
@@ -2901,7 +2901,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act3_shade_warning",
-        "lineHint": 2520,
+        "lineHint": 2528,
         "setsFlags": [
           "shade_warned_malgrath"
         ],
@@ -2959,7 +2959,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act3_demon_recognises",
-        "lineHint": 2540,
+        "lineHint": 2548,
         "setsFlags": [
           "malgrath_weakness_known"
         ],
@@ -3088,7 +3088,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act3_veil_sight_bleed",
-        "lineHint": 2580,
+        "lineHint": 2588,
         "setsFlags": [
           "veil_sight_recurring"
         ],
@@ -3146,7 +3146,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act3_blackmarket_fence",
-        "lineHint": 2600,
+        "lineHint": 2608,
         "setsFlags": [],
         "requiresFlags": [],
         "rewardsPresent": true,
@@ -3282,7 +3282,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act3_hellhound_track",
-        "lineHint": 2640,
+        "lineHint": 2648,
         "setsFlags": [
           "tracked_hellhound",
           "kept_garrison_box"
@@ -3392,7 +3392,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act3_apprentice_danger",
-        "lineHint": 2680,
+        "lineHint": 2688,
         "setsFlags": [
           "saw_fourth_form"
         ],
@@ -3453,7 +3453,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act3_malgrath_forge",
-        "lineHint": 2700,
+        "lineHint": 2708,
         "setsFlags": [
           "hellfire_forged"
         ],
@@ -3509,7 +3509,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act3_garrison_reward",
-        "lineHint": 2719,
+        "lineHint": 2727,
         "setsFlags": [
           "breach_garrison_letter"
         ],
@@ -3567,7 +3567,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act4_void_contact",
-        "lineHint": 2740,
+        "lineHint": 2748,
         "setsFlags": [
           "watcher_contacted"
         ],
@@ -3625,7 +3625,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act4_void_pact",
-        "lineHint": 2760,
+        "lineHint": 2768,
         "setsFlags": [
           "void_pact_made",
           "bound_void_entity"
@@ -3755,7 +3755,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act4_watcher_memory",
-        "lineHint": 2797,
+        "lineHint": 2805,
         "setsFlags": [
           "knows_unraveler_origin"
         ],
@@ -3813,7 +3813,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act4_temporal_rift",
-        "lineHint": 2817,
+        "lineHint": 2825,
         "setsFlags": [
           "temporal_shortcut"
         ],
@@ -3906,7 +3906,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act4_pact_price",
-        "lineHint": 2848,
+        "lineHint": 2856,
         "setsFlags": [
           "carries_void_message",
           "opened_void_message",
@@ -3977,7 +3977,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act4_star_prophet",
-        "lineHint": 2869,
+        "lineHint": 2877,
         "setsFlags": [
           "knows_veil_is_door"
         ],
@@ -4036,7 +4036,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act4_veil_convergence",
-        "lineHint": 2889,
+        "lineHint": 2897,
         "setsFlags": [
           "veil_analysis_done"
         ],
@@ -4100,7 +4100,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act4_grave_gratitude",
-        "lineHint": 2909,
+        "lineHint": 2917,
         "setsFlags": [
           "grave_gratitude"
         ],
@@ -4161,7 +4161,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act5_deliver_message",
-        "lineHint": 2931,
+        "lineHint": 2939,
         "setsFlags": [
           "message_delivered"
         ],
@@ -4222,7 +4222,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act5_name_leverage",
-        "lineHint": 2950,
+        "lineHint": 2958,
         "setsFlags": [
           "spoke_unraveler_name"
         ],
@@ -4280,7 +4280,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act5_veil_door",
-        "lineHint": 2970,
+        "lineHint": 2978,
         "setsFlags": [
           "knows_architect_regret"
         ],
@@ -4338,7 +4338,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act5_oracle_pool",
-        "lineHint": 2990,
+        "lineHint": 2998,
         "setsFlags": [
           "oracle_read_pool"
         ],
@@ -4441,7 +4441,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act5_analysis_weapon",
-        "lineHint": 3023,
+        "lineHint": 3031,
         "setsFlags": [
           "resonator_ring"
         ],
@@ -4509,7 +4509,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act5_forge_sings",
-        "lineHint": 3043,
+        "lineHint": 3051,
         "setsFlags": [
           "forge_door_opened"
         ],
@@ -4568,7 +4568,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act5_architect_pause",
-        "lineHint": 3063,
+        "lineHint": 3071,
         "setsFlags": [
           "told_architect_pool"
         ],
@@ -4626,7 +4626,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "act5_final_convergence",
-        "lineHint": 3083,
+        "lineHint": 3091,
         "setsFlags": [
           "final_convergence_known"
         ],
@@ -4685,7 +4685,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "prologue_start",
-        "lineHint": 3109,
+        "lineHint": 3117,
         "setsFlags": [
           "prologue_started"
         ],
@@ -4765,7 +4765,7 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "DIALOG_EVENTS",
         "objectKey": "prologue_warning",
-        "lineHint": 3138,
+        "lineHint": 3146,
         "setsFlags": [
           "prologue_warned"
         ],
@@ -19810,7 +19810,7 @@
         "exportName": "PROLOGUE_ZONES",
         "zoneId": "prologue",
         "nodeId": "start",
-        "lineHint": 1591,
+        "lineHint": 1599,
         "injectedVia": null
       },
       "id": "start",
@@ -19948,7 +19948,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "border_roads",
         "nodeId": "start",
-        "lineHint": 1591,
+        "lineHint": 1599,
         "injectedVia": null
       },
       "id": "start",
@@ -19992,7 +19992,8 @@
       "exits": [
         "crossroads_a",
         "crossroads_b",
-        "garrick_redemption"
+        "garrick_redemption",
+        "recruit_dorn"
       ],
       "encounter": null,
       "dialogEventId": null,
@@ -20064,8 +20065,36 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "ACT1_ZONES",
         "zoneId": "border_roads",
+        "nodeId": "recruit_dorn",
+        "lineHint": 1165,
+        "injectedVia": null
+      },
+      "id": "recruit_dorn",
+      "zoneId": "border_roads",
+      "zoneName": "The Border Roads",
+      "act": 1,
+      "type": "dialog",
+      "name": "The Bridge to Nowhere",
+      "x": 0.4,
+      "y": 0.16,
+      "exits": [
+        "crossroads_a"
+      ],
+      "encounter": null,
+      "dialogEventId": null,
+      "shrineType": null,
+      "skillCheck": null,
+      "hidden": false,
+      "precondition": null,
+      "noEvent": false
+    },
+    {
+      "_meta": {
+        "sourceFile": "src/maps/mapData.js",
+        "exportName": "ACT1_ZONES",
+        "zoneId": "border_roads",
         "nodeId": "crossroads_a",
-        "lineHint": 1164,
+        "lineHint": 1166,
         "injectedVia": null
       },
       "id": "crossroads_a",
@@ -20093,7 +20122,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "border_roads",
         "nodeId": "crossroads_b",
-        "lineHint": 1165,
+        "lineHint": 1167,
         "injectedVia": null
       },
       "id": "crossroads_b",
@@ -20122,7 +20151,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "border_roads",
         "nodeId": "border_skill",
-        "lineHint": 1167,
+        "lineHint": 1169,
         "injectedVia": null
       },
       "id": "border_skill",
@@ -20162,7 +20191,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "border_roads",
         "nodeId": "ruined_watch",
-        "lineHint": 1172,
+        "lineHint": 1174,
         "injectedVia": null
       },
       "id": "ruined_watch",
@@ -20190,7 +20219,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "border_roads",
         "nodeId": "border_boss",
-        "lineHint": 1173,
+        "lineHint": 1175,
         "injectedVia": null
       },
       "id": "border_boss",
@@ -20216,7 +20245,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
         "nodeId": "forest_enter",
-        "lineHint": 1586,
+        "lineHint": 1594,
         "injectedVia": null
       },
       "id": "forest_enter",
@@ -20231,7 +20260,8 @@
         "spider_hollow",
         "hidden_path",
         "tomek_caravan_burn",
-        "krix_offering"
+        "krix_offering",
+        "recruit_kessa"
       ],
       "encounter": null,
       "dialogEventId": null,
@@ -20247,7 +20277,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
         "nodeId": "tomek_caravan_burn",
-        "lineHint": 1184,
+        "lineHint": 1186,
         "injectedVia": null
       },
       "id": "tomek_caravan_burn",
@@ -20275,7 +20305,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
         "nodeId": "krix_offering",
-        "lineHint": 1185,
+        "lineHint": 1187,
         "injectedVia": null
       },
       "id": "krix_offering",
@@ -20302,8 +20332,36 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
+        "nodeId": "recruit_kessa",
+        "lineHint": 1189,
+        "injectedVia": null
+      },
+      "id": "recruit_kessa",
+      "zoneId": "thornwood",
+      "zoneName": "Thornwood Forest",
+      "act": 1,
+      "type": "dialog",
+      "name": "The Hunter's Trail",
+      "x": 0.3,
+      "y": 0.1,
+      "exits": [
+        "hidden_path"
+      ],
+      "encounter": null,
+      "dialogEventId": null,
+      "shrineType": null,
+      "skillCheck": null,
+      "hidden": false,
+      "precondition": null,
+      "noEvent": false
+    },
+    {
+      "_meta": {
+        "sourceFile": "src/maps/mapData.js",
+        "exportName": "ACT1_ZONES",
+        "zoneId": "thornwood",
         "nodeId": "spider_hollow",
-        "lineHint": 1186,
+        "lineHint": 1190,
         "injectedVia": null
       },
       "id": "spider_hollow",
@@ -20331,7 +20389,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
         "nodeId": "hidden_path",
-        "lineHint": 3183,
+        "lineHint": 3191,
         "injectedVia": null
       },
       "id": "hidden_path",
@@ -20360,7 +20418,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
         "nodeId": "wood_test",
-        "lineHint": 1189,
+        "lineHint": 1193,
         "injectedVia": null
       },
       "id": "wood_test",
@@ -20402,7 +20460,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
         "nodeId": "goblin_camp",
-        "lineHint": 1194,
+        "lineHint": 1198,
         "injectedVia": null
       },
       "id": "goblin_camp",
@@ -20432,7 +20490,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
         "nodeId": "seer_hut",
-        "lineHint": 1640,
+        "lineHint": 1648,
         "injectedVia": null
       },
       "id": "seer_hut",
@@ -20460,7 +20518,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
         "nodeId": "treasure_grove",
-        "lineHint": 1196,
+        "lineHint": 1200,
         "injectedVia": null
       },
       "id": "treasure_grove",
@@ -20488,7 +20546,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
         "nodeId": "spider_queen",
-        "lineHint": 1197,
+        "lineHint": 1201,
         "injectedVia": null
       },
       "id": "spider_queen",
@@ -20516,7 +20574,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
         "nodeId": "silk_cache",
-        "lineHint": 1198,
+        "lineHint": 1202,
         "injectedVia": null
       },
       "id": "silk_cache",
@@ -20544,7 +20602,7 @@
         "exportName": "ACT1_ZONES",
         "zoneId": "thornwood",
         "nodeId": "thornwood_boss",
-        "lineHint": 1199,
+        "lineHint": 1203,
         "injectedVia": null
       },
       "id": "thornwood_boss",
@@ -20598,7 +20656,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "ash_gate",
-        "lineHint": 1688,
+        "lineHint": 1696,
         "injectedVia": null
       },
       "id": "ash_gate",
@@ -20615,7 +20673,8 @@
         "salt_wastes",
         "garrick_old_oath",
         "tomek_recovery",
-        "krix_trap"
+        "krix_trap",
+        "recruit_veya"
       ],
       "encounter": null,
       "dialogEventId": null,
@@ -20631,7 +20690,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "garrick_old_oath",
-        "lineHint": 1215,
+        "lineHint": 1219,
         "injectedVia": null
       },
       "id": "garrick_old_oath",
@@ -20658,8 +20717,36 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
+        "nodeId": "recruit_veya",
+        "lineHint": 1221,
+        "injectedVia": null
+      },
+      "id": "recruit_veya",
+      "zoneId": "dust_roads",
+      "zoneName": "The Dust Roads",
+      "act": 2,
+      "type": "dialog",
+      "name": "The Wounded Road",
+      "x": 0.3,
+      "y": 0.12,
+      "exits": [
+        "obsidian_fort"
+      ],
+      "encounter": null,
+      "dialogEventId": null,
+      "shrineType": null,
+      "skillCheck": null,
+      "hidden": false,
+      "precondition": null,
+      "noEvent": false
+    },
+    {
+      "_meta": {
+        "sourceFile": "src/maps/mapData.js",
+        "exportName": "ACT2_ZONES",
+        "zoneId": "dust_roads",
         "nodeId": "tomek_recovery",
-        "lineHint": 1216,
+        "lineHint": 1222,
         "injectedVia": null
       },
       "id": "tomek_recovery",
@@ -20687,7 +20774,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "krix_trap",
-        "lineHint": 1217,
+        "lineHint": 1223,
         "injectedVia": null
       },
       "id": "krix_trap",
@@ -20715,7 +20802,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "dust_patrol",
-        "lineHint": 1218,
+        "lineHint": 1224,
         "injectedVia": null
       },
       "id": "dust_patrol",
@@ -20743,7 +20830,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "ash_lore",
-        "lineHint": 3201,
+        "lineHint": 3209,
         "injectedVia": null
       },
       "id": "ash_lore",
@@ -20771,7 +20858,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "salt_wastes",
-        "lineHint": 1220,
+        "lineHint": 1226,
         "injectedVia": null
       },
       "id": "salt_wastes",
@@ -20799,7 +20886,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "salt_tunnels",
-        "lineHint": 1221,
+        "lineHint": 1227,
         "injectedVia": null
       },
       "id": "salt_tunnels",
@@ -20827,7 +20914,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "buried_cache",
-        "lineHint": 1222,
+        "lineHint": 1228,
         "injectedVia": null
       },
       "id": "buried_cache",
@@ -20855,7 +20942,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "obsidian_fort",
-        "lineHint": 1223,
+        "lineHint": 1229,
         "injectedVia": null
       },
       "id": "obsidian_fort",
@@ -20885,7 +20972,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "black_spire",
-        "lineHint": 3217,
+        "lineHint": 3225,
         "injectedVia": null
       },
       "id": "black_spire",
@@ -20913,7 +21000,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "ember_path",
-        "lineHint": 1225,
+        "lineHint": 1231,
         "injectedVia": null
       },
       "id": "ember_path",
@@ -20941,7 +21028,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "veil_camp",
-        "lineHint": 1226,
+        "lineHint": 1232,
         "injectedVia": null
       },
       "id": "veil_camp",
@@ -20970,7 +21057,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "dust_int_check",
-        "lineHint": 1228,
+        "lineHint": 1234,
         "injectedVia": null
       },
       "id": "dust_int_check",
@@ -21012,7 +21099,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "dust_roads",
         "nodeId": "dust_boss",
-        "lineHint": 1233,
+        "lineHint": 1239,
         "injectedVia": null
       },
       "id": "dust_boss",
@@ -21038,7 +21125,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "plateau_enter",
-        "lineHint": 1735,
+        "lineHint": 1743,
         "injectedVia": null
       },
       "id": "plateau_enter",
@@ -21054,7 +21141,8 @@
         "ancient_shrine",
         "cinder_gorge",
         "iris_ember_field",
-        "yssira_first_vision"
+        "yssira_first_vision",
+        "recruit_magnus"
       ],
       "encounter": null,
       "dialogEventId": null,
@@ -21070,7 +21158,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "iris_ember_field",
-        "lineHint": 1244,
+        "lineHint": 1250,
         "injectedVia": null
       },
       "id": "iris_ember_field",
@@ -21097,8 +21185,36 @@
         "sourceFile": "src/maps/mapData.js",
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
+        "nodeId": "recruit_magnus",
+        "lineHint": 1252,
+        "injectedVia": null
+      },
+      "id": "recruit_magnus",
+      "zoneId": "ember_plateau",
+      "zoneName": "The Ember Plateau",
+      "act": 2,
+      "type": "dialog",
+      "name": "The Stranded Scholar",
+      "x": 0.32,
+      "y": 0.3,
+      "exits": [
+        "lava_fields"
+      ],
+      "encounter": null,
+      "dialogEventId": null,
+      "shrineType": null,
+      "skillCheck": null,
+      "hidden": false,
+      "precondition": null,
+      "noEvent": false
+    },
+    {
+      "_meta": {
+        "sourceFile": "src/maps/mapData.js",
+        "exportName": "ACT2_ZONES",
+        "zoneId": "ember_plateau",
         "nodeId": "yssira_first_vision",
-        "lineHint": 1245,
+        "lineHint": 1253,
         "injectedVia": null
       },
       "id": "yssira_first_vision",
@@ -21126,7 +21242,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "lava_fields",
-        "lineHint": 1246,
+        "lineHint": 1254,
         "injectedVia": null
       },
       "id": "lava_fields",
@@ -21155,7 +21271,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "ancient_shrine",
-        "lineHint": 1247,
+        "lineHint": 1255,
         "injectedVia": null
       },
       "id": "ancient_shrine",
@@ -21183,7 +21299,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "cinder_gorge",
-        "lineHint": 1248,
+        "lineHint": 1256,
         "injectedVia": null
       },
       "id": "cinder_gorge",
@@ -21211,7 +21327,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "magma_vault",
-        "lineHint": 1249,
+        "lineHint": 1257,
         "injectedVia": null
       },
       "id": "magma_vault",
@@ -21239,7 +21355,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "ember_hoard",
-        "lineHint": 1250,
+        "lineHint": 1258,
         "injectedVia": null
       },
       "id": "ember_hoard",
@@ -21267,7 +21383,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "obsidian_vein",
-        "lineHint": 3230,
+        "lineHint": 3238,
         "injectedVia": null
       },
       "id": "obsidian_vein",
@@ -21295,7 +21411,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "veil_stronghold",
-        "lineHint": 1252,
+        "lineHint": 1260,
         "injectedVia": null
       },
       "id": "veil_stronghold",
@@ -21324,7 +21440,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "rift_access",
-        "lineHint": 1752,
+        "lineHint": 1760,
         "injectedVia": null
       },
       "id": "rift_access",
@@ -21352,7 +21468,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "lore_monolith",
-        "lineHint": 3246,
+        "lineHint": 3254,
         "injectedVia": null
       },
       "id": "lore_monolith",
@@ -21381,7 +21497,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "plateau_con_check",
-        "lineHint": 1256,
+        "lineHint": 1264,
         "injectedVia": null
       },
       "id": "plateau_con_check",
@@ -21422,7 +21538,7 @@
         "exportName": "ACT2_ZONES",
         "zoneId": "ember_plateau",
         "nodeId": "plateau_boss",
-        "lineHint": 1261,
+        "lineHint": 1269,
         "injectedVia": null
       },
       "id": "plateau_boss",
@@ -21448,7 +21564,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "breach_gate",
-        "lineHint": 1767,
+        "lineHint": 1775,
         "injectedVia": null
       },
       "id": "breach_gate",
@@ -21481,7 +21597,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "garrick_hell_stand",
-        "lineHint": 1277,
+        "lineHint": 1285,
         "injectedVia": null
       },
       "id": "garrick_hell_stand",
@@ -21509,7 +21625,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "tomek_last_deal",
-        "lineHint": 1278,
+        "lineHint": 1286,
         "injectedVia": null
       },
       "id": "tomek_last_deal",
@@ -21537,7 +21653,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "krix_redemption",
-        "lineHint": 1279,
+        "lineHint": 1287,
         "injectedVia": null
       },
       "id": "krix_redemption",
@@ -21565,7 +21681,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "demon_patrol",
-        "lineHint": 1280,
+        "lineHint": 1288,
         "injectedVia": null
       },
       "id": "demon_patrol",
@@ -21594,7 +21710,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "brimstone_shrine",
-        "lineHint": 1281,
+        "lineHint": 1289,
         "injectedVia": null
       },
       "id": "brimstone_shrine",
@@ -21622,7 +21738,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "fell_ruins",
-        "lineHint": 3264,
+        "lineHint": 3272,
         "injectedVia": null
       },
       "id": "fell_ruins",
@@ -21650,7 +21766,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "bone_pit",
-        "lineHint": 1283,
+        "lineHint": 1291,
         "injectedVia": null
       },
       "id": "bone_pit",
@@ -21678,7 +21794,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "ashen_hollow",
-        "lineHint": 1284,
+        "lineHint": 1292,
         "injectedVia": null
       },
       "id": "ashen_hollow",
@@ -21706,7 +21822,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "demon_reliquary",
-        "lineHint": 1285,
+        "lineHint": 1293,
         "injectedVia": null
       },
       "id": "demon_reliquary",
@@ -21734,7 +21850,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "inferno_keep",
-        "lineHint": 1286,
+        "lineHint": 1294,
         "injectedVia": null
       },
       "id": "inferno_keep",
@@ -21763,7 +21879,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "void_altar",
-        "lineHint": 1784,
+        "lineHint": 1792,
         "injectedVia": null
       },
       "id": "void_altar",
@@ -21791,7 +21907,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "soul_prison",
-        "lineHint": 1288,
+        "lineHint": 1296,
         "injectedVia": null
       },
       "id": "soul_prison",
@@ -21819,7 +21935,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "hell_breach",
         "nodeId": "breach_boss",
-        "lineHint": 1289,
+        "lineHint": 1297,
         "injectedVia": null
       },
       "id": "breach_boss",
@@ -21876,7 +21992,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "core_enter",
-        "lineHint": 1801,
+        "lineHint": 1809,
         "injectedVia": null
       },
       "id": "core_enter",
@@ -21908,7 +22024,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "iris_shard_archive",
-        "lineHint": 1300,
+        "lineHint": 1308,
         "injectedVia": null
       },
       "id": "iris_shard_archive",
@@ -21936,7 +22052,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "yssira_breaking",
-        "lineHint": 1301,
+        "lineHint": 1309,
         "injectedVia": null
       },
       "id": "yssira_breaking",
@@ -21964,7 +22080,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "rift_demons",
-        "lineHint": 1302,
+        "lineHint": 1310,
         "injectedVia": null
       },
       "id": "rift_demons",
@@ -21993,7 +22109,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "memory_crypt",
-        "lineHint": 3280,
+        "lineHint": 3288,
         "injectedVia": null
       },
       "id": "memory_crypt",
@@ -22021,7 +22137,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "void_nexus",
-        "lineHint": 1304,
+        "lineHint": 1312,
         "injectedVia": null
       },
       "id": "void_nexus",
@@ -22049,7 +22165,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "shattered_path",
-        "lineHint": 1305,
+        "lineHint": 1313,
         "injectedVia": null
       },
       "id": "shattered_path",
@@ -22077,7 +22193,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "rift_cache",
-        "lineHint": 1306,
+        "lineHint": 1314,
         "injectedVia": null
       },
       "id": "rift_cache",
@@ -22105,7 +22221,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "shard_vault",
-        "lineHint": 1307,
+        "lineHint": 1315,
         "injectedVia": null
       },
       "id": "shard_vault",
@@ -22133,7 +22249,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "shard_fortress",
-        "lineHint": 1308,
+        "lineHint": 1316,
         "injectedVia": null
       },
       "id": "shard_fortress",
@@ -22163,7 +22279,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "oblivion_spire",
-        "lineHint": 1309,
+        "lineHint": 1317,
         "injectedVia": null
       },
       "id": "oblivion_spire",
@@ -22191,7 +22307,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "the_wound",
-        "lineHint": 3293,
+        "lineHint": 3301,
         "injectedVia": null
       },
       "id": "the_wound",
@@ -22219,7 +22335,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "ancient_seal",
-        "lineHint": 1816,
+        "lineHint": 1824,
         "injectedVia": null
       },
       "id": "ancient_seal",
@@ -22247,7 +22363,7 @@
         "exportName": "ACT3_ZONES",
         "zoneId": "shattered_core",
         "nodeId": "core_boss",
-        "lineHint": 1312,
+        "lineHint": 1320,
         "injectedVia": null
       },
       "id": "core_boss",
@@ -22273,7 +22389,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "rift_entry",
-        "lineHint": 1831,
+        "lineHint": 1839,
         "injectedVia": null
       },
       "id": "rift_entry",
@@ -22304,7 +22420,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "garrick_final_charge",
-        "lineHint": 1364,
+        "lineHint": 1372,
         "injectedVia": null
       },
       "id": "garrick_final_charge",
@@ -22332,7 +22448,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "star_fields",
-        "lineHint": 1365,
+        "lineHint": 1373,
         "injectedVia": null
       },
       "id": "star_fields",
@@ -22361,7 +22477,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "star_tomb",
-        "lineHint": 3311,
+        "lineHint": 3319,
         "injectedVia": null
       },
       "id": "star_tomb",
@@ -22389,7 +22505,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "void_expanse",
-        "lineHint": 1367,
+        "lineHint": 1375,
         "injectedVia": null
       },
       "id": "void_expanse",
@@ -22417,7 +22533,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "nebula_drift",
-        "lineHint": 1368,
+        "lineHint": 1376,
         "injectedVia": null
       },
       "id": "nebula_drift",
@@ -22445,7 +22561,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "event_horizon",
-        "lineHint": 1369,
+        "lineHint": 1377,
         "injectedVia": null
       },
       "id": "event_horizon",
@@ -22473,7 +22589,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "void_vault",
-        "lineHint": 1370,
+        "lineHint": 1378,
         "injectedVia": null
       },
       "id": "void_vault",
@@ -22501,7 +22617,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "cosmic_bastion",
-        "lineHint": 1371,
+        "lineHint": 1379,
         "injectedVia": null
       },
       "id": "cosmic_bastion",
@@ -22531,7 +22647,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "collapse_rift",
-        "lineHint": 1372,
+        "lineHint": 1380,
         "injectedVia": null
       },
       "id": "collapse_rift",
@@ -22559,7 +22675,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "prophet_sanctum",
-        "lineHint": 1846,
+        "lineHint": 1854,
         "injectedVia": null
       },
       "id": "prophet_sanctum",
@@ -22587,7 +22703,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "titan_pit",
-        "lineHint": 1374,
+        "lineHint": 1382,
         "injectedVia": null
       },
       "id": "titan_pit",
@@ -22615,7 +22731,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "cosmic_rift",
         "nodeId": "rift_boss",
-        "lineHint": 1375,
+        "lineHint": 1383,
         "injectedVia": null
       },
       "id": "rift_boss",
@@ -22641,7 +22757,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "void_gates",
-        "lineHint": 1863,
+        "lineHint": 1871,
         "injectedVia": null
       },
       "id": "void_gates",
@@ -22672,7 +22788,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "yssira_last_song",
-        "lineHint": 1386,
+        "lineHint": 1394,
         "injectedVia": null
       },
       "id": "yssira_last_song",
@@ -22700,7 +22816,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "star_horror_swarm",
-        "lineHint": 1387,
+        "lineHint": 1395,
         "injectedVia": null
       },
       "id": "star_horror_swarm",
@@ -22729,7 +22845,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "forgotten_altar",
-        "lineHint": 1388,
+        "lineHint": 1396,
         "injectedVia": null
       },
       "id": "forgotten_altar",
@@ -22757,7 +22873,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "void_library",
-        "lineHint": 3327,
+        "lineHint": 3335,
         "injectedVia": null
       },
       "id": "void_library",
@@ -22785,7 +22901,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "echo_wastes",
-        "lineHint": 1390,
+        "lineHint": 1398,
         "injectedVia": null
       },
       "id": "echo_wastes",
@@ -22813,7 +22929,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "oblivion_warden",
-        "lineHint": 1391,
+        "lineHint": 1399,
         "injectedVia": null
       },
       "id": "oblivion_warden",
@@ -22841,7 +22957,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "oblivion_cache",
-        "lineHint": 1392,
+        "lineHint": 1400,
         "injectedVia": null
       },
       "id": "oblivion_cache",
@@ -22869,7 +22985,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "unraveler_ante",
-        "lineHint": 1393,
+        "lineHint": 1401,
         "injectedVia": null
       },
       "id": "unraveler_ante",
@@ -22899,7 +23015,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "rift_spiral",
-        "lineHint": 1394,
+        "lineHint": 1402,
         "injectedVia": null
       },
       "id": "rift_spiral",
@@ -22927,7 +23043,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "last_shrine",
-        "lineHint": 1395,
+        "lineHint": 1403,
         "injectedVia": null
       },
       "id": "last_shrine",
@@ -22955,7 +23071,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "final_trial",
-        "lineHint": 1396,
+        "lineHint": 1404,
         "injectedVia": null
       },
       "id": "final_trial",
@@ -22983,7 +23099,7 @@
         "exportName": "ACT4_ZONES",
         "zoneId": "eternal_void",
         "nodeId": "void_boss",
-        "lineHint": 1397,
+        "lineHint": 1405,
         "injectedVia": null
       },
       "id": "void_boss",
@@ -23041,7 +23157,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "abyss_gate",
-        "lineHint": 1878,
+        "lineHint": 1886,
         "injectedVia": null
       },
       "id": "abyss_gate",
@@ -23072,7 +23188,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "tidekeeper_lament",
-        "lineHint": 1413,
+        "lineHint": 1421,
         "injectedVia": null
       },
       "id": "tidekeeper_lament",
@@ -23100,7 +23216,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "drowned_halls",
-        "lineHint": 1414,
+        "lineHint": 1422,
         "injectedVia": null
       },
       "id": "drowned_halls",
@@ -23129,7 +23245,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "salt_shrine",
-        "lineHint": 1415,
+        "lineHint": 1423,
         "injectedVia": null
       },
       "id": "salt_shrine",
@@ -23157,7 +23273,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "memory_pool",
-        "lineHint": 3345,
+        "lineHint": 3353,
         "injectedVia": null
       },
       "id": "memory_pool",
@@ -23186,7 +23302,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "echoing_trench",
-        "lineHint": 1417,
+        "lineHint": 1425,
         "injectedVia": null
       },
       "id": "echoing_trench",
@@ -23214,7 +23330,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "deep_trench",
-        "lineHint": 1418,
+        "lineHint": 1426,
         "injectedVia": null
       },
       "id": "deep_trench",
@@ -23242,7 +23358,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "leviathan_nest",
-        "lineHint": 1419,
+        "lineHint": 1427,
         "injectedVia": null
       },
       "id": "leviathan_nest",
@@ -23270,7 +23386,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "sunken_vault",
-        "lineHint": 1420,
+        "lineHint": 1428,
         "injectedVia": null
       },
       "id": "sunken_vault",
@@ -23298,7 +23414,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "nexus_core",
-        "lineHint": 1421,
+        "lineHint": 1429,
         "injectedVia": null
       },
       "id": "nexus_core",
@@ -23328,7 +23444,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "abyssal_archive",
-        "lineHint": 3361,
+        "lineHint": 3369,
         "injectedVia": null
       },
       "id": "abyssal_archive",
@@ -23356,7 +23472,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "origin_shrine",
-        "lineHint": 1423,
+        "lineHint": 1431,
         "injectedVia": null
       },
       "id": "origin_shrine",
@@ -23384,7 +23500,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "worm_den",
-        "lineHint": 1424,
+        "lineHint": 1432,
         "injectedVia": null
       },
       "id": "worm_den",
@@ -23412,7 +23528,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "abyssal_depths",
         "nodeId": "abyss_boss",
-        "lineHint": 1425,
+        "lineHint": 1433,
         "injectedVia": null
       },
       "id": "abyss_boss",
@@ -23438,7 +23554,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "nexus_gates",
-        "lineHint": 1893,
+        "lineHint": 1901,
         "injectedVia": null
       },
       "id": "nexus_gates",
@@ -23469,7 +23585,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "yssira_final_rite",
-        "lineHint": 1436,
+        "lineHint": 1444,
         "injectedVia": null
       },
       "id": "yssira_final_rite",
@@ -23497,7 +23613,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "shard_storm",
-        "lineHint": 1437,
+        "lineHint": 1445,
         "injectedVia": null
       },
       "id": "shard_storm",
@@ -23526,7 +23642,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "unmade_gallery",
-        "lineHint": 3377,
+        "lineHint": 3385,
         "injectedVia": null
       },
       "id": "unmade_gallery",
@@ -23554,7 +23670,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "echo_chamber",
-        "lineHint": 3390,
+        "lineHint": 3398,
         "injectedVia": null
       },
       "id": "echo_chamber",
@@ -23582,7 +23698,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "creation_loom",
-        "lineHint": 1440,
+        "lineHint": 1448,
         "injectedVia": null
       },
       "id": "creation_loom",
@@ -23610,7 +23726,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "shattered_spire",
-        "lineHint": 1441,
+        "lineHint": 1449,
         "injectedVia": null
       },
       "id": "shattered_spire",
@@ -23638,7 +23754,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "final_reliquary",
-        "lineHint": 1442,
+        "lineHint": 1450,
         "injectedVia": null
       },
       "id": "final_reliquary",
@@ -23666,7 +23782,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "architect_bridge",
-        "lineHint": 1443,
+        "lineHint": 1451,
         "injectedVia": null
       },
       "id": "architect_bridge",
@@ -23696,7 +23812,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "primal_vein",
-        "lineHint": 1444,
+        "lineHint": 1452,
         "injectedVia": null
       },
       "id": "primal_vein",
@@ -23724,7 +23840,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "last_prayer",
-        "lineHint": 1445,
+        "lineHint": 1453,
         "injectedVia": null
       },
       "id": "last_prayer",
@@ -23752,7 +23868,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "crucible",
-        "lineHint": 1446,
+        "lineHint": 1454,
         "injectedVia": null
       },
       "id": "crucible",
@@ -23780,7 +23896,7 @@
         "exportName": "ACT5_ZONES",
         "zoneId": "primordial_nexus",
         "nodeId": "architect_boss",
-        "lineHint": 1447,
+        "lineHint": 1455,
         "injectedVia": null
       },
       "id": "architect_boss",
@@ -23839,7 +23955,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragons_reach",
         "nodeId": "reach_gate",
-        "lineHint": 1909,
+        "lineHint": 1917,
         "injectedVia": null
       },
       "id": "reach_gate",
@@ -23869,7 +23985,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragons_reach",
         "nodeId": "dragon_skyroad",
-        "lineHint": 1514,
+        "lineHint": 1522,
         "injectedVia": null
       },
       "id": "dragon_skyroad",
@@ -23898,7 +24014,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragons_reach",
         "nodeId": "wyrm_shrine",
-        "lineHint": 1515,
+        "lineHint": 1523,
         "injectedVia": null
       },
       "id": "wyrm_shrine",
@@ -23926,7 +24042,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragons_reach",
         "nodeId": "ember_pass",
-        "lineHint": 1516,
+        "lineHint": 1524,
         "injectedVia": null
       },
       "id": "ember_pass",
@@ -23954,7 +24070,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragons_reach",
         "nodeId": "frost_wyrm_lair",
-        "lineHint": 1517,
+        "lineHint": 1525,
         "injectedVia": null
       },
       "id": "frost_wyrm_lair",
@@ -23982,7 +24098,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragons_reach",
         "nodeId": "dragon_hoard_a",
-        "lineHint": 1518,
+        "lineHint": 1526,
         "injectedVia": null
       },
       "id": "dragon_hoard_a",
@@ -24010,7 +24126,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragons_reach",
         "nodeId": "dragon_hoard_b",
-        "lineHint": 1519,
+        "lineHint": 1527,
         "injectedVia": null
       },
       "id": "dragon_hoard_b",
@@ -24038,7 +24154,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragons_reach",
         "nodeId": "wyrm_citadel",
-        "lineHint": 1520,
+        "lineHint": 1528,
         "injectedVia": null
       },
       "id": "wyrm_citadel",
@@ -24068,7 +24184,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragons_reach",
         "nodeId": "dragon_cult_altar",
-        "lineHint": 1927,
+        "lineHint": 1935,
         "injectedVia": null
       },
       "id": "dragon_cult_altar",
@@ -24096,7 +24212,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragons_reach",
         "nodeId": "storm_rookery",
-        "lineHint": 1522,
+        "lineHint": 1530,
         "injectedVia": null
       },
       "id": "storm_rookery",
@@ -24124,7 +24240,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragons_reach",
         "nodeId": "dragon_boss",
-        "lineHint": 1523,
+        "lineHint": 1531,
         "injectedVia": null
       },
       "id": "dragon_boss",
@@ -24150,7 +24266,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragon_throne",
         "nodeId": "throne_gate",
-        "lineHint": 1948,
+        "lineHint": 1956,
         "injectedVia": null
       },
       "id": "throne_gate",
@@ -24180,7 +24296,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragon_throne",
         "nodeId": "dragon_spine",
-        "lineHint": 1533,
+        "lineHint": 1541,
         "injectedVia": null
       },
       "id": "dragon_spine",
@@ -24209,7 +24325,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragon_throne",
         "nodeId": "dragon_archive",
-        "lineHint": 3408,
+        "lineHint": 3416,
         "injectedVia": null
       },
       "id": "dragon_archive",
@@ -24237,7 +24353,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragon_throne",
         "nodeId": "burning_spires",
-        "lineHint": 1535,
+        "lineHint": 1543,
         "injectedVia": null
       },
       "id": "burning_spires",
@@ -24265,7 +24381,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragon_throne",
         "nodeId": "dragon_trial",
-        "lineHint": 1536,
+        "lineHint": 1544,
         "injectedVia": null
       },
       "id": "dragon_trial",
@@ -24293,7 +24409,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragon_throne",
         "nodeId": "dragon_scale_vault",
-        "lineHint": 1537,
+        "lineHint": 1545,
         "injectedVia": null
       },
       "id": "dragon_scale_vault",
@@ -24321,7 +24437,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragon_throne",
         "nodeId": "dragonking_shrine",
-        "lineHint": 1538,
+        "lineHint": 1546,
         "injectedVia": null
       },
       "id": "dragonking_shrine",
@@ -24349,7 +24465,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragon_throne",
         "nodeId": "dragon_fortress",
-        "lineHint": 1539,
+        "lineHint": 1547,
         "injectedVia": null
       },
       "id": "dragon_fortress",
@@ -24378,7 +24494,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragon_throne",
         "nodeId": "dragon_oracle",
-        "lineHint": 1967,
+        "lineHint": 1975,
         "injectedVia": null
       },
       "id": "dragon_oracle",
@@ -24406,7 +24522,7 @@
         "exportName": "ACT6_ZONES",
         "zoneId": "dragon_throne",
         "nodeId": "dragonking_boss",
-        "lineHint": 1541,
+        "lineHint": 1549,
         "injectedVia": null
       },
       "id": "dragonking_boss",
