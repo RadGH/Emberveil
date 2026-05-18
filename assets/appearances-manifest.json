@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-16T20:44:00.846Z",
+  "generated": "2026-05-18T20:33:48.073Z",
   "spriteDirs": [
     "openai_v2",
     "spritecook",
@@ -206,36 +206,6 @@
         "east_spell": "spritecook/cleric_east_spell.png",
         "east_block": "spritecook/cleric_east_block.png",
         "east_ko": "spritecook/cleric_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "spritecook"
-    },
-    {
-      "id": "cleric_priestess",
-      "name": "Cleric (Priestess)",
-      "kind": "npc",
-      "gender": "female",
-      "classDefault": "cleric",
-      "sprite": "cleric_priestess",
-      "tags": [
-        "robes",
-        "holy",
-        "female",
-        "npc"
-      ],
-      "playable": false,
-      "npc": true,
-      "deprecated": false,
-      "pendingReview": false,
-      "sprites": {
-        "portrait": "spritecook/cleric_priestess_portrait.png",
-        "south": "spritecook/cleric_priestess_south.png",
-        "east": "spritecook/cleric_priestess_east.png",
-        "east_attack": "spritecook/cleric_priestess_east_attack.png",
-        "east_spell": "spritecook/cleric_priestess_east_spell.png",
-        "east_block": "spritecook/cleric_priestess_east_block.png",
-        "east_ko": "spritecook/cleric_priestess_east_ko.png"
       },
       "spriteCount": 7,
       "missingPoses": [],
@@ -891,7 +861,7 @@
     {
       "id": "clockwork_turret",
       "name": "Clockwork Turret",
-      "kind": "appearance",
+      "kind": "class",
       "gender": "companion",
       "classDefault": "companion",
       "sprite": "clockwork_turret",
@@ -1799,6 +1769,36 @@
       "sourceDir": "spritecook"
     },
     {
+      "id": "cleric_priestess",
+      "name": "Cleric (Priestess)",
+      "kind": "npc",
+      "gender": "female",
+      "classDefault": "cleric",
+      "sprite": "cleric_priestess",
+      "tags": [
+        "robes",
+        "holy",
+        "female",
+        "npc"
+      ],
+      "playable": false,
+      "npc": true,
+      "deprecated": false,
+      "pendingReview": false,
+      "sprites": {
+        "portrait": "spritecook/cleric_priestess_portrait.png",
+        "south": "spritecook/cleric_priestess_south.png",
+        "east": "spritecook/cleric_priestess_east.png",
+        "east_attack": "spritecook/cleric_priestess_east_attack.png",
+        "east_spell": "spritecook/cleric_priestess_east_spell.png",
+        "east_block": "spritecook/cleric_priestess_east_block.png",
+        "east_ko": "spritecook/cleric_priestess_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
       "id": "silas_veilward",
       "name": "Silas Veilward",
       "kind": "npc",
@@ -2405,20 +2405,20 @@
   ],
   "companions": [
     {
-      "id": "pet_skeletal_warrior",
-      "name": "Skeletal Warrior",
+      "id": "pet_bear",
+      "name": "Cave Bear",
       "kind": "pet",
       "class": "companion",
-      "ownerClass": "necromancer",
-      "sprite": "pet_skeletal_warrior",
+      "ownerClass": "druid",
+      "sprite": "pet_bear",
       "sprites": {
-        "portrait": "openai_v2/pet_skeletal_warrior_portrait.png",
-        "south": "openai_v2/pet_skeletal_warrior_south.png",
-        "east": "openai_v2/pet_skeletal_warrior_east.png",
-        "east_attack": "openai_v2/pet_skeletal_warrior_east_attack.png",
-        "east_spell": "openai_v2/pet_skeletal_warrior_east_spell.png",
-        "east_block": "openai_v2/pet_skeletal_warrior_east_block.png",
-        "east_ko": "openai_v2/pet_skeletal_warrior_east_ko.png"
+        "portrait": "openai_v2/pet_bear_portrait.png",
+        "south": "openai_v2/pet_bear_south.png",
+        "east": "openai_v2/pet_bear_east.png",
+        "east_attack": "openai_v2/pet_bear_east_attack.png",
+        "east_spell": "openai_v2/pet_bear_east_spell.png",
+        "east_block": "openai_v2/pet_bear_east_block.png",
+        "east_ko": "openai_v2/pet_bear_east_ko.png"
       },
       "spriteCount": 7,
       "missingPoses": [],
@@ -2445,40 +2445,80 @@
       "sourceDir": "openai_v2"
     },
     {
-      "id": "pet_wolf",
-      "name": "Forest Wolf",
+      "id": "pet_clockwork_turret",
+      "name": "Clockwork Turret",
       "kind": "pet",
       "class": "companion",
-      "ownerClass": "druid",
-      "sprite": "pet_wolf",
+      "ownerClass": "tinker",
+      "sprite": "pet_clockwork_turret",
       "sprites": {
-        "portrait": "openai_v2/pet_wolf_portrait.png",
-        "south": "openai_v2/pet_wolf_south.png",
-        "east": "openai_v2/pet_wolf_east.png",
-        "east_attack": "openai_v2/pet_wolf_east_attack.png",
-        "east_spell": "openai_v2/pet_wolf_east_spell.png",
-        "east_block": "openai_v2/pet_wolf_east_block.png",
-        "east_ko": "openai_v2/pet_wolf_east_ko.png"
+        "portrait": "openai_v2/pet_clockwork_turret_portrait.png",
+        "south": "openai_v2/pet_clockwork_turret_south.png",
+        "east": "openai_v2/pet_clockwork_turret_east.png",
+        "east_attack": "openai_v2/pet_clockwork_turret_east_attack.png",
+        "east_spell": "openai_v2/pet_clockwork_turret_east_spell.png",
+        "east_block": "openai_v2/pet_clockwork_turret_east_block.png",
+        "east_ko": "openai_v2/pet_clockwork_turret_east_ko.png"
       },
       "spriteCount": 7,
       "missingPoses": [],
       "sourceDir": "openai_v2"
     },
     {
-      "id": "pet_bear",
-      "name": "Cave Bear",
+      "id": "pet_demon",
+      "name": "Infernal Hound",
       "kind": "pet",
       "class": "companion",
-      "ownerClass": "druid",
-      "sprite": "pet_bear",
+      "ownerClass": "warlock",
+      "sprite": "pet_demon",
       "sprites": {
-        "portrait": "openai_v2/pet_bear_portrait.png",
-        "south": "openai_v2/pet_bear_south.png",
-        "east": "openai_v2/pet_bear_east.png",
-        "east_attack": "openai_v2/pet_bear_east_attack.png",
-        "east_spell": "openai_v2/pet_bear_east_spell.png",
-        "east_block": "openai_v2/pet_bear_east_block.png",
-        "east_ko": "openai_v2/pet_bear_east_ko.png"
+        "portrait": "openai_v2/pet_demon_portrait.png",
+        "south": "openai_v2/pet_demon_south.png",
+        "east": "openai_v2/pet_demon_east.png",
+        "east_attack": "openai_v2/pet_demon_east_attack.png",
+        "east_spell": "openai_v2/pet_demon_east_spell.png",
+        "east_block": "openai_v2/pet_demon_east_block.png",
+        "east_ko": "openai_v2/pet_demon_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "pet_familiar",
+      "name": "Arcane Familiar",
+      "kind": "pet",
+      "class": "companion",
+      "ownerClass": "mage",
+      "sprite": "pet_familiar",
+      "sprites": {
+        "portrait": "openai_v2/pet_familiar_portrait.png",
+        "south": "openai_v2/pet_familiar_south.png",
+        "east": "openai_v2/pet_familiar_east.png",
+        "east_attack": "openai_v2/pet_familiar_east_attack.png",
+        "east_spell": "openai_v2/pet_familiar_east_spell.png",
+        "east_block": "openai_v2/pet_familiar_east_block.png",
+        "east_ko": "openai_v2/pet_familiar_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "pet_fire_elemental",
+      "name": "Fire Elemental",
+      "kind": "pet",
+      "class": "companion",
+      "ownerClass": "pyromancer",
+      "sprite": "pet_fire_elemental",
+      "sprites": {
+        "portrait": "openai_v2/pet_fire_elemental_portrait.png",
+        "south": "openai_v2/pet_fire_elemental_south.png",
+        "east": "openai_v2/pet_fire_elemental_east.png",
+        "east_attack": "openai_v2/pet_fire_elemental_east_attack.png",
+        "east_spell": "openai_v2/pet_fire_elemental_east_spell.png",
+        "east_block": "openai_v2/pet_fire_elemental_east_block.png",
+        "east_ko": "openai_v2/pet_fire_elemental_east_ko.png"
       },
       "spriteCount": 7,
       "missingPoses": [],
@@ -2505,20 +2545,40 @@
       "sourceDir": "openai_v2"
     },
     {
-      "id": "pet_demon",
-      "name": "Infernal Hound",
+      "id": "pet_lightning_elemental",
+      "name": "Lightning Elemental",
       "kind": "pet",
       "class": "companion",
-      "ownerClass": "warlock",
-      "sprite": "pet_demon",
+      "ownerClass": "stormcaller",
+      "sprite": "pet_lightning_elemental",
       "sprites": {
-        "portrait": "openai_v2/pet_demon_portrait.png",
-        "south": "openai_v2/pet_demon_south.png",
-        "east": "openai_v2/pet_demon_east.png",
-        "east_attack": "openai_v2/pet_demon_east_attack.png",
-        "east_spell": "openai_v2/pet_demon_east_spell.png",
-        "east_block": "openai_v2/pet_demon_east_block.png",
-        "east_ko": "openai_v2/pet_demon_east_ko.png"
+        "portrait": "openai_v2/pet_lightning_elemental_portrait.png",
+        "south": "openai_v2/pet_lightning_elemental_south.png",
+        "east": "openai_v2/pet_lightning_elemental_east.png",
+        "east_attack": "openai_v2/pet_lightning_elemental_east_attack.png",
+        "east_spell": "openai_v2/pet_lightning_elemental_east_spell.png",
+        "east_block": "openai_v2/pet_lightning_elemental_east_block.png",
+        "east_ko": "openai_v2/pet_lightning_elemental_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "pet_skeletal_warrior",
+      "name": "Skeletal Warrior",
+      "kind": "pet",
+      "class": "companion",
+      "ownerClass": "necromancer",
+      "sprite": "pet_skeletal_warrior",
+      "sprites": {
+        "portrait": "openai_v2/pet_skeletal_warrior_portrait.png",
+        "south": "openai_v2/pet_skeletal_warrior_south.png",
+        "east": "openai_v2/pet_skeletal_warrior_east.png",
+        "east_attack": "openai_v2/pet_skeletal_warrior_east_attack.png",
+        "east_spell": "openai_v2/pet_skeletal_warrior_east_spell.png",
+        "east_block": "openai_v2/pet_skeletal_warrior_east_block.png",
+        "east_ko": "openai_v2/pet_skeletal_warrior_east_ko.png"
       },
       "spriteCount": 7,
       "missingPoses": [],
@@ -2548,336 +2608,24 @@
       "sourceDir": "spritecook"
     },
     {
-      "id": "pet_fire_elemental",
-      "name": "Fire Elemental",
+      "id": "pet_wolf",
+      "name": "Forest Wolf",
       "kind": "pet",
       "class": "companion",
-      "ownerClass": "pyromancer",
-      "sprite": "pet_fire_elemental",
+      "ownerClass": "druid",
+      "sprite": "pet_wolf",
       "sprites": {
-        "portrait": "openai_v2/pet_fire_elemental_portrait.png",
-        "south": "openai_v2/pet_fire_elemental_south.png",
-        "east": "openai_v2/pet_fire_elemental_east.png",
-        "east_attack": "openai_v2/pet_fire_elemental_east_attack.png",
-        "east_spell": "openai_v2/pet_fire_elemental_east_spell.png",
-        "east_block": "openai_v2/pet_fire_elemental_east_block.png",
-        "east_ko": "openai_v2/pet_fire_elemental_east_ko.png"
+        "portrait": "openai_v2/pet_wolf_portrait.png",
+        "south": "openai_v2/pet_wolf_south.png",
+        "east": "openai_v2/pet_wolf_east.png",
+        "east_attack": "openai_v2/pet_wolf_east_attack.png",
+        "east_spell": "openai_v2/pet_wolf_east_spell.png",
+        "east_block": "openai_v2/pet_wolf_east_block.png",
+        "east_ko": "openai_v2/pet_wolf_east_ko.png"
       },
       "spriteCount": 7,
       "missingPoses": [],
       "sourceDir": "openai_v2"
-    },
-    {
-      "id": "pet_lightning_elemental",
-      "name": "Lightning Elemental",
-      "kind": "pet",
-      "class": "companion",
-      "ownerClass": "stormcaller",
-      "sprite": "pet_lightning_elemental",
-      "sprites": {
-        "portrait": "openai_v2/pet_lightning_elemental_portrait.png",
-        "south": "openai_v2/pet_lightning_elemental_south.png",
-        "east": "openai_v2/pet_lightning_elemental_east.png",
-        "east_attack": "openai_v2/pet_lightning_elemental_east_attack.png",
-        "east_spell": "openai_v2/pet_lightning_elemental_east_spell.png",
-        "east_block": "openai_v2/pet_lightning_elemental_east_block.png",
-        "east_ko": "openai_v2/pet_lightning_elemental_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "pet_familiar",
-      "name": "Arcane Familiar",
-      "kind": "pet",
-      "class": "companion",
-      "ownerClass": "mage",
-      "sprite": "pet_familiar",
-      "sprites": {
-        "portrait": "openai_v2/pet_familiar_portrait.png",
-        "south": "openai_v2/pet_familiar_south.png",
-        "east": "openai_v2/pet_familiar_east.png",
-        "east_attack": "openai_v2/pet_familiar_east_attack.png",
-        "east_spell": "openai_v2/pet_familiar_east_spell.png",
-        "east_block": "openai_v2/pet_familiar_east_block.png",
-        "east_ko": "openai_v2/pet_familiar_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "pet_clockwork_turret",
-      "name": "Clockwork Turret",
-      "kind": "pet",
-      "class": "companion",
-      "ownerClass": "tinker",
-      "sprite": "pet_clockwork_turret",
-      "sprites": {
-        "portrait": "openai_v2/pet_clockwork_turret_portrait.png",
-        "south": "openai_v2/pet_clockwork_turret_south.png",
-        "east": "openai_v2/pet_clockwork_turret_east.png",
-        "east_attack": "openai_v2/pet_clockwork_turret_east_attack.png",
-        "east_spell": "openai_v2/pet_clockwork_turret_east_spell.png",
-        "east_block": "openai_v2/pet_clockwork_turret_east_block.png",
-        "east_ko": "openai_v2/pet_clockwork_turret_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "aela",
-      "name": "Aela",
-      "kind": "hireable",
-      "class": "ranger",
-      "ownerClass": null,
-      "sprite": "aela",
-      "sprites": {
-        "portrait": null,
-        "south": null,
-        "east": null,
-        "east_attack": null,
-        "east_spell": null,
-        "east_block": null,
-        "east_ko": null
-      },
-      "spriteCount": 0,
-      "missingPoses": [
-        "portrait",
-        "south",
-        "east",
-        "east_attack",
-        "east_spell",
-        "east_block",
-        "east_ko"
-      ],
-      "sourceDir": null
-    },
-    {
-      "id": "borin",
-      "name": "Borin",
-      "kind": "hireable",
-      "class": "warrior",
-      "ownerClass": null,
-      "sprite": "borin",
-      "sprites": {
-        "portrait": null,
-        "south": null,
-        "east": null,
-        "east_attack": null,
-        "east_spell": null,
-        "east_block": null,
-        "east_ko": null
-      },
-      "spriteCount": 0,
-      "missingPoses": [
-        "portrait",
-        "south",
-        "east",
-        "east_attack",
-        "east_spell",
-        "east_block",
-        "east_ko"
-      ],
-      "sourceDir": null
-    },
-    {
-      "id": "lysa",
-      "name": "Lysa",
-      "kind": "hireable",
-      "class": "cleric",
-      "ownerClass": null,
-      "sprite": "lysa",
-      "sprites": {
-        "portrait": null,
-        "south": null,
-        "east": null,
-        "east_attack": null,
-        "east_spell": null,
-        "east_block": null,
-        "east_ko": null
-      },
-      "spriteCount": 0,
-      "missingPoses": [
-        "portrait",
-        "south",
-        "east",
-        "east_attack",
-        "east_spell",
-        "east_block",
-        "east_ko"
-      ],
-      "sourceDir": null
-    },
-    {
-      "id": "rekk",
-      "name": "Rekk",
-      "kind": "hireable",
-      "class": "rogue",
-      "ownerClass": null,
-      "sprite": "rekk",
-      "sprites": {
-        "portrait": null,
-        "south": null,
-        "east": null,
-        "east_attack": null,
-        "east_spell": null,
-        "east_block": null,
-        "east_ko": null
-      },
-      "spriteCount": 0,
-      "missingPoses": [
-        "portrait",
-        "south",
-        "east",
-        "east_attack",
-        "east_spell",
-        "east_block",
-        "east_ko"
-      ],
-      "sourceDir": null
-    },
-    {
-      "id": "kaldrek",
-      "name": "Kaldrek the Dragonborn",
-      "kind": "hireable",
-      "class": "dragon_knight",
-      "ownerClass": null,
-      "sprite": "kaldrek",
-      "sprites": {
-        "portrait": null,
-        "south": null,
-        "east": null,
-        "east_attack": null,
-        "east_spell": null,
-        "east_block": null,
-        "east_ko": null
-      },
-      "spriteCount": 0,
-      "missingPoses": [
-        "portrait",
-        "south",
-        "east",
-        "east_attack",
-        "east_spell",
-        "east_block",
-        "east_ko"
-      ],
-      "sourceDir": null
-    },
-    {
-      "id": "syra_wyrmsworn",
-      "name": "Syra Wyrmsworn",
-      "kind": "hireable",
-      "class": "dragon_knight",
-      "ownerClass": null,
-      "sprite": "syra_wyrmsworn",
-      "sprites": {
-        "portrait": null,
-        "south": null,
-        "east": null,
-        "east_attack": null,
-        "east_spell": null,
-        "east_block": null,
-        "east_ko": null
-      },
-      "spriteCount": 0,
-      "missingPoses": [
-        "portrait",
-        "south",
-        "east",
-        "east_attack",
-        "east_spell",
-        "east_block",
-        "east_ko"
-      ],
-      "sourceDir": null
-    },
-    {
-      "id": "vorin_emberjaw",
-      "name": "Vorin Emberjaw",
-      "kind": "hireable",
-      "class": "dragon_knight",
-      "ownerClass": null,
-      "sprite": "vorin_emberjaw",
-      "sprites": {
-        "portrait": null,
-        "south": null,
-        "east": null,
-        "east_attack": null,
-        "east_spell": null,
-        "east_block": null,
-        "east_ko": null
-      },
-      "spriteCount": 0,
-      "missingPoses": [
-        "portrait",
-        "south",
-        "east",
-        "east_attack",
-        "east_spell",
-        "east_block",
-        "east_ko"
-      ],
-      "sourceDir": null
-    },
-    {
-      "id": "maelis_drakeblood",
-      "name": "Maelis Drakeblood",
-      "kind": "hireable",
-      "class": "dragon_knight",
-      "ownerClass": null,
-      "sprite": "maelis_drakeblood",
-      "sprites": {
-        "portrait": null,
-        "south": null,
-        "east": null,
-        "east_attack": null,
-        "east_spell": null,
-        "east_block": null,
-        "east_ko": null
-      },
-      "spriteCount": 0,
-      "missingPoses": [
-        "portrait",
-        "south",
-        "east",
-        "east_attack",
-        "east_spell",
-        "east_block",
-        "east_ko"
-      ],
-      "sourceDir": null
-    },
-    {
-      "id": "ysolde_cogwright",
-      "name": "Ysolde Cogwright",
-      "kind": "hireable",
-      "class": "tinker",
-      "ownerClass": null,
-      "sprite": "ysolde_cogwright",
-      "sprites": {
-        "portrait": null,
-        "south": null,
-        "east": null,
-        "east_attack": null,
-        "east_spell": null,
-        "east_block": null,
-        "east_ko": null
-      },
-      "spriteCount": 0,
-      "missingPoses": [
-        "portrait",
-        "south",
-        "east",
-        "east_attack",
-        "east_spell",
-        "east_block",
-        "east_ko"
-      ],
-      "sourceDir": null
     },
     {
       "id": "war_dog",
@@ -3180,106 +2928,290 @@
       "spriteCount": 7,
       "missingPoses": [],
       "sourceDir": "openai_v2"
+    },
+    {
+      "id": "aela",
+      "name": "Aela",
+      "kind": "hireable",
+      "class": "ranger",
+      "ownerClass": null,
+      "sprite": "aela",
+      "sprites": {
+        "portrait": null,
+        "south": null,
+        "east": null,
+        "east_attack": null,
+        "east_spell": null,
+        "east_block": null,
+        "east_ko": null
+      },
+      "spriteCount": 0,
+      "missingPoses": [
+        "portrait",
+        "south",
+        "east",
+        "east_attack",
+        "east_spell",
+        "east_block",
+        "east_ko"
+      ],
+      "sourceDir": null
+    },
+    {
+      "id": "borin",
+      "name": "Borin",
+      "kind": "hireable",
+      "class": "warrior",
+      "ownerClass": null,
+      "sprite": "borin",
+      "sprites": {
+        "portrait": null,
+        "south": null,
+        "east": null,
+        "east_attack": null,
+        "east_spell": null,
+        "east_block": null,
+        "east_ko": null
+      },
+      "spriteCount": 0,
+      "missingPoses": [
+        "portrait",
+        "south",
+        "east",
+        "east_attack",
+        "east_spell",
+        "east_block",
+        "east_ko"
+      ],
+      "sourceDir": null
+    },
+    {
+      "id": "lysa",
+      "name": "Lysa",
+      "kind": "hireable",
+      "class": "cleric",
+      "ownerClass": null,
+      "sprite": "lysa",
+      "sprites": {
+        "portrait": null,
+        "south": null,
+        "east": null,
+        "east_attack": null,
+        "east_spell": null,
+        "east_block": null,
+        "east_ko": null
+      },
+      "spriteCount": 0,
+      "missingPoses": [
+        "portrait",
+        "south",
+        "east",
+        "east_attack",
+        "east_spell",
+        "east_block",
+        "east_ko"
+      ],
+      "sourceDir": null
+    },
+    {
+      "id": "rekk",
+      "name": "Rekk",
+      "kind": "hireable",
+      "class": "rogue",
+      "ownerClass": null,
+      "sprite": "rekk",
+      "sprites": {
+        "portrait": null,
+        "south": null,
+        "east": null,
+        "east_attack": null,
+        "east_spell": null,
+        "east_block": null,
+        "east_ko": null
+      },
+      "spriteCount": 0,
+      "missingPoses": [
+        "portrait",
+        "south",
+        "east",
+        "east_attack",
+        "east_spell",
+        "east_block",
+        "east_ko"
+      ],
+      "sourceDir": null
+    },
+    {
+      "id": "kaldrek",
+      "name": "Kaldrek the Dragonborn",
+      "kind": "hireable",
+      "class": "dragon_knight",
+      "ownerClass": null,
+      "sprite": "kaldrek",
+      "sprites": {
+        "portrait": null,
+        "south": null,
+        "east": null,
+        "east_attack": null,
+        "east_spell": null,
+        "east_block": null,
+        "east_ko": null
+      },
+      "spriteCount": 0,
+      "missingPoses": [
+        "portrait",
+        "south",
+        "east",
+        "east_attack",
+        "east_spell",
+        "east_block",
+        "east_ko"
+      ],
+      "sourceDir": null
+    },
+    {
+      "id": "syra_wyrmsworn",
+      "name": "Syra Wyrmsworn",
+      "kind": "hireable",
+      "class": "dragon_knight",
+      "ownerClass": null,
+      "sprite": "syra_wyrmsworn",
+      "sprites": {
+        "portrait": null,
+        "south": null,
+        "east": null,
+        "east_attack": null,
+        "east_spell": null,
+        "east_block": null,
+        "east_ko": null
+      },
+      "spriteCount": 0,
+      "missingPoses": [
+        "portrait",
+        "south",
+        "east",
+        "east_attack",
+        "east_spell",
+        "east_block",
+        "east_ko"
+      ],
+      "sourceDir": null
+    },
+    {
+      "id": "vorin_emberjaw",
+      "name": "Vorin Emberjaw",
+      "kind": "hireable",
+      "class": "dragon_knight",
+      "ownerClass": null,
+      "sprite": "vorin_emberjaw",
+      "sprites": {
+        "portrait": null,
+        "south": null,
+        "east": null,
+        "east_attack": null,
+        "east_spell": null,
+        "east_block": null,
+        "east_ko": null
+      },
+      "spriteCount": 0,
+      "missingPoses": [
+        "portrait",
+        "south",
+        "east",
+        "east_attack",
+        "east_spell",
+        "east_block",
+        "east_ko"
+      ],
+      "sourceDir": null
+    },
+    {
+      "id": "maelis_drakeblood",
+      "name": "Maelis Drakeblood",
+      "kind": "hireable",
+      "class": "dragon_knight",
+      "ownerClass": null,
+      "sprite": "maelis_drakeblood",
+      "sprites": {
+        "portrait": null,
+        "south": null,
+        "east": null,
+        "east_attack": null,
+        "east_spell": null,
+        "east_block": null,
+        "east_ko": null
+      },
+      "spriteCount": 0,
+      "missingPoses": [
+        "portrait",
+        "south",
+        "east",
+        "east_attack",
+        "east_spell",
+        "east_block",
+        "east_ko"
+      ],
+      "sourceDir": null
+    },
+    {
+      "id": "ysolde_cogwright",
+      "name": "Ysolde Cogwright",
+      "kind": "hireable",
+      "class": "tinker",
+      "ownerClass": null,
+      "sprite": "ysolde_cogwright",
+      "sprites": {
+        "portrait": null,
+        "south": null,
+        "east": null,
+        "east_attack": null,
+        "east_spell": null,
+        "east_block": null,
+        "east_ko": null
+      },
+      "spriteCount": 0,
+      "missingPoses": [
+        "portrait",
+        "south",
+        "east",
+        "east_attack",
+        "east_spell",
+        "east_block",
+        "east_ko"
+      ],
+      "sourceDir": null
     }
   ],
   "enemies": [
     {
-      "id": "goblin_scout",
-      "name": "Goblin Scout",
-      "act": 1,
+      "id": "abyssal_knight",
+      "name": "Abyssal Knight",
+      "act": null,
       "sprites": {
-        "portrait": "openai_v2/goblin_scout_portrait.png",
-        "south": "openai_v2/goblin_scout_south.png",
-        "east": "openai_v2/goblin_scout_east.png",
-        "east_attack": "openai_v2/goblin_scout_east_attack.png",
-        "east_spell": "openai_v2/goblin_scout_east_spell.png",
-        "east_block": "openai_v2/goblin_scout_east_block.png",
-        "east_ko": "openai_v2/goblin_scout_east_ko.png"
+        "portrait": "openai_v2/abyssal_knight_portrait.png",
+        "south": "openai_v2/abyssal_knight_south.png",
+        "east": "openai_v2/abyssal_knight_east.png",
+        "east_attack": "openai_v2/abyssal_knight_east_attack.png",
+        "east_spell": "openai_v2/abyssal_knight_east_spell.png",
+        "east_block": "openai_v2/abyssal_knight_east_block.png",
+        "east_ko": "openai_v2/abyssal_knight_east_ko.png"
       },
       "spriteCount": 7,
       "missingPoses": [],
       "sourceDir": "openai_v2"
     },
     {
-      "id": "goblin_warrior",
-      "name": "Goblin Warrior",
-      "act": 1,
+      "id": "ash_wraith",
+      "name": "Ash Wraith",
+      "act": null,
       "sprites": {
-        "portrait": "openai_v2/goblin_warrior_portrait.png",
-        "south": "openai_v2/goblin_warrior_south.png",
-        "east": "openai_v2/goblin_warrior_east.png",
-        "east_attack": "openai_v2/goblin_warrior_east_attack.png",
-        "east_spell": "openai_v2/goblin_warrior_east_spell.png",
-        "east_block": "openai_v2/goblin_warrior_east_block.png",
-        "east_ko": "openai_v2/goblin_warrior_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "goblin_shaman",
-      "name": "Goblin Shaman",
-      "act": 1,
-      "sprites": {
-        "portrait": "openai_v2/goblin_shaman_portrait.png",
-        "south": "openai_v2/goblin_shaman_south.png",
-        "east": "openai_v2/goblin_shaman_east.png",
-        "east_attack": "openai_v2/goblin_shaman_east_attack.png",
-        "east_spell": "openai_v2/goblin_shaman_east_spell.png",
-        "east_block": "openai_v2/goblin_shaman_east_block.png",
-        "east_ko": "openai_v2/goblin_shaman_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "goblin_warlord",
-      "name": "Goblin Warlord",
-      "act": 1,
-      "sprites": {
-        "portrait": "openai_v2/goblin_warlord_portrait.png",
-        "south": "openai_v2/goblin_warlord_south.png",
-        "east": "openai_v2/goblin_warlord_east.png",
-        "east_attack": "openai_v2/goblin_warlord_east_attack.png",
-        "east_spell": "openai_v2/goblin_warlord_east_spell.png",
-        "east_block": "openai_v2/goblin_warlord_east_block.png",
-        "east_ko": "openai_v2/goblin_warlord_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "corrupted_wolf",
-      "name": "Corrupted Wolf",
-      "act": 1,
-      "sprites": {
-        "portrait": "openai_v2/corrupted_wolf_portrait.png",
-        "south": "openai_v2/corrupted_wolf_south.png",
-        "east": "openai_v2/corrupted_wolf_east.png",
-        "east_attack": "openai_v2/corrupted_wolf_east_attack.png",
-        "east_spell": "openai_v2/corrupted_wolf_east_spell.png",
-        "east_block": "openai_v2/corrupted_wolf_east_block.png",
-        "east_ko": "openai_v2/corrupted_wolf_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "corrupted_bear",
-      "name": "Corrupted Bear",
-      "act": 1,
-      "sprites": {
-        "portrait": "openai_v2/corrupted_bear_portrait.png",
-        "south": "openai_v2/corrupted_bear_south.png",
-        "east": "openai_v2/corrupted_bear_east.png",
-        "east_attack": "openai_v2/corrupted_bear_east_attack.png",
-        "east_spell": "openai_v2/corrupted_bear_east_spell.png",
-        "east_block": "openai_v2/corrupted_bear_east_block.png",
-        "east_ko": "openai_v2/corrupted_bear_east_ko.png"
+        "portrait": "openai_v2/ash_wraith_portrait.png",
+        "south": "openai_v2/ash_wraith_south.png",
+        "east": "openai_v2/ash_wraith_east.png",
+        "east_attack": "openai_v2/ash_wraith_east_attack.png",
+        "east_spell": "openai_v2/ash_wraith_east_spell.png",
+        "east_block": "openai_v2/ash_wraith_east_block.png",
+        "east_ko": "openai_v2/ash_wraith_east_ko.png"
       },
       "spriteCount": 7,
       "missingPoses": [],
@@ -3288,7 +3220,7 @@
     {
       "id": "bandit",
       "name": "Bandit",
-      "act": 1,
+      "act": null,
       "sprites": {
         "portrait": "openai_v2/bandit_portrait.png",
         "south": "openai_v2/bandit_south.png",
@@ -3305,7 +3237,7 @@
     {
       "id": "bandit_captain",
       "name": "Bandit Captain",
-      "act": 1,
+      "act": null,
       "sprites": {
         "portrait": "openai_v2/bandit_captain_portrait.png",
         "south": "openai_v2/bandit_captain_south.png",
@@ -3320,94 +3252,9 @@
       "sourceDir": "openai_v2"
     },
     {
-      "id": "imp",
-      "name": "Imp",
-      "act": 1,
-      "sprites": {
-        "portrait": "openai_v2/imp_portrait.png",
-        "south": "openai_v2/imp_south.png",
-        "east": "openai_v2/imp_east.png",
-        "east_attack": "openai_v2/imp_east_attack.png",
-        "east_spell": "openai_v2/imp_east_spell.png",
-        "east_block": "openai_v2/imp_east_block.png",
-        "east_ko": "openai_v2/imp_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "hell_knight",
-      "name": "Hell Knight",
-      "act": 1,
-      "sprites": {
-        "portrait": "openai_v2/hell_knight_portrait.png",
-        "south": "openai_v2/hell_knight_south.png",
-        "east": "openai_v2/hell_knight_east.png",
-        "east_attack": "openai_v2/hell_knight_east_attack.png",
-        "east_spell": "openai_v2/hell_knight_east_spell.png",
-        "east_block": "openai_v2/hell_knight_east_block.png",
-        "east_ko": "openai_v2/hell_knight_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "void_shade",
-      "name": "Void Shade",
-      "act": 1,
-      "sprites": {
-        "portrait": "openai_v2/void_shade_portrait.png",
-        "south": "openai_v2/void_shade_south.png",
-        "east": "openai_v2/void_shade_east.png",
-        "east_attack": "openai_v2/void_shade_east_attack.png",
-        "east_spell": "openai_v2/void_shade_east_spell.png",
-        "east_block": "openai_v2/void_shade_east_block.png",
-        "east_ko": "openai_v2/void_shade_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "demon_brute",
-      "name": "Demon Brute",
-      "act": 1,
-      "sprites": {
-        "portrait": "openai_v2/demon_brute_portrait.png",
-        "south": "openai_v2/demon_brute_south.png",
-        "east": "openai_v2/demon_brute_east.png",
-        "east_attack": "openai_v2/demon_brute_east_attack.png",
-        "east_spell": "openai_v2/demon_brute_east_spell.png",
-        "east_block": "openai_v2/demon_brute_east_block.png",
-        "east_ko": "openai_v2/demon_brute_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "ash_wraith",
-      "name": "Ash Wraith",
-      "act": 1,
-      "sprites": {
-        "portrait": "openai_v2/ash_wraith_portrait.png",
-        "south": "openai_v2/ash_wraith_south.png",
-        "east": "openai_v2/ash_wraith_east.png",
-        "east_attack": "openai_v2/ash_wraith_east_attack.png",
-        "east_spell": "openai_v2/ash_wraith_east_spell.png",
-        "east_block": "openai_v2/ash_wraith_east_block.png",
-        "east_ko": "openai_v2/ash_wraith_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
       "id": "cinder_hound",
       "name": "Cinder Hound",
-      "act": 1,
+      "act": null,
       "sprites": {
         "portrait": "openai_v2/cinder_hound_portrait.png",
         "south": "openai_v2/cinder_hound_south.png",
@@ -3422,9 +3269,264 @@
       "sourceDir": "openai_v2"
     },
     {
+      "id": "corrupted_bear",
+      "name": "Corrupted Bear",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/corrupted_bear_portrait.png",
+        "south": "openai_v2/corrupted_bear_south.png",
+        "east": "openai_v2/corrupted_bear_east.png",
+        "east_attack": "openai_v2/corrupted_bear_east_attack.png",
+        "east_spell": "openai_v2/corrupted_bear_east_spell.png",
+        "east_block": "openai_v2/corrupted_bear_east_block.png",
+        "east_ko": "openai_v2/corrupted_bear_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "corrupted_wolf",
+      "name": "Corrupted Wolf",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/corrupted_wolf_portrait.png",
+        "south": "openai_v2/corrupted_wolf_south.png",
+        "east": "openai_v2/corrupted_wolf_east.png",
+        "east_attack": "openai_v2/corrupted_wolf_east_attack.png",
+        "east_spell": "openai_v2/corrupted_wolf_east_spell.png",
+        "east_block": "openai_v2/corrupted_wolf_east_block.png",
+        "east_ko": "openai_v2/corrupted_wolf_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "cosmic_titan",
+      "name": "Cosmic Titan",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/cosmic_titan_portrait.png",
+        "south": "spritecook/cosmic_titan_south.png",
+        "east": "spritecook/cosmic_titan_east.png",
+        "east_attack": "spritecook/cosmic_titan_east_attack.png",
+        "east_spell": "spritecook/cosmic_titan_east_spell.png",
+        "east_block": "spritecook/cosmic_titan_east_block.png",
+        "east_ko": "spritecook/cosmic_titan_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "demon_brute",
+      "name": "Demon Brute",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/demon_brute_portrait.png",
+        "south": "openai_v2/demon_brute_south.png",
+        "east": "openai_v2/demon_brute_east.png",
+        "east_attack": "openai_v2/demon_brute_east_attack.png",
+        "east_spell": "openai_v2/demon_brute_east_spell.png",
+        "east_block": "openai_v2/demon_brute_east_block.png",
+        "east_ko": "openai_v2/demon_brute_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "dragon_cultist",
+      "name": "Dragon Cultist",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/dragon_cultist_portrait.png",
+        "south": "openai_v2/dragon_cultist_south.png",
+        "east": "openai_v2/dragon_cultist_east.png",
+        "east_attack": "openai_v2/dragon_cultist_east_attack.png",
+        "east_spell": "openai_v2/dragon_cultist_east_spell.png",
+        "east_block": "openai_v2/dragon_cultist_east_block.png",
+        "east_ko": "openai_v2/dragon_cultist_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "dragon_whelp",
+      "name": "Dragon Whelp",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/dragon_whelp_portrait.png",
+        "south": "openai_v2/dragon_whelp_south.png",
+        "east": "openai_v2/dragon_whelp_east.png",
+        "east_attack": "openai_v2/dragon_whelp_east_attack.png",
+        "east_spell": "openai_v2/dragon_whelp_east_spell.png",
+        "east_block": "openai_v2/dragon_whelp_east_block.png",
+        "east_ko": "openai_v2/dragon_whelp_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "frost_wyrm",
+      "name": "Frost Wyrm",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/frost_wyrm_portrait.png",
+        "south": "spritecook/frost_wyrm_south.png",
+        "east": "spritecook/frost_wyrm_east.png",
+        "east_attack": "spritecook/frost_wyrm_east_attack.png",
+        "east_spell": "spritecook/frost_wyrm_east_spell.png",
+        "east_block": "spritecook/frost_wyrm_east_block.png",
+        "east_ko": "spritecook/frost_wyrm_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "genesis_worm",
+      "name": "Genesis Worm",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/genesis_worm_portrait.png",
+        "south": "openai_v2/genesis_worm_south.png",
+        "east": "openai_v2/genesis_worm_east.png",
+        "east_attack": "openai_v2/genesis_worm_east_attack.png",
+        "east_spell": "openai_v2/genesis_worm_east_spell.png",
+        "east_block": "openai_v2/genesis_worm_east_block.png",
+        "east_ko": "openai_v2/genesis_worm_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "giant_spider",
+      "name": "Giant Spider",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/giant_spider_portrait.png",
+        "south": "openai_v2/giant_spider_south.png",
+        "east": "openai_v2/giant_spider_east.png",
+        "east_attack": "openai_v2/giant_spider_east_attack.png",
+        "east_spell": "openai_v2/giant_spider_east_spell.png",
+        "east_block": "openai_v2/giant_spider_east_block.png",
+        "east_ko": "openai_v2/giant_spider_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "goblin_scout",
+      "name": "Goblin Scout",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/goblin_scout_portrait.png",
+        "south": "openai_v2/goblin_scout_south.png",
+        "east": "openai_v2/goblin_scout_east.png",
+        "east_attack": "openai_v2/goblin_scout_east_attack.png",
+        "east_spell": "openai_v2/goblin_scout_east_spell.png",
+        "east_block": "openai_v2/goblin_scout_east_block.png",
+        "east_ko": "openai_v2/goblin_scout_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "goblin_shaman",
+      "name": "Goblin Shaman",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/goblin_shaman_portrait.png",
+        "south": "openai_v2/goblin_shaman_south.png",
+        "east": "openai_v2/goblin_shaman_east.png",
+        "east_attack": "openai_v2/goblin_shaman_east_attack.png",
+        "east_spell": "openai_v2/goblin_shaman_east_spell.png",
+        "east_block": "openai_v2/goblin_shaman_east_block.png",
+        "east_ko": "openai_v2/goblin_shaman_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "goblin_warlord",
+      "name": "Goblin Warlord",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/goblin_warlord_portrait.png",
+        "south": "openai_v2/goblin_warlord_south.png",
+        "east": "openai_v2/goblin_warlord_east.png",
+        "east_attack": "openai_v2/goblin_warlord_east_attack.png",
+        "east_spell": "openai_v2/goblin_warlord_east_spell.png",
+        "east_block": "openai_v2/goblin_warlord_east_block.png",
+        "east_ko": "openai_v2/goblin_warlord_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "goblin_warrior",
+      "name": "Goblin Warrior",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/goblin_warrior_portrait.png",
+        "south": "openai_v2/goblin_warrior_south.png",
+        "east": "openai_v2/goblin_warrior_east.png",
+        "east_attack": "openai_v2/goblin_warrior_east_attack.png",
+        "east_spell": "openai_v2/goblin_warrior_east_spell.png",
+        "east_block": "openai_v2/goblin_warrior_east_block.png",
+        "east_ko": "openai_v2/goblin_warrior_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "hell_knight",
+      "name": "Hell Knight",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/hell_knight_portrait.png",
+        "south": "openai_v2/hell_knight_south.png",
+        "east": "openai_v2/hell_knight_east.png",
+        "east_attack": "openai_v2/hell_knight_east_attack.png",
+        "east_spell": "openai_v2/hell_knight_east_spell.png",
+        "east_block": "openai_v2/hell_knight_east_block.png",
+        "east_ko": "openai_v2/hell_knight_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "imp",
+      "name": "Imp",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/imp_portrait.png",
+        "south": "openai_v2/imp_south.png",
+        "east": "openai_v2/imp_east.png",
+        "east_attack": "openai_v2/imp_east_attack.png",
+        "east_spell": "openai_v2/imp_east_spell.png",
+        "east_block": "openai_v2/imp_east_block.png",
+        "east_ko": "openai_v2/imp_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
       "id": "molten_golem",
       "name": "Molten Golem",
-      "act": 1,
+      "act": null,
       "sprites": {
         "portrait": "openai_v2/molten_golem_portrait.png",
         "south": "openai_v2/molten_golem_south.png",
@@ -3439,9 +3541,77 @@
       "sourceDir": "openai_v2"
     },
     {
+      "id": "primordial_elemental",
+      "name": "Primordial Elemental",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/primordial_elemental_portrait.png",
+        "south": "openai_v2/primordial_elemental_south.png",
+        "east": "openai_v2/primordial_elemental_east.png",
+        "east_attack": "openai_v2/primordial_elemental_east_attack.png",
+        "east_spell": "openai_v2/primordial_elemental_east_spell.png",
+        "east_block": "openai_v2/primordial_elemental_east_block.png",
+        "east_ko": "openai_v2/primordial_elemental_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "reality_shard",
+      "name": "Reality Shard",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/reality_shard_portrait.png",
+        "south": "openai_v2/reality_shard_south.png",
+        "east": "openai_v2/reality_shard_east.png",
+        "east_attack": "openai_v2/reality_shard_east_attack.png",
+        "east_spell": "openai_v2/reality_shard_east_spell.png",
+        "east_block": "openai_v2/reality_shard_east_block.png",
+        "east_ko": "openai_v2/reality_shard_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "star_horror",
+      "name": "Star Horror",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/star_horror_portrait.png",
+        "south": "openai_v2/star_horror_south.png",
+        "east": "openai_v2/star_horror_east.png",
+        "east_attack": "openai_v2/star_horror_east_attack.png",
+        "east_spell": "openai_v2/star_horror_east_spell.png",
+        "east_block": "openai_v2/star_horror_east_block.png",
+        "east_ko": "openai_v2/star_horror_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "storm_dragon",
+      "name": "Storm Dragon",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/storm_dragon_portrait.png",
+        "south": "spritecook/storm_dragon_south.png",
+        "east": "spritecook/storm_dragon_east.png",
+        "east_attack": "spritecook/storm_dragon_east_attack.png",
+        "east_spell": "spritecook/storm_dragon_east_spell.png",
+        "east_block": "spritecook/storm_dragon_east_block.png",
+        "east_ko": "spritecook/storm_dragon_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
       "id": "veil_cultist",
       "name": "Veil Cultist",
-      "act": 1,
+      "act": null,
       "sprites": {
         "portrait": "openai_v2/veil_cultist_portrait.png",
         "south": "openai_v2/veil_cultist_south.png",
@@ -3458,7 +3628,7 @@
     {
       "id": "veil_sorcerer",
       "name": "Veil Sorcerer",
-      "act": 1,
+      "act": null,
       "sprites": {
         "portrait": "openai_v2/veil_sorcerer_portrait.png",
         "south": "openai_v2/veil_sorcerer_south.png",
@@ -3475,7 +3645,7 @@
     {
       "id": "veil_warden",
       "name": "Veil Warden",
-      "act": 1,
+      "act": null,
       "sprites": {
         "portrait": "openai_v2/veil_warden_portrait.png",
         "south": "openai_v2/veil_warden_south.png",
@@ -3490,189 +3660,17 @@
       "sourceDir": "openai_v2"
     },
     {
-      "id": "void_wraith",
-      "name": "Void Wraith",
-      "act": 4,
+      "id": "veilspawn_herald",
+      "name": "Veilspawn Herald",
+      "act": null,
       "sprites": {
-        "portrait": "openai_v2/void_wraith_portrait.png",
-        "south": "openai_v2/void_wraith_south.png",
-        "east": "openai_v2/void_wraith_east.png",
-        "east_attack": "openai_v2/void_wraith_east_attack.png",
-        "east_spell": "openai_v2/void_wraith_east_spell.png",
-        "east_block": "openai_v2/void_wraith_east_block.png",
-        "east_ko": "openai_v2/void_wraith_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "star_horror",
-      "name": "Star Horror",
-      "act": 4,
-      "sprites": {
-        "portrait": "openai_v2/star_horror_portrait.png",
-        "south": "openai_v2/star_horror_south.png",
-        "east": "openai_v2/star_horror_east.png",
-        "east_attack": "openai_v2/star_horror_east_attack.png",
-        "east_spell": "openai_v2/star_horror_east_spell.png",
-        "east_block": "openai_v2/star_horror_east_block.png",
-        "east_ko": "openai_v2/star_horror_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    }
-  ],
-  "bosses": [
-    {
-      "id": "archfiend_malgrath",
-      "name": "Archfiend Malgrath",
-      "act": 1,
-      "sprites": {
-        "portrait": "spritecook/archfiend_malgrath_portrait.png",
-        "south": "spritecook/archfiend_malgrath_south.png",
-        "east": "spritecook/archfiend_malgrath_east.png",
-        "east_attack": "spritecook/archfiend_malgrath_east_attack.png",
-        "east_spell": "spritecook/archfiend_malgrath_east_spell.png",
-        "east_block": "spritecook/archfiend_malgrath_east_block.png",
-        "east_ko": "spritecook/archfiend_malgrath_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "spritecook"
-    },
-    {
-      "id": "emberveil_sovereign",
-      "name": "The Emberveil Sovereign",
-      "act": 1,
-      "sprites": {
-        "portrait": "spritecook/emberveil_sovereign_portrait.png",
-        "south": "spritecook/emberveil_sovereign_south.png",
-        "east": "spritecook/emberveil_sovereign_east.png",
-        "east_attack": "spritecook/emberveil_sovereign_east_attack.png",
-        "east_spell": "spritecook/emberveil_sovereign_east_spell.png",
-        "east_block": "spritecook/emberveil_sovereign_east_block.png",
-        "east_ko": "spritecook/emberveil_sovereign_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "spritecook"
-    },
-    {
-      "id": "lava_titan",
-      "name": "The Lava Titan",
-      "act": 1,
-      "sprites": {
-        "portrait": "openai_v2/lava_titan_portrait.png",
-        "south": "openai_v2/lava_titan_south.png",
-        "east": "openai_v2/lava_titan_east.png",
-        "east_attack": "openai_v2/lava_titan_east_attack.png",
-        "east_spell": "openai_v2/lava_titan_east_spell.png",
-        "east_block": "openai_v2/lava_titan_east_block.png",
-        "east_ko": "openai_v2/lava_titan_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "grax_veil_touched",
-      "name": "Grax the Veil-Touched",
-      "act": 1,
-      "sprites": {
-        "portrait": "spritecook/grax_veil_touched_portrait.png",
-        "south": "spritecook/grax_veil_touched_south.png",
-        "east": "spritecook/grax_veil_touched_east.png",
-        "east_attack": "spritecook/grax_veil_touched_east_attack.png",
-        "east_spell": "spritecook/grax_veil_touched_east_spell.png",
-        "east_block": "spritecook/grax_veil_touched_east_block.png",
-        "east_ko": "spritecook/grax_veil_touched_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "spritecook"
-    },
-    {
-      "id": "primordial_elemental",
-      "name": "Primordial Elemental",
-      "act": 5,
-      "sprites": {
-        "portrait": "openai_v2/primordial_elemental_portrait.png",
-        "south": "openai_v2/primordial_elemental_south.png",
-        "east": "openai_v2/primordial_elemental_east.png",
-        "east_attack": "openai_v2/primordial_elemental_east_attack.png",
-        "east_spell": "openai_v2/primordial_elemental_east_spell.png",
-        "east_block": "openai_v2/primordial_elemental_east_block.png",
-        "east_ko": "openai_v2/primordial_elemental_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "abyssal_knight",
-      "name": "Abyssal Knight",
-      "act": 5,
-      "sprites": {
-        "portrait": "openai_v2/abyssal_knight_portrait.png",
-        "south": "openai_v2/abyssal_knight_south.png",
-        "east": "openai_v2/abyssal_knight_east.png",
-        "east_attack": "openai_v2/abyssal_knight_east_attack.png",
-        "east_spell": "openai_v2/abyssal_knight_east_spell.png",
-        "east_block": "openai_v2/abyssal_knight_east_block.png",
-        "east_ko": "openai_v2/abyssal_knight_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "reality_shard",
-      "name": "Reality Shard",
-      "act": 5,
-      "sprites": {
-        "portrait": "openai_v2/reality_shard_portrait.png",
-        "south": "openai_v2/reality_shard_south.png",
-        "east": "openai_v2/reality_shard_east.png",
-        "east_attack": "openai_v2/reality_shard_east_attack.png",
-        "east_spell": "openai_v2/reality_shard_east_spell.png",
-        "east_block": "openai_v2/reality_shard_east_block.png",
-        "east_ko": "openai_v2/reality_shard_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "genesis_worm",
-      "name": "Genesis Worm",
-      "act": 5,
-      "sprites": {
-        "portrait": "openai_v2/genesis_worm_portrait.png",
-        "south": "openai_v2/genesis_worm_south.png",
-        "east": "openai_v2/genesis_worm_east.png",
-        "east_attack": "openai_v2/genesis_worm_east_attack.png",
-        "east_spell": "openai_v2/genesis_worm_east_spell.png",
-        "east_block": "openai_v2/genesis_worm_east_block.png",
-        "east_ko": "openai_v2/genesis_worm_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "cosmic_titan",
-      "name": "Cosmic Titan",
-      "act": 4,
-      "sprites": {
-        "portrait": "spritecook/cosmic_titan_portrait.png",
-        "south": "spritecook/cosmic_titan_south.png",
-        "east": "spritecook/cosmic_titan_east.png",
-        "east_attack": "spritecook/cosmic_titan_east_attack.png",
-        "east_spell": "spritecook/cosmic_titan_east_spell.png",
-        "east_block": "spritecook/cosmic_titan_east_block.png",
-        "east_ko": "spritecook/cosmic_titan_east_ko.png"
+        "portrait": "spritecook/veilspawn_herald_portrait.png",
+        "south": "spritecook/veilspawn_herald_south.png",
+        "east": "spritecook/veilspawn_herald_east.png",
+        "east_attack": "spritecook/veilspawn_herald_east_attack.png",
+        "east_spell": "spritecook/veilspawn_herald_east_spell.png",
+        "east_block": "spritecook/veilspawn_herald_east_block.png",
+        "east_ko": "spritecook/veilspawn_herald_east_ko.png"
       },
       "spriteCount": 7,
       "missingPoses": [],
@@ -3681,7 +3679,7 @@
     {
       "id": "void_prophet",
       "name": "Void Prophet",
-      "act": 4,
+      "act": null,
       "sprites": {
         "portrait": "openai_v2/void_prophet_portrait.png",
         "south": "openai_v2/void_prophet_south.png",
@@ -3696,17 +3694,34 @@
       "sourceDir": "openai_v2"
     },
     {
-      "id": "dragon_whelp",
-      "name": "Dragon Whelp",
-      "act": 6,
+      "id": "void_shade",
+      "name": "Void Shade",
+      "act": null,
       "sprites": {
-        "portrait": "openai_v2/dragon_whelp_portrait.png",
-        "south": "openai_v2/dragon_whelp_south.png",
-        "east": "openai_v2/dragon_whelp_east.png",
-        "east_attack": "openai_v2/dragon_whelp_east_attack.png",
-        "east_spell": "openai_v2/dragon_whelp_east_spell.png",
-        "east_block": "openai_v2/dragon_whelp_east_block.png",
-        "east_ko": "openai_v2/dragon_whelp_east_ko.png"
+        "portrait": "openai_v2/void_shade_portrait.png",
+        "south": "openai_v2/void_shade_south.png",
+        "east": "openai_v2/void_shade_east.png",
+        "east_attack": "openai_v2/void_shade_east_attack.png",
+        "east_spell": "openai_v2/void_shade_east_spell.png",
+        "east_block": "openai_v2/void_shade_east_block.png",
+        "east_ko": "openai_v2/void_shade_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "void_wraith",
+      "name": "Void Wraith",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/void_wraith_portrait.png",
+        "south": "openai_v2/void_wraith_south.png",
+        "east": "openai_v2/void_wraith_east.png",
+        "east_attack": "openai_v2/void_wraith_east_attack.png",
+        "east_spell": "openai_v2/void_wraith_east_spell.png",
+        "east_block": "openai_v2/void_wraith_east_block.png",
+        "east_ko": "openai_v2/void_wraith_east_ko.png"
       },
       "spriteCount": 7,
       "missingPoses": [],
@@ -3715,7 +3730,7 @@
     {
       "id": "wyrm_warrior",
       "name": "Wyrm Warrior",
-      "act": 6,
+      "act": null,
       "sprites": {
         "portrait": "openai_v2/wyrm_warrior_portrait.png",
         "south": "openai_v2/wyrm_warrior_south.png",
@@ -3728,62 +3743,13 @@
       "spriteCount": 7,
       "missingPoses": [],
       "sourceDir": "openai_v2"
-    },
-    {
-      "id": "dragon_cultist",
-      "name": "Dragon Cultist",
-      "act": 6,
-      "sprites": {
-        "portrait": "openai_v2/dragon_cultist_portrait.png",
-        "south": "openai_v2/dragon_cultist_south.png",
-        "east": "openai_v2/dragon_cultist_east.png",
-        "east_attack": "openai_v2/dragon_cultist_east_attack.png",
-        "east_spell": "openai_v2/dragon_cultist_east_spell.png",
-        "east_block": "openai_v2/dragon_cultist_east_block.png",
-        "east_ko": "openai_v2/dragon_cultist_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "openai_v2"
-    },
-    {
-      "id": "frost_wyrm",
-      "name": "Frost Wyrm",
-      "act": 6,
-      "sprites": {
-        "portrait": "spritecook/frost_wyrm_portrait.png",
-        "south": "spritecook/frost_wyrm_south.png",
-        "east": "spritecook/frost_wyrm_east.png",
-        "east_attack": "spritecook/frost_wyrm_east_attack.png",
-        "east_spell": "spritecook/frost_wyrm_east_spell.png",
-        "east_block": "spritecook/frost_wyrm_east_block.png",
-        "east_ko": "spritecook/frost_wyrm_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "spritecook"
-    },
-    {
-      "id": "storm_dragon",
-      "name": "Storm Dragon",
-      "act": 6,
-      "sprites": {
-        "portrait": "spritecook/storm_dragon_portrait.png",
-        "south": "spritecook/storm_dragon_south.png",
-        "east": "spritecook/storm_dragon_east.png",
-        "east_attack": "spritecook/storm_dragon_east_attack.png",
-        "east_spell": "spritecook/storm_dragon_east_spell.png",
-        "east_block": "spritecook/storm_dragon_east_block.png",
-        "east_ko": "spritecook/storm_dragon_east_ko.png"
-      },
-      "spriteCount": 7,
-      "missingPoses": [],
-      "sourceDir": "spritecook"
-    },
+    }
+  ],
+  "bosses": [
     {
       "id": "ancient_dragon",
       "name": "Ancient Dragon",
-      "act": 6,
+      "act": null,
       "sprites": {
         "portrait": "spritecook/ancient_dragon_portrait.png",
         "south": "spritecook/ancient_dragon_south.png",
@@ -3792,6 +3758,193 @@
         "east_spell": "spritecook/ancient_dragon_east_spell.png",
         "east_block": "spritecook/ancient_dragon_east_block.png",
         "east_ko": "spritecook/ancient_dragon_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "archfiend_malgrath",
+      "name": "Archfiend Malgrath",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/archfiend_malgrath_portrait.png",
+        "south": "spritecook/archfiend_malgrath_south.png",
+        "east": "spritecook/archfiend_malgrath_east.png",
+        "east_attack": "spritecook/archfiend_malgrath_east_attack.png",
+        "east_spell": "spritecook/archfiend_malgrath_east_spell.png",
+        "east_block": "spritecook/archfiend_malgrath_east_block.png",
+        "east_ko": "spritecook/archfiend_malgrath_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "dragon_king",
+      "name": "Bahamorth, the Dragon King",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/dragon_king_portrait.png",
+        "south": "spritecook/dragon_king_south.png",
+        "east": "spritecook/dragon_king_east.png",
+        "east_attack": "spritecook/dragon_king_east_attack.png",
+        "east_spell": "spritecook/dragon_king_east_spell.png",
+        "east_block": "spritecook/dragon_king_east_block.png",
+        "east_ko": "spritecook/dragon_king_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "echo_sovereign",
+      "name": "Echo of the Sovereign",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/echo_sovereign_portrait.png",
+        "south": "spritecook/echo_sovereign_south.png",
+        "east": "spritecook/echo_sovereign_east.png",
+        "east_attack": "spritecook/echo_sovereign_east_attack.png",
+        "east_spell": "spritecook/echo_sovereign_east_spell.png",
+        "east_block": "spritecook/echo_sovereign_east_block.png",
+        "east_ko": "spritecook/echo_sovereign_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "emberveil_sovereign",
+      "name": "The Emberveil Sovereign",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/emberveil_sovereign_portrait.png",
+        "south": "spritecook/emberveil_sovereign_south.png",
+        "east": "spritecook/emberveil_sovereign_east.png",
+        "east_attack": "spritecook/emberveil_sovereign_east_attack.png",
+        "east_spell": "spritecook/emberveil_sovereign_east_spell.png",
+        "east_block": "spritecook/emberveil_sovereign_east_block.png",
+        "east_ko": "spritecook/emberveil_sovereign_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "grax_veil_touched",
+      "name": "Grax the Veil-Touched",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/grax_veil_touched_portrait.png",
+        "south": "spritecook/grax_veil_touched_south.png",
+        "east": "spritecook/grax_veil_touched_east.png",
+        "east_attack": "spritecook/grax_veil_touched_east_attack.png",
+        "east_spell": "spritecook/grax_veil_touched_east_spell.png",
+        "east_block": "spritecook/grax_veil_touched_east_block.png",
+        "east_ko": "spritecook/grax_veil_touched_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "lava_titan",
+      "name": "The Lava Titan",
+      "act": null,
+      "sprites": {
+        "portrait": "openai_v2/lava_titan_portrait.png",
+        "south": "openai_v2/lava_titan_south.png",
+        "east": "openai_v2/lava_titan_east.png",
+        "east_attack": "openai_v2/lava_titan_east_attack.png",
+        "east_spell": "openai_v2/lava_titan_east_spell.png",
+        "east_block": "openai_v2/lava_titan_east_block.png",
+        "east_ko": "openai_v2/lava_titan_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "openai_v2"
+    },
+    {
+      "id": "the_architect",
+      "name": "The Architect",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/the_architect_portrait.png",
+        "south": "spritecook/the_architect_south.png",
+        "east": "spritecook/the_architect_east.png",
+        "east_attack": "spritecook/the_architect_east_attack.png",
+        "east_spell": "spritecook/the_architect_east_spell.png",
+        "east_block": "spritecook/the_architect_east_block.png",
+        "east_ko": "spritecook/the_architect_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "the_first_ember",
+      "name": "The First Ember",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/the_first_ember_portrait.png",
+        "south": "spritecook/the_first_ember_south.png",
+        "east": "spritecook/the_first_ember_east.png",
+        "east_attack": "spritecook/the_first_ember_east_attack.png",
+        "east_spell": "spritecook/the_first_ember_east_spell.png",
+        "east_block": "spritecook/the_first_ember_east_block.png",
+        "east_ko": "spritecook/the_first_ember_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "the_unraveler",
+      "name": "The Unraveler",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/the_unraveler_portrait.png",
+        "south": "spritecook/the_unraveler_south.png",
+        "east": "spritecook/the_unraveler_east.png",
+        "east_attack": "spritecook/the_unraveler_east_attack.png",
+        "east_spell": "spritecook/the_unraveler_east_spell.png",
+        "east_block": "spritecook/the_unraveler_east_block.png",
+        "east_ko": "spritecook/the_unraveler_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "vault_guardian",
+      "name": "The Vault Guardian",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/vault_guardian_portrait.png",
+        "south": "spritecook/vault_guardian_south.png",
+        "east": "spritecook/vault_guardian_east.png",
+        "east_attack": "spritecook/vault_guardian_east_attack.png",
+        "east_spell": "spritecook/vault_guardian_east_spell.png",
+        "east_block": "spritecook/vault_guardian_east_block.png",
+        "east_ko": "spritecook/vault_guardian_east_ko.png"
+      },
+      "spriteCount": 7,
+      "missingPoses": [],
+      "sourceDir": "spritecook"
+    },
+    {
+      "id": "void_scholar",
+      "name": "The Void Scholar",
+      "act": null,
+      "sprites": {
+        "portrait": "spritecook/void_scholar_portrait.png",
+        "south": "spritecook/void_scholar_south.png",
+        "east": "spritecook/void_scholar_east.png",
+        "east_attack": "spritecook/void_scholar_east_attack.png",
+        "east_spell": "spritecook/void_scholar_east_spell.png",
+        "east_block": "spritecook/void_scholar_east_block.png",
+        "east_ko": "spritecook/void_scholar_east_ko.png"
       },
       "spriteCount": 7,
       "missingPoses": [],
@@ -7950,41 +8103,6 @@
       "name": "rift_boss_portrait"
     },
     {
-      "file": "images/spritecook/the_architect_east_attack.png",
-      "dir": "spritecook",
-      "name": "the_architect_east_attack"
-    },
-    {
-      "file": "images/spritecook/the_architect_east_block.png",
-      "dir": "spritecook",
-      "name": "the_architect_east_block"
-    },
-    {
-      "file": "images/spritecook/the_architect_east_ko.png",
-      "dir": "spritecook",
-      "name": "the_architect_east_ko"
-    },
-    {
-      "file": "images/spritecook/the_architect_east_spell.png",
-      "dir": "spritecook",
-      "name": "the_architect_east_spell"
-    },
-    {
-      "file": "images/spritecook/the_architect_east.png",
-      "dir": "spritecook",
-      "name": "the_architect_east"
-    },
-    {
-      "file": "images/spritecook/the_architect_portrait.png",
-      "dir": "spritecook",
-      "name": "the_architect_portrait"
-    },
-    {
-      "file": "images/spritecook/the_architect_south.png",
-      "dir": "spritecook",
-      "name": "the_architect_south"
-    },
-    {
       "file": "images/spritecook/thornwood_boss_east_block.png",
       "dir": "spritecook",
       "name": "thornwood_boss_east_block"
@@ -7998,41 +8116,6 @@
       "file": "images/spritecook/thornwood_boss_portrait.png",
       "dir": "spritecook",
       "name": "thornwood_boss_portrait"
-    },
-    {
-      "file": "images/spritecook/veilspawn_herald_east_attack.png",
-      "dir": "spritecook",
-      "name": "veilspawn_herald_east_attack"
-    },
-    {
-      "file": "images/spritecook/veilspawn_herald_east_block.png",
-      "dir": "spritecook",
-      "name": "veilspawn_herald_east_block"
-    },
-    {
-      "file": "images/spritecook/veilspawn_herald_east_ko.png",
-      "dir": "spritecook",
-      "name": "veilspawn_herald_east_ko"
-    },
-    {
-      "file": "images/spritecook/veilspawn_herald_east_spell.png",
-      "dir": "spritecook",
-      "name": "veilspawn_herald_east_spell"
-    },
-    {
-      "file": "images/spritecook/veilspawn_herald_east.png",
-      "dir": "spritecook",
-      "name": "veilspawn_herald_east"
-    },
-    {
-      "file": "images/spritecook/veilspawn_herald_portrait.png",
-      "dir": "spritecook",
-      "name": "veilspawn_herald_portrait"
-    },
-    {
-      "file": "images/spritecook/veilspawn_herald_south.png",
-      "dir": "spritecook",
-      "name": "veilspawn_herald_south"
     },
     {
       "file": "images/spritecook/void_boss_east_block.png",
@@ -9140,34 +9223,14 @@
       "name": "the_architect_death"
     },
     {
-      "file": "images/sprites/the_architect_east_attack.png",
-      "dir": "sprites",
-      "name": "the_architect_east_attack"
-    },
-    {
       "file": "images/sprites/the_architect_east_flipped.png",
       "dir": "sprites",
       "name": "the_architect_east_flipped"
     },
     {
-      "file": "images/sprites/the_architect_east_spell.png",
-      "dir": "sprites",
-      "name": "the_architect_east_spell"
-    },
-    {
-      "file": "images/sprites/the_architect_east.png",
-      "dir": "sprites",
-      "name": "the_architect_east"
-    },
-    {
       "file": "images/sprites/the_architect_north.png",
       "dir": "sprites",
       "name": "the_architect_north"
-    },
-    {
-      "file": "images/sprites/the_architect_south.png",
-      "dir": "sprites",
-      "name": "the_architect_south"
     },
     {
       "file": "images/sprites/the_architect_west.png",
@@ -9414,7 +9477,7 @@
     {
       "id": "clockwork_turret",
       "name": "Clockwork Turret",
-      "kind": "appearance",
+      "kind": "class",
       "poses": [
         "east_spell",
         "east_block"
@@ -9443,6 +9506,19 @@
         "openai_v2/pet_war_hound_east_block.png",
         "spritecook/pet_war_hound_east_block.png",
         "sprites/pet_war_hound_east_block.png"
+      ]
+    },
+    {
+      "id": "war_dog",
+      "name": "War Dog",
+      "kind": "companion",
+      "poses": [
+        "east_block"
+      ],
+      "tried": [
+        "openai_v2/war_dog_east_block.png",
+        "spritecook/war_dog_east_block.png",
+        "sprites/war_dog_east_block.png"
       ]
     },
     {
@@ -9777,27 +9853,14 @@
         "spritecook/ysolde_cogwright_east_ko.png",
         "sprites/ysolde_cogwright_east_ko.png"
       ]
-    },
-    {
-      "id": "war_dog",
-      "name": "War Dog",
-      "kind": "companion",
-      "poses": [
-        "east_block"
-      ],
-      "tried": [
-        "openai_v2/war_dog_east_block.png",
-        "spritecook/war_dog_east_block.png",
-        "sprites/war_dog_east_block.png"
-      ]
     }
   ],
   "totals": {
     "appearances": 84,
     "companions": 35,
-    "enemies": 20,
-    "bosses": 16,
-    "orphans": 1122,
+    "enemies": 33,
+    "bosses": 12,
+    "orphans": 1104,
     "missing": 12
   }
 }

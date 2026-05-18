@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-13T15:34:15.296Z",
+  "generated": "2026-05-18T20:35:51.328Z",
   "savesDir": "/home/radgh/claude/assets/references/emberveil/saves",
   "totalFiles": 10,
   "pass": 10,
@@ -9,7 +9,11 @@
       "file": "emberveil-save-hero-2026-04-25.json",
       "pass": true,
       "errors": [],
-      "warnings": [],
+      "warnings": [
+        "id-presence: companion templateId \"hire_knight_knight_1\" (member \"Ylva\") not found in canonical companions.json",
+        "id-presence: companion templateId \"hire_fighter_fighter_female_1\" (member \"Liora\") not found in canonical companions.json",
+        "id-presence: companion templateId \"hire_stormcaller_stormcaller_female_1\" (member \"Gwen\") not found in canonical companions.json"
+      ],
       "fields": {
         "party": true,
         "gold": true,
@@ -84,7 +88,9 @@
       "file": "emberveil-save-rouge_the_rogue-2026-04-27.json",
       "pass": true,
       "errors": [],
-      "warnings": [],
+      "warnings": [
+        "id-presence: companion templateId \"hire_stormcaller_stormcaller_1\" (member \"Lorik\") not found in canonical companions.json"
+      ],
       "fields": {
         "party": true,
         "gold": true,

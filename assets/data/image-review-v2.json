@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-05-16T21:09:55.493Z"
+    "generated": "2026-05-18T20:33:47.709Z"
   },
   "characters": [
     {
@@ -394,62 +394,6 @@
       "pose": "east_ko",
       "file": "../images/spritecook/cleric_east_ko.png",
       "prompt": "IDENTITY (must match reference sheet exactly): Human WOMAN (female), about 26 years old, soft round adult face, warm brown eyes, LONG CHESTNUT-BROWN HAIR (NOT BALD, hair clearly visible — golden-brown bangs and side locks falling from beneath the hood around the face).\n\nOUTFIT: White hooded robe with gold-trim borders (hood worn UP covering the back of the head but framing the face — hair shows at the front), white shoulder cape, a wooden cross-shaped holy symbol on a gold chain over the chest.\n\nWEAPONS: A gray iron spiked mace held upright in the left hand, dark wooden haft with a simple golden pommel.\n\nPOSE (east_ko): East-facing, kneeling, head bowed in prayer, mace laid on the ground in front of her, robe pooled around her.\n\nFRAMING (non-negotiable): FULL-BODY shot head-to-toe. Entire figure fits inside the 256x256 canvas: feet fully visible with ~6-8% clearance above the bottom edge (NEVER cropped, NEVER cut off), head with ~6-8% headroom above the hair (NEVER cropped). Figure occupies ~85% of canvas height, centered. NOT a bust, NOT waist-up, NOT a three-quarter body crop. Camera pulled back for a full-body reference. Match cross-roster scale: same pixel height as every other adult humanoid in this sprite set.\n\nAGE & PROPORTIONS (non-negotiable): character is a fully-grown adult about 28-32 years old with standard heroic adult proportions (approximately 6 feet / 180 cm tall in-world). NOT a child, NOT a teenager, NOT elderly, NOT a graybeard wizard.\n\nBODY PROPORTIONS (non-negotiable): realistic adult human head-to-body ratio — the head is approximately 1/7 to 1/8 of the total body height. TALL and SLENDER with long adult legs (roughly half of total height), a full-length adult torso, and normal-sized adult shoulders. NOT chibi, NOT bobblehead, NOT big-head-small-body, NOT child-bodied, NOT stubby. The silhouette must read as a tall adult, never as a kid in adult clothes.\n\nCROSS-ROSTER SCALE (non-negotiable, IDENTICAL for every humanoid): a standard adult human is 180 cm tall in-world and MUST render at the SAME relative pixel height as every other adult humanoid in this sprite set. Fighter, Knight, Paladin, Rogue, Cleric, Mage, etc all read at the same size — never one character much taller or much shorter than another of the same 180 cm baseline. The only permitted variance is small natural adult build differences (slender vs broad), never scale differences. Do not zoom in on smaller characters or zoom out on larger ones.\n\nFRAMING & CANVAS USE (non-negotiable): full-body figure occupies ~85% of the 256x256 canvas height, centered horizontally. Feet rest ~6-8% above the bottom canvas edge (fully visible, NEVER cropped, NEVER touching the edge, NEVER cut off by the frame). Head has ~6-8% headroom above the hair (NEVER cropped). The head is ~12-13% of canvas height (~1/7.5 of body). This applies to south, east, east_attack, east_spell, east_block, east_ko — ALL action poses. Weapons may extend laterally but the character body (feet-to-head) must remain inside the canvas with clearance. Portrait is the ONLY exception and uses a bust-shot crop.\n\nFOOTWEAR (non-negotiable default): the character wears appropriate footwear — leather boots, armored sabatons, soft cloth shoes, sandals, or similar — NEVER barefoot unless the OUTFIT field explicitly specifies bare feet. Feet are always shod in game-appropriate footwear for the class.\n\nLIGHTING (non-negotiable): bright evenly-lit pixel art, NOT silhouetted, NOT overly dark, NOT cast in deep shadow. All colors, facial features, and outfit details must be fully readable.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in — respect SCALE. Avoid anything in bannedSubstrings."
-    },
-    {
-      "id": "hero_cleric_priestess_portrait",
-      "category": "hero",
-      "group": "cleric_priestess",
-      "pose": "portrait",
-      "file": "../images/spritecook/cleric_priestess_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "hero_cleric_priestess_south",
-      "category": "hero",
-      "group": "cleric_priestess",
-      "pose": "south",
-      "file": "../images/spritecook/cleric_priestess_south.png",
-      "prompt": null
-    },
-    {
-      "id": "hero_cleric_priestess_east",
-      "category": "hero",
-      "group": "cleric_priestess",
-      "pose": "east",
-      "file": "../images/spritecook/cleric_priestess_east.png",
-      "prompt": null
-    },
-    {
-      "id": "hero_cleric_priestess_east_attack",
-      "category": "hero",
-      "group": "cleric_priestess",
-      "pose": "east_attack",
-      "file": "../images/spritecook/cleric_priestess_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "hero_cleric_priestess_east_spell",
-      "category": "hero",
-      "group": "cleric_priestess",
-      "pose": "east_spell",
-      "file": "../images/spritecook/cleric_priestess_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "hero_cleric_priestess_east_block",
-      "category": "hero",
-      "group": "cleric_priestess",
-      "pose": "east_block",
-      "file": "../images/spritecook/cleric_priestess_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "hero_cleric_priestess_east_ko",
-      "category": "hero",
-      "group": "cleric_priestess",
-      "pose": "east_ko",
-      "file": "../images/spritecook/cleric_priestess_east_ko.png",
-      "prompt": null
     },
     {
       "id": "hero_bard_portrait",
@@ -3460,6 +3404,62 @@
       "prompt": "Human MAN (male), about 32 years old, calm solemn face, pale skin, short black hair with a trimmed beard.\n\nDark indigo-and-charcoal hooded ceremonial robe with silver moon-and-crescent embroidery on the chest. Hood worn UP framing the face.\n\nIron prayer-mace, dark wooden haft. Silver crescent pendant on a fine chain at the chest, faintly glowing."
     },
     {
+      "id": "hero_cleric_priestess_portrait",
+      "category": "hero",
+      "group": "cleric_priestess",
+      "pose": "portrait",
+      "file": "../images/spritecook/cleric_priestess_portrait.png",
+      "prompt": null
+    },
+    {
+      "id": "hero_cleric_priestess_south",
+      "category": "hero",
+      "group": "cleric_priestess",
+      "pose": "south",
+      "file": "../images/spritecook/cleric_priestess_south.png",
+      "prompt": null
+    },
+    {
+      "id": "hero_cleric_priestess_east",
+      "category": "hero",
+      "group": "cleric_priestess",
+      "pose": "east",
+      "file": "../images/spritecook/cleric_priestess_east.png",
+      "prompt": null
+    },
+    {
+      "id": "hero_cleric_priestess_east_attack",
+      "category": "hero",
+      "group": "cleric_priestess",
+      "pose": "east_attack",
+      "file": "../images/spritecook/cleric_priestess_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "hero_cleric_priestess_east_spell",
+      "category": "hero",
+      "group": "cleric_priestess",
+      "pose": "east_spell",
+      "file": "../images/spritecook/cleric_priestess_east_spell.png",
+      "prompt": null
+    },
+    {
+      "id": "hero_cleric_priestess_east_block",
+      "category": "hero",
+      "group": "cleric_priestess",
+      "pose": "east_block",
+      "file": "../images/spritecook/cleric_priestess_east_block.png",
+      "prompt": null
+    },
+    {
+      "id": "hero_cleric_priestess_east_ko",
+      "category": "hero",
+      "group": "cleric_priestess",
+      "pose": "east_ko",
+      "file": "../images/spritecook/cleric_priestess_east_ko.png",
+      "prompt": null
+    },
+    {
       "id": "hero_silas_veilward_portrait",
       "category": "hero",
       "group": "silas_veilward",
@@ -4636,43 +4636,43 @@
       "prompt": null
     },
     {
-      "id": "companion_pet_skeletal_warrior_portrait",
+      "id": "companion_pet_bear_portrait",
       "category": "companion",
-      "group": "pet_skeletal_warrior",
+      "group": "pet_bear",
       "pose": "portrait",
-      "file": "../images/openai_v2/pet_skeletal_warrior_portrait.png",
+      "file": "../images/openai_v2/pet_bear_portrait.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_skeletal_warrior_south",
+      "id": "companion_pet_bear_south",
       "category": "companion",
-      "group": "pet_skeletal_warrior",
+      "group": "pet_bear",
       "pose": "south",
-      "file": "../images/openai_v2/pet_skeletal_warrior_south.png",
+      "file": "../images/openai_v2/pet_bear_south.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_skeletal_warrior_east",
+      "id": "companion_pet_bear_east",
       "category": "companion",
-      "group": "pet_skeletal_warrior",
+      "group": "pet_bear",
       "pose": "east",
-      "file": "../images/openai_v2/pet_skeletal_warrior_east.png",
+      "file": "../images/openai_v2/pet_bear_east.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_skeletal_warrior_east_attack",
+      "id": "companion_pet_bear_east_attack",
       "category": "companion",
-      "group": "pet_skeletal_warrior",
+      "group": "pet_bear",
       "pose": "east_attack",
-      "file": "../images/openai_v2/pet_skeletal_warrior_east_attack.png",
+      "file": "../images/openai_v2/pet_bear_east_attack.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_skeletal_warrior_east_ko",
+      "id": "companion_pet_bear_east_ko",
       "category": "companion",
-      "group": "pet_skeletal_warrior",
+      "group": "pet_bear",
       "pose": "east_ko",
-      "file": "../images/openai_v2/pet_skeletal_warrior_east_ko.png",
+      "file": "../images/openai_v2/pet_bear_east_ko.png",
       "prompt": null
     },
     {
@@ -4716,123 +4716,43 @@
       "prompt": null
     },
     {
-      "id": "companion_pet_wolf_portrait",
+      "id": "companion_pet_clockwork_turret_portrait",
       "category": "companion",
-      "group": "pet_wolf",
+      "group": "pet_clockwork_turret",
       "pose": "portrait",
-      "file": "../images/openai_v2/pet_wolf_portrait.png",
+      "file": "../images/openai_v2/pet_clockwork_turret_portrait.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_wolf_south",
+      "id": "companion_pet_clockwork_turret_south",
       "category": "companion",
-      "group": "pet_wolf",
+      "group": "pet_clockwork_turret",
       "pose": "south",
-      "file": "../images/openai_v2/pet_wolf_south.png",
+      "file": "../images/openai_v2/pet_clockwork_turret_south.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_wolf_east",
+      "id": "companion_pet_clockwork_turret_east",
       "category": "companion",
-      "group": "pet_wolf",
+      "group": "pet_clockwork_turret",
       "pose": "east",
-      "file": "../images/openai_v2/pet_wolf_east.png",
+      "file": "../images/openai_v2/pet_clockwork_turret_east.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_wolf_east_attack",
+      "id": "companion_pet_clockwork_turret_east_attack",
       "category": "companion",
-      "group": "pet_wolf",
+      "group": "pet_clockwork_turret",
       "pose": "east_attack",
-      "file": "../images/openai_v2/pet_wolf_east_attack.png",
+      "file": "../images/openai_v2/pet_clockwork_turret_east_attack.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_wolf_east_ko",
+      "id": "companion_pet_clockwork_turret_east_ko",
       "category": "companion",
-      "group": "pet_wolf",
+      "group": "pet_clockwork_turret",
       "pose": "east_ko",
-      "file": "../images/openai_v2/pet_wolf_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_pet_bear_portrait",
-      "category": "companion",
-      "group": "pet_bear",
-      "pose": "portrait",
-      "file": "../images/openai_v2/pet_bear_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_pet_bear_south",
-      "category": "companion",
-      "group": "pet_bear",
-      "pose": "south",
-      "file": "../images/openai_v2/pet_bear_south.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_pet_bear_east",
-      "category": "companion",
-      "group": "pet_bear",
-      "pose": "east",
-      "file": "../images/openai_v2/pet_bear_east.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_pet_bear_east_attack",
-      "category": "companion",
-      "group": "pet_bear",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/pet_bear_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_pet_bear_east_ko",
-      "category": "companion",
-      "group": "pet_bear",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/pet_bear_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_pet_imp_portrait",
-      "category": "companion",
-      "group": "pet_imp",
-      "pose": "portrait",
-      "file": "../images/openai_v2/pet_imp_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_pet_imp_south",
-      "category": "companion",
-      "group": "pet_imp",
-      "pose": "south",
-      "file": "../images/openai_v2/pet_imp_south.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_pet_imp_east",
-      "category": "companion",
-      "group": "pet_imp",
-      "pose": "east",
-      "file": "../images/openai_v2/pet_imp_east.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_pet_imp_east_attack",
-      "category": "companion",
-      "group": "pet_imp",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/pet_imp_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_pet_imp_east_ko",
-      "category": "companion",
-      "group": "pet_imp",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/pet_imp_east_ko.png",
+      "file": "../images/openai_v2/pet_clockwork_turret_east_ko.png",
       "prompt": null
     },
     {
@@ -4876,43 +4796,43 @@
       "prompt": null
     },
     {
-      "id": "companion_pet_war_hound_portrait",
+      "id": "companion_pet_familiar_portrait",
       "category": "companion",
-      "group": "pet_war_hound",
+      "group": "pet_familiar",
       "pose": "portrait",
-      "file": "../images/spritecook/pet_war_hound_portrait.png",
+      "file": "../images/openai_v2/pet_familiar_portrait.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_war_hound_south",
+      "id": "companion_pet_familiar_south",
       "category": "companion",
-      "group": "pet_war_hound",
+      "group": "pet_familiar",
       "pose": "south",
-      "file": "../images/spritecook/pet_war_hound_south.png",
+      "file": "../images/openai_v2/pet_familiar_south.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_war_hound_east",
+      "id": "companion_pet_familiar_east",
       "category": "companion",
-      "group": "pet_war_hound",
+      "group": "pet_familiar",
       "pose": "east",
-      "file": "../images/spritecook/pet_war_hound_east.png",
+      "file": "../images/openai_v2/pet_familiar_east.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_war_hound_east_attack",
+      "id": "companion_pet_familiar_east_attack",
       "category": "companion",
-      "group": "pet_war_hound",
+      "group": "pet_familiar",
       "pose": "east_attack",
-      "file": "../images/spritecook/pet_war_hound_east_attack.png",
+      "file": "../images/openai_v2/pet_familiar_east_attack.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_war_hound_east_ko",
+      "id": "companion_pet_familiar_east_ko",
       "category": "companion",
-      "group": "pet_war_hound",
+      "group": "pet_familiar",
       "pose": "east_ko",
-      "file": "../images/spritecook/pet_war_hound_east_ko.png",
+      "file": "../images/openai_v2/pet_familiar_east_ko.png",
       "prompt": null
     },
     {
@@ -4956,6 +4876,46 @@
       "prompt": null
     },
     {
+      "id": "companion_pet_imp_portrait",
+      "category": "companion",
+      "group": "pet_imp",
+      "pose": "portrait",
+      "file": "../images/openai_v2/pet_imp_portrait.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_pet_imp_south",
+      "category": "companion",
+      "group": "pet_imp",
+      "pose": "south",
+      "file": "../images/openai_v2/pet_imp_south.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_pet_imp_east",
+      "category": "companion",
+      "group": "pet_imp",
+      "pose": "east",
+      "file": "../images/openai_v2/pet_imp_east.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_pet_imp_east_attack",
+      "category": "companion",
+      "group": "pet_imp",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/pet_imp_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_pet_imp_east_ko",
+      "category": "companion",
+      "group": "pet_imp",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/pet_imp_east_ko.png",
+      "prompt": null
+    },
+    {
       "id": "companion_pet_lightning_elemental_portrait",
       "category": "companion",
       "group": "pet_lightning_elemental",
@@ -4996,83 +4956,203 @@
       "prompt": null
     },
     {
-      "id": "companion_pet_familiar_portrait",
+      "id": "companion_pet_skeletal_warrior_portrait",
       "category": "companion",
-      "group": "pet_familiar",
+      "group": "pet_skeletal_warrior",
       "pose": "portrait",
-      "file": "../images/openai_v2/pet_familiar_portrait.png",
+      "file": "../images/openai_v2/pet_skeletal_warrior_portrait.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_familiar_south",
+      "id": "companion_pet_skeletal_warrior_south",
       "category": "companion",
-      "group": "pet_familiar",
+      "group": "pet_skeletal_warrior",
       "pose": "south",
-      "file": "../images/openai_v2/pet_familiar_south.png",
+      "file": "../images/openai_v2/pet_skeletal_warrior_south.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_familiar_east",
+      "id": "companion_pet_skeletal_warrior_east",
       "category": "companion",
-      "group": "pet_familiar",
+      "group": "pet_skeletal_warrior",
       "pose": "east",
-      "file": "../images/openai_v2/pet_familiar_east.png",
+      "file": "../images/openai_v2/pet_skeletal_warrior_east.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_familiar_east_attack",
+      "id": "companion_pet_skeletal_warrior_east_attack",
       "category": "companion",
-      "group": "pet_familiar",
+      "group": "pet_skeletal_warrior",
       "pose": "east_attack",
-      "file": "../images/openai_v2/pet_familiar_east_attack.png",
+      "file": "../images/openai_v2/pet_skeletal_warrior_east_attack.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_familiar_east_ko",
+      "id": "companion_pet_skeletal_warrior_east_ko",
       "category": "companion",
-      "group": "pet_familiar",
+      "group": "pet_skeletal_warrior",
       "pose": "east_ko",
-      "file": "../images/openai_v2/pet_familiar_east_ko.png",
+      "file": "../images/openai_v2/pet_skeletal_warrior_east_ko.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_clockwork_turret_portrait",
+      "id": "companion_pet_war_hound_portrait",
       "category": "companion",
-      "group": "pet_clockwork_turret",
+      "group": "pet_war_hound",
       "pose": "portrait",
-      "file": "../images/openai_v2/pet_clockwork_turret_portrait.png",
+      "file": "../images/spritecook/pet_war_hound_portrait.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_clockwork_turret_south",
+      "id": "companion_pet_war_hound_south",
       "category": "companion",
-      "group": "pet_clockwork_turret",
+      "group": "pet_war_hound",
       "pose": "south",
-      "file": "../images/openai_v2/pet_clockwork_turret_south.png",
+      "file": "../images/spritecook/pet_war_hound_south.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_clockwork_turret_east",
+      "id": "companion_pet_war_hound_east",
       "category": "companion",
-      "group": "pet_clockwork_turret",
+      "group": "pet_war_hound",
       "pose": "east",
-      "file": "../images/openai_v2/pet_clockwork_turret_east.png",
+      "file": "../images/spritecook/pet_war_hound_east.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_clockwork_turret_east_attack",
+      "id": "companion_pet_war_hound_east_attack",
       "category": "companion",
-      "group": "pet_clockwork_turret",
+      "group": "pet_war_hound",
       "pose": "east_attack",
-      "file": "../images/openai_v2/pet_clockwork_turret_east_attack.png",
+      "file": "../images/spritecook/pet_war_hound_east_attack.png",
       "prompt": null
     },
     {
-      "id": "companion_pet_clockwork_turret_east_ko",
+      "id": "companion_pet_war_hound_east_ko",
       "category": "companion",
-      "group": "pet_clockwork_turret",
+      "group": "pet_war_hound",
       "pose": "east_ko",
-      "file": "../images/openai_v2/pet_clockwork_turret_east_ko.png",
+      "file": "../images/spritecook/pet_war_hound_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_pet_wolf_portrait",
+      "category": "companion",
+      "group": "pet_wolf",
+      "pose": "portrait",
+      "file": "../images/openai_v2/pet_wolf_portrait.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_pet_wolf_south",
+      "category": "companion",
+      "group": "pet_wolf",
+      "pose": "south",
+      "file": "../images/openai_v2/pet_wolf_south.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_pet_wolf_east",
+      "category": "companion",
+      "group": "pet_wolf",
+      "pose": "east",
+      "file": "../images/openai_v2/pet_wolf_east.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_pet_wolf_east_attack",
+      "category": "companion",
+      "group": "pet_wolf",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/pet_wolf_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_pet_wolf_east_ko",
+      "category": "companion",
+      "group": "pet_wolf",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/pet_wolf_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_war_dog_portrait",
+      "category": "companion",
+      "group": "war_dog",
+      "pose": "portrait",
+      "file": "../images/spritecook/war_dog_portrait.png",
+      "prompt": "Muscular loyal war-hound, mastiff/pit-bull build, broad chest, powerful hindquarters, short tan-brown fur with darker muzzle, battle-scarred (small nick across the bridge of the nose, notched left ear). Amber-gold eyes, confident protective expression. Quadruped — never bipedal, never anthropomorphic.\n\nThick dark-brown studded leather collar with small iron spikes and brass buckle. Faded red cloth bandana tied around the neck with frayed edges. Single narrow leather shoulder strap across the chest with a small brass ring. Decoration only — NOT armor.\n\nNone. Teeth and claws only.\n\nPOSE (portrait): Head-and-shoulders bust shot, three-quarter view. Alert ears, amber eyes focused forward. Studded collar, red bandana, and brass strap ring clearly visible at the bottom of the frame. Neutral confident expression."
+    },
+    {
+      "id": "companion_war_dog_south",
+      "category": "companion",
+      "group": "war_dog",
+      "pose": "south",
+      "file": "../images/spritecook/war_dog_south.png",
+      "prompt": "Muscular loyal war-hound, mastiff/pit-bull build, broad chest, powerful hindquarters, short tan-brown fur with darker muzzle, battle-scarred (small nick across the bridge of the nose, notched left ear). Amber-gold eyes, confident protective expression. Quadruped — never bipedal, never anthropomorphic.\n\nThick dark-brown studded leather collar with small iron spikes and brass buckle. Faded red cloth bandana tied around the neck with frayed edges. Single narrow leather shoulder strap across the chest with a small brass ring. Decoration only — NOT armor.\n\nNone. Teeth and claws only.\n\nPOSE (south): Full body facing the camera (south), calm alert quadruped idle, all four paws planted on the ground, chest squared to viewer, head slightly tilted, ears pricked, tail relaxed behind. Amber eyes facing viewer. Studded collar and red bandana clearly visible."
+    },
+    {
+      "id": "companion_war_dog_east",
+      "category": "companion",
+      "group": "war_dog",
+      "pose": "east",
+      "file": "../images/spritecook/war_dog_east.png",
+      "prompt": "Muscular loyal war-hound, mastiff/pit-bull build, broad chest, powerful hindquarters, short tan-brown fur with darker muzzle, battle-scarred (small nick across the bridge of the nose, notched left ear). Amber-gold eyes, confident protective expression. Quadruped — never bipedal, never anthropomorphic.\n\nThick dark-brown studded leather collar with small iron spikes and brass buckle. Faded red cloth bandana tied around the neck with frayed edges. Single narrow leather shoulder strap across the chest with a small brass ring. Decoration only — NOT armor.\n\nNone. Teeth and claws only."
+    },
+    {
+      "id": "companion_war_dog_east_attack",
+      "category": "companion",
+      "group": "war_dog",
+      "pose": "east_attack",
+      "file": "../images/spritecook/war_dog_east_attack.png",
+      "prompt": "Muscular loyal war-hound, mastiff/pit-bull build, broad chest, powerful hindquarters, short tan-brown fur with darker muzzle, battle-scarred (small nick across the bridge of the nose, notched left ear). Amber-gold eyes, confident protective expression. Quadruped — never bipedal, never anthropomorphic.\n\nThick dark-brown studded leather collar with small iron spikes and brass buckle. Faded red cloth bandana tied around the neck with frayed edges. Single narrow leather shoulder strap across the chest with a small brass ring. Decoration only — NOT armor.\n\nNone. Teeth and claws only."
+    },
+    {
+      "id": "companion_war_dog_east_ko",
+      "category": "companion",
+      "group": "war_dog",
+      "pose": "east_ko",
+      "file": "../images/spritecook/war_dog_east_ko.png",
+      "prompt": "Muscular loyal war-hound, mastiff/pit-bull build, broad chest, powerful hindquarters, short tan-brown fur with darker muzzle, battle-scarred (small nick across the bridge of the nose, notched left ear). Amber-gold eyes, confident protective expression. Quadruped — never bipedal, never anthropomorphic.\n\nThick dark-brown studded leather collar with small iron spikes and brass buckle. Faded red cloth bandana tied around the neck with frayed edges. Single narrow leather shoulder strap across the chest with a small brass ring. Decoration only — NOT armor.\n\nNone. Teeth and claws only."
+    },
+    {
+      "id": "companion_shadow_cat_portrait",
+      "category": "companion",
+      "group": "shadow_cat",
+      "pose": "portrait",
+      "file": "../images/openai_v2/shadow_cat_portrait.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_shadow_cat_south",
+      "category": "companion",
+      "group": "shadow_cat",
+      "pose": "south",
+      "file": "../images/openai_v2/shadow_cat_south.png",
+      "prompt": "shadow cat companion, side view, pixel art"
+    },
+    {
+      "id": "companion_shadow_cat_east",
+      "category": "companion",
+      "group": "shadow_cat",
+      "pose": "east",
+      "file": "../images/openai_v2/shadow_cat_east.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_shadow_cat_east_attack",
+      "category": "companion",
+      "group": "shadow_cat",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/shadow_cat_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "companion_shadow_cat_east_ko",
+      "category": "companion",
+      "group": "shadow_cat",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/shadow_cat_east_ko.png",
       "prompt": null
     },
     {
@@ -5193,46 +5273,6 @@
       "group": "ember_drake",
       "pose": "east_ko",
       "file": "../images/openai_v2/ember_drake_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_shadow_cat_portrait",
-      "category": "companion",
-      "group": "shadow_cat",
-      "pose": "portrait",
-      "file": "../images/openai_v2/shadow_cat_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_shadow_cat_south",
-      "category": "companion",
-      "group": "shadow_cat",
-      "pose": "south",
-      "file": "../images/openai_v2/shadow_cat_south.png",
-      "prompt": "shadow cat companion, side view, pixel art"
-    },
-    {
-      "id": "companion_shadow_cat_east",
-      "category": "companion",
-      "group": "shadow_cat",
-      "pose": "east",
-      "file": "../images/openai_v2/shadow_cat_east.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_shadow_cat_east_attack",
-      "category": "companion",
-      "group": "shadow_cat",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/shadow_cat_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "companion_shadow_cat_east_ko",
-      "category": "companion",
-      "group": "shadow_cat",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/shadow_cat_east_ko.png",
       "prompt": null
     },
     {
@@ -5636,115 +5676,59 @@
       "prompt": null
     },
     {
-      "id": "boss_goblin_warlord_portrait",
+      "id": "boss_ancient_dragon_portrait",
       "category": "boss",
-      "group": "goblin_warlord",
+      "group": "ancient_dragon",
       "pose": "portrait",
-      "file": "../images/openai_v2/goblin_warlord_portrait.png",
-      "prompt": "A massive goblin warlord in plate armor with a two-handed axe, tusked snarl, war paint, dark fantasy RPG enemy portrait"
+      "file": "../images/spritecook/ancient_dragon_portrait.png",
+      "prompt": null
     },
     {
-      "id": "boss_goblin_warlord_south",
+      "id": "boss_ancient_dragon_south",
       "category": "boss",
-      "group": "goblin_warlord",
+      "group": "ancient_dragon",
       "pose": "south",
-      "file": "../images/openai_v2/goblin_warlord_south.png",
+      "file": "../images/spritecook/ancient_dragon_south.png",
       "prompt": null
     },
     {
-      "id": "boss_goblin_warlord_east",
+      "id": "boss_ancient_dragon_east",
       "category": "boss",
-      "group": "goblin_warlord",
+      "group": "ancient_dragon",
       "pose": "east",
-      "file": "../images/openai_v2/goblin_warlord_east.png",
+      "file": "../images/spritecook/ancient_dragon_east.png",
       "prompt": null
     },
     {
-      "id": "boss_goblin_warlord_east_attack",
+      "id": "boss_ancient_dragon_east_attack",
       "category": "boss",
-      "group": "goblin_warlord",
+      "group": "ancient_dragon",
       "pose": "east_attack",
-      "file": "../images/openai_v2/goblin_warlord_east_attack.png",
+      "file": "../images/spritecook/ancient_dragon_east_attack.png",
       "prompt": null
     },
     {
-      "id": "boss_goblin_warlord_east_spell",
+      "id": "boss_ancient_dragon_east_spell",
       "category": "boss",
-      "group": "goblin_warlord",
+      "group": "ancient_dragon",
       "pose": "east_spell",
-      "file": "../images/openai_v2/goblin_warlord_east_spell.png",
+      "file": "../images/spritecook/ancient_dragon_east_spell.png",
       "prompt": null
     },
     {
-      "id": "boss_goblin_warlord_east_block",
+      "id": "boss_ancient_dragon_east_block",
       "category": "boss",
-      "group": "goblin_warlord",
+      "group": "ancient_dragon",
       "pose": "east_block",
-      "file": "../images/openai_v2/goblin_warlord_east_block.png",
+      "file": "../images/spritecook/ancient_dragon_east_block.png",
       "prompt": null
     },
     {
-      "id": "boss_goblin_warlord_east_ko",
+      "id": "boss_ancient_dragon_east_ko",
       "category": "boss",
-      "group": "goblin_warlord",
+      "group": "ancient_dragon",
       "pose": "east_ko",
-      "file": "../images/openai_v2/goblin_warlord_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_lava_titan_portrait",
-      "category": "boss",
-      "group": "lava_titan",
-      "pose": "portrait",
-      "file": "../images/openai_v2/lava_titan_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_lava_titan_south",
-      "category": "boss",
-      "group": "lava_titan",
-      "pose": "south",
-      "file": "../images/openai_v2/lava_titan_south.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_lava_titan_east",
-      "category": "boss",
-      "group": "lava_titan",
-      "pose": "east",
-      "file": "../images/openai_v2/lava_titan_east.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_lava_titan_east_attack",
-      "category": "boss",
-      "group": "lava_titan",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/lava_titan_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_lava_titan_east_spell",
-      "category": "boss",
-      "group": "lava_titan",
-      "pose": "east_spell",
-      "file": "../images/openai_v2/lava_titan_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_lava_titan_east_block",
-      "category": "boss",
-      "group": "lava_titan",
-      "pose": "east_block",
-      "file": "../images/openai_v2/lava_titan_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_lava_titan_east_ko",
-      "category": "boss",
-      "group": "lava_titan",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/lava_titan_east_ko.png",
+      "file": "../images/spritecook/ancient_dragon_east_ko.png",
       "prompt": null
     },
     {
@@ -5804,171 +5788,451 @@
       "prompt": null
     },
     {
-      "id": "boss_cosmic_titan_portrait",
+      "id": "boss_dragon_king_portrait",
       "category": "boss",
-      "group": "cosmic_titan",
+      "group": "dragon_king",
       "pose": "portrait",
-      "file": "../images/spritecook/cosmic_titan_portrait.png",
-      "prompt": "A cosmic titan of stone and galaxies, giant humanoid wreathed in nebulae, star-lit runes, dark fantasy RPG enemy portrait"
+      "file": "../images/spritecook/dragon_king_portrait.png",
+      "prompt": null
     },
     {
-      "id": "boss_cosmic_titan_south",
+      "id": "boss_dragon_king_south",
       "category": "boss",
-      "group": "cosmic_titan",
+      "group": "dragon_king",
       "pose": "south",
-      "file": "../images/spritecook/cosmic_titan_south.png",
+      "file": "../images/spritecook/dragon_king_south.png",
       "prompt": null
     },
     {
-      "id": "boss_cosmic_titan_east",
+      "id": "boss_dragon_king_east",
       "category": "boss",
-      "group": "cosmic_titan",
+      "group": "dragon_king",
       "pose": "east",
-      "file": "../images/spritecook/cosmic_titan_east.png",
+      "file": "../images/spritecook/dragon_king_east.png",
       "prompt": null
     },
     {
-      "id": "boss_cosmic_titan_east_attack",
+      "id": "boss_dragon_king_east_attack",
       "category": "boss",
-      "group": "cosmic_titan",
+      "group": "dragon_king",
       "pose": "east_attack",
-      "file": "../images/spritecook/cosmic_titan_east_attack.png",
+      "file": "../images/spritecook/dragon_king_east_attack.png",
       "prompt": null
     },
     {
-      "id": "boss_cosmic_titan_east_spell",
+      "id": "boss_dragon_king_east_spell",
       "category": "boss",
-      "group": "cosmic_titan",
+      "group": "dragon_king",
       "pose": "east_spell",
-      "file": "../images/spritecook/cosmic_titan_east_spell.png",
+      "file": "../images/spritecook/dragon_king_east_spell.png",
       "prompt": null
     },
     {
-      "id": "boss_cosmic_titan_east_block",
+      "id": "boss_dragon_king_east_block",
       "category": "boss",
-      "group": "cosmic_titan",
+      "group": "dragon_king",
       "pose": "east_block",
-      "file": "../images/spritecook/cosmic_titan_east_block.png",
+      "file": "../images/spritecook/dragon_king_east_block.png",
       "prompt": null
     },
     {
-      "id": "boss_cosmic_titan_east_ko",
+      "id": "boss_dragon_king_east_ko",
       "category": "boss",
-      "group": "cosmic_titan",
+      "group": "dragon_king",
       "pose": "east_ko",
-      "file": "../images/spritecook/cosmic_titan_east_ko.png",
+      "file": "../images/spritecook/dragon_king_east_ko.png",
       "prompt": null
     },
     {
-      "id": "boss_primordial_elemental_portrait",
+      "id": "boss_echo_sovereign_portrait",
       "category": "boss",
-      "group": "primordial_elemental",
+      "group": "echo_sovereign",
       "pose": "portrait",
-      "file": "../images/openai_v2/primordial_elemental_portrait.png",
-      "prompt": "A primordial elemental of swirling raw cosmic energy, nebula core, crackling arms of plasma, dark fantasy RPG enemy portrait"
+      "file": "../images/spritecook/echo_sovereign_portrait.png",
+      "prompt": null
     },
     {
-      "id": "boss_primordial_elemental_south",
+      "id": "boss_echo_sovereign_south",
       "category": "boss",
-      "group": "primordial_elemental",
+      "group": "echo_sovereign",
       "pose": "south",
-      "file": "../images/openai_v2/primordial_elemental_south.png",
+      "file": "../images/spritecook/echo_sovereign_south.png",
       "prompt": null
     },
     {
-      "id": "boss_primordial_elemental_east",
+      "id": "boss_echo_sovereign_east",
       "category": "boss",
-      "group": "primordial_elemental",
+      "group": "echo_sovereign",
       "pose": "east",
-      "file": "../images/openai_v2/primordial_elemental_east.png",
+      "file": "../images/spritecook/echo_sovereign_east.png",
       "prompt": null
     },
     {
-      "id": "boss_primordial_elemental_east_attack",
+      "id": "boss_echo_sovereign_east_attack",
       "category": "boss",
-      "group": "primordial_elemental",
+      "group": "echo_sovereign",
       "pose": "east_attack",
-      "file": "../images/openai_v2/primordial_elemental_east_attack.png",
+      "file": "../images/spritecook/echo_sovereign_east_attack.png",
       "prompt": null
     },
     {
-      "id": "boss_primordial_elemental_east_spell",
+      "id": "boss_echo_sovereign_east_spell",
       "category": "boss",
-      "group": "primordial_elemental",
+      "group": "echo_sovereign",
       "pose": "east_spell",
-      "file": "../images/openai_v2/primordial_elemental_east_spell.png",
+      "file": "../images/spritecook/echo_sovereign_east_spell.png",
       "prompt": null
     },
     {
-      "id": "boss_primordial_elemental_east_block",
+      "id": "boss_echo_sovereign_east_block",
       "category": "boss",
-      "group": "primordial_elemental",
+      "group": "echo_sovereign",
       "pose": "east_block",
-      "file": "../images/openai_v2/primordial_elemental_east_block.png",
+      "file": "../images/spritecook/echo_sovereign_east_block.png",
       "prompt": null
     },
     {
-      "id": "boss_primordial_elemental_east_ko",
+      "id": "boss_echo_sovereign_east_ko",
       "category": "boss",
-      "group": "primordial_elemental",
+      "group": "echo_sovereign",
       "pose": "east_ko",
-      "file": "../images/openai_v2/primordial_elemental_east_ko.png",
+      "file": "../images/spritecook/echo_sovereign_east_ko.png",
       "prompt": null
     },
     {
-      "id": "boss_frost_wyrm_portrait",
+      "id": "boss_emberveil_sovereign_portrait",
       "category": "boss",
-      "group": "frost_wyrm",
+      "group": "emberveil_sovereign",
       "pose": "portrait",
-      "file": "../images/spritecook/frost_wyrm_portrait.png",
-      "prompt": "A frost wyrm dragon with icy blue scales, frost breath spilling from its jaws, icicles on spines, dark fantasy RPG enemy portrait"
+      "file": "../images/spritecook/emberveil_sovereign_portrait.png",
+      "prompt": null
     },
     {
-      "id": "boss_frost_wyrm_south",
+      "id": "boss_emberveil_sovereign_south",
       "category": "boss",
-      "group": "frost_wyrm",
+      "group": "emberveil_sovereign",
       "pose": "south",
-      "file": "../images/spritecook/frost_wyrm_south.png",
+      "file": "../images/spritecook/emberveil_sovereign_south.png",
       "prompt": null
     },
     {
-      "id": "boss_frost_wyrm_east",
+      "id": "boss_emberveil_sovereign_east",
       "category": "boss",
-      "group": "frost_wyrm",
+      "group": "emberveil_sovereign",
       "pose": "east",
-      "file": "../images/spritecook/frost_wyrm_east.png",
+      "file": "../images/spritecook/emberveil_sovereign_east.png",
       "prompt": null
     },
     {
-      "id": "boss_frost_wyrm_east_attack",
+      "id": "boss_emberveil_sovereign_east_attack",
       "category": "boss",
-      "group": "frost_wyrm",
+      "group": "emberveil_sovereign",
       "pose": "east_attack",
-      "file": "../images/spritecook/frost_wyrm_east_attack.png",
+      "file": "../images/spritecook/emberveil_sovereign_east_attack.png",
       "prompt": null
     },
     {
-      "id": "boss_frost_wyrm_east_spell",
+      "id": "boss_emberveil_sovereign_east_spell",
       "category": "boss",
-      "group": "frost_wyrm",
+      "group": "emberveil_sovereign",
       "pose": "east_spell",
-      "file": "../images/spritecook/frost_wyrm_east_spell.png",
+      "file": "../images/spritecook/emberveil_sovereign_east_spell.png",
       "prompt": null
     },
     {
-      "id": "boss_frost_wyrm_east_block",
+      "id": "boss_emberveil_sovereign_east_block",
       "category": "boss",
-      "group": "frost_wyrm",
+      "group": "emberveil_sovereign",
       "pose": "east_block",
-      "file": "../images/spritecook/frost_wyrm_east_block.png",
+      "file": "../images/spritecook/emberveil_sovereign_east_block.png",
       "prompt": null
     },
     {
-      "id": "boss_frost_wyrm_east_ko",
+      "id": "boss_emberveil_sovereign_east_ko",
       "category": "boss",
-      "group": "frost_wyrm",
+      "group": "emberveil_sovereign",
       "pose": "east_ko",
-      "file": "../images/spritecook/frost_wyrm_east_ko.png",
+      "file": "../images/spritecook/emberveil_sovereign_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_grax_veil_touched_portrait",
+      "category": "boss",
+      "group": "grax_veil_touched",
+      "pose": "portrait",
+      "file": "../images/spritecook/grax_veil_touched_portrait.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_grax_veil_touched_south",
+      "category": "boss",
+      "group": "grax_veil_touched",
+      "pose": "south",
+      "file": "../images/spritecook/grax_veil_touched_south.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_grax_veil_touched_east",
+      "category": "boss",
+      "group": "grax_veil_touched",
+      "pose": "east",
+      "file": "../images/spritecook/grax_veil_touched_east.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_grax_veil_touched_east_attack",
+      "category": "boss",
+      "group": "grax_veil_touched",
+      "pose": "east_attack",
+      "file": "../images/spritecook/grax_veil_touched_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_grax_veil_touched_east_spell",
+      "category": "boss",
+      "group": "grax_veil_touched",
+      "pose": "east_spell",
+      "file": "../images/spritecook/grax_veil_touched_east_spell.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_grax_veil_touched_east_block",
+      "category": "boss",
+      "group": "grax_veil_touched",
+      "pose": "east_block",
+      "file": "../images/spritecook/grax_veil_touched_east_block.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_grax_veil_touched_east_ko",
+      "category": "boss",
+      "group": "grax_veil_touched",
+      "pose": "east_ko",
+      "file": "../images/spritecook/grax_veil_touched_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_lava_titan_portrait",
+      "category": "boss",
+      "group": "lava_titan",
+      "pose": "portrait",
+      "file": "../images/openai_v2/lava_titan_portrait.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_lava_titan_south",
+      "category": "boss",
+      "group": "lava_titan",
+      "pose": "south",
+      "file": "../images/openai_v2/lava_titan_south.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_lava_titan_east",
+      "category": "boss",
+      "group": "lava_titan",
+      "pose": "east",
+      "file": "../images/openai_v2/lava_titan_east.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_lava_titan_east_attack",
+      "category": "boss",
+      "group": "lava_titan",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/lava_titan_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_lava_titan_east_spell",
+      "category": "boss",
+      "group": "lava_titan",
+      "pose": "east_spell",
+      "file": "../images/openai_v2/lava_titan_east_spell.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_lava_titan_east_block",
+      "category": "boss",
+      "group": "lava_titan",
+      "pose": "east_block",
+      "file": "../images/openai_v2/lava_titan_east_block.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_lava_titan_east_ko",
+      "category": "boss",
+      "group": "lava_titan",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/lava_titan_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_architect_portrait",
+      "category": "boss",
+      "group": "the_architect",
+      "pose": "portrait",
+      "file": "../images/spritecook/the_architect_portrait.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_architect_south",
+      "category": "boss",
+      "group": "the_architect",
+      "pose": "south",
+      "file": "../images/spritecook/the_architect_south.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_architect_east",
+      "category": "boss",
+      "group": "the_architect",
+      "pose": "east",
+      "file": "../images/spritecook/the_architect_east.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_architect_east_attack",
+      "category": "boss",
+      "group": "the_architect",
+      "pose": "east_attack",
+      "file": "../images/spritecook/the_architect_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_architect_east_spell",
+      "category": "boss",
+      "group": "the_architect",
+      "pose": "east_spell",
+      "file": "../images/spritecook/the_architect_east_spell.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_architect_east_block",
+      "category": "boss",
+      "group": "the_architect",
+      "pose": "east_block",
+      "file": "../images/spritecook/the_architect_east_block.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_architect_east_ko",
+      "category": "boss",
+      "group": "the_architect",
+      "pose": "east_ko",
+      "file": "../images/spritecook/the_architect_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_first_ember_portrait",
+      "category": "boss",
+      "group": "the_first_ember",
+      "pose": "portrait",
+      "file": "../images/spritecook/the_first_ember_portrait.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_first_ember_south",
+      "category": "boss",
+      "group": "the_first_ember",
+      "pose": "south",
+      "file": "../images/spritecook/the_first_ember_south.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_first_ember_east",
+      "category": "boss",
+      "group": "the_first_ember",
+      "pose": "east",
+      "file": "../images/spritecook/the_first_ember_east.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_first_ember_east_attack",
+      "category": "boss",
+      "group": "the_first_ember",
+      "pose": "east_attack",
+      "file": "../images/spritecook/the_first_ember_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_first_ember_east_spell",
+      "category": "boss",
+      "group": "the_first_ember",
+      "pose": "east_spell",
+      "file": "../images/spritecook/the_first_ember_east_spell.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_first_ember_east_block",
+      "category": "boss",
+      "group": "the_first_ember",
+      "pose": "east_block",
+      "file": "../images/spritecook/the_first_ember_east_block.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_first_ember_east_ko",
+      "category": "boss",
+      "group": "the_first_ember",
+      "pose": "east_ko",
+      "file": "../images/spritecook/the_first_ember_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_unraveler_portrait",
+      "category": "boss",
+      "group": "the_unraveler",
+      "pose": "portrait",
+      "file": "../images/spritecook/the_unraveler_portrait.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_unraveler_south",
+      "category": "boss",
+      "group": "the_unraveler",
+      "pose": "south",
+      "file": "../images/spritecook/the_unraveler_south.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_unraveler_east",
+      "category": "boss",
+      "group": "the_unraveler",
+      "pose": "east",
+      "file": "../images/spritecook/the_unraveler_east.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_unraveler_east_attack",
+      "category": "boss",
+      "group": "the_unraveler",
+      "pose": "east_attack",
+      "file": "../images/spritecook/the_unraveler_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_unraveler_east_spell",
+      "category": "boss",
+      "group": "the_unraveler",
+      "pose": "east_spell",
+      "file": "../images/spritecook/the_unraveler_east_spell.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_unraveler_east_block",
+      "category": "boss",
+      "group": "the_unraveler",
+      "pose": "east_block",
+      "file": "../images/spritecook/the_unraveler_east_block.png",
+      "prompt": null
+    },
+    {
+      "id": "boss_the_unraveler_east_ko",
+      "category": "boss",
+      "group": "the_unraveler",
+      "pose": "east_ko",
+      "file": "../images/spritecook/the_unraveler_east_ko.png",
       "prompt": null
     },
     {
@@ -6084,819 +6348,83 @@
       "prompt": "Gaunt mid-50s human male, pale skin, sharp cheekbones, completely white eyes glowing faintly with violet inner light, silver-white slicked-back hair pulled into a small knot, neat silver-white goatee.\n\nCracked obsidian academic robe with a high stiff collar embroidered with violet runic glyphs, leather-bound books and tattered scroll-tubes hanging on chains across the chest, plain dark boots. Faint halo of violet-and-black void-mist rising from his shoulders.\n\nNo physical weapon — casts violet-black void-orbs from outstretched hand.\n\nPOSE (east_ko): Lying defeated on the ground facing east, robe sprawled, eyes closed (no glow), void-mist dispersed to a thin wisp."
     },
     {
-      "id": "boss_echo_sovereign_portrait",
-      "category": "boss",
-      "group": "echo_sovereign",
+      "id": "enemy_abyssal_knight_portrait",
+      "category": "enemy",
+      "group": "abyssal_knight",
       "pose": "portrait",
-      "file": "../images/spritecook/echo_sovereign_portrait.png",
-      "prompt": null
+      "file": "../images/openai_v2/abyssal_knight_portrait.png",
+      "prompt": "An abyssal knight in deep-sea black coral armor, trident, glowing void eyes under helm, dark fantasy RPG enemy portrait"
     },
     {
-      "id": "boss_echo_sovereign_south",
-      "category": "boss",
-      "group": "echo_sovereign",
+      "id": "enemy_abyssal_knight_south",
+      "category": "enemy",
+      "group": "abyssal_knight",
       "pose": "south",
-      "file": "../images/spritecook/echo_sovereign_south.png",
+      "file": "../images/openai_v2/abyssal_knight_south.png",
       "prompt": null
     },
     {
-      "id": "boss_echo_sovereign_east",
-      "category": "boss",
-      "group": "echo_sovereign",
+      "id": "enemy_abyssal_knight_east",
+      "category": "enemy",
+      "group": "abyssal_knight",
       "pose": "east",
-      "file": "../images/spritecook/echo_sovereign_east.png",
+      "file": "../images/openai_v2/abyssal_knight_east.png",
       "prompt": null
     },
     {
-      "id": "boss_echo_sovereign_east_attack",
-      "category": "boss",
-      "group": "echo_sovereign",
+      "id": "enemy_abyssal_knight_east_attack",
+      "category": "enemy",
+      "group": "abyssal_knight",
       "pose": "east_attack",
-      "file": "../images/spritecook/echo_sovereign_east_attack.png",
+      "file": "../images/openai_v2/abyssal_knight_east_attack.png",
       "prompt": null
     },
     {
-      "id": "boss_echo_sovereign_east_spell",
-      "category": "boss",
-      "group": "echo_sovereign",
-      "pose": "east_spell",
-      "file": "../images/spritecook/echo_sovereign_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_echo_sovereign_east_block",
-      "category": "boss",
-      "group": "echo_sovereign",
-      "pose": "east_block",
-      "file": "../images/spritecook/echo_sovereign_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_echo_sovereign_east_ko",
-      "category": "boss",
-      "group": "echo_sovereign",
+      "id": "enemy_abyssal_knight_east_ko",
+      "category": "enemy",
+      "group": "abyssal_knight",
       "pose": "east_ko",
-      "file": "../images/spritecook/echo_sovereign_east_ko.png",
+      "file": "../images/openai_v2/abyssal_knight_east_ko.png",
       "prompt": null
     },
     {
-      "id": "boss_the_first_ember_portrait",
-      "category": "boss",
-      "group": "the_first_ember",
+      "id": "enemy_ash_wraith_portrait",
+      "category": "enemy",
+      "group": "ash_wraith",
       "pose": "portrait",
-      "file": "../images/spritecook/the_first_ember_portrait.png",
-      "prompt": null
+      "file": "../images/openai_v2/ash_wraith_portrait.png",
+      "prompt": "An ash wraith of smoldering gray smoke, burning ember eyes, drifting ash form, dark fantasy RPG enemy portrait"
     },
     {
-      "id": "boss_the_first_ember_south",
-      "category": "boss",
-      "group": "the_first_ember",
+      "id": "enemy_ash_wraith_south",
+      "category": "enemy",
+      "group": "ash_wraith",
       "pose": "south",
-      "file": "../images/spritecook/the_first_ember_south.png",
+      "file": "../images/openai_v2/ash_wraith_south.png",
       "prompt": null
     },
     {
-      "id": "boss_the_first_ember_east",
-      "category": "boss",
-      "group": "the_first_ember",
+      "id": "enemy_ash_wraith_east",
+      "category": "enemy",
+      "group": "ash_wraith",
       "pose": "east",
-      "file": "../images/spritecook/the_first_ember_east.png",
+      "file": "../images/openai_v2/ash_wraith_east.png",
       "prompt": null
     },
     {
-      "id": "boss_the_first_ember_east_attack",
-      "category": "boss",
-      "group": "the_first_ember",
+      "id": "enemy_ash_wraith_east_attack",
+      "category": "enemy",
+      "group": "ash_wraith",
       "pose": "east_attack",
-      "file": "../images/spritecook/the_first_ember_east_attack.png",
+      "file": "../images/openai_v2/ash_wraith_east_attack.png",
       "prompt": null
     },
     {
-      "id": "boss_the_first_ember_east_spell",
-      "category": "boss",
-      "group": "the_first_ember",
-      "pose": "east_spell",
-      "file": "../images/spritecook/the_first_ember_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_first_ember_east_block",
-      "category": "boss",
-      "group": "the_first_ember",
-      "pose": "east_block",
-      "file": "../images/spritecook/the_first_ember_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_first_ember_east_ko",
-      "category": "boss",
-      "group": "the_first_ember",
+      "id": "enemy_ash_wraith_east_ko",
+      "category": "enemy",
+      "group": "ash_wraith",
       "pose": "east_ko",
-      "file": "../images/spritecook/the_first_ember_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veilspawn_herald_portrait",
-      "category": "boss",
-      "group": "veilspawn_herald",
-      "pose": "portrait",
-      "file": "../images/spritecook/veilspawn_herald_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veilspawn_herald_south",
-      "category": "boss",
-      "group": "veilspawn_herald",
-      "pose": "south",
-      "file": "../images/spritecook/veilspawn_herald_south.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veilspawn_herald_east",
-      "category": "boss",
-      "group": "veilspawn_herald",
-      "pose": "east",
-      "file": "../images/spritecook/veilspawn_herald_east.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veilspawn_herald_east_attack",
-      "category": "boss",
-      "group": "veilspawn_herald",
-      "pose": "east_attack",
-      "file": "../images/spritecook/veilspawn_herald_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veilspawn_herald_east_spell",
-      "category": "boss",
-      "group": "veilspawn_herald",
-      "pose": "east_spell",
-      "file": "../images/spritecook/veilspawn_herald_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veilspawn_herald_east_block",
-      "category": "boss",
-      "group": "veilspawn_herald",
-      "pose": "east_block",
-      "file": "../images/spritecook/veilspawn_herald_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veilspawn_herald_east_ko",
-      "category": "boss",
-      "group": "veilspawn_herald",
-      "pose": "east_ko",
-      "file": "../images/spritecook/veilspawn_herald_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_warden_portrait",
-      "category": "boss",
-      "group": "veil_warden",
-      "pose": "portrait",
-      "file": "../images/openai_v2/veil_warden_portrait.png",
-      "prompt": "A veil warden in ornate plate with glowing runes, crystal halberd, grim stoic visor, dark fantasy RPG enemy portrait"
-    },
-    {
-      "id": "boss_veil_warden_south",
-      "category": "boss",
-      "group": "veil_warden",
-      "pose": "south",
-      "file": "../images/openai_v2/veil_warden_south.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_warden_east",
-      "category": "boss",
-      "group": "veil_warden",
-      "pose": "east",
-      "file": "../images/openai_v2/veil_warden_east.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_warden_east_attack",
-      "category": "boss",
-      "group": "veil_warden",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/veil_warden_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_warden_east_spell",
-      "category": "boss",
-      "group": "veil_warden",
-      "pose": "east_spell",
-      "file": "../images/openai_v2/veil_warden_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_warden_east_block",
-      "category": "boss",
-      "group": "veil_warden",
-      "pose": "east_block",
-      "file": "../images/openai_v2/veil_warden_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_warden_east_ko",
-      "category": "boss",
-      "group": "veil_warden",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/veil_warden_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_sorcerer_portrait",
-      "category": "boss",
-      "group": "veil_sorcerer",
-      "pose": "portrait",
-      "file": "../images/openai_v2/veil_sorcerer_portrait.png",
-      "prompt": "A veil sorcerer in flowing violet robes summoning arcane purple flames, skeletal hands, masked face, dark fantasy RPG enemy portrait"
-    },
-    {
-      "id": "boss_veil_sorcerer_south",
-      "category": "boss",
-      "group": "veil_sorcerer",
-      "pose": "south",
-      "file": "../images/openai_v2/veil_sorcerer_south.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_sorcerer_east",
-      "category": "boss",
-      "group": "veil_sorcerer",
-      "pose": "east",
-      "file": "../images/openai_v2/veil_sorcerer_east.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_sorcerer_east_attack",
-      "category": "boss",
-      "group": "veil_sorcerer",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/veil_sorcerer_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_sorcerer_east_spell",
-      "category": "boss",
-      "group": "veil_sorcerer",
-      "pose": "east_spell",
-      "file": "../images/openai_v2/veil_sorcerer_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_sorcerer_east_block",
-      "category": "boss",
-      "group": "veil_sorcerer",
-      "pose": "east_block",
-      "file": "../images/openai_v2/veil_sorcerer_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_veil_sorcerer_east_ko",
-      "category": "boss",
-      "group": "veil_sorcerer",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/veil_sorcerer_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_emberveil_sovereign_portrait",
-      "category": "boss",
-      "group": "emberveil_sovereign",
-      "pose": "portrait",
-      "file": "../images/spritecook/emberveil_sovereign_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_emberveil_sovereign_south",
-      "category": "boss",
-      "group": "emberveil_sovereign",
-      "pose": "south",
-      "file": "../images/spritecook/emberveil_sovereign_south.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_emberveil_sovereign_east",
-      "category": "boss",
-      "group": "emberveil_sovereign",
-      "pose": "east",
-      "file": "../images/spritecook/emberveil_sovereign_east.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_emberveil_sovereign_east_attack",
-      "category": "boss",
-      "group": "emberveil_sovereign",
-      "pose": "east_attack",
-      "file": "../images/spritecook/emberveil_sovereign_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_emberveil_sovereign_east_spell",
-      "category": "boss",
-      "group": "emberveil_sovereign",
-      "pose": "east_spell",
-      "file": "../images/spritecook/emberveil_sovereign_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_emberveil_sovereign_east_block",
-      "category": "boss",
-      "group": "emberveil_sovereign",
-      "pose": "east_block",
-      "file": "../images/spritecook/emberveil_sovereign_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_emberveil_sovereign_east_ko",
-      "category": "boss",
-      "group": "emberveil_sovereign",
-      "pose": "east_ko",
-      "file": "../images/spritecook/emberveil_sovereign_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_star_horror_portrait",
-      "category": "boss",
-      "group": "star_horror",
-      "pose": "portrait",
-      "file": "../images/openai_v2/star_horror_portrait.png",
-      "prompt": "A cosmic star horror with many glowing eyes, writhing tentacles dotted with stars, nebulous body, dark fantasy RPG enemy portrait"
-    },
-    {
-      "id": "boss_star_horror_south",
-      "category": "boss",
-      "group": "star_horror",
-      "pose": "south",
-      "file": "../images/openai_v2/star_horror_south.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_star_horror_east",
-      "category": "boss",
-      "group": "star_horror",
-      "pose": "east",
-      "file": "../images/openai_v2/star_horror_east.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_star_horror_east_attack",
-      "category": "boss",
-      "group": "star_horror",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/star_horror_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_star_horror_east_spell",
-      "category": "boss",
-      "group": "star_horror",
-      "pose": "east_spell",
-      "file": "../images/openai_v2/star_horror_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_star_horror_east_block",
-      "category": "boss",
-      "group": "star_horror",
-      "pose": "east_block",
-      "file": "../images/openai_v2/star_horror_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_star_horror_east_ko",
-      "category": "boss",
-      "group": "star_horror",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/star_horror_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_unraveler_portrait",
-      "category": "boss",
-      "group": "the_unraveler",
-      "pose": "portrait",
-      "file": "../images/spritecook/the_unraveler_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_unraveler_south",
-      "category": "boss",
-      "group": "the_unraveler",
-      "pose": "south",
-      "file": "../images/spritecook/the_unraveler_south.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_unraveler_east",
-      "category": "boss",
-      "group": "the_unraveler",
-      "pose": "east",
-      "file": "../images/spritecook/the_unraveler_east.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_unraveler_east_attack",
-      "category": "boss",
-      "group": "the_unraveler",
-      "pose": "east_attack",
-      "file": "../images/spritecook/the_unraveler_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_unraveler_east_spell",
-      "category": "boss",
-      "group": "the_unraveler",
-      "pose": "east_spell",
-      "file": "../images/spritecook/the_unraveler_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_unraveler_east_block",
-      "category": "boss",
-      "group": "the_unraveler",
-      "pose": "east_block",
-      "file": "../images/spritecook/the_unraveler_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_unraveler_east_ko",
-      "category": "boss",
-      "group": "the_unraveler",
-      "pose": "east_ko",
-      "file": "../images/spritecook/the_unraveler_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_architect_portrait",
-      "category": "boss",
-      "group": "the_architect",
-      "pose": "portrait",
-      "file": "../images/spritecook/the_architect_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_architect_south",
-      "category": "boss",
-      "group": "the_architect",
-      "pose": "south",
-      "file": "../images/spritecook/the_architect_south.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_architect_east",
-      "category": "boss",
-      "group": "the_architect",
-      "pose": "east",
-      "file": "../images/spritecook/the_architect_east.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_architect_east_attack",
-      "category": "boss",
-      "group": "the_architect",
-      "pose": "east_attack",
-      "file": "../images/spritecook/the_architect_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_architect_east_spell",
-      "category": "boss",
-      "group": "the_architect",
-      "pose": "east_spell",
-      "file": "../images/spritecook/the_architect_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_architect_east_block",
-      "category": "boss",
-      "group": "the_architect",
-      "pose": "east_block",
-      "file": "../images/spritecook/the_architect_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_the_architect_east_ko",
-      "category": "boss",
-      "group": "the_architect",
-      "pose": "east_ko",
-      "file": "../images/spritecook/the_architect_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_ancient_dragon_portrait",
-      "category": "boss",
-      "group": "ancient_dragon",
-      "pose": "portrait",
-      "file": "../images/spritecook/ancient_dragon_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_ancient_dragon_south",
-      "category": "boss",
-      "group": "ancient_dragon",
-      "pose": "south",
-      "file": "../images/spritecook/ancient_dragon_south.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_ancient_dragon_east",
-      "category": "boss",
-      "group": "ancient_dragon",
-      "pose": "east",
-      "file": "../images/spritecook/ancient_dragon_east.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_ancient_dragon_east_attack",
-      "category": "boss",
-      "group": "ancient_dragon",
-      "pose": "east_attack",
-      "file": "../images/spritecook/ancient_dragon_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_ancient_dragon_east_spell",
-      "category": "boss",
-      "group": "ancient_dragon",
-      "pose": "east_spell",
-      "file": "../images/spritecook/ancient_dragon_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_ancient_dragon_east_block",
-      "category": "boss",
-      "group": "ancient_dragon",
-      "pose": "east_block",
-      "file": "../images/spritecook/ancient_dragon_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_ancient_dragon_east_ko",
-      "category": "boss",
-      "group": "ancient_dragon",
-      "pose": "east_ko",
-      "file": "../images/spritecook/ancient_dragon_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_dragon_king_portrait",
-      "category": "boss",
-      "group": "dragon_king",
-      "pose": "portrait",
-      "file": "../images/spritecook/dragon_king_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_dragon_king_south",
-      "category": "boss",
-      "group": "dragon_king",
-      "pose": "south",
-      "file": "../images/spritecook/dragon_king_south.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_dragon_king_east",
-      "category": "boss",
-      "group": "dragon_king",
-      "pose": "east",
-      "file": "../images/spritecook/dragon_king_east.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_dragon_king_east_attack",
-      "category": "boss",
-      "group": "dragon_king",
-      "pose": "east_attack",
-      "file": "../images/spritecook/dragon_king_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_dragon_king_east_spell",
-      "category": "boss",
-      "group": "dragon_king",
-      "pose": "east_spell",
-      "file": "../images/spritecook/dragon_king_east_spell.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_dragon_king_east_block",
-      "category": "boss",
-      "group": "dragon_king",
-      "pose": "east_block",
-      "file": "../images/spritecook/dragon_king_east_block.png",
-      "prompt": null
-    },
-    {
-      "id": "boss_dragon_king_east_ko",
-      "category": "boss",
-      "group": "dragon_king",
-      "pose": "east_ko",
-      "file": "../images/spritecook/dragon_king_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_scout_portrait",
-      "category": "enemy",
-      "group": "goblin_scout",
-      "pose": "portrait",
-      "file": "../images/openai_v2/goblin_scout_portrait.png",
-      "prompt": "A scrawny goblin scout with leather armor, small dagger, mischievous yellow eyes, dark fantasy RPG enemy portrait"
-    },
-    {
-      "id": "enemy_goblin_scout_south",
-      "category": "enemy",
-      "group": "goblin_scout",
-      "pose": "south",
-      "file": "../images/openai_v2/goblin_scout_south.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_scout_east",
-      "category": "enemy",
-      "group": "goblin_scout",
-      "pose": "east",
-      "file": "../images/openai_v2/goblin_scout_east.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_scout_east_attack",
-      "category": "enemy",
-      "group": "goblin_scout",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/goblin_scout_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_scout_east_ko",
-      "category": "enemy",
-      "group": "goblin_scout",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/goblin_scout_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_warrior_portrait",
-      "category": "enemy",
-      "group": "goblin_warrior",
-      "pose": "portrait",
-      "file": "../images/openai_v2/goblin_warrior_portrait.png",
-      "prompt": "A muscular goblin warrior wielding a crude iron sword, chipped shield, scarred green skin, dark fantasy RPG enemy portrait"
-    },
-    {
-      "id": "enemy_goblin_warrior_south",
-      "category": "enemy",
-      "group": "goblin_warrior",
-      "pose": "south",
-      "file": "../images/openai_v2/goblin_warrior_south.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_warrior_east",
-      "category": "enemy",
-      "group": "goblin_warrior",
-      "pose": "east",
-      "file": "../images/openai_v2/goblin_warrior_east.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_warrior_east_attack",
-      "category": "enemy",
-      "group": "goblin_warrior",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/goblin_warrior_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_warrior_east_ko",
-      "category": "enemy",
-      "group": "goblin_warrior",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/goblin_warrior_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_shaman_portrait",
-      "category": "enemy",
-      "group": "goblin_shaman",
-      "pose": "portrait",
-      "file": "../images/openai_v2/goblin_shaman_portrait.png",
-      "prompt": "A hunched goblin shaman in bone-fetish robes holding a glowing skull staff, feral eyes, dark fantasy RPG enemy portrait"
-    },
-    {
-      "id": "enemy_goblin_shaman_south",
-      "category": "enemy",
-      "group": "goblin_shaman",
-      "pose": "south",
-      "file": "../images/openai_v2/goblin_shaman_south.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_shaman_east",
-      "category": "enemy",
-      "group": "goblin_shaman",
-      "pose": "east",
-      "file": "../images/openai_v2/goblin_shaman_east.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_shaman_east_attack",
-      "category": "enemy",
-      "group": "goblin_shaman",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/goblin_shaman_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_goblin_shaman_east_ko",
-      "category": "enemy",
-      "group": "goblin_shaman",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/goblin_shaman_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_corrupted_wolf_portrait",
-      "category": "enemy",
-      "group": "corrupted_wolf",
-      "pose": "portrait",
-      "file": "../images/openai_v2/corrupted_wolf_portrait.png",
-      "prompt": "A rabid wolf with shadow-corrupted fur, glowing purple eyes, bared dripping fangs, dark fantasy RPG enemy portrait"
-    },
-    {
-      "id": "enemy_corrupted_wolf_south",
-      "category": "enemy",
-      "group": "corrupted_wolf",
-      "pose": "south",
-      "file": "../images/openai_v2/corrupted_wolf_south.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_corrupted_wolf_east",
-      "category": "enemy",
-      "group": "corrupted_wolf",
-      "pose": "east",
-      "file": "../images/openai_v2/corrupted_wolf_east.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_corrupted_wolf_east_attack",
-      "category": "enemy",
-      "group": "corrupted_wolf",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/corrupted_wolf_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_corrupted_wolf_east_ko",
-      "category": "enemy",
-      "group": "corrupted_wolf",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/corrupted_wolf_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_corrupted_bear_portrait",
-      "category": "enemy",
-      "group": "corrupted_bear",
-      "pose": "portrait",
-      "file": "../images/openai_v2/corrupted_bear_portrait.png",
-      "prompt": "A hulking bear with blackened corrupted hide, glowing red rune wounds, snarling maw, dark fantasy RPG enemy portrait"
-    },
-    {
-      "id": "enemy_corrupted_bear_south",
-      "category": "enemy",
-      "group": "corrupted_bear",
-      "pose": "south",
-      "file": "../images/openai_v2/corrupted_bear_south.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_corrupted_bear_east",
-      "category": "enemy",
-      "group": "corrupted_bear",
-      "pose": "east",
-      "file": "../images/openai_v2/corrupted_bear_east.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_corrupted_bear_east_attack",
-      "category": "enemy",
-      "group": "corrupted_bear",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/corrupted_bear_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_corrupted_bear_east_ko",
-      "category": "enemy",
-      "group": "corrupted_bear",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/corrupted_bear_east_ko.png",
+      "file": "../images/openai_v2/ash_wraith_east_ko.png",
       "prompt": null
     },
     {
@@ -6980,123 +6508,163 @@
       "prompt": null
     },
     {
-      "id": "enemy_imp_portrait",
+      "id": "enemy_cinder_hound_portrait",
       "category": "enemy",
-      "group": "imp",
+      "group": "cinder_hound",
       "pose": "portrait",
-      "file": "../images/openai_v2/imp_portrait.png",
-      "prompt": "A small winged demonic imp with barbed tail, clawed hands wreathed in hellfire, wicked grin, dark fantasy RPG enemy portrait"
+      "file": "../images/openai_v2/cinder_hound_portrait.png",
+      "prompt": "A cinder hound dog with obsidian skin cracked by glowing lava veins, smoldering breath, dark fantasy RPG enemy portrait"
     },
     {
-      "id": "enemy_imp_south",
+      "id": "enemy_cinder_hound_south",
       "category": "enemy",
-      "group": "imp",
+      "group": "cinder_hound",
       "pose": "south",
-      "file": "../images/openai_v2/imp_south.png",
+      "file": "../images/openai_v2/cinder_hound_south.png",
       "prompt": null
     },
     {
-      "id": "enemy_imp_east",
+      "id": "enemy_cinder_hound_east",
       "category": "enemy",
-      "group": "imp",
+      "group": "cinder_hound",
       "pose": "east",
-      "file": "../images/openai_v2/imp_east.png",
+      "file": "../images/openai_v2/cinder_hound_east.png",
       "prompt": null
     },
     {
-      "id": "enemy_imp_east_attack",
+      "id": "enemy_cinder_hound_east_attack",
       "category": "enemy",
-      "group": "imp",
+      "group": "cinder_hound",
       "pose": "east_attack",
-      "file": "../images/openai_v2/imp_east_attack.png",
+      "file": "../images/openai_v2/cinder_hound_east_attack.png",
       "prompt": null
     },
     {
-      "id": "enemy_imp_east_ko",
+      "id": "enemy_cinder_hound_east_ko",
       "category": "enemy",
-      "group": "imp",
+      "group": "cinder_hound",
       "pose": "east_ko",
-      "file": "../images/openai_v2/imp_east_ko.png",
+      "file": "../images/openai_v2/cinder_hound_east_ko.png",
       "prompt": null
     },
     {
-      "id": "enemy_hell_knight_portrait",
+      "id": "enemy_corrupted_bear_portrait",
       "category": "enemy",
-      "group": "hell_knight",
+      "group": "corrupted_bear",
       "pose": "portrait",
-      "file": "../images/openai_v2/hell_knight_portrait.png",
-      "prompt": "A hell knight in blackened infernal plate armor, horned helm, flaming longsword, glowing red visor, dark fantasy RPG enemy portrait"
+      "file": "../images/openai_v2/corrupted_bear_portrait.png",
+      "prompt": "A hulking bear with blackened corrupted hide, glowing red rune wounds, snarling maw, dark fantasy RPG enemy portrait"
     },
     {
-      "id": "enemy_hell_knight_south",
+      "id": "enemy_corrupted_bear_south",
       "category": "enemy",
-      "group": "hell_knight",
+      "group": "corrupted_bear",
       "pose": "south",
-      "file": "../images/openai_v2/hell_knight_south.png",
+      "file": "../images/openai_v2/corrupted_bear_south.png",
       "prompt": null
     },
     {
-      "id": "enemy_hell_knight_east",
+      "id": "enemy_corrupted_bear_east",
       "category": "enemy",
-      "group": "hell_knight",
+      "group": "corrupted_bear",
       "pose": "east",
-      "file": "../images/openai_v2/hell_knight_east.png",
+      "file": "../images/openai_v2/corrupted_bear_east.png",
       "prompt": null
     },
     {
-      "id": "enemy_hell_knight_east_attack",
+      "id": "enemy_corrupted_bear_east_attack",
       "category": "enemy",
-      "group": "hell_knight",
+      "group": "corrupted_bear",
       "pose": "east_attack",
-      "file": "../images/openai_v2/hell_knight_east_attack.png",
+      "file": "../images/openai_v2/corrupted_bear_east_attack.png",
       "prompt": null
     },
     {
-      "id": "enemy_hell_knight_east_ko",
+      "id": "enemy_corrupted_bear_east_ko",
       "category": "enemy",
-      "group": "hell_knight",
+      "group": "corrupted_bear",
       "pose": "east_ko",
-      "file": "../images/openai_v2/hell_knight_east_ko.png",
+      "file": "../images/openai_v2/corrupted_bear_east_ko.png",
       "prompt": null
     },
     {
-      "id": "enemy_void_shade_portrait",
+      "id": "enemy_corrupted_wolf_portrait",
       "category": "enemy",
-      "group": "void_shade",
+      "group": "corrupted_wolf",
       "pose": "portrait",
-      "file": "../images/openai_v2/void_shade_portrait.png",
-      "prompt": "A ghostly void shade, translucent body of swirling black mist, hollow glowing eyes, wispy tendrils, dark fantasy RPG enemy portrait"
+      "file": "../images/openai_v2/corrupted_wolf_portrait.png",
+      "prompt": "A rabid wolf with shadow-corrupted fur, glowing purple eyes, bared dripping fangs, dark fantasy RPG enemy portrait"
     },
     {
-      "id": "enemy_void_shade_south",
+      "id": "enemy_corrupted_wolf_south",
       "category": "enemy",
-      "group": "void_shade",
+      "group": "corrupted_wolf",
       "pose": "south",
-      "file": "../images/openai_v2/void_shade_south.png",
+      "file": "../images/openai_v2/corrupted_wolf_south.png",
       "prompt": null
     },
     {
-      "id": "enemy_void_shade_east",
+      "id": "enemy_corrupted_wolf_east",
       "category": "enemy",
-      "group": "void_shade",
+      "group": "corrupted_wolf",
       "pose": "east",
-      "file": "../images/openai_v2/void_shade_east.png",
+      "file": "../images/openai_v2/corrupted_wolf_east.png",
       "prompt": null
     },
     {
-      "id": "enemy_void_shade_east_attack",
+      "id": "enemy_corrupted_wolf_east_attack",
       "category": "enemy",
-      "group": "void_shade",
+      "group": "corrupted_wolf",
       "pose": "east_attack",
-      "file": "../images/openai_v2/void_shade_east_attack.png",
+      "file": "../images/openai_v2/corrupted_wolf_east_attack.png",
       "prompt": null
     },
     {
-      "id": "enemy_void_shade_east_ko",
+      "id": "enemy_corrupted_wolf_east_ko",
       "category": "enemy",
-      "group": "void_shade",
+      "group": "corrupted_wolf",
       "pose": "east_ko",
-      "file": "../images/openai_v2/void_shade_east_ko.png",
+      "file": "../images/openai_v2/corrupted_wolf_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_cosmic_titan_portrait",
+      "category": "enemy",
+      "group": "cosmic_titan",
+      "pose": "portrait",
+      "file": "../images/spritecook/cosmic_titan_portrait.png",
+      "prompt": "A cosmic titan of stone and galaxies, giant humanoid wreathed in nebulae, star-lit runes, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_cosmic_titan_south",
+      "category": "enemy",
+      "group": "cosmic_titan",
+      "pose": "south",
+      "file": "../images/spritecook/cosmic_titan_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_cosmic_titan_east",
+      "category": "enemy",
+      "group": "cosmic_titan",
+      "pose": "east",
+      "file": "../images/spritecook/cosmic_titan_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_cosmic_titan_east_attack",
+      "category": "enemy",
+      "group": "cosmic_titan",
+      "pose": "east_attack",
+      "file": "../images/spritecook/cosmic_titan_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_cosmic_titan_east_ko",
+      "category": "enemy",
+      "group": "cosmic_titan",
+      "pose": "east_ko",
+      "file": "../images/spritecook/cosmic_titan_east_ko.png",
       "prompt": null
     },
     {
@@ -7140,83 +6708,443 @@
       "prompt": null
     },
     {
-      "id": "enemy_ash_wraith_portrait",
+      "id": "enemy_dragon_cultist_portrait",
       "category": "enemy",
-      "group": "ash_wraith",
+      "group": "dragon_cultist",
       "pose": "portrait",
-      "file": "../images/openai_v2/ash_wraith_portrait.png",
-      "prompt": "An ash wraith of smoldering gray smoke, burning ember eyes, drifting ash form, dark fantasy RPG enemy portrait"
+      "file": "../images/openai_v2/dragon_cultist_portrait.png",
+      "prompt": "A dragon cultist in red-and-gold robes with scale patterns, reverent pose, clutching a dragon-tooth amulet, dark fantasy RPG enemy portrait"
     },
     {
-      "id": "enemy_ash_wraith_south",
+      "id": "enemy_dragon_cultist_south",
       "category": "enemy",
-      "group": "ash_wraith",
+      "group": "dragon_cultist",
       "pose": "south",
-      "file": "../images/openai_v2/ash_wraith_south.png",
+      "file": "../images/openai_v2/dragon_cultist_south.png",
       "prompt": null
     },
     {
-      "id": "enemy_ash_wraith_east",
+      "id": "enemy_dragon_cultist_east",
       "category": "enemy",
-      "group": "ash_wraith",
+      "group": "dragon_cultist",
       "pose": "east",
-      "file": "../images/openai_v2/ash_wraith_east.png",
+      "file": "../images/openai_v2/dragon_cultist_east.png",
       "prompt": null
     },
     {
-      "id": "enemy_ash_wraith_east_attack",
+      "id": "enemy_dragon_cultist_east_attack",
       "category": "enemy",
-      "group": "ash_wraith",
+      "group": "dragon_cultist",
       "pose": "east_attack",
-      "file": "../images/openai_v2/ash_wraith_east_attack.png",
+      "file": "../images/openai_v2/dragon_cultist_east_attack.png",
       "prompt": null
     },
     {
-      "id": "enemy_ash_wraith_east_ko",
+      "id": "enemy_dragon_cultist_east_ko",
       "category": "enemy",
-      "group": "ash_wraith",
+      "group": "dragon_cultist",
       "pose": "east_ko",
-      "file": "../images/openai_v2/ash_wraith_east_ko.png",
+      "file": "../images/openai_v2/dragon_cultist_east_ko.png",
       "prompt": null
     },
     {
-      "id": "enemy_cinder_hound_portrait",
+      "id": "enemy_dragon_whelp_portrait",
       "category": "enemy",
-      "group": "cinder_hound",
+      "group": "dragon_whelp",
       "pose": "portrait",
-      "file": "../images/openai_v2/cinder_hound_portrait.png",
-      "prompt": "A cinder hound dog with obsidian skin cracked by glowing lava veins, smoldering breath, dark fantasy RPG enemy portrait"
+      "file": "../images/openai_v2/dragon_whelp_portrait.png",
+      "prompt": "A small dragon whelp with iridescent scales, wings unfurling, puffing tiny flame, dark fantasy RPG enemy portrait"
     },
     {
-      "id": "enemy_cinder_hound_south",
+      "id": "enemy_dragon_whelp_south",
       "category": "enemy",
-      "group": "cinder_hound",
+      "group": "dragon_whelp",
       "pose": "south",
-      "file": "../images/openai_v2/cinder_hound_south.png",
+      "file": "../images/openai_v2/dragon_whelp_south.png",
       "prompt": null
     },
     {
-      "id": "enemy_cinder_hound_east",
+      "id": "enemy_dragon_whelp_east",
       "category": "enemy",
-      "group": "cinder_hound",
+      "group": "dragon_whelp",
       "pose": "east",
-      "file": "../images/openai_v2/cinder_hound_east.png",
+      "file": "../images/openai_v2/dragon_whelp_east.png",
       "prompt": null
     },
     {
-      "id": "enemy_cinder_hound_east_attack",
+      "id": "enemy_dragon_whelp_east_attack",
       "category": "enemy",
-      "group": "cinder_hound",
+      "group": "dragon_whelp",
       "pose": "east_attack",
-      "file": "../images/openai_v2/cinder_hound_east_attack.png",
+      "file": "../images/openai_v2/dragon_whelp_east_attack.png",
       "prompt": null
     },
     {
-      "id": "enemy_cinder_hound_east_ko",
+      "id": "enemy_dragon_whelp_east_ko",
       "category": "enemy",
-      "group": "cinder_hound",
+      "group": "dragon_whelp",
       "pose": "east_ko",
-      "file": "../images/openai_v2/cinder_hound_east_ko.png",
+      "file": "../images/openai_v2/dragon_whelp_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_frost_wyrm_portrait",
+      "category": "enemy",
+      "group": "frost_wyrm",
+      "pose": "portrait",
+      "file": "../images/spritecook/frost_wyrm_portrait.png",
+      "prompt": "A frost wyrm dragon with icy blue scales, frost breath spilling from its jaws, icicles on spines, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_frost_wyrm_south",
+      "category": "enemy",
+      "group": "frost_wyrm",
+      "pose": "south",
+      "file": "../images/spritecook/frost_wyrm_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_frost_wyrm_east",
+      "category": "enemy",
+      "group": "frost_wyrm",
+      "pose": "east",
+      "file": "../images/spritecook/frost_wyrm_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_frost_wyrm_east_attack",
+      "category": "enemy",
+      "group": "frost_wyrm",
+      "pose": "east_attack",
+      "file": "../images/spritecook/frost_wyrm_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_frost_wyrm_east_ko",
+      "category": "enemy",
+      "group": "frost_wyrm",
+      "pose": "east_ko",
+      "file": "../images/spritecook/frost_wyrm_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_genesis_worm_portrait",
+      "category": "enemy",
+      "group": "genesis_worm",
+      "pose": "portrait",
+      "file": "../images/openai_v2/genesis_worm_portrait.png",
+      "prompt": "A colossal genesis worm, segmented chitinous body, toothy sucker maw, glowing pink interior, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_genesis_worm_south",
+      "category": "enemy",
+      "group": "genesis_worm",
+      "pose": "south",
+      "file": "../images/openai_v2/genesis_worm_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_genesis_worm_east",
+      "category": "enemy",
+      "group": "genesis_worm",
+      "pose": "east",
+      "file": "../images/openai_v2/genesis_worm_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_genesis_worm_east_attack",
+      "category": "enemy",
+      "group": "genesis_worm",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/genesis_worm_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_genesis_worm_east_ko",
+      "category": "enemy",
+      "group": "genesis_worm",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/genesis_worm_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_giant_spider_portrait",
+      "category": "enemy",
+      "group": "giant_spider",
+      "pose": "portrait",
+      "file": "../images/openai_v2/giant_spider_portrait.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_giant_spider_south",
+      "category": "enemy",
+      "group": "giant_spider",
+      "pose": "south",
+      "file": "../images/openai_v2/giant_spider_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_giant_spider_east",
+      "category": "enemy",
+      "group": "giant_spider",
+      "pose": "east",
+      "file": "../images/openai_v2/giant_spider_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_giant_spider_east_attack",
+      "category": "enemy",
+      "group": "giant_spider",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/giant_spider_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_giant_spider_east_ko",
+      "category": "enemy",
+      "group": "giant_spider",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/giant_spider_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_scout_portrait",
+      "category": "enemy",
+      "group": "goblin_scout",
+      "pose": "portrait",
+      "file": "../images/openai_v2/goblin_scout_portrait.png",
+      "prompt": "A scrawny goblin scout with leather armor, small dagger, mischievous yellow eyes, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_goblin_scout_south",
+      "category": "enemy",
+      "group": "goblin_scout",
+      "pose": "south",
+      "file": "../images/openai_v2/goblin_scout_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_scout_east",
+      "category": "enemy",
+      "group": "goblin_scout",
+      "pose": "east",
+      "file": "../images/openai_v2/goblin_scout_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_scout_east_attack",
+      "category": "enemy",
+      "group": "goblin_scout",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/goblin_scout_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_scout_east_ko",
+      "category": "enemy",
+      "group": "goblin_scout",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/goblin_scout_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_shaman_portrait",
+      "category": "enemy",
+      "group": "goblin_shaman",
+      "pose": "portrait",
+      "file": "../images/openai_v2/goblin_shaman_portrait.png",
+      "prompt": "A hunched goblin shaman in bone-fetish robes holding a glowing skull staff, feral eyes, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_goblin_shaman_south",
+      "category": "enemy",
+      "group": "goblin_shaman",
+      "pose": "south",
+      "file": "../images/openai_v2/goblin_shaman_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_shaman_east",
+      "category": "enemy",
+      "group": "goblin_shaman",
+      "pose": "east",
+      "file": "../images/openai_v2/goblin_shaman_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_shaman_east_attack",
+      "category": "enemy",
+      "group": "goblin_shaman",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/goblin_shaman_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_shaman_east_ko",
+      "category": "enemy",
+      "group": "goblin_shaman",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/goblin_shaman_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_warlord_portrait",
+      "category": "enemy",
+      "group": "goblin_warlord",
+      "pose": "portrait",
+      "file": "../images/openai_v2/goblin_warlord_portrait.png",
+      "prompt": "A massive goblin warlord in plate armor with a two-handed axe, tusked snarl, war paint, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_goblin_warlord_south",
+      "category": "enemy",
+      "group": "goblin_warlord",
+      "pose": "south",
+      "file": "../images/openai_v2/goblin_warlord_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_warlord_east",
+      "category": "enemy",
+      "group": "goblin_warlord",
+      "pose": "east",
+      "file": "../images/openai_v2/goblin_warlord_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_warlord_east_attack",
+      "category": "enemy",
+      "group": "goblin_warlord",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/goblin_warlord_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_warlord_east_ko",
+      "category": "enemy",
+      "group": "goblin_warlord",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/goblin_warlord_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_warrior_portrait",
+      "category": "enemy",
+      "group": "goblin_warrior",
+      "pose": "portrait",
+      "file": "../images/openai_v2/goblin_warrior_portrait.png",
+      "prompt": "A muscular goblin warrior wielding a crude iron sword, chipped shield, scarred green skin, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_goblin_warrior_south",
+      "category": "enemy",
+      "group": "goblin_warrior",
+      "pose": "south",
+      "file": "../images/openai_v2/goblin_warrior_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_warrior_east",
+      "category": "enemy",
+      "group": "goblin_warrior",
+      "pose": "east",
+      "file": "../images/openai_v2/goblin_warrior_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_warrior_east_attack",
+      "category": "enemy",
+      "group": "goblin_warrior",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/goblin_warrior_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_goblin_warrior_east_ko",
+      "category": "enemy",
+      "group": "goblin_warrior",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/goblin_warrior_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_hell_knight_portrait",
+      "category": "enemy",
+      "group": "hell_knight",
+      "pose": "portrait",
+      "file": "../images/openai_v2/hell_knight_portrait.png",
+      "prompt": "A hell knight in blackened infernal plate armor, horned helm, flaming longsword, glowing red visor, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_hell_knight_south",
+      "category": "enemy",
+      "group": "hell_knight",
+      "pose": "south",
+      "file": "../images/openai_v2/hell_knight_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_hell_knight_east",
+      "category": "enemy",
+      "group": "hell_knight",
+      "pose": "east",
+      "file": "../images/openai_v2/hell_knight_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_hell_knight_east_attack",
+      "category": "enemy",
+      "group": "hell_knight",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/hell_knight_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_hell_knight_east_ko",
+      "category": "enemy",
+      "group": "hell_knight",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/hell_knight_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_imp_portrait",
+      "category": "enemy",
+      "group": "imp",
+      "pose": "portrait",
+      "file": "../images/openai_v2/imp_portrait.png",
+      "prompt": "A small winged demonic imp with barbed tail, clawed hands wreathed in hellfire, wicked grin, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_imp_south",
+      "category": "enemy",
+      "group": "imp",
+      "pose": "south",
+      "file": "../images/openai_v2/imp_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_imp_east",
+      "category": "enemy",
+      "group": "imp",
+      "pose": "east",
+      "file": "../images/openai_v2/imp_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_imp_east_attack",
+      "category": "enemy",
+      "group": "imp",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/imp_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_imp_east_ko",
+      "category": "enemy",
+      "group": "imp",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/imp_east_ko.png",
       "prompt": null
     },
     {
@@ -7260,123 +7188,43 @@
       "prompt": null
     },
     {
-      "id": "enemy_veil_cultist_portrait",
+      "id": "enemy_primordial_elemental_portrait",
       "category": "enemy",
-      "group": "veil_cultist",
+      "group": "primordial_elemental",
       "pose": "portrait",
-      "file": "../images/openai_v2/veil_cultist_portrait.png",
-      "prompt": "A veil cultist in dark hooded robes with glowing sigils, pale chanting face, ceremonial dagger, dark fantasy RPG enemy portrait"
+      "file": "../images/openai_v2/primordial_elemental_portrait.png",
+      "prompt": "A primordial elemental of swirling raw cosmic energy, nebula core, crackling arms of plasma, dark fantasy RPG enemy portrait"
     },
     {
-      "id": "enemy_veil_cultist_south",
+      "id": "enemy_primordial_elemental_south",
       "category": "enemy",
-      "group": "veil_cultist",
+      "group": "primordial_elemental",
       "pose": "south",
-      "file": "../images/openai_v2/veil_cultist_south.png",
+      "file": "../images/openai_v2/primordial_elemental_south.png",
       "prompt": null
     },
     {
-      "id": "enemy_veil_cultist_east",
+      "id": "enemy_primordial_elemental_east",
       "category": "enemy",
-      "group": "veil_cultist",
+      "group": "primordial_elemental",
       "pose": "east",
-      "file": "../images/openai_v2/veil_cultist_east.png",
+      "file": "../images/openai_v2/primordial_elemental_east.png",
       "prompt": null
     },
     {
-      "id": "enemy_veil_cultist_east_attack",
+      "id": "enemy_primordial_elemental_east_attack",
       "category": "enemy",
-      "group": "veil_cultist",
+      "group": "primordial_elemental",
       "pose": "east_attack",
-      "file": "../images/openai_v2/veil_cultist_east_attack.png",
+      "file": "../images/openai_v2/primordial_elemental_east_attack.png",
       "prompt": null
     },
     {
-      "id": "enemy_veil_cultist_east_ko",
+      "id": "enemy_primordial_elemental_east_ko",
       "category": "enemy",
-      "group": "veil_cultist",
+      "group": "primordial_elemental",
       "pose": "east_ko",
-      "file": "../images/openai_v2/veil_cultist_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_grax_veil_touched_portrait",
-      "category": "enemy",
-      "group": "grax_veil_touched",
-      "pose": "portrait",
-      "file": "../images/spritecook/grax_veil_touched_portrait.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_grax_veil_touched_south",
-      "category": "enemy",
-      "group": "grax_veil_touched",
-      "pose": "south",
-      "file": "../images/spritecook/grax_veil_touched_south.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_grax_veil_touched_east",
-      "category": "enemy",
-      "group": "grax_veil_touched",
-      "pose": "east",
-      "file": "../images/spritecook/grax_veil_touched_east.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_grax_veil_touched_east_attack",
-      "category": "enemy",
-      "group": "grax_veil_touched",
-      "pose": "east_attack",
-      "file": "../images/spritecook/grax_veil_touched_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_grax_veil_touched_east_ko",
-      "category": "enemy",
-      "group": "grax_veil_touched",
-      "pose": "east_ko",
-      "file": "../images/spritecook/grax_veil_touched_east_ko.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_abyssal_knight_portrait",
-      "category": "enemy",
-      "group": "abyssal_knight",
-      "pose": "portrait",
-      "file": "../images/openai_v2/abyssal_knight_portrait.png",
-      "prompt": "An abyssal knight in deep-sea black coral armor, trident, glowing void eyes under helm, dark fantasy RPG enemy portrait"
-    },
-    {
-      "id": "enemy_abyssal_knight_south",
-      "category": "enemy",
-      "group": "abyssal_knight",
-      "pose": "south",
-      "file": "../images/openai_v2/abyssal_knight_south.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_abyssal_knight_east",
-      "category": "enemy",
-      "group": "abyssal_knight",
-      "pose": "east",
-      "file": "../images/openai_v2/abyssal_knight_east.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_abyssal_knight_east_attack",
-      "category": "enemy",
-      "group": "abyssal_knight",
-      "pose": "east_attack",
-      "file": "../images/openai_v2/abyssal_knight_east_attack.png",
-      "prompt": null
-    },
-    {
-      "id": "enemy_abyssal_knight_east_ko",
-      "category": "enemy",
-      "group": "abyssal_knight",
-      "pose": "east_ko",
-      "file": "../images/openai_v2/abyssal_knight_east_ko.png",
+      "file": "../images/openai_v2/primordial_elemental_east_ko.png",
       "prompt": null
     },
     {
@@ -7420,43 +7268,403 @@
       "prompt": null
     },
     {
-      "id": "enemy_genesis_worm_portrait",
+      "id": "enemy_star_horror_portrait",
       "category": "enemy",
-      "group": "genesis_worm",
+      "group": "star_horror",
       "pose": "portrait",
-      "file": "../images/openai_v2/genesis_worm_portrait.png",
-      "prompt": "A colossal genesis worm, segmented chitinous body, toothy sucker maw, glowing pink interior, dark fantasy RPG enemy portrait"
+      "file": "../images/openai_v2/star_horror_portrait.png",
+      "prompt": "A cosmic star horror with many glowing eyes, writhing tentacles dotted with stars, nebulous body, dark fantasy RPG enemy portrait"
     },
     {
-      "id": "enemy_genesis_worm_south",
+      "id": "enemy_star_horror_south",
       "category": "enemy",
-      "group": "genesis_worm",
+      "group": "star_horror",
       "pose": "south",
-      "file": "../images/openai_v2/genesis_worm_south.png",
+      "file": "../images/openai_v2/star_horror_south.png",
       "prompt": null
     },
     {
-      "id": "enemy_genesis_worm_east",
+      "id": "enemy_star_horror_east",
       "category": "enemy",
-      "group": "genesis_worm",
+      "group": "star_horror",
       "pose": "east",
-      "file": "../images/openai_v2/genesis_worm_east.png",
+      "file": "../images/openai_v2/star_horror_east.png",
       "prompt": null
     },
     {
-      "id": "enemy_genesis_worm_east_attack",
+      "id": "enemy_star_horror_east_attack",
       "category": "enemy",
-      "group": "genesis_worm",
+      "group": "star_horror",
       "pose": "east_attack",
-      "file": "../images/openai_v2/genesis_worm_east_attack.png",
+      "file": "../images/openai_v2/star_horror_east_attack.png",
       "prompt": null
     },
     {
-      "id": "enemy_genesis_worm_east_ko",
+      "id": "enemy_star_horror_east_ko",
       "category": "enemy",
-      "group": "genesis_worm",
+      "group": "star_horror",
       "pose": "east_ko",
-      "file": "../images/openai_v2/genesis_worm_east_ko.png",
+      "file": "../images/openai_v2/star_horror_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_storm_dragon_portrait",
+      "category": "enemy",
+      "group": "storm_dragon",
+      "pose": "portrait",
+      "file": "../images/spritecook/storm_dragon_portrait.png",
+      "prompt": "A storm dragon with dark slate scales, lightning crackling along its wings, glowing yellow eyes, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_storm_dragon_south",
+      "category": "enemy",
+      "group": "storm_dragon",
+      "pose": "south",
+      "file": "../images/spritecook/storm_dragon_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_storm_dragon_east",
+      "category": "enemy",
+      "group": "storm_dragon",
+      "pose": "east",
+      "file": "../images/spritecook/storm_dragon_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_storm_dragon_east_attack",
+      "category": "enemy",
+      "group": "storm_dragon",
+      "pose": "east_attack",
+      "file": "../images/spritecook/storm_dragon_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_storm_dragon_east_ko",
+      "category": "enemy",
+      "group": "storm_dragon",
+      "pose": "east_ko",
+      "file": "../images/spritecook/storm_dragon_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_cultist_portrait",
+      "category": "enemy",
+      "group": "veil_cultist",
+      "pose": "portrait",
+      "file": "../images/openai_v2/veil_cultist_portrait.png",
+      "prompt": "A veil cultist in dark hooded robes with glowing sigils, pale chanting face, ceremonial dagger, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_veil_cultist_south",
+      "category": "enemy",
+      "group": "veil_cultist",
+      "pose": "south",
+      "file": "../images/openai_v2/veil_cultist_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_cultist_east",
+      "category": "enemy",
+      "group": "veil_cultist",
+      "pose": "east",
+      "file": "../images/openai_v2/veil_cultist_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_cultist_east_attack",
+      "category": "enemy",
+      "group": "veil_cultist",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/veil_cultist_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_cultist_east_ko",
+      "category": "enemy",
+      "group": "veil_cultist",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/veil_cultist_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_sorcerer_portrait",
+      "category": "enemy",
+      "group": "veil_sorcerer",
+      "pose": "portrait",
+      "file": "../images/openai_v2/veil_sorcerer_portrait.png",
+      "prompt": "A veil sorcerer in flowing violet robes summoning arcane purple flames, skeletal hands, masked face, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_veil_sorcerer_south",
+      "category": "enemy",
+      "group": "veil_sorcerer",
+      "pose": "south",
+      "file": "../images/openai_v2/veil_sorcerer_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_sorcerer_east",
+      "category": "enemy",
+      "group": "veil_sorcerer",
+      "pose": "east",
+      "file": "../images/openai_v2/veil_sorcerer_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_sorcerer_east_attack",
+      "category": "enemy",
+      "group": "veil_sorcerer",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/veil_sorcerer_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_sorcerer_east_ko",
+      "category": "enemy",
+      "group": "veil_sorcerer",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/veil_sorcerer_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_warden_portrait",
+      "category": "enemy",
+      "group": "veil_warden",
+      "pose": "portrait",
+      "file": "../images/openai_v2/veil_warden_portrait.png",
+      "prompt": "A veil warden in ornate plate with glowing runes, crystal halberd, grim stoic visor, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_veil_warden_south",
+      "category": "enemy",
+      "group": "veil_warden",
+      "pose": "south",
+      "file": "../images/openai_v2/veil_warden_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_warden_east",
+      "category": "enemy",
+      "group": "veil_warden",
+      "pose": "east",
+      "file": "../images/openai_v2/veil_warden_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_warden_east_attack",
+      "category": "enemy",
+      "group": "veil_warden",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/veil_warden_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veil_warden_east_ko",
+      "category": "enemy",
+      "group": "veil_warden",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/veil_warden_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veilspawn_herald_portrait",
+      "category": "enemy",
+      "group": "veilspawn_herald",
+      "pose": "portrait",
+      "file": "../images/spritecook/veilspawn_herald_portrait.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veilspawn_herald_south",
+      "category": "enemy",
+      "group": "veilspawn_herald",
+      "pose": "south",
+      "file": "../images/spritecook/veilspawn_herald_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veilspawn_herald_east",
+      "category": "enemy",
+      "group": "veilspawn_herald",
+      "pose": "east",
+      "file": "../images/spritecook/veilspawn_herald_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veilspawn_herald_east_attack",
+      "category": "enemy",
+      "group": "veilspawn_herald",
+      "pose": "east_attack",
+      "file": "../images/spritecook/veilspawn_herald_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_veilspawn_herald_east_ko",
+      "category": "enemy",
+      "group": "veilspawn_herald",
+      "pose": "east_ko",
+      "file": "../images/spritecook/veilspawn_herald_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_prophet_portrait",
+      "category": "enemy",
+      "group": "void_prophet",
+      "pose": "portrait",
+      "file": "../images/openai_v2/void_prophet_portrait.png",
+      "prompt": "A void prophet in tattered robes, blindfold of stars, third eye opening, levitating, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_void_prophet_south",
+      "category": "enemy",
+      "group": "void_prophet",
+      "pose": "south",
+      "file": "../images/openai_v2/void_prophet_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_prophet_east",
+      "category": "enemy",
+      "group": "void_prophet",
+      "pose": "east",
+      "file": "../images/openai_v2/void_prophet_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_prophet_east_attack",
+      "category": "enemy",
+      "group": "void_prophet",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/void_prophet_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_prophet_east_ko",
+      "category": "enemy",
+      "group": "void_prophet",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/void_prophet_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_shade_portrait",
+      "category": "enemy",
+      "group": "void_shade",
+      "pose": "portrait",
+      "file": "../images/openai_v2/void_shade_portrait.png",
+      "prompt": "A ghostly void shade, translucent body of swirling black mist, hollow glowing eyes, wispy tendrils, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_void_shade_south",
+      "category": "enemy",
+      "group": "void_shade",
+      "pose": "south",
+      "file": "../images/openai_v2/void_shade_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_shade_east",
+      "category": "enemy",
+      "group": "void_shade",
+      "pose": "east",
+      "file": "../images/openai_v2/void_shade_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_shade_east_attack",
+      "category": "enemy",
+      "group": "void_shade",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/void_shade_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_shade_east_ko",
+      "category": "enemy",
+      "group": "void_shade",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/void_shade_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_wraith_portrait",
+      "category": "enemy",
+      "group": "void_wraith",
+      "pose": "portrait",
+      "file": "../images/openai_v2/void_wraith_portrait.png",
+      "prompt": "A void wraith of pure black emptiness, starlike pinpoints for eyes, tattered cosmic cloak, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_void_wraith_south",
+      "category": "enemy",
+      "group": "void_wraith",
+      "pose": "south",
+      "file": "../images/openai_v2/void_wraith_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_wraith_east",
+      "category": "enemy",
+      "group": "void_wraith",
+      "pose": "east",
+      "file": "../images/openai_v2/void_wraith_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_wraith_east_attack",
+      "category": "enemy",
+      "group": "void_wraith",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/void_wraith_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_void_wraith_east_ko",
+      "category": "enemy",
+      "group": "void_wraith",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/void_wraith_east_ko.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_wyrm_warrior_portrait",
+      "category": "enemy",
+      "group": "wyrm_warrior",
+      "pose": "portrait",
+      "file": "../images/openai_v2/wyrm_warrior_portrait.png",
+      "prompt": "A bipedal dragonfolk wyrm warrior in bronze scale armor, serpent snout, curved blade, dark fantasy RPG enemy portrait"
+    },
+    {
+      "id": "enemy_wyrm_warrior_south",
+      "category": "enemy",
+      "group": "wyrm_warrior",
+      "pose": "south",
+      "file": "../images/openai_v2/wyrm_warrior_south.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_wyrm_warrior_east",
+      "category": "enemy",
+      "group": "wyrm_warrior",
+      "pose": "east",
+      "file": "../images/openai_v2/wyrm_warrior_east.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_wyrm_warrior_east_attack",
+      "category": "enemy",
+      "group": "wyrm_warrior",
+      "pose": "east_attack",
+      "file": "../images/openai_v2/wyrm_warrior_east_attack.png",
+      "prompt": null
+    },
+    {
+      "id": "enemy_wyrm_warrior_east_ko",
+      "category": "enemy",
+      "group": "wyrm_warrior",
+      "pose": "east_ko",
+      "file": "../images/openai_v2/wyrm_warrior_east_ko.png",
       "prompt": null
     },
     {

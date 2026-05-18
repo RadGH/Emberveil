@@ -2,13 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://emberveil.rsg/schemas/v1/build-preset.json",
   "title": "Emberveil Build Preset (v1)",
-  "description": "Per-class build preset that drives the auto-attribute allocator and starting-equipment roll. Source-of-truth: src/game/buildPresets.js, exported as builds.json via scripts/emit-game-data.cjs.",
+  "description": "Per-class build preset that drives the auto-attribute allocator and starting-equipment roll. Canonical source: public/data/build-presets.json (builds[classId][]). The owning class is the map key, so build entries carry no classId field.",
   "type": "object",
-  "required": ["id", "classId", "name", "targetAttrs"],
+  "required": ["id", "name", "description", "targetAttrs", "plateaus", "weapons", "shieldPref", "preferredSkills", "tags"],
   "additionalProperties": false,
   "properties": {
     "id":          { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,31}$" },
-    "classId":     { "type": "string", "description": "class id this build belongs to (warrior, mage, ...)" },
     "name":        { "type": "string", "minLength": 1, "maxLength": 32 },
     "description": { "type": "string", "maxLength": 280 },
     "targetAttrs": {

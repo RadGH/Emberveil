@@ -1,18 +1,23 @@
 [
   {
-    "id": "pet_skeletal_warrior",
-    "name": "Skeletal Warrior",
+    "id": "pet_bear",
+    "name": "Cave Bear",
     "kind": "pet",
     "class": "companion",
-    "ownerClass": "necromancer",
+    "ownerClass": "druid",
+    "className": "Companion",
     "role": "Pet",
+    "level": 1,
+    "cost": null,
+    "personality": null,
     "attrs": {
-      "STR": 12,
-      "DEX": 8,
+      "CON": 16,
+      "DEX": 6,
       "INT": 4,
-      "CON": 14
+      "STR": 14
     },
-    "description": "Undead soldier bound by dark magic. Fights with hollow determination."
+    "description": "A massive bear called from the deep woods. Absorbs punishment.",
+    "encounterZone": null
   },
   {
     "id": "pet_bone_golem",
@@ -20,134 +25,19 @@
     "kind": "pet",
     "class": "companion",
     "ownerClass": "necromancer",
+    "className": "Companion",
     "role": "Pet",
+    "level": 1,
+    "cost": null,
+    "personality": null,
     "attrs": {
-      "STR": 16,
+      "CON": 18,
       "DEX": 4,
       "INT": 2,
-      "CON": 18
+      "STR": 16
     },
-    "description": "Massive construct of fused bones. Slow but devastating."
-  },
-  {
-    "id": "pet_wolf",
-    "name": "Forest Wolf",
-    "kind": "pet",
-    "class": "companion",
-    "ownerClass": "druid",
-    "role": "Pet",
-    "attrs": {
-      "STR": 10,
-      "DEX": 14,
-      "INT": 4,
-      "CON": 10
-    },
-    "description": "A wild wolf bonded through nature magic. Swift and loyal."
-  },
-  {
-    "id": "pet_bear",
-    "name": "Cave Bear",
-    "kind": "pet",
-    "class": "companion",
-    "ownerClass": "druid",
-    "role": "Pet",
-    "attrs": {
-      "STR": 14,
-      "DEX": 6,
-      "INT": 4,
-      "CON": 16
-    },
-    "description": "A massive bear called from the deep woods. Absorbs punishment."
-  },
-  {
-    "id": "pet_imp",
-    "name": "Bound Imp",
-    "kind": "pet",
-    "class": "companion",
-    "ownerClass": "warlock",
-    "role": "Pet",
-    "attrs": {
-      "STR": 6,
-      "DEX": 12,
-      "INT": 12,
-      "CON": 6
-    },
-    "description": "A mischievous lesser demon. Small but cunning."
-  },
-  {
-    "id": "pet_demon",
-    "name": "Infernal Hound",
-    "kind": "pet",
-    "class": "companion",
-    "ownerClass": "warlock",
-    "role": "Pet",
-    "attrs": {
-      "STR": 14,
-      "DEX": 10,
-      "INT": 8,
-      "CON": 12
-    },
-    "description": "A summoned demon beast from the lower planes."
-  },
-  {
-    "id": "pet_war_hound",
-    "name": "Trained War Hound",
-    "kind": "pet",
-    "class": "companion",
-    "ownerClass": "ranger",
-    "role": "Pet",
-    "attrs": {
-      "STR": 10,
-      "DEX": 14,
-      "INT": 6,
-      "CON": 10
-    },
-    "description": "An armored hunting dog trained for battle."
-  },
-  {
-    "id": "pet_fire_elemental",
-    "name": "Fire Elemental",
-    "kind": "pet",
-    "class": "companion",
-    "ownerClass": "pyromancer",
-    "role": "Pet",
-    "attrs": {
-      "STR": 8,
-      "DEX": 8,
-      "INT": 16,
-      "CON": 8
-    },
-    "description": "A living flame summoned from the ember planes."
-  },
-  {
-    "id": "pet_lightning_elemental",
-    "name": "Lightning Elemental",
-    "kind": "pet",
-    "class": "companion",
-    "ownerClass": "stormcaller",
-    "role": "Pet",
-    "attrs": {
-      "STR": 6,
-      "DEX": 14,
-      "INT": 14,
-      "CON": 6
-    },
-    "description": "A crackling bolt given form and purpose."
-  },
-  {
-    "id": "pet_familiar",
-    "name": "Arcane Familiar",
-    "kind": "pet",
-    "class": "companion",
-    "ownerClass": "mage",
-    "role": "Pet",
-    "attrs": {
-      "STR": 4,
-      "DEX": 10,
-      "INT": 16,
-      "CON": 8
-    },
-    "description": "A mystical black cat wreathed in arcane runes, bound to its mage by ancient pact."
+    "description": "Massive construct of fused bones. Slow but devastating.",
+    "encounterZone": null
   },
   {
     "id": "pet_clockwork_turret",
@@ -155,184 +45,178 @@
     "kind": "pet",
     "class": "companion",
     "ownerClass": "tinker",
+    "className": "Companion",
     "role": "Pet",
+    "level": 1,
+    "cost": null,
+    "personality": null,
     "attrs": {
-      "STR": 12,
+      "CON": 14,
       "DEX": 8,
       "INT": 10,
-      "CON": 14
+      "STR": 12
     },
-    "description": "A brass tripod turret with a single arcane-blue eye. Springs wound tight, barrel loaded with rune-etched bolts."
+    "description": "A brass tripod turret with a single arcane-blue eye. Springs wound tight, barrel loaded with rune-etched bolts.",
+    "encounterZone": null
   },
   {
-    "id": "aela",
-    "name": "Aela",
-    "kind": "hireable",
-    "class": "ranger",
-    "className": "Ranger",
-    "role": "Ranger",
+    "id": "pet_demon",
+    "name": "Infernal Hound",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "warlock",
+    "className": "Companion",
+    "role": "Pet",
     "level": 1,
     "cost": null,
     "personality": null,
     "attrs": {
-      "STR": 8,
-      "DEX": 14,
-      "INT": 8,
-      "CON": 10
-    },
-    "description": null,
-    "encounterZone": null
-  },
-  {
-    "id": "borin",
-    "name": "Borin",
-    "kind": "hireable",
-    "class": "warrior",
-    "className": "Warrior",
-    "role": "Warrior",
-    "level": 1,
-    "cost": null,
-    "personality": null,
-    "attrs": {
-      "STR": 15,
-      "DEX": 8,
-      "INT": 8,
-      "CON": 9
-    },
-    "description": null,
-    "encounterZone": null
-  },
-  {
-    "id": "lysa",
-    "name": "Lysa",
-    "kind": "hireable",
-    "class": "cleric",
-    "className": "Cleric",
-    "role": "Cleric",
-    "level": 2,
-    "cost": null,
-    "personality": null,
-    "attrs": {
-      "STR": 8,
-      "DEX": 8,
-      "INT": 15,
-      "CON": 11
-    },
-    "description": null,
-    "encounterZone": null
-  },
-  {
-    "id": "rekk",
-    "name": "Rekk",
-    "kind": "hireable",
-    "class": "rogue",
-    "className": "Rogue",
-    "role": "Rogue",
-    "level": 1,
-    "cost": null,
-    "personality": null,
-    "attrs": {
-      "STR": 8,
-      "DEX": 14,
-      "INT": 9,
-      "CON": 9
-    },
-    "description": null,
-    "encounterZone": null
-  },
-  {
-    "id": "kaldrek",
-    "name": "Kaldrek the Dragonborn",
-    "kind": "hireable",
-    "class": "dragon_knight",
-    "className": "Dragon Knight",
-    "role": "Dragon Knight",
-    "level": 6,
-    "cost": null,
-    "personality": null,
-    "attrs": {
-      "STR": 16,
+      "CON": 12,
       "DEX": 10,
-      "INT": 12,
-      "CON": 12
+      "INT": 8,
+      "STR": 14
     },
-    "description": null,
+    "description": "A summoned demon beast from the lower planes.",
     "encounterZone": null
   },
   {
-    "id": "syra_wyrmsworn",
-    "name": "Syra Wyrmsworn",
-    "kind": "hireable",
-    "class": "dragon_knight",
-    "className": "Dragon Knight",
-    "role": "Dragon Knight",
-    "level": 7,
+    "id": "pet_familiar",
+    "name": "Arcane Familiar",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "mage",
+    "className": "Companion",
+    "role": "Pet",
+    "level": 1,
     "cost": null,
     "personality": null,
     "attrs": {
-      "STR": 15,
+      "CON": 8,
+      "DEX": 10,
+      "INT": 16,
+      "STR": 4
+    },
+    "description": "A mystical black cat wreathed in arcane runes, bound to its mage by ancient pact.",
+    "encounterZone": null
+  },
+  {
+    "id": "pet_fire_elemental",
+    "name": "Fire Elemental",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "pyromancer",
+    "className": "Companion",
+    "role": "Pet",
+    "level": 1,
+    "cost": null,
+    "personality": null,
+    "attrs": {
+      "CON": 8,
+      "DEX": 8,
+      "INT": 16,
+      "STR": 8
+    },
+    "description": "A living flame summoned from the ember planes.",
+    "encounterZone": null
+  },
+  {
+    "id": "pet_imp",
+    "name": "Bound Imp",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "warlock",
+    "className": "Companion",
+    "role": "Pet",
+    "level": 1,
+    "cost": null,
+    "personality": null,
+    "attrs": {
+      "CON": 6,
       "DEX": 12,
-      "INT": 13,
-      "CON": 12
-    },
-    "description": null,
-    "encounterZone": null
-  },
-  {
-    "id": "vorin_emberjaw",
-    "name": "Vorin Emberjaw",
-    "kind": "hireable",
-    "class": "dragon_knight",
-    "className": "Dragon Knight",
-    "role": "Dragon Knight",
-    "level": 8,
-    "cost": null,
-    "personality": null,
-    "attrs": {
-      "STR": 16,
-      "DEX": 11,
       "INT": 12,
-      "CON": 15
+      "STR": 6
     },
-    "description": null,
+    "description": "A mischievous lesser demon. Small but cunning.",
     "encounterZone": null
   },
   {
-    "id": "maelis_drakeblood",
-    "name": "Maelis Drakeblood",
-    "kind": "hireable",
-    "class": "dragon_knight",
-    "className": "Dragon Knight",
-    "role": "Dragon Knight",
-    "level": 9,
+    "id": "pet_lightning_elemental",
+    "name": "Lightning Elemental",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "stormcaller",
+    "className": "Companion",
+    "role": "Pet",
+    "level": 1,
     "cost": null,
     "personality": null,
     "attrs": {
-      "STR": 15,
+      "CON": 6,
       "DEX": 14,
-      "INT": 15,
-      "CON": 12
+      "INT": 14,
+      "STR": 6
     },
-    "description": null,
+    "description": "A crackling bolt given form and purpose.",
     "encounterZone": null
   },
   {
-    "id": "ysolde_cogwright",
-    "name": "Ysolde Cogwright",
-    "kind": "hireable",
-    "class": "tinker",
-    "className": "Tinker",
-    "role": "Tinker",
-    "level": 3,
+    "id": "pet_skeletal_warrior",
+    "name": "Skeletal Warrior",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "necromancer",
+    "className": "Companion",
+    "role": "Pet",
+    "level": 1,
     "cost": null,
     "personality": null,
     "attrs": {
-      "STR": 8,
-      "DEX": 10,
-      "INT": 15,
-      "CON": 11
+      "CON": 14,
+      "DEX": 8,
+      "INT": 4,
+      "STR": 12
     },
-    "description": null,
+    "description": "Undead soldier bound by dark magic. Fights with hollow determination.",
+    "encounterZone": null
+  },
+  {
+    "id": "pet_war_hound",
+    "name": "Trained War Hound",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "ranger",
+    "className": "Companion",
+    "role": "Pet",
+    "level": 1,
+    "cost": null,
+    "personality": null,
+    "attrs": {
+      "CON": 10,
+      "DEX": 14,
+      "INT": 6,
+      "STR": 10
+    },
+    "description": "An armored hunting dog trained for battle.",
+    "encounterZone": null
+  },
+  {
+    "id": "pet_wolf",
+    "name": "Forest Wolf",
+    "kind": "pet",
+    "class": "companion",
+    "ownerClass": "druid",
+    "className": "Companion",
+    "role": "Pet",
+    "level": 1,
+    "cost": null,
+    "personality": null,
+    "attrs": {
+      "CON": 10,
+      "DEX": 14,
+      "INT": 4,
+      "STR": 10
+    },
+    "description": "A wild wolf bonded through nature magic. Swift and loyal.",
     "encounterZone": null
   },
   {
@@ -340,17 +224,19 @@
     "name": "War Dog",
     "kind": "companion",
     "class": "companion",
+    "ownerClass": null,
     "className": "Companion",
     "role": "Companion",
     "level": 1,
     "cost": 50,
+    "personality": null,
     "attrs": {
-      "STR": 10,
+      "CON": 10,
       "DEX": 12,
       "INT": 2,
-      "CON": 10
+      "STR": 10
     },
-    "description": null,
+    "description": "Loyal, fierce, and surprisingly effective against goblins. Bites hard.",
     "encounterZone": null
   },
   {
@@ -358,17 +244,19 @@
     "name": "Shadow Cat",
     "kind": "wild",
     "class": "companion",
+    "ownerClass": null,
     "className": "Companion",
     "role": "Companion",
     "level": 2,
     "cost": 80,
+    "personality": null,
     "attrs": {
-      "STR": 8,
+      "CON": 8,
       "DEX": 15,
       "INT": 4,
-      "CON": 8
+      "STR": 8
     },
-    "description": null,
+    "description": "A black-furred predator with eyes like coals. Slips between shadows; strikes from behind.",
     "encounterZone": null
   },
   {
@@ -376,17 +264,19 @@
     "name": "Dire Wolf",
     "kind": "wild",
     "class": "companion",
+    "ownerClass": null,
     "className": "Companion",
     "role": "Companion",
     "level": 3,
     "cost": 110,
+    "personality": null,
     "attrs": {
-      "STR": 13,
+      "CON": 11,
       "DEX": 13,
       "INT": 3,
-      "CON": 11
+      "STR": 13
     },
-    "description": null,
+    "description": "A wolf the size of a horse. Pack instinct, brutal jaws, brutal endurance.",
     "encounterZone": null
   },
   {
@@ -394,17 +284,19 @@
     "name": "Forest Owl",
     "kind": "wild",
     "class": "companion",
+    "ownerClass": null,
     "className": "Companion",
     "role": "Companion",
     "level": 2,
     "cost": 60,
+    "personality": null,
     "attrs": {
-      "STR": 6,
+      "CON": 7,
       "DEX": 14,
       "INT": 8,
-      "CON": 7
+      "STR": 6
     },
-    "description": null,
+    "description": "A silent hunter from the Thornwood. Spots ambushes before they trigger.",
     "encounterZone": null
   },
   {
@@ -412,17 +304,19 @@
     "name": "Ember Drake",
     "kind": "wild",
     "class": "companion",
+    "ownerClass": null,
     "className": "Companion",
     "role": "Companion",
     "level": 4,
     "cost": 220,
+    "personality": null,
     "attrs": {
-      "STR": 12,
+      "CON": 11,
       "DEX": 11,
       "INT": 10,
-      "CON": 11
+      "STR": 12
     },
-    "description": null,
+    "description": "A small fire-tongued drake. Not quite a dragon — but the breath still burns.",
     "encounterZone": null
   },
   {
@@ -430,17 +324,19 @@
     "name": "Crystal Golem",
     "kind": "wild",
     "class": "companion",
+    "ownerClass": null,
     "className": "Companion",
     "role": "Companion",
     "level": 5,
     "cost": 320,
+    "personality": null,
     "attrs": {
-      "STR": 15,
+      "CON": 16,
       "DEX": 5,
       "INT": 2,
-      "CON": 16
+      "STR": 15
     },
-    "description": null,
+    "description": "A construct of living crystal. Slow, heavy, almost unkillable.",
     "encounterZone": null
   },
   {
@@ -448,17 +344,19 @@
     "name": "Spirit Wisp",
     "kind": "wild",
     "class": "companion",
+    "ownerClass": null,
     "className": "Companion",
     "role": "Companion",
     "level": 4,
     "cost": 240,
+    "personality": null,
     "attrs": {
-      "STR": 4,
+      "CON": 8,
       "DEX": 12,
       "INT": 14,
-      "CON": 8
+      "STR": 4
     },
-    "description": null,
+    "description": "A floating mote of pale light. Heals nearby allies just by drifting close.",
     "encounterZone": null
   },
   {
@@ -466,17 +364,19 @@
     "name": "Bone Hound",
     "kind": "wild",
     "class": "companion",
+    "ownerClass": null,
     "className": "Companion",
     "role": "Companion",
     "level": 4,
     "cost": 180,
+    "personality": null,
     "attrs": {
-      "STR": 11,
+      "CON": 10,
       "DEX": 13,
       "INT": 3,
-      "CON": 10
+      "STR": 11
     },
-    "description": null,
+    "description": "A skeletal mastiff bound by old necromantic threads. Tireless. Unafraid.",
     "encounterZone": null
   },
   {
@@ -484,17 +384,19 @@
     "name": "Ice Sprite",
     "kind": "wild",
     "class": "companion",
+    "ownerClass": null,
     "className": "Companion",
     "role": "Companion",
     "level": 3,
     "cost": 160,
+    "personality": null,
     "attrs": {
-      "STR": 5,
+      "CON": 7,
       "DEX": 13,
       "INT": 13,
-      "CON": 7
+      "STR": 5
     },
-    "description": null,
+    "description": "A flickering mote of frost. Hits feel cold long after the fight ends.",
     "encounterZone": null
   },
   {
@@ -502,17 +404,19 @@
     "name": "Swamp Frog",
     "kind": "wild",
     "class": "companion",
+    "ownerClass": null,
     "className": "Companion",
     "role": "Companion",
     "level": 3,
     "cost": 90,
+    "personality": null,
     "attrs": {
-      "STR": 11,
+      "CON": 12,
       "DEX": 10,
       "INT": 4,
-      "CON": 12
+      "STR": 11
     },
-    "description": null,
+    "description": "A boulder-sized amphibian. Sticky tongue. Tougher than it looks.",
     "encounterZone": null
   },
   {
@@ -520,17 +424,19 @@
     "name": "Void Moth",
     "kind": "wild",
     "class": "companion",
+    "ownerClass": null,
     "className": "Companion",
     "role": "Companion",
     "level": 5,
     "cost": 280,
+    "personality": null,
     "attrs": {
-      "STR": 7,
+      "CON": 9,
       "DEX": 14,
       "INT": 11,
-      "CON": 9
+      "STR": 7
     },
-    "description": null,
+    "description": "Wings of starless black. Drifts between the lines of reality.",
     "encounterZone": null
   },
   {
@@ -538,17 +444,19 @@
     "name": "Crimson Dragon Hatchling",
     "kind": "companion",
     "class": "companion",
+    "ownerClass": null,
     "className": "Dragon Hatchling",
     "role": "Companion",
     "level": 5,
     "cost": 500,
+    "personality": null,
     "attrs": {
-      "STR": 12,
+      "CON": 12,
       "DEX": 11,
       "INT": 14,
-      "CON": 12
+      "STR": 12
     },
-    "description": null,
+    "description": "A tiny crimson dragon. Breathes dragon-fire that grows hotter as it matures. One day it will be a true dragon.",
     "encounterZone": null
   },
   {
@@ -556,17 +464,19 @@
     "name": "Frost Wyrmling",
     "kind": "companion",
     "class": "companion",
+    "ownerClass": null,
     "className": "Frost Wyrmling",
     "role": "Companion",
     "level": 5,
     "cost": 550,
+    "personality": null,
     "attrs": {
-      "STR": 11,
+      "CON": 13,
       "DEX": 12,
       "INT": 13,
-      "CON": 13
+      "STR": 11
     },
-    "description": null,
+    "description": "A young frost dragon. Its dragon-breath freezes foes in place. Dragon-scales shimmer blue.",
     "encounterZone": null
   },
   {
@@ -574,17 +484,19 @@
     "name": "Storm Drake",
     "kind": "companion",
     "class": "companion",
+    "ownerClass": null,
     "className": "Storm Drake",
     "role": "Companion",
     "level": 6,
     "cost": 700,
+    "personality": null,
     "attrs": {
-      "STR": 12,
+      "CON": 12,
       "DEX": 14,
       "INT": 13,
-      "CON": 12
+      "STR": 12
     },
-    "description": null,
+    "description": "A lightning-winged dragon. Dragon-thunder crackles in its wake. Fast as a dragon on the hunt.",
     "encounterZone": null
   },
   {
@@ -592,17 +504,199 @@
     "name": "Shadow Wyrm",
     "kind": "companion",
     "class": "companion",
+    "ownerClass": null,
     "className": "Shadow Wyrm",
     "role": "Companion",
     "level": 7,
     "cost": 850,
+    "personality": null,
     "attrs": {
-      "STR": 13,
+      "CON": 12,
       "DEX": 13,
       "INT": 15,
-      "CON": 12
+      "STR": 13
     },
-    "description": null,
+    "description": "A dragon born of eclipse-fire. Dragon-shadow clings to it, and dragon-whispers answer its call.",
+    "encounterZone": null
+  },
+  {
+    "id": "aela",
+    "name": "Aela",
+    "kind": "hireable",
+    "class": "ranger",
+    "ownerClass": null,
+    "className": "Ranger",
+    "role": "Ranger",
+    "level": 1,
+    "cost": null,
+    "personality": "patient",
+    "attrs": {
+      "CON": 10,
+      "DEX": 14,
+      "INT": 8,
+      "STR": 8
+    },
+    "description": "A quiet ranger from the eastern border. Waits for the perfect shot.",
+    "encounterZone": null
+  },
+  {
+    "id": "borin",
+    "name": "Borin",
+    "kind": "hireable",
+    "class": "warrior",
+    "ownerClass": null,
+    "className": "Warrior",
+    "role": "Warrior",
+    "level": 1,
+    "cost": null,
+    "personality": "aggressive",
+    "attrs": {
+      "CON": 9,
+      "DEX": 8,
+      "INT": 8,
+      "STR": 15
+    },
+    "description": "Retired soldier. Bored. Wants one last fight.",
+    "encounterZone": null
+  },
+  {
+    "id": "lysa",
+    "name": "Lysa",
+    "kind": "hireable",
+    "class": "cleric",
+    "ownerClass": null,
+    "className": "Cleric",
+    "role": "Cleric",
+    "level": 2,
+    "cost": null,
+    "personality": "protective",
+    "attrs": {
+      "CON": 11,
+      "DEX": 8,
+      "INT": 15,
+      "STR": 8
+    },
+    "description": "Young cleric of the Light. Eager to prove herself outside the temple.",
+    "encounterZone": null
+  },
+  {
+    "id": "rekk",
+    "name": "Rekk",
+    "kind": "hireable",
+    "class": "rogue",
+    "ownerClass": null,
+    "className": "Rogue",
+    "role": "Rogue",
+    "level": 1,
+    "cost": null,
+    "personality": "opportunist",
+    "attrs": {
+      "CON": 9,
+      "DEX": 14,
+      "INT": 9,
+      "STR": 8
+    },
+    "description": "Says he's not a thief. Has three knives.",
+    "encounterZone": null
+  },
+  {
+    "id": "kaldrek",
+    "name": "Kaldrek the Dragonborn",
+    "kind": "hireable",
+    "class": "dragon_knight",
+    "ownerClass": null,
+    "className": "Dragon Knight",
+    "role": "Dragon Knight",
+    "level": 6,
+    "cost": null,
+    "personality": "aggressive",
+    "attrs": {
+      "CON": 12,
+      "DEX": 10,
+      "INT": 12,
+      "STR": 16
+    },
+    "description": "A dragon-blooded warrior clad in dragon-scale plate. His dragon-fang greatsword has slain three dragons.",
+    "encounterZone": null
+  },
+  {
+    "id": "syra_wyrmsworn",
+    "name": "Syra Wyrmsworn",
+    "kind": "hireable",
+    "class": "dragon_knight",
+    "ownerClass": null,
+    "className": "Dragon Knight",
+    "role": "Dragon Knight",
+    "level": 7,
+    "cost": null,
+    "personality": "protective",
+    "attrs": {
+      "CON": 12,
+      "DEX": 12,
+      "INT": 13,
+      "STR": 15
+    },
+    "description": "Sworn to the dragon oaths of old. Her dragon-breath melts armor and her dragon-scales turn blades.",
+    "encounterZone": null
+  },
+  {
+    "id": "vorin_emberjaw",
+    "name": "Vorin Emberjaw",
+    "kind": "hireable",
+    "class": "dragon_knight",
+    "ownerClass": null,
+    "className": "Dragon Knight",
+    "role": "Dragon Knight",
+    "level": 8,
+    "cost": null,
+    "personality": "patient",
+    "attrs": {
+      "CON": 15,
+      "DEX": 11,
+      "INT": 12,
+      "STR": 16
+    },
+    "description": "Raised inside a dragon-hoard by a red dragon that mistook him for a hatchling. Believes he IS a dragon.",
+    "encounterZone": null
+  },
+  {
+    "id": "maelis_drakeblood",
+    "name": "Maelis Drakeblood",
+    "kind": "hireable",
+    "class": "dragon_knight",
+    "ownerClass": null,
+    "className": "Dragon Knight",
+    "role": "Dragon Knight",
+    "level": 9,
+    "cost": null,
+    "personality": "opportunist",
+    "attrs": {
+      "CON": 12,
+      "DEX": 14,
+      "INT": 15,
+      "STR": 15
+    },
+    "description": "A dragon-cult defector. Her dragon-tattoos glow when dragons are near. Carries dragon-tooth daggers as backup.",
+    "encounterZone": null
+  },
+  {
+    "id": "ysolde_cogwright",
+    "name": "Ysolde Cogwright",
+    "kind": "hireable",
+    "class": "tinker",
+    "ownerClass": null,
+    "className": "Tinker",
+    "role": "Tinker",
+    "level": 3,
+    "cost": null,
+    "personality": "opportunist",
+    "attrs": {
+      "CON": 11,
+      "DEX": 10,
+      "INT": 15,
+      "STR": 8
+    },
+    "description": "Workshop-trained mechanist with brass goggles and more pockets than fingers. Can fix a clockwork or fix a wound in the same minute.",
     "encounterZone": null
   }
 ]

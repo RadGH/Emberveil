@@ -170,28 +170,33 @@
     "perPose": {
       "south": {
         "scale": 1.037,
-        "offsetX": -16,
+        "offsetX": 12,
         "offsetY": 12
       },
       "east": {
         "scale": 1,
-        "offsetX": -32,
+        "offsetX": -4,
         "offsetY": -1
       },
       "east_spell": {
         "scale": 0.95,
-        "offsetX": -27,
+        "offsetX": 1,
         "offsetY": -2
       },
       "east_block": {
         "scale": 0.95,
-        "offsetX": -27,
+        "offsetX": 1,
         "offsetY": -9
       },
       "east_ko": {
         "scale": 0.772,
-        "offsetX": 17,
+        "offsetX": 45,
         "offsetY": 59
+      },
+      "east_attack": {
+        "scale": 0.95,
+        "offsetX": 28,
+        "offsetY": -2
       }
     }
   }

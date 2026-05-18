@@ -1,0 +1,153 @@
+{
+  "bossLoot": {
+    "ancient_dragon": {
+      "affix": "dragon",
+      "bases": [
+        "heavy_chest",
+        "heavy_legs",
+        "helmet",
+        "amulet",
+        "greatsword"
+      ],
+      "quality": "elite",
+      "rarity": "legendary",
+      "rolls": 2,
+      "uniqueChance": 0.3,
+      "uniques": [
+        "ancient_dragon_scale"
+      ]
+    },
+    "archfiend_malgrath": {
+      "affix": "demonic",
+      "bases": [
+        "heavy_chest",
+        "ring",
+        "amulet",
+        "staff",
+        "greatsword"
+      ],
+      "quality": "high",
+      "rarity": "rare",
+      "rolls": 3,
+      "uniqueChance": 0.2,
+      "uniques": [
+        "malgraths_soulbrand"
+      ]
+    },
+    "dragon_king": {
+      "affix": "dragon",
+      "bases": [
+        "heavy_chest",
+        "heavy_legs",
+        "helmet",
+        "greatsword",
+        "amulet",
+        "ring"
+      ],
+      "quality": "exotic",
+      "rarity": "legendary",
+      "rolls": 4,
+      "uniqueChance": 0.35,
+      "uniques": [
+        "dragon_kings_headguard"
+      ]
+    },
+    "emberveil_sovereign": {
+      "affix": "sovereign",
+      "bases": [
+        "heavy_chest",
+        "ring",
+        "amulet",
+        "staff",
+        "necklace"
+      ],
+      "quality": "elite",
+      "rarity": "legendary",
+      "rolls": 3,
+      "uniqueChance": 0.25,
+      "uniques": [
+        "sovereigns_eye"
+      ]
+    },
+    "grax_veil_touched": {
+      "affix": "void",
+      "bases": [
+        "ring",
+        "amulet",
+        "cloth_chest",
+        "wand"
+      ],
+      "quality": "medium",
+      "rarity": "rare",
+      "rolls": 2,
+      "uniqueChance": 0.2,
+      "uniques": [
+        "emberheart_pendant"
+      ]
+    },
+    "lava_titan": {
+      "affix": "fire",
+      "bases": [
+        "heavy_chest",
+        "heavy_legs",
+        "ring",
+        "amulet",
+        "mace"
+      ],
+      "quality": "high",
+      "rarity": "rare",
+      "rolls": 2,
+      "uniqueChance": 0.2,
+      "uniques": [
+        "lava_titans_mantle"
+      ]
+    },
+    "the_architect": {
+      "affix": "primordial",
+      "bases": [
+        "ring",
+        "amulet",
+        "staff",
+        "heavy_chest",
+        "necklace"
+      ],
+      "quality": "exotic",
+      "rarity": "legendary",
+      "rolls": 3,
+      "uniqueChance": 0.3,
+      "uniques": [
+        "architects_blueprint",
+        "staff_of_primordial",
+        "plate_of_creation"
+      ]
+    },
+    "the_unraveler": {
+      "affix": "void",
+      "bases": [
+        "ring",
+        "amulet",
+        "wand",
+        "staff",
+        "cloth_chest"
+      ],
+      "quality": "elite",
+      "rarity": "legendary",
+      "rolls": 3,
+      "uniqueChance": 0.25,
+      "uniques": [
+        "voidbinder",
+        "unravelers_sigil"
+      ]
+    }
+  },
+  "source": "mapData.js BOSS_TAP_DROPS + bossLoot.js BOSS_LOOT_TABLES",
+  "tapDrops": {
+    "dragon_throne": "dragon_call",
+    "ember_plateau": "fireball",
+    "eternal_void": "star_caller",
+    "primordial_nexus": "spirit_hammer",
+    "shattered_core": "catapult",
+    "thornwood": "bow"
+  },
+  "version": 1
+}

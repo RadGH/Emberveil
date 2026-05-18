@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/items.json",
+  "title": "Emberveil Items File (v1)",
+  "description": "Canonical resolved item data. These are the live runtime values of the 12 pure data consts formerly inlined in src/game/items.js (RARITIES, QUALITIES, RARITY_COLORS, WEAPON_BASES, ARMOR_BASES, AFFIXES_ACT1, SHIELD_AFFIXES, ITEM_SETS, ITEM_SCORE_WEIGHTS, MATERIALS, SALVAGE_YIELD, POTIONS). ALL item logic (generateItem, scoring, rolling) stays in items.js; only data moved. Item-set bonus payloads and SALVAGE_YIELD use an open stat vocabulary so they are typed object/additionalProperties:true; structural levels are strict. Byte-parity proven by scripts/verify-items-parity.mjs.",
+  "type": "object",
+  "required": [
+    "version", "RARITIES", "QUALITIES", "RARITY_COLORS", "WEAPON_BASES",
+    "ARMOR_BASES", "AFFIXES_ACT1", "SHIELD_AFFIXES", "ITEM_SETS",
+    "ITEM_SCORE_WEIGHTS", "MATERIALS", "SALVAGE_YIELD", "POTIONS"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "source": { "type": "string" },
+    "RARITIES": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Ordered rarity ladder."
+    },
+    "QUALITIES": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Ordered quality tiers."
+    },
+    "RARITY_COLORS": {
+      "type": "object",
+      "description": "Static fallback hex colors per rarity (live colors come from CSS custom props).",
+      "additionalProperties": { "type": "string" }
+    },
+    "WEAPON_BASES": {
+      "type": "object",
+      "description": "Map weaponBaseKey -> base config.",
+      "additionalProperties": { "$ref": "#/$defs/weaponBase" }
+    },
+    "ARMOR_BASES": {
+      "type": "object",
+      "description": "Map armorBaseKey -> base config.",
+      "additionalProperties": { "$ref": "#/$defs/armorBase" }
+    },
+    "AFFIXES_ACT1": {
+      "type": "object",
+      "required": ["prefixes", "suffixes"],
+      "additionalProperties": false,
+      "properties": {
+        "prefixes": { "type": "array", "items": { "$ref": "#/$defs/affix" } },
+        "suffixes": { "type": "array", "items": { "$ref": "#/$defs/affix" } }
+      }
+    },
+    "SHIELD_AFFIXES": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/affix" }
+    },
+    "ITEM_SETS": {
+      "type": "object",
+      "description": "Map setId -> set definition.",
+      "additionalProperties": { "$ref": "#/$defs/itemSet" }
+    },
+    "ITEM_SCORE_WEIGHTS": {
+      "type": "object",
+      "description": "Map score-key -> { axis, weight, asPct }.",
+      "additionalProperties": { "$ref": "#/$defs/scoreWeight" }
+    },
+    "MATERIALS": {
+      "type": "object",
+      "description": "Map materialId -> material def.",
+      "additionalProperties": { "$ref": "#/$defs/material" }
+    },
+    "SALVAGE_YIELD": {
+      "type": "object",
+      "description": "Map rarity -> { materialId: [min,max] }. Material keys are an open vocabulary.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "POTIONS": {
+      "type": "object",
+      "description": "Map potionId -> consumable def.",
+      "additionalProperties": { "$ref": "#/$defs/potion" }
+    }
+  },
+  "$defs": {
+    "weaponBase": {
+      "type": "object",
+      "required": ["name", "type", "subtype", "weaponCategory", "dmg", "speed", "twoHanded", "statScaling"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string", "const": "weapon" },
+        "subtype": { "type": "string" },
+        "weaponCategory": { "type": "string", "enum": ["heavy", "light", "magic"] },
+        "dmg": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "speed": { "type": "number" },
+        "twoHanded": { "type": "boolean" },
+        "statScaling": { "type": "string" },
+        "offHandOk": { "type": "boolean" },
+        "ranged": { "type": "boolean" },
+        "reach": { "type": "boolean" },
+        "throwable": { "type": "boolean" },
+        "dragon": { "type": "boolean" },
+        "armorPen": { "type": "number" },
+        "attackSpeed": { "type": "string" },
+        "bleedChance": { "type": "number" },
+        "burnChance": { "type": "number" },
+        "stunChance": { "type": "number" },
+        "critBonus": { "type": "number" },
+        "strMult": { "type": "number" },
+        "dexMult": { "type": "number" },
+        "intMult": { "type": "number" },
+        "mpBonus": { "type": "number" }
+      }
+    },
+    "armorBase": {
+      "type": "object",
+      "required": ["name", "type", "slot"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["armor", "accessory"] },
+        "slot": { "type": "string" },
+        "tier": { "type": "string" },
+        "armor": { "type": "number" },
+        "dodgeBonus": { "type": "number" },
+        "blockChance": { "type": "number" },
+        "blockPower": { "type": "number" },
+        "barrier": { "type": "number" },
+        "barrierRegen": { "type": "number" },
+        "isShield": { "type": "boolean" },
+        "isMagicShield": { "type": "boolean" },
+        "dragon": { "type": "boolean" }
+      }
+    },
+    "affix": {
+      "type": "object",
+      "required": ["id", "name", "stat", "min", "max"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "stat": { "type": "string" },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "descriptor": { "type": "string" },
+        "physicalOnly": { "type": "boolean" },
+        "magicOnly": { "type": "boolean" },
+        "shieldOnly": { "type": "boolean" },
+        "magicShieldOnly": { "type": "boolean" },
+        "magicPlus": { "type": "boolean" },
+        "slots": { "type": "array", "items": { "type": "string" } },
+        "armorTiers": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "itemSet": {
+      "type": "object",
+      "required": ["name", "pieces", "bonuses"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "pieces": { "type": "array", "items": { "type": "string" } },
+        "bonuses": {
+          "type": "object",
+          "description": "Map piece-count threshold -> bonus payload. Bonus stat keys are an open vocabulary (desc + arbitrary stat fields).",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "scoreWeight": {
+      "type": "object",
+      "required": ["axis", "weight", "asPct"],
+      "additionalProperties": false,
+      "properties": {
+        "axis": { "type": "string", "enum": ["offense", "defense", "utility"] },
+        "weight": { "type": "number" },
+        "asPct": { "type": "boolean" }
+      }
+    },
+    "material": {
+      "type": "object",
+      "required": ["id", "name", "icon", "desc"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "icon": { "type": "string" },
+        "desc": { "type": "string" }
+      }
+    },
+    "potion": {
+      "type": "object",
+      "required": ["id", "name", "icon", "type", "subtype", "effect", "target", "cost", "desc"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "icon": { "type": "string" },
+        "type": { "type": "string" },
+        "subtype": { "type": "string" },
+        "effect": {
+          "type": "object",
+          "required": ["type"],
+          "additionalProperties": false,
+          "properties": {
+            "type": { "type": "string" },
+            "amount": { "type": "number" },
+            "pct": { "type": "number" },
+            "immune": { "type": "boolean" },
+            "statuses": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "target": { "type": "string" },
+        "cost": { "type": "number" },
+        "desc": { "type": "string" }
+      }
+    }
+  }
+}

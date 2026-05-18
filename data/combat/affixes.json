@@ -1,0 +1,320 @@
+{
+  "version": 1,
+  "source": "src/game/affixes.js data consts (canonical-data migration M497)",
+  "affixes": {
+    "ELEMENTAL_COMBO_AFFIXES": [
+      {
+        "id": "fire_vs_poison",
+        "name": "of Ignition",
+        "stat": "cond_fireDmgVsPoisoned",
+        "min": 0.1,
+        "max": 0.2,
+        "descriptor": "FIRE/POISON"
+      },
+      {
+        "id": "cold_vs_burn",
+        "name": "of Rime",
+        "stat": "cond_coldDmgVsBurning",
+        "min": 0.08,
+        "max": 0.18,
+        "descriptor": "COLD/FIRE"
+      },
+      {
+        "id": "lightning_vs_slow",
+        "name": "of the Storm",
+        "stat": "cond_lightningVsSlowed",
+        "min": 0.12,
+        "max": 0.22,
+        "descriptor": "LIGHTNING/SLOW"
+      },
+      {
+        "id": "poison_vs_burn",
+        "name": "Venomous",
+        "stat": "cond_poisonDmgVsBurning",
+        "min": 0.1,
+        "max": 0.2,
+        "descriptor": "POISON/FIRE"
+      },
+      {
+        "id": "magic_vs_status",
+        "name": "of the Void Shard",
+        "stat": "cond_magicDmgVsAnyStatus",
+        "min": 0.08,
+        "max": 0.16,
+        "descriptor": "MAGIC/STATUS",
+        "magicOnly": true
+      },
+      {
+        "id": "burn_extend",
+        "name": "of Conflagration",
+        "stat": "cond_burnExtend",
+        "min": 1,
+        "max": 2,
+        "descriptor": "BURN EXT"
+      },
+      {
+        "id": "poison_stack",
+        "name": "of Necrosis",
+        "stat": "cond_poisonStackPower",
+        "min": 2,
+        "max": 5,
+        "descriptor": "POISON STK"
+      }
+    ],
+    "CONDITIONAL_TRIGGER_AFFIXES": [
+      {
+        "id": "first_hit_crit",
+        "name": "of Opening",
+        "stat": "cond_firstHitCritBonus",
+        "min": 0.1,
+        "max": 0.25,
+        "descriptor": "FIRST-HIT CRIT"
+      },
+      {
+        "id": "low_hp_dmg",
+        "name": "of Desperation",
+        "stat": "cond_dmgBelowHpThresh",
+        "min": 0.12,
+        "max": 0.25,
+        "descriptor": "LOW-HP DMG"
+      },
+      {
+        "id": "focus_dmg",
+        "name": "of Focus",
+        "stat": "cond_consecutiveHitDmg",
+        "min": 0.05,
+        "max": 0.12,
+        "descriptor": "FOCUS DMG"
+      },
+      {
+        "id": "kill_rally",
+        "name": "of the Reaper",
+        "stat": "cond_killInitBonus",
+        "min": 3,
+        "max": 6,
+        "descriptor": "KILL RALLY"
+      },
+      {
+        "id": "crit_armorpen",
+        "name": "of Rending",
+        "stat": "cond_critArmorPen",
+        "min": 0.3,
+        "max": 0.6,
+        "descriptor": "CRIT ARMORPEN"
+      },
+      {
+        "id": "after_skill_sp",
+        "name": "of Resonance",
+        "stat": "cond_afterSkillSpellPow",
+        "min": 0.05,
+        "max": 0.15,
+        "descriptor": "POST-SKILL SPELL",
+        "magicOnly": true
+      },
+      {
+        "id": "ambush_bonus",
+        "name": "of Ambush",
+        "stat": "cond_ambushDmgFlat",
+        "min": 8,
+        "max": 20,
+        "descriptor": "AMBUSH DMG"
+      }
+    ],
+    "SET_HELPER_AFFIXES": [
+      {
+        "id": "set_piece_bonus",
+        "name": "of the Covenant",
+        "stat": "cond_extraSetPiece",
+        "min": 1,
+        "max": 1,
+        "descriptor": "SET PIECE",
+        "magicPlus": true
+      },
+      {
+        "id": "set_threshold_low",
+        "name": "of Attunement",
+        "stat": "cond_setThresholdReduce",
+        "min": 1,
+        "max": 1,
+        "descriptor": "SET THRESH",
+        "magicPlus": true
+      }
+    ],
+    "DEFENSIVE_AFFIXES": [
+      {
+        "id": "dot_resist",
+        "name": "of the Sealed Skin",
+        "stat": "cond_dotDmgReduce",
+        "min": 0.15,
+        "max": 0.3,
+        "descriptor": "DOT RESIST"
+      },
+      {
+        "id": "thorns_flat",
+        "name": "Spiked",
+        "stat": "cond_thornsFlat",
+        "min": 4,
+        "max": 12,
+        "descriptor": "THORNS"
+      },
+      {
+        "id": "phys_dmg_reduce",
+        "name": "of the Bulwark",
+        "stat": "cond_physDmgReducePct",
+        "min": 0.05,
+        "max": 0.12,
+        "descriptor": "PHYS REDUCE"
+      },
+      {
+        "id": "hp_regen",
+        "name": "of Regeneration",
+        "stat": "hpRegen",
+        "min": 2,
+        "max": 8
+      },
+      {
+        "id": "cheat_death",
+        "name": "of Second Wind",
+        "stat": "cond_cheatDeath",
+        "min": 1,
+        "max": 1,
+        "descriptor": "CHEAT DEATH",
+        "magicPlus": true
+      },
+      {
+        "id": "magic_dmg_reduce",
+        "name": "of Warding",
+        "stat": "cond_magicDmgReducePct",
+        "min": 0.05,
+        "max": 0.12,
+        "descriptor": "MAGIC REDUCE"
+      },
+      {
+        "id": "combat_barrier",
+        "name": "of the Vanguard",
+        "stat": "cond_combatStartBarrier",
+        "min": 10,
+        "max": 30,
+        "descriptor": "BARRIER",
+        "magicPlus": true
+      }
+    ],
+    "RESOURCE_AFFIXES": [
+      {
+        "id": "mana_on_attack",
+        "name": "of Siphoning",
+        "stat": "cond_manaOnAttack",
+        "min": 1,
+        "max": 3,
+        "descriptor": "MANA/HIT"
+      },
+      {
+        "id": "hp_on_kill",
+        "name": "of the Glutton",
+        "stat": "cond_hpOnKill",
+        "min": 5,
+        "max": 15,
+        "descriptor": "HP/KILL"
+      },
+      {
+        "id": "skill_cost_reduce",
+        "name": "of Efficiency",
+        "stat": "cond_skillMpCostReduce",
+        "min": 1,
+        "max": 3,
+        "descriptor": "SKILL COST"
+      },
+      {
+        "id": "low_mana_regen",
+        "name": "of the Wellspring",
+        "stat": "cond_lowManaRegenBonus",
+        "min": 0.25,
+        "max": 0.75,
+        "descriptor": "LOW-MP REGEN"
+      },
+      {
+        "id": "mana_on_crit",
+        "name": "of Brilliance",
+        "stat": "cond_manaOnCrit",
+        "min": 2,
+        "max": 6,
+        "descriptor": "MANA/CRIT"
+      },
+      {
+        "id": "party_hp_on_kill",
+        "name": "of the Benefactor",
+        "stat": "cond_partyHpOnKill",
+        "min": 3,
+        "max": 8,
+        "descriptor": "PARTY HP/KILL"
+      }
+    ],
+    "ADVANCED_STAT_AFFIXES": [
+      {
+        "id": "xp_gain",
+        "name": "of Learning",
+        "stat": "xpFind",
+        "min": 0.05,
+        "max": 0.15,
+        "descriptor": "XP GAIN"
+      },
+      {
+        "id": "cdr",
+        "name": "of Swiftcasting",
+        "stat": "cooldownReduction",
+        "min": 0.05,
+        "max": 0.15,
+        "descriptor": "CDR",
+        "magicOnly": true
+      },
+      {
+        "id": "dmg_vs_undead",
+        "name": "of Banishing",
+        "stat": "cond_dmgVsUndead",
+        "min": 8,
+        "max": 20,
+        "descriptor": "UNDEAD DMG"
+      },
+      {
+        "id": "dmg_vs_demons",
+        "name": "of Exorcism",
+        "stat": "cond_dmgVsDemon",
+        "min": 8,
+        "max": 20,
+        "descriptor": "DEMON DMG"
+      },
+      {
+        "id": "gold_on_elite",
+        "name": "of the Plunderer",
+        "stat": "cond_goldOnEliteKill",
+        "min": 0.1,
+        "max": 0.3,
+        "descriptor": "ELITE GOLD"
+      },
+      {
+        "id": "magic_find_adv",
+        "name": "of Discovery",
+        "stat": "magicFind",
+        "min": 0.05,
+        "max": 0.2,
+        "descriptor": "MAGIC FIND"
+      },
+      {
+        "id": "sustained_dmg",
+        "name": "of Endurance",
+        "stat": "cond_sustainedDmgBonus",
+        "min": 0.08,
+        "max": 0.18,
+        "descriptor": "SUSTAINED DMG"
+      },
+      {
+        "id": "speed_on_hit",
+        "name": "of Alacrity",
+        "stat": "cond_speedOnFirstHit",
+        "min": 3,
+        "max": 8,
+        "descriptor": "SPEED BURST"
+      }
+    ]
+  }
+}

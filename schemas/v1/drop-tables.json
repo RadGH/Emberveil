@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/drop-tables.json",
+  "title": "Emberveil Drop Tables File (v1)",
+  "description": "Canonical drop tables. `tapDrops` = BOSS_TAP_DROPS (zone id -> tap-weapon id) from mapData.js. `bossLoot` = BOSS_LOOT_TABLES (boss enemy id -> themed loot table) from bossLoot.js.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "tapDrops", "bossLoot"],
+  "properties": {
+    "version": { "const": 1 },
+    "source": { "type": "string" },
+    "tapDrops": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "bossLoot": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["bases", "rarity", "quality", "rolls"],
+        "properties": {
+          "bases": { "type": "array", "items": { "type": "string" } },
+          "rarity": { "type": "string" },
+          "quality": { "type": "string" },
+          "rolls": { "type": "number" },
+          "affix": { "type": "string" },
+          "uniques": { "type": "array", "items": { "type": "string" } },
+          "uniqueChance": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    }
+  }
+}

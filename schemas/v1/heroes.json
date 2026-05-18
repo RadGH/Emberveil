@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/heroes.json",
+  "title": "Emberveil Heroes File (v1)",
+  "description": "Canonical playable hero appearances — the subset of appearances.js APPEARANCES with playable !== false. Superset of public/schemas/v1/appearance.json (adds gender + lifecycle flags actually present on live entries).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "entities"],
+  "properties": {
+    "version": { "const": 1 },
+    "source": { "type": "string" },
+    "entities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/appearance" }
+    }
+  },
+  "$defs": {
+    "appearance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "sprite"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,47}$" },
+        "name": { "type": "string" },
+        "sprite": { "type": "string" },
+        "classDefault": { "type": "string" },
+        "gender": { "enum": ["male", "female", "companion", "none"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "playable": { "type": "boolean" },
+        "npc": { "type": "boolean" },
+        "deprecated": { "type": "boolean" },
+        "pendingReview": { "type": "boolean" }
+      }
+    }
+  }
+}

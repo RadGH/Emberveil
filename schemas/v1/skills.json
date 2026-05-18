@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/skills.json",
+  "title": "Emberveil Skills File (v1)",
+  "description": "Canonical resolved SKILLS data. This is the live runtime value of the SKILLS const formerly inlined in src/game/skills.js (124 skills, 14 classes x ~4-9 skills). Each skill is a config object the effects engine executes without per-skill code. `effect`, talent `effect`, and upgrade `bonus` are open-vocabulary effect-DSL payloads (200+ distinct keys across the codebase) so they are typed `object` with additionalProperties:true; the structural skill/talent/upgrade levels are strict (additionalProperties:false against the verified-complete key set extracted from the live const).",
+  "type": "object",
+  "required": ["version", "skills"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "source": { "type": "string" },
+    "skills": {
+      "type": "object",
+      "minProperties": 1,
+      "description": "Map of skill id -> skill config. The key equals the skill's `id` field.",
+      "additionalProperties": { "$ref": "#/$defs/skill" }
+    }
+  },
+  "$defs": {
+    "effectBlob": {
+      "type": "object",
+      "description": "Effect-DSL payload. Open vocabulary (numeric/boolean/string/array/nested-object keys) interpreted by the runtime effects engine; intentionally not enumerated to avoid data loss as new effect keys are authored.",
+      "additionalProperties": true
+    },
+    "statusEffect": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "type": { "type": "string" },
+        "chance": { "type": "number" },
+        "duration": { "type": "number" }
+      }
+    },
+    "talent": {
+      "type": "object",
+      "required": ["id", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "desc": { "type": "string" },
+        "effect": { "$ref": "#/$defs/effectBlob" }
+      }
+    },
+    "upgrade": {
+      "type": "object",
+      "required": ["level", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "level": { "type": "integer", "minimum": 1 },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "bonus": { "$ref": "#/$defs/effectBlob" }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "required": ["id", "name", "class", "unlockLevel", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "class": { "type": "string" },
+        "unlockLevel": { "type": "integer", "minimum": 1 },
+        "type": { "type": "string" },
+        "aoe": { "type": "string" },
+        "target": { "type": "string" },
+        "damageStat": { "type": "string" },
+        "damageMult": { "type": "number" },
+        "damageType": { "type": "string" },
+        "damageCategory": { "type": "string" },
+        "mpCost": { "type": "number" },
+        "cooldown": { "type": "number" },
+        "duration": { "type": "number" },
+        "hits": { "type": "number" },
+        "healStat": { "type": "string" },
+        "healMult": { "type": "number" },
+        "healAmount": { "type": "number" },
+        "lifesteal": { "type": "number" },
+        "armorPen": { "type": "number" },
+        "bonusVsDemon": { "type": "number" },
+        "bonusVsUndead": { "type": "number" },
+        "buildsFlairStacks": { "type": "number" },
+        "consumesFlairStacks": { "type": "boolean" },
+        "requiresDeadEnemy": { "type": "boolean" },
+        "stackBonusPerDeath": { "type": "number" },
+        "stackingMode": { "type": "string" },
+        "maxStacks": { "type": "number" },
+        "description": { "type": "string" },
+        "effect": { "$ref": "#/$defs/effectBlob" },
+        "statusEffects": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/statusEffect" }
+        },
+        "talents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/talent" }
+        },
+        "upgrades": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/upgrade" }
+        }
+      }
+    }
+  }
+}

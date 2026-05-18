@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/affixes.json",
+  "title": "Emberveil Affixes File (v1)",
+  "description": "Canonical resolved affix data consts formerly inlined in src/game/affixes.js (M305 affix pools for elemental combos, conditional triggers, set-bonus helpers, defensive effects, resource management, advanced stats). These extend the item affix pools. The derived AFFIXES_M305 flat array (spreads of these six consts plus three inline literals) and the extendAffixPool() helper remain as logic in affixes.js; only the six source data consts moved here.",
+  "type": "object",
+  "required": ["version", "affixes"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "source": { "type": "string" },
+    "affixes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ELEMENTAL_COMBO_AFFIXES",
+        "CONDITIONAL_TRIGGER_AFFIXES",
+        "SET_HELPER_AFFIXES",
+        "DEFENSIVE_AFFIXES",
+        "RESOURCE_AFFIXES",
+        "ADVANCED_STAT_AFFIXES"
+      ],
+      "properties": {
+        "ELEMENTAL_COMBO_AFFIXES": { "$ref": "#/$defs/affixArray" },
+        "CONDITIONAL_TRIGGER_AFFIXES": { "$ref": "#/$defs/affixArray" },
+        "SET_HELPER_AFFIXES": { "$ref": "#/$defs/affixArray" },
+        "DEFENSIVE_AFFIXES": { "$ref": "#/$defs/affixArray" },
+        "RESOURCE_AFFIXES": { "$ref": "#/$defs/affixArray" },
+        "ADVANCED_STAT_AFFIXES": { "$ref": "#/$defs/affixArray" }
+      }
+    }
+  },
+  "$defs": {
+    "affixArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "stat", "min", "max"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "stat": { "type": "string" },
+          "min": { "type": "number" },
+          "max": { "type": "number" },
+          "descriptor": { "type": "string" },
+          "magicOnly": { "type": "boolean" },
+          "magicPlus": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

@@ -367,9 +367,9 @@
       "desc": "15% chance/rank to burn on hit"
     },
     {
-      "id": "igniting",
-      "name": "Igniting",
-      "desc": "15% chance/rank to burn on hit"
+      "id": "vampirism",
+      "name": "Vampirism",
+      "desc": "Lifesteal +5% per rank"
     },
     {
       "id": "soul_harvest",
@@ -394,9 +394,9 @@
       "desc": "10% chance/rank to chain 50% dmg"
     },
     {
-      "id": "stormcharged",
-      "name": "Stormcharged",
-      "desc": "10% chance/rank to chain 50% dmg"
+      "id": "deadly_aim",
+      "name": "Deadly Aim",
+      "desc": "+3% crit chance per rank"
     },
     {
       "id": "soul_harvest",
@@ -510,6 +510,33 @@
       "id": "resistance",
       "name": "Resistance",
       "desc": "+3% all-damage reduction per rank"
+    }
+  ],
+  "tinker": [
+    {
+      "id": "mana_pool",
+      "name": "Mana Pool",
+      "desc": "+10 Max MP per rank"
+    },
+    {
+      "id": "mana_flow",
+      "name": "Mana Flow",
+      "desc": "Regen +1 MP/turn per rank"
+    },
+    {
+      "id": "deadly_aim",
+      "name": "Deadly Aim",
+      "desc": "+3% crit chance per rank"
+    },
+    {
+      "id": "igniting",
+      "name": "Igniting",
+      "desc": "15% chance/rank to burn on hit"
+    },
+    {
+      "id": "vampirism",
+      "name": "Vampirism",
+      "desc": "Lifesteal +5% per rank"
     }
   ]
 }

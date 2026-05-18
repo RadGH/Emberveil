@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/enemy-spells.json",
+  "title": "Emberveil Enemy Spells File (v1)",
+  "description": "Canonical resolved ENEMY_SPELLS data. This is the live runtime value of the ENEMY_SPELLS const formerly inlined in src/game/enemySpells.js. Each spell is a config object the combat engine executes without per-spell code. All per-spell LOGIC (resolveSpells) stays in enemySpells.js; only the data const moved here.",
+  "type": "object",
+  "required": ["version", "spells"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "source": { "type": "string" },
+    "spells": {
+      "type": "object",
+      "minProperties": 1,
+      "description": "Map of spell id -> spell config. The key equals the spell's `id` field.",
+      "additionalProperties": { "$ref": "#/$defs/spell" }
+    }
+  },
+  "$defs": {
+    "statusApplication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "duration", "power", "chance"],
+      "properties": {
+        "type": { "type": "string" },
+        "duration": { "type": "number" },
+        "power": { "type": "number" },
+        "chance": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "spell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "fxKind", "cooldown", "target", "effect", "animationMs"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "fxKind": { "type": "string", "enum": ["fire", "ice", "shadow", "holy", "nature"] },
+        "cooldown": { "type": "number" },
+        "target": { "type": "string", "enum": ["single", "aoe", "self", "ally_lowest_hp"] },
+        "animationMs": { "type": "number" },
+        "stealable": { "type": "boolean" },
+        "effect": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "damage": { "type": "number" },
+            "heal": { "type": "number" },
+            "selfHeal": { "type": "number" },
+            "status": { "$ref": "#/$defs/statusApplication" },
+            "statuses": { "type": "array", "items": { "$ref": "#/$defs/statusApplication" } }
+          }
+        },
+        "windUp": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rounds", "interruptThreshold"],
+          "properties": {
+            "rounds": { "type": "number" },
+            "interruptThreshold": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

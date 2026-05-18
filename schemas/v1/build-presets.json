@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://emberveil.rsg/schemas/v1/build-presets.json",
+  "title": "Emberveil Build Presets Document (v1)",
+  "description": "Canonical build-preset data document. Source-of-truth for src/game/buildPresets.js (BUILDS). Logic (getBuilds/getDefaultBuild/getBuild) stays in buildPresets.js.",
+  "type": "object",
+  "required": ["version", "source", "builds"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "const": 1 },
+    "source":  { "type": "string" },
+    "builds": {
+      "type": "object",
+      "description": "Map of class id → ordered array of build presets for that class.",
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "$ref": "https://emberveil.rsg/schemas/v1/build-preset.json" }
+      }
+    }
+  }
+}

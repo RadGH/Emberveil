@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-16T21:10:42.804Z",
+  "generated": "2026-05-18T20:41:17.180Z",
   "categories": [
     {
       "id": "Feature",
@@ -28,6 +28,79 @@
     }
   ],
   "entries": [
+    {
+      "milestone": 500,
+      "date": "",
+      "summary": "(MAJOR) — Canonical-data + refactor arc shipped to prod. All game data single-sourced from public/data/*.json via dataLoader; mapData/CombatScreen god-files split; ESLint+CI gates live; stormcaller male sprite uniformly recentered +28px. See M496-M499 entries for per-phase detail.",
+      "items": [
+        {
+          "text": "(MAJOR) — Canonical-data + refactor arc shipped to prod. All game data single-sourced from public/data/*.json via dataLoader; mapData/CombatScreen god-files split; ESLint+CI gates live; stormcaller male sprite uniformly recentered +28px. See M496-M499 entries for per-phase detail.",
+          "categories": [
+            "Feature",
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 499,
+      "date": "2026-05-18",
+      "summary": "M499 — God-file split wave (refactor #2 + #3). mapData.js 3375→ nodeTypes.js/zoneTables.js/dungeons.js/zones.js/dialogEvents.js + 960-line pure facade; 32-export surface byte-identical, in-place zone-build pipeline preserved in original order, no new import cycle, frozen-snapshot gate verify-mapdata-exports-parity.mjs at 0 diffs. CombatScreen.js 8581→7955: extracted combatTooltips(136)/combatEnemyAI(239)/combatMeterUI(272)/combatEndUI(130) to src/ui/screens/combat/, seam-by-seam with full gate re-run after each (none reverted, all green first try). High-risk seams (victory/reward/boss-cinematic, canvas draw loop, _executeSkill/_applyDamage core sim, HUD DOM) deliberately NOT extracted — each documented in refactor-opportunities.md as its own future gated engagement (no silent shelving). 11 gates + 308 tests + ESLint 0 errors + check-regression + 10/10 save-load all green; combat byte-identical. Bundles with M496/497/498 for one prod push. Staging-only; emberveil gated on user confirm.",
+      "items": [
+        {
+          "text": "M499 — God-file split wave (refactor #2 + #3). mapData.js 3375→ nodeTypes.js/zoneTables.js/dungeons.js/zones.js/dialogEvents.js + 960-line pure facade; 32-export surface byte-identical, in-place zone-build pipeline preserved in original order, no new import cycle, frozen-snapshot gate verify-mapdata-exports-parity.mjs at 0 diffs. CombatScreen.js 8581→7955: extracted combatTooltips(136)/combatEnemyAI(239)/combatMeterUI(272)/combatEndUI(130) to src/ui/screens/combat/, seam-by-seam with full gate re-run after each (none reverted, all green first try). High-risk seams (victory/reward/boss-cinematic, canvas draw loop, _executeSkill/_applyDamage core sim, HUD DOM) deliberately NOT extracted — each documented in refactor-opportunities.md as its own future gated engagement (no silent shelving). 11 gates + 308 tests + ESLint 0 errors + check-regression + 10/10 save-load all green; combat byte-identical. Bundles with M496/497/498 for one prod push. Staging-only; emberveil gated on user confirm.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 498,
+      "date": "2026-05-18",
+      "summary": "M498 — Refactor punch-list safety wave (items #1/#6/#10). #1: eslint.config.js (v9 flat) is now a real fail-fast release gate (npm run lint was a no-op placeholder before); surfaced + fixed 5 genuine bugs — StatsDashboard role-mix chart was silently 0/0/0 (require() in browser ESM swallowed by try/catch), InventoryScreen compare-tooltip ReferenceError (undeclared gs), 2 dead-code/undefined-require cruft sites in CombatScreen, an undefined vErr() in extract-canonical-data. #6: extracted lib/git-deploy.sh — both deploy scripts source it, ~60 lines of duplicated hardened-push/clone logic removed, byte-identical behavior. #10: .github/workflows/emberveil-ci.yml runs npm ci+build+308 vitest+dynamic discovery of all 10 verify-*.mjs gates+check-regression+save-load (no-op-pass when reference saves absent) on every game13/** push, path-filtered, eslint step auto-arms now that #1 landed. All 10 canonical gates + 308 tests + build green; combat byte-identical. Refactor backlog at game13/memory/refactor-opportunities.md. Staging-only; emberveil prod gated on user confirm (bundles M496+M497+M498).",
+      "items": [
+        {
+          "text": "M498 — Refactor punch-list safety wave (items #1/#6/#10). #1: eslint.config.js (v9 flat) is now a real fail-fast release gate (npm run lint was a no-op placeholder before); surfaced + fixed 5 genuine bugs — StatsDashboard role-mix chart was silently 0/0/0 (require() in browser ESM swallowed by try/catch), InventoryScreen compare-tooltip ReferenceError (undeclared gs), 2 dead-code/undefined-require cruft sites in CombatScreen, an undefined vErr() in extract-canonical-data. #6: extracted lib/git-deploy.sh — both deploy scripts source it, ~60 lines of duplicated hardened-push/clone logic removed, byte-identical behavior. #10: .github/workflows/emberveil-ci.yml runs npm ci+build+308 vitest+dynamic discovery of all 10 verify-*.mjs gates+check-regression+save-load (no-op-pass when reference saves absent) on every game13/** push, path-filtered, eslint step auto-arms now that #1 landed. All 10 canonical gates + 308 tests + build green; combat byte-identical. Refactor backlog at game13/memory/refactor-opportunities.md. Staging-only; emberveil prod gated on user confirm (bundles M496+M497+M498).",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "QoL"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 497,
+      "date": "2026-05-18",
+      "summary": "M497 — Canonical-data wave 2. All remaining bulk inline data tables migrated to public/data/*.json + JSON Schemas, loaded via dataLoader.js: skills.js SKILLS (124; 2526->154 lines), items.js (12 consts: WEAPON/ARMOR_BASES, RARITIES, QUALITIES, ITEM_SETS, SCORE_WEIGHTS, MATERIALS, POTIONS, etc.; 1335->1065) + uniques.js UNIQUES (24; 688->158), classes.js CLASSES+CLASS_TAGS (30; save-compat: class ids preserved verbatim) + buildPresets.js BUILDS (30 sets), enemySpells.js ENEMY_SPELLS (26) + statusEffects.js STATUS_META (26) + affixes.js (6 pools). Derived/computed values (QUALITY_MULT, CRAFT_RECIPES, AFFIXES_M305 flat array) correctly left as logic. ~6500 inline data lines removed. 10 byte-parity/coverage gates green, 308 tests, check-regression clean, 10/10 save-load, class id-set identical. dataLoader.js now 54 exports, single source for ALL game data. Staging-only; emberveil prod gated on user confirm.",
+      "items": [
+        {
+          "text": "M497 — Canonical-data wave 2. All remaining bulk inline data tables migrated to public/data/*.json + JSON Schemas, loaded via dataLoader.js: skills.js SKILLS (124; 2526->154 lines), items.js (12 consts: WEAPON/ARMOR_BASES, RARITIES, QUALITIES, ITEM_SETS, SCORE_WEIGHTS, MATERIALS, POTIONS, etc.; 1335->1065) + uniques.js UNIQUES (24; 688->158), classes.js CLASSES+CLASS_TAGS (30; save-compat: class ids preserved verbatim) + buildPresets.js BUILDS (30 sets), enemySpells.js ENEMY_SPELLS (26) + statusEffects.js STATUS_META (26) + affixes.js (6 pools). Derived/computed values (QUALITY_MULT, CRAFT_RECIPES, AFFIXES_M305 flat array) correctly left as logic. ~6500 inline data lines removed. 10 byte-parity/coverage gates green, 308 tests, check-regression clean, 10/10 save-load, class id-set identical. dataLoader.js now 54 exports, single source for ALL game data. Staging-only; emberveil prod gated on user confirm.",
+          "categories": [
+            "Feature",
+            "BugFix"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": 496,
+      "date": "2026-05-17",
+      "summary": "M496 — Canonical-data migration (Phases 0-3). ALL entity + combat data (enemies, bosses, companions, NPCs, heroes, encounters, drop-tables, boss-phases) migrated from inline JS literals + regex scrapers to public/data/*.json with JSON Schemas, loaded via src/game/dataLoader.js (4-step ref/count/overrides+delete-marker resolution). emit-game-data.cjs regex defect gutted to pass-through; build-appearances-manifest.cjs is glob-only so manifest==canonical by construction; every catalog/data page (enemy-catalog frozen snapshot, images.html, image-review-v2, companion/class/dungeon/data catalogs) reads canonical JSON. The giant_spider game-vs-images.html drift (and the whole bug class) is structurally closed. 7 verification gates (parity x5, runtime-parity, entity-coverage 196->0) + 308 tests + check-regression + 10/10 save-load all green; combat byte-identical, save-compat (companion templateId / hero appearance ids) preserved verbatim. Rollback tag pre-canonical-migration. Staging-only; emberveil prod gated on user confirm.",
+      "items": [
+        {
+          "text": "M496 — Canonical-data migration (Phases 0-3). ALL entity + combat data (enemies, bosses, companions, NPCs, heroes, encounters, drop-tables, boss-phases) migrated from inline JS literals + regex scrapers to public/data/*.json with JSON Schemas, loaded via src/game/dataLoader.js (4-step ref/count/overrides+delete-marker resolution). emit-game-data.cjs regex defect gutted to pass-through; build-appearances-manifest.cjs is glob-only so manifest==canonical by construction; every catalog/data page (enemy-catalog frozen snapshot, images.html, image-review-v2, companion/class/dungeon/data catalogs) reads canonical JSON. The giant_spider game-vs-images.html drift (and the whole bug class) is structurally closed. 7 verification gates (parity x5, runtime-parity, entity-coverage 196->0) + 308 tests + check-regression + 10/10 save-load all green; combat byte-identical, save-compat (companion templateId / hero appearance ids) preserved verbatim. Rollback tag pre-canonical-migration. Staging-only; emberveil prod gated on user confirm.",
+          "categories": [
+            "Feature",
+            "BugFix",
+            "Art"
+          ]
+        }
+      ]
+    },
     {
       "milestone": 495,
       "date": "",

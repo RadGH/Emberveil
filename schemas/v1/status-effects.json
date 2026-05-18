@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/status-effects.json",
+  "title": "Emberveil Status Effects File (v1)",
+  "description": "Canonical resolved STATUS_META data. This is the live runtime value of the STATUS_META const formerly inlined in src/game/statusEffects.js. Single source of truth for status icon glyph, ring color, display name, and player-friendly description. All per-status combat LOGIC stays elsewhere; only the metadata const moved here.",
+  "type": "object",
+  "required": ["version", "statusMeta"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "source": { "type": "string" },
+    "statusMeta": {
+      "type": "object",
+      "minProperties": 1,
+      "description": "Map of status id -> display metadata. The key is the runtime status type string.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["glyph", "color", "name", "plain"],
+        "properties": {
+          "glyph": { "type": "string", "description": "Single character shown in the HUD icon badge." },
+          "color": { "type": "string", "description": "CSS color for the icon ring and glyph." },
+          "name": { "type": "string", "description": "Display name (title case)." },
+          "plain": { "type": "string", "description": "One player-friendly sentence (no jargon)." }
+        }
+      }
+    }
+  }
+}

@@ -2,25 +2,22 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://emberveil.rsg/schemas/v1/class.json",
   "title": "Emberveil Class (v1)",
+  "description": "One playable class. Canonical source: public/data/classes.json (classes[]). Mirrors the BASE CLASSES literal in src/game/classes.js BEFORE the derived `unlockRequirement` + `tags` keys are attached at module load (those are recomputed in classes.js, not stored here).",
   "type": "object",
-  "required": ["id", "name", "primaryAttr"],
+  "required": ["id", "name", "role", "hook", "armorType", "primaryAttr", "armorTier", "weapons", "startingEquipment", "skills", "svgIcon"],
   "additionalProperties": false,
   "properties": {
-    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,31}$" },
-    "name": { "type": "string", "minLength": 1, "maxLength": 32 },
-    "description": { "type": "string" },
-    "primaryAttr": { "enum": ["str", "dex", "int", "wis"] },
-    "startingStats": {
-      "type": "object",
-      "properties": {
-        "str": { "type": "integer" },
-        "dex": { "type": "integer" },
-        "int": { "type": "integer" },
-        "con": { "type": "integer" }
-      }
-    },
-    "skillIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
-    "defaultAppearanceId": { "type": "string" },
-    "tags": { "type": "array", "items": { "type": "string" } }
+    "id":                { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,31}$", "description": "Stable class id — referenced by saved heroes (member.class). NEVER rename." },
+    "name":              { "type": "string", "minLength": 1, "maxLength": 32 },
+    "role":              { "type": "string", "minLength": 1 },
+    "hook":              { "type": "string", "minLength": 1 },
+    "armorType":         { "type": "string", "minLength": 1, "description": "Player-facing armor + weapon summary string." },
+    "primaryAttr":       { "enum": ["STR", "DEX", "INT", "CON"] },
+    "armorTier":         { "enum": ["cloth", "light", "medium", "heavy"] },
+    "weapons":           { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "startingEquipment": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "skills":            { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "svgIcon":           { "type": "string", "minLength": 1, "description": "Inline SVG markup for the class icon. This IS data." },
+    "appearance":        { "type": "string", "description": "Optional — appearance/sprite id reused when the class has no dedicated sprite set." }
   }
 }
