@@ -33,14 +33,20 @@
   let SKILLS = [];
 
   async function loadData() {
+    // M501 — append a per-load cache-bust query. `cache: 'no-cache'` only
+    // triggers a client revalidate; it still hits the nginx upstream cache
+    // on Cloudways (verified: x-cache HIT pinned an empty classes.json for
+    // ~3 hours after deploy). The query param forces a fresh upstream fetch.
+    const bust = Date.now();
+    const fresh = (u) => `${u}${u.includes('?') ? '&' : '?'}_=${bust}`;
     try {
       const [live, news, classes, builds, companions, skills] = await Promise.all([
-        fetch(DATA_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : null),
-        fetch(NEWS_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : []),
-        fetch(CLASSES_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
-        fetch(BUILDS_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
-        fetch(COMPANIONS_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
-        fetch(SKILLS_URL, { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
+        fetch(fresh(DATA_URL), { cache: 'no-cache' }).then(r => r.ok ? r.json() : null),
+        fetch(fresh(NEWS_URL), { cache: 'no-cache' }).then(r => r.ok ? r.json() : []),
+        fetch(fresh(CLASSES_URL), { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
+        fetch(fresh(BUILDS_URL), { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
+        fetch(fresh(COMPANIONS_URL), { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
+        fetch(fresh(SKILLS_URL), { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []),
       ]);
       LIVE = live;
       NEWS = Array.isArray(news) ? news : [];
