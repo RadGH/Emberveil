@@ -1,7 +1,7 @@
 {
-  "milestone": 500,
-  "date": "2026-05-18",
-  "summary": "M500 — MAJOR MILESTONE. Bundles the full canonical-data migration (M496 entities+combat→JSON closing the giant_spider/images.html drift by construction; M497 skills/items/uniques/classes/builds/enemy-spells/status/affixes→JSON, ~6500 inline lines removed) + refactor wave (M498 real ESLint gate that caught 5 genuine bugs, shared lib/git-deploy.sh, GitHub Actions CI; M499 mapData.js 3375→6 modules + CombatScreen 8581→7955 god-file splits) + stormcaller male sprite recentered (uniform +28px rightward on all non-portrait poses, relative alignment preserved). 11 verification gates + 308 tests + ESLint 0-errors + check-regression + 10/10 save-load all green; combat byte-identical. First deploy of the whole M496-M500 arc to emberveil.radgh.com prod.",
+  "milestone": 501,
+  "date": "2026-05-19",
+  "summary": "M501 — Class Distribution chart on emberveil.radgh.com homepage rendered 0 of each because emit-game-data.cjs still regex-scraped src/game/classes.js for inline literals (migrated to canonical JSON in M496). Switched the extractor to read public/data/classes.json directly, then revamped the chart taxonomy from the lopsided Melee/Ranged/Caster/Hybrid model (>50% Hybrid) to Armor Tier (Heavy/Medium/Light/Cloth), which uses canonical class.armorTier and gives a balanced 5/6/10/9 distribution. Also added noindex + robots.txt disallow to RSG-Demos staging to prevent duplicate-content SEO competition with prod.",
   "categories": [
     "feature"
   ],

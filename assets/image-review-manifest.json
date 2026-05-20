@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-05-18T20:33:47.623Z",
+    "generated": "2026-05-20T05:10:20.241Z",
     "derivedFrom": {
       "appearances": "public/data/entities/heroes.json + npcs.json (83 entries)",
       "classPets": "public/data/entities/companions.json classPets (11 entries)",

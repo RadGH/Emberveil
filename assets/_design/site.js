@@ -59,31 +59,19 @@
   function liveClassCount() { return CLASSES.length || LIVE?.counts?.classes || 0; }
   function liveCompanionCount() { return COMPANIONS.length || LIVE?.counts?.companions || 0; }
   function liveArchetypeCounts() {
-    // primaryAttr → archetype:
-    //   STR → Melee, DEX → Ranged, INT → Caster
-    // Hybrid is any class with at least one build tagged 'hybrid' in
-    // builds.json (the second-builds-per-class pass in M476 added many
-    // CON-tilted/hybrid alternates). Hybrid wins over the primaryAttr
-    // bucket so the chart reflects build flexibility, not raw stats.
-    const out = { Melee: 0, Ranged: 0, Caster: 0, Hybrid: 0 };
-    const hybridClassIds = hybridClassIdSet();
+    // M501 — bucket by `armorTier` (heavy/medium/light/cloth). Replaces the
+    // pre-M501 Melee/Ranged/Caster/Hybrid model where the M476 hybrid override
+    // meant >50% of the roster collapsed into the Hybrid bucket and the
+    // radar was visually lopsided. Armor tier is well-distributed across the
+    // 4 axes, surfaces a gameplay-meaningful taxonomy (drives loot/build
+    // pattern), and the labels read straight off the canonical class data.
+    const out = { Heavy: 0, Medium: 0, Light: 0, Cloth: 0 };
+    const BUCKETS = { heavy: 'Heavy', medium: 'Medium', light: 'Light', cloth: 'Cloth' };
     CLASSES.forEach(c => {
-      if (hybridClassIds.has(c.id)) { out.Hybrid += 1; return; }
-      if (c.primaryAttr === 'STR') out.Melee += 1;
-      else if (c.primaryAttr === 'DEX') out.Ranged += 1;
-      else if (c.primaryAttr === 'INT') out.Caster += 1;
-      else out.Hybrid += 1;
+      const k = BUCKETS[(c.armorTier || '').toLowerCase()];
+      if (k) out[k] += 1;
     });
     return out;
-  }
-  function hybridClassIdSet() {
-    const ids = new Set();
-    BUILDS.forEach(b => {
-      if (b && Array.isArray(b.tags) && b.tags.includes('hybrid') && b.classId) {
-        ids.add(b.classId);
-      }
-    });
-    return ids;
   }
   // Derive hybrid stat letters per class. Looks at any build tagged 'hybrid'
   // for that class; the two highest stats among STR/DEX/INT are surfaced as
@@ -729,7 +717,7 @@
   // ───────────────────────────────────────────────────────── CHARTS ─────────
   function mountCharts(root) {
     const tabs = [
-      { id: 'classes', label: 'Class Distribution' },
+      { id: 'classes', label: 'Class Distribution · Armor Tier' },
       { id: 'difficulty', label: 'Difficulty Curve' },
       { id: 'drops', label: 'Drop Rarity by Act' },
     ];
@@ -760,7 +748,7 @@
       sideWrap.appendChild(el('h3', {}, tabs.find(t => t.id === active).label));
       const arch = liveArchetypeCounts();
       const text = {
-        classes: `${liveClassCount() || 28} classes split across role archetypes. Casters lead at ${arch.Caster}, melee at ${arch.Melee}, ranged at ${arch.Ranged}${arch.Hybrid ? `, with ${arch.Hybrid} hybrids` : ''}.`,
+        classes: `${liveClassCount() || 28} classes split by armor tier — the lever that drives every loot drop and build pattern. Light leads at ${arch.Light}, cloth ${arch.Cloth}, medium ${arch.Medium}, heavy ${arch.Heavy}.`,
         difficulty: 'Enemy power curve over six acts on Hard. Note the Act III spike — Malgrath forces a real party comp before Cosmic Void opens.',
         drops: 'Post-M350 rebalance. Border Roads settles at ~50% normal items; later acts shift toward magic and rare with diminishing junk drops.',
       };
@@ -803,10 +791,10 @@
   function radarClasses() {
     const arch = liveArchetypeCounts();
     const data = [
-      { label: 'Melee', v: arch.Melee || 0 },
-      { label: 'Ranged', v: arch.Ranged || 0 },
-      { label: 'Caster', v: arch.Caster || 0 },
-      { label: 'Hybrid', v: arch.Hybrid || 0 },
+      { label: 'Heavy', v: arch.Heavy || 0 },
+      { label: 'Medium', v: arch.Medium || 0 },
+      { label: 'Light', v: arch.Light || 0 },
+      { label: 'Cloth', v: arch.Cloth || 0 },
     ];
     const cx = 200, cy = 200, R = 140;
     const max = Math.max(10, ...data.map(d => d.v));
@@ -816,7 +804,7 @@
       return [cx + Math.cos(angle(i)) * r, cy + Math.sin(angle(i)) * r];
     };
     const poly = data.map((d, i) => pt(i, d.v).join(',')).join(' ');
-    const svg = svgEl('svg', { viewBox: '0 0 400 400', width: '100%', style: 'max-width: 480px', role: 'img', 'aria-label': 'Class distribution by role: ' + data.map(d => `${d.label} ${d.v}`).join(', ') });
+    const svg = svgEl('svg', { viewBox: '0 0 400 400', width: '100%', style: 'max-width: 480px', role: 'img', 'aria-label': 'Class distribution by armor tier: ' + data.map(d => `${d.label} ${d.v}`).join(', ') });
     const defs = svgEl('defs');
     const grad = svgEl('radialGradient', { id: 'radarFill', cx: 200, cy: 200, r: 140, gradientUnits: 'userSpaceOnUse' });
     grad.appendChild(svgEl('stop', { offset: '0', 'stop-color': 'var(--accent)', 'stop-opacity': '.55' }));
