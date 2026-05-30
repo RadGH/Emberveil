@@ -8,6 +8,7 @@ import {
   setWaypointState,
   unlockTransition,
 } from './storyMapMutations.js';
+import { adjustApproval, dismissCompanion, recruitCompanion } from './storyCompanions.js';
 
 export const EFFECT_TYPES = Object.freeze([
   'set_flag', 'clear_flag', 'set_counter', 'inc_counter', 'faction_delta',
@@ -41,20 +42,12 @@ const DISPATCH = {
   set_counter(e, ctx) { story(ctx).counters[e.counter] = Math.trunc(Number(e.value) || 0); },
   inc_counter(e, ctx) { story(ctx).counters[e.counter] = Math.trunc(Number(story(ctx).counters[e.counter]) || 0) + Math.trunc(Number(e.amount ?? 1) || 0); },
   faction_delta(e, ctx) { story(ctx).factions[e.faction] = clampInt((story(ctx).factions[e.faction] || 0) + Number(e.amount || 0), -10, 10); },
-  companion_approval(e, ctx) { companion(ctx, e.companion).approval = clampInt((companion(ctx, e.companion).approval || 0) + Number(e.amount || 0), -10, 10); },
+  companion_approval(e, ctx) { adjustApproval(ctx.gs, e.companion, e.amount); },
   recruit_companion(e, ctx) {
-    const c = companion(ctx, e.companion);
-    c.recruited = true;
-    if (!story(ctx).activeCompanionId) {
-      c.active = true;
-      story(ctx).activeCompanionId = c.id;
-    }
+    recruitCompanion(ctx.gs, e.companion);
   },
   dismiss_companion(e, ctx) {
-    const c = companion(ctx, e.companion);
-    c.active = false;
-    c.recruited = false;
-    if (story(ctx).activeCompanionId === c.id) story(ctx).activeCompanionId = null;
+    dismissCompanion(ctx.gs, e.companion);
   },
   quest_advance(e, ctx) {
     const q = ensureQuest(ctx, e.questId);
@@ -124,16 +117,6 @@ export function buildEffectContext(gs, extra = {}) {
 
 function story(ctx) {
   return requireStory(ctx.gs || ctx);
-}
-
-function companion(ctx, id) {
-  const s = story(ctx);
-  let c = s.companions.find(x => x.id === id);
-  if (!c) {
-    c = { id, recruited: false, active: false, approval: 0, personalQuestStatus: QUEST_STATUS.INACTIVE };
-    s.companions.push(c);
-  }
-  return c;
 }
 
 function ensureQuest(ctx, id) {

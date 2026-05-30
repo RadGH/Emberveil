@@ -77,13 +77,35 @@ implementation had dozens of major issues.
 - Story effects now call the live map mutation API where a map exists, falling back
   to pending mutation queues only when authored effects target unavailable map ids.
 
+## R03a Quest/Dialog/Companion Core Status
+
+- Replaced temporary companion IDs with the six named roster IDs from the spec:
+  Lyra Ashwalker, Orren Gravetide, Tessaly Veil, Bram Coldfire, Yasha Stonewill,
+  and Captain Maer.
+- Added `storyQuestEngine.js` with quest start, phase advance, completion/failure,
+  outcome checks, logs, and per-node ticking.
+- Added `storyDialogConductor.js` with cross-pool `next:` resolution, choice
+  filtering via predicates, companion choice labels, effect application, dialog
+  history, and the legacy choice adapter.
+- Added `StoryDialogScreen`, wired from Story map dialog nodes.
+- Added `storyCompanions.js` with recruit, dismiss, active swap, approval clamp,
+  personal quest start, and 5th combatant assembly.
+- Added `storySeedContent.js` with a small real Act-1 primary quest and opening
+  dialog that can recruit Lyra or Orren. This is not placeholder data: it exercises
+  quest phase progression, companion recruitment, approval, lore unlock, and
+  companion-gated choice filtering.
+- Map generation now guarantees a reachable opening dialog node so the dialog path
+  is smoke-testable from a fresh Story start.
+
 ## Verification
 
 - R00 `npm test`: passed, 26 files / 308 tests.
 - R01 `npm test`: passed, 30 files / 320 tests.
 - R02 `npm test`: passed, 31 files / 325 tests.
+- R03a `npm test`: passed, 32 files / 328 tests.
 - R01 `npm run build`: passed.
 - R02 `npm run build`: passed.
+- R03a `npm run build`: passed.
 - Build warnings still present: missing `source/game13_releases/game_meta.json` for
   release metadata scripts, non-module static site scripts, and large Vite chunks.
   These are baseline repo warnings, not Story Mode regressions.
@@ -98,7 +120,11 @@ implementation had dozens of major issues.
   iPhone 14 Pro viewport reached Title -> New Game -> Story Mode, selected a
   storyteller, tapped a node, used Travel, paged to the next sub-region, and had no
   page errors or horizontal overflow.
-- R02 `npm run lint`: passed with 143 baseline warnings and 0 errors.
+- R03a direct Playwright browser smoke on `http://127.0.0.1:5213/play.html`: passed.
+  iPhone 14 Pro viewport reached Title -> New Game -> Story Mode, traveled to the
+  guaranteed opening dialog, recruited Lyra, selected a companion-gated choice, and
+  returned to the map with no page errors or horizontal overflow.
+- R03a `npm run lint`: passed with 143 baseline warnings and 0 errors.
 - Existing Playwright specs `e2e/gameplay.spec.js` and one `e2e/new-ui-smoke.spec.js`
   assertion are stale/unrelated: `gameplay.spec.js` still opens `/` instead of
   `/play.html`, and the New UI combat assertion fails on a pre-existing UI-overhaul
@@ -106,9 +132,13 @@ implementation had dozens of major issues.
 
 ## Not Done Yet
 
-- Quest engine, dialog conductor, companions, banter, encounter builder, storyteller
-  Director, sim policy, authored content, generated assets, balance matrix, audio,
-  tools, and full acts are not done yet.
+- Banter, encounter builder, storyteller Director, sim policy, full authored content,
+  generated assets, balance matrix, audio, tools, and full acts are not done yet.
+- Full companion content is not done yet: Tessaly/Bram/Yasha Act-2 intros,
+  all personal quest lines, all 15 banter pair files, companion swap UI at
+  activated waypoints, and banter delivery overlay are still pending.
+- Full quest/dialog content is not done yet: only the opening Act-1 seed is present.
+  The target counts from the plan are still pending.
 - Node-specific outcomes are still placeholders: visiting a node updates map state
   but does not yet launch dialog, combat, rewards, quests, or skill checks. That work
   is scheduled for R03/R04.

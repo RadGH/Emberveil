@@ -2,11 +2,11 @@ import { describe, expect, it } from 'vitest';
 import { evalPredicate, validatePredicate } from '../storyPredicate.js';
 
 const ctx = {
-  flags: { met_maera: true },
+  flags: { met_lyra: true },
   factions: { lantern_court: 3 },
   counters: { relics: 2 },
   quests: { q1: { status: 'active', phase: 'hunt', outcomes: [] } },
-  companions: [{ id: 'maera', recruited: true, active: true, approval: 4 }],
+  companions: [{ id: 'lyra_ashwalker', recruited: true, active: true, approval: 4 }],
   inventory: [{ id: 'ember_key' }],
   party: [{ class: 'warrior', attrs: { STR: 12, DEX: 8 } }],
 };
@@ -14,12 +14,12 @@ const ctx = {
 describe('story predicate DSL', () => {
   it('evaluates boolean composition and canonical ops', () => {
     expect(evalPredicate({ op: 'all', terms: [
-      { op: 'flag', flag: 'met_maera' },
+      { op: 'flag', flag: 'met_lyra' },
       { op: 'faction', faction: 'lantern_court', min: 2 },
       { op: 'counter', counter: 'relics', cmp: '>=', value: 2 },
       { op: 'quest', questId: 'q1', status: 'active', phase: 'hunt' },
       { op: 'item', itemId: 'ember_key' },
-      { op: 'companion', companion: 'maera', recruited: true, min: 3 },
+      { op: 'companion', companion: 'lyra_ashwalker', recruited: true, min: 3 },
       { op: 'class', class: 'warrior' },
       { op: 'stat', stat: 'STR', min: 10 },
     ] }, ctx)).toBe(true);

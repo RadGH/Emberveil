@@ -150,6 +150,11 @@ export class StoryMapScreen {
       this.audio.playSfx('click');
       this._regionIndex = graph.nodes[nodeId]?.regionIndex || this._regionIndex;
       this._render();
+      if (graph.nodes[nodeId]?.type === 'dialog') {
+        import('./StoryDialogScreen.js').then(mod => {
+          this.manager.push(new mod.StoryDialogScreen(this.manager, this.audio, 'pool:arrival#arrival_emberwood_001', () => this._render()));
+        });
+      }
     });
     const wrap = this._el.querySelector('#sms-map-wrap');
     wrap.addEventListener('touchstart', e => { this._touchStart = e.touches[0].clientX; }, { passive: true });

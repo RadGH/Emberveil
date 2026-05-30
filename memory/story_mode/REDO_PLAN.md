@@ -69,6 +69,9 @@ late blocker fixes, and QA gaps called out in the handoff prompt.
 
 - Implement quest engine, dialog conductor, companion recruitment/approval, and all
   15 banter pairs with real entries before the systems are called complete.
+- R03a lands the engine contracts and opening seed dialog only. The full R03 content
+  bar remains open until all companion intros, personal quests, and 15 banter pair
+  files are authored and wired.
 
 ### R04 — Director, Encounters, Skill Checks
 

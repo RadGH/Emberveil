@@ -77,7 +77,7 @@ function buildGraph({ seed, act, salt }) {
     const nodeIds = [];
     for (let col = 0; col < cols; col++) {
       for (let lane = 0; lane < lanes; lane++) {
-        if (col === 0 && lane !== 1 && rng() < 0.2) continue;
+        if (!(regionIndex === 0 && col === 0) && col === 0 && lane !== 1 && rng() < 0.2) continue;
         if (col === cols - 1 && lane !== 1 && rng() < 0.25) continue;
         const id = `${regionId}_c${col}_l${lane}`;
         const tags = [];
@@ -85,6 +85,7 @@ function buildGraph({ seed, act, salt }) {
         if (col === Math.floor(cols / 2) && lane === ((regionIndex + act) % 3)) tags.push('waypoint');
         const isBoss = regionIndex === regions.length - 1 && col === cols - 1 && lane === 1;
         if (isBoss) tags.push('boss', 'quest_critical');
+        const forcedOpeningDialog = regionIndex === 0 && col === 0 && lane !== 1;
         nodes[id] = {
           id,
           act,
@@ -95,7 +96,7 @@ function buildGraph({ seed, act, salt }) {
           col,
           x: col / Math.max(1, cols - 1),
           y: lane / 2,
-          type: isBoss ? 'boss' : pickType(rng, regionDef.biome),
+          type: isBoss ? 'boss' : forcedOpeningDialog ? 'dialog' : pickType(rng, regionDef.biome),
           tags,
           baseWeight: 1,
         };

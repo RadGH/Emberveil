@@ -4,6 +4,7 @@ import { CLASSES } from '../game/classes.js';
 import { buildStartingEquipment } from '../game/items.js';
 import { createDefaultStoryLedger, normalizeStoryteller } from './storyLedger.js';
 import { generateAct } from './storyMapGen.js';
+import { tickQuestConditions } from './storyQuestEngine.js';
 
 export function newGame(opts = {}) {
   const cls = CLASSES.find(c => c.id === (opts.classId || 'warrior')) || CLASSES[0];
@@ -38,6 +39,8 @@ export function newGame(opts = {}) {
   gs.story.currentMapId = generated.graph.mapId;
   gs.story.currentNodeId = generated.graph.entryNodeId;
   gs.story.maps[generated.graph.mapId] = generated.mapSave;
+  gs.story.flags.act1_started = true;
+  tickQuestConditions(gs);
   gs.act = gs.story.act;
   gs.zoneId = gs.story.currentMapId;
   gs.nodeId = gs.story.currentNodeId;

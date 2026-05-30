@@ -19,8 +19,8 @@ describe('story effect runner', () => {
       { type: 'set_flag', flag: 'f1' },
       { type: 'inc_counter', counter: 'c1', amount: 2 },
       { type: 'faction_delta', faction: 'faction_a', amount: 20 },
-      { type: 'companion_approval', companion: 'maera', amount: 3 },
-      { type: 'recruit_companion', companion: 'maera' },
+      { type: 'companion_approval', companion: 'lyra_ashwalker', amount: 3 },
+      { type: 'recruit_companion', companion: 'lyra_ashwalker' },
       { type: 'quest_advance', questId: 'q1', phase: 'p1' },
       { type: 'quest_log', questId: 'q1', text: 'Found the clue.' },
       { type: 'quest_complete', questId: 'q1', outcomeId: 'good' },
@@ -44,7 +44,7 @@ describe('story effect runner', () => {
     expect(gs.story.flags.f1).toBe(true);
     expect(gs.story.counters.c1).toBe(2);
     expect(gs.story.factions.faction_a).toBe(10);
-    expect(gs.story.companions.find(c => c.id === 'maera').recruited).toBe(true);
+    expect(gs.story.companions.find(c => c.id === 'lyra_ashwalker').recruited).toBe(true);
     expect(gs.story.quests.q1.status).toBe('complete');
     expect(gs.story.pendingMapMutations).toHaveLength(3);
     expect(gs.story.flags.transition_act2).toBe(true);

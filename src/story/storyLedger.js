@@ -16,7 +16,14 @@ export const STORYTELLERS = Object.freeze([
   { id: 'iron_judge', name: 'The Iron Judge', mechanic: 'No fallback mercy on failed gambits.' },
 ]);
 
-const COMPANIONS = ['maera', 'osric', 'luma', 'tessaly', 'bram', 'yasha'];
+export const COMPANION_ROSTER = Object.freeze([
+  { id: 'lyra_ashwalker', name: 'Lyra Ashwalker', classId: 'ranger', recruitAct: 1, personalQuestId: 'companion_lyra_personal' },
+  { id: 'orren_gravetide', name: 'Orren Gravetide', classId: 'warrior', recruitAct: 1, personalQuestId: 'companion_orren_personal' },
+  { id: 'tessaly_veil', name: 'Tessaly Veil', classId: 'rogue', recruitAct: 2, personalQuestId: 'companion_tessaly_personal' },
+  { id: 'bram_coldfire', name: 'Bram Coldfire', classId: 'mage', recruitAct: 2, personalQuestId: 'companion_bram_personal' },
+  { id: 'yasha_stonewill', name: 'Yasha Stonewill', classId: 'monk', recruitAct: 2, personalQuestId: 'companion_yasha_personal' },
+  { id: 'captain_maer', name: 'Captain Maer', classId: 'warrior', recruitAct: 1, personalQuestId: 'companion_maer_personal' },
+]);
 
 export function createDefaultStoryLedger(opts = {}) {
   const campaignSeed = String(opts.campaignSeed || opts.seed || makeSeed());
@@ -51,10 +58,15 @@ export function createDefaultStoryLedger(opts = {}) {
       lossStreak: 0,
     },
     pressureMeter: 0,
-    companions: COMPANIONS.map(id => ({
-      id,
+    companions: COMPANION_ROSTER.map(c => ({
+      id: c.id,
+      name: c.name,
+      classId: c.classId,
+      personalQuestId: c.personalQuestId,
       recruited: false,
       active: false,
+      alive: true,
+      benchedAt: null,
       approval: 0,
       personalQuestStatus: QUEST_STATUS.INACTIVE,
     })),
