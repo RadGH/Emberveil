@@ -240,7 +240,6 @@
     <div class="topbar-col">
       <div class="bg-bg-heading">Category</div>
       <div class="seg" id="cat-seg">
-        <button data-cat="storytellers">Storytellers</button>
         <button data-cat="characters" class="active">Characters</button>
         <button data-cat="backgrounds">Backgrounds</button>
         <button data-cat="tap_weapons">Tap Weapons</button>
@@ -372,7 +371,6 @@ function buildFilters() {
         <label class="filter-row"><input type="checkbox" data-bgtype="${t}" ${filters.bgTypes.has(t) ? 'checked' : ''}> ${t}</label>
       `).join('')}
     </div>
-    ${category === 'storytellers' ? '<div class="filter-group"><div class="group-title">Storyteller portraits — 6 total (M518b)</div></div>' : ''}
   `;
   body.querySelectorAll('input[data-charcat]').forEach(el => {
     el.onchange = () => {
@@ -530,7 +528,6 @@ function currentEntries() {
     return b && b.entries ? b.entries.map(e => ({ ...e, _batchEntry: true })) : [];
   }
   // current
-  if (category === 'storytellers') return DATA.storytellers || [];
   if (category === 'characters') return DATA.characters || [];
   if (category === 'backgrounds') return DATA.backgrounds || [];
   if (category === 'tap_weapons') return DATA.tap_weapons || [];
@@ -555,9 +552,8 @@ function render() {
   let entries = currentEntries();
 
   // First: filter to the active category bucket. Batch entries carry e.category
-  // values like 'character', 'background', 'tap_weapon', 'storyteller', 'other'.
+  // values like 'character', 'background', 'tap_weapon', 'other'.
   const catMatchers = {
-    storytellers: e => e.category === 'storyteller',
     characters:   e => e.category === 'character' || ['hero','class','companion','boss','enemy','npc','hireable'].includes(e.category),
     backgrounds:  e => e.category === 'background',
     tap_weapons:  e => e.category === 'tap_weapon' || e.category === 'tap-weapons',
@@ -587,8 +583,7 @@ function render() {
   // M464 — Unified layout. Characters (across pending/current/history) all
   // render as <character name> + single row of pose tiles. Backgrounds and
   // tap-weapons still use renderFlat / renderBackgroundsByType.
-  // M518b — storytellers also use renderUnifiedCharacters (one portrait per storyteller).
-  if (category === 'characters' || category === 'storytellers') {
+  if (category === 'characters') {
     renderUnifiedCharacters(entries);
     syncLbItems();
     return;

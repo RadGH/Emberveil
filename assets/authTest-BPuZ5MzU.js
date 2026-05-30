@@ -1,2 +1,0 @@
-import"./savesClient-Lt_9u8Ks-B0TWHWS2.js";const n=t=>document.getElementById(t),a=n("log");n("sessionJson");n("sessionStatus");const c=n("configStatus"),e=[];function l(t,i){const s=new Date().toISOString().slice(11,19),o=`[${s}] ${t}`;e.unshift(o),e.length>40&&(e.length=40),a.textContent=e.join(`
-`)}function u(t,i,s){t.textContent=i,t.className=`status ${s}`}u(c,"Supabase not configured — missing keys at build time. Check assets/references/emberveil/supabase-*.txt and rebuild.","err"),l("config missing — client not initialized");

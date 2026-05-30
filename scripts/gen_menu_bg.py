@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate pixel-art main menu backgrounds + cloud layers via OpenAI."""
 import json, base64, urllib.request, pathlib, time
-KEY = pathlib.Path("/home/radgh/claude/assets/references/openai-api-key.txt").read_text().strip()
+KEY = pathlib.Path("/home/radgh/claude/secrets/openai-api-key.txt").read_text().strip()
 OUT = pathlib.Path("/home/radgh/claude/game13/public/images/menu_bg")
 OUT.mkdir(parents=True, exist_ok=True)
 

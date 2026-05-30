@@ -2,7 +2,7 @@
 """Batch generate SFX via ElevenLabs Sound Generation API."""
 import os, sys, json, time, urllib.request, urllib.error, pathlib
 
-KEY = pathlib.Path("/home/radgh/claude/assets/references/elevenlabs-api-key.txt").read_text().strip()
+KEY = pathlib.Path("/home/radgh/claude/secrets/elevenlabs-api-key.txt").read_text().strip()
 OUT = pathlib.Path("/home/radgh/claude/game13/public/sfx")
 OUT.mkdir(parents=True, exist_ok=True)
 

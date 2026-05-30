@@ -56,7 +56,7 @@ function _buildAchievementsSync(savedAchievements) {
 
 const DEFAULT_STATE = {
   version: 1,
-  gameMode: 'classic',    // M-S01: 'classic' | 'story' — defaults classic for all pre-existing saves
+  gameMode: 'classic',
   hero: null,
   party: [],       // up to 4 heroes
   companions: [],  // up to 4 companions/pets
@@ -227,12 +227,6 @@ export function resetRunProgression(s) {
   s.runCount = (s.runCount || 1) + 1;
 }
 
-// M-S02 — Story migration hook. Set by storyLedger.js when it loads so we can
-// call migrateStorySave synchronously from GameState.load without a circular dep.
-// Classic Mode never sets this; it stays null and the branch never runs.
-let _storyMigrateStorySave = null;
-export function registerStoryMigrator(fn) { _storyMigrateStorySave = fn; }
-
 // M414 — fresh empty containers per init/load (factory) so the module-init
 // _state never shares references with DEFAULT_STATE. The init() and load()
 // branches override below; this initial assignment is only used if any code
@@ -314,23 +308,8 @@ export const GameState = {
   },
 
   load(saved) {
-    // M-S01: default gameMode to 'classic' for pre-existing saves that lack the field.
+    // Default gameMode to 'classic' for pre-existing saves that lack the field.
     if (!saved.gameMode) saved.gameMode = 'classic';
-
-    // M-S02: run story migration chain before spreading into _state.
-    // This is the only place migrateStorySave runs — never in Classic paths.
-    if (saved.gameMode === 'story') {
-      try {
-        // Dynamic import would be async; use a synchronous require-like pattern
-        // via a deferred inline require. We load storyLedger lazily to keep
-        // the Classic bundle cost zero. Because this is an ES module, we fall
-        // back to a guarded import side-effect: store the migrator at module
-        // level when story mode initializes for the first time.
-        if (typeof _storyMigrateStorySave === 'function') {
-          saved = _storyMigrateStorySave(saved) || saved;
-        }
-      } catch (_) { /* migration unavailable yet — safe to skip on first load */ }
-    }
 
     _state = {
       ...DEFAULT_STATE,
@@ -409,9 +388,6 @@ export const GameState = {
         : null,
       // M388 — UI overhaul preview flag. Rehydrate from localStorage shadow; save field mirrors it.
       uiOverhaul: !!saved.uiOverhaul,
-      // M-S01/S02 — Story Mode: preserve gs.story ledger when loading a story save.
-      // Classic saves never have `story` on disk; we do NOT add it here.
-      ...(saved.gameMode === 'story' && saved.story ? { story: saved.story, storyVersion: saved.storyVersion || 1 } : {}),
     };
     // M393 — Hardcore forces Manual Combat on, regardless of saved value.
     // Phase 02 §1: hardcore is manual-only. Settings UI shows the toggle as
@@ -526,9 +502,6 @@ export const GameState = {
       craftingRecipesUnlocked: _state.craftingRecipesUnlocked instanceof Set
         ? [..._state.craftingRecipesUnlocked]
         : null,
-      // M-S01/S02 — Story ledger is already JSON-safe (Set-free by contract).
-      // Include it only when present (story saves only).
-      ...(_state.story ? { story: _state.story, storyVersion: _state.storyVersion || 1 } : {}),
     };
   },
 

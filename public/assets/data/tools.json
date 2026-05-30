@@ -256,15 +256,6 @@
       "deprecated": false
     },
     {
-      "name": "Quest Graph",
-      "href": "quest-graph.html",
-      "desc": "(no description — add one in tools-meta.json)",
-      "tag": "devtool",
-      "milestone": "",
-      "updated": "2026-05-21",
-      "deprecated": false
-    },
-    {
       "name": "Rebalance",
       "href": "rebalance.html",
       "desc": "Interactive balance sliders — adjust enemy and loot multipliers, preview changes.",
@@ -370,42 +361,6 @@
       "tag": "devtool",
       "milestone": "",
       "updated": "2026-04-29",
-      "deprecated": false
-    },
-    {
-      "name": "Story Campaign Sim",
-      "href": "story-campaign-sim.html",
-      "desc": "(no description — add one in tools-meta.json)",
-      "tag": "devtool",
-      "milestone": "",
-      "updated": "2026-05-21",
-      "deprecated": false
-    },
-    {
-      "name": "Story Dialog Review",
-      "href": "story-dialog-review.html",
-      "desc": "(no description — add one in tools-meta.json)",
-      "tag": "devtool",
-      "milestone": "",
-      "updated": "2026-05-21",
-      "deprecated": false
-    },
-    {
-      "name": "Story Inspector",
-      "href": "story-inspector.html",
-      "desc": "(no description — add one in tools-meta.json)",
-      "tag": "devtool",
-      "milestone": "",
-      "updated": "2026-05-21",
-      "deprecated": false
-    },
-    {
-      "name": "Storyteller Balance",
-      "href": "storyteller-balance.html",
-      "desc": "(no description — add one in tools-meta.json)",
-      "tag": "devtool",
-      "milestone": "",
-      "updated": "2026-05-21",
       "deprecated": false
     },
     {

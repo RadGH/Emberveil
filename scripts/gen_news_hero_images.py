@@ -10,7 +10,7 @@
 import json, base64, urllib.request, pathlib, time, sys, io
 
 ROOT = pathlib.Path("/home/radgh/claude/game13")
-KEY_PATH = pathlib.Path("/home/radgh/claude/assets/references/openai-api-key.txt")
+KEY_PATH = pathlib.Path("/home/radgh/claude/secrets/openai-api-key.txt")
 OUT_DIR = ROOT / "public/images/news_hero"
 BATCH_INDEX = ROOT / "public/assets/data/image_review_batches/index.json"
 BATCHES_DIR = ROOT / "public/assets/data/image_review_batches"

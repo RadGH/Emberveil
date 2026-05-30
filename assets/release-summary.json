@@ -1,1 +1,9 @@
-{"milestone":0,"date":"","summary":""}
+{
+  "milestone": 501,
+  "date": "2026-05-19",
+  "summary": "M501 — Class Distribution chart on emberveil.radgh.com homepage rendered 0 of each because emit-game-data.cjs still regex-scraped src/game/classes.js for inline literals (migrated to canonical JSON in M496). Switched the extractor to read public/data/classes.json directly, then revamped the chart taxonomy from the lopsided Melee/Ranged/Caster/Hybrid model (>50% Hybrid) to Armor Tier (Heavy/Medium/Light/Cloth), which uses canonical class.armorTier and gives a balanced 5/6/10/9 distribution. Also added noindex + robots.txt disallow to RSG-Demos staging to prevent duplicate-content SEO competition with prod.",
+  "categories": [
+    "feature"
+  ],
+  "breakingChanges": []
+}

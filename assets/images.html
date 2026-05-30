@@ -938,56 +938,6 @@ function renderUnifiedAppearance(container, app, opts) {
 }
 
 // ---------------------------------------------------------------------------
-// Storytellers section — M518b. One portrait tile per storyteller.
-// Data comes from images-manifest.json storytellers[] array (set on STATE.manifest.storytellers).
-// ---------------------------------------------------------------------------
-function renderStorytellersSection(storytellers, q) {
-  if (!storytellers || !storytellers.length) return null;
-  const qLow = (q || '').toLowerCase();
-  const STORYTELLER_NAMES = {
-    storyteller_chronicler:   'The Chronicler',
-    storyteller_ash_prophet:  'The Ash Prophet',
-    storyteller_warbringer:   'The Warbringer',
-    storyteller_trickster:    'The Trickster',
-    storyteller_pilgrim:      'The Pilgrim',
-    storyteller_iron_judge:   'The Iron Judge',
-  };
-  const filtered = qLow
-    ? storytellers.filter(s => {
-        const id = s.id || '';
-        const name = STORYTELLER_NAMES[id] || id;
-        return id.toLowerCase().includes(qLow) || name.toLowerCase().includes(qLow);
-      })
-    : storytellers;
-  if (!filtered.length) return null;
-
-  const section = document.createElement('div');
-  section.className = 'section';
-  section.dataset.sectionKey = 'storytellers';
-
-  const titleEl = document.createElement('div');
-  titleEl.className = 'section-title';
-  titleEl.innerHTML = `Storytellers <span class="section-count">${filtered.length}</span>`;
-  section.appendChild(titleEl);
-
-  for (const st of filtered) {
-    // Each storyteller has one portrait file; use the unified character renderer.
-    const stId = st.id;
-    const displayName = STORYTELLER_NAMES[stId] || stId.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-    const portraitFile = st.files && st.files[0] ? st.files[0].file : null;
-    const relPath = portraitFile || null;
-    const app = {
-      id: stId,
-      name: displayName,
-      sprites: { portrait: relPath },
-      missingPoses: [],
-    };
-    renderUnifiedAppearance(section, app);
-  }
-  return section;
-}
-
-// ---------------------------------------------------------------------------
 // Classes section — every playable class appearance gets its own unified row,
 // ordered by classRegistry (then male before female).
 // ---------------------------------------------------------------------------
@@ -1306,7 +1256,7 @@ function renderOrphanSection(orphans, q) {
 // ---------------------------------------------------------------------------
 // Main manifest renderer
 // ---------------------------------------------------------------------------
-const SECTION_ORDER = ['storytellers', 'classes', 'npcs', 'companions', 'enemies', 'bosses', 'backgrounds',
+const SECTION_ORDER = ['classes', 'npcs', 'companions', 'enemies', 'bosses', 'backgrounds',
   'ui', 'particles', 'spells', 'orphaned'];
 
 var STATE = { manifest: null, tab: 'all', q: '' };
@@ -1329,7 +1279,6 @@ function render() {
     if (el) root.appendChild(el);
   }
 
-  maybe('storytellers', function() { return renderStorytellersSection(m.storytellers, q); });
   maybe('classes',     function() { return renderClassesSection(m.appearances, m.classRegistry || [], q); });
   maybe('npcs',        function() { return renderNpcSection(m.appearances, q); });
   maybe('companions',  function() {
@@ -1358,18 +1307,17 @@ function buildToolbar(m) {
   bar.innerHTML = '';
 
   const tabs = [
-    ['all',          'All',            m.totals.appearances + m.totals.companions + m.totals.enemies + m.totals.bosses + (m.totals.orphans || 0)],
-    ['storytellers', 'Storytellers',   (m.storytellers || []).length],
-    ['classes',      'Classes',        (m.appearances || []).filter(function(a){return !a.npc && !a.deprecated;}).length],
-    ['npcs',         'NPCs',           (m.appearances || []).filter(function(a){return a.npc;}).length],
-    ['companions',   'Companions',     m.totals.companions],
-    ['enemies',      'Enemies',        m.totals.enemies],
-    ['bosses',       'Bosses',         m.totals.bosses],
-    ['backgrounds',  'Backgrounds',    DIALOG_BG_FILES.length + MAP_BG_FILES.length + COMBAT_BG_FILES.length],
-    ['ui',           'UI',             (m.ui || []).length],
-    ['particles',    'Particles',      (m.particles || []).length],
-    ['spells',       'Spells',         (m.spell_icons || []).length],
-    ['orphaned',     'Orphaned',       m.totals.orphans],
+    ['all',         'All',            m.totals.appearances + m.totals.companions + m.totals.enemies + m.totals.bosses + (m.totals.orphans || 0)],
+    ['classes',     'Classes',        (m.appearances || []).filter(function(a){return !a.npc && !a.deprecated;}).length],
+    ['npcs',        'NPCs',           (m.appearances || []).filter(function(a){return a.npc;}).length],
+    ['companions',  'Companions',     m.totals.companions],
+    ['enemies',     'Enemies',        m.totals.enemies],
+    ['bosses',      'Bosses',         m.totals.bosses],
+    ['backgrounds', 'Backgrounds',    DIALOG_BG_FILES.length + MAP_BG_FILES.length + COMBAT_BG_FILES.length],
+    ['ui',          'UI',             (m.ui || []).length],
+    ['particles',   'Particles',      (m.particles || []).length],
+    ['spells',      'Spells',         (m.spell_icons || []).length],
+    ['orphaned',    'Orphaned',       m.totals.orphans],
   ];
 
   for (var i = 0; i < tabs.length; i++) {
@@ -1413,10 +1361,9 @@ Promise.all([
 
   // Merge non-appearance content from images-manifest into apM
   if (imgM) {
-    apM.ui           = imgM.ui           || [];
-    apM.particles    = imgM.particles    || [];
-    apM.spell_icons  = imgM.spell_icons  || [];
-    apM.storytellers = imgM.storytellers || [];  // M518b — storyteller portraits
+    apM.ui          = imgM.ui          || [];
+    apM.particles   = imgM.particles   || [];
+    apM.spell_icons = imgM.spell_icons || [];
   }
 
   // Attach class registry so renderClassesSection can sort by the canonical class order

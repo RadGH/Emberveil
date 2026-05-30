@@ -138,7 +138,6 @@ function main() {
   const byBoss = new Map();
   const byEnemy = new Map();
   const byCompanion = new Map();
-  const byStoryteller = new Map();  // M518b: storyteller_<id>_portrait.png
   const byUnknown = new Map();
   const backgrounds = { combat:[], map:[], dialog:[], menu:[], news:[] };
   const ui = [], particles = [], spell_icons = [], portraits_misc = [], other = [];
@@ -180,11 +179,6 @@ function main() {
     if (top === 'openai_v2' || top === 'spritecook' || top === 'sprites' || top === 'pixellab' || top === 'bosses') {
       const parsed = parseFilename(name);
       const entry = { file, name, pose: parsed.poses.join('+'), gender: parsed.gender };
-
-      // M518b — storyteller portraits: storyteller_<id>_portrait.png in openai_v2.
-      if (top === 'openai_v2' && /^storyteller_/.test(parsed.id)) {
-        pushTo(byStoryteller, parsed.id, entry); continue;
-      }
 
       if (classIdSet.has(parsed.id)) { pushClass(parsed.id, parsed.gender, entry); continue; }
       if (bossSet.has(parsed.id))    { pushTo(byBoss,   parsed.id, entry); continue; }
@@ -264,7 +258,6 @@ function main() {
       bosses:  Array.from(byBoss.values()).reduce((s,e)=>s+e.files.length,0),
       enemies: Array.from(byEnemy.values()).reduce((s,e)=>s+e.files.length,0),
       companions: Array.from(byCompanion.values()).reduce((s,e)=>s+e.files.length,0),
-      storytellers: Array.from(byStoryteller.values()).reduce((s,e)=>s+e.files.length,0),
       backgrounds: Object.values(backgrounds).reduce((s,a)=>s+a.length,0),
       ui: ui.length, particles: particles.length, spell_icons: spell_icons.length,
       portraits_misc: portraits_misc.length, other: other.length,
@@ -274,7 +267,6 @@ function main() {
     bosses: mapToArr(byBoss),
     enemies: mapToArr(byEnemy),
     companions: mapToArr(byCompanion),
-    storytellers: mapToArr(byStoryteller),
     unknown_characters: mapToArr(byUnknown),
     backgrounds,
     ui, particles, spell_icons, portraits_misc, other,

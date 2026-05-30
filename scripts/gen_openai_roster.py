@@ -6,7 +6,7 @@ Skips files that already exist and are non-trivial. Idempotent — safe to re-ru
 """
 import json, base64, urllib.request, pathlib, time, sys, os
 
-KEY = pathlib.Path("/home/radgh/claude/assets/references/openai-api-key.txt").read_text().strip()
+KEY = pathlib.Path("/home/radgh/claude/secrets/openai-api-key.txt").read_text().strip()
 SPRITES = pathlib.Path("/home/radgh/claude/game13/public/images/sprites")
 PORTRAITS = pathlib.Path("/home/radgh/claude/game13/public/images/portraits")
 SPRITES.mkdir(parents=True, exist_ok=True)
