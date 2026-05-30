@@ -12,6 +12,7 @@ export class LoadGameScreen {
     this.audio = audio;
     this.noGameMenuEsc = true;
     this._el = null;
+    this._mode = 'classic';
   }
 
   onEnter() { this._build(); }
@@ -24,7 +25,10 @@ export class LoadGameScreen {
   }
 
   _render() {
-    const saves = SaveManager.listSaves().filter(s => s.gameMode !== 'story');
+    const allSaves = SaveManager.listSaves();
+    const classicCount = allSaves.filter(s => s.gameMode !== 'story').length;
+    const storyCount = allSaves.filter(s => s.gameMode === 'story').length;
+    const saves = allSaves.filter(s => this._mode === 'story' ? s.gameMode === 'story' : s.gameMode !== 'story');
     const rows = saves.length
       ? saves.map(save => {
           const lvl = save.level ?? save.party?.[0]?.level ?? '?';
@@ -128,17 +132,36 @@ export class LoadGameScreen {
     this._el.innerHTML = `
       <div class="ls-panel">
         <div class="ls-title">Load Game</div>
+        <div class="ls-tabs" role="tablist" aria-label="Save mode">
+          <button type="button" class="ls-tab${this._mode === 'classic' ? ' selected' : ''}" data-mode="classic">Classic (${classicCount})</button>
+          <button type="button" class="ls-tab${this._mode === 'story' ? ' selected' : ''}" data-mode="story">Story (${storyCount})</button>
+        </div>
         <div class="ls-slots" id="slot-list">${rows}</div>
       </div>
       <button type="button" class="ls-back ls-back-floating" id="ls-back">← Back</button>
     `;
 
     this._el.querySelector('#ls-back').addEventListener('click', () => { this.audio.playSfx('click'); this.manager.pop(); });
+    this._el.querySelectorAll('[data-mode]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        this.audio.playSfx('click');
+        this._mode = btn.dataset.mode;
+        this._render();
+      });
+    });
 
     this._el.querySelectorAll('.lss-load').forEach(btn => {
       btn.addEventListener('click', async () => {
         if (!SaveManager.loadKey(btn.dataset.key)) return;
         this.audio.playSfx('click');
+        try {
+          const { GameState } = await import('../../game/gameState.js');
+          if (GameState.get().gameMode === 'story') {
+            const { StoryMapScreen } = await import('./StoryMapScreen.js');
+            this.manager.replace(new StoryMapScreen(this.manager, this.audio));
+            return;
+          }
+        } catch (_) { /* fall through to classic routing */ }
         if (btn.dataset.rip) {
           const { RipViewScreen } = await import('./RipViewScreen.js');
           this.manager.replace(new RipViewScreen(this.manager, this.audio));
@@ -200,6 +223,9 @@ const LOAD_STYLES = `
 /* M312 #19: bottom padding so last card isn't hidden under floating Back btn */
 .ls-panel { width: 100%; max-width: 460px; padding: 2rem 2rem 6rem; display: flex; flex-direction: column; gap: 1.5rem; }
 .ls-title { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 700; color: #e8a020; text-align: center; letter-spacing: 0.1em; }
+.ls-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem; }
+.ls-tab { min-height: 44px; border: 1px solid rgba(232,160,32,0.18); border-radius: 6px; background: rgba(0,0,0,0.18); color: #c8b89c; cursor: pointer; font-weight: 700; }
+.ls-tab.selected { border-color: rgba(232,160,32,0.7); background: rgba(232,160,32,0.14); color: #e8a020; }
 /* M312 #19: remove max-height so cards grow freely; page itself scrolls */
 .ls-slots { display: flex; flex-direction: column; gap: 0.75rem; }
 .ls-slot {

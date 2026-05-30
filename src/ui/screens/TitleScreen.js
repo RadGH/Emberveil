@@ -2,7 +2,7 @@
  * TitleScreen — Emberveil title with intro cinematic
  * Phase: clouds → logo drops from sky → main menu fades in
  */
-import { CharacterBuilderScreen } from './CharacterBuilderScreen.js';
+import { StoryNewGameScreen } from './StoryNewGameScreen.js';
 import { LoadGameScreen } from './LoadGameScreen.js';
 import { SettingsScreen } from './SettingsScreen.js';
 import { CombatSimulatorScreen } from './CombatSimulatorScreen.js';
@@ -227,7 +227,7 @@ export class TitleScreen {
 
     this._el.querySelector('#btn-new-game').addEventListener('click', () => {
       this.audio.playSfx('click');
-      this.manager.push(new CharacterBuilderScreen(this.manager, this.audio));
+      this.manager.push(new StoryNewGameScreen(this.manager, this.audio));
     });
     this._el.querySelector('#btn-load-game').addEventListener('click', () => {
       this.audio.playSfx('click');

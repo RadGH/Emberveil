@@ -4,6 +4,7 @@
  */
 import { computeItemScores, setLootNgPlus } from './items.js';
 import { recalcPassiveStats } from './passives.js';
+import { migrateStorySave } from '../story/storyLedger.js';
 
 // M314 — Achievement persistence: pre-seed the per-run achievements mirror from the
 // global localStorage store so new-game / load never re-fires unlock toasts.
@@ -310,6 +311,7 @@ export const GameState = {
   load(saved) {
     // Default gameMode to 'classic' for pre-existing saves that lack the field.
     if (!saved.gameMode) saved.gameMode = 'classic';
+    if (saved.gameMode === 'story') saved = migrateStorySave(saved);
 
     _state = {
       ...DEFAULT_STATE,
@@ -388,6 +390,8 @@ export const GameState = {
         : null,
       // M388 — UI overhaul preview flag. Rehydrate from localStorage shadow; save field mirrors it.
       uiOverhaul: !!saved.uiOverhaul,
+      storyVersion: saved.gameMode === 'story' ? (saved.storyVersion || 1) : undefined,
+      story: saved.gameMode === 'story' ? saved.story : undefined,
     };
     // M393 — Hardcore forces Manual Combat on, regardless of saved value.
     // Phase 02 §1: hardcore is manual-only. Settings UI shows the toggle as
@@ -489,7 +493,7 @@ export const GameState = {
   isLoreUnlocked(id) { return this.getLoreUnlocked().has(id); },
 
   toSaveData() {
-    return {
+    const data = {
       ..._state,
       visitedNodes: [..._state.visitedNodes],
       usedShrines: [...(_state.usedShrines || [])],
@@ -503,6 +507,11 @@ export const GameState = {
         ? [..._state.craftingRecipesUnlocked]
         : null,
     };
+    if (_state.gameMode !== 'story') {
+      delete data.story;
+      delete data.storyVersion;
+    }
+    return data;
   },
 
   setZoneNode(zoneId, nodeId) {

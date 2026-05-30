@@ -29,21 +29,49 @@ implementation had dozens of major issues.
 - Buildable Story Mode implementation paths have been removed from the source tree:
   `src/story`, `data/story`, `sim/story`, Story UI screens, Story tool pages, and
   Story generation/balance scripts.
-- Classic routes were cleaned so New Game opens the Classic character builder and
-  Load Game ignores old `gameMode: "story"` saves instead of importing missing Story
-  screens.
+- R00 pushed `staging` at `7143236136732cde5f8aca09a44fb75b199d1c20`.
+
+## R01 Foundation Status
+
+- Added fresh Story foundation code under `src/story/`:
+  - `storyLedger.js`: v1 story save subtree, deterministic RNG checkpoint helpers,
+    object-shaped `recentHistory`, migration registry, storyteller IDs, and quest
+    status constants.
+  - `storyPredicate.js`: canonical predicate DSL operations from the plan.
+  - `storyEffects.js`: real dispatch for the authored effect language. Effects
+    mutate the story ledger, root game state, inventory, quest log, companion
+    records, pending encounters, pending tolls, and pending map mutation queues.
+  - `storyMode.js`: starts a new Story save using the clean ledger contract.
+- Added `StoryNewGameScreen` as the title-menu mode split. Classic Mode still routes
+  to the existing character builder; Story Mode lets the player choose storyteller
+  and difficulty, then enters the foundation map surface.
+- Added `StoryMapScreen` only as a visible R01 foundation handoff. It explicitly
+  states the systems not done yet: generated map traversal, authored quests, dialog,
+  encounters, companions, director balance, and act content.
+- Updated `SaveManager` to mint Story saves under `emberveil_save_story_*` while
+  preserving Classic save keys.
+- Updated `GameState` so Classic saves omit `story` and Story saves migrate/preserve
+  the Story subtree.
+- Updated Load Game with Classic/Story tabs and Story save routing.
+- Fixed `play.html` so `npm run dev` loads `/src/main.js` instead of a stale hashed
+  build artifact.
 
 ## Verification
 
-- `npm test`: passed, 26 files / 308 tests.
-- `npm run build`: passed.
+- R00 `npm test`: passed, 26 files / 308 tests.
+- R01 `npm test`: passed, 30 files / 320 tests.
+- R01 `npm run build`: passed.
 - Build warnings still present: missing `source/game13_releases/game_meta.json` for
   release metadata scripts, non-module static site scripts, and large Vite chunks.
   These are baseline repo warnings, not Story Mode regressions.
-- Direct Playwright browser smoke on `http://localhost:5213/play.html`: passed.
+- R00 direct Playwright browser smoke on `http://localhost:5213/play.html`: passed.
   iPhone 14 Pro viewport reached the title screen, dismissed telemetry opt-in,
   clicked New Game, and landed on the Classic character builder with no page errors.
-- `npm run lint`: passed with 143 baseline warnings and 0 errors.
+- R01 direct Playwright browser smoke on `http://127.0.0.1:5213/play.html`: passed.
+  iPhone 14 Pro viewport reached Title -> New Game -> Story Mode, selected
+  Warbringer/Relaxed, entered the Story foundation map, and had no page errors or
+  horizontal overflow.
+- R01 `npm run lint`: passed with 143 baseline warnings and 0 errors.
 - Existing Playwright specs `e2e/gameplay.spec.js` and one `e2e/new-ui-smoke.spec.js`
   assertion are stale/unrelated: `gameplay.spec.js` still opens `/` instead of
   `/play.html`, and the New UI combat assertion fails on a pre-existing UI-overhaul
@@ -51,7 +79,9 @@ implementation had dozens of major issues.
 
 ## Not Done Yet
 
-- R01 foundation work has not started yet.
+- Generated map traversal is not done yet; it is scheduled for R02.
+- Quest engine, dialog conductor, companions, banter, encounter builder, storyteller
+  Director, sim policy, authored content, generated assets, balance matrix, audio,
+  tools, and full acts are not done yet.
 - Full manual Classic combat smoke is still not done; the browser smoke verified
-  title-to-character-builder only.
-- Staging push still needs to run for the clean baseline commit.
+  title-to-character-builder only in R00. R01 smoke covered the new Story route.

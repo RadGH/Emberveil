@@ -9,16 +9,18 @@ import { cloudSaves } from '../auth/cloudSaves.js';
 
 export const SAVE_VERSION = 6;
 const PREFIX = 'emberveil_save_';
+const STORY_PREFIX = 'emberveil_save_story_';
 const LEGACY_SLOT_KEY = slot => `emberveil_save_${slot}`;
 
 function _slug(s) {
   return String(s || 'hero').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 20) || 'hero';
 }
 
-function _makeKey(heroName) {
+function _makeKey(heroName, mode = 'classic') {
   const ts = Date.now().toString(36);
   const rand = Math.random().toString(36).slice(2, 6);
-  return `${PREFIX}${_slug(heroName)}_${ts}${rand}`;
+  const prefix = mode === 'story' ? STORY_PREFIX : PREFIX;
+  return `${prefix}${_slug(heroName)}_${ts}${rand}`;
 }
 
 function _makeFingerprint() {
@@ -33,8 +35,8 @@ function _isLegacySlotKey(key) {
 
 export const SaveManager = {
   /** Create a brand-new save key for a freshly-built hero and persist the first snapshot. */
-  startNewSave(heroName) {
-    const key = _makeKey(heroName);
+  startNewSave(heroName, mode = 'classic') {
+    const key = _makeKey(heroName, mode);
     GameState.get().currentSaveKey = key;
     return this.saveCurrentGame(key);
   },
@@ -43,7 +45,7 @@ export const SaveManager = {
   saveCurrentGame(key) {
     const gs = GameState.get();
     const heroName = gs.party?.[0]?.name || 'Unknown';
-    const useKey = key || gs.currentSaveKey || _makeKey(heroName);
+    const useKey = key || gs.currentSaveKey || _makeKey(heroName, gs.gameMode);
     gs.currentSaveKey = useKey;
     // M213: stable device-independent fingerprint for cross-device merge.
     if (!gs.saveFingerprint) {
@@ -189,14 +191,14 @@ export const SaveManager = {
     // from the old character-creation auto-save. Discard it from disk.
     const bestByName = new Map();
     for (const s of out) {
-      const name = (s.heroName || '').toLowerCase();
+      const name = `${s.gameMode || 'classic'}:${(s.heroName || '').toLowerCase()}`;
       if (!name) continue;
       const prev = bestByName.get(name);
       if (!prev || (s.level || 1) > (prev.level || 1)) bestByName.set(name, s);
     }
     const kept = [];
     for (const s of out) {
-      const name = (s.heroName || '').toLowerCase();
+      const name = `${s.gameMode || 'classic'}:${(s.heroName || '').toLowerCase()}`;
       const best = bestByName.get(name);
       if (best && best.key !== s.key && (s.level || 1) === 1 && (best.level || 1) > 1) {
         try { localStorage.removeItem(s.key); } catch (_) {}

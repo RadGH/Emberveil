@@ -52,7 +52,8 @@ late blocker fixes, and QA gaps called out in the handoff prompt.
 - Implement mode split, Story save envelope, ledger, predicate DSL, and effect runner.
 - Tests cover migration, field names, deterministic RNG checkpointing, and every
   initial effect type.
-- No Story UI is exposed until the save/ledger/predicate/effect contract is stable.
+- Story UI exposure is limited to the mode picker and a visible foundation handoff
+  screen until generated maps and travel are implemented in R02.
 
 ### R02 — Map And Screen
 
