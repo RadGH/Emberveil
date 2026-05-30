@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Story Inspector — Emberveil</title>
+<style>
+body { padding: 1rem 1rem 5rem; }
+.wrap { max-width: 1100px; margin: 0 auto; }
+
+h1 {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 1.4rem; margin: 0 0 0.2rem;
+  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+  background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+.toolbar {
+  display: flex; gap: 0.6rem; flex-wrap: wrap;
+  margin-bottom: 1rem; align-items: flex-end;
+}
+.toolbar label { font-size: 0.82rem; color: var(--muted); display: flex; flex-direction: column; gap: 0.2rem; }
+.toolbar select, .toolbar input[type="text"] {
+  background: var(--card); border: 1px solid var(--border-subtle);
+  border-radius: 6px; color: var(--fg); font-size: 0.88rem;
+  padding: 0.4rem 0.6rem; min-height: 38px; min-width: 200px;
+}
+.btn {
+  padding: 0.45rem 1rem; border-radius: 6px; border: 1px solid rgba(232,160,32,0.3);
+  background: rgba(232,160,32,0.1); color: #e8a020; font-size: 0.85rem;
+  font-weight: 600; cursor: pointer; min-height: 38px;
+  transition: background 0.12s;
+}
+.btn:hover { background: rgba(232,160,32,0.2); }
+.btn.danger { border-color: rgba(220,60,60,0.4); background: rgba(220,60,60,0.1); color: #e06060; }
+.btn.danger:hover { background: rgba(220,60,60,0.2); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.panel {
+  background: var(--card); border: 1px solid var(--border-subtle);
+  border-radius: 8px; padding: 0.8rem;
+}
+.panel-title {
+  font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 700;
+  color: #e8a020; letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 0.6rem; display: flex; justify-content: space-between; align-items: center;
+}
+
+/* Map canvas panel */
+.map-wrap {
+  background: #0a0608; border-radius: 6px;
+  position: relative; min-height: 200px;
+  display: flex; align-items: center; justify-content: center;
+}
+.map-wrap canvas { display: block; border-radius: 6px; max-width: 100%; }
+
+/* Ledger tree */
+.ledger-pre {
+  background: rgba(6,3,10,0.8); border: 1px solid rgba(232,160,32,0.1);
+  border-radius: 6px; padding: 0.75rem; font-family: 'Courier New', monospace;
+  font-size: 11px; color: #a0c0a0; white-space: pre-wrap; word-break: break-all;
+  max-height: 400px; overflow-y: auto; line-height: 1.6;
+}
+
+/* Director candidates */
+.candidate-list { display: flex; flex-direction: column; gap: 0.35rem; }
+.candidate-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.4rem 0.6rem; background: rgba(255,255,255,0.03);
+  border-radius: 5px; border: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem;
+}
+.candidate-rank {
+  font-size: 0.72rem; color: var(--muted); min-width: 16px;
+}
+.candidate-bar {
+  height: 4px; background: rgba(232,160,32,0.6); border-radius: 2px; min-width: 2px;
+}
+.candidate-label { flex: 1; color: var(--fg); font-size: 0.82rem; }
+.candidate-prob { font-size: 0.78rem; color: #e8a020; }
+
+/* Flag editor */
+.flag-row { display: flex; gap: 0.5rem; align-items: center; }
+.flag-input {
+  flex: 1; background: var(--card); border: 1px solid var(--border-subtle);
+  border-radius: 6px; color: var(--fg); font-size: 0.88rem; padding: 0.4rem 0.6rem;
+  min-height: 38px;
+}
+
+.empty-msg { color: var(--muted); font-size: 0.85rem; font-style: italic; padding: 1rem 0; }
+
+#status-bar {
+  font-size: 0.82rem; color: var(--muted); margin-bottom: 0.75rem;
+  padding: 0.4rem 0.6rem; background: var(--card);
+  border: 1px solid var(--border-subtle); border-radius: 6px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Story Inspector</h1>
+  <p class="sub">Load a story save, inspect the map, step the Director, and edit flags in real time.</p>
+
+  <div class="toolbar">
+    <label>
+      Story Save Slot
+      <select id="save-select">
+        <option value="">— select a save —</option>
+      </select>
+    </label>
+    <button class="btn" id="load-btn">Load Save</button>
+    <button class="btn" id="download-btn" disabled>Download Save JSON</button>
+  </div>
+
+  <div id="status-bar">No save loaded.</div>
+
+  <div class="grid-2">
+    <!-- Left column: map + director -->
+    <div style="display:flex;flex-direction:column;gap:1rem">
+
+      <div class="panel">
+        <div class="panel-title">Map View</div>
+        <div class="map-wrap" id="map-wrap">
+          <span class="empty-msg">Load a save to view the map.</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          Director
+          <button class="btn" id="step-director-btn" disabled style="font-size:0.78rem;padding:0.3rem 0.7rem">Step Director</button>
+        </div>
+        <div id="candidate-list" class="candidate-list">
+          <div class="empty-msg">Step the Director to see candidates.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right column: ledger + flags -->
+    <div style="display:flex;flex-direction:column;gap:1rem">
+
+      <div class="panel">
+        <div class="panel-title">Ledger Dump</div>
+        <pre class="ledger-pre" id="ledger-pre">—</pre>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Flag Editor</div>
+        <div class="flag-row" style="margin-bottom:0.6rem">
+          <input type="text" class="flag-input" id="flag-input" placeholder="flag_id" disabled>
+          <button class="btn" id="flag-set-btn" disabled>Set</button>
+          <button class="btn danger" id="flag-clear-btn" disabled>Clear</button>
+        </div>
+        <div id="flag-list" style="font-size:0.8rem;color:var(--muted)">Load a save first.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="module">
+// ---------------------------------------------------------------------------
+// Story Inspector — client-side logic
+// ---------------------------------------------------------------------------
+
+let _gs = null;
+
+// Populate save select
+function populateSaves() {
+  const sel = document.getElementById('save-select');
+  const existing = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('emberveil_save_story_')) existing.push(k);
+  }
+  existing.sort().reverse();
+  sel.innerHTML = '<option value="">— select a save —</option>';
+  for (const k of existing) {
+    const opt = document.createElement('option');
+    opt.value = k;
+    opt.textContent = k.replace('emberveil_save_story_', '').slice(0, 40);
+    sel.appendChild(opt);
+  }
+  if (!existing.length) {
+    sel.innerHTML = '<option value="">No story saves found</option>';
+  }
+}
+
+function status(msg) { document.getElementById('status-bar').textContent = msg; }
+
+function renderLedger(gs) {
+  const story = gs.story;
+  if (!story) { document.getElementById('ledger-pre').textContent = 'No story data'; return; }
+  const dump = {
+    act:             story.act,
+    currentNodeId:   story.currentNodeId,
+    currentMapId:    story.currentMapId,
+    campaignSeed:    story.campaignSeed,
+    storytellerId:   story.storytellerId,
+    difficulty:      story.difficulty,
+    pressure:        story.pressure,
+    worldCorruption: story.worldCorruption,
+    flags:           story.flags,
+    counters:        story.counters,
+    factions:        story.factions,
+    quests:          story.quests,
+    companions:      story.companions,
+    loreDiscovered:  (story.loreDiscovered || []).length + ' fragments',
+    rngState:        story.rngState,
+    settings:        story.settings,
+    recentHistory:   (story.recentHistory || []).slice(-10),
+  };
+  document.getElementById('ledger-pre').textContent = JSON.stringify(dump, null, 2);
+}
+
+function renderFlagList(gs) {
+  const flags = gs.story?.flags || {};
+  const entries = Object.entries(flags);
+  const el = document.getElementById('flag-list');
+  if (!entries.length) { el.textContent = 'No flags set.'; return; }
+  el.innerHTML = entries.map(([k, v]) =>
+    `<span style="display:inline-block;margin:2px 4px;padding:1px 6px;border-radius:10px;background:rgba(80,${v?'160':'40'},${v?'80':'40'},0.3);color:${v?'#60d080':'#805040'};font-size:11px">${k}=${v}</span>`
+  ).join('');
+}
+
+async function renderMap(gs) {
+  const wrap = document.getElementById('map-wrap');
+  wrap.innerHTML = '';
+
+  if (!gs.story?.currentMapId) {
+    wrap.innerHTML = '<span class="empty-msg">No map in this save.</span>';
+    return;
+  }
+
+  try {
+    const { generateAct } = await import('/src/story/storyMapGen.js');
+    const { hydrateMapSave } = await import('/src/story/storyMapGraph.js');
+    const { nodeXYFromLane, drawNode, drawEdge } = await import('/src/story/storyMapRendererShared.js');
+
+    const mapId   = gs.story.currentMapId;
+    const mapSave = gs.story.maps?.[mapId];
+    if (!mapSave) { wrap.innerHTML = '<span class="empty-msg">Map data missing.</span>'; return; }
+
+    const seed = mapSave.seed || gs.story.campaignSeed || '1';
+    const act  = gs.story.act || 1;
+    const { mapGraph } = generateAct({ seed: parseInt(seed, 16) || 1, act, salt: 0 });
+    const graph = hydrateMapSave(mapGraph, mapSave);
+
+    const W = Math.min(500, wrap.clientWidth || 500);
+    const H = 220;
+    const canvas = document.createElement('canvas');
+    canvas.width  = W;
+    canvas.height = H;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    wrap.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    // Draw background
+    ctx.fillStyle = '#0a0608';
+    ctx.fillRect(0, 0, W, H);
+
+    // Draw first sub-region
+    const region = graph.subRegions?.[0];
+    if (!region) return;
+
+    const outgoing = graph.indexes?.outgoing || {};
+    const regionSet = new Set(region.nodeIds);
+
+    // Edges
+    for (const nid of region.nodeIds) {
+      const edges = outgoing[nid] || [];
+      const fp = nodeXYFromLane(graph.nodes[nid], W, H);
+      for (const e of edges) {
+        if (!regionSet.has(e.to)) continue;
+        const tp = nodeXYFromLane(graph.nodes[e.to], W, H);
+        drawEdge(ctx, fp.x, fp.y, tp.x, tp.y, e.state || 'open');
+      }
+    }
+
+    // Nodes
+    for (const nid of region.nodeIds) {
+      const node = graph.nodes[nid];
+      const pos  = nodeXYFromLane(node, W, H);
+      const save = graph.nodeSave?.[nid] || {};
+      drawNode(ctx, pos.x, pos.y, node.type, {
+        state: save.state || 'unexplored',
+        visibility: 'visible',
+        waypointState: save.waypointState || null,
+        overlay: save.overlay || null,
+        selected: nid === gs.story.currentNodeId,
+        hovered: false,
+      });
+    }
+  } catch (err) {
+    wrap.innerHTML = `<span class="empty-msg">Map render error: ${err.message}</span>`;
+  }
+}
+
+async function stepDirector(gs) {
+  try {
+    const { getDirectorIntent, inspectCandidates } = await import('/src/story/storyDirector.js');
+    const candidates = inspectCandidates(gs, 10);
+    const el = document.getElementById('candidate-list');
+    if (!candidates || !candidates.length) {
+      el.innerHTML = '<div class="empty-msg">No candidates returned.</div>';
+      return;
+    }
+    const maxProb = Math.max(...candidates.map(c => c.prob || 0), 0.001);
+    el.innerHTML = candidates.map((c, i) => {
+      const barW = Math.round((c.prob / maxProb) * 140);
+      return `
+        <div class="candidate-item">
+          <span class="candidate-rank">#${i+1}</span>
+          <div class="candidate-bar" style="width:${barW}px"></div>
+          <span class="candidate-label">${c.intent || c.id || '?'}</span>
+          <span class="candidate-prob">${((c.prob || 0) * 100).toFixed(1)}%</span>
+        </div>`;
+    }).join('');
+  } catch (err) {
+    document.getElementById('candidate-list').innerHTML = `<div class="empty-msg">Director error: ${err.message}</div>`;
+  }
+}
+
+async function applyFlag(gs, flag, value) {
+  if (!gs.story?.flags) return;
+  if (value === null) {
+    delete gs.story.flags[flag];
+  } else {
+    gs.story.flags[flag] = value;
+  }
+  // Tick quest conditions
+  try {
+    const { tickQuestConditions } = await import('/src/story/storyQuestEngine.js');
+    tickQuestConditions(gs);
+  } catch (_) {}
+  renderLedger(gs);
+  renderFlagList(gs);
+}
+
+// ---------------------------------------------------------------------------
+// Boot
+// ---------------------------------------------------------------------------
+
+populateSaves();
+
+document.getElementById('load-btn').addEventListener('click', async () => {
+  const key = document.getElementById('save-select').value;
+  if (!key) { status('Select a save slot first.'); return; }
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) throw new Error('Empty slot');
+    let data;
+    try { data = JSON.parse(raw); } catch { data = null; }
+    // Emberveil saves encode gs under a `data` field (JSON-string)
+    if (data?.data) {
+      try { _gs = JSON.parse(data.data); } catch { _gs = data.data; }
+    } else {
+      _gs = data;
+    }
+    if (!_gs) throw new Error('Could not parse save');
+
+    status(`Loaded: ${key}`);
+    renderLedger(_gs);
+    renderFlagList(_gs);
+    await renderMap(_gs);
+
+    // Enable controls
+    document.getElementById('download-btn').disabled = false;
+    document.getElementById('step-director-btn').disabled = false;
+    document.getElementById('flag-input').disabled = false;
+    document.getElementById('flag-set-btn').disabled = false;
+    document.getElementById('flag-clear-btn').disabled = false;
+  } catch (err) {
+    status(`Error loading save: ${err.message}`);
+    console.error(err);
+  }
+});
+
+document.getElementById('step-director-btn').addEventListener('click', () => {
+  if (!_gs) return;
+  stepDirector(_gs);
+});
+
+document.getElementById('flag-set-btn').addEventListener('click', async () => {
+  if (!_gs) return;
+  const flag = document.getElementById('flag-input').value.trim();
+  if (!flag) return;
+  await applyFlag(_gs, flag, true);
+  document.getElementById('flag-input').value = '';
+});
+
+document.getElementById('flag-clear-btn').addEventListener('click', async () => {
+  if (!_gs) return;
+  const flag = document.getElementById('flag-input').value.trim();
+  if (!flag) return;
+  await applyFlag(_gs, flag, null);
+  document.getElementById('flag-input').value = '';
+});
+
+document.getElementById('download-btn').addEventListener('click', () => {
+  if (!_gs) return;
+  const blob = new Blob([JSON.stringify(_gs, null, 2)], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'emberveil_story_save_export.json';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 3000);
+});
+</script>
+</body>
+</html>

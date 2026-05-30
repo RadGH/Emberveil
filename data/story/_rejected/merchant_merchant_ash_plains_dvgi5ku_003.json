@@ -1,0 +1,72 @@
+{
+  "node": {
+    "id": "merchant_ash_plains_dvgi5ku_003",
+    "pool": "merchant",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "wry",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "If you're here for rations, you're in luck. If not, move along.",
+      "We've got what you need to survive—if you can pay."
+    ],
+    "choices": [
+      {
+        "id": "buy_rations",
+        "text": "Buy a survival kit. (30 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -30
+          },
+          {
+            "type": "grant_item",
+            "itemId": "survival_kit"
+          }
+        ]
+      },
+      {
+        "id": "haggling",
+        "text": "[Intimidation - CON] Intimidate for a discount.",
+        "skillCheck": {
+          "skill": "intimidation",
+          "stat": "CON",
+          "dc": 12
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -20
+            },
+            {
+              "type": "grant_item",
+              "itemId": "survival_kit"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -30
+            }
+          ]
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Walk away empty-handed.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"haggling\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:07:24.140Z"
+}

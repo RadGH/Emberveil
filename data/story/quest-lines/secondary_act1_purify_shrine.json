@@ -1,0 +1,73 @@
+{
+  "id": "secondary_act1_purify_shrine",
+  "category": "secondary",
+  "act": 1,
+  "title": "The Keeper's Circuit",
+  "summary": "Keeper Orvain tends his three shrines on foot, alone, without pay. One has been defiled. He will not ask for help — but he will accept it.",
+  "startCondition": { "flag": "brightfall_gates_open" },
+  "phases": [
+    {
+      "id": "find_shrine",
+      "label": "Locate the defiled shrine in the Emberwood",
+      "completeCondition": { "flag": "defiled_shrine_found" },
+      "onComplete": [
+        { "type": "faction_delta", "faction": "ancient_pact", "amount": 1 },
+        { "type": "quest_log", "text": "The shrine is older than the road it stands beside. The Ashen Veil's work is recognizable: ash circles, deliberate erasure of the ember-marks, a smell of something chemically wrong. Orvain is already here, cataloguing the damage with the practiced calm of someone who has learned not to be surprised by this." }
+      ],
+      "nextPhase": "gather_offerings"
+    },
+    {
+      "id": "gather_offerings",
+      "label": "Gather three ember-offerings from the surrounding region",
+      "completeCondition": { "flag": "ember_offerings_gathered" },
+      "onComplete": [
+        { "type": "set_flag", "flag": "memory_shrine_used" },
+        { "type": "quest_log", "text": "Each offering required something from the land: a cinder from the old forge, fresh water from the fen-spring, a carved stone from the Stoneward ridge. Orvain receives them without ceremony. He says the shrine will decide what they mean." }
+      ],
+      "nextPhase": "ritual_choice"
+    },
+    {
+      "id": "ritual_choice",
+      "label": "Perform the cleansing ritual — and decide what to do with what it reveals",
+      "completeCondition": {
+        "any": [
+          { "flag": "shrine_purified" },
+          { "flag": "shrine_smashed" },
+          { "flag": "shrine_preserved_neutral" }
+        ]
+      },
+      "onComplete": [
+        { "type": "quest_log", "text": "The shrine is resolved. What it showed during the ritual is not something Orvain will discuss. But he writes something in his maintenance log and signs it twice." }
+      ],
+      "nextPhase": null
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "purified",
+      "condition": { "flag": "shrine_purified" },
+      "effects": [
+        { "type": "faction_delta", "faction": "ancient_pact", "amount": 3 },
+        { "type": "faction_delta", "faction": "ashen_veil", "amount": -2 },
+        { "type": "set_flag", "flag": "ember_scholar" },
+        { "type": "gold", "amount": 50 }
+      ]
+    },
+    {
+      "id": "corrupted",
+      "condition": { "flag": "shrine_smashed" },
+      "effects": [
+        { "type": "faction_delta", "faction": "ancient_pact", "amount": -2 },
+        { "type": "faction_delta", "faction": "ashen_veil", "amount": 1 }
+      ]
+    },
+    {
+      "id": "preserved",
+      "condition": { "flag": "shrine_preserved_neutral" },
+      "effects": [
+        { "type": "faction_delta", "faction": "ancient_pact", "amount": 1 },
+        { "type": "gold", "amount": 30 }
+      ]
+    }
+  ]
+}

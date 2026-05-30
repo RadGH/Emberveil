@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "priest_male",
+  "displayName": "Priest (Male)",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "pendingReview": true,
+  "milestone": "M396",
+  "identity": "Human MAN (male), about 32 years old, calm solemn face, pale skin, short black hair with a trimmed beard.",
+  "outfit": "Dark indigo-and-charcoal hooded ceremonial robe with silver moon-and-crescent embroidery on the chest. Hood worn UP framing the face.",
+  "weapons": "Iron prayer-mace, dark wooden haft. Silver crescent pendant on a fine chain at the chest, faintly glowing.",
+  "palette": ["#0d0a1f", "#211a3a", "#3b2e6b", "#7a6db0", "#cdc5e8", "#a8b0d0", "#f0e8ff"],
+  "bannedSubstrings": ["female", "woman", "she/her", "child", "elderly", "blonde", "shield", "sword"],
+  "referenceSheet": {
+    "spritecookAssetId": "47191f64-6ba3-4aca-a90d-2d144cac2383",
+    "path": "images/spritecook/priest_male_portrait.png",
+    "generatedAt": "2026-05-03T12:00:00Z",
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait":   { "spritecookAssetId": "47191f64-6ba3-4aca-a90d-2d144cac2383", "path": "images/spritecook/priest_male_portrait.png",   "approvedAt": null },
+    "south":      { "spritecookAssetId": "6775eeca-70da-4853-8d76-628fa2565106", "path": "images/spritecook/priest_male_south.png",      "approvedAt": null },
+    "east":       { "spritecookAssetId": "6292cff3-c1ae-491c-bb56-1c8e855c225f", "path": "images/spritecook/priest_male_east.png",       "approvedAt": null },
+    "east_attack":{ "spritecookAssetId": "304c37c2-cf7c-452b-af7f-f3649245f403", "path": "images/spritecook/priest_male_east_attack.png","approvedAt": null },
+    "east_spell": { "spritecookAssetId": "7283f477-e037-448f-b308-4305033d44dd", "path": "images/spritecook/priest_male_east_spell.png", "approvedAt": null },
+    "east_block": { "spritecookAssetId": "6680371f-b2fe-4fe6-a248-0dbd1cdc1d12", "path": "images/spritecook/priest_male_east_block.png", "approvedAt": null },
+    "east_ko":    { "spritecookAssetId": "8618d20c-c6a9-4818-b5ed-c111b6f0ff44", "path": "images/spritecook/priest_male_east_ko.png",    "approvedAt": null }
+  }
+}

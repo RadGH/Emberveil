@@ -1,0 +1,55 @@
+{
+  "node": {
+    "id": "lore_sovereigns_approach_hj8l8yp_004",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "bone_reader",
+    "lines": [
+      "The bone reader kneels, sifting through remnants of lives lost.",
+      "\"Each fragment tells a story, but the truth is a curse.\""
+    ],
+    "choices": [
+      {
+        "id": "dig_into_bones",
+        "text": "[Strength - STR] Dig deeper to uncover hidden truths.",
+        "skillCheck": {
+          "skill": "strength",
+          "stat": "STR",
+          "dc": 14
+        },
+        "onPass": {
+          "next": "#truth_revealed",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_bone_truth_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        }
+      },
+      {
+        "id": "back_away",
+        "text": "Step back. Some truths are better left buried.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "truth_revealed": {
+        "lines": [
+          "You learn of a lost heir, bound to the Rift by blood and betrayal."
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"dig_into_bones\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:10:00.067Z"
+}

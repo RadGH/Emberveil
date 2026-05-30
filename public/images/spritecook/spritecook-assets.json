@@ -1,0 +1,1358 @@
+{
+  "oracle": {
+    "portrait": {
+      "asset_id": "5bf384b9-a663-4d62-be8b-20b77db7a166",
+      "file": "oracle_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "asset_id": "0825cb75-ad56-4110-a874-6b93918d329a",
+      "file": "oracle_south.png"
+    },
+    "east": {
+      "asset_id": "6a11bdd2-16b1-4637-aa8c-74a76e95f719",
+      "file": "oracle_east.png"
+    },
+    "east_attack": {
+      "asset_id": "74f3ddc0-52ea-4e65-995d-037df53cb22f",
+      "file": "oracle_east_attack.png"
+    },
+    "east_spell": {
+      "asset_id": "0fbaf2ea-832b-4fa1-9c54-0700c158a842",
+      "file": "oracle_east_spell.png",
+      "note": "v2 regeneration, proper RGBA transparency"
+    },
+    "east_ko": {
+      "asset_id": "a37ea3b9-9285-4cb2-8bf1-3daa2bfb150c",
+      "file": "oracle_east_ko.png"
+    }
+  },
+  "paladin": {
+    "portrait": {
+      "asset_id": "4b7220f1-a3a1-41a2-a47b-1d8e48f2d205",
+      "file": "paladin_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "asset_id": "23e184c1-19d6-42d7-bb5a-dab82a995c59",
+      "file": "paladin_south.png"
+    },
+    "east": {
+      "asset_id": "e3ebe81d-39e0-4d88-85e2-a4391b21935b",
+      "file": "paladin_east.png"
+    },
+    "east_attack": {
+      "asset_id": "30e6329c-a5e9-46a4-8b49-ea52f7e14e57",
+      "file": "paladin_east_attack.png"
+    },
+    "east_spell": {
+      "asset_id": "5e378c85-0b61-4fbe-9987-4bc08f3c106f",
+      "file": "paladin_east_spell.png",
+      "note": "pixel URL was 24x24; used raw + sharp bg removal"
+    },
+    "east_ko": {
+      "asset_id": "85f892a9-d27b-4f6e-913b-0ff39627dbeb",
+      "file": "paladin_east_ko.png",
+      "note": "pixel URL was 26x26; used raw + sharp bg removal"
+    },
+    "east_block": {
+      "asset_id": "f78e5610-15cc-4fe3-baf7-f5c36a637644",
+      "file": "paladin_east_block.png"
+    }
+  },
+  "warrior": {
+    "portrait": {
+      "asset_id": "13c446e3-2c51-41b5-97d7-3169fa9e5bc7",
+      "file": "warrior_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "warrior_south.png"
+    },
+    "east": {
+      "file": "warrior_east.png"
+    },
+    "east_attack": {
+      "file": "warrior_east_attack.png"
+    },
+    "east_spell": {
+      "file": "warrior_east_spell.png"
+    },
+    "east_ko": {
+      "file": "warrior_east_ko.png"
+    },
+    "east_block": {
+      "file": "warrior_east_block.png"
+    }
+  },
+  "fighter": {
+    "portrait": {
+      "asset_id": "eaa95a48-5fe1-4579-9243-c8d101d57583",
+      "file": "fighter_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "fighter_south.png"
+    },
+    "east": {
+      "file": "fighter_east.png"
+    },
+    "east_attack": {
+      "file": "fighter_east_attack.png"
+    },
+    "east_spell": {
+      "file": "fighter_east_spell.png"
+    },
+    "east_ko": {
+      "file": "fighter_east_ko.png"
+    },
+    "east_block": {
+      "file": "fighter_east_block.png"
+    }
+  },
+  "ranger": {
+    "portrait": {
+      "asset_id": "6e256f9c-87e7-48da-8514-6eedddab2aa1",
+      "file": "ranger_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "ranger_south.png"
+    },
+    "east": {
+      "file": "ranger_east.png"
+    },
+    "east_attack": {
+      "file": "ranger_east_attack.png"
+    },
+    "east_spell": {
+      "file": "ranger_east_spell.png"
+    },
+    "east_ko": {
+      "file": "ranger_east_ko.png"
+    },
+    "east_block": {
+      "file": "ranger_east_block.png"
+    }
+  },
+  "rogue": {
+    "portrait": {
+      "asset_id": "83783e34-3dfb-4f3a-af8f-3a1528028707",
+      "file": "rogue_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "rogue_south.png"
+    },
+    "east": {
+      "file": "rogue_east.png"
+    },
+    "east_attack": {
+      "file": "rogue_east_attack.png"
+    },
+    "east_spell": {
+      "file": "rogue_east_spell.png"
+    },
+    "east_ko": {
+      "file": "rogue_east_ko.png"
+    },
+    "east_block": {
+      "file": "rogue_east_block.png"
+    }
+  },
+  "mage": {
+    "portrait": {
+      "asset_id": "04800b33-afd3-4b81-83dd-c2ff3f1091bb",
+      "file": "mage_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "mage_south.png"
+    },
+    "east": {
+      "file": "mage_east.png"
+    },
+    "east_attack": {
+      "file": "mage_east_attack.png"
+    },
+    "east_spell": {
+      "file": "mage_east_spell.png"
+    },
+    "east_ko": {
+      "file": "mage_east_ko.png"
+    },
+    "east_block": {
+      "file": "mage_east_block.png"
+    }
+  },
+  "necromancer": {
+    "portrait": {
+      "asset_id": "602609b8-524b-40d4-b0f1-7a1a5ee1b2b0",
+      "file": "necromancer_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "necromancer_south.png"
+    },
+    "east": {
+      "file": "necromancer_east.png"
+    },
+    "east_attack": {
+      "file": "necromancer_east_attack.png"
+    },
+    "east_spell": {
+      "file": "necromancer_east_spell.png"
+    },
+    "east_ko": {
+      "file": "necromancer_east_ko.png"
+    },
+    "east_block": {
+      "file": "necromancer_east_block.png"
+    }
+  },
+  "bard": {
+    "portrait": {
+      "asset_id": "20f30802-cbf3-4dee-bd7b-3559de28b67a",
+      "file": "bard_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "bard_south.png"
+    },
+    "east": {
+      "file": "bard_east.png"
+    },
+    "east_attack": {
+      "file": "bard_east_attack.png"
+    },
+    "east_spell": {
+      "file": "bard_east_spell.png"
+    },
+    "east_ko": {
+      "file": "bard_east_ko.png"
+    },
+    "east_block": {
+      "file": "bard_east_block.png"
+    }
+  },
+  "druid": {
+    "portrait": {
+      "asset_id": "31e8dbf9-8111-4f53-a092-b8e3cab0ce64",
+      "file": "druid_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "druid_south.png"
+    },
+    "east": {
+      "file": "druid_east.png"
+    },
+    "east_attack": {
+      "file": "druid_east_attack.png"
+    },
+    "east_spell": {
+      "file": "druid_east_spell.png"
+    },
+    "east_ko": {
+      "file": "druid_east_ko.png"
+    },
+    "east_block": {
+      "file": "druid_east_block.png"
+    }
+  },
+  "demon_hunter": {
+    "portrait": {
+      "asset_id": "2ef1591a-4d0c-4a5d-bef3-d7a1cd627ec5",
+      "file": "demon_hunter_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "demon_hunter_south.png"
+    },
+    "east": {
+      "file": "demon_hunter_east.png"
+    },
+    "east_attack": {
+      "file": "demon_hunter_east_attack.png"
+    },
+    "east_spell": {
+      "file": "demon_hunter_east_spell.png"
+    },
+    "east_ko": {
+      "file": "demon_hunter_east_ko.png"
+    },
+    "east_block": {
+      "file": "demon_hunter_east_block.png"
+    }
+  },
+  "tactician": {
+    "portrait": {
+      "asset_id": "313eab72-b70b-4bf3-a971-3c2bb66cab80",
+      "file": "tactician_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "tactician_south.png"
+    },
+    "east": {
+      "file": "tactician_east.png"
+    },
+    "east_attack": {
+      "file": "tactician_east_attack.png"
+    },
+    "east_spell": {
+      "file": "tactician_east_spell.png"
+    },
+    "east_ko": {
+      "file": "tactician_east_ko.png"
+    },
+    "east_block": {
+      "file": "tactician_east_block.png"
+    }
+  },
+  "chronomancer": {
+    "portrait": {
+      "asset_id": "c7d102e2-473a-4ffa-a702-488423cc7028",
+      "file": "chronomancer_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "chronomancer_south.png"
+    },
+    "east": {
+      "file": "chronomancer_east.png"
+    },
+    "east_attack": {
+      "file": "chronomancer_east_attack.png"
+    },
+    "east_spell": {
+      "file": "chronomancer_east_spell.png"
+    },
+    "east_ko": {
+      "file": "chronomancer_east_ko.png"
+    },
+    "east_block": {
+      "file": "chronomancer_east_block.png"
+    }
+  },
+  "stormcaller": {
+    "portrait": {
+      "asset_id": "b77d1806-428e-4ba3-a138-61e1cf4c4f0b",
+      "file": "stormcaller_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "stormcaller_south.png"
+    },
+    "east": {
+      "file": "stormcaller_east.png"
+    },
+    "east_attack": {
+      "file": "stormcaller_east_attack.png"
+    },
+    "east_spell": {
+      "file": "stormcaller_east_spell.png"
+    },
+    "east_ko": {
+      "file": "stormcaller_east_ko.png"
+    },
+    "east_block": {
+      "file": "stormcaller_east_block.png"
+    }
+  },
+  "dragon_knight": {
+    "portrait": {
+      "asset_id": "23ce88d1-5821-4142-a198-96d56dff4839",
+      "file": "dragon_knight_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "dragon_knight_south.png"
+    },
+    "east": {
+      "file": "dragon_knight_east.png"
+    },
+    "east_attack": {
+      "file": "dragon_knight_east_attack.png"
+    },
+    "east_spell": {
+      "file": "dragon_knight_east_spell.png"
+    },
+    "east_ko": {
+      "file": "dragon_knight_east_ko.png"
+    },
+    "east_block": {
+      "file": "dragon_knight_east_block.png"
+    }
+  },
+  "swashbuckler": {
+    "portrait": {
+      "asset_id": "885156f2-97da-4f67-9b18-5b595984f405",
+      "file": "swashbuckler_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "swashbuckler_south.png"
+    },
+    "east": {
+      "file": "swashbuckler_east.png"
+    },
+    "east_attack": {
+      "file": "swashbuckler_east_attack.png"
+    },
+    "east_spell": {
+      "file": "swashbuckler_east_spell.png"
+    },
+    "east_ko": {
+      "file": "swashbuckler_east_ko.png"
+    },
+    "east_block": {
+      "file": "swashbuckler_east_block.png"
+    }
+  },
+  "scavenger": {
+    "portrait": {
+      "asset_id": "52b834f0-358b-4ffb-b943-bfe45098d50f",
+      "file": "scavenger_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "scavenger_south.png"
+    },
+    "east": {
+      "file": "scavenger_east.png"
+    },
+    "east_attack": {
+      "file": "scavenger_east_attack.png"
+    },
+    "east_spell": {
+      "file": "scavenger_east_spell.png"
+    },
+    "east_ko": {
+      "file": "scavenger_east_ko.png"
+    },
+    "east_block": {
+      "file": "scavenger_east_block.png"
+    }
+  },
+  "pyromancer": {
+    "portrait": {
+      "asset_id": "ddc04435-d862-468d-b974-7f98f17ab3f0",
+      "file": "pyromancer_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "pyromancer_south.png"
+    },
+    "east": {
+      "file": "pyromancer_east.png"
+    },
+    "east_attack": {
+      "file": "pyromancer_east_attack.png"
+    },
+    "east_spell": {
+      "file": "pyromancer_east_spell.png"
+    },
+    "east_ko": {
+      "file": "pyromancer_east_ko.png"
+    },
+    "east_block": {
+      "file": "pyromancer_east_block.png"
+    }
+  },
+  "warlock": {
+    "portrait": {
+      "asset_id": "b780621a-bd9d-45b7-94c1-7d5c14f60e56",
+      "file": "warlock_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "warlock_south.png"
+    },
+    "east": {
+      "file": "warlock_east.png"
+    },
+    "east_attack": {
+      "file": "warlock_east_attack.png"
+    },
+    "east_spell": {
+      "file": "warlock_east_spell.png"
+    },
+    "east_ko": {
+      "file": "warlock_east_ko.png"
+    },
+    "east_block": {
+      "file": "warlock_east_block.png"
+    }
+  },
+  "cleric": {
+    "portrait": {
+      "asset_id": "a325f327-069f-46b4-bc8d-2c03cf89e3b7",
+      "file": "cleric_portrait.png",
+      "role": "canonical_reference"
+    },
+    "south": {
+      "file": "cleric_south.png"
+    },
+    "east": {
+      "file": "cleric_east.png"
+    },
+    "east_attack": {
+      "file": "cleric_east_attack.png"
+    },
+    "east_spell": {
+      "file": "cleric_east_spell.png"
+    },
+    "east_ko": {
+      "file": "cleric_east_ko.png"
+    },
+    "east_block": {
+      "file": "cleric_east_block.png"
+    }
+  },
+  "_meta": {
+    "model": "gemini-2.5-flash-image",
+    "credits_per_generation": 8,
+    "style": "16-bit SNES RPG style",
+    "theme": "dark fantasy medieval",
+    "target_size": "256x256",
+    "scale_method": "nearest-neighbor",
+    "bg_removal": "sharp corner-pixel tolerance=30 for raw URLs without alpha"
+  },
+  "border_boss": {
+    "portrait": {
+      "asset_id": "9223b6de-fe36-40de-92be-239382ddfff2",
+      "file": "border_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: Warlord's Vanguard \u2014 a scarred, heavily-armored warlord general clad in spiked black iron plate, red tabard, cruel horned helm, wielding a massive two-handed greatsword. Grim battlefield atmosphere, dramatic lighting, menacing expression. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "76398f3e-a7ea-48fa-b65a-90c0a8c92b15",
+      "file": "border_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: Warlord's Vanguard boss, scarred warlord in spiked black iron plate armor with red tabard and cruel horned helm, wielding massive two-handed greatsword. Standing idle pose facing the camera (south/front view), feet planted, sword resting down. Full-body character sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "573a7f74-f565-4ca7-95c9-ad493a9c8948",
+      "file": "border_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: Warlord's Vanguard boss, scarred warlord in spiked black iron plate armor with red tabard and cruel horned helm, wielding massive two-handed greatsword. Side-view walking pose facing east (right), mid-stride, sword held ready. Full-body character sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "9a990158-0202-42f9-aa38-0a22d37d382a",
+      "file": "border_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: Warlord's Vanguard boss mid attack \u2014 scarred warlord in spiked black iron plate, red tabard, horned helm \u2014 side-view facing east (right), swinging massive two-handed greatsword overhead in powerful attack. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "6a0a601f-7f5a-47a6-9977-ebcadcd121f0",
+      "file": "border_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: Warlord's Vanguard boss defeated \u2014 scarred warlord in spiked black iron plate, horned helm \u2014 side-view facing east, collapsed on ground, knocked out, greatsword dropped beside. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "thornwood_boss": {
+    "portrait": {
+      "asset_id": "5e121d58-8366-423b-b409-1d8723804c8b",
+      "file": "thornwood_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: The Veil Wardens \u2014 hooded cult sentinel in tattered violet robes adorned with silver eye sigils, face hidden in deep shadow beneath hood, clawed hands crackling with purple veil-magic, twisted thorn branches weaving around body. Moody mystical forest backdrop. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "7b404a7a-a021-4ab3-a3b8-a5d69e3f0fc9",
+      "file": "thornwood_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: The Veil Warden boss, hooded cult sentinel in tattered violet robes with silver eye sigils, face hidden in hood shadow, purple veil-magic crackling around clawed hands, twisted thorn branches at feet. Standing idle pose facing the camera (south/front view). Full-body character sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "3ec9b12a-9676-45bd-847a-c27a69eda21e",
+      "file": "thornwood_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: The Veil Warden boss, hooded cult sentinel in violet robes with silver eye sigils, face hidden in hood shadow, clawed hands glowing with purple magic. Side-view walking pose facing east (right), mid-stride, robes flowing. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "71ff5f44-11d5-4daa-860c-c54c677906d1",
+      "file": "thornwood_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: The Veil Warden boss casting attack \u2014 hooded cult sentinel in violet robes, side-view facing east, both clawed hands thrust forward unleashing a crackling burst of purple veil-magic, eye sigils glowing bright. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "fb41d9cb-96f4-4273-964e-a54b453a9ce2",
+      "file": "thornwood_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: The Veil Warden boss defeated \u2014 hooded cult sentinel in violet robes, side-view facing east, collapsed face-down on ground, hood fallen, magic fading around body. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "dust_boss": {
+    "portrait": {
+      "asset_id": "9a48ccc3-2cfd-4f67-bdbc-2196836fb6f7",
+      "file": "dust_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: The Lava Titan \u2014 colossal humanoid forged of cracked black obsidian with molten lava veins glowing orange and red through its chest, shoulders, and arms, massive craggy fists, a volcanic roar, billowing smoke and ember sparks around it. Desert volcanic backdrop. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "4638ecc2-61ea-4536-82b0-56bc1cf1ec77",
+      "file": "dust_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: The Lava Titan boss, massive humanoid of cracked black obsidian with glowing molten lava veins in chest and arms, huge craggy fists, ember sparks. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "cde721e7-9bbc-41ec-82bd-426ff44816e2",
+      "file": "dust_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: The Lava Titan boss, cracked obsidian colossus with glowing lava veins. Side-view walking pose facing east (right), mid-stride, heavy stomp, ember sparks trailing. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "238cf910-c2b3-4848-9a3f-181974b18aba",
+      "file": "dust_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: The Lava Titan boss attacking \u2014 cracked obsidian colossus with glowing lava veins, side-view facing east, rearing back and slamming down a huge flaming craggy fist, molten lava splashing out. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "d742112c-6de7-4353-bf59-e6ba4c511118",
+      "file": "dust_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: The Lava Titan boss defeated \u2014 cracked obsidian colossus crumbled on ground, lava veins dimmed and cooling to black, smoke rising, side-view facing east. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "plateau_boss": {
+    "portrait": {
+      "asset_id": "1429edd7-74d8-4583-912e-0172ef6a3ae7",
+      "file": "plateau_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: Veil High Priest \u2014 skeletal figure in ornate gold-trimmed purple ceremonial robes, bone-white pale face, glowing violet eyes, a jagged crystal staff topped with a pulsing eldritch eye sigil, levitating slightly with arcane runes circling. Grand rift-temple backdrop. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "fc888850-50f6-4f2c-88db-4211e470b42d",
+      "file": "plateau_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: Veil High Priest boss, skeletal figure in purple and gold robes, glowing violet eyes, holding jagged crystal staff with eldritch eye sigil. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "ba81f905-19c5-4b99-9760-ef8bee82d77e",
+      "file": "plateau_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: Veil High Priest boss, skeletal figure in purple gold robes with crystal staff. Side-view walking pose facing east (right), robes flowing, hovering slightly above ground. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "ba902525-e54a-48c1-937b-d812692ba887",
+      "file": "plateau_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: Veil High Priest boss casting \u2014 skeletal figure in purple gold robes, side-view facing east, staff thrust forward unleashing violet eldritch beam, eye sigil on staff glowing. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "dd23a39b-6cbe-492f-baef-0548723c92e8",
+      "file": "plateau_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: Veil High Priest boss defeated \u2014 skeletal figure in torn purple robes, side-view facing east, collapsed on ground, staff broken and dim. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "breach_boss": {
+    "portrait": {
+      "asset_id": "a225768e-7553-43f1-89e9-3720b1543dc0",
+      "file": "breach_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: Archfiend Malgrath \u2014 towering demon lord with charcoal-black skin, massive curled ram horns, burning crimson eyes and cracked obsidian chestplate inscribed with glowing hellfire runes, torn leathery wings spread wide, wielding a jagged flaming black longsword. Infernal breach backdrop with lava cracks. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "641ff558-40c5-462e-b570-9fd5f1ab95b1",
+      "file": "breach_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: Archfiend Malgrath boss, towering demon lord with charcoal skin, curled ram horns, burning crimson eyes, obsidian chestplate with hellfire runes, torn leathery wings, jagged flaming black longsword. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "f6315c68-1c45-477d-a565-d3097e53a2f8",
+      "file": "breach_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: Archfiend Malgrath boss, demon lord, side-view walking east (right), wings slightly unfurled, flaming black longsword held low, mid-stride. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "c9e998b5-57e6-443f-b68d-ec6ed6cdc40b",
+      "file": "breach_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: Archfiend Malgrath boss attacking \u2014 demon lord, side-view facing east, wings spread wide, swinging flaming black longsword in powerful overhead slash, hellfire trailing. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "b02ab842-38e9-4eb0-beb9-b34d36700362",
+      "file": "breach_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: Archfiend Malgrath boss defeated \u2014 demon lord collapsed on ground, wings tattered and crumpled, horns dim, flaming sword extinguished, side-view facing east. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "core_boss": {
+    "portrait": {
+      "asset_id": "54c2bd10-d4db-4235-8600-a9d9e5d5a4e4",
+      "file": "core_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: The Emberveil Sovereign \u2014 a regal wraith-king in tattered crimson robes over silver-black royal armor, crown of blackened thorns fused to skull-like face, glowing ember-orange eyes, spectral flame aura around torso, scepter topped with a burning veil-sigil. Obsidian throne-room backdrop, smoldering embers. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "c4327d65-7492-4949-af8f-310075bb81bb",
+      "file": "core_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: The Emberveil Sovereign boss, wraith-king in crimson robes and silver-black armor, crown of blackened thorns, glowing ember-orange eyes, spectral flame aura, scepter with burning veil-sigil. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "c73c4df2-c8fc-4db6-ac01-93ec1a617fcb",
+      "file": "core_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: The Emberveil Sovereign boss, wraith-king, side-view walking east, robes billowing, hovering slightly, scepter held ready, flame aura trailing. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "f0df986d-ce0a-44d9-8edc-225ef1d12f77",
+      "file": "core_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: The Emberveil Sovereign boss attacking \u2014 wraith-king, side-view facing east, scepter raised unleashing a ring of ember fire and veil-sigils outward, aura blazing. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "77d7b9a2-e38d-43cb-9fec-da15e241b2f7",
+      "file": "core_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: The Emberveil Sovereign boss defeated \u2014 wraith-king collapsed on ground, crown broken and falling, aura extinguished, scepter dark, robes crumpled, side-view facing east. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "rift_boss": {
+    "portrait": {
+      "asset_id": "a0d557b6-cfa6-4aef-a866-d14b0806ef07",
+      "file": "rift_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: The Void Herald \u2014 tall gaunt cosmic entity, body composed of starless black void fabric, face a smooth obsidian mask with a single slit of white light for eyes, crown of shattered constellations, floating broken glass-like shards orbiting its shoulders, tendrils of cosmic mist. Deep-space rift backdrop. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "752cce7c-9d39-4c23-86d6-95aac92131fb",
+      "file": "rift_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: The Void Herald boss, tall gaunt cosmic entity of black void fabric, obsidian mask face with single slit of white light, crown of shattered constellations, floating glass shards. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "b89fcf1f-1b6a-47f3-b76d-127b237f3ea0",
+      "file": "rift_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: The Void Herald boss, cosmic void entity with obsidian mask, side-view facing east, gliding above ground, trailing tendrils of cosmic mist, glass shards floating alongside. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "0f7788f8-cae5-474a-9c33-5ca2b81db862",
+      "file": "rift_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: The Void Herald boss attacking \u2014 cosmic void entity, side-view facing east, arms spread wide, hurling floating glass shards in a burst of starlight at the target. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "d76a1d17-4939-4b90-8413-58e2064d067a",
+      "file": "rift_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: The Void Herald boss defeated \u2014 cosmic void entity crumpled on ground, mask cracked, crown shattered, glass shards falling to ground, dimming, side-view facing east. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "void_boss": {
+    "portrait": {
+      "asset_id": "d25515ec-3be9-4596-a4e3-18cb4d9074e7",
+      "file": "void_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: The Unraveler \u2014 a nightmarish entity composed of unraveling reality threads, multiple elongated limbs, face a torn rift of glowing cyan-white light, body wrapped in bandages of starfabric that are coming apart into strands, surrounding air warping. Cosmic void backdrop with reality tears. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "453db306-11a2-46a0-bf94-0cab2c9d2699",
+      "file": "void_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: The Unraveler boss, nightmarish entity of unraveling reality threads, multiple elongated limbs, face a rift of cyan-white light, body wrapped in bandages of starfabric coming apart. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "7a036810-16d0-43c7-9add-8ab89a184423",
+      "file": "void_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: The Unraveler boss, side-view facing east, gliding forward, elongated limbs trailing behind, bandages fluttering, reality threads unraveling from body. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "971c7b2b-0773-4866-970c-954dc17484f0",
+      "file": "void_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: The Unraveler boss attacking \u2014 side-view facing east, all elongated limbs lashing out in a whip-crack motion, threads extending toward target, cyan-white rift face blazing. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "0b614f7a-22d0-4ac6-a909-696acd924916",
+      "file": "void_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: The Unraveler boss defeated \u2014 entity fully unraveled on ground, threads scattered, rift-face dim, limbs limp, side-view facing east. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "abyss_boss": {
+    "portrait": {
+      "asset_id": "1a1d91a2-4b5e-455f-95cb-b05f975f787c",
+      "file": "abyss_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: The Primordial King \u2014 ancient leviathan king of the abyssal depths, bioluminescent deep-sea monarch with barnacle-encrusted golden crown fused to a craggy shell-plated head, four glowing cyan eyes, tentacle beard, rusted regalia and broken trident, dripping with abyssal water. Deep-sea ruins backdrop. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "5a8c262b-911c-4f8b-89e2-8f26b9733ddc",
+      "file": "abyss_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: The Primordial King boss, ancient leviathan king with barnacle crown, shell-plated head, four glowing cyan eyes, tentacle beard, rusted regalia, broken trident. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "4e2f2f7b-8ea8-449f-96d4-1d2f41c90e0a",
+      "file": "abyss_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: The Primordial King boss, leviathan king, side-view facing east, mid-stride walking forward, trident held low, tentacles trailing, water dripping. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "7d8d183e-b429-4781-89e5-72374b3ffc81",
+      "file": "abyss_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: The Primordial King boss attacking \u2014 leviathan king, side-view facing east, thrusting broken trident forward in a powerful stab, torrent of water blasting from trident tips. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "feb03420-dbbf-403c-b7d2-64eb8c16e463",
+      "file": "abyss_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: The Primordial King boss defeated \u2014 leviathan king collapsed, crown toppled, trident broken beside him, glowing eyes dim, side-view facing east. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "architect_boss": {
+    "portrait": {
+      "asset_id": "70bfc211-5a00-4a27-9654-059611e2c1db",
+      "file": "architect_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: The Architect \u2014 godlike artificer entity, body of interlocking obsidian geometric panels floating apart, halo of rotating runic rings behind head, face a featureless silver mask with glowing gold constellation-eye, hands wreathed in blueprints of light, wielding gilded compass-scepter. Cosmic workshop backdrop with floating gears. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "cc462d85-594f-407b-a4d9-fab959c40ea5",
+      "file": "architect_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: The Architect boss, godlike artificer entity, body of floating interlocking obsidian geometric panels, silver mask with gold constellation eye, rotating rune rings halo, gilded compass-scepter. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "85e8fe0a-5448-45fc-aa2c-5fe7422fded9",
+      "file": "architect_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: The Architect boss, geometric artificer entity, side-view facing east, gliding forward, panels shifting in sync, compass-scepter held ready, halo rings rotating. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "c32e1d4c-4494-4b45-ad90-032ef1812839",
+      "file": "architect_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: The Architect boss attacking \u2014 geometric artificer, side-view facing east, compass-scepter extended projecting glowing gold blueprint-matrix beam of cosmic construction, panels flaring outward. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "34e0e392-2cb1-4c2a-8a3a-b6d7b6e59e6f",
+      "file": "architect_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: The Architect boss defeated \u2014 panels shattered and scattered on ground, mask cracked showing dim light within, halo rings broken, scepter fallen, side-view facing east. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "dragon_boss": {
+    "portrait": {
+      "asset_id": "cc6c2193-2b34-4315-9b67-0f860d85bdf5",
+      "file": "dragon_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: The Ancient Dragon \u2014 colossal elder wyrm with scarred jet-black scales streaked with dim embers, wizened horns curling back, broken rows of jagged fangs, ancient glowing amber eyes, tattered leathery wings rising behind. Volcanic mountain backdrop. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "15161874-fed7-4d9c-b654-88ce8224284c",
+      "file": "dragon_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: The Ancient Dragon boss, colossal elder wyrm with scarred jet-black scales and ember streaks, curling horns, jagged fangs, amber eyes, tattered leathery wings. Standing idle pose facing the camera (south/front view, quadruped dragon stance with wings folded slightly). Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "c5c8166f-8779-4246-9358-1f3603719cf7",
+      "file": "dragon_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: The Ancient Dragon boss, colossal elder wyrm, side-view facing east, quadruped dragon stalking pose mid-stride, wings partly spread, tail trailing, embers leaking from scales. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "b6bc74b2-71ae-4cbd-837a-8426125239d1",
+      "file": "dragon_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: The Ancient Dragon boss attacking \u2014 colossal elder wyrm, side-view facing east, head reared back and exhaling a massive plume of ember fire breath toward target, wings spread wide. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "010f6302-ffe7-43fe-81de-6a074c9caad8",
+      "file": "dragon_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: The Ancient Dragon boss defeated \u2014 colossal elder wyrm collapsed on ground, head down, wings crumpled beside body, amber eyes dim, embers fading, side-view facing east. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "dragonking_boss": {
+    "portrait": {
+      "asset_id": "1b527d88-08ff-4b02-8e87-0d521cfe0ce3",
+      "file": "dragonking_boss_portrait.png",
+      "prompt_used": "Dark fantasy boss portrait: Bahamorth the Dragon King \u2014 regal platinum-scaled draconic sovereign with sapphire-and-gold inlaid plate armor, colossal golden draconic crown with branching horns, molten gold breath glowing behind closed fangs, two massive wings behind, bearing an ornate obsidian greatsword. Dragon fortress throne backdrop. Head-and-shoulders portrait, centered, facing viewer.",
+      "generated_date": "2026-04-16",
+      "role": "canonical_reference",
+      "note": "HD detailed (non-pixel) portrait, 512x512"
+    },
+    "south": {
+      "asset_id": "b02914bb-4030-4ae0-af34-97fd03066468",
+      "file": "dragonking_boss_south.png",
+      "prompt_used": "Pixel-art RPG sprite: Bahamorth Dragon King boss, humanoid-dragon sovereign with platinum scales, sapphire-gold plate armor, golden draconic crown, massive wings behind, obsidian greatsword. Standing idle pose facing the camera (south/front view). Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east": {
+      "asset_id": "a6382473-afaa-42b9-9919-fc9fff9f6714",
+      "file": "dragonking_boss_east.png",
+      "prompt_used": "Pixel-art RPG sprite: Bahamorth Dragon King boss, side-view facing east, walking forward with regal stride, wings slightly unfurled, obsidian greatsword held ready. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_attack": {
+      "asset_id": "b8b8848d-9dab-41da-be0d-6c89764dd13b",
+      "file": "dragonking_boss_east_attack.png",
+      "prompt_used": "Pixel-art RPG sprite: Bahamorth Dragon King boss attacking \u2014 side-view facing east, wings fully spread, swinging obsidian greatsword in a devastating horizontal slash, molten gold flames trailing the blade. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    },
+    "east_ko": {
+      "asset_id": "1375dc8a-7c6e-47d0-8fc9-9e411fe4f5a9",
+      "file": "dragonking_boss_east_ko.png",
+      "prompt_used": "Pixel-art RPG sprite: Bahamorth Dragon King boss defeated \u2014 sovereign collapsed to knees, crown tilting off, wings crumpled, obsidian greatsword embedded in ground beside him, side-view facing east. Full-body sprite, centered, transparent background.",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "dire_wolf": {
+    "south": {
+      "asset_id": "e29a5204-be06-44f8-87ad-4b7e9a1bb429",
+      "file": "dire_wolf_south.png",
+      "prompt_used": "dire wolf companion, side view, pixel art",
+      "generated_date": "2026-04-16"
+    },
+    "walk": {
+      "file": "anim/dire_wolf_walk.webp",
+      "prompt_used": "Walk cycle: dire wolf trotting forward, side view, pixel loop",
+      "generated_date": "2026-04-16"
+    },
+    "attack": {
+      "file": "anim/dire_wolf_attack.webp",
+      "prompt_used": "Attack: dire wolf lunges biting forward, pixel loop",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "forest_owl": {
+    "south": {
+      "asset_id": "69d7dd81-16c6-4775-9c3c-dc571b964c9f",
+      "file": "forest_owl_south.png",
+      "prompt_used": "forest owl companion, side view, pixel art",
+      "generated_date": "2026-04-16"
+    },
+    "walk": {
+      "file": "anim/forest_owl_walk.webp",
+      "prompt_used": "Walk cycle: forest owl flapping forward, wing beats, pixel loop",
+      "generated_date": "2026-04-16"
+    },
+    "attack": {
+      "file": "anim/forest_owl_attack.webp",
+      "prompt_used": "Attack: forest owl dive attack with talons, pixel loop",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "ember_drake": {
+    "south": {
+      "asset_id": "72e27a36-572f-4917-a1ec-32e5a387d99a",
+      "file": "ember_drake_south.png",
+      "prompt_used": "ember drake companion, side view, pixel art",
+      "generated_date": "2026-04-16"
+    },
+    "walk": {
+      "file": "anim/ember_drake_walk.webp",
+      "prompt_used": "Walk cycle: ember drake stalking forward, wings folded, pixel loop",
+      "generated_date": "2026-04-16"
+    },
+    "attack": {
+      "file": "anim/ember_drake_attack.webp",
+      "prompt_used": "Attack: ember drake breathes fire forward, pixel loop",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "shadow_cat": {
+    "south": {
+      "asset_id": "afb3f72f-c2c9-46b8-bc65-ec9d421a379c",
+      "file": "shadow_cat_south.png",
+      "prompt_used": "shadow cat companion, side view, pixel art",
+      "generated_date": "2026-04-16"
+    },
+    "walk": {
+      "file": "anim/shadow_cat_walk.webp",
+      "prompt_used": "Walk cycle: shadow cat prowling forward, tail low, pixel loop",
+      "generated_date": "2026-04-16"
+    },
+    "attack": {
+      "file": "anim/shadow_cat_attack.webp",
+      "prompt_used": "Attack: shadow cat swipes claws forward, pixel loop",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "crystal_golem": {
+    "south": {
+      "asset_id": "da312f14-a114-43b2-9ea8-b576291b08fb",
+      "file": "crystal_golem_south.png",
+      "prompt_used": "crystal golem companion, side view, pixel art",
+      "generated_date": "2026-04-16"
+    },
+    "walk": {
+      "file": "anim/crystal_golem_walk.webp",
+      "prompt_used": "Walk cycle: crystal golem lumbering forward, side view, pixel loop",
+      "generated_date": "2026-04-16"
+    },
+    "attack": {
+      "file": "anim/crystal_golem_attack.webp",
+      "prompt_used": "Attack: crystal golem slams fists forward, pixel loop",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "spirit_wisp": {
+    "south": {
+      "asset_id": "dc965ece-817c-4a5f-9500-877b0fc13b13",
+      "file": "spirit_wisp_south.png",
+      "prompt_used": "spirit wisp companion, side view, pixel art",
+      "generated_date": "2026-04-16"
+    },
+    "walk": {
+      "file": "anim/spirit_wisp_walk.webp",
+      "prompt_used": "Walk cycle: spirit wisp drifting forward, ethereal trail, pixel loop",
+      "generated_date": "2026-04-16"
+    },
+    "attack": {
+      "file": "anim/spirit_wisp_attack.webp",
+      "prompt_used": "Attack: spirit wisp emits radiant burst forward, pixel loop",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "bone_hound": {
+    "south": {
+      "asset_id": "e8626ff0-9533-4195-8f6e-04e3734e13bd",
+      "file": "bone_hound_south.png",
+      "prompt_used": "bone hound skeletal companion, side view, pixel art",
+      "generated_date": "2026-04-16"
+    },
+    "walk": {
+      "file": "anim/bone_hound_walk.webp",
+      "prompt_used": "Walk cycle: bone hound trotting forward, skeletal legs, pixel loop",
+      "generated_date": "2026-04-16"
+    },
+    "attack": {
+      "file": "anim/bone_hound_attack.webp",
+      "prompt_used": "Attack: bone hound lunges jaws snapping, pixel loop",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "ice_sprite": {
+    "south": {
+      "asset_id": "b2ea28cc-480e-4c3d-af9d-4a0ffca70153",
+      "file": "ice_sprite_south.png",
+      "prompt_used": "ice sprite companion, floating, pixel art",
+      "generated_date": "2026-04-16"
+    },
+    "walk": {
+      "file": "anim/ice_sprite_walk.webp",
+      "prompt_used": "Walk cycle: ice sprite floating forward, frost particles, pixel loop",
+      "generated_date": "2026-04-16"
+    },
+    "attack": {
+      "file": "anim/ice_sprite_attack.webp",
+      "prompt_used": "Attack: ice sprite hurls ice shard, pixel loop",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "swamp_frog": {
+    "south": {
+      "asset_id": "0a78ed10-8626-4174-b1d4-7a0f02464f24",
+      "file": "swamp_frog_south.png",
+      "prompt_used": "swamp frog companion, side view, pixel art",
+      "generated_date": "2026-04-16"
+    },
+    "walk": {
+      "file": "anim/swamp_frog_walk.webp",
+      "prompt_used": "Walk cycle: swamp frog hopping forward, small splash, pixel loop",
+      "generated_date": "2026-04-16"
+    },
+    "attack": {
+      "file": "anim/swamp_frog_attack.webp",
+      "prompt_used": "Attack: swamp frog tongue lash forward, pixel loop",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "void_moth": {
+    "south": {
+      "asset_id": "0057da7c-1857-43fa-98c8-ccb7a8e845cb",
+      "file": "void_moth_south.png",
+      "prompt_used": "void moth companion, fluttering, pixel art",
+      "generated_date": "2026-04-16"
+    },
+    "walk": {
+      "file": "anim/void_moth_walk.webp",
+      "prompt_used": "Walk cycle: void moth fluttering forward, dark sparkles, pixel loop",
+      "generated_date": "2026-04-16"
+    },
+    "attack": {
+      "file": "anim/void_moth_attack.webp",
+      "prompt_used": "Attack: void moth darts forward with void dust burst, pixel loop",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "goblin_scout": {
+    "portrait": {
+      "asset_id": "653374f2-17e5-4df8-a2a4-535007bd0019",
+      "file": "goblin_scout_portrait.png",
+      "prompt_used": "A scrawny goblin scout with leather armor, small dagger, mischievous yellow eyes, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "goblin_warrior": {
+    "portrait": {
+      "asset_id": "194306a2-f5ce-4429-b019-eeb2de3d2f46",
+      "file": "goblin_warrior_portrait.png",
+      "prompt_used": "A muscular goblin warrior wielding a crude iron sword, chipped shield, scarred green skin, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "goblin_shaman": {
+    "portrait": {
+      "asset_id": "5e849665-06c6-4adf-b82a-3912c8633987",
+      "file": "goblin_shaman_portrait.png",
+      "prompt_used": "A hunched goblin shaman in bone-fetish robes holding a glowing skull staff, feral eyes, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "goblin_warlord": {
+    "portrait": {
+      "asset_id": "77f7bb23-d477-4f27-9e6c-6de773862af7",
+      "file": "goblin_warlord_portrait.png",
+      "prompt_used": "A massive goblin warlord in plate armor with a two-handed axe, tusked snarl, war paint, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "corrupted_wolf": {
+    "portrait": {
+      "asset_id": "cc2125bb-1c19-429a-9830-f15715459d25",
+      "file": "corrupted_wolf_portrait.png",
+      "prompt_used": "A rabid wolf with shadow-corrupted fur, glowing purple eyes, bared dripping fangs, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "corrupted_bear": {
+    "portrait": {
+      "asset_id": "f9a3e9f4-5f13-4eba-8a93-006c53d7ad8b",
+      "file": "corrupted_bear_portrait.png",
+      "prompt_used": "A hulking bear with blackened corrupted hide, glowing red rune wounds, snarling maw, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "bandit": {
+    "portrait": {
+      "asset_id": "2bed1e70-5fbe-47df-a480-ab708d0cd48d",
+      "file": "bandit_portrait.png",
+      "prompt_used": "A rough human bandit in patched leather, hooded, clutching a shortsword, stubbled face, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "bandit_captain": {
+    "portrait": {
+      "asset_id": "762cf07f-0d52-4af9-9db2-fb8ae2dd10e9",
+      "file": "bandit_captain_portrait.png",
+      "prompt_used": "A grim bandit captain with a scarred face, studded leather coat, dual blades at belt, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "imp": {
+    "portrait": {
+      "asset_id": "9b94dbae-89f0-4849-9a03-78c4d07aa4b2",
+      "file": "imp_portrait.png",
+      "prompt_used": "A small winged demonic imp with barbed tail, clawed hands wreathed in hellfire, wicked grin, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "hell_knight": {
+    "portrait": {
+      "asset_id": "14a0ac2a-4cc5-48ee-870f-3ce72f0cb8cb",
+      "file": "hell_knight_portrait.png",
+      "prompt_used": "A hell knight in blackened infernal plate armor, horned helm, flaming longsword, glowing red visor, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "void_shade": {
+    "portrait": {
+      "asset_id": "19e3e61d-d3ae-4b3e-a2c4-557ff403180f",
+      "file": "void_shade_portrait.png",
+      "prompt_used": "A ghostly void shade, translucent body of swirling black mist, hollow glowing eyes, wispy tendrils, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "demon_brute": {
+    "portrait": {
+      "asset_id": "a77d83cb-d964-40b0-8c22-2aaa87fac2ae",
+      "file": "demon_brute_portrait.png",
+      "prompt_used": "A massive demon brute with red hide, broken horns, scarred muscular torso, clenched stone fists, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "ash_wraith": {
+    "portrait": {
+      "asset_id": "8f5dec61-d530-4537-83cc-f04507c7cf06",
+      "file": "ash_wraith_portrait.png",
+      "prompt_used": "An ash wraith of smoldering gray smoke, burning ember eyes, drifting ash form, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "cinder_hound": {
+    "portrait": {
+      "asset_id": "1216371f-1cc0-4fd4-80fb-296294154780",
+      "file": "cinder_hound_portrait.png",
+      "prompt_used": "A cinder hound dog with obsidian skin cracked by glowing lava veins, smoldering breath, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "molten_golem": {
+    "portrait": {
+      "asset_id": "c139f299-e604-4940-a967-ed722f549c64",
+      "file": "molten_golem_portrait.png",
+      "prompt_used": "A lumbering molten golem of obsidian rock plates with lava flowing between the cracks, glowing core, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "veil_cultist": {
+    "portrait": {
+      "asset_id": "534ee4b8-b725-4a45-85d6-d1599d4d718b",
+      "file": "veil_cultist_portrait.png",
+      "prompt_used": "A veil cultist in dark hooded robes with glowing sigils, pale chanting face, ceremonial dagger, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "veil_sorcerer": {
+    "portrait": {
+      "asset_id": "5b56e7f9-6efe-4e93-bd42-1204706c85ec",
+      "file": "veil_sorcerer_portrait.png",
+      "prompt_used": "A veil sorcerer in flowing violet robes summoning arcane purple flames, skeletal hands, masked face, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "veil_warden": {
+    "portrait": {
+      "asset_id": "9f4873da-7fe5-4fe0-89b3-fae2d9e34c7f",
+      "file": "veil_warden_portrait.png",
+      "prompt_used": "A veil warden in ornate plate with glowing runes, crystal halberd, grim stoic visor, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "primordial_elemental": {
+    "portrait": {
+      "asset_id": "6270b28a-e4ee-4616-9ec4-9307543ae709",
+      "file": "primordial_elemental_portrait.png",
+      "prompt_used": "A primordial elemental of swirling raw cosmic energy, nebula core, crackling arms of plasma, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "abyssal_knight": {
+    "portrait": {
+      "asset_id": "badba202-7e5c-44e4-a3aa-7361d195429d",
+      "file": "abyssal_knight_portrait.png",
+      "prompt_used": "An abyssal knight in deep-sea black coral armor, trident, glowing void eyes under helm, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "reality_shard": {
+    "portrait": {
+      "asset_id": "fcd219b9-7aca-44b8-9c88-8d44b5725df0",
+      "file": "reality_shard_portrait.png",
+      "prompt_used": "A floating reality shard entity, fragments of shattered mirror glass arranged as humanoid form, prismatic glow, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "genesis_worm": {
+    "portrait": {
+      "asset_id": "72cf4561-9bd0-4c86-87a5-193f84a79b59",
+      "file": "genesis_worm_portrait.png",
+      "prompt_used": "A colossal genesis worm, segmented chitinous body, toothy sucker maw, glowing pink interior, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "void_wraith": {
+    "portrait": {
+      "asset_id": "3b94b4a0-5b13-44ed-b55c-78981168b391",
+      "file": "void_wraith_portrait.png",
+      "prompt_used": "A void wraith of pure black emptiness, starlike pinpoints for eyes, tattered cosmic cloak, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "star_horror": {
+    "portrait": {
+      "asset_id": "0c6d8b75-e23c-4148-b2a1-641b8c36f77b",
+      "file": "star_horror_portrait.png",
+      "prompt_used": "A cosmic star horror with many glowing eyes, writhing tentacles dotted with stars, nebulous body, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "cosmic_titan": {
+    "portrait": {
+      "asset_id": "58dc1250-6775-49f4-8be1-c2261e383e16",
+      "file": "cosmic_titan_portrait.png",
+      "prompt_used": "A cosmic titan of stone and galaxies, giant humanoid wreathed in nebulae, star-lit runes, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "void_prophet": {
+    "portrait": {
+      "asset_id": "7486a7d4-6200-4f59-978b-676ca68d2443",
+      "file": "void_prophet_portrait.png",
+      "prompt_used": "A void prophet in tattered robes, blindfold of stars, third eye opening, levitating, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "dragon_whelp": {
+    "portrait": {
+      "asset_id": "0d65797f-c635-4dcd-9132-942b4e1bb61a",
+      "file": "dragon_whelp_portrait.png",
+      "prompt_used": "A small dragon whelp with iridescent scales, wings unfurling, puffing tiny flame, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "wyrm_warrior": {
+    "portrait": {
+      "asset_id": "4a96ad7b-ea4e-4f67-bff5-20933c9db8b1",
+      "file": "wyrm_warrior_portrait.png",
+      "prompt_used": "A bipedal dragonfolk wyrm warrior in bronze scale armor, serpent snout, curved blade, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "dragon_cultist": {
+    "portrait": {
+      "asset_id": "712fb66d-b666-4aec-ae84-b58eb3858297",
+      "file": "dragon_cultist_portrait.png",
+      "prompt_used": "A dragon cultist in red-and-gold robes with scale patterns, reverent pose, clutching a dragon-tooth amulet, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "frost_wyrm": {
+    "portrait": {
+      "asset_id": "a6e7275a-8b35-448d-9813-dbed2152e241",
+      "file": "frost_wyrm_portrait.png",
+      "prompt_used": "A frost wyrm dragon with icy blue scales, frost breath spilling from its jaws, icicles on spines, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  },
+  "storm_dragon": {
+    "portrait": {
+      "asset_id": "a4f64daa-48f5-41f4-b054-73ce9c70914b",
+      "file": "storm_dragon_portrait.png",
+      "prompt_used": "A storm dragon with dark slate scales, lightning crackling along its wings, glowing yellow eyes, dark fantasy RPG enemy portrait",
+      "generated_date": "2026-04-16"
+    }
+  }
+}

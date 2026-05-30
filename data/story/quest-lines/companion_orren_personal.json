@@ -1,0 +1,81 @@
+{
+  "id": "companion_orren_personal",
+  "category": "companion",
+  "act": 1,
+  "title": "Where Adric Died",
+  "summary": "Orren has seventeen vows. One is to find where his brother died and bury him properly. He does not know yet that the patrol 'accident' was not an accident. The party may learn this before he does.",
+  "startCondition": {
+    "all": [
+      { "companion": "orren_gravetide", "status": "active" },
+      { "counter": "orren_approval", "gte": 3 }
+    ]
+  },
+  "phases": [
+    {
+      "id": "orren_shares_purpose",
+      "label": "Orren explains why he joined the march toward Gloomridge",
+      "completeCondition": { "flag": "orren_quest_started" },
+      "onComplete": [
+        { "type": "companion_approval", "companion": "orren_gravetide", "amount": 1 },
+        { "type": "quest_log", "text": "He says it quietly, the way he says most things: 'My brother Adric was on the Veilscar patrol. He died in Gloomridge. The report says 'terrain accident.' I have read the report seventeen times. There are four words that do not belong.' He does not ask you to help. He is already walking." }
+      ],
+      "nextPhase": "orren_finds_markers"
+    },
+    {
+      "id": "orren_finds_markers",
+      "label": "Help Orren find the battle markers his brother's unit left",
+      "completeCondition": { "flag": "orren_brother_markers_found" },
+      "onComplete": [
+        { "type": "faction_delta", "faction": "emberguard", "amount": -1 },
+        { "type": "quest_log", "text": "The unit's markers are intact — Orren taught Adric the protocol himself. The markers tell a different story than the report: the patrol was not traveling toward a terrain obstacle. It was retreating from an engagement the report doesn't mention. Someone erased the engagement from the record." }
+      ],
+      "nextPhase": "orren_discovers_truth"
+    },
+    {
+      "id": "orren_discovers_truth",
+      "label": "Find the full truth of what happened to Adric's patrol",
+      "completeCondition": {
+        "any": [
+          { "flag": "orren_truth_known_full" },
+          { "flag": "orren_truth_known_partial" }
+        ]
+      },
+      "onComplete": [
+        { "type": "set_flag", "flag": "brightfall_council_compromised" },
+        { "type": "faction_delta", "faction": "emberguard", "amount": -2 },
+        { "type": "companion_approval", "companion": "orren_gravetide", "amount": 2 },
+        { "type": "quest_log", "text": "The patrol was deliberately routed into a cult ambush by someone in the Emberguard command chain. The order came from above Captain Maer, after Maer had already filed objections. Orren buries his brother's effects at the marker. He does not speak for a long time. When he does, his voice is exactly the same as it always is." }
+      ],
+      "nextPhase": "orren_resolution"
+    },
+    {
+      "id": "orren_resolution",
+      "label": "Orren decides what to do with what he knows",
+      "completeCondition": { "flag": "orren_quest_completed" },
+      "onComplete": [
+        { "type": "companion_approval", "companion": "orren_gravetide", "amount": 2 },
+        { "type": "set_flag", "flag": "oathless_hired" },
+        { "type": "quest_log", "text": "He breaks one of his seventeen vows — the one about not taking action outside sanctioned orders. He decides the sanction is now himself. 'I will not stop,' he says. It is not a threat. It is just information." }
+      ],
+      "nextPhase": null
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "full_justice",
+      "condition": { "all": [{ "flag": "orren_quest_completed" }, { "flag": "orren_truth_known_full" }] },
+      "effects": [
+        { "type": "faction_delta", "faction": "oathless", "amount": 3 },
+        { "type": "faction_delta", "faction": "emberguard", "amount": -2 },
+        { "type": "gold", "amount": 40 }
+      ]
+    },
+    {
+      "id": "partial_justice",
+      "condition": { "all": [{ "flag": "orren_quest_completed" }, { "flag": "orren_truth_known_partial" }] },
+      "effects": [
+        { "type": "faction_delta", "faction": "oathless", "amount": 1 }
+      ]
+    }
+  ]
+}

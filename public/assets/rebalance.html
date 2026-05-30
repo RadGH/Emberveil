@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="rsg-game" content="Emberveil">
+<title>Rebalance Survey — Emberveil</title>
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0c0a14; color: #e8e4f0; font-family: system-ui, -apple-system, sans-serif; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 20px 16px 60px; }
+  h1 { font-size: 22px; margin: 10px 0 4px; color: #f0d880; }
+  h2 { font-size: 16px; margin: 24px 0 8px; color: #c0a8e8; border-bottom: 1px solid #2a2340; padding-bottom: 4px; }
+  .sub { color: #9890b0; font-size: 13px; margin-bottom: 12px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0 18px; }
+  button { background: #3a2e5c; color: #f0e8ff; border: 1px solid #5a4a8c; border-radius: 6px; padding: 8px 14px; font-size: 14px; cursor: pointer; }
+  button:hover { background: #4a3a70; }
+  button:disabled { opacity: 0.4; cursor: wait; }
+  select, input { background: #1a1628; color: #e8e4f0; border: 1px solid #3a2e5c; border-radius: 4px; padding: 6px 8px; font-size: 13px; }
+  .card { background: #14101f; border: 1px solid #2a2340; border-radius: 8px; padding: 14px; margin: 12px 0; }
+  .chart-wrap { position: relative; height: 360px; }
+  .chart-wrap.tall { height: 440px; }
+  #status { font-size: 13px; color: #a0e8c0; margin-left: 8px; }
+  textarea { width: 100%; min-height: 220px; background: #0a0812; color: #e0d8f0; border: 1px solid #3a2e5c; border-radius: 6px; padding: 10px; font-family: ui-monospace, monospace; font-size: 12px; box-sizing: border-box; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 780px) { .grid2 { grid-template-columns: 1fr; } }
+  .mini { font-size: 11px; color: #7a7290; }
+  table { width: 100%; font-size: 12px; border-collapse: collapse; }
+  th, td { padding: 4px 6px; text-align: right; border-bottom: 1px solid #1e1830; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: #c0a8e8; background: #1a1628; position: sticky; top: 0; }
+  .party-section { background: #1a1628; border: 1px solid #3a2e5c; border-radius: 8px; padding: 16px; margin: 12px 0; }
+  .party-member { display: flex; align-items: center; gap: 8px; margin: 6px 0; padding: 8px; background: #0e0a14; border-radius: 4px; }
+  .party-member button { padding: 4px 8px; font-size: 12px; }
+  .add-character { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+  .level-badge { font-size: 10px; background: #4a3a70; color: #e8e4f0; padding: 2px 6px; border-radius: 3px; margin-left: 4px; }
+  .import-section { background: #1a1628; border: 1px solid #3a2e5c; border-radius: 8px; padding: 16px; margin: 12px 0; }
+  .import-area { background: #0a0812; border: 1px solid #3a2e5c; border-radius: 4px; padding: 8px; font-family: monospace; font-size: 11px; width: 100%; min-height: 80px; resize: vertical; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5H26ZXKBCL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-5H26ZXKBCL");
+</script>
+</head>
+<body class="ev-themed">
+<div class="wrap">
+<h1>Rebalance Survey Tool</h1>
+<div class="sub">Repeatable combat sim driven by <code>src/game/</code> data tables. 24 scenarios &times; 4 levels &times; 200 runs per cell. Re-run every 20 milestones — see <code>memory/rebalance_cadence.md</code>.</div>
+
+<div class="controls">
+  <button id="runBtn">Run Simulation</button>
+  <button id="saveBtn" disabled>Save Snapshot (m77)</button>
+  <label>Label: <input id="label" value="m77" size="6"></label>
+  <label>Runs: <input id="runs" type="number" value="200" min="20" max="2000" style="width:70px"></label>
+  <span id="status">idle</span>
+</div>
+
+<div class="card">
+  <h2>DPS by Level (all heroes)</h2>
+  <div class="chart-wrap"><canvas id="chartHeroDps"></canvas></div>
+</div>
+
+<div class="card">
+  <h2>DPS by Scenario (avg across heroes, L10)</h2>
+  <div class="chart-wrap"><canvas id="chartScen"></canvas></div>
+</div>
+
+<div class="card">
+  <h2>Healing / Shield / Overheal (utilities + healers, L10)</h2>
+  <div class="chart-wrap"><canvas id="chartHps"></canvas></div>
+</div>
+
+<div class="card">
+  <h2>Tap Weapon DPS</h2>
+  <div class="chart-wrap"><canvas id="chartTap"></canvas></div>
+</div>
+
+<div class="card">
+  <h2>Companion DPS</h2>
+  <div class="chart-wrap"><canvas id="chartComp"></canvas></div>
+</div>
+
+<div class="card">
+  <h2>Drift vs Prior Snapshots</h2>
+  <div class="sub">Tracks average hero DPS at L10 vs tank target, per snapshot in <code>rebalance_snapshots/</code>.</div>
+  <div class="chart-wrap"><canvas id="chartDrift"></canvas></div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h2>Raw Table (L10, tank)</h2>
+    <div style="max-height: 300px; overflow: auto;"><table id="rawTable"><thead><tr><th>Unit</th><th>DPS</th><th>HPS</th><th>Shield</th><th>Overheal%</th></tr></thead><tbody></tbody></table></div>
+  </div>
+  <div class="card">
+    <h2>Generated Prompt</h2>
+    <div class="sub">Copy into Claude Code to request balance changes.</div>
+    <textarea id="promptOut" readonly></textarea>
+  </div>
+</div>
+
+</div>
+
+<script type="module">
+// ===================================================================
+// DATA TABLES — mirrored from src/game/{classes,passives,tapWeapons}.js
+// Kept in sync manually; bump this block whenever those files change.
+// ===================================================================
+
+const HEROES = [
+  // id, primary, role, dmgMul, healMul, shieldMul, tag
+  ['warrior',      'STR', 'tank',    1.10, 0.00, 0.10, 'Frontline'],
+  ['paladin',      'STR', 'tank',    0.95, 0.45, 0.25, 'Holy'],
+  ['ranger',       'DEX', 'dps',     1.20, 0.00, 0.00, 'Ranged'],
+  ['rogue',        'DEX', 'burst',   1.40, 0.00, 0.00, 'Assassin'],
+  ['cleric',       'INT', 'healer',  0.55, 1.00, 0.30, 'Holy'],
+  ['bard',         'INT', 'support', 0.60, 0.60, 0.40, 'Support'],
+  ['mage',         'INT', 'caster',  1.30, 0.00, 0.20, 'Caster'],
+  ['necromancer',  'INT', 'caster',  1.15, 0.20, 0.10, 'Shadow'],
+  ['warlock',      'INT', 'caster',  1.25, 0.00, 0.10, 'Shadow'],
+  ['demon_hunter', 'DEX', 'burst',   1.35, 0.00, 0.00, 'Shadow'],
+  ['scavenger',    'DEX', 'dps',     1.00, 0.10, 0.00, 'Ranger'],
+  ['swashbuckler', 'DEX', 'dps',     1.15, 0.00, 0.10, 'Blade'],
+  ['dragon_knight','STR', 'tank',    1.20, 0.00, 0.15, 'Frontline'],
+  ['pyromancer',   'INT', 'caster',  1.35, 0.00, 0.00, 'Caster'],
+  ['stormcaller',  'INT', 'caster',  1.25, 0.10, 0.10, 'Caster'],
+  ['druid',        'INT', 'healer',  0.70, 0.85, 0.20, 'Nature'],
+  ['oracle',       'INT', 'support', 0.55, 0.70, 0.45, 'Support'],
+  ['tactician',    'STR', 'support', 0.80, 0.20, 0.30, 'Support'],
+  ['chronomancer', 'INT', 'caster',  1.05, 0.30, 0.30, 'Caster'],
+];
+
+const COMPANIONS = [
+  // id, STR, DEX, INT, CON
+  ['dire_wolf',    14, 12, 3,  12],
+  ['forest_owl',   4,  16, 10, 6],
+  ['ember_drake',  12, 10, 12, 11],
+  ['shadow_cat',   6,  16, 10, 8],
+  ['crystal_golem',14, 4,  8,  16],
+  ['spirit_wisp',  3,  12, 14, 6],
+  ['bone_hound',   12, 12, 4,  12],
+  ['ice_sprite',   3,  14, 13, 7],
+  ['swamp_frog',   12, 10, 4,  14],
+  ['void_moth',    3,  14, 15, 6],
+];
+
+// mirrors tapWeapons.js TAP_WEAPONS
+const TAP_WEAPONS = [
+  { id: 'blade',          cd: { unit: 'turns', n: 0 }, power: [8, 14],  targeting: 'single' },
+  { id: 'bow',            cd: { unit: 'turns', n: 2 }, power: [25, 40], targeting: 'single' },
+  { id: 'catapult',       cd: { unit: 'rounds', n: 5 }, power: [35, 55], targeting: 'aoe_group' },
+  { id: 'star_caller',    cd: { unit: 'rounds', n: 4 }, power: [45, 65], targeting: 'aoe_group' },
+  { id: 'ninja_stars',    cd: { unit: 'turns', n: 2 }, power: [12, 18], targeting: 'chain' },
+  { id: 'fireball',       cd: { unit: 'turns', n: 3 }, power: [30, 45], targeting: 'aoe_group' },
+  { id: 'dragon_call',    cd: { unit: 'rounds', n: 8 }, power: [30, 50], targeting: 'aoe_all' },
+  { id: 'chain_lightning',cd: { unit: 'turns', n: 3 }, power: [18, 28], targeting: 'chain' },
+  { id: 'spirit_hammer',  cd: { unit: 'rounds', n: 4 }, power: [40, 60], targeting: 'single' },
+  { id: 'void_lance',     cd: { unit: 'rounds', n: 3 }, power: [25, 40], targeting: 'line' },
+];
+
+// mirrors tapWeapons.js TAP_UTILITIES
+const TAP_UTILITIES = [
+  { id: 'rejuvenate',     cd: { unit: 'turns', n: 3 },  power: [15, 25], kind: 'heal',   targeting: 'single' },
+  { id: 'heal',           cd: { unit: 'rounds', n: 4 }, power: [50, 50], kind: 'heal',   targeting: 'allies_near' },
+  { id: 'shield',         cd: { unit: 'rounds', n: 3 }, power: [25, 25], kind: 'shield', targeting: 'allies_near' },
+  { id: 'deflect',        cd: { unit: 'rounds', n: 5 }, power: [20, 20], kind: 'shield', targeting: 'single' },
+  { id: 'enchant',        cd: { unit: 'turns', n: 2 },  power: [0,0],    kind: 'buff',   targeting: 'single' },
+  { id: 'cleanse',        cd: { unit: 'rounds', n: 3 }, power: [15, 15], kind: 'heal',   targeting: 'single' },
+  { id: 'rally',          cd: { unit: 'rounds', n: 6 }, power: [0,0],    kind: 'buff',   targeting: 'allies_near' },
+  { id: 'haste',          cd: { unit: 'rounds', n: 5 }, power: [0,0],    kind: 'buff',   targeting: 'single' },
+  { id: 'taunt_totem',    cd: { unit: 'rounds', n: 6 }, power: [0,0],    kind: 'buff',   targeting: 'single' },
+  { id: 'phoenix_feather',cd: { unit: 'rounds', n: 10}, power: [30, 30], kind: 'heal',   targeting: 'single' },
+];
+
+// Target archetypes — armor, evasion, resistMul
+const TARGETS = {
+  tank:   { hp: 500, armor: 0.35, evade: 0.02, aoeMul: 1.00 },
+  elite:  { hp: 300, armor: 0.22, evade: 0.05, aoeMul: 1.00 },
+  group:  { hp: 180, armor: 0.08, evade: 0.04, aoeMul: 2.20 }, // swarm: AoE gets more value
+  boss:   { hp: 1200, armor: 0.40, evade: 0.00, aoeMul: 0.60 },
+};
+const ACTS = [1,2,3,4,5,6];
+
+// ===================================================================
+// Auto-allocation — heroes
+// ===================================================================
+
+function heroBaseAttrs(primary) {
+  const a = { STR: 8, DEX: 8, INT: 8, CON: 8 };
+  a[primary] = 14;
+  return a;
+}
+// 1 attr point per level past 1, poured into primary
+// Passive: +1 primary per 2 levels (brawn/precision/arcane) + crit + hp
+function heroStats(hero, level) {
+  const [,primary,role,dmgMul,healMul,shieldMul] = hero;
+  const attrs = heroBaseAttrs(primary);
+  attrs[primary] += (level - 1);
+  // Passives (tree auto-spend): ~1 point per 2 levels split between primary & crit
+  const passivePts = Math.floor((level - 1) / 2);
+  const primaryBonus = Math.ceil(passivePts * 0.6);
+  const critBonus = passivePts * 2; // +2% per rank avg
+  attrs[primary] += primaryBonus;
+  // Talents at 3/8/13/18/23/28 — each gives +10% relevant mul
+  const talents = [3,8,13,18,23,28].filter(t => level >= t).length;
+  const talentMul = 1 + talents * 0.10;
+  // Weapon die scales with level
+  const weaponBase = 6 + level * 1.5;
+  const attrMod = Math.floor((attrs[primary] - 10) / 2);
+  const hitChance = 0.85;
+  const crit = Math.min(0.45, 0.05 + critBonus / 100);
+  return { primary, role, dmgMul, healMul, shieldMul, weaponBase, attrMod, hitChance, crit, talentMul, level };
+}
+
+function companionStats(comp, level) {
+  const [,STR,DEX,INT,CON] = comp;
+  const prim = Math.max(STR, DEX, INT);
+  const weaponBase = 4 + level * 1.0;
+  const attrMod = Math.floor((prim - 10) / 2);
+  return { weaponBase, attrMod, hitChance: 0.80, crit: 0.08, talentMul: 1 + Math.floor(level/5)*0.10, level };
+}
+
+// ===================================================================
+// Combat sim — one "run" = 1 round (6 turns) against a target archetype
+// Returns { dmg, heal, shield, overheal }
+// ===================================================================
+
+function rng() { return Math.random(); }
+
+function simHeroTurn(s, target, targetKind) {
+  // 6 turns per round
+  const t = TARGETS[targetKind];
+  let total = 0;
+  for (let i = 0; i < 6; i++) {
+    if (rng() < t.evade) continue;
+    if (rng() >= s.hitChance) continue;
+    let dmg = (s.weaponBase + rng() * s.weaponBase + s.attrMod) * s.dmgMul * s.talentMul;
+    // skill procs every 3 turns — uses primary attr
+    if (i % 3 === 0) dmg += (8 + s.level * 2) * s.dmgMul * s.talentMul;
+    if (rng() < s.crit) dmg *= 1.8;
+    dmg *= (1 - t.armor);
+    total += dmg;
+  }
+  return total;
+}
+
+function simHeroHeal(s, targetKind) {
+  // Healers heal allies between enemy bursts; approximate HPS as dmgMul * healMul * level
+  if (s.healMul <= 0) return { heal: 0, shield: 0, overheal: 0 };
+  let heal = 0, shield = 0, over = 0;
+  for (let i = 0; i < 6; i++) {
+    if (i % 2 === 0) {
+      const amount = (10 + s.level * 3) * s.healMul * s.talentMul;
+      // overheal: 15% chance target is full
+      if (rng() < 0.15) { over += amount; } else { heal += amount; }
+    }
+    if (s.shieldMul > 0 && i % 4 === 0) {
+      shield += (8 + s.level * 2) * s.shieldMul * s.talentMul;
+    }
+  }
+  return { heal, shield, overheal: over };
+}
+
+function simTapWeapon(w, level, targetKind) {
+  const t = TARGETS[targetKind];
+  // taps per round: 6 turns, cooldowns reduce
+  const tapsPerRound = w.cd.unit === 'turns'
+    ? 6 / (1 + w.cd.n)
+    : 6 / (1 + w.cd.n); // rounds treated similarly across a 1-round window, scaled down:
+  const cdMul = w.cd.unit === 'rounds' ? 1 / (1 + w.cd.n * 0.5) : 1;
+  const [lo, hi] = w.power;
+  let total = 0;
+  const scale = 1 + level * 0.08;
+  const iters = Math.max(1, Math.round(tapsPerRound * cdMul));
+  for (let i = 0; i < iters; i++) {
+    let dmg = (lo + rng() * (hi - lo)) * scale;
+    if (w.targeting === 'aoe_group' || w.targeting === 'aoe_all') dmg *= t.aoeMul;
+    if (w.targeting === 'chain') dmg *= Math.min(3, 1 + t.aoeMul * 0.5);
+    if (w.targeting === 'line') dmg *= Math.min(2.5, 1 + t.aoeMul * 0.4);
+    dmg *= (1 - t.armor * 0.7);
+    total += dmg;
+  }
+  return total;
+}
+
+function simTapUtility(u, level) {
+  if (u.kind !== 'heal' && u.kind !== 'shield') return { heal: 0, shield: 0, overheal: 0 };
+  const [lo] = u.power;
+  const tapsPerRound = u.cd.unit === 'turns' ? 6 / (1 + u.cd.n) : 6 / (1 + u.cd.n * 2);
+  const iters = Math.max(1, Math.round(tapsPerRound));
+  const scale = 1 + level * 0.06;
+  let heal = 0, shield = 0, over = 0;
+  for (let i = 0; i < iters; i++) {
+    const amt = lo * scale;
+    if (u.kind === 'heal') {
+      if (rng() < 0.2) over += amt; else heal += amt;
+    } else shield += amt;
+  }
+  return { heal, shield, overheal: over };
+}
+
+function simCompanion(s, targetKind) {
+  const t = TARGETS[targetKind];
+  let total = 0;
+  for (let i = 0; i < 6; i++) {
+    if (rng() >= s.hitChance) continue;
+    let dmg = (s.weaponBase + rng() * s.weaponBase + s.attrMod) * s.talentMul;
+    if (rng() < s.crit) dmg *= 1.6;
+    dmg *= (1 - t.armor);
+    total += dmg;
+  }
+  return total;
+}
+
+// ===================================================================
+// Driver
+// ===================================================================
+
+const SCENARIOS = [];
+for (const act of ACTS) for (const tk of Object.keys(TARGETS)) SCENARIOS.push({ act, targetKind: tk });
+const LEVELS = [1,5,10,15];
+
+function mean(arr) { return arr.reduce((a,b)=>a+b,0) / arr.length; }
+
+async function runSim(runsPerCell, onProgress) {
+  const result = {
+    label: document.getElementById('label').value || 'mXX',
+    date: new Date().toISOString().slice(0,10),
+    runs: runsPerCell,
+    heroes: {}, companions: {}, taps: {}, utilities: {},
+  };
+  // Heroes
+  let done = 0;
+  const total = HEROES.length + COMPANIONS.length + TAP_WEAPONS.length + TAP_UTILITIES.length;
+  for (const h of HEROES) {
+    const entry = { byLevel: {}, byScenario: {}, healByLevel: {} };
+    for (const lvl of LEVELS) {
+      const s = heroStats(h, lvl);
+      const dpsRuns = [];
+      for (let i = 0; i < runsPerCell; i++) dpsRuns.push(simHeroTurn(s, null, 'tank'));
+      entry.byLevel[lvl] = mean(dpsRuns);
+      // heal
+      const hruns = [], sruns = [], oruns = [];
+      for (let i = 0; i < runsPerCell; i++) {
+        const r = simHeroHeal(s, 'tank');
+        hruns.push(r.heal); sruns.push(r.shield); oruns.push(r.overheal);
+      }
+      entry.healByLevel[lvl] = { heal: mean(hruns), shield: mean(sruns), overheal: mean(oruns) };
+    }
+    // Scenarios at L10
+    const sLvl = heroStats(h, 10);
+    for (const sc of SCENARIOS) {
+      const runs = [];
+      for (let i = 0; i < runsPerCell; i++) {
+        const actMul = 1 + (sc.act - 1) * 0.08;
+        runs.push(simHeroTurn(sLvl, null, sc.targetKind) * actMul);
+      }
+      entry.byScenario[`${sc.targetKind}_a${sc.act}`] = mean(runs);
+    }
+    result.heroes[h[0]] = entry;
+    done++; onProgress(done/total);
+    await new Promise(r => setTimeout(r, 0));
+  }
+  // Companions
+  for (const c of COMPANIONS) {
+    const entry = { byLevel: {} };
+    for (const lvl of LEVELS) {
+      const s = companionStats(c, lvl);
+      const runs = [];
+      for (let i = 0; i < runsPerCell; i++) runs.push(simCompanion(s, 'tank'));
+      entry.byLevel[lvl] = mean(runs);
+    }
+    result.companions[c[0]] = entry;
+    done++; onProgress(done/total);
+    await new Promise(r => setTimeout(r, 0));
+  }
+  // Taps
+  for (const w of TAP_WEAPONS) {
+    const entry = { byLevel: {}, byScenario: {} };
+    for (const lvl of LEVELS) {
+      const runs = [];
+      for (let i = 0; i < runsPerCell; i++) runs.push(simTapWeapon(w, lvl, 'tank'));
+      entry.byLevel[lvl] = mean(runs);
+    }
+    for (const sc of SCENARIOS) {
+      const runs = [];
+      for (let i = 0; i < runsPerCell; i++) {
+        const actMul = 1 + (sc.act - 1) * 0.08;
+        runs.push(simTapWeapon(w, 10, sc.targetKind) * actMul);
+      }
+      entry.byScenario[`${sc.targetKind}_a${sc.act}`] = mean(runs);
+    }
+    result.taps[w.id] = entry;
+    done++; onProgress(done/total);
+    await new Promise(r => setTimeout(r, 0));
+  }
+  // Utilities
+  for (const u of TAP_UTILITIES) {
+    const entry = { byLevel: {} };
+    for (const lvl of LEVELS) {
+      const hruns = [], sruns = [], oruns = [];
+      for (let i = 0; i < runsPerCell; i++) {
+        const r = simTapUtility(u, lvl);
+        hruns.push(r.heal); sruns.push(r.shield); oruns.push(r.overheal);
+      }
+      entry.byLevel[lvl] = { heal: mean(hruns), shield: mean(sruns), overheal: mean(oruns) };
+    }
+    result.utilities[u.id] = entry;
+    done++; onProgress(done/total);
+    await new Promise(r => setTimeout(r, 0));
+  }
+  return result;
+}
+
+// ===================================================================
+// Rendering
+// ===================================================================
+
+const charts = {};
+function makeChart(id, cfg) {
+  if (charts[id]) charts[id].destroy();
+  charts[id] = new Chart(document.getElementById(id), cfg);
+}
+
+function renderAll(res) {
+  // Hero DPS by level
+  const heroIds = Object.keys(res.heroes);
+  makeChart('chartHeroDps', {
+    type: 'line',
+    data: {
+      labels: LEVELS.map(l => 'L'+l),
+      datasets: heroIds.map((id, i) => ({
+        label: id, data: LEVELS.map(l => res.heroes[id].byLevel[l]),
+        borderColor: `hsl(${(i*360/heroIds.length)|0},70%,60%)`, backgroundColor: 'transparent', tension: 0.3
+      }))
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#e8e4f0', boxWidth: 10, font: { size: 10 } } }, tooltip: { mode: 'index' } }, scales: { x: { ticks: { color: '#a09cb0' } }, y: { ticks: { color: '#a09cb0' }, title: { display: true, text: 'DPS', color: '#c0a8e8' } } } }
+  });
+
+  // Hero DPS by scenario (L10)
+  const scenKeys = Object.keys(res.heroes[heroIds[0]].byScenario);
+  makeChart('chartScen', {
+    type: 'bar',
+    data: {
+      labels: scenKeys,
+      datasets: [{
+        label: 'avg hero DPS',
+        data: scenKeys.map(k => mean(heroIds.map(id => res.heroes[id].byScenario[k]))),
+        backgroundColor: '#8c60c8'
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#e8e4f0' } } }, scales: { x: { ticks: { color: '#a09cb0', font: { size: 9 } } }, y: { ticks: { color: '#a09cb0' } } } }
+  });
+
+  // HPS — healers + utilities
+  const healers = heroIds.filter(id => res.heroes[id].healByLevel[10].heal > 0);
+  const utilIds = Object.keys(res.utilities);
+  makeChart('chartHps', {
+    type: 'bar',
+    data: {
+      labels: [...healers, ...utilIds],
+      datasets: [
+        { label: 'Heal', backgroundColor: '#60e080', data: [...healers.map(id => res.heroes[id].healByLevel[10].heal), ...utilIds.map(id => res.utilities[id].byLevel[10].heal)] },
+        { label: 'Shield', backgroundColor: '#4080c0', data: [...healers.map(id => res.heroes[id].healByLevel[10].shield), ...utilIds.map(id => res.utilities[id].byLevel[10].shield)] },
+        { label: 'Overheal (wasted)', backgroundColor: '#c06060', data: [...healers.map(id => res.heroes[id].healByLevel[10].overheal), ...utilIds.map(id => res.utilities[id].byLevel[10].overheal)] },
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#e8e4f0' } } }, scales: { x: { stacked: true, ticks: { color: '#a09cb0', font: { size: 9 } } }, y: { stacked: true, ticks: { color: '#a09cb0' } } } }
+  });
+
+  // Tap weapons
+  const tapIds = Object.keys(res.taps);
+  makeChart('chartTap', {
+    type: 'bar',
+    data: {
+      labels: tapIds,
+      datasets: LEVELS.map((l,i) => ({
+        label: 'L'+l,
+        data: tapIds.map(id => res.taps[id].byLevel[l]),
+        backgroundColor: `hsl(${30+i*50},70%,55%)`
+      }))
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#e8e4f0' } } }, scales: { x: { ticks: { color: '#a09cb0', font: { size: 10 } } }, y: { ticks: { color: '#a09cb0' } } } }
+  });
+
+  // Companions
+  const compIds = Object.keys(res.companions);
+  makeChart('chartComp', {
+    type: 'bar',
+    data: {
+      labels: compIds,
+      datasets: LEVELS.map((l,i) => ({
+        label: 'L'+l, data: compIds.map(id => res.companions[id].byLevel[l]),
+        backgroundColor: `hsl(${180+i*40},60%,55%)`
+      }))
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#e8e4f0' } } }, scales: { x: { ticks: { color: '#a09cb0', font: { size: 10 } } }, y: { ticks: { color: '#a09cb0' } } } }
+  });
+
+  // Raw table
+  const tb = document.querySelector('#rawTable tbody');
+  tb.innerHTML = '';
+  for (const id of heroIds) {
+    const h = res.heroes[id]; const hl = h.healByLevel[10];
+    const tot = hl.heal + hl.overheal;
+    const oh = tot > 0 ? (hl.overheal / tot * 100) : 0;
+    tb.insertAdjacentHTML('beforeend', `<tr><td>${id}</td><td>${h.byLevel[10].toFixed(1)}</td><td>${hl.heal.toFixed(1)}</td><td>${hl.shield.toFixed(1)}</td><td>${oh.toFixed(0)}%</td></tr>`);
+  }
+
+  // Prompt
+  document.getElementById('promptOut').value = buildPrompt(res);
+}
+
+function buildPrompt(res) {
+  const heroIds = Object.keys(res.heroes);
+  const dpsL10 = heroIds.map(id => [id, res.heroes[id].byLevel[10]]).sort((a,b) => b[1]-a[1]);
+  const top = dpsL10.slice(0,3), bot = dpsL10.slice(-3);
+  const avg = mean(dpsL10.map(x => x[1]));
+  const tapIds = Object.keys(res.taps);
+  const tapAvg = mean(tapIds.map(id => res.taps[id].byLevel[10]));
+  const utilIds = Object.keys(res.utilities);
+  const totalOverheal = mean(utilIds.map(id => {
+    const u = res.utilities[id].byLevel[10];
+    const t = u.heal + u.overheal;
+    return t > 0 ? u.overheal / t : 0;
+  })) * 100;
+
+  return `Rebalance survey snapshot ${res.label} (${res.date}) — game13 combat sim, ${res.runs} runs/cell, 24 scenarios x 4 levels.
+
+AVG HERO DPS AT L10: ${avg.toFixed(1)}
+
+TOP OUTLIERS (over-performing):
+${top.map(([id,v]) => `  - ${id}: ${v.toFixed(1)} DPS (${((v/avg-1)*100).toFixed(0)}% above mean)`).join('\n')}
+
+UNDERPERFORMERS (need buffs):
+${bot.map(([id,v]) => `  - ${id}: ${v.toFixed(1)} DPS (${((v/avg-1)*100).toFixed(0)}% below mean)`).join('\n')}
+
+TAP WEAPONS avg DPS at L10: ${tapAvg.toFixed(1)}. Watch for dragon_call / star_caller swing against swarms vs bosses.
+UTILITIES avg overheal waste: ${totalOverheal.toFixed(0)}% (target <15% — anything higher means heal tick is too bursty).
+
+Please propose targeted numeric changes in src/game/classes.js, src/game/skills.js, and src/game/tapWeapons.js to:
+1. Bring outliers within +/- 15% of the mean.
+2. Lift underperformers (adjust dmgMul, weapon die, or skill coefficients).
+3. Reduce overheal waste by lowering single-tick heals or splitting over more turns.
+4. Keep act-6 boss fights challenging without wrecking act-1 tank encounters.
+
+After changes are made, re-run this tool and diff against ${res.label} to verify.`;
+}
+
+// ===================================================================
+// Drift chart — pulls prior snapshots
+// ===================================================================
+
+async function loadDrift(currentRes) {
+  const drift = [];
+  try {
+    const idx = await fetch('./rebalance_snapshots/index.json').then(r => r.json());
+    for (const f of idx.files || []) {
+      try {
+        const snap = await fetch('./rebalance_snapshots/' + f).then(r => r.json());
+        const heroIds = Object.keys(snap.heroes || {});
+        if (!heroIds.length) continue;
+        const avg = mean(heroIds.map(id => snap.heroes[id].byLevel[10] || 0));
+        drift.push({ label: snap.label || f.replace('.json',''), value: avg });
+      } catch (_) {}
+    }
+  } catch (_) {}
+  if (currentRes) {
+    const heroIds = Object.keys(currentRes.heroes);
+    const avg = mean(heroIds.map(id => currentRes.heroes[id].byLevel[10]));
+    const lbl = currentRes.label + ' (current)';
+    if (!drift.find(d => d.label === lbl)) drift.push({ label: lbl, value: avg });
+  }
+  makeChart('chartDrift', {
+    type: 'line',
+    data: {
+      labels: drift.map(d => d.label),
+      datasets: [{ label: 'avg hero DPS L10 (tank)', data: drift.map(d => d.value), borderColor: '#f0d880', backgroundColor: 'rgba(240,216,128,0.2)', tension: 0.3, fill: true }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#e8e4f0' } } }, scales: { x: { ticks: { color: '#a09cb0' } }, y: { ticks: { color: '#a09cb0' } } } }
+  });
+}
+
+// ===================================================================
+// UI wiring
+// ===================================================================
+
+let lastResult = null;
+
+document.getElementById('runBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('runBtn');
+  btn.disabled = true;
+  const status = document.getElementById('status');
+  const runs = parseInt(document.getElementById('runs').value, 10) || 200;
+  status.textContent = 'running...';
+  const res = await runSim(runs, (p) => { status.textContent = `running... ${(p*100).toFixed(0)}%`; });
+  lastResult = res;
+  status.textContent = `done — ${Object.keys(res.heroes).length} heroes, ${Object.keys(res.taps).length} taps, ${Object.keys(res.companions).length} companions`;
+  renderAll(res);
+  await loadDrift(res);
+  document.getElementById('saveBtn').disabled = false;
+  btn.disabled = false;
+});
+
+document.getElementById('saveBtn').addEventListener('click', () => {
+  if (!lastResult) return;
+  const blob = new Blob([JSON.stringify(lastResult, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${lastResult.label}.json`;
+  a.click();
+  alert(`Saved ${lastResult.label}.json — drop it in public/assets/rebalance_snapshots/ and add the filename to index.json to include it in drift tracking.`);
+});
+
+// Load any existing drift on page open
+loadDrift(null);
+</script>
+</body>
+</html>

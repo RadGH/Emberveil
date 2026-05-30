@@ -1,0 +1,48 @@
+{
+  "node": {
+    "id": "shrine_emberwood_ic0g803_005",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "captain_maer",
+    "lines": [
+      "This shrine is a remnant of better days.",
+      "Its power wanes, yet it still calls."
+    ],
+    "choices": [
+      {
+        "id": "invoke",
+        "text": "[Arcana - INT] Attempt to invoke its power.",
+        "skillCheck": {
+          "skill": "arcana",
+          "stat": "INT",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#power_found",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#power_fades",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Walk away from it, uneasy.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"invoke\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:10:32.710Z"
+}

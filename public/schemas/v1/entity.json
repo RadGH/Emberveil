@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/entity.json",
+  "title": "Emberveil Entity Shared Definitions (v1)",
+  "description": "Shared $defs for canonical entity/combat data. The `combatant` def is the authoritative superset of EVERY field that appears on any enemy across src/maps/mapData.js (ENEMIES, ENEMIES_ACT4/5/6, inline ENCOUNTERS enemies, HIDDEN_BOSS_ENCOUNTERS). Field list verified by grepping the live source — see game13/memory/extraction-report.md.",
+  "type": "object",
+  "$defs": {
+    "range": {
+      "title": "Numeric range [min, max]",
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "statusEffect": {
+      "title": "Status effect application",
+      "description": "A status applied on hit / on phase entry. `power`/`duration` are optional because some inline statusOnHit entries omit them (e.g. stun { type,chance,duration } with no power).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string" },
+        "chance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "duration": { "type": "number" },
+        "power": { "type": "number" }
+      }
+    },
+    "statusOnHit": {
+      "title": "statusOnHit — single status OR array of statuses",
+      "description": "mapData.js uses BOTH shapes: an array of statusEffect (most ENEMIES) and a single bare statusEffect object (ENEMIES_ACT4/5 void_wraith, reality_shard, etc). Byte-parity requires preserving whichever shape the source used.",
+      "oneOf": [
+        { "$ref": "#/$defs/statusEffect" },
+        { "type": "array", "items": { "$ref": "#/$defs/statusEffect" } }
+      ]
+    },
+    "combatant": {
+      "title": "Combatant stat block (enemy/boss superset)",
+      "description": "Exhaustive field set. additionalProperties:false enforces that no enemy field is silently dropped — if extraction fails validation a field is missing here and must be added (data-loss guard).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "hp", "maxHp", "dmg", "armor", "hit", "dodge", "xpValue"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "hp": { "type": "number" },
+        "maxHp": { "type": "number" },
+        "dmg": { "$ref": "#/$defs/range" },
+        "armor": { "type": "number" },
+        "hit": { "type": "number" },
+        "dodge": { "type": "number" },
+        "xpValue": { "type": "number" },
+        "magicResist": { "type": "number" },
+        "gold": { "$ref": "#/$defs/range" },
+        "loot": { "type": "array", "items": { "type": "string" } },
+        "spellList": { "type": "array", "items": { "type": "string" } },
+        "spellChance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "statusOnHit": { "$ref": "#/$defs/statusOnHit" },
+        "blockChance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "stealableBuffs": { "type": "array" },
+        "isBoss": { "type": "boolean" }
+      }
+    },
+    "combatantOverrides": {
+      "title": "Per-encounter combatant override delta",
+      "description": "Partial combatant — any subset of combatant fields, applied on top of the base enemies.json/bosses.json entry to reproduce a byte-identical inline encounter stat block. Same field set as combatant minus the required[] constraint. A field value of `null` is the DELETE_MARKER: it means the inline encounter literal OMITS that key even though the shared-id base defines it (e.g. inline dragon_whelp has no loot/statusOnHit while ENEMIES_ACT6.dragon_whelp does); resolution removes the key. No combatant field is ever literally null in legacy mapData, so the marker is unambiguous. Contract authored identically in scripts/extract-canonical-data.mjs (applyOverride), scripts/verify-canonical-parity.mjs (resolveCanonGroup), and game13/memory/canonical-data-migration-plan.md.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": { "oneOf": [{ "type": "string" }, { "type": "null" }] },
+        "name": { "oneOf": [{ "type": "string" }, { "type": "null" }] },
+        "hp": { "oneOf": [{ "type": "number" }, { "type": "null" }] },
+        "maxHp": { "oneOf": [{ "type": "number" }, { "type": "null" }] },
+        "dmg": { "oneOf": [{ "$ref": "#/$defs/range" }, { "type": "null" }] },
+        "armor": { "oneOf": [{ "type": "number" }, { "type": "null" }] },
+        "hit": { "oneOf": [{ "type": "number" }, { "type": "null" }] },
+        "dodge": { "oneOf": [{ "type": "number" }, { "type": "null" }] },
+        "xpValue": { "oneOf": [{ "type": "number" }, { "type": "null" }] },
+        "magicResist": { "oneOf": [{ "type": "number" }, { "type": "null" }] },
+        "gold": { "oneOf": [{ "$ref": "#/$defs/range" }, { "type": "null" }] },
+        "loot": { "oneOf": [{ "type": "array", "items": { "type": "string" } }, { "type": "null" }] },
+        "spellList": { "oneOf": [{ "type": "array", "items": { "type": "string" } }, { "type": "null" }] },
+        "spellChance": { "oneOf": [{ "type": "number", "minimum": 0, "maximum": 1 }, { "type": "null" }] },
+        "statusOnHit": { "oneOf": [{ "$ref": "#/$defs/statusOnHit" }, { "type": "null" }] },
+        "blockChance": { "oneOf": [{ "type": "number", "minimum": 0, "maximum": 1 }, { "type": "null" }] },
+        "stealableBuffs": { "oneOf": [{ "type": "array" }, { "type": "null" }] },
+        "isBoss": { "oneOf": [{ "type": "boolean" }, { "type": "null" }] }
+      }
+    }
+  }
+}

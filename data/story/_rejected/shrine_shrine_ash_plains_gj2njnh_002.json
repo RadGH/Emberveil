@@ -1,0 +1,18 @@
+{
+  "node": {
+    "id": "shrine_ash_plains_gj2njnh_002",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "This stone has absorbed too much fire.",
+      "A sacrifice may awaken what slumbers."
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:09:35.360Z"
+}

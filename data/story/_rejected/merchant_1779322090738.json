@@ -1,0 +1,13 @@
+{
+  "node": "nodes\":{\"merchant_old_road_f7czwx8_002_wares\":{\"lines\":[\"He displays a collection of strange trinkets. 'How about a cursed compass? Directions may vary.'\"],\"choices\":[{\"id\":\"buy_compass\",\"text\":\"Buy the cursed compass. (15 gold)\",\"next\":null,\"effects\":[{\"type\":\"gold_delta\",\"amount\":-15},{\"type\":\"grant_item\",\"itemId\":\"cursed_compass\"}]}]}},\"merchant_old_road_f7czwx8_002_discount\":{\"lines\":[\"He grins. 'Alright, I’ll cut you a deal this time.'\"],\"choices\":[{\"id\":\"buy_discount\",\"text\":\"Buy the cursed compass at a discount. (10 gold)\",\"next\":null,\"effects\":[{\"type\":\"gold_delta\",\"amount\":-10},{\"type\":\"grant_item\",\"itemId\":\"cursed_compass\"}]}]},\"merchant_old_road_f7czwx8_002_no_discount\":{\"lines\":[\"He shakes his head. 'You’ll pay full price, friend.'\"],\"choices\":[{\"id\":\"buy_compass_full\",\"text\":\"Buy the cursed compass for 15 gold.\",\"next\":null,\"effects\":[{\"type\":\"gold_delta\",\"amount\":-15},{\"type\":\"grant_item\",\"itemId\":\"cursed_compass\"}]}]}}},{",
+  "validationErrors": [
+    "missing id",
+    "missing pool",
+    "pool mismatch: got \"undefined\" expected \"merchant\"",
+    "act must be integer",
+    "unknown biome: \"undefined\"",
+    "lines must be non-empty array",
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:08:10.739Z"
+}

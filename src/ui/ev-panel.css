@@ -1,0 +1,125 @@
+/*
+ * ev-panel.css — M388 manual-mode overhaul: reusable border panel component
+ *
+ * Usage:
+ *   <div class="ev-panel ev-panel--card">
+ *     <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+ *     <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+ *     <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+ *     <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+ *     <div class="ev-panel__body"> ... </div>
+ *   </div>
+ *
+ * Symbol sprite block (ev-symbols.html) must be injected into <body> once
+ * before any ev-panel is rendered so <use href="#corner-*"> can resolve.
+ *
+ * Classes are intentionally unused until M389+ — adding this file has
+ * zero effect on existing screens.
+ */
+
+/* ── Base panel ── */
+.ev-panel {
+  /* Local token overrides — state modifiers change these, nothing else */
+  --border-stroke: var(--gold-rim);
+  --border-width:  1.5px;
+  --panel-inset-glow: inset 0 0 16px rgba(0, 0, 0, 0.72);
+
+  position: relative;
+  background: var(--ember-deep);
+  border: var(--border-width) solid var(--border-stroke);
+  box-shadow: var(--panel-inset-glow);
+  padding: 8px 10px;
+  /* Corners sit outside the border box — must not clip */
+  overflow: visible;
+}
+
+/* ── Corner SVG anchoring ── */
+.ev-corner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  overflow: visible;
+}
+.ev-corner--tl { top: -11px; left: -11px; }
+.ev-corner--tr { top: -11px; right: -11px; transform: rotate(90deg);  transform-origin: 50% 50%; }
+.ev-corner--bl { bottom: -11px; left: -11px; transform: rotate(270deg); transform-origin: 50% 50%; }
+.ev-corner--br { bottom: -11px; right: -11px; transform: rotate(180deg); transform-origin: 50% 50%; }
+
+/* ── Seal bar — gradient horizontal accent inside a panel header ── */
+.ev-panel__seal {
+  display: block;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--border-stroke) 20%,
+    var(--border-stroke) 80%,
+    transparent 100%
+  );
+  margin: 0 0 10px;
+  opacity: 0.7;
+}
+
+/* ── State modifiers ── */
+.ev-panel[data-state="active"] {
+  --border-stroke: var(--gold-glow);
+  --panel-inset-glow: inset 0 0 18px rgba(248, 232, 144, 0.18);
+}
+
+.ev-panel[data-state="disabled"] {
+  --border-stroke: var(--gold-dim);
+  --panel-inset-glow: inset 0 0 12px rgba(0, 0, 0, 0.85);
+  opacity: 0.55;
+}
+
+.ev-panel[data-state="selected"] {
+  --border-stroke: var(--arc-blue);
+  --panel-inset-glow: inset 0 0 14px rgba(64, 168, 255, 0.22);
+}
+
+.ev-panel[data-state="enemy-target"] {
+  --border-stroke: var(--hp-low);
+  --panel-inset-glow: inset 0 0 14px rgba(204, 48, 32, 0.28);
+}
+
+/* ── Corner variant switching ──────────────────────────────────────────────
+   `href` is an SVG attribute, not a CSS property — the previous declarations
+   here (`href: "#corner-..."`) compiled but did nothing. Variant switching is
+   done in markup by emitting `<use href="#corner-{variant}">` directly, OR
+   in JS via `useEl.setAttribute('href', '#corner-flourish')`. The class
+   modifiers below remain as JS-targeting / state hooks; they no longer
+   pretend to swap symbol references via CSS.
+   _Fix: M388 verifier 2026-04-30._ */
+.ev-panel--lozenge,
+.ev-panel--flourish,
+.ev-panel--simple {
+  /* Marker classes only. The actual symbol reference lives on
+     <use href="#corner-{variant}"> in the rendered template. */
+}
+
+/* ── Size alias: card (main HUD character card) ── */
+.ev-panel--card {
+  padding: 14px 16px 12px;
+  min-height: 90px;
+}
+
+/* ── Size alias: tooltip ── */
+.ev-panel--tooltip {
+  padding: 12px 14px 10px;
+  min-height: 80px;
+}
+
+/* ── Size alias: mini (util-buttons, turn-chips) ── */
+.ev-panel--mini {
+  min-height: 0;
+  padding: 8px 10px;
+}
+.ev-panel--mini .ev-corner {
+  width: 24px;
+  height: 24px;
+}
+.ev-panel--mini .ev-corner--tl { top: -8px; left: -8px; }
+.ev-panel--mini .ev-corner--tr { top: -8px; right: -8px; }
+.ev-panel--mini .ev-corner--bl { bottom: -8px; left: -8px; }
+.ev-panel--mini .ev-corner--br { bottom: -8px; right: -8px; }

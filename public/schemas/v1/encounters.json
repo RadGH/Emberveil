@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/encounters.json",
+  "title": "Emberveil Encounters File (v1)",
+  "description": "Canonical encounter tables. Each encounter references base enemy/boss ids; `overrides` captures the per-encounter stat delta needed so the resolved combat object is byte-identical to today's mapData.js (the conflicting void_wraith / dragon_whelp variants live here as overrides, NOT collapsed). Covers ENCOUNTERS + HIDDEN_BOSS_ENCOUNTERS.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "encounters"],
+  "properties": {
+    "version": { "const": 1 },
+    "source": { "type": "string" },
+    "encounters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "enemies"],
+        "properties": {
+          "name": { "type": "string" },
+          "introText": { "type": "string" },
+          "hidden": { "type": "boolean" },
+          "bossLootRef": {
+            "description": "Hidden-boss encounters carry an inline bossLoot table; preserved verbatim for byte-parity.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "bases": { "type": "array", "items": { "type": "string" } },
+              "rarity": { "type": "string" },
+              "quality": { "type": "string" },
+              "rolls": { "type": "number" }
+            }
+          },
+          "enemies": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["ref", "count"],
+              "properties": {
+                "ref": {
+                  "type": "string",
+                  "description": "Enemy/boss id resolved against enemies.json or bosses.json."
+                },
+                "count": { "type": "integer", "minimum": 1 },
+                "overrides": { "$ref": "entity.json#/$defs/combatantOverrides" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

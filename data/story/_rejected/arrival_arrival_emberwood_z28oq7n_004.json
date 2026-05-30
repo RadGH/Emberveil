@@ -1,0 +1,84 @@
+{
+  "node": {
+    "id": "arrival_emberwood_z28oq7n_004",
+    "pool": "arrival",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "tense",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "You're not the first to wander here.",
+      "Caution is advised. Speak quickly."
+    ],
+    "choices": [
+      {
+        "id": "share_info",
+        "text": "We seek to investigate the cult activity.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "demand_info",
+        "text": "[Diplomacy - INT] Convince him to share details.",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "intellect",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#after_pass",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "road_evidence_burned"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#after_fail",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "We’ll find our own way. Farewell.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "after_pass": {
+        "lines": [
+          "He eyes you with newfound respect.",
+          "\"There's a cult hideout not far from here.\""
+        ],
+        "choices": [
+          {
+            "id": "inquire_hideout",
+            "text": "Tell me more about this hideout.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "after_fail": {
+        "lines": [
+          "\"You think threats will sway me?\"",
+          "He turns away dismissively."
+        ],
+        "choices": [
+          {
+            "id": "leave",
+            "text": "Walk away in silence.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"demand_info\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-20T23:55:53.568Z"
+}

@@ -1,0 +1,18 @@
+{
+  "node": {
+    "id": "shrine_ember_hollow_g4lc1hz_002",
+    "pool": "shrine",
+    "act": 3,
+    "biome": "ember_hollow",
+    "tone": "corrupted",
+    "speaker": "ash_prophet_npc",
+    "lines": [
+      "The ashes swirl like whispers; they tell a tale of despair.",
+      "You come seeking what cannot return."
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:08:45.138Z"
+}

@@ -1,0 +1,74 @@
+{
+  "zones": {
+    "prologue": {
+      "act": 0,
+      "name": "The Lonely Road",
+      "backgrounds": ["border_roads_hd.png"]
+    },
+    "border_roads": {
+      "act": 1,
+      "name": "The Border Roads",
+      "backgrounds": ["border_roads_hd.png"]
+    },
+    "thornwood": {
+      "act": 1,
+      "name": "Thornwood Forest",
+      "backgrounds": ["thornwood_forest_hd.png"]
+    },
+    "dust_roads": {
+      "act": 2,
+      "name": "The Dust Roads",
+      "backgrounds": ["desert_plateau_hd.png", "ashen_gate_hd.jpg"]
+    },
+    "ash_gate": {
+      "act": 2,
+      "name": "Ashen Gate",
+      "backgrounds": ["ashen_gate_hd.jpg"]
+    },
+    "ember_plateau": {
+      "act": 2,
+      "name": "The Ember Plateau",
+      "backgrounds": ["volcanic_waste_hd.png"]
+    },
+    "hell_breach": {
+      "act": 3,
+      "name": "The Hell Breach",
+      "backgrounds": ["hell_breach_hd.png"]
+    },
+    "shattered_core": {
+      "act": 3,
+      "name": "The Shattered Core",
+      "backgrounds": ["shattered_core_hd.png"]
+    },
+    "cosmic_rift": {
+      "act": 4,
+      "name": "The Cosmic Rift",
+      "backgrounds": ["cosmic_rift_hd.png"]
+    },
+    "eternal_void": {
+      "act": 4,
+      "name": "The Eternal Void",
+      "backgrounds": ["eternal_void_hd.png"]
+    },
+    "abyssal_depths": {
+      "act": 5,
+      "name": "The Abyssal Depths",
+      "backgrounds": ["abyssal_depths_hd.png"]
+    },
+    "primordial_nexus": {
+      "act": 5,
+      "name": "The Primordial Nexus",
+      "backgrounds": ["primordial_nexus_hd.png"]
+    },
+    "dragons_reach": {
+      "act": 6,
+      "name": "The Dragon's Reach",
+      "backgrounds": ["dragons_reach_hd.png"]
+    },
+    "dragon_throne": {
+      "act": 6,
+      "name": "The Dragon Throne",
+      "backgrounds": ["dragon_throne_hd.png"]
+    }
+  }
+}

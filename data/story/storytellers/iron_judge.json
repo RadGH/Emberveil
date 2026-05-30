@@ -1,0 +1,18 @@
+{
+  "id": "iron_judge",
+  "displayName": "The Iron Judge",
+  "bio": "There is no mercy on the road. If the filter yields nothing, an ambush is synthesized — there is no safe fallback.",
+  "portraitImage": "images/openai_v2/storyteller_iron_judge_portrait.png",
+  "preferredThemes": ["combat", "judgment", "punishment", "trial"],
+  "combatFrequency": 0.6,
+  "skillCheckVariety": 0.5,
+  "thematicConsistency": 0.75,
+  "pressureBias": 0.25,
+  "rules": {
+    "maxSameTypeStreak": 3,
+    "minNodesBetweenBosses": 18,
+    "forceRestAfterBrutalFight": false,
+    "fallbackAllowed": false
+  },
+  "uniqueMechanic": "no_fallback_ambush_instead"
+}

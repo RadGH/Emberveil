@@ -1,0 +1,68 @@
+{
+  "node": {
+    "id": "ambush_old_road_9v56h4u_002",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "You look lost. This road's not safe anymore.",
+      "Hand over your valuables, and you may pass."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Prepare for a fight.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "bandit",
+              "bandit"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "diplomacy",
+        "text": "[Diplomacy - CHA] Convince him to let you pass.",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "CHA",
+          "dc": 12
+        },
+        "onPass": {
+          "next": null,
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "bandit",
+                "bandit"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "pay_off",
+        "text": "Hand over 15 gold.",
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -15
+          }
+        ]
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"diplomacy\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:04:29.724Z"
+}

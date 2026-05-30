@@ -1,0 +1,155 @@
+[
+  {
+    "slug": "2026-05-07-rebalance-and-grid",
+    "title": "Battle Grid, Manual Mode & 100-Class Rebalance",
+    "date": "2026-05-07",
+    "category": "release",
+    "summary": "The battle grid gets a full zone-based layout overhaul with sprites sized to fit adjacent columns. Manual combat mode ships alongside a comprehensive balance pass covering all 100 classes.",
+    "file": "2026-05-07-rebalance-and-grid.html",
+    "hero": "images/news_hero/post-overhaul-update.jpg"
+  },
+  {
+    "slug": "post-overhaul-update",
+    "title": "Cloud Saves, UI Unification & a Balance Pass",
+    "date": "2026-04-28",
+    "category": "release",
+    "summary": "99 milestones since the fast-travel overhaul: cloud saves, telemetry with consent gating, UI unification across five screens, NPC art pipeline maturity, the M350 balance pass that smoothed Acts 5-6, Image Review V2 launch, and shared design tokens.",
+    "file": "post-overhaul-update.html",
+    "hero": "images/combat_bg/border_roads_hd.png"
+  },
+  {
+    "slug": "2026-04-26-m309-news-pipeline",
+    "title": "M313 Dev Diary: News Pipeline, Asset Snapshots & Release Tooling",
+    "date": "2026-04-26",
+    "category": "dev-diary",
+    "summary": "M313 wires up four infrastructure features: a public/news/ content pipeline with a Latest News widget, versioned asset snapshots per milestone, changelog category tags in release.sh, and backward-compatibility notes surfaced in the What's New splash.",
+    "file": null,
+    "hero": "images/combat_bg/ashen_gate_hd.jpg"
+  },
+  {
+    "slug": "2026-04-25-sets-and-uniques",
+    "title": "Sets and Uniques System: Full Item Tier Overhaul in M305",
+    "date": "2026-04-25",
+    "category": "release",
+    "summary": "M305 shipped 24 set items (12 two-piece Sigon-style, 8 mid three-piece, 4 endgame four/five-piece), 24 unique items across 5 acts, 40 new affixes, and legendary mechanical effects with onCrit/onKill/onCast/onCombatStart hooks.",
+    "file": null,
+    "hero": "images/combat_bg/dragons_reach_hd.png"
+  },
+  {
+    "slug": "2026-04-25-infinite-depths",
+    "title": "Infinite Depths: Endless Dungeon Mode Ships in M306",
+    "date": "2026-04-25",
+    "category": "release",
+    "summary": "M306 introduced Infinite Run mode \u2014 a procedurally scaled endless dungeon that ramps difficulty every 5 floors, awards exclusive affixes, and persists a personal best score across sessions.",
+    "file": null,
+    "hero": "images/combat_bg/volcanic_waste_hd.png"
+  },
+  {
+    "slug": "2026-04-24-emberveil-m302-gameplay-batch",
+    "title": "M302 Gameplay Batch: Companion Sync, Flee Mechanic & New Rogue Skills",
+    "date": "2026-04-24",
+    "category": "release",
+    "summary": "M302 landed companion level-sync, a DEX-check flee mechanic, two new Rogue skills (Pilfer Magic and Hemorrhage), Warlock Soul Curse with curse-spread, skill-check map nodes, and a full node-overlay system for merchant, minigame, and bandit encounters.",
+    "file": null,
+    "hero": "images/combat_bg/primordial_nexus_hd.png"
+  },
+  {
+    "slug": "m220-m254-consolidation",
+    "title": "Fast-Travel Overhaul, Questline & Difficulty",
+    "date": "2026-04-23",
+    "category": "release",
+    "summary": "Forty-plus milestones rolled up: 6 new towns, always-visible Return-to-Town, Silas/Kaela/Marek 5-act main quest, Normal/Hard difficulty, Loot Chests, Magic Find, Attack Speed runtime, 27 gender variants, 5 data catalogs, sprite-approval to in-game sync bridge, and a dragon epilogue.",
+    "file": "m220-m254-consolidation.html",
+    "hero": "images/news_hero/m220-m254-consolidation.jpg"
+  },
+  {
+    "slug": "seo-update",
+    "title": "Site SEO & Restructure",
+    "date": "2026-04-16",
+    "category": "dev-diary",
+    "summary": "Game moved to /play.html, new marketing homepage, canonical URLs, sitemap, llms.txt, OG/Twitter cards, and schema.org VideoGame markup.",
+    "file": "seo-update.html",
+    "hero": "images/combat_bg/thornwood_forest_hd.png"
+  },
+  {
+    "slug": "milestone-report",
+    "title": "20 Classes, 84 Skills & Combat Rework",
+    "date": "2026-04-15",
+    "category": "release",
+    "summary": "20 hero classes, 84 skills, 10 companions, combat rebalance, 60+ SFX \u2014 a comprehensive look at the Emberveil journey so far.",
+    "file": "milestone-report.html",
+    "hero": "images/news_hero/milestone-report.jpg"
+  },
+  {
+    "slug": "re-redesign",
+    "title": "Character Art Pipeline & Consistency",
+    "date": "2026-04-14",
+    "category": "dev-diary",
+    "summary": "Full visual overhaul using SpriteCook's HD portrait and sprite pipeline \u2014 20 hero classes, 10 companions, and boss art all regenerated.",
+    "file": "re-redesign.html",
+    "hero": "images/news_hero/re-redesign.jpg"
+  },
+  {
+    "slug": "m79-redesign",
+    "title": "OpenAI Pixel Art & SFX Loudness Pass",
+    "date": "2026-04-14",
+    "category": "release",
+    "summary": "Milestone 79 brought a sweeping UI redesign, refined combat feedback, and the new portrait-based character display system.",
+    "file": "m79-redesign.html",
+    "hero": "images/map_bg/border_roads.jpg"
+  },
+  {
+    "slug": "balance-report",
+    "title": "Combat DPS & Healing Analysis",
+    "date": "2026-04-14",
+    "category": "dev-diary",
+    "summary": "Community survey on the M77 combat rebalance \u2014 burst vs sustain, target falloff, affix reshuffle.",
+    "file": "balance-report.html",
+    "hero": "images/news_hero/balance-report.jpg"
+  },
+  {
+    "slug": "tap-weapons",
+    "title": "Interactive Tap Combat System",
+    "date": "2026-04-13",
+    "category": "dev-diary",
+    "summary": "Design document for the tap-to-attack weapons system \u2014 how real-time input layers on top of the turn-based combat loop.",
+    "file": "tap-weapons.html",
+    "hero": "images/news_hero/tap-weapons.jpg"
+  },
+  {
+    "slug": "simulation-overhaul",
+    "title": "Monte Carlo Combat Testing",
+    "date": "2026-04-13",
+    "category": "dev-diary",
+    "summary": "Complete rewrite of the combat simulator with formula transparency, skill coverage, and statistical charting.",
+    "file": "simulation-overhaul.html",
+    "hero": "images/news_hero/simulation-overhaul.jpg"
+  },
+  {
+    "slug": "dragon-expansion",
+    "title": "Act VI Dragons: Bahamoth & Dragon Knight",
+    "date": "2026-04-13",
+    "category": "release",
+    "summary": "Act 6 Dragon's Reach expansion \u2014 new zones, boss encounters, and the Dragon Knight unlock chain.",
+    "file": "dragon-expansion.html",
+    "hero": "images/news_hero/dragon-expansion.jpg"
+  },
+  {
+    "slug": "milestone-53",
+    "title": "Deferred Resolution & Feature Completion",
+    "date": "2026-04-11",
+    "category": "release",
+    "summary": "Blacksmith merge, UI overhaul, combat rebalance, simulation parity, and the new survey tool.",
+    "file": "milestone-53.html",
+    "hero": "images/news_hero/milestone-53.jpg"
+  },
+  {
+    "slug": "pre-game",
+    "title": "Emberveil Design Foundations",
+    "date": "2026-04-10",
+    "category": "dev-diary",
+    "summary": "The original design document \u2014 party-based RPG with mobile-first combat and an atmospheric dark-fantasy world.",
+    "file": "pre-game.html",
+    "hero": "images/news_hero/pre-game.jpg"
+  }
+]

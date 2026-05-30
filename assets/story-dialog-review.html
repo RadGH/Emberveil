@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Story Dialog Review — Emberveil</title>
+<style>
+  body { padding: 1rem 1rem 5rem; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  h1 {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1.4rem; margin: 0 0 0.2rem;
+    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+    background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+  .stats-bar {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+    border-radius: 8px; padding: 0.6rem 0.9rem; margin-bottom: 0.75rem;
+  }
+  .stat { font-size: 0.85rem; }
+  .stat strong { color: var(--accent,#e8a040); }
+
+  .filters {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+    background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+    border-radius: 8px; padding: 0.6rem 0.75rem; margin-bottom: 0.85rem;
+    position: sticky; top: 0; z-index: 30;
+  }
+  .filters label { font-size: 0.78rem; color: var(--muted); }
+  .filters select, .filters input[type=text] {
+    background: var(--input-bg,#1a1020); border: 1px solid var(--border-subtle,#2a1f30);
+    color: var(--text,#e8e0d0); border-radius: 4px; padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .node-card {
+    background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+    border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 0.75rem;
+  }
+  .node-card.accepted { border-left: 3px solid #38b268; }
+  .node-card.rejected { border-left: 3px solid #c04030; opacity: 0.65; }
+
+  .node-meta {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-bottom: 0.6rem; font-size: 0.75rem;
+  }
+  .badge {
+    border-radius: 4px; padding: 0.15rem 0.4rem; font-size: 0.72rem;
+    font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .badge-pool  { background: #2a1f50; color: #a080ff; }
+  .badge-act   { background: #1a2830; color: #60b8e0; }
+  .badge-biome { background: #1a2820; color: #60b870; }
+  .badge-tone  { background: #2a1a20; color: #e08080; }
+  .badge-speaker { background: #2a2010; color: #e0b040; }
+
+  .node-id {
+    font-family: monospace; font-size: 0.72rem; color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .node-lines {
+    font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.7rem;
+    border-left: 2px solid var(--border-subtle,#2a1f30); padding-left: 0.75rem;
+    color: var(--text,#e8e0d0);
+  }
+
+  .choices-header {
+    font-size: 0.72rem; color: var(--muted); margin-bottom: 0.35rem;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .choice-row {
+    font-size: 0.82rem; padding: 0.25rem 0.5rem; border-radius: 4px;
+    background: var(--input-bg,#1a1020); margin-bottom: 0.25rem;
+    display: flex; gap: 0.5rem; align-items: flex-start; flex-wrap: wrap;
+  }
+  .choice-text { flex: 1; min-width: 0; }
+  .choice-effect {
+    font-size: 0.7rem; color: var(--muted); font-family: monospace;
+    word-break: break-all;
+  }
+
+  .node-actions {
+    display: flex; gap: 0.5rem; margin-top: 0.65rem; align-items: center;
+  }
+  .btn {
+    border: none; border-radius: 4px; padding: 0.3rem 0.75rem;
+    font-size: 0.78rem; font-weight: 600; cursor: pointer;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .btn-accept { background: #38b268; color: #fff; }
+  .btn-reject { background: #c04030; color: #fff; }
+  .btn-copy   { background: var(--input-bg,#1a1020); color: var(--text,#e8e0d0);
+                border: 1px solid var(--border-subtle,#2a1f30); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .note-readonly {
+    font-size: 0.75rem; color: var(--muted); padding: 0.4rem 0.6rem;
+    background: #1a1820; border-radius: 4px; border: 1px solid var(--border-subtle,#2a1f30);
+  }
+
+  .pager {
+    display: flex; gap: 0.5rem; justify-content: center;
+    flex-wrap: wrap; margin: 1rem 0; align-items: center;
+  }
+  .pager button {
+    background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+    color: var(--text,#e8e0d0); border-radius: 4px; padding: 0.3rem 0.65rem;
+    font-size: 0.8rem; cursor: pointer;
+  }
+  .pager button.active { background: var(--accent,#e8a040); color: #1a0a20; }
+  .pager span { font-size: 0.8rem; color: var(--muted); }
+
+  .empty-state { text-align: center; padding: 3rem 1rem; color: var(--muted); }
+  .empty-state .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+  #copy-banner {
+    position: fixed; bottom: 1.5rem; right: 1rem; z-index: 100;
+    background: #38b268; color: #fff; padding: 0.5rem 1rem;
+    border-radius: 6px; font-size: 0.82rem; display: none;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Story Dialog Review</h1>
+  <p class="sub">M-S20 — Generated dialog nodes from <code>data/story/_generated/</code>. Approve/reject in the approve script; this page is read-only visualization.</p>
+
+  <div class="stats-bar" id="stats-bar">
+    <div class="stat">Loading...</div>
+  </div>
+
+  <div class="filters">
+    <label for="filter-pool">Pool</label>
+    <select id="filter-pool">
+      <option value="">All pools</option>
+      <option value="arrival">arrival</option>
+      <option value="ambush">ambush</option>
+      <option value="shrine">shrine</option>
+      <option value="merchant">merchant</option>
+      <option value="lore">lore</option>
+      <option value="faction">faction</option>
+      <option value="side-quest">side-quest</option>
+    </select>
+    <label for="filter-act">Act</label>
+    <select id="filter-act">
+      <option value="">All acts</option>
+      <option value="1">Act 1</option>
+      <option value="2">Act 2</option>
+      <option value="3">Act 3</option>
+    </select>
+    <label for="filter-biome">Biome</label>
+    <select id="filter-biome">
+      <option value="">All biomes</option>
+    </select>
+    <label for="filter-search">Search</label>
+    <input type="text" id="filter-search" placeholder="text, id, speaker...">
+    <label for="page-size">Per page</label>
+    <select id="page-size">
+      <option value="10">10</option>
+      <option value="25" selected>25</option>
+      <option value="50">50</option>
+    </select>
+  </div>
+
+  <div id="nodes-container"></div>
+  <div class="pager" id="pager"></div>
+</div>
+
+<div id="copy-banner">Copied to clipboard</div>
+
+<script>
+const POOLS = ['arrival','ambush','shrine','merchant','lore','faction','side-quest'];
+const GEN_BASE = '/assets/data/story/generated/'; // served from build output OR fallback
+
+let allNodes = [];
+let filteredNodes = [];
+let currentPage = 1;
+let pageSize = 25;
+
+// ---------------------------------------------------------------------------
+// Load generated nodes from the story content manifest or direct JSON
+// ---------------------------------------------------------------------------
+async function loadNodes() {
+  // Try the story content manifest first (built by build-story-content-manifest.cjs)
+  // Fall back to a direct fetch approach
+  let nodes = [];
+
+  // The _generated files aren't publicly served directly, so we load from
+  // the merged dialogue-pools (post-approve) and the content manifest.
+  // For now, load from the story content manifest which lists all dialog.
+  try {
+    const res = await fetch('../assets/data/story/content-manifest.json');
+    if (res.ok) {
+      const manifest = await res.json();
+      // manifest.dialogNodes is an array of all nodes across all pools
+      nodes = (manifest.dialogNodes || manifest.nodes || []).filter(Boolean);
+    }
+  } catch (e) {
+    console.warn('content-manifest not found, trying pool files');
+  }
+
+  // If manifest failed or is empty, try fetching pool files from the
+  // story data directory (only works in dev or if the files are in public/)
+  if (nodes.length === 0) {
+    for (const pool of POOLS) {
+      try {
+        const res = await fetch(`/data/story/_generated/${pool}.json`);
+        if (res.ok) {
+          const data = await res.json();
+          const poolNodes = Array.isArray(data) ? data : (data.nodes || []);
+          nodes.push(...poolNodes.map(n => ({ ...n, _source: 'generated' })));
+        }
+      } catch (e) { /* pool not available */ }
+    }
+  }
+
+  return nodes;
+}
+
+// ---------------------------------------------------------------------------
+// Populate biome filter from nodes
+// ---------------------------------------------------------------------------
+function populateBiomeFilter(nodes) {
+  const biomes = [...new Set(nodes.map(n => n.biome).filter(Boolean))].sort();
+  const sel = document.getElementById('filter-biome');
+  biomes.forEach(b => {
+    const opt = document.createElement('option');
+    opt.value = b; opt.textContent = b;
+    sel.appendChild(opt);
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Filter nodes
+// ---------------------------------------------------------------------------
+function applyFilters() {
+  const pool   = document.getElementById('filter-pool').value;
+  const act    = document.getElementById('filter-act').value;
+  const biome  = document.getElementById('filter-biome').value;
+  const search = document.getElementById('filter-search').value.toLowerCase();
+
+  filteredNodes = allNodes.filter(n => {
+    if (pool  && n.pool   !== pool)       return false;
+    if (act   && String(n.act) !== act)   return false;
+    if (biome && n.biome  !== biome)      return false;
+    if (search) {
+      const hay = [
+        n.id, n.speaker, n.tone, n.biome,
+        ...(n.lines || []),
+        ...(n.choices || []).map(c => c.text),
+      ].join(' ').toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+
+  currentPage = 1;
+  renderPage();
+  updateStats();
+}
+
+// ---------------------------------------------------------------------------
+// Stats bar
+// ---------------------------------------------------------------------------
+function updateStats() {
+  const byPool = {};
+  allNodes.forEach(n => {
+    byPool[n.pool] = (byPool[n.pool] || 0) + 1;
+  });
+  const poolSummary = Object.entries(byPool)
+    .map(([p, c]) => `${p}:${c}`)
+    .join(' / ');
+
+  document.getElementById('stats-bar').innerHTML = `
+    <div class="stat">Total: <strong>${allNodes.length}</strong></div>
+    <div class="stat">Filtered: <strong>${filteredNodes.length}</strong></div>
+    <div class="stat">Pools: <strong>${poolSummary}</strong></div>
+  `;
+}
+
+// ---------------------------------------------------------------------------
+// Render a page of nodes
+// ---------------------------------------------------------------------------
+function renderPage() {
+  pageSize = parseInt(document.getElementById('page-size').value, 10);
+  const total   = filteredNodes.length;
+  const pages   = Math.max(1, Math.ceil(total / pageSize));
+  currentPage   = Math.max(1, Math.min(currentPage, pages));
+  const start   = (currentPage - 1) * pageSize;
+  const slice   = filteredNodes.slice(start, start + pageSize);
+
+  const container = document.getElementById('nodes-container');
+
+  if (total === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="icon">&#x2716;</div>
+        <div>No nodes match the current filter — or no generated nodes have been loaded yet.</div>
+        <div style="margin-top:0.5rem;font-size:0.8rem;">Run: <code>node scripts/generate-story-dialogue.cjs</code> and then <code>node scripts/approve-story-dialogue.cjs</code></div>
+      </div>`;
+    document.getElementById('pager').innerHTML = '';
+    return;
+  }
+
+  container.innerHTML = slice.map(node => renderNode(node)).join('');
+
+  // Pager
+  const pager = document.getElementById('pager');
+  if (pages <= 1) { pager.innerHTML = ''; return; }
+
+  let html = '';
+  if (currentPage > 1) html += `<button onclick="goPage(${currentPage - 1})">Prev</button>`;
+  const window_ = 5;
+  for (let p = Math.max(1, currentPage - window_); p <= Math.min(pages, currentPage + window_); p++) {
+    html += `<button class="${p === currentPage ? 'active' : ''}" onclick="goPage(${p})">${p}</button>`;
+  }
+  if (currentPage < pages) html += `<button onclick="goPage(${currentPage + 1})">Next</button>`;
+  html += `<span>Page ${currentPage} of ${pages} (${total} nodes)</span>`;
+  pager.innerHTML = html;
+}
+
+function goPage(p) {
+  currentPage = p;
+  renderPage();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ---------------------------------------------------------------------------
+// Render one node card
+// ---------------------------------------------------------------------------
+function renderNode(node) {
+  const id      = node.id || '?';
+  const pool    = node.pool || '?';
+  const act     = node.act || '?';
+  const biome   = node.biome || '?';
+  const tone    = node.tone || '?';
+  const speaker = node.speaker || null;
+  const lines   = (node.lines || []);
+  const choices = (node.choices || []);
+  const source  = node._source || 'live';
+
+  const linesHtml = lines.map(l => `<p style="margin:0 0 0.25rem;">${escHtml(l)}</p>`).join('');
+
+  const choicesHtml = choices.map(c => {
+    const effects = [
+      ...(c.effects || []),
+      ...(c.onPass?.effects || []),
+      ...(c.onFail?.effects || []),
+    ];
+    const effectSummary = effects.length
+      ? effects.map(e => `${e.type}${e.flag ? ':'+e.flag : ''}${e.faction ? ':'+e.faction : ''}${e.amount !== undefined ? '('+e.amount+')' : ''}`).join(', ')
+      : '';
+    const skillChk = c.skillCheck ? ` [${c.skillCheck.skill} DC${c.skillCheck.dc}]` : '';
+    return `<div class="choice-row">
+      <div class="choice-text">${escHtml(c.text)}${skillChk}</div>
+      ${effectSummary ? `<div class="choice-effect">${escHtml(effectSummary)}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  const noteReadonly = `<div class="note-readonly">
+    Read-only view. To approve: <code>node scripts/approve-story-dialogue.cjs</code><br>
+    To reject a specific node: move it from <code>_generated/</code> to <code>_rejected/</code>.
+  </div>`;
+
+  return `<div class="node-card ${source === 'rejected' ? 'rejected' : 'accepted'}">
+    <div class="node-meta">
+      <span class="badge badge-pool">${escHtml(pool)}</span>
+      <span class="badge badge-act">Act ${escHtml(String(act))}</span>
+      <span class="badge badge-biome">${escHtml(biome)}</span>
+      <span class="badge badge-tone">${escHtml(tone)}</span>
+      ${speaker ? `<span class="badge badge-speaker">${escHtml(speaker)}</span>` : ''}
+    </div>
+    <div class="node-id">${escHtml(id)}</div>
+    <div class="node-lines">${linesHtml}</div>
+    <div class="choices-header">Choices (${choices.length})</div>
+    ${choicesHtml}
+    <div class="node-actions">
+      <button class="btn btn-copy" onclick="copyNodeId('${escHtml(id)}')">Copy ID</button>
+      <button class="btn btn-copy" onclick="copyNodeJson('${escAttr(id)}')">Copy JSON</button>
+      ${noteReadonly}
+    </div>
+  </div>`;
+}
+
+function escHtml(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function escAttr(s) {
+  return String(s || '').replace(/'/g,"&#39;").replace(/"/g,'&quot;');
+}
+
+// ---------------------------------------------------------------------------
+// Copy helpers
+// ---------------------------------------------------------------------------
+function copyNodeId(id) {
+  navigator.clipboard.writeText(id).then(() => showCopyBanner('ID copied'));
+}
+
+function copyNodeJson(id) {
+  const node = allNodes.find(n => n.id === id);
+  if (!node) return;
+  navigator.clipboard.writeText(JSON.stringify(node, null, 2)).then(() => showCopyBanner('JSON copied'));
+}
+
+function showCopyBanner(msg) {
+  const b = document.getElementById('copy-banner');
+  b.textContent = msg;
+  b.style.display = 'block';
+  setTimeout(() => { b.style.display = 'none'; }, 2000);
+}
+
+// ---------------------------------------------------------------------------
+// Init
+// ---------------------------------------------------------------------------
+async function init() {
+  document.getElementById('nodes-container').innerHTML = `<div class="empty-state"><div>Loading nodes...</div></div>`;
+
+  allNodes = await loadNodes();
+  populateBiomeFilter(allNodes);
+  applyFilters();
+
+  // Bind filters
+  ['filter-pool','filter-act','filter-biome','filter-search','page-size'].forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('change', applyFilters);
+    if (el.type === 'text') el.addEventListener('input', applyFilters);
+  });
+}
+
+init();
+</script>
+</body>
+</html>

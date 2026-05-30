@@ -1,0 +1,64 @@
+[
+  {
+    "id": "rg_veil_patrol_combat",
+    "act": 3,
+    "biomes": ["riftgate"],
+    "themeTags": ["veil", "patrol", "combat"],
+    "type": "combat",
+    "primaryRole": "frontline",
+    "enemyComposition": [
+      { "role": "frontline", "count": 2, "enemyId": "veil_warden" },
+      { "role": "caster", "count": 2, "enemyId": "veil_sorcerer" }
+    ],
+    "budgetWeight": 1.3,
+    "baseWeight": 0.60,
+    "rewards": { "goldRange": [75, 130], "lootTier": 3 },
+    "preDialog": "pool:ambush#ambush_riftgate_patrol_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "rg_riftgate_arrival",
+    "act": 3,
+    "biomes": ["riftgate"],
+    "themeTags": ["arrival", "rift", "climactic"],
+    "type": "event",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.65,
+    "rewards": { "goldRange": [0, 0], "lootTier": 0 },
+    "preDialog": "pool:arrival#arrival_riftgate_approach_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "rg_veilspawn_herald_boss",
+    "act": 3,
+    "biomes": ["riftgate"],
+    "themeTags": ["boss", "veil", "herald"],
+    "type": "boss",
+    "primaryRole": "boss",
+    "enemyComposition": [
+      { "role": "frontline", "count": 2, "enemyId": "veil_warden" },
+      { "role": "boss", "count": 1, "enemyId": "veilspawn_herald" }
+    ],
+    "budgetWeight": 2.0,
+    "baseWeight": 0.35,
+    "rewards": { "goldRange": [150, 250], "lootTier": 5 },
+    "preDialog": "pool:faction#faction_veilspawn_parley_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "rg_black_market_rift",
+    "act": 3,
+    "biomes": ["riftgate"],
+    "themeTags": ["merchant", "black_market", "faction"],
+    "type": "merchant",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.40,
+    "rewards": { "goldRange": [0, 0], "lootTier": 0 },
+    "preDialog": "pool:merchant#merchant_black_market_001",
+    "weatherCompatible": ["all"]
+  }
+]

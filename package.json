@@ -1,0 +1,26 @@
+{
+  "name": "emberveil",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5213",
+    "prebuild": "node scripts/emit-release-summary.cjs && node scripts/parse-changelog-categories.cjs && node scripts/emit-roadmap-data.cjs && node scripts/emit-game-data.cjs && node scripts/emit-news-index.cjs",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "check:story-balance": "node scripts/check-storyteller-balance.mjs",
+    "build:story-quest-graph": "node scripts/build-story-quest-graph.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "eslint": "^9.0.0",
+    "vite": "^5.4.0",
+    "vitest": "^2.1.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.104.0",
+    "chart.js": "^4.5.1"
+  }
+}

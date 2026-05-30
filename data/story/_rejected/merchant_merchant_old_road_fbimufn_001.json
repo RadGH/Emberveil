@@ -1,0 +1,76 @@
+{
+  "node": {
+    "id": "merchant_old_road_fbimufn_001",
+    "pool": "merchant",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "wry",
+    "speaker": "brightfall_innkeeper",
+    "lines": [
+      "Rations are slim, but I've got what's left. If you can pay, that is.",
+      "You're not the only ones hungry these days."
+    ],
+    "choices": [
+      {
+        "id": "buy_rations",
+        "text": "Buy a supply kit. (20 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -20
+          },
+          {
+            "type": "grant_item",
+            "itemId": "travel_rations"
+          }
+        ]
+      },
+      {
+        "id": "haggle",
+        "text": "[Diplomacy - INT] Try to negotiate a better price.",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "INT",
+          "dc": 10
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -15
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -20
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Shake your head and walk away.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"haggle\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:08:08.380Z"
+}

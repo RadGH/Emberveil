@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="rsg-featured-image" content="../images/combat_bg/dust_roads_1.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="rsg-game" content="Emberveil">
+<meta name="rsg-news-date" content="2026-04-14">
+<meta name="rsg-news-title" content="Balance Report">
+<title>Combat DPS & Healing Analysis — Emberveil</title>
+<script src="../assets/_header.js" defer></script>
+<script src="../assets/_footer.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg0: #080507;
+    --bg1: #120a0e;
+    --ink: #f0e8d0;
+    --muted: #9a8a70;
+    --gold: #e8a040;
+    --gold-glow: #ffc060;
+    --ember: #ff7030;
+    --good: #60e080;
+    --bad: #ff5050;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg0); color: var(--ink); font-family: Inter, system-ui, sans-serif; }
+  body {
+    background:
+      radial-gradient(ellipse at top, #1a0a10 0%, #080507 60%),
+      radial-gradient(ellipse at bottom, #200810 0%, transparent 70%);
+    min-height: 100vh;
+  }
+  main { max-width: 980px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+  h2 { font-family: Cinzel, serif; color: var(--gold); font-size: 1.4rem; letter-spacing: 0.08em; border-bottom: 1px solid rgba(232,160,64,0.25); padding-bottom: 0.4rem; margin-top: 2.5rem; }
+  p { color: #d8ccb0; line-height: 1.55; font-size: 0.95rem; }
+  .muted { color: var(--muted); }
+  a { color: var(--gold-glow); }
+
+  .hero {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 2.5rem 1rem 3rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: radial-gradient(ellipse at center, rgba(232,160,64,0.12), transparent 65%);
+    border: 1px solid rgba(232,160,64,0.2);
+  }
+  .hero::before {
+    content:''; position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,192,96,0.15) 50%, transparent 70%);
+    transform: translateX(-100%);
+    animation: swipe 4.5s ease-in-out infinite;
+  }
+  @keyframes swipe { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+  .hero h1 {
+    font-family: Cinzel, serif;
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    margin: 0;
+    letter-spacing: 0.12em;
+    color: var(--gold-glow);
+    text-shadow: 0 0 16px rgba(255,192,96,0.7), 0 0 30px rgba(255,112,48,0.4);
+    animation: pulse 2.4s ease-in-out infinite;
+    position: relative;
+  }
+  @keyframes pulse { 0%,100% { text-shadow: 0 0 16px rgba(255,192,96,0.55), 0 0 30px rgba(255,112,48,0.3);} 50% { text-shadow: 0 0 24px rgba(255,224,128,0.9), 0 0 48px rgba(255,112,48,0.6);} }
+  .hero .tag { display: block; margin-top: 0.6rem; color: #c9b893; letter-spacing: 0.3em; font-size: 0.75rem; text-transform: uppercase; }
+  .badge {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255,80,80,0.25), rgba(96,224,128,0.25));
+    border: 1px solid rgba(255,192,96,0.5);
+    font-family: Cinzel, serif;
+    letter-spacing: 0.3em;
+    font-size: 0.85rem;
+    color: var(--gold-glow);
+    animation: badgePulse 1.8s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(255,192,96,0.6);
+    position: relative;
+  }
+  @keyframes badgePulse {
+    0%,100% { transform: scale(1); box-shadow: 0 0 12px rgba(255,112,48,0.3); }
+    50%     { transform: scale(1.06); box-shadow: 0 0 26px rgba(255,192,96,0.6); }
+  }
+
+  section { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  section.visible { opacity: 1; transform: none; }
+
+  .chart-wrap {
+    background: linear-gradient(180deg, rgba(40,20,20,0.55), rgba(20,10,14,0.7));
+    border: 1px solid rgba(232,160,64,0.18);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    height: 360px;
+  }
+
+  .outliers { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+  @media (max-width: 640px) { .outliers { grid-template-columns: 1fr; } }
+  .outlier-col {
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid rgba(232,160,64,0.25);
+  }
+  .outlier-col.over { background: rgba(255,80,80,0.08); border-color: rgba(255,80,80,0.45); }
+  .outlier-col.under { background: rgba(96,224,128,0.08); border-color: rgba(96,224,128,0.45); }
+  .outlier-col h3 { margin: 0 0 0.6rem; font-family: Cinzel, serif; letter-spacing: 0.1em; font-size: 1rem; }
+  .outlier-col.over h3 { color: var(--bad); }
+  .outlier-col.under h3 { color: var(--good); }
+  .outlier-list { list-style: none; padding: 0; margin: 0; }
+  .outlier-list li {
+    display: flex; justify-content: space-between;
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(20,12,14,0.6);
+    margin-bottom: 0.35rem;
+    font-size: 0.85rem;
+  }
+  .outlier-list .val { color: var(--gold-glow); font-variant-numeric: tabular-nums; }
+
+  .loading { text-align: center; color: var(--muted); padding: 2rem; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5H26ZXKBCL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-5H26ZXKBCL");
+</script>
+</head>
+<body class="ev-themed">
+<main>
+
+<div class="hero">
+  <h1>REBALANCE SURVEY</h1>
+  <span class="tag">Milestone 77 · simulation telemetry</span>
+  <div><span class="badge">DPS / HPS</span></div>
+</div>
+
+<div id="loading" class="loading">Loading m77 snapshot…</div>
+
+<section id="sec-overview">
+  <h2>Overview</h2>
+  <p>For Milestone 77 we ran a fully automated combat simulator across <strong>24 scenarios</strong> (tank, elite, group, and boss encounters in each of Acts 1–6) and replayed each one <strong>200 times</strong> per subject, producing roughly <span id="run-count" class="muted">—</span> total combat resolutions for this snapshot.</p>
+  <p>Every hero class was tested at levels 1, 5, 10, and 15 with its starting kit. Companions, tap weapons, and tap utilities were each rolled into the same scenario harness so that DPS, HPS, and shield numbers are directly comparable across categories. Damage and healing figures are <em>per round</em>, averaged across all 24 scenarios.</p>
+  <p>The methodology deliberately fixes hero gear at the level-appropriate baseline (no luck of the drop) so the resulting numbers describe the <strong>kit</strong>, not a particular run. A drift chart at the bottom of this page will be populated as we capture the next milestone snapshots.</p>
+</section>
+
+<section id="sec-hero-dps">
+  <h2>Hero DPS by level</h2>
+  <p>All 19 hero classes ranked by their average per-round damage at L1, L5, L10, and L15. Hover for class name and exact value.</p>
+  <div class="chart-wrap"><canvas id="chartHeroDps"></canvas></div>
+</section>
+
+<section id="sec-hero-hps">
+  <h2>Hero HPS — healers only</h2>
+  <p>Only classes whose level-15 healing output is non-zero are shown. Bars are split into raw heal and shield components.</p>
+  <div class="chart-wrap"><canvas id="chartHeroHps"></canvas></div>
+</section>
+
+<section id="sec-companions">
+  <h2>Companions</h2>
+  <p>Average per-round contribution across all 24 scenarios for each of the ten companions, at L1/L5/L10/L15.</p>
+  <div class="chart-wrap"><canvas id="chartCompanions"></canvas></div>
+</section>
+
+<section id="sec-taps">
+  <h2>Tap Weapons</h2>
+  <p>Tap-weapon DPS averaged across the scenario suite. Cooldown shape (per-turn vs per-round) is baked into the simulation.</p>
+  <div class="chart-wrap"><canvas id="chartTaps"></canvas></div>
+</section>
+
+<section id="sec-utilities">
+  <h2>Tap Utilities</h2>
+  <p>Healing and shield throughput from the tap-utility roster. Stacked bars show heal vs shield contribution.</p>
+  <div class="chart-wrap"><canvas id="chartUtilities"></canvas></div>
+</section>
+
+<section id="sec-outliers">
+  <h2>Outliers</h2>
+  <p>Auto-computed: the three highest and three lowest hero kits at level 15 across all 24 scenarios. These are the first candidates for nerfs and buffs in M78.</p>
+  <div class="outliers">
+    <div class="outlier-col over">
+      <h3>Overpowered (top 3)</h3>
+      <ul class="outlier-list" id="outliers-over"></ul>
+    </div>
+    <div class="outlier-col under">
+      <h3>Underpowered (bottom 3)</h3>
+      <ul class="outlier-list" id="outliers-under"></ul>
+    </div>
+  </div>
+</section>
+
+<section id="sec-drift">
+  <h2>Drift</h2>
+  <p>This chart will track average hero DPS at level 15 across milestone snapshots. M77 is the first data point — additional milestones will append as they ship.</p>
+  <div class="chart-wrap"><canvas id="chartDrift"></canvas></div>
+</section>
+
+<section id="sec-methodology">
+  <h2>Methodology notes</h2>
+  <p>• <strong>Scenarios:</strong> tank / elite / group / boss × Acts 1–6, each with hand-tuned enemy stat blocks pulled from the live game data files.</p>
+  <p>• <strong>Runs:</strong> 200 deterministic replays per subject per scenario, with seeded RNG so a re-run of the same snapshot reproduces identical numbers.</p>
+  <p>• <strong>Subjects:</strong> 19 hero classes, 10 companions, 10 tap weapons, 10 tap utilities — each tested independently against the same scenario suite.</p>
+  <p>• <strong>Live tool:</strong> the same harness is exposed interactively at <a href="./rebalance.html">rebalance.html</a>, where you can re-run a single subject, swap stat overrides, or capture a fresh snapshot for the next milestone.</p>
+</section>
+
+</main>
+
+<script>
+const TITLE_CASE = s => s.replace(/_/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+
+const PALETTE = {
+  l1: '#ff7030',
+  l5: '#e8a040',
+  l10: '#80d0ff',
+  l15: '#ffc060',
+  heal: '#60e080',
+  shield: '#80d0ff'
+};
+
+Chart.defaults.color = '#d8ccb0';
+Chart.defaults.borderColor = 'rgba(232,160,64,0.18)';
+Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+
+async function main() {
+  let data;
+  try {
+    const res = await fetch('../assets/rebalance_snapshots/m77.json');
+    data = await res.json();
+  } catch (err) {
+    document.getElementById('loading').textContent = 'Failed to load snapshot: ' + err.message;
+    return;
+  }
+  document.getElementById('loading').remove();
+  document.getElementById('run-count').textContent = (data.runs * 24).toLocaleString() + ' resolutions / subject';
+
+  // ---- Hero DPS ----
+  const heroEntries = Object.entries(data.heroes)
+    .map(([k, v]) => ({ key: k, name: TITLE_CASE(k), l1: v.byLevel['1'], l5: v.byLevel['5'], l10: v.byLevel['10'], l15: v.byLevel['15'] }))
+    .sort((a, b) => b.l15 - a.l15);
+
+  new Chart(document.getElementById('chartHeroDps'), {
+    type: 'bar',
+    data: {
+      labels: heroEntries.map(h => h.name),
+      datasets: [
+        { label: 'L1', data: heroEntries.map(h => h.l1), backgroundColor: PALETTE.l1 },
+        { label: 'L5', data: heroEntries.map(h => h.l5), backgroundColor: PALETTE.l5 },
+        { label: 'L10', data: heroEntries.map(h => h.l10), backgroundColor: PALETTE.l10 },
+        { label: 'L15', data: heroEntries.map(h => h.l15), backgroundColor: PALETTE.l15 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.dataset.label} · ${ctx.label}: ${ctx.parsed.x.toFixed(1)} DPS`
+          }
+        }
+      },
+      scales: { x: { beginAtZero: true, title: { display: true, text: 'Damage / round' } } }
+    }
+  });
+
+  // ---- Hero HPS ----
+  const healers = Object.entries(data.heroes)
+    .map(([k, v]) => ({ key: k, name: TITLE_CASE(k), heal: v.healByLevel['15'].heal, shield: v.healByLevel['15'].shield }))
+    .filter(h => h.heal + h.shield > 0)
+    .sort((a, b) => (b.heal + b.shield) - (a.heal + a.shield));
+
+  new Chart(document.getElementById('chartHeroHps'), {
+    type: 'bar',
+    data: {
+      labels: healers.map(h => h.name),
+      datasets: [
+        { label: 'Heal', data: healers.map(h => h.heal), backgroundColor: PALETTE.heal, stack: 'h' },
+        { label: 'Shield', data: healers.map(h => h.shield), backgroundColor: PALETTE.shield, stack: 'h' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label} · ${ctx.label}: ${ctx.parsed.x.toFixed(1)} / round` } }
+      },
+      scales: { x: { stacked: true, beginAtZero: true, title: { display: true, text: 'Healing / round (L15)' } }, y: { stacked: true } }
+    }
+  });
+
+  // ---- Companions ----
+  const compEntries = Object.entries(data.companions)
+    .map(([k, v]) => ({ name: TITLE_CASE(k), l1: v.byLevel['1'], l5: v.byLevel['5'], l10: v.byLevel['10'], l15: v.byLevel['15'] }))
+    .sort((a, b) => b.l15 - a.l15);
+
+  new Chart(document.getElementById('chartCompanions'), {
+    type: 'bar',
+    data: {
+      labels: compEntries.map(c => c.name),
+      datasets: [
+        { label: 'L1', data: compEntries.map(c => c.l1), backgroundColor: PALETTE.l1 },
+        { label: 'L5', data: compEntries.map(c => c.l5), backgroundColor: PALETTE.l5 },
+        { label: 'L10', data: compEntries.map(c => c.l10), backgroundColor: PALETTE.l10 },
+        { label: 'L15', data: compEntries.map(c => c.l15), backgroundColor: PALETTE.l15 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label} · ${ctx.label}: ${ctx.parsed.x.toFixed(1)} / round` } }
+      },
+      scales: { x: { beginAtZero: true, title: { display: true, text: 'Contribution / round' } } }
+    }
+  });
+
+  // ---- Tap weapons ----
+  const tapEntries = Object.entries(data.taps)
+    .map(([k, v]) => ({ name: TITLE_CASE(k), l15: v.byLevel['15'] }))
+    .sort((a, b) => b.l15 - a.l15);
+
+  new Chart(document.getElementById('chartTaps'), {
+    type: 'bar',
+    data: {
+      labels: tapEntries.map(t => t.name),
+      datasets: [{ label: 'L15 DPS', data: tapEntries.map(t => t.l15), backgroundColor: PALETTE.l15 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed.x.toFixed(1)} DPS` } }
+      },
+      scales: { x: { beginAtZero: true, title: { display: true, text: 'Damage / round' } } }
+    }
+  });
+
+  // ---- Tap utilities ----
+  const utilEntries = Object.entries(data.utilities)
+    .map(([k, v]) => ({ name: TITLE_CASE(k), heal: v.byLevel['15'].heal || 0, shield: v.byLevel['15'].shield || 0 }))
+    .sort((a, b) => (b.heal + b.shield) - (a.heal + a.shield));
+
+  new Chart(document.getElementById('chartUtilities'), {
+    type: 'bar',
+    data: {
+      labels: utilEntries.map(u => u.name),
+      datasets: [
+        { label: 'Heal', data: utilEntries.map(u => u.heal), backgroundColor: PALETTE.heal, stack: 'u' },
+        { label: 'Shield', data: utilEntries.map(u => u.shield), backgroundColor: PALETTE.shield, stack: 'u' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label} · ${ctx.label}: ${ctx.parsed.x.toFixed(1)} / round` } }
+      },
+      scales: { x: { stacked: true, beginAtZero: true, title: { display: true, text: 'Output / round (L15)' } }, y: { stacked: true } }
+    }
+  });
+
+  // ---- Outliers (heroes by L15 DPS) ----
+  const sortedByL15 = [...heroEntries].sort((a, b) => b.l15 - a.l15);
+  const over = sortedByL15.slice(0, 3);
+  const under = sortedByL15.slice(-3).reverse();
+  const renderList = (id, arr) => {
+    document.getElementById(id).innerHTML = arr.map(h => `<li><span>${h.name}</span><span class="val">${h.l15.toFixed(1)} DPS</span></li>`).join('');
+  };
+  renderList('outliers-over', over);
+  renderList('outliers-under', under);
+
+  // ---- Drift placeholder ----
+  const avgL15 = heroEntries.reduce((s, h) => s + h.l15, 0) / heroEntries.length;
+  new Chart(document.getElementById('chartDrift'), {
+    type: 'line',
+    data: {
+      labels: ['M77'],
+      datasets: [{
+        label: 'Average L15 hero DPS',
+        data: [avgL15],
+        borderColor: PALETTE.l15,
+        backgroundColor: 'rgba(255,192,96,0.2)',
+        tension: 0.3,
+        pointRadius: 6,
+        pointBackgroundColor: PALETTE.l15
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed.y.toFixed(1)} avg DPS` } }
+      },
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'DPS' } } }
+    }
+  });
+}
+
+main();
+
+const io = new IntersectionObserver((entries) => {
+  for (const e of entries) if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+}, { threshold: 0.08 });
+document.querySelectorAll('section').forEach(s => io.observe(s));
+</script>
+<!-- rsg-featured-image-applied -->
+<script>
+(function(){
+  var m=document.querySelector("meta[name='rsg-featured-image']");
+  if(!m)return;
+  var hero=document.querySelector(".hero");
+  if(!hero)return;
+  var ov=document.createElement("div");
+  ov.style.cssText="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,5,8,0.55) 0%,rgba(8,5,8,0.3) 40%,rgba(8,5,8,0.85) 100%);pointer-events:none;z-index:0;";
+  hero.style.position="relative";
+  hero.insertBefore(ov,hero.firstChild);
+  var bgImg=new Image();bgImg.src=m.content;
+  bgImg.onload=function(){hero.style.backgroundImage="url("+JSON.stringify(m.content)+")";
+  hero.style.backgroundSize="cover";
+  hero.style.backgroundPosition="center";};
+})();
+</script>
+</body>
+</html>

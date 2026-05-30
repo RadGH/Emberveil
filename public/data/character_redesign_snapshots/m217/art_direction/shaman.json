@@ -1,0 +1,82 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "shaman",
+  "displayName": "Shaman",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "identity": "Tribal human female shaman, dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry build.",
+  "outfit": "Hide and leather tribal dress with fur mantle across the shoulders, feathered shoulder-cape, turquoise and bone necklaces, leather arm-wraps with tribal glyphs. Leather sandals. Painted face-markings.",
+  "weapons": "A tall wooden ceremonial staff topped with a cluster of feathers, bones, and a glowing blue spirit-gem, held in the right hand.",
+  "attackStyle": "East-facing. Staff thrust forward, a burst of blue spirit-energy and floating feathers erupting outward. CRITICAL: character must be MID-STRIKE, clearly in motion \u2014 weapon in the middle of a swing, thrust, shot, or spell-cast, NOT an idle/battle-ready stance. Pose must be visually distinct from the east idle.",
+  "spellStyle": "East-facing. Staff raised high, free hand up, a swirling totem of blue spirit-light with an ancestral face forming above.",
+  "blockStyle": "East-facing. Staff held diagonally, a translucent blue spirit-barrier forming from the staff-top outward.",
+  "koStyle": "East-facing, slumped on one knee, staff fallen beside her, braids splayed, mantle disheveled.",
+  "southStyle": "Facing camera (south), fierce tribal idle. Staff planted at her side, free hand raised in a gesture with blue spirit-light dancing on the fingertips.",
+  "portraitStyle": "Bust shot from mid-chest up, three-quarter view. Beaded black braids, red war-stripe across eyes, fur-mantle and bone necklaces visible.",
+  "bannedSubstrings": [
+    "sword",
+    "plate armor",
+    "gun"
+  ],
+  "referenceSheet": {
+    "path": "images/pixellab/shaman/reference.png",
+    "spritecookAssetId": "ac45eaf3-02bf-4322-8498-68b2159af66a",
+    "prompt": "IDENTITY (this image becomes the canonical identity anchor \u2014 preserve in every downstream frame): Tribal human female shaman, dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry build.\n\nOUTFIT: Hide and leather tribal dress with fur mantle across the shoulders, feathered shoulder-cape, turquoise and bone necklaces, leather arm-wraps with tribal glyphs. Leather sandals. Painted face-markings.\n\nWEAPONS: A tall wooden ceremonial staff topped with a cluster of feathers, bones, and a glowing blue spirit-gem, held in the right hand.\n\nCLASS: humanoid. Full-body view, head to feet visible. Character occupies ~70% of the canvas height. Feet aligned near the bottom; headroom above.\n\nPOSE: full-body side profile facing right (east), calm combat-ready idle. Head up, eyes visible. NOT a portrait bust, NOT a close-up \u2014 entire character from head to feet.\n\nSTYLE: detailed pixel art with clean readable silhouette, warm pixel-art palette, transparent background, no ground shadow.",
+    "bitforgeAssetId": null,
+    "sourcePortraitPath": "images/portraits/shaman.png",
+    "generatedAt": "2026-04-21T08:15:39.764Z",
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait": {
+      "path": "images/spritecook/shaman_portrait.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human female shaman, dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry build.\n\nOUTFIT: Hide and leather tribal dress with fur mantle across the shoulders, feathered shoulder-cape, turquoise and bone necklaces, leather arm-wraps with tribal glyphs. Leather sandals. Painted face-markings.\n\nWEAPONS: A tall wooden ceremonial staff topped with a cluster of feathers, bones, and a glowing blue spirit-gem, held in the right hand.\n\nPOSE (portrait): Bust shot from mid-chest up, three-quarter view. Beaded black braids, red war-stripe across eyes, fur-mantle and bone necklaces visible.\n\nFRAMING: bust shot from mid-chest up, three-quarter view, centered in a 256x256 canvas, shoulders fill the lower third.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:26:38.000Z",
+      "approvedAt": "2026-04-22T05:26:38.000Z",
+      "spritecookAssetId": "912f8677-7aa1-4e0a-81d7-41ada77e9cab"
+    },
+    "south": {
+      "path": "images/spritecook/shaman_south.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human female shaman, dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry build.\n\nOUTFIT: Hide and leather tribal dress with fur mantle across the shoulders, feathered shoulder-cape, turquoise and bone necklaces, leather arm-wraps with tribal glyphs. Leather sandals. Painted face-markings.\n\nWEAPONS: A tall wooden ceremonial staff topped with a cluster of feathers, bones, and a glowing blue spirit-gem, held in the right hand.\n\nPOSE (south): Facing camera (south), fierce tribal idle. Staff planted at her side, free hand raised in a gesture with blue spirit-light dancing on the fingertips.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:26:38.000Z",
+      "approvedAt": "2026-04-22T05:26:38.000Z",
+      "spritecookAssetId": "9351c5b4-db59-4167-927a-0f21175195bd"
+    },
+    "east": {
+      "path": "images/spritecook/shaman_east.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human female shaman, dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry build.\n\nOUTFIT: Hide and leather tribal dress with fur mantle across the shoulders, feathered shoulder-cape, turquoise and bone necklaces, leather arm-wraps with tribal glyphs. Leather sandals. Painted face-markings.\n\nWEAPONS: A tall wooden ceremonial staff topped with a cluster of feathers, bones, and a glowing blue spirit-gem, held in the right hand.\n\nPOSE (east): Neutral combat idle, consistent with reference sheet, full-body facing east.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:26:38.000Z",
+      "approvedAt": "2026-04-22T05:26:38.000Z",
+      "spritecookAssetId": "098b1bb1-b2a1-43a0-91dd-c3a110b760ea"
+    },
+    "east_attack": {
+      "path": "images/spritecook/shaman_east_attack.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human female shaman, dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry build.\n\nOUTFIT: Hide and leather tribal dress with fur mantle across the shoulders, feathered shoulder-cape, turquoise and bone necklaces, leather arm-wraps with tribal glyphs. Leather sandals. Painted face-markings.\n\nWEAPONS: A tall wooden ceremonial staff topped with a cluster of feathers, bones, and a glowing blue spirit-gem, held in the right hand.\n\nPOSE (east_attack): East-facing. Staff thrust forward, a burst of blue spirit-energy and floating feathers erupting outward.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:26:38.000Z",
+      "approvedAt": "2026-04-22T05:26:38.000Z",
+      "spritecookAssetId": "ece05e5d-d75f-419e-a342-5b523fa16332"
+    },
+    "east_spell": {
+      "path": "images/spritecook/shaman_east_spell.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human female shaman, dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry build.\n\nOUTFIT: Hide and leather tribal dress with fur mantle across the shoulders, feathered shoulder-cape, turquoise and bone necklaces, leather arm-wraps with tribal glyphs. Leather sandals. Painted face-markings.\n\nWEAPONS: A tall wooden ceremonial staff topped with a cluster of feathers, bones, and a glowing blue spirit-gem, held in the right hand.\n\nPOSE (east_spell): East-facing. Staff raised high, free hand up, a swirling totem of blue spirit-light with an ancestral face forming above.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:26:38.000Z",
+      "approvedAt": "2026-04-22T05:26:38.000Z",
+      "spritecookAssetId": "f00a7981-e0a1-4dcb-ad86-a494b927a89b"
+    },
+    "east_block": {
+      "path": "images/spritecook/shaman_east_block.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human female shaman, dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry build.\n\nOUTFIT: Hide and leather tribal dress with fur mantle across the shoulders, feathered shoulder-cape, turquoise and bone necklaces, leather arm-wraps with tribal glyphs. Leather sandals. Painted face-markings.\n\nWEAPONS: A tall wooden ceremonial staff topped with a cluster of feathers, bones, and a glowing blue spirit-gem, held in the right hand.\n\nPOSE (east_block): East-facing. Staff held diagonally, a translucent blue spirit-barrier forming from the staff-top outward.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:26:38.000Z",
+      "approvedAt": "2026-04-22T05:26:38.000Z",
+      "spritecookAssetId": "faf9c228-4069-412c-a829-8f4a2429cb5a"
+    },
+    "east_ko": {
+      "path": "images/spritecook/shaman_east_ko.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human female shaman, dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry build.\n\nOUTFIT: Hide and leather tribal dress with fur mantle across the shoulders, feathered shoulder-cape, turquoise and bone necklaces, leather arm-wraps with tribal glyphs. Leather sandals. Painted face-markings.\n\nWEAPONS: A tall wooden ceremonial staff topped with a cluster of feathers, bones, and a glowing blue spirit-gem, held in the right hand.\n\nPOSE (east_ko): East-facing, slumped on one knee, staff fallen beside her, braids splayed, mantle disheveled.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:26:38.000Z",
+      "approvedAt": "2026-04-22T05:26:38.000Z",
+      "spritecookAssetId": "d65cb7ef-efa9-4fbd-acc8-10b3af6650ee"
+    }
+  },
+  "notes": "Tribal spirit caster. Feathers/bones/paint + spirit-staff."
+}

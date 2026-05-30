@@ -1,0 +1,91 @@
+{
+  "node": {
+    "id": "ambush_riftgate_cr374xw_001",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "hostile",
+    "speaker": "ashen_veil_herald",
+    "lines": [
+      "You dare tread upon this sacred ground?",
+      "Prepare to feed the rift, intruders."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your weapons.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_sorcerer"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "intimidate",
+        "text": "[Intimidation - CHA] Threaten them with your presence.",
+        "skillCheck": {
+          "skill": "intimidation",
+          "stat": "CHA",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#back_down",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "veil_cultist",
+                "veil_sorcerer"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "bribe",
+        "text": "Offer them coin to pass. (30 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -30
+          },
+          {
+            "type": "faction_delta",
+            "faction": "ashen_veil",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "back_down": {
+        "lines": [
+          "He hesitates, then gestures to his followers.",
+          "\"Leave them, for now. We have bigger prey.\""
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Leave while you can.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"intimidate\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:06:39.163Z"
+}

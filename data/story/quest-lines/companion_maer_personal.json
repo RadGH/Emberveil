@@ -1,0 +1,89 @@
+{
+  "id": "companion_maer_personal",
+  "category": "companion",
+  "act": 1,
+  "title": "The Resignation Letter",
+  "summary": "Captain Maer resigned rather than burn a village. She still has the letter she was ordered to deliver. She never delivered it. She is not sure what to do about that — or the village, which is still standing, and still exposed.",
+  "startCondition": {
+    "all": [
+      { "companion": "captain_maer", "status": "active" },
+      { "counter": "maer_approval", "gte": 3 }
+    ]
+  },
+  "phases": [
+    {
+      "id": "maer_opens_up",
+      "label": "Maer describes the order she refused",
+      "completeCondition": { "flag": "maer_quest_started" },
+      "onComplete": [
+        { "type": "companion_approval", "companion": "captain_maer", "amount": 1 },
+        { "type": "quest_log", "text": "'The order cited cult-sympathizer grounds. The assessment was mine. I wrote it three months earlier about general Ashen Veil activity in the area — not about that village specifically. Someone used it anyway.' She does not use the word 'falsified.' She uses 'repurposed.' The distinction is exact." }
+      ],
+      "nextPhase": "maer_finds_village"
+    },
+    {
+      "id": "maer_finds_village",
+      "label": "Locate the village and assess its current situation",
+      "completeCondition": { "flag": "village_fenwold_assessed" },
+      "onComplete": [
+        { "type": "faction_delta", "faction": "brightfall_council", "amount": -2 },
+        { "type": "quest_log", "text": "Fenwold is intact. Forty-three people. A watermill. A blacksmith who sharpens the shrine-keeper's tools at no charge. The Emberguard has not followed through — whether from resource shortage or because they assumed Maer complied, they cannot know. The village does not know about the order." }
+      ],
+      "nextPhase": "maer_warning_choice"
+    },
+    {
+      "id": "maer_warning_choice",
+      "label": "Decide whether to warn the village and how",
+      "completeCondition": {
+        "any": [
+          { "flag": "fenwold_warned_openly" },
+          { "flag": "fenwold_warned_quietly" },
+          { "flag": "fenwold_not_warned" }
+        ]
+      },
+      "onComplete": [
+        { "type": "set_flag", "flag": "emberguard_allied" },
+        { "type": "quest_log", "text": "A decision with weight. The village is still here. Whatever comes next, Maer made a different choice — and so did the party." }
+      ],
+      "nextPhase": "maer_resolution"
+    },
+    {
+      "id": "maer_resolution",
+      "label": "Maer decides what to do about the letter and the chain of command that generated it",
+      "completeCondition": { "flag": "maer_quest_completed" },
+      "onComplete": [
+        { "type": "companion_approval", "companion": "captain_maer", "amount": 3 },
+        { "type": "faction_delta", "faction": "oathless", "amount": 2 },
+        { "type": "quest_log", "text": "She burns the letter. 'The letter was never the problem.' She keeps the assessment. 'The assessment is accurate. Someone needs to read it correctly.'" }
+      ],
+      "nextPhase": null
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "village_openly_warned",
+      "condition": { "all": [{ "flag": "maer_quest_completed" }, { "flag": "fenwold_warned_openly" }] },
+      "effects": [
+        { "type": "faction_delta", "faction": "brightfall_council", "amount": -2 },
+        { "type": "faction_delta", "faction": "oathless", "amount": 2 },
+        { "type": "gold", "amount": 60 }
+      ]
+    },
+    {
+      "id": "village_quietly_warned",
+      "condition": { "all": [{ "flag": "maer_quest_completed" }, { "flag": "fenwold_warned_quietly" }] },
+      "effects": [
+        { "type": "faction_delta", "faction": "brightfall_council", "amount": -1 },
+        { "type": "faction_delta", "faction": "oathless", "amount": 1 },
+        { "type": "gold", "amount": 30 }
+      ]
+    },
+    {
+      "id": "village_not_warned",
+      "condition": { "all": [{ "flag": "maer_quest_completed" }, { "flag": "fenwold_not_warned" }] },
+      "effects": [
+        { "type": "companion_approval", "companion": "captain_maer", "amount": -2 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,746 @@
+/* EvCardRail — M389 styles. Phase 06 §1–4. */
+
+/* Hide the legacy hud-members row when the new card rail is active.
+   .hud-right (round/speed/pause controls) stays — combat must remain usable. */
+.cbt-hud--ev-overlay .hud-members { display: none !important; }
+/* M397 — when the new card rail mounts, the legacy cbt-hud reduces to just
+   the right-side tap/speed/pause column. Drop its top border + dark fill so
+   the .ev-hud frame becomes the sole bottom-bar boundary instead of having
+   a stray hairline above the tap buttons; raise its z-index above the
+   ev-hud frame so the controls remain tappable. */
+.cbt-hud--ev-overlay {
+  background: transparent !important;
+  border-top: 0 !important;
+  padding: 4px 8px !important;
+  /* M406 — raised from z-index 3 to 5 so the legacy hud controls (speed/pause)
+     sit above the ev-hud frame (z-index 4) and remain tappable on mobile.
+     Previously at z-index 3 it was covered by ev-hud on touch devices. */
+  z-index: 5;
+  justify-content: flex-end !important;
+  pointer-events: none;
+  /* Shrink the absolute footprint to just the right-side controls. The
+     legacy hud spans full width by default; with members hidden, that empty
+     left strip overlapped the new card rail and blocked desktop hover. */
+  left: auto;
+  width: auto;
+}
+.cbt-hud--ev-overlay .hud-right,
+.cbt-hud--ev-overlay .hud-controls,
+.cbt-hud--ev-overlay button { pointer-events: auto; position: relative; z-index: 6; }
+
+/* Root HUD container. Anchors viewport-bottom inside .combat-screen.
+   M397 — span full width and wear a single ornamented frame around the
+   entire bottom bar (cards + companion row + spell rail) so the legacy
+   cbt-hud border doesn't read as a stray line above the tap buttons. */
+.ev-hud {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 6px 6px;
+  background: linear-gradient(180deg, rgba(8, 4, 14, 0.78), rgba(6, 2, 10, 0.92));
+  border-top: 1px solid rgba(232, 160, 32, 0.32);
+  box-shadow: 0 -8px 18px rgba(0, 0, 0, 0.45);
+  pointer-events: auto;
+  font-family: 'Inter', sans-serif;
+}
+/* Cards inside the full-width frame still want a comfortable max width
+   so they don't stretch absurdly on desktop. */
+.ev-hud__card-row { width: min(100%, 1100px); margin: 0 auto; }
+.ev-companion-row { width: min(100%, 1100px); margin: 0 auto; }
+
+.ev-hud__card-row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  /* M397 — corner ornaments outset 11px; pad just enough to clear them
+     without inflating the bottom HUD. Previously 14px top/bottom which
+     piled extra height onto the bar when companions were also shown. */
+  padding: 8px 12px;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.ev-hud__card-row::-webkit-scrollbar { height: 4px; }
+/* The hud wrapper must let corners outset above its top edge. */
+.ev-hud { overflow: visible; }
+
+/* ── Hero card ────────────────────────────────────────────────────── */
+
+.ev-char-card {
+  position: relative;
+  flex: 1 1 180px;
+  min-width: 180px;
+  max-width: 240px;
+  scroll-snap-align: start;
+  background: linear-gradient(180deg, rgba(20, 14, 36, 0.88), rgba(14, 9, 26, 0.88));
+  border: 1px solid var(--border-stroke, var(--gold-dim, #6b5418));
+  border-radius: 6px;
+  padding: 6px 8px;
+  color: #f0e8d8;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  transition: border-color 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+}
+/* M397 — pull the lozenge corners closer to the card edge so the corner
+   ornaments don't visually inflate the card height. Was 11px outset (default
+   ev-panel rule); 7px reads as decoration without padding the bar. */
+.ev-char-card .ev-corner { width: 22px; height: 22px; }
+.ev-char-card .ev-corner--tl { top: -7px; left: -7px; }
+.ev-char-card .ev-corner--tr { top: -7px; right: -7px; }
+.ev-char-card .ev-corner--bl { bottom: -7px; left: -7px; }
+.ev-char-card .ev-corner--br { bottom: -7px; right: -7px; }
+/* Likewise for companion cards — the simple corners only need a 5px outset. */
+.ev-companion-card .ev-corner { width: 18px; height: 18px; }
+.ev-companion-card .ev-corner--tl { top: -5px; left: -5px; }
+.ev-companion-card .ev-corner--tr { top: -5px; right: -5px; }
+.ev-companion-card .ev-corner--bl { bottom: -5px; left: -5px; }
+.ev-companion-card .ev-corner--br { bottom: -5px; right: -5px; }
+
+.ev-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ev-card__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.ev-card__portrait-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: top center;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border-radius: 3px;
+  border: 1px solid var(--gold-dim, #6b5418);
+  flex: 0 0 auto;
+}
+
+.ev-card__identity {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ev-card__name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.92rem;
+  color: var(--gold-rim, #c8a020);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ev-card__class-label {
+  font-size: 0.68rem;
+  color: rgba(240, 232, 216, 0.55);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Bars ─────────────────────────────────────────────────────────── */
+
+.ev-card__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ev-bar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ev-bar-track {
+  position: relative;
+  flex: 1 1 auto;
+  height: 8px;
+  background: rgba(40, 6, 6, 0.7);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.ev-bar-track--mp {
+  height: 5px;
+  background: rgba(8, 14, 40, 0.7);
+}
+
+.ev-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transition: width 280ms ease, background 400ms ease;
+}
+
+.ev-bar--hp     { background: linear-gradient(90deg, #5fbf52, #2e8a32); }
+.ev-bar--hp-low { background: linear-gradient(90deg, #d8463a, #8a2222); }
+.ev-bar--shield { background: linear-gradient(90deg, rgba(120, 180, 255, 0.85), rgba(60, 100, 200, 0.85)); }
+.ev-bar--mp     { background: linear-gradient(90deg, #6090e0, #2a4ea8); }
+
+.ev-bar-label {
+  flex: 0 0 auto;
+  min-width: 56px;
+  text-align: right;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  color: rgba(240, 232, 216, 0.85);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Status row ───────────────────────────────────────────────────── */
+
+.ev-card__statuses {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 3px;
+  min-height: 14px;
+}
+
+.ev-status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 14px;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 2px;
+  background: rgba(40, 24, 60, 0.7);
+  color: var(--gold-rim, #c8a020);
+  border: 1px solid rgba(248, 232, 144, 0.2);
+}
+.ev-status-icon--burn   { color: #ff7a3a; border-color: rgba(255, 120, 60, 0.5); }
+.ev-status-icon--poison { color: #6cd06c; border-color: rgba(108, 208, 108, 0.5); }
+.ev-status-icon--stun   { color: #fde26a; border-color: rgba(253, 226, 106, 0.6); }
+.ev-status-icon--slow   { color: #80c0ff; border-color: rgba(128, 192, 255, 0.5); }
+.ev-status-icon--barrier{ color: #80c0ff; border-color: rgba(128, 192, 255, 0.5); }
+.ev-status-icon--silence{ color: #ff8a8a; border-color: rgba(255, 138, 138, 0.5); }
+
+/* M405 — image-backed status badge: 16x16 particle img + small duration tag. */
+.ev-status-icon--img {
+  width: 20px;
+  height: 18px;
+  background: rgba(8, 4, 16, 0.75);
+  padding: 1px;
+  position: relative;
+  overflow: visible;
+}
+.ev-status-icon--img > img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.ev-status-icon__dur {
+  position: absolute;
+  right: -3px;
+  bottom: -4px;
+  font-size: 0.5rem;
+  line-height: 1;
+  font-weight: 700;
+  color: #f8e890;
+  background: rgba(8, 4, 16, 0.95);
+  border-radius: 2px;
+  padding: 1px 2px;
+  pointer-events: none;
+}
+
+/* ── Spell rail (M390) — M393: single row, no wrap, justify space-around so
+   the basic-attack + skills + use-item + end-turn always read as one row.
+   On very narrow screens the row scrolls horizontally rather than wrapping. */
+.ev-card__spell-rail {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  min-height: 4px;
+  /* M402 — small top pad so the spell-icon hover/ready glow + border don't
+     get clipped by the card's spell-rail container above it. */
+  padding-top: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  justify-content: flex-start;
+  /* M393 — only show when manual mode is active. The active card has the
+     pulse animation; cold cards keep the rail rendered but de-emphasized. */
+}
+.ev-card__spell-rail::-webkit-scrollbar { display: none; }
+
+/* M405 — auto-combat hides spell rails entirely; the card content shrinks
+   naturally and the bottom HUD becomes shorter. */
+.ev-hud--auto-combat .ev-card__spell-rail { display: none; }
+
+.spell-icon {
+  position: relative;
+  /* M402 — desktop click target is min 24px (cursor-precise); touch devices
+     get 44px via the (pointer: coarse) override below. Using min-width/min-height
+     instead of fixed width/height lets desktop fit 6+ icons in the rail. */
+  min-width: 24px;
+  min-height: 24px;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid var(--gold-dim, #6b5418);
+  background: rgba(20, 14, 36, 0.85);
+  color: var(--gold-rim, #c8a020);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'Cinzel', serif;
+  transition: opacity 160ms ease, border-color 160ms ease,
+              box-shadow 160ms ease, background 160ms ease, transform 80ms ease;
+}
+.spell-icon:disabled { cursor: not-allowed; }
+.spell-icon__glyph {
+  font-size: 1.05rem;
+  line-height: 1;
+  pointer-events: none;
+  font-variant-emoji: text;
+}
+
+.ev-item-count {
+  position: absolute;
+  bottom: -1px;
+  right: -2px;
+  font-size: 0.55rem;
+  font-weight: 700;
+  background: rgba(8, 4, 20, 0.95);
+  border: 1px solid var(--gold-dim, #6b5418);
+  border-radius: 2px;
+  padding: 0 2px;
+  color: var(--gold-rim, #c8a020);
+}
+
+/* Cold (other actor's turn or AI mode) */
+.spell-icon--not-my-turn {
+  opacity: 0.32;
+  filter: grayscale(0.6);
+  pointer-events: none;
+}
+
+/* Disabled (dead, mid-resolve, blocked) */
+.spell-icon--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Enabled (active turn, no special state) */
+.spell-icon--enabled,
+.spell-icon--ready {
+  opacity: 1;
+}
+
+/* Active turn, castable — amber pulse */
+.spell-icon--ready {
+  border-color: var(--gold-glow, #f8e890);
+  animation: ev-spell-icon-pulse 1.4s ease-in-out infinite;
+}
+@keyframes ev-spell-icon-pulse {
+  0%, 100% { box-shadow: 0 0 4px rgba(248, 232, 144, 0.35); }
+  50%      { box-shadow: 0 0 12px rgba(248, 232, 144, 0.85); }
+}
+
+.spell-icon--ready:hover { transform: translateY(-1px); }
+
+/* On cooldown — radial overlay via CSS conic-gradient (cd_pct = 0..1 in --cd) */
+.spell-icon--on-cooldown {
+  opacity: 0.55;
+  filter: grayscale(0.6);
+  pointer-events: none;
+}
+.spell-icon--on-cooldown::after {
+  content: attr(data-cd);
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ff7a3a;
+  background: rgba(8, 4, 20, 0.55);
+  border-radius: 4px;
+}
+
+/* Insufficient mana — blue tint, still visible */
+.spell-icon--no-mana {
+  border-color: rgba(96, 144, 224, 0.6);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Silenced (M391+) */
+.spell-icon--silenced::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(204, 48, 32, 0.35);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* End-turn / item variants share base spell-icon look */
+.ev-skip-btn { border-color: rgba(160, 132, 80, 0.55); }
+
+@media (max-width: 700px) {
+  .spell-icon { width: 28px; height: 28px; }
+}
+
+/* ── Card states ──────────────────────────────────────────────────── */
+
+.ev-char-card[data-state="dead"],
+.ev-companion-card[data-state="dead"] {
+  opacity: 0.45;
+}
+.ev-char-card[data-state="dead"] .ev-card__portrait-img,
+.ev-companion-card[data-state="dead"] .ev-companion-card__portrait {
+  filter: grayscale(1) opacity(0.6);
+}
+
+.ev-char-card[data-state="active"] {
+  border-color: var(--gold-glow, #f8e890);
+  animation: ev-card-rim-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes ev-card-rim-pulse {
+  0%, 100% { box-shadow: inset 0 0 14px rgba(248, 232, 144, 0.12), 0 0 8px rgba(200, 160, 32, 0.3); }
+  50%      { box-shadow: inset 0 0 22px rgba(248, 232, 144, 0.25), 0 0 16px rgba(200, 160, 32, 0.55); }
+}
+
+.ev-char-card[data-state="resolving"] {
+  border-color: var(--gold-glow, #f8e890);
+  box-shadow: inset 0 0 14px rgba(248, 232, 144, 0.10);
+}
+
+/* ── Companion row (M393 compact pass) ───────────────────────────── */
+
+.ev-companion-row {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  /* M397 — give the row enough top/bottom space to clear the companion
+     card's simple corners (outset 8px) but no more, so the overall HUD
+     doesn't grow taller when companions are displayed. */
+  padding: 6px 8px 4px;
+  margin-top: -4px;
+  overflow-x: visible;
+  flex-wrap: wrap;
+}
+
+/* M393 — Show Companion Frames toggle hides the row entirely. */
+.ev-hud--no-companions .ev-companion-row { display: none !important; }
+
+.ev-companion-card {
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 110px;
+  max-width: 140px;
+  background: linear-gradient(180deg, rgba(16, 12, 28, 0.85), rgba(12, 8, 22, 0.85));
+  border: 1px solid var(--gold-dim, #6b5418);
+  border-radius: 5px;
+  /* M393 — compact: tighter padding + removed body gap (no spell rail anyway) */
+  padding: 3px 5px;
+  font-size: 0.78em;
+  color: #f0e8d8;
+}
+.ev-companion-card .ev-panel__body { gap: 2px; }
+.ev-companion-card .ev-bar-track { height: 6px; }
+.ev-companion-card .ev-bar-track--mp { height: 4px; }
+.ev-companion-card .ev-card__statuses { min-height: 0; }
+
+.ev-companion-card__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.ev-companion-card__portrait {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  object-position: top center;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border-radius: 2px;
+  border: 1px solid var(--gold-dim, #6b5418);
+}
+
+.ev-companion-card__name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  color: var(--gold-rim, #c8a020);
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ev-companion-card__ai-badge {
+  flex: 0 0 auto;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 1px 4px;
+  border-radius: 2px;
+  background: rgba(40, 24, 60, 0.7);
+  border: 1px solid rgba(248, 232, 144, 0.2);
+  color: rgba(240, 232, 216, 0.7);
+}
+
+/* ── Mobile compression ───────────────────────────────────────────── */
+
+/* ── Tooltip card (M394) ──────────────────────────────────────────── */
+
+.ev-tooltip-card {
+  /* M402 — anchor above the hovered spell-icon via JS-computed left/top
+     instead of being parked at the right edge of the HUD. Fixed positioning
+     keeps it above all combat layers. */
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -100%);
+  width: min(280px, 70vw);
+  padding: 8px 12px;
+  background: linear-gradient(180deg, rgba(20, 14, 36, 0.95), rgba(14, 9, 26, 0.95));
+  border: 1px solid var(--gold-rim, #c8a020);
+  border-radius: 6px;
+  color: #f0e8d8;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  /* M473 — raised from 6 → 1200 so the status / spell tooltip clears
+     .cbt-captions (z-index 800) and other in-combat overlays. Stays below
+     true full-screen modals which sit even higher. */
+  z-index: 1200;
+}
+.ev-tooltip-card[hidden] { display: none; }
+
+.ev-tooltip-card__body strong {
+  font-family: 'Cinzel', serif;
+  font-size: 0.92rem;
+  color: var(--gold-rim, #c8a020);
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 3px;
+}
+.ev-tooltip-card__body .tt-meta {
+  font-size: 0.7rem;
+  color: rgba(240, 232, 216, 0.65);
+  margin-bottom: 4px;
+}
+.ev-tooltip-card__body .tt-meta .tt-cost { color: #80a8e8; }
+.ev-tooltip-card__body .tt-meta .tt-cd { color: #ff7a3a; }
+.ev-tooltip-card__body .tt-meta .tt-est { color: #f8d880; }
+.ev-tooltip-card__body p { margin: 0 0 2px; color: rgba(240, 232, 216, 0.85); }
+
+/* On touch devices the JS still sets left/top but we keep the layout
+   constrained so the tip never spills off-screen. */
+@media (max-width: 700px) {
+  .ev-tooltip-card { width: min(260px, 80vw); }
+}
+
+/* ── Mobile portrait strip (M395) ─────────────────────────────────── */
+
+.ev-mobile-portrait-strip {
+  display: none; /* shown only at <=700px */
+  flex-direction: row;
+  gap: 6px;
+  padding: 4px 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.ev-mobile-portrait-strip::-webkit-scrollbar { display: none; }
+
+.ev-mobile-portrait-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex: 0 0 auto;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 3px;
+  border: 1px solid var(--gold-dim, #6b5418);
+  border-radius: 4px;
+  background: rgba(8, 4, 20, 0.7);
+  cursor: pointer;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.ev-mobile-portrait-btn:hover { border-color: var(--gold-rim, #c8a020); }
+.ev-mobile-portrait-btn.is-selected {
+  border-color: var(--gold-glow, #f8e890);
+  box-shadow: 0 0 8px rgba(248, 232, 144, 0.6);
+}
+.ev-mobile-portrait-btn.is-dead {
+  filter: grayscale(1) opacity(0.5);
+}
+
+.ev-mobile-portrait-thumb {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  object-position: top center;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border-radius: 2px;
+}
+
+.ev-mobile-hp-strip {
+  width: 36px;
+  height: 3px;
+  background: rgba(60, 8, 8, 0.7);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.ev-mobile-hp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #5fbf52, #2e8a32);
+  transition: width 220ms ease;
+}
+/* M494 — mana bar under HP on the mobile portrait strip (mana classes only). */
+.ev-mobile-mp-strip {
+  width: 36px;
+  height: 3px;
+  margin-top: 2px;
+  background: rgba(8, 20, 60, 0.7);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.ev-mobile-mp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4f8fe0, #2a4fa0);
+  transition: width 220ms ease;
+}
+
+@media (max-width: 700px) {
+  .ev-hud {
+    bottom: 0;
+    gap: 4px;
+  }
+  /* M398 — mobile: pin the active card's spell rail to a roomy bottom strip
+     so the player can tap skills while watching combat. */
+  .ev-char-card.ev-char-card--mobile-selected .ev-card__spell-rail {
+    margin: 6px -6px 0;
+    padding: 4px 6px;
+    background: rgba(8, 4, 14, 0.85);
+    border-top: 1px solid rgba(232, 160, 32, 0.30);
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+  .ev-char-card.ev-char-card--mobile-selected .spell-icon {
+    flex: 0 0 auto;
+  }
+  /* Single-card mode: only the selected card is visible. */
+  .ev-hud__card-row {
+    flex-direction: column;
+    overflow-x: visible;
+    gap: 0;
+    padding: 0 4px;
+  }
+  .ev-char-card {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+    padding: 4px 6px;
+    display: none;
+  }
+  .ev-char-card.ev-char-card--mobile-selected { display: block; }
+  /* M444 — proper fix for the mobile active-actor frame: hide the entire
+     panel chrome (background, border, corner ornaments, body content) so
+     only the spell rail remains. The earlier M438 partial fix only hid
+     the inner content; the panel itself, its 4 corner SVGs, and the
+     card-row's 8px padding still occupied space and read as "an empty
+     frame is still there".
+
+     Strategy: collapse .ev-char-card on mobile to a zero-chrome box. We
+     can't `display: none` it because the spell rail is a child — losing
+     the rail breaks manual-mode targeting. Instead we hide every child
+     EXCEPT the spell rail, and zero every visual property of the card
+     itself (bg, border, padding, box-shadow, corners). The .ev-hud and
+     .ev-hud__card-row keep their padding zeroed so no leftover gutters. */
+  .ev-char-card.ev-char-card--mobile-selected > *:not(.ev-card__spell-rail),
+  .ev-char-card.ev-char-card--mobile-selected .ev-corner,
+  .ev-char-card.ev-char-card--mobile-selected .ev-panel__seal {
+    display: none !important;
+  }
+  .ev-char-card.ev-char-card--mobile-selected {
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    min-width: 0 !important;
+    transition: none !important;
+  }
+  /* M449 — Auto-combat is the default mode; the spell rail isn't used so
+     the active-actor card has nothing to show after the M444 chrome strip.
+     Hide the card entirely on auto so its padding stops reserving space
+     in the .ev-hud. The portrait strip stays. Manual-combat mode still
+     shows the rail (users opting into manual need it to pick spells). */
+  .ev-hud--auto-combat .ev-char-card.ev-char-card--mobile-selected {
+    display: none !important;
+  }
+  .ev-hud__card-row {
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+  /* M447 — Reverted M446. The party-frame bottom strip is restored. The
+     real fix for "panel overlapping the bottom row" is in JS: the canvas
+     groundY/gridBottom now reads the live .ev-hud height each frame and
+     pushes the bottom row of sprites up by that amount, so battle sprites
+     never render behind the hud (see CombatScreen._hudHeightPx +
+     _drawCombatLayout). Bottom panel keeps its bg/border/box-shadow. */
+  /* M445 — the WHOLE companion row is hidden on mobile. Companions show
+     their HP via the canvas HP bar on the sprite itself; the DOM card
+     was inflating the bottom bar, pushing it to ~50% of screen height
+     and reading as a giant translucent panel mid-canvas. The companion
+     bar at the bottom is pure noise here — kill it with the same rule
+     as ev-hud--no-companions. */
+  .ev-companion-row {
+    display: none !important;
+  }
+  /* Defensive: any rogue ev-companion-card that escapes the row hide
+     (e.g. injected into the card-row by a future change) still renders
+     as zero-chrome on mobile. */
+  .ev-companion-card {
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  .ev-companion-card > *:not(.ev-card__spell-rail),
+  .ev-companion-card .ev-corner,
+  .ev-companion-card .ev-panel__seal {
+    display: none !important;
+  }
+  .ev-card__portrait-img { width: 32px; height: 32px; }
+  .ev-card__name { font-size: 0.82rem; }
+  .ev-bar-label { font-size: 0.65rem; min-width: 48px; }
+  .ev-companion-card {
+    min-width: 110px;
+    max-width: 130px;
+  }
+  .ev-mobile-portrait-strip { display: flex; }
+}
+
+@media (min-width: 701px) {
+  .ev-mobile-portrait-strip { display: none; }
+}

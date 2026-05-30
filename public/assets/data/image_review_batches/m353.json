@@ -1,0 +1,82 @@
+{
+  "id": "m353",
+  "milestone": 353,
+  "openedAt": "2026-05-05T05:50:52.477Z",
+  "entries": [
+    {
+      "id": "enemy_void_scholar_portrait",
+      "category": "boss",
+      "group": "void_scholar",
+      "pose": "portrait",
+      "live": "../images/spritecook/void_scholar_portrait.png",
+      "new": "../images/spritecook/void_scholar_portrait.png",
+      "old": null,
+      "assetId": "5d86bc05-2a99-4443-a8ec-c764c8e891bc",
+      "reason": "M412 new boss art — Void Scholar previously had no graphic in the Scholar's Sanctum encounter. Five-pose set generated with shared reference for identity lock.",
+      "prompt": "Pixel art portrait bust of The Void Scholar — gaunt mid-50s sage with white-glowing violet eyes, silver-white hair in a small knot, cracked obsidian academic robe with violet runes, chained books, void-mist.",
+      "approved": true,
+      "addedAt": "2026-05-05T05:55:00Z",
+      "approvedAt": "2026-05-10T05:22:14.131Z"
+    },
+    {
+      "id": "enemy_void_scholar_south",
+      "category": "boss",
+      "group": "void_scholar",
+      "pose": "south",
+      "live": "../images/spritecook/void_scholar_south.png",
+      "new": "../images/spritecook/void_scholar_south.png",
+      "old": null,
+      "assetId": "2c5e76cf-f9e3-4915-88b4-0c1611ae3198",
+      "reason": "M412 new boss art — south idle pose, generated with portrait as reference for identity lock.",
+      "prompt": "Void Scholar south idle, full body, calm, hands loose in front, robe to ankle.",
+      "approved": true,
+      "addedAt": "2026-05-05T05:55:00Z",
+      "approvedAt": "2026-05-10T05:22:14.137Z"
+    },
+    {
+      "id": "enemy_void_scholar_east",
+      "category": "boss",
+      "group": "void_scholar",
+      "pose": "east",
+      "live": "../images/spritecook/void_scholar_east.png",
+      "new": "../images/spritecook/void_scholar_east.png",
+      "old": null,
+      "assetId": "10b13b89-a10a-4f12-967b-59f5eb4af48b",
+      "reason": "M412 new boss art — east idle pose.",
+      "prompt": "Void Scholar east idle, three-quarter side view, calm, robe to ankle, books on chest.",
+      "approved": true,
+      "addedAt": "2026-05-05T05:55:00Z",
+      "approvedAt": "2026-05-10T05:22:14.137Z"
+    },
+    {
+      "id": "enemy_void_scholar_east_attack",
+      "category": "boss",
+      "group": "void_scholar",
+      "pose": "east_attack",
+      "live": "../images/spritecook/void_scholar_east_attack.png",
+      "new": "../images/spritecook/void_scholar_east_attack.png",
+      "old": null,
+      "assetId": "60ef780b-a27a-41fc-be39-b110793df1bc",
+      "reason": "M412 new boss art — east attack pose, hurling a void-orb.",
+      "prompt": "Void Scholar mid-cast: right arm thrust forward hurling a violet-black void-orb, left hand pulled back glowing with rune.",
+      "approved": true,
+      "addedAt": "2026-05-05T05:55:00Z",
+      "approvedAt": "2026-05-10T05:22:14.137Z"
+    },
+    {
+      "id": "enemy_void_scholar_east_ko",
+      "category": "boss",
+      "group": "void_scholar",
+      "pose": "east_ko",
+      "live": "../images/spritecook/void_scholar_east_ko.png",
+      "new": "../images/spritecook/void_scholar_east_ko.png",
+      "old": null,
+      "assetId": "71491c7f-3b59-4f42-951c-0c7d6d2c7da6",
+      "reason": "M412 new boss art — defeated KO pose.",
+      "prompt": "Void Scholar collapsed on ground facing east, robe sprawled, eyes closed, void-mist dispersed.",
+      "approved": true,
+      "addedAt": "2026-05-05T05:55:00Z",
+      "approvedAt": "2026-05-10T05:22:14.137Z"
+    }
+  ]
+}

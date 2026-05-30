@@ -1,0 +1,1061 @@
+{
+  "generated": "2026-04-30T06:03:39.188Z",
+  "seed": 42,
+  "maxActs": 5,
+  "acts": [
+    {
+      "act": 1,
+      "zones": [
+        {
+          "zoneId": "border_roads",
+          "actNum": 1,
+          "nodesVisited": 6,
+          "combats": 3,
+          "wins": 0,
+          "losses": 3,
+          "deaths": 9,
+          "itemsFound": 0,
+          "rounds": 18,
+          "softlock": false
+        },
+        {
+          "zoneId": "thornwood",
+          "actNum": 1,
+          "nodesVisited": 3,
+          "combats": 0,
+          "wins": 0,
+          "losses": 0,
+          "deaths": 0,
+          "itemsFound": 0,
+          "rounds": 0,
+          "softlock": false
+        }
+      ],
+      "totalCombats": 3,
+      "totalWins": 0,
+      "totalLosses": 3,
+      "totalDeaths": 9,
+      "totalRounds": 18,
+      "totalItems": 0,
+      "softlock": false
+    },
+    {
+      "act": 2,
+      "zones": [
+        {
+          "zoneId": "dust_roads",
+          "actNum": 2,
+          "nodesVisited": 7,
+          "combats": 4,
+          "wins": 0,
+          "losses": 4,
+          "deaths": 12,
+          "itemsFound": 0,
+          "rounds": 40,
+          "softlock": false
+        },
+        {
+          "zoneId": "ember_plateau",
+          "actNum": 2,
+          "nodesVisited": 6,
+          "combats": 3,
+          "wins": 0,
+          "losses": 3,
+          "deaths": 9,
+          "itemsFound": 0,
+          "rounds": 23,
+          "softlock": false
+        }
+      ],
+      "totalCombats": 7,
+      "totalWins": 0,
+      "totalLosses": 7,
+      "totalDeaths": 21,
+      "totalRounds": 63,
+      "totalItems": 0,
+      "softlock": false
+    },
+    {
+      "act": 3,
+      "zones": [
+        {
+          "zoneId": "hell_breach",
+          "actNum": 3,
+          "nodesVisited": 6,
+          "combats": 3,
+          "wins": 1,
+          "losses": 2,
+          "deaths": 6,
+          "itemsFound": 0,
+          "rounds": 24,
+          "softlock": false
+        },
+        {
+          "zoneId": "shattered_core",
+          "actNum": 3,
+          "nodesVisited": 7,
+          "combats": 3,
+          "wins": 0,
+          "losses": 3,
+          "deaths": 9,
+          "itemsFound": 0,
+          "rounds": 17,
+          "softlock": false
+        }
+      ],
+      "totalCombats": 6,
+      "totalWins": 1,
+      "totalLosses": 5,
+      "totalDeaths": 15,
+      "totalRounds": 41,
+      "totalItems": 0,
+      "softlock": false
+    },
+    {
+      "act": 4,
+      "zones": [
+        {
+          "zoneId": "cosmic_rift",
+          "actNum": 4,
+          "nodesVisited": 7,
+          "combats": 4,
+          "wins": 3,
+          "losses": 1,
+          "deaths": 3,
+          "itemsFound": 0,
+          "rounds": 37,
+          "softlock": false
+        },
+        {
+          "zoneId": "eternal_void",
+          "actNum": 4,
+          "nodesVisited": 8,
+          "combats": 4,
+          "wins": 1,
+          "losses": 3,
+          "deaths": 9,
+          "itemsFound": 0,
+          "rounds": 44,
+          "softlock": false
+        }
+      ],
+      "totalCombats": 8,
+      "totalWins": 4,
+      "totalLosses": 4,
+      "totalDeaths": 12,
+      "totalRounds": 81,
+      "totalItems": 0,
+      "softlock": false
+    },
+    {
+      "act": 5,
+      "zones": [
+        {
+          "zoneId": "abyssal_depths",
+          "actNum": 5,
+          "nodesVisited": 6,
+          "combats": 4,
+          "wins": 0,
+          "losses": 4,
+          "deaths": 12,
+          "itemsFound": 0,
+          "rounds": 23,
+          "softlock": false
+        },
+        {
+          "zoneId": "primordial_nexus",
+          "actNum": 5,
+          "nodesVisited": 7,
+          "combats": 4,
+          "wins": 0,
+          "losses": 4,
+          "deaths": 12,
+          "itemsFound": 2,
+          "rounds": 26,
+          "softlock": false
+        }
+      ],
+      "totalCombats": 8,
+      "totalWins": 0,
+      "totalLosses": 8,
+      "totalDeaths": 24,
+      "totalRounds": 49,
+      "totalItems": 2,
+      "softlock": false
+    }
+  ],
+  "totals": {
+    "combats": 32,
+    "wins": 5,
+    "losses": 27,
+    "rounds": 252,
+    "deaths": 81,
+    "items": 2
+  },
+  "softlockDetected": false,
+  "trace": [
+    {
+      "type": "node",
+      "zone": "border_roads",
+      "node": "arrival",
+      "nodeType": "lore"
+    },
+    {
+      "type": "node",
+      "zone": "border_roads",
+      "node": "start",
+      "nodeType": "town"
+    },
+    {
+      "type": "node",
+      "zone": "border_roads",
+      "node": "road_ambush",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "border_roads",
+      "node": "crossroads_a",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "border_roads",
+      "node": "crossroads_a",
+      "encounter": "goblin_patrol",
+      "rounds": 7
+    },
+    {
+      "type": "combat",
+      "zone": "border_roads",
+      "node": "crossroads_a",
+      "encounter": "goblin_patrol",
+      "winner": "enemies",
+      "rounds": 7
+    },
+    {
+      "type": "node",
+      "zone": "border_roads",
+      "node": "ruined_watch",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "border_roads",
+      "node": "ruined_watch",
+      "encounter": "corrupted_outpost",
+      "rounds": 6
+    },
+    {
+      "type": "combat",
+      "zone": "border_roads",
+      "node": "ruined_watch",
+      "encounter": "corrupted_outpost",
+      "winner": "enemies",
+      "rounds": 6
+    },
+    {
+      "type": "node",
+      "zone": "border_roads",
+      "node": "border_boss",
+      "nodeType": "boss"
+    },
+    {
+      "type": "defeat",
+      "zone": "border_roads",
+      "node": "border_boss",
+      "encounter": "border_boss",
+      "rounds": 5
+    },
+    {
+      "type": "combat",
+      "zone": "border_roads",
+      "node": "border_boss",
+      "encounter": "border_boss",
+      "winner": "enemies",
+      "rounds": 5
+    },
+    {
+      "type": "zone_complete",
+      "zone": "border_roads"
+    },
+    {
+      "type": "node",
+      "zone": "thornwood",
+      "node": "arrival",
+      "nodeType": "lore"
+    },
+    {
+      "type": "node",
+      "zone": "thornwood",
+      "node": "forest_enter",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "thornwood",
+      "node": "hidden_vault_guardian",
+      "nodeType": "boss"
+    },
+    {
+      "type": "zone_complete",
+      "zone": "thornwood"
+    },
+    {
+      "type": "node",
+      "zone": "dust_roads",
+      "node": "arrival",
+      "nodeType": "lore"
+    },
+    {
+      "type": "node",
+      "zone": "dust_roads",
+      "node": "ash_gate",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "dust_roads",
+      "node": "dust_patrol",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "dust_roads",
+      "node": "dust_patrol",
+      "encounter": "ash_patrol",
+      "rounds": 7
+    },
+    {
+      "type": "combat",
+      "zone": "dust_roads",
+      "node": "dust_patrol",
+      "encounter": "ash_patrol",
+      "winner": "enemies",
+      "rounds": 7
+    },
+    {
+      "type": "node",
+      "zone": "dust_roads",
+      "node": "obsidian_fort",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "dust_roads",
+      "node": "obsidian_fort",
+      "encounter": "obsidian_garrison",
+      "rounds": 13
+    },
+    {
+      "type": "combat",
+      "zone": "dust_roads",
+      "node": "obsidian_fort",
+      "encounter": "obsidian_garrison",
+      "winner": "enemies",
+      "rounds": 13
+    },
+    {
+      "type": "node",
+      "zone": "dust_roads",
+      "node": "veil_camp",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "dust_roads",
+      "node": "veil_camp",
+      "encounter": "veil_cult_camp",
+      "rounds": 11
+    },
+    {
+      "type": "combat",
+      "zone": "dust_roads",
+      "node": "veil_camp",
+      "encounter": "veil_cult_camp",
+      "winner": "enemies",
+      "rounds": 11
+    },
+    {
+      "type": "node",
+      "zone": "dust_roads",
+      "node": "dust_int_check",
+      "nodeType": "skillCheck"
+    },
+    {
+      "type": "node",
+      "zone": "dust_roads",
+      "node": "dust_boss",
+      "nodeType": "boss"
+    },
+    {
+      "type": "defeat",
+      "zone": "dust_roads",
+      "node": "dust_boss",
+      "encounter": "lava_titan",
+      "rounds": 9
+    },
+    {
+      "type": "combat",
+      "zone": "dust_roads",
+      "node": "dust_boss",
+      "encounter": "lava_titan",
+      "winner": "enemies",
+      "rounds": 9
+    },
+    {
+      "type": "zone_complete",
+      "zone": "dust_roads"
+    },
+    {
+      "type": "node",
+      "zone": "ember_plateau",
+      "node": "arrival",
+      "nodeType": "lore"
+    },
+    {
+      "type": "node",
+      "zone": "ember_plateau",
+      "node": "plateau_enter",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "ember_plateau",
+      "node": "lava_fields",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "ember_plateau",
+      "node": "lava_fields",
+      "encounter": "ash_patrol",
+      "rounds": 7
+    },
+    {
+      "type": "combat",
+      "zone": "ember_plateau",
+      "node": "lava_fields",
+      "encounter": "ash_patrol",
+      "winner": "enemies",
+      "rounds": 7
+    },
+    {
+      "type": "node",
+      "zone": "ember_plateau",
+      "node": "veil_stronghold",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "ember_plateau",
+      "node": "veil_stronghold",
+      "encounter": "veil_cult_camp",
+      "rounds": 8
+    },
+    {
+      "type": "combat",
+      "zone": "ember_plateau",
+      "node": "veil_stronghold",
+      "encounter": "veil_cult_camp",
+      "winner": "enemies",
+      "rounds": 8
+    },
+    {
+      "type": "node",
+      "zone": "ember_plateau",
+      "node": "rift_access",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "ember_plateau",
+      "node": "plateau_boss",
+      "nodeType": "boss"
+    },
+    {
+      "type": "defeat",
+      "zone": "ember_plateau",
+      "node": "plateau_boss",
+      "encounter": "veil_high_priest",
+      "rounds": 8
+    },
+    {
+      "type": "combat",
+      "zone": "ember_plateau",
+      "node": "plateau_boss",
+      "encounter": "veil_high_priest",
+      "winner": "enemies",
+      "rounds": 8
+    },
+    {
+      "type": "zone_complete",
+      "zone": "ember_plateau"
+    },
+    {
+      "type": "node",
+      "zone": "hell_breach",
+      "node": "arrival",
+      "nodeType": "lore"
+    },
+    {
+      "type": "node",
+      "zone": "hell_breach",
+      "node": "breach_gate",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "hell_breach",
+      "node": "demon_patrol",
+      "nodeType": "combat"
+    },
+    {
+      "type": "combat",
+      "zone": "hell_breach",
+      "node": "demon_patrol",
+      "encounter": "demon_patrol",
+      "winner": "party",
+      "rounds": 7
+    },
+    {
+      "type": "node",
+      "zone": "hell_breach",
+      "node": "inferno_keep",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "hell_breach",
+      "node": "inferno_keep",
+      "encounter": "hell_garrison",
+      "rounds": 7
+    },
+    {
+      "type": "combat",
+      "zone": "hell_breach",
+      "node": "inferno_keep",
+      "encounter": "hell_garrison",
+      "winner": "enemies",
+      "rounds": 7
+    },
+    {
+      "type": "node",
+      "zone": "hell_breach",
+      "node": "void_altar",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "hell_breach",
+      "node": "breach_boss",
+      "nodeType": "boss"
+    },
+    {
+      "type": "defeat",
+      "zone": "hell_breach",
+      "node": "breach_boss",
+      "encounter": "archfiend_malgrath",
+      "rounds": 10
+    },
+    {
+      "type": "combat",
+      "zone": "hell_breach",
+      "node": "breach_boss",
+      "encounter": "archfiend_malgrath",
+      "winner": "enemies",
+      "rounds": 10
+    },
+    {
+      "type": "zone_complete",
+      "zone": "hell_breach"
+    },
+    {
+      "type": "node",
+      "zone": "shattered_core",
+      "node": "arrival",
+      "nodeType": "lore"
+    },
+    {
+      "type": "node",
+      "zone": "shattered_core",
+      "node": "core_enter",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "shattered_core",
+      "node": "rift_demons",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "shattered_core",
+      "node": "rift_demons",
+      "encounter": "rift_assault",
+      "rounds": 6
+    },
+    {
+      "type": "combat",
+      "zone": "shattered_core",
+      "node": "rift_demons",
+      "encounter": "rift_assault",
+      "winner": "enemies",
+      "rounds": 6
+    },
+    {
+      "type": "node",
+      "zone": "shattered_core",
+      "node": "shard_fortress",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "shattered_core",
+      "node": "shard_fortress",
+      "encounter": "hell_garrison",
+      "rounds": 7
+    },
+    {
+      "type": "combat",
+      "zone": "shattered_core",
+      "node": "shard_fortress",
+      "encounter": "hell_garrison",
+      "winner": "enemies",
+      "rounds": 7
+    },
+    {
+      "type": "node",
+      "zone": "shattered_core",
+      "node": "oblivion_spire",
+      "nodeType": "shrine"
+    },
+    {
+      "type": "node",
+      "zone": "shattered_core",
+      "node": "the_wound",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "shattered_core",
+      "node": "core_boss",
+      "nodeType": "boss"
+    },
+    {
+      "type": "defeat",
+      "zone": "shattered_core",
+      "node": "core_boss",
+      "encounter": "emberveil_sovereign",
+      "rounds": 4
+    },
+    {
+      "type": "combat",
+      "zone": "shattered_core",
+      "node": "core_boss",
+      "encounter": "emberveil_sovereign",
+      "winner": "enemies",
+      "rounds": 4
+    },
+    {
+      "type": "zone_complete",
+      "zone": "shattered_core"
+    },
+    {
+      "type": "node",
+      "zone": "cosmic_rift",
+      "node": "arrival",
+      "nodeType": "lore"
+    },
+    {
+      "type": "node",
+      "zone": "cosmic_rift",
+      "node": "rift_entry",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "cosmic_rift",
+      "node": "star_fields",
+      "nodeType": "combat"
+    },
+    {
+      "type": "combat",
+      "zone": "cosmic_rift",
+      "node": "star_fields",
+      "encounter": "void_horde",
+      "winner": "party",
+      "rounds": 5
+    },
+    {
+      "type": "node",
+      "zone": "cosmic_rift",
+      "node": "cosmic_bastion",
+      "nodeType": "combat"
+    },
+    {
+      "type": "combat",
+      "zone": "cosmic_rift",
+      "node": "cosmic_bastion",
+      "encounter": "cosmic_assault",
+      "winner": "party",
+      "rounds": 17
+    },
+    {
+      "type": "node",
+      "zone": "cosmic_rift",
+      "node": "collapse_rift",
+      "nodeType": "ambush"
+    },
+    {
+      "type": "defeat",
+      "zone": "cosmic_rift",
+      "node": "collapse_rift",
+      "encounter": "cosmic_assault",
+      "rounds": 8
+    },
+    {
+      "type": "combat",
+      "zone": "cosmic_rift",
+      "node": "collapse_rift",
+      "encounter": "cosmic_assault",
+      "winner": "enemies",
+      "rounds": 8
+    },
+    {
+      "type": "node",
+      "zone": "cosmic_rift",
+      "node": "prophet_sanctum",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "cosmic_rift",
+      "node": "rift_boss",
+      "nodeType": "boss"
+    },
+    {
+      "type": "combat",
+      "zone": "cosmic_rift",
+      "node": "rift_boss",
+      "encounter": "void_horde",
+      "winner": "party",
+      "rounds": 7
+    },
+    {
+      "type": "zone_complete",
+      "zone": "cosmic_rift"
+    },
+    {
+      "type": "node",
+      "zone": "eternal_void",
+      "node": "arrival",
+      "nodeType": "lore"
+    },
+    {
+      "type": "node",
+      "zone": "eternal_void",
+      "node": "void_gates",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "eternal_void",
+      "node": "star_horror_swarm",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "eternal_void",
+      "node": "star_horror_swarm",
+      "encounter": "cosmic_assault",
+      "rounds": 9
+    },
+    {
+      "type": "combat",
+      "zone": "eternal_void",
+      "node": "star_horror_swarm",
+      "encounter": "cosmic_assault",
+      "winner": "enemies",
+      "rounds": 9
+    },
+    {
+      "type": "node",
+      "zone": "eternal_void",
+      "node": "unraveler_ante",
+      "nodeType": "combat"
+    },
+    {
+      "type": "combat",
+      "zone": "eternal_void",
+      "node": "unraveler_ante",
+      "encounter": "void_horde",
+      "winner": "party",
+      "rounds": 10
+    },
+    {
+      "type": "node",
+      "zone": "eternal_void",
+      "node": "rift_spiral",
+      "nodeType": "ambush"
+    },
+    {
+      "type": "defeat",
+      "zone": "eternal_void",
+      "node": "rift_spiral",
+      "encounter": "cosmic_assault",
+      "rounds": 8
+    },
+    {
+      "type": "combat",
+      "zone": "eternal_void",
+      "node": "rift_spiral",
+      "encounter": "cosmic_assault",
+      "winner": "enemies",
+      "rounds": 8
+    },
+    {
+      "type": "node",
+      "zone": "eternal_void",
+      "node": "last_shrine",
+      "nodeType": "shrine"
+    },
+    {
+      "type": "node",
+      "zone": "eternal_void",
+      "node": "void_boss",
+      "nodeType": "boss"
+    },
+    {
+      "type": "defeat",
+      "zone": "eternal_void",
+      "node": "void_boss",
+      "encounter": "unraveler",
+      "rounds": 17
+    },
+    {
+      "type": "combat",
+      "zone": "eternal_void",
+      "node": "void_boss",
+      "encounter": "unraveler",
+      "winner": "enemies",
+      "rounds": 17
+    },
+    {
+      "type": "node",
+      "zone": "eternal_void",
+      "node": "hidden_echo_sovereign",
+      "nodeType": "boss"
+    },
+    {
+      "type": "zone_complete",
+      "zone": "eternal_void"
+    },
+    {
+      "type": "node",
+      "zone": "abyssal_depths",
+      "node": "arrival",
+      "nodeType": "lore"
+    },
+    {
+      "type": "node",
+      "zone": "abyssal_depths",
+      "node": "abyss_gate",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "abyssal_depths",
+      "node": "drowned_halls",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "abyssal_depths",
+      "node": "drowned_halls",
+      "encounter": "primordial_patrol",
+      "rounds": 5
+    },
+    {
+      "type": "combat",
+      "zone": "abyssal_depths",
+      "node": "drowned_halls",
+      "encounter": "primordial_patrol",
+      "winner": "enemies",
+      "rounds": 5
+    },
+    {
+      "type": "node",
+      "zone": "abyssal_depths",
+      "node": "nexus_core",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "abyssal_depths",
+      "node": "nexus_core",
+      "encounter": "abyssal_garrison",
+      "rounds": 7
+    },
+    {
+      "type": "combat",
+      "zone": "abyssal_depths",
+      "node": "nexus_core",
+      "encounter": "abyssal_garrison",
+      "winner": "enemies",
+      "rounds": 7
+    },
+    {
+      "type": "node",
+      "zone": "abyssal_depths",
+      "node": "worm_den",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "abyssal_depths",
+      "node": "worm_den",
+      "encounter": "genesis_nest",
+      "rounds": 4
+    },
+    {
+      "type": "combat",
+      "zone": "abyssal_depths",
+      "node": "worm_den",
+      "encounter": "genesis_nest",
+      "winner": "enemies",
+      "rounds": 4
+    },
+    {
+      "type": "node",
+      "zone": "abyssal_depths",
+      "node": "abyss_boss",
+      "nodeType": "boss"
+    },
+    {
+      "type": "defeat",
+      "zone": "abyssal_depths",
+      "node": "abyss_boss",
+      "encounter": "abyssal_garrison",
+      "rounds": 7
+    },
+    {
+      "type": "combat",
+      "zone": "abyssal_depths",
+      "node": "abyss_boss",
+      "encounter": "abyssal_garrison",
+      "winner": "enemies",
+      "rounds": 7
+    },
+    {
+      "type": "zone_complete",
+      "zone": "abyssal_depths"
+    },
+    {
+      "type": "node",
+      "zone": "primordial_nexus",
+      "node": "arrival",
+      "nodeType": "lore"
+    },
+    {
+      "type": "node",
+      "zone": "primordial_nexus",
+      "node": "nexus_gates",
+      "nodeType": "dialog"
+    },
+    {
+      "type": "node",
+      "zone": "primordial_nexus",
+      "node": "shard_storm",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "primordial_nexus",
+      "node": "shard_storm",
+      "encounter": "primordial_patrol",
+      "rounds": 5
+    },
+    {
+      "type": "combat",
+      "zone": "primordial_nexus",
+      "node": "shard_storm",
+      "encounter": "primordial_patrol",
+      "winner": "enemies",
+      "rounds": 5
+    },
+    {
+      "type": "node",
+      "zone": "primordial_nexus",
+      "node": "architect_bridge",
+      "nodeType": "combat"
+    },
+    {
+      "type": "defeat",
+      "zone": "primordial_nexus",
+      "node": "architect_bridge",
+      "encounter": "genesis_nest",
+      "rounds": 6
+    },
+    {
+      "type": "combat",
+      "zone": "primordial_nexus",
+      "node": "architect_bridge",
+      "encounter": "genesis_nest",
+      "winner": "enemies",
+      "rounds": 6
+    },
+    {
+      "type": "node",
+      "zone": "primordial_nexus",
+      "node": "crucible",
+      "nodeType": "challenge"
+    },
+    {
+      "type": "defeat",
+      "zone": "primordial_nexus",
+      "node": "crucible",
+      "encounter": "abyssal_garrison",
+      "rounds": 8
+    },
+    {
+      "type": "combat",
+      "zone": "primordial_nexus",
+      "node": "crucible",
+      "encounter": "abyssal_garrison",
+      "winner": "enemies",
+      "rounds": 8
+    },
+    {
+      "type": "node",
+      "zone": "primordial_nexus",
+      "node": "architect_boss",
+      "nodeType": "boss"
+    },
+    {
+      "type": "defeat",
+      "zone": "primordial_nexus",
+      "node": "architect_boss",
+      "encounter": "the_architect_final",
+      "rounds": 7
+    },
+    {
+      "type": "combat",
+      "zone": "primordial_nexus",
+      "node": "architect_boss",
+      "encounter": "the_architect_final",
+      "winner": "enemies",
+      "rounds": 7
+    },
+    {
+      "type": "node",
+      "zone": "primordial_nexus",
+      "node": "hidden_first_ember",
+      "nodeType": "boss"
+    },
+    {
+      "type": "zone_complete",
+      "zone": "primordial_nexus"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "orren_tessaly_01",
+    "trigger": "nodeResolved",
+    "cooldown": 5,
+    "companionA": "orren_gravetide",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "orren_gravetide", "text": "You stole from that merchant." },
+      { "speaker": "tessaly_veil",    "text": "I redistributed an unfair arrangement." },
+      { "speaker": "orren_gravetide", "text": "I'm watching you." },
+      { "speaker": "tessaly_veil",    "text": "You're not watching me well enough." }
+    ]
+  },
+  {
+    "id": "orren_tessaly_02",
+    "trigger": "nodeResolved",
+    "cooldown": 6,
+    "companionA": "orren_gravetide",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "tessaly_veil",    "text": "Honor is just the story the strong tell about why they get to stay strong." },
+      { "speaker": "orren_gravetide", "text": "Honor is the story the weak tell so the strong don't crush them. It serves everyone." },
+      { "speaker": "tessaly_veil",    "text": "...That's actually good." }
+    ]
+  },
+  {
+    "id": "orren_tessaly_03",
+    "trigger": "nodeResolved",
+    "cooldown": 7,
+    "companionA": "orren_gravetide",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "orren_gravetide", "text": "You're useful. I'll admit that." },
+      { "speaker": "tessaly_veil",    "text": "High praise from a man who measures everything in usefulness." },
+      { "speaker": "orren_gravetide", "text": "I measure everything in results. Usefulness is just the path." }
+    ]
+  },
+  {
+    "id": "orren_tessaly_04",
+    "trigger": "nodeResolved",
+    "cooldown": 8,
+    "companionA": "orren_gravetide",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "tessaly_veil",    "text": "You fight like you have something to prove." },
+      { "speaker": "orren_gravetide", "text": "Everyone does. The ones who say otherwise are lying." }
+    ]
+  },
+  {
+    "id": "orren_tessaly_05",
+    "trigger": "nodeResolved",
+    "cooldown": 9,
+    "companionA": "orren_gravetide",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "orren_gravetide", "text": "My brother would have liked you. He had no patience for rules either." },
+      { "speaker": "tessaly_veil",    "text": "Would have?" },
+      { "speaker": "orren_gravetide", "text": "He's gone." },
+      { "speaker": "tessaly_veil",    "text": "I'm sorry." }
+    ]
+  }
+]

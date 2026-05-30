@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Heal — droplet with embedded cross, single target (no peripheral) -->
+  <!-- Droplet outline -->
+  <path d="M16 7c-5 6-7 10-7 13a7 7 0 0 0 14 0c0-3-2-7-7-13z"/>
+  <!-- Embedded cross (heal marker) -->
+  <path d="M13 19h6"/>
+  <path d="M16 16v6"/>
+  <!-- Inner glow hint (small filled circle at core) -->
+  <circle cx="16" cy="22" r="1.5" fill="currentColor" stroke="none" opacity="0.4"/>
+</svg>

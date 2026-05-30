@@ -1,0 +1,61 @@
+{
+  "node": {
+    "id": "faction_veilscar_jup1ap0_004",
+    "pool": "faction",
+    "act": 2,
+    "biome": "veilscar",
+    "tone": "political",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "We guard the remnants of what was.",
+      "What has the Ashen Veil promised you?"
+    ],
+    "choices": [
+      {
+        "id": "reveal",
+        "text": "Reveal your intentions honestly.",
+        "next": null,
+        "effects": [
+          {
+            "type": "faction_delta",
+            "faction": "emberguard",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "id": "deceive",
+        "text": "[Deception - INT] Spin a tale of alliance.",
+        "skillCheck": {
+          "skill": "deception",
+          "stat": "INT",
+          "dc": 15
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "emberguard",
+              "amount": 2
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "emberguard",
+              "amount": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"deceive\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:11:50.377Z"
+}

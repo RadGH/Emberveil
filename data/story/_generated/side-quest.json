@@ -1,0 +1,1167 @@
+[
+  {
+    "id": "side_quest_emberwood_fhvyhup_001",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "wary",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "Something's not right. Heard whispers in the trees.",
+      "We lost two of ours last night. We need help."
+    ],
+    "choices": [
+      {
+        "id": "agree",
+        "text": "Agree to investigate the area.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_investigate_whispers",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "\"Not our problem.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_flmsw5c_001",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "bone_reader",
+    "lines": [
+      "The bones tell stories of the lost. They hear your questions.",
+      "But I cannot speak to the ash; it requires a cost."
+    ],
+    "choices": [
+      {
+        "id": "pay_cost",
+        "text": "Offer fifty gold for the reading.",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -50
+          },
+          {
+            "type": "quest_advance",
+            "questId": "sq_bone_reading",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "refuse",
+        "text": "Deny the payment and leave.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_riftgate_fqbxper_001",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The Riftgate holds fragmented whispers of the past.",
+      "Retrieve a shard, and hear the truth of what lies ahead."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to retrieve the shard.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_riftgate_shard",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "rift_shard_collected"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "Refuse the task.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_gloomridge_fypur6e_001",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "gloomridge",
+    "tone": "wary",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "Something's been lurking in the shadows. My partner hasn't returned for hours.",
+      "I fear the worst. Will you help search?"
+    ],
+    "choices": [
+      {
+        "id": "agree",
+        "text": "Agree to search for the partner.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_missing_partn",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "refuse",
+        "text": "\"Not worth the risk.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_gloomridge_fypur6e_002",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "gloomridge",
+    "tone": "wary",
+    "speaker": "tessaly_veil",
+    "lines": [
+      "The Veil's presence feels stronger near the old ruins.",
+      "I need someone to scout the area. Will you?"
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Accept the scouting task.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_scout_ruins",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "\"I have my own path to follow.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ember_hollow_g9057r5_001",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "ember_hollow",
+    "tone": "resolute",
+    "speaker": "elderwood_hermit",
+    "lines": [
+      "This place is hollow now. It cries for aid."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to help restore the shrine.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_restore_embershrine",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "It's not our fight.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_ghi41g9_001",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "bone_reader",
+    "lines": [
+      "The land remembers, even if we do not.",
+      "Find the remnants of the old shrine. It may still speak."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to investigate the shrine.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_investigate_shrine",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "\"Not interested.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_riftgate_gkwshug_001",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The rift is unstable. It whispers to me in a way I can't ignore.",
+      "You seek something from it? You must tread carefully."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "I understand. I'll proceed with caution.",
+        "effects": []
+      },
+      {
+        "id": "question",
+        "text": "\"What whispers?\"",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_riftgate_gkwshug_002",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "ash_prophet_npc",
+    "lines": [
+      "The Sovereign's approach is imminent. Prepare yourselves accordingly.",
+      "A choice lies ahead. One cannot turn back from it."
+    ],
+    "choices": [
+      {
+        "id": "ready",
+        "text": "We're ready for what comes next.",
+        "effects": []
+      },
+      {
+        "id": "inquire",
+        "text": "\"What do you mean by choice?\"",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_riftgate_gkwshug_003",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "bram_coldfire",
+    "lines": [
+      "The rift holds more than we understand. I've seen it.",
+      "If we breach it, we might lose ourselves forever."
+    ],
+    "choices": [
+      {
+        "id": "proceed",
+        "text": "We need answers. We must breach it.",
+        "effects": []
+      },
+      {
+        "id": "disagree",
+        "text": "\"It's too risky. We should hold back.\"",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_riftgate_gkwshug_004",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "There are remnants here. They hold secrets.",
+      "If you search well, perhaps you'll find a key."
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "Search for remnants.",
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "\"Let's not waste time. Move forward.\"",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_riftgate_gkwshug_005",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "null",
+    "lines": [
+      "A distant rumble shakes the air. The rift stirs with energy.",
+      "Decisions must be made, and soon."
+    ],
+    "choices": [
+      {
+        "id": "resolve",
+        "text": "Make a decisive choice now.",
+        "effects": []
+      },
+      {
+        "id": "pause",
+        "text": "[Wisdom - WIS] Take a moment to evaluate the situation.",
+        "skillCheck": {
+          "skill": "wisdom",
+          "stat": "WIS",
+          "dc": 15
+        },
+        "onPass": {
+          "effects": []
+        },
+        "onFail": {
+          "effects": []
+        },
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_old_road_gy26zxr_001",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "wary",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "I've heard whispers of the Ashen Veil nearby.",
+      "If you're going that way, take care. They don't take kindly to outsiders."
+    ],
+    "choices": [
+      {
+        "id": "agree",
+        "text": "I'll be careful.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "dismiss",
+        "text": "Sounds like a tale to scare children.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_old_road_gy26zxr_002",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "wary",
+    "speaker": "brightfall_innkeeper",
+    "lines": [
+      "Strange folk have been asking about you.",
+      "Best keep your head down and your coin close."
+    ],
+    "choices": [
+      {
+        "id": "inquire",
+        "text": "What do you know?",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "Not my concern.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_old_road_gy26zxr_003",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "wary",
+    "speaker": "null",
+    "lines": [
+      "A discarded dagger, blood caked on its hilt.",
+      "This road isn't safe. Better turn back."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "[Perception - WIS] Examine the area.",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "road_evidence_burned"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "move_on",
+        "text": "Leave it be and continue.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_old_road_gy26zxr_004",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "wary",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "The Gloomridge is cursed. You'll do best to avoid it.",
+      "But if you must go, take this warning."
+    ],
+    "choices": [
+      {
+        "id": "accept_warning",
+        "text": "I'll heed your words.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "boast",
+        "text": "I can handle myself.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_old_road_gy26zxr_005",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "wary",
+    "speaker": "null",
+    "lines": [
+      "Footprints in the mud, too many for comfort.",
+      "Someone's been watching. Keep your guard up."
+    ],
+    "choices": [
+      {
+        "id": "set_trap",
+        "text": "[Mechanisms - INT] Set a trap nearby.",
+        "skillCheck": {
+          "skill": "mechanisms",
+          "stat": "INT",
+          "dc": 14
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "crossroads_ambush_survived"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "stay_alert",
+        "text": "Remain vigilant and wait.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_h9bixqo_001",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "bone_reader",
+    "lines": [
+      "The air is thick with ash. Lost souls wander here.",
+      "Find the bones of the fallen. They deserve rest."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to find the bones.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_find_fallen_bones",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "\"Not my concern.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_h9bixqo_002",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "The ash hides more than it shows. There are whispers here.",
+      "Find the source of the tremors. Something stirs beneath."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "Search for the source of the tremors.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_investigate_tremors",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "ignore",
+        "text": "\"Sounds like trouble.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_h9bixqo_003",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "bram_coldfire",
+    "lines": [
+      "The ash burns differently. It feels alive.",
+      "I need someone to gather samples from the deeper fields."
+    ],
+    "choices": [
+      {
+        "id": "collect",
+        "text": "Agree to gather samples.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_sample_ash",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "refuse",
+        "text": "\"Not worth the risk.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_h9bixqo_004",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "The spirits grow restless. Something is awakening here.",
+      "We must perform a rite to quell their fury."
+    ],
+    "choices": [
+      {
+        "id": "offer",
+        "text": "Assist with the rite.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_quell_spirits",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "refuse_rite",
+        "text": "\"It won't help.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_h9bixqo_005",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "tessaly_veil",
+    "lines": [
+      "The Veil's influence spreads. I can feel it.",
+      "Find the corrupted artifact. We need to know its power."
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "Search for the artifact.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_find_artifact",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "diplomacy",
+        "text": "[Diplomacy - CHA] Convince her it's too risky.",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "CHA",
+          "dc": 15
+        },
+        "onPass": {
+          "next": null,
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "quest_advance",
+              "questId": "sq_find_artifact",
+              "step": "accepted"
+            }
+          ]
+        },
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_emberwood_jiz5cyc_001",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "wary",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "I've seen shadows moving near the old mill.",
+      "Something stirs in the night. Might be worth investigating."
+    ],
+    "choices": [
+      {
+        "id": "agree",
+        "text": "Agree to check the mill.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_check_old_mill",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "old_mill_found"
+          }
+        ]
+      },
+      {
+        "id": "refuse",
+        "text": "\"Not our concern.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_jpecdeg_001",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "bone_reader",
+    "lines": [
+      "The ashes whisper of a lost child. Missing for a week now.",
+      "Search near the old ruins. Start where the shadows linger."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to search for the child.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_missing_child",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "Say you're not interested.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_riftgate_jue9mqe_001",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The Veil's hunger is growing. We must disrupt their rituals."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to assist in disrupting the rituals.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_disrupt_rituals",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "\"Not interested.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_riftgate_jue9mqe_002",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "bram_coldfire",
+    "lines": [
+      "There's a hidden cache near the gate. Worth the trouble if you can find it."
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "Search for the cache.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_find_cache",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "pass",
+        "text": "Leave it be.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_riftgate_jue9mqe_003",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "A cultist has been spotted near the gate. Deal with him before he warns others."
+    ],
+    "choices": [
+      {
+        "id": "track",
+        "text": "Track down the cultist.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_cultist_elimination",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "ignore",
+        "text": "\"Not our fight.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_gloomridge_k5gtupr_001",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "gloomridge",
+    "tone": "wary",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "Recently, shadows have been moving near the old quarry.",
+      "I swear I saw something lurking among the stones."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "Agree to check the quarry.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_quarry_investigation",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "dismiss",
+        "text": "It's probably nothing. Move on.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_gloomridge_k5gtupr_002",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "gloomridge",
+    "tone": "wary",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "We're running low on supplies. The Veil is getting close.",
+      "Need someone to scavenge what they can from the ruins."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "I'll help gather supplies.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_supply_run",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "refuse",
+        "text": "Not my concern.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_gloomridge_k5gtupr_003",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "gloomridge",
+    "tone": "wary",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The shrine's taint is deepening. We need to cleanse it.",
+      "Will you assist with the ritual? It requires focus."
+    ],
+    "choices": [
+      {
+        "id": "help",
+        "text": "Agree to help with the ritual.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_shrine_cleansing",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "Rituals are no concern of mine.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_keuk0j6_001",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "bone_reader",
+    "lines": [
+      "The ash whispers of lost souls.",
+      "Their stories haunt this ground, seeking release."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "Offer to help the restless spirits.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_ash_plains_restless_spirits",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "ignore",
+        "text": "Leave the bone reader to their work.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_keuk0j6_002",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "oren_gravetide",
+    "lines": [
+      "A creature haunts the remains of the old village.",
+      "It takes more than it gives, a shadow of hunger."
+    ],
+    "choices": [
+      {
+        "id": "track",
+        "text": "Agree to hunt the creature down.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_ash_plains_hunt_creature",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "Say it isn't your concern.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_keuk0j6_003",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The shrine's heartstone is crumbling.",
+      "Its light barely holds the Veil at bay."
+    ],
+    "choices": [
+      {
+        "id": "repair",
+        "text": "Offer to help restore the heartstone.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_ash_plains_repair_shrine",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "walk_away",
+        "text": "Turn your back on the shrine.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_keuk0j6_004",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "The land weeps under the weight of the Veil.",
+      "I've lost too many friends to its whispers."
+    ],
+    "choices": [
+      {
+        "id": "help",
+        "text": "Offer to assist her in gathering herbs.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_ash_plains_gather_herbs",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "dismiss",
+        "text": "Tell her to handle it herself.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ash_plains_keuk0j6_005",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "There's a storm brewing in the ash.",
+      "We need a shield, or we won't see dawn."
+    ],
+    "choices": [
+      {
+        "id": "forge",
+        "text": "[Mechanisms - INT] Offer your skills to fortify defenses.",
+        "skillCheck": {
+          "skill": "mechanisms",
+          "stat": "INT",
+          "dc": 15
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "quest_advance",
+              "questId": "sq_ash_plains_fortify_defenses",
+              "step": "accepted"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "refuse",
+        "text": "Say you have your own path.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "side_quest_ember_hollow_kt44yjw_001",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "ember_hollow",
+    "tone": "resolute",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The heartstone lies shattered. We've lost much of our power.",
+      "You must find the shards before the Veil consumes this place."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to search for the shards.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_find_shards",
+            "step": "accepted"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "\"Not my concern.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  }
+]

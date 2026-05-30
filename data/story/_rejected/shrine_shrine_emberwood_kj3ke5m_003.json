@@ -1,0 +1,18 @@
+{
+  "node": {
+    "id": "shrine_emberwood_kj3ke5m_003",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "bone_reader",
+    "lines": [
+      "The bone-reader scans the shrine, her eyes narrowing.",
+      "The air shifts; something watches with anticipation."
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:13:57.519Z"
+}

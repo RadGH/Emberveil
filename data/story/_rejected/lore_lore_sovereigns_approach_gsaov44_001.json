@@ -1,0 +1,18 @@
+{
+  "node": {
+    "id": "lore_sovereigns_approach_gsaov44_001",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "ash_prophet_npc",
+    "lines": [
+      "The air thickens, laden with whispers of the fallen.",
+      "In the shadows, the Sovereign watches, hungry for your choice."
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:09:10.762Z"
+}

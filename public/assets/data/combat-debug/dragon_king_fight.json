@@ -1,0 +1,3026 @@
+{
+  "key": "dragon_king_fight",
+  "label": "Act 6 boss",
+  "act": 6,
+  "runs": 5,
+  "winRate": 0,
+  "avgRounds": 2.6,
+  "aggregate": {
+    "meter": 7136,
+    "damageApply": 7136,
+    "logParsed": 7136,
+    "meter_vs_apply": 0,
+    "meter_vs_log": 0,
+    "apply_vs_log": 0
+  },
+  "parityWarnings": [],
+  "perRun": [
+    {
+      "seed": 1337,
+      "winner": "enemies",
+      "rounds": 3,
+      "eventCount": 97,
+      "totals": {
+        "meter": 1506,
+        "damageApply": 1506,
+        "logParsed": 1506
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 9,
+        "Whirlwind": 8,
+        "Smite": 69,
+        "Blizzard": 12,
+        "Attack": 1349,
+        "Aimed Shot": 47,
+        "Cleave": 12
+      },
+      "clericHeals": 1,
+      "clericAttacks": 1,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 16,
+        "initiative_roll": 8,
+        "turn_order": 3,
+        "turn_start": 17,
+        "ai_decision": 8,
+        "skill_cast_attempt": 8,
+        "hit_check": 25,
+        "crit_check": 16,
+        "damage_calc": 23,
+        "damage_apply": 23,
+        "meter_add": 23,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 8,
+          "Cleave": 12
+        },
+        "Clr": {
+          "Smite": 69
+        },
+        "Mag": {
+          "Blizzard": 12
+        },
+        "Rng": {
+          "Multi-Shot": 9,
+          "Aimed Shot": 47
+        }
+      }
+    },
+    {
+      "seed": 1338,
+      "winner": "enemies",
+      "rounds": 2,
+      "eventCount": 92,
+      "totals": {
+        "meter": 1360,
+        "damageApply": 1360,
+        "logParsed": 1360
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 9,
+        "Whirlwind": 8,
+        "Smite": 69,
+        "Blizzard": 12,
+        "Attack": 1203,
+        "Aimed Shot": 47,
+        "Cleave": 12
+      },
+      "clericHeals": 1,
+      "clericAttacks": 1,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 16,
+        "initiative_roll": 8,
+        "turn_order": 2,
+        "turn_start": 15,
+        "ai_decision": 7,
+        "skill_cast_attempt": 7,
+        "hit_check": 24,
+        "crit_check": 16,
+        "damage_calc": 22,
+        "damage_apply": 22,
+        "meter_add": 22,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 8,
+          "Cleave": 12
+        },
+        "Clr": {
+          "Smite": 69
+        },
+        "Mag": {
+          "Blizzard": 12
+        },
+        "Rng": {
+          "Multi-Shot": 9,
+          "Aimed Shot": 47
+        }
+      }
+    },
+    {
+      "seed": 1339,
+      "winner": "enemies",
+      "rounds": 3,
+      "eventCount": 126,
+      "totals": {
+        "meter": 1450,
+        "damageApply": 1450,
+        "logParsed": 1450
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 18,
+        "Whirlwind": 16,
+        "Blizzard": 9,
+        "Attack": 1348,
+        "Aimed Shot": 47,
+        "Cleave": 12
+      },
+      "clericHeals": 1,
+      "clericAttacks": 0,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Multi-Shot",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 20,
+        "initiative_roll": 8,
+        "turn_order": 3,
+        "turn_start": 22,
+        "ai_decision": 10,
+        "skill_cast_attempt": 10,
+        "hit_check": 35,
+        "crit_check": 21,
+        "damage_calc": 28,
+        "damage_apply": 28,
+        "meter_add": 28,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 16,
+          "Cleave": 12
+        },
+        "Clr": {},
+        "Mag": {
+          "Blizzard": 9
+        },
+        "Rng": {
+          "Multi-Shot": 18,
+          "Aimed Shot": 47
+        }
+      }
+    },
+    {
+      "seed": 1340,
+      "winner": "enemies",
+      "rounds": 2,
+      "eventCount": 75,
+      "totals": {
+        "meter": 1303,
+        "damageApply": 1303,
+        "logParsed": 1303
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 6,
+        "Whirlwind": 6,
+        "Blizzard": 9,
+        "Attack": 1278,
+        "Cleave": 4
+      },
+      "clericHeals": 1,
+      "clericAttacks": 0,
+      "sourcesSeen": [
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Multi-Shot",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 12,
+        "initiative_roll": 8,
+        "turn_order": 2,
+        "turn_start": 12,
+        "ai_decision": 6,
+        "skill_cast_attempt": 6,
+        "hit_check": 21,
+        "crit_check": 9,
+        "damage_calc": 15,
+        "damage_apply": 15,
+        "meter_add": 15,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 6,
+          "Cleave": 4
+        },
+        "Clr": {},
+        "Mag": {
+          "Blizzard": 9
+        },
+        "Rng": {
+          "Multi-Shot": 6
+        }
+      }
+    },
+    {
+      "seed": 1341,
+      "winner": "enemies",
+      "rounds": 3,
+      "eventCount": 92,
+      "totals": {
+        "meter": 1517,
+        "damageApply": 1517,
+        "logParsed": 1517
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 9,
+        "Whirlwind": 8,
+        "Smite": 69,
+        "Blizzard": 6,
+        "Attack": 1413,
+        "Cleave": 12
+      },
+      "clericHeals": 1,
+      "clericAttacks": 1,
+      "sourcesSeen": [
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 14,
+        "initiative_roll": 8,
+        "turn_order": 3,
+        "turn_start": 17,
+        "ai_decision": 8,
+        "skill_cast_attempt": 8,
+        "hit_check": 25,
+        "crit_check": 13,
+        "damage_calc": 20,
+        "damage_apply": 20,
+        "meter_add": 20,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 8,
+          "Cleave": 12
+        },
+        "Clr": {
+          "Smite": 69
+        },
+        "Mag": {
+          "Blizzard": 6
+        },
+        "Rng": {
+          "Multi-Shot": 9
+        }
+      }
+    }
+  ],
+  "sampleEvents": [
+    {
+      "round": 3,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "kind": "dmg",
+        "amount": 228,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "target": "Rng",
+        "raw": 255,
+        "final": 228,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "log_line",
+      "data": {
+        "msg": "Bahamorth, the Dragon King → Rng: 228 dmg",
+        "type": "hero",
+        "dmg": 228
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Ancient Dragon",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ancient Dragon",
+        "kind": "dmg",
+        "amount": 268,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Ancient Dragon",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ancient Dragon",
+        "target": "War",
+        "raw": 295,
+        "final": 268,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Ancient Dragon",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ancient Dragon → War: 268 dmg",
+        "type": "hero",
+        "dmg": 268
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Wyrm Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "kind": "dmg",
+        "amount": 125,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Wyrm Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "target": "Clr",
+        "raw": 152,
+        "final": 125,
+        "source": "Attack",
+        "hpAfter": 125
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Wyrm Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Wyrm Warrior → Clr: 125 dmg",
+        "type": "hero",
+        "dmg": 125
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Wyrm Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "kind": "dmg",
+        "amount": 166,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Wyrm Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "target": "Clr",
+        "raw": 193,
+        "final": 166,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Wyrm Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Wyrm Warrior → Clr: 166 dmg",
+        "type": "hero",
+        "dmg": 166
+      }
+    },
+    {
+      "kind": "combat_end",
+      "data": {
+        "winner": "enemies",
+        "rounds": 3
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Wyrm Warrior",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Wyrm Warrior",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Bahamorth, the Dragon King",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ancient Dragon",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 8,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Bahamorth, the Dragon King",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Ancient Dragon",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCast",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 9,
+          "isCrit": false,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Bahamorth, the Dragon King",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ancient Dragon",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 12,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Bahamorth, the Dragon King",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ancient Dragon",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 8,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "combat_start",
+      "data": {
+        "encounter": "Bahamorth, the Dragon King",
+        "party": [
+          "War",
+          "Clr",
+          "Mag",
+          "Rng"
+        ]
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 1,
+      "data": {
+        "round": 1
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Multi-Shot",
+        "target": "Bahamorth, the Dragon King",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Bahamorth, the Dragon King",
+        "raw": 30,
+        "final": 3,
+        "source": "Multi-Shot",
+        "hpAfter": 37797
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Bahamorth, the Dragon King: 3 dmg (Multi-Shot)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Multi-Shot",
+        "target": "Ancient Dragon",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Ancient Dragon",
+        "raw": 30,
+        "final": 3,
+        "source": "Multi-Shot",
+        "hpAfter": 17497
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Ancient Dragon: 3 dmg (Multi-Shot)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Rng",
+        "target": "Wyrm Warrior",
+        "hit": false
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng misses Wyrm Warrior.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Bahamorth, the Dragon King",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Bahamorth, the Dragon King",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 37795
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Bahamorth, the Dragon King: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Ancient Dragon",
+        "hit": false
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Ancient Dragon.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Wyrm Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Wyrm Warrior",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 3678
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Wyrm Warrior: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Wyrm Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Wyrm Warrior",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 3678
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Wyrm Warrior: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Clr",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Clr",
+        "target": "Wyrm Warrior",
+        "hit": false
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr misses Wyrm Warrior.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Blizzard",
+        "target": "Bahamorth, the Dragon King",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Bahamorth, the Dragon King",
+        "raw": 30,
+        "final": 3,
+        "source": "Blizzard",
+        "hpAfter": 37792
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Bahamorth, the Dragon King: 3 dmg (Blizzard)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Mag",
+        "target": "Ancient Dragon",
+        "hit": false
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag misses Ancient Dragon.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Blizzard",
+        "target": "Wyrm Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Wyrm Warrior",
+        "raw": 30,
+        "final": 3,
+        "source": "Blizzard",
+        "hpAfter": 3675
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Wyrm Warrior: 3 dmg (Blizzard)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Blizzard",
+        "target": "Wyrm Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Wyrm Warrior",
+        "raw": 30,
+        "final": 3,
+        "source": "Blizzard",
+        "hpAfter": 3675
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Wyrm Warrior: 3 dmg (Blizzard)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "kind": "dmg",
+        "amount": 311,
+        "source": "Attack",
+        "target": "Mag",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "target": "Mag",
+        "raw": 338,
+        "final": 311,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "log_line",
+      "data": {
+        "msg": "Bahamorth, the Dragon King → Mag: 311 dmg",
+        "type": "hero",
+        "dmg": 311
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Ancient Dragon",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ancient Dragon",
+        "kind": "dmg",
+        "amount": 180,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Ancient Dragon",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ancient Dragon",
+        "target": "Rng",
+        "raw": 207,
+        "final": 180,
+        "source": "Attack",
+        "hpAfter": 10
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Ancient Dragon",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ancient Dragon → Rng: 180 dmg",
+        "type": "hero",
+        "dmg": 180
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Wyrm Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "kind": "dmg",
+        "amount": 120,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Wyrm Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "target": "Rng",
+        "raw": 147,
+        "final": 120,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Wyrm Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Wyrm Warrior → Rng: 120 dmg",
+        "type": "hero",
+        "dmg": 120
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Wyrm Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "kind": "dmg",
+        "amount": 140,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Wyrm Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "target": "War",
+        "raw": 167,
+        "final": 140,
+        "source": "Attack",
+        "hpAfter": 70
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Wyrm Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Wyrm Warrior → War: 140 dmg",
+        "type": "hero",
+        "dmg": 140
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 2,
+      "data": {
+        "round": 2
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Bahamorth, the Dragon King",
+        "hit": false
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Bahamorth, the Dragon King.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 4,
+        "source": "Cleave",
+        "target": "Ancient Dragon",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Ancient Dragon",
+        "raw": 42,
+        "final": 4,
+        "source": "Cleave",
+        "hpAfter": 17493
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Ancient Dragon: 4 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 4
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Wyrm Warrior",
+        "hit": false
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Wyrm Warrior.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "heal",
+        "amount": 180,
+        "source": "Heal",
+        "target": "War"
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr heals War for 180",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "kind": "dmg",
+        "amount": 263,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "target": "War",
+        "raw": 290,
+        "final": 263,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "log_line",
+      "data": {
+        "msg": "Bahamorth, the Dragon King → War: 263 dmg",
+        "type": "hero",
+        "dmg": 263
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Ancient Dragon",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ancient Dragon",
+        "kind": "dmg",
+        "amount": 264,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Ancient Dragon",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ancient Dragon",
+        "target": "Clr",
+        "raw": 291,
+        "final": 264,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Ancient Dragon",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ancient Dragon → Clr: 264 dmg",
+        "type": "hero",
+        "dmg": 264
+      }
+    },
+    {
+      "kind": "combat_end",
+      "data": {
+        "winner": "enemies",
+        "rounds": 2
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "Wyrm Warrior",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "Wyrm Warrior",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Bahamorth, the Dragon King",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 6,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Bahamorth, the Dragon King",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCast",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 9,
+          "isCrit": false,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ancient Dragon",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 4,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "combat_start",
+      "data": {
+        "encounter": "Bahamorth, the Dragon King",
+        "party": [
+          "War",
+          "Clr",
+          "Mag",
+          "Rng"
+        ]
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 1,
+      "data": {
+        "round": 1
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Multi-Shot",
+        "target": "Bahamorth, the Dragon King",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Bahamorth, the Dragon King",
+        "raw": 30,
+        "final": 3,
+        "source": "Multi-Shot",
+        "hpAfter": 37797
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Bahamorth, the Dragon King: 3 dmg (Multi-Shot)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Multi-Shot",
+        "target": "Ancient Dragon",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Ancient Dragon",
+        "raw": 30,
+        "final": 3,
+        "source": "Multi-Shot",
+        "hpAfter": 17497
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Ancient Dragon: 3 dmg (Multi-Shot)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Multi-Shot",
+        "target": "Wyrm Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Wyrm Warrior",
+        "raw": 30,
+        "final": 3,
+        "source": "Multi-Shot",
+        "hpAfter": 3677
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Wyrm Warrior: 3 dmg (Multi-Shot)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Bahamorth, the Dragon King",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Bahamorth, the Dragon King",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 37795
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Bahamorth, the Dragon King: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Ancient Dragon",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Ancient Dragon",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 17495
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Ancient Dragon: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Wyrm Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Wyrm Warrior",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 3675
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Wyrm Warrior: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Wyrm Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Wyrm Warrior",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 3678
+      }
+    },
+    {
+      "round": 1,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Wyrm Warrior: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "dmg",
+        "amount": 69,
+        "source": "Smite",
+        "target": "Wyrm Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Clr",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Clr",
+        "target": "Wyrm Warrior",
+        "raw": 101,
+        "final": 69,
+        "source": "Smite",
+        "hpAfter": 3606
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr → Wyrm Warrior: 69 dmg (Smite)",
+        "type": "hero",
+        "dmg": 69
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Blizzard",
+        "target": "Bahamorth, the Dragon King",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Bahamorth, the Dragon King",
+        "raw": 30,
+        "final": 3,
+        "source": "Blizzard",
+        "hpAfter": 37792
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Bahamorth, the Dragon King: 3 dmg (Blizzard)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Mag",
+        "target": "Ancient Dragon",
+        "hit": false
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag misses Ancient Dragon.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Mag",
+        "target": "Wyrm Warrior",
+        "hit": false
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag misses Wyrm Warrior.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Blizzard",
+        "target": "Wyrm Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Wyrm Warrior",
+        "raw": 30,
+        "final": 3,
+        "source": "Blizzard",
+        "hpAfter": 3675
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Wyrm Warrior: 3 dmg (Blizzard)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "kind": "dmg",
+        "amount": 305,
+        "source": "Attack",
+        "target": "Mag",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "target": "Mag",
+        "raw": 332,
+        "final": 305,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "log_line",
+      "data": {
+        "msg": "Bahamorth, the Dragon King → Mag: 305 dmg",
+        "type": "hero",
+        "dmg": 305
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Ancient Dragon",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Ancient Dragon",
+        "target": "Rng",
+        "hit": false
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Ancient Dragon",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ancient Dragon misses Rng.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Wyrm Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "kind": "dmg",
+        "amount": 134,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Wyrm Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "target": "Rng",
+        "raw": 161,
+        "final": 134,
+        "source": "Attack",
+        "hpAfter": 56
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Wyrm Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Wyrm Warrior → Rng: 134 dmg",
+        "type": "hero",
+        "dmg": 134
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Wyrm Warrior",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "target": "Rng",
+        "hit": false
+      }
+    },
+    {
+      "round": 1,
+      "actor": "Wyrm Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Wyrm Warrior misses Rng.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 2,
+      "data": {
+        "round": 2
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Rng",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Rng",
+        "target": "Wyrm Warrior",
+        "hit": false
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng misses Wyrm Warrior.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 4,
+        "source": "Cleave",
+        "target": "Bahamorth, the Dragon King",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Bahamorth, the Dragon King",
+        "raw": 42,
+        "final": 4,
+        "source": "Cleave",
+        "hpAfter": 37788
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Bahamorth, the Dragon King: 4 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 4
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 4,
+        "source": "Cleave",
+        "target": "Ancient Dragon",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Ancient Dragon",
+        "raw": 42,
+        "final": 4,
+        "source": "Cleave",
+        "hpAfter": 17491
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Ancient Dragon: 4 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 4
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 4,
+        "source": "Cleave",
+        "target": "Wyrm Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Wyrm Warrior",
+        "raw": 42,
+        "final": 4,
+        "source": "Cleave",
+        "hpAfter": 3602
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Wyrm Warrior: 4 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 4
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "heal",
+        "amount": 180,
+        "source": "Heal",
+        "target": "Rng"
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr heals Rng for 180",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "kind": "dmg",
+        "amount": 290,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "target": "Rng",
+        "raw": 317,
+        "final": 290,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "log_line",
+      "data": {
+        "msg": "Bahamorth, the Dragon King → Rng: 290 dmg",
+        "type": "hero",
+        "dmg": 290
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Ancient Dragon",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ancient Dragon",
+        "kind": "dmg",
+        "amount": 184,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Ancient Dragon",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ancient Dragon",
+        "target": "War",
+        "raw": 211,
+        "final": 184,
+        "source": "Attack",
+        "hpAfter": 26
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Ancient Dragon",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ancient Dragon → War: 184 dmg",
+        "type": "hero",
+        "dmg": 184
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Wyrm Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "kind": "dmg",
+        "amount": 152,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Wyrm Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "target": "War",
+        "raw": 179,
+        "final": 152,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Wyrm Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Wyrm Warrior → War: 152 dmg",
+        "type": "hero",
+        "dmg": 152
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Wyrm Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "kind": "dmg",
+        "amount": 116,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Wyrm Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Wyrm Warrior",
+        "target": "Clr",
+        "raw": 143,
+        "final": 116,
+        "source": "Attack",
+        "hpAfter": 134
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Wyrm Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Wyrm Warrior → Clr: 116 dmg",
+        "type": "hero",
+        "dmg": 116
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 3,
+      "data": {
+        "round": 3
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Clr",
+      "kind": "status_apply",
+      "data": {
+        "actor": "Clr",
+        "status": "buff",
+        "skill": "Sanctuary",
+        "targets": 1
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "kind": "dmg",
+        "amount": 232,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Bahamorth, the Dragon King",
+        "target": "Clr",
+        "raw": 259,
+        "final": 232,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Bahamorth, the Dragon King",
+      "kind": "log_line",
+      "data": {
+        "msg": "Bahamorth, the Dragon King → Clr: 232 dmg",
+        "type": "hero",
+        "dmg": 232
+      }
+    },
+    {
+      "kind": "combat_end",
+      "data": {
+        "winner": "enemies",
+        "rounds": 3
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Ancient Dragon",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Ancient Dragon",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Bahamorth, the Dragon King",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ancient Dragon",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 8,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Bahamorth, the Dragon King",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCast",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 6,
+          "isCrit": false,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Bahamorth, the Dragon King",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ancient Dragon",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Wyrm Warrior",
+          "dealt": 12,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    }
+  ]
+}

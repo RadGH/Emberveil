@@ -1,0 +1,338 @@
+{
+  "nodes": [
+    {
+      "id": "yasha_intro_001",
+      "pool": "companion-yasha_stonewill",
+      "companionId": "yasha_stonewill",
+      "act": 1,
+      "biome": "stoneward",
+      "tone": "measured",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "She's meditating in the road. Literally in the road.",
+        "\"I know you're there. The road's vibration changes at roughly forty feet.\" She opens her eyes. \"I was finishing.\""
+      ],
+      "choices": [
+        {
+          "id": "wait",
+          "text": "Wait for her to finish.",
+          "next": "#yasha_done",
+          "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 2 }, { "type": "set_flag", "flag": "companion_kira_met" }]
+        },
+        {
+          "id": "interrupt",
+          "text": "\"We haven't got time for meditation.\"",
+          "next": "#yasha_interrupted",
+          "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": -1 }, { "type": "set_flag", "flag": "companion_kira_met" }]
+        }
+      ],
+      "nodes": {
+        "yasha_done": {
+          "lines": ["She stands in one motion. \"Thank you.\" A slight bow. \"Where are you headed?\""],
+          "choices": [{ "id": "say", "text": "Tell her. Invite her along.", "next": null, "effects": [] }]
+        },
+        "yasha_interrupted": {
+          "lines": ["She opens her eyes. \"Fifteen more seconds would have cost you nothing.\" She stands anyway. \"But I'll come along if you'll take me.\""],
+          "choices": [{ "id": "accept", "text": "Accept.", "next": null, "effects": [] }]
+        }
+      }
+    },
+    {
+      "id": "yasha_wraps_001",
+      "pool": "companion-yasha_stonewill",
+      "companionId": "yasha_stonewill",
+      "act": 1,
+      "biome": "stoneward",
+      "tone": "ritual",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "She wraps her hands every morning before combat.",
+        "\"Stone-monk tradition. Each wrap is a vow. Seventeen vows per hand.\""
+      ],
+      "choices": [
+        {
+          "id": "ask_vows",
+          "text": "Ask what the vows are.",
+          "next": "#yasha_vows",
+          "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 1 }]
+        },
+        {
+          "id": "ask_last_fight",
+          "text": "Ask if she's ever broken one.",
+          "next": "#yasha_broken",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "yasha_vows": {
+          "lines": ["\"The first seven are standard. The next seven are personal. The last three\" — she ties off the wrap — \"are between me and the stone.\""],
+          "choices": [{ "id": "go", "text": "Accept that.", "next": null, "effects": [] }]
+        },
+        "yasha_broken": {
+          "lines": ["\"The fourteenth vow. Once.\" A pause. \"I rewrapped it the next morning. The stone decided if I'd earned the right.\""],
+          "choices": [{ "id": "ask", "text": "\"Did it decide?\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 1 }] }]
+        }
+      }
+    },
+    {
+      "id": "yasha_shrine_001",
+      "pool": "companion-yasha_stonewill",
+      "companionId": "yasha_stonewill",
+      "act": 1,
+      "biome": "emberwood",
+      "tone": "reverent",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "She stops at every shrine.",
+        "Not for long — a breath, a bow, and she's moving. But every one."
+      ],
+      "choices": [
+        {
+          "id": "join",
+          "text": "Join the habit.",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 2 }, { "type": "faction_delta", "faction": "ancient_pact", "amount": 1 }]
+        },
+        {
+          "id": "ask",
+          "text": "\"Even the corrupted ones?\"",
+          "next": "#yasha_corrupted",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "yasha_corrupted": {
+          "lines": ["\"Especially the corrupted ones. Something put them there for a reason. That reason deserves acknowledgment before the corruption does.\""],
+          "choices": [{ "id": "go", "text": "\"That's a generous interpretation.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 1 }] }]
+        }
+      }
+    },
+    {
+      "id": "yasha_healing_001",
+      "pool": "companion-yasha_stonewill",
+      "companionId": "yasha_stonewill",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "practical-kind",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "She heals without being asked. She's already finishing when you notice.",
+        "\"You were favoring the left side. You didn't mention it. I find it's better to treat what's there than wait for it to be said.\""
+      ],
+      "choices": [
+        {
+          "id": "thank",
+          "text": "\"Thank you.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 1 }]
+        },
+        {
+          "id": "ask_always",
+          "text": "\"Do you always notice?\"",
+          "next": "#yasha_always",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "yasha_always": {
+          "lines": ["\"Mostly. People hide things they think make them look weak. The body can't lie as well as the voice.\""],
+          "choices": [{ "id": "go", "text": "\"What am I hiding right now?\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 1 }] }]
+        }
+      }
+    },
+    {
+      "id": "yasha_ancient_pact_001",
+      "pool": "companion-yasha_stonewill",
+      "companionId": "yasha_stonewill",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "committed",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "\"The stone-monks took the Ancient Pact seriously. We were the keepers of one of the original Pact-stones.\"",
+        "\"It was taken from us seventeen years ago. By the Ashen Veil.\""
+      ],
+      "choices": [
+        {
+          "id": "ask_find",
+          "text": "Ask if she wants to find it.",
+          "next": "#yasha_find",
+          "effects": []
+        },
+        {
+          "id": "offer_help",
+          "text": "Offer to help get it back.",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 3 }, { "type": "quest_advance", "questId": "companion_quest_yasha", "step": "pact_stone_committed" }]
+        }
+      ],
+      "nodes": {
+        "yasha_find": {
+          "lines": ["\"It's the Veil's power source for the Gloomridge shrine network.\" A pause. \"It needs to be destroyed, not recovered. The Pact-stone would understand.\""],
+          "choices": [{ "id": "help", "text": "\"Then we destroy it.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 3 } ] }]
+        }
+      }
+    },
+    {
+      "id": "yasha_disapproval_001",
+      "pool": "companion-yasha_stonewill",
+      "companionId": "yasha_stonewill",
+      "act": 2,
+      "biome": "crossroads",
+      "tone": "calm-firm",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "\"I want to speak about what happened in the fen.\"",
+        "\"The choice you made. It troubled me. I'd like to understand it.\""
+      ],
+      "choices": [
+        {
+          "id": "explain",
+          "text": "Explain the reasoning.",
+          "next": "#yasha_listens",
+          "effects": []
+        },
+        {
+          "id": "dismiss",
+          "text": "\"It was the necessary call.\"",
+          "next": "#yasha_pushes",
+          "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": -1 }]
+        }
+      ],
+      "nodes": {
+        "yasha_listens": {
+          "lines": ["She listens until you're done. \"I don't agree. But I understand now.\" A pause. \"That counts for something.\""],
+          "choices": [{ "id": "go", "text": "\"That's all I ask.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 1 }] }]
+        },
+        "yasha_pushes": {
+          "lines": ["\"Necessity is a word people use when they don't want to examine the choice more carefully.\" She's not shouting. That's worse."],
+          "choices": [{ "id": "consider", "text": "\"You're right. Let me try again.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 2 }] }]
+        }
+      }
+    },
+    {
+      "id": "yasha_meditation_share_001",
+      "pool": "companion-yasha_stonewill",
+      "companionId": "yasha_stonewill",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "gentle",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "She offers to teach you the morning meditation.",
+        "\"It doesn't require faith. Only patience. Even fifteen minutes reduces combat error rates measurably.\""
+      ],
+      "choices": [
+        {
+          "id": "learn",
+          "text": "Learn it.",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 2 }]
+        },
+        {
+          "id": "decline",
+          "text": "\"Not really my thing.\"",
+          "next": "#yasha_accepts",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "yasha_accepts": {
+          "lines": ["\"All right. The offer stays open.\""],
+          "choices": [{ "id": "go", "text": "\"I know. Thank you.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 1 }] }]
+        }
+      }
+    },
+    {
+      "id": "yasha_rift_dread_001",
+      "pool": "companion-yasha_stonewill",
+      "companionId": "yasha_stonewill",
+      "act": 3,
+      "biome": "riftgate",
+      "tone": "honest-fear",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "\"I am afraid.\"",
+        "\"I want to say that plainly. The stone-monks believe fear acknowledged is fear understood. Fear understood can be moved through.\""
+      ],
+      "choices": [
+        {
+          "id": "same",
+          "text": "\"So am I.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 2 }]
+        },
+        {
+          "id": "inspire",
+          "text": "\"Fear or not, we're going in.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 1 }]
+        }
+      ]
+    },
+    {
+      "id": "yasha_ancient_pact_finale_001",
+      "pool": "companion-yasha_stonewill",
+      "companionId": "yasha_stonewill",
+      "act": 3,
+      "biome": "ember_hollow",
+      "tone": "climactic-personal",
+      "speaker": "yasha_stonewill",
+      "requires": { "flag": "ancient_pact_sealed" },
+      "lines": [
+        "The Pact-stone is here. Its energy feeds the Ember Hollow's veil-constructs.",
+        "\"I can feel it through the ground. It's been corrupted. It's not the stone we kept — it's what they've made of it.\""
+      ],
+      "choices": [
+        {
+          "id": "destroy",
+          "text": "Destroy it with her.",
+          "next": "#yasha_destroys",
+          "effects": [{ "type": "start_combat", "enemyGroup": ["molten_golem", "molten_golem"] }, { "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 3 }]
+        },
+        {
+          "id": "cleanse",
+          "text": "[Religion - INT] Attempt to cleanse instead.",
+          "skillCheck": { "skill": "religion", "stat": "CON", "dc": 17 },
+          "onPass": { "next": "#cleansed", "effects": [{ "type": "set_flag", "flag": "shrine_purified" }, { "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 5 }] },
+          "onFail": { "next": "#must_destroy", "effects": [] }
+        }
+      ],
+      "nodes": {
+        "yasha_destroys": {
+          "lines": ["She strikes the stone once. Clean. It doesn't fight. She says something under her breath in the stone-tongue."],
+          "choices": [{ "id": "go", "text": "Give her a moment.", "next": null, "effects": [{ "type": "quest_advance", "questId": "companion_quest_yasha", "step": "complete" }] }]
+        },
+        "cleansed": {
+          "lines": ["The corruption lifts. What remains is small and quiet — but genuinely old. Genuinely the thing that it was."],
+          "choices": [{ "id": "go", "text": "\"We gave it back.\"", "next": null, "effects": [{ "type": "quest_advance", "questId": "companion_quest_yasha", "step": "complete_cleansed" } ] }]
+        },
+        "must_destroy": {
+          "lines": ["The cleansing doesn't take. \"It's too far gone.\" She sounds certain about it. Not grieving — certain."],
+          "choices": [{ "id": "help", "text": "Help her destroy it.", "next": null, "effects": [{ "type": "start_combat", "enemyGroup": ["molten_golem"] }, { "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 2 } ] }]
+        }
+      }
+    },
+    {
+      "id": "yasha_approval_high_001",
+      "pool": "companion-yasha_stonewill",
+      "companionId": "yasha_stonewill",
+      "act": 2,
+      "biome": "crossroads",
+      "tone": "warm",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "\"I am glad I met you on that road.\"",
+        "She says it simply. No caveat."
+      ],
+      "choices": [
+        {
+          "id": "same",
+          "text": "\"Same.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "yasha_stonewill", "amount": 1 }]
+        }
+      ]
+    }
+  ]
+}

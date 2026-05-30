@@ -1,0 +1,77 @@
+<!--
+  ev-symbols.html — M388 manual-mode overhaul
+  SVG symbol sprite block. Fetch-load and inject once into <body> at page boot.
+  All ev-panel corner <use href="#corner-*"> elements resolve against these symbols.
+
+  Replacement path: swap only the <symbol> inner content; all panels update instantly.
+  See phase 07 §8 for the single-swap-point migration process.
+-->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+
+    <!-- LOZENGE: canonical HUD card corner
+         Top-left as-is; rotate 90/180/270 via CSS for other three corners. -->
+    <symbol id="corner-lozenge" viewBox="0 0 32 32">
+      <!-- Diamond: 14×14 square rotated 45° around center (16,16) -->
+      <rect x="9" y="9" width="14" height="14"
+            fill="var(--ember-deep,#0d0820)"
+            stroke="var(--border-stroke,#c8a020)" stroke-width="1.5"
+            transform="rotate(45 16 16)"/>
+      <!-- Short accent tick on inner diagonal, top-edge direction -->
+      <line x1="16" y1="5" x2="16" y2="9"
+            stroke="var(--border-stroke,#c8a020)" stroke-width="1"
+            stroke-linecap="round" opacity="0.5"/>
+    </symbol>
+
+    <!-- FLOURISH: curling vine ornament for modals and tooltip cards
+         Top-left as-is; rotate 90/180/270 via CSS for other three corners. -->
+    <symbol id="corner-flourish" viewBox="0 0 32 32">
+      <!-- Core diamond, slightly smaller than lozenge -->
+      <rect x="10" y="10" width="12" height="12"
+            fill="var(--ember-deep,#0d0820)"
+            stroke="var(--border-stroke,#c8a020)" stroke-width="1.4"
+            transform="rotate(45 16 16)"/>
+      <!-- Vine arm curving toward top edge -->
+      <path d="M16,7.5 C15,5 11,3.5 8,2"
+            fill="none"
+            stroke="var(--border-stroke,#c8a020)" stroke-width="0.9"
+            stroke-linecap="round"/>
+      <!-- Vine arm curving toward left edge -->
+      <path d="M7.5,16 C5,15 3.5,11 2,8"
+            fill="none"
+            stroke="var(--border-stroke,#c8a020)" stroke-width="0.9"
+            stroke-linecap="round"/>
+      <!-- Leaf dot: top arm terminus -->
+      <circle cx="7.5" cy="2" r="1.4"
+              fill="var(--border-stroke,#c8a020)"/>
+      <!-- Leaf dot: left arm terminus -->
+      <circle cx="2" cy="7.5" r="1.4"
+              fill="var(--border-stroke,#c8a020)"/>
+      <!-- Secondary leaf-bud midpoint on top arm -->
+      <circle cx="11.5" cy="4.5" r="0.8"
+              fill="none"
+              stroke="var(--border-stroke,#c8a020)" stroke-width="0.8"/>
+      <!-- Secondary leaf-bud midpoint on left arm -->
+      <circle cx="4.5" cy="11.5" r="0.8"
+              fill="none"
+              stroke="var(--border-stroke,#c8a020)" stroke-width="0.8"/>
+    </symbol>
+
+    <!-- SIMPLE: thin open L-bracket for mini / dense layouts
+         Top-left as-is; rotate 90/180/270 via CSS for other three corners. -->
+    <symbol id="corner-simple" viewBox="0 0 32 32">
+      <!-- L-bracket: horizontal arm (top) + vertical arm (left), 10px arms -->
+      <polyline points="14,4 4,4 4,14"
+                fill="none"
+                stroke="var(--border-stroke,#c8a020)" stroke-width="2"
+                stroke-linecap="square" stroke-linejoin="miter"/>
+      <!-- Inner accent: short parallel line 3px inside the bracket -->
+      <polyline points="13,7 7,7 7,13"
+                fill="none"
+                stroke="var(--border-stroke,#c8a020)" stroke-width="0.8"
+                stroke-linecap="square" stroke-linejoin="miter"
+                opacity="0.4"/>
+    </symbol>
+
+  </defs>
+</svg>

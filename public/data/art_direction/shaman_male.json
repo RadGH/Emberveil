@@ -1,0 +1,82 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "shaman_male",
+  "displayName": "Shaman (Male)",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "identity": "Tribal human male shaman (distinctly masculine jaw and build), dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry adult male build.",
+  "outfit": "Tribal shaman attire \u2014 tan leather loincloth and belt, a layered fur-and-bone chest harness with bone charms and small painted wooden totems, rawhide arm-wraps, a feathered headband. Exposed muscular arms and chest with red and white ritual paint. Worn leather moccasins.",
+  "weapons": "A tall gnarled wooden totem-staff topped with an animal skull (wolf or horned beast) wrapped in leather thongs and hanging feathers, held in the right hand.",
+  "attackStyle": "East-facing. Staff thrust forward, a burst of blue spirit-energy and floating feathers erupting outward. CRITICAL: character must be MID-STRIKE, clearly in motion \u2014 weapon in the middle of a swing, thrust, shot, or spell-cast, NOT an idle/battle-ready stance. Pose must be visually distinct from the east idle.",
+  "spellStyle": "East-facing. Staff raised high, free hand up, a swirling totem of blue spirit-light with an ancestral face forming above.",
+  "blockStyle": "East-facing. Staff held diagonally, a translucent blue spirit-barrier forming from the staff-top outward.",
+  "koStyle": "East-facing, slumped on one knee, staff fallen beside her, braids splayed, mantle disheveled.",
+  "southStyle": "Facing camera (south), fierce tribal idle. Staff planted at her side, free hand raised in a gesture with blue spirit-light dancing on the fingertips.",
+  "portraitStyle": "Bust shot from mid-chest up, three-quarter view. Beaded black braids, red war-stripe across eyes, fur-mantle and bone necklaces visible.",
+  "bannedSubstrings": [
+    "sword",
+    "plate armor",
+    "gun"
+  ],
+  "referenceSheet": {
+    "path": "images/pixellab/shaman_male/reference.png",
+    "spritecookAssetId": "d76a855c-7c7f-4bb0-b4fc-9793f0bc9b52",
+    "prompt": "IDENTITY (must match reference sheet exactly): Tribal human male shaman (distinctly masculine jaw and build), dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry adult male build.\n\nOUTFIT: Tribal shaman attire \u2014 tan leather loincloth and belt, a layered fur-and-bone chest harness with bone charms and small painted wooden totems, rawhide arm-wraps, a feathered headband. Exposed muscular arms and chest with red and white ritual paint. Worn leather moccasins.\n\nWEAPONS: A tall gnarled wooden totem-staff topped with an animal skull (wolf or horned beast) wrapped in leather thongs and hanging feathers, held in the right hand.\n\nCLASS: humanoid. Full-body view, head to feet visible. Character occupies ~70% of the canvas height. Feet aligned near the bottom; headroom above.\n\nPOSE: full-body side profile facing right (east), calm combat-ready idle. Head up, eyes visible. NOT a portrait bust, NOT a close-up \u2014 entire character from head to feet.\n\nSTYLE: detailed pixel art with clean readable silhouette, warm pixel-art palette, transparent background, no ground shadow.",
+    "bitforgeAssetId": null,
+    "sourcePortraitPath": "images/portraits/shaman.png",
+    "generatedAt": "2026-04-21T18:00:00.000Z",
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait": {
+      "path": "images/spritecook/shaman_male_portrait.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human male shaman (distinctly masculine jaw and build), dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry adult male build.\n\nOUTFIT: Tribal shaman attire \u2014 tan leather loincloth and belt, a layered fur-and-bone chest harness with bone charms and small painted wooden totems, rawhide arm-wraps, a feathered headband. Exposed muscular arms and chest with red and white ritual paint. Worn leather moccasins.\n\nWEAPONS: A tall gnarled wooden totem-staff topped with an animal skull (wolf or horned beast) wrapped in leather thongs and hanging feathers, held in the right hand.\n\nPOSE (portrait): Bust shot from mid-chest up, three-quarter view. Beaded black braids, red war-stripe across eyes, fur-mantle and bone necklaces visible.\n\nFRAMING: bust shot from mid-chest up, three-quarter view, centered in a 256x256 canvas, shoulders fill the lower third.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:27:13.000Z",
+      "approvedAt": "2026-04-22T05:27:13.000Z",
+      "spritecookAssetId": "87225297-9d50-479f-9dad-e3f66280f014"
+    },
+    "south": {
+      "path": "images/spritecook/shaman_male_south.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human male shaman (distinctly masculine jaw and build), dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry adult male build.\n\nOUTFIT: Tribal shaman attire \u2014 tan leather loincloth and belt, a layered fur-and-bone chest harness with bone charms and small painted wooden totems, rawhide arm-wraps, a feathered headband. Exposed muscular arms and chest with red and white ritual paint. Worn leather moccasins.\n\nWEAPONS: A tall gnarled wooden totem-staff topped with an animal skull (wolf or horned beast) wrapped in leather thongs and hanging feathers, held in the right hand.\n\nPOSE (south): Facing camera (south), fierce tribal idle. Staff planted at his side, free hand raised in a gesture with blue spirit-light dancing on the fingertips.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:27:13.000Z",
+      "approvedAt": "2026-04-22T05:27:13.000Z",
+      "spritecookAssetId": "3d317189-5430-4bf8-9e96-d1fbf41e9e94"
+    },
+    "east": {
+      "path": "images/spritecook/shaman_male_east.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human male shaman (distinctly masculine jaw and build), dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry adult male build.\n\nOUTFIT: Tribal shaman attire \u2014 tan leather loincloth and belt, a layered fur-and-bone chest harness with bone charms and small painted wooden totems, rawhide arm-wraps, a feathered headband. Exposed muscular arms and chest with red and white ritual paint. Worn leather moccasins.\n\nWEAPONS: A tall gnarled wooden totem-staff topped with an animal skull (wolf or horned beast) wrapped in leather thongs and hanging feathers, held in the right hand.\n\nPOSE (east): Neutral combat idle, consistent with reference sheet, full-body facing east.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:27:13.000Z",
+      "approvedAt": "2026-04-22T05:27:13.000Z",
+      "spritecookAssetId": "d437af0c-9f30-4c6f-897c-dc92e2b95a8a"
+    },
+    "east_attack": {
+      "path": "images/spritecook/shaman_male_east_attack.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human male shaman (distinctly masculine jaw and build), dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry adult male build.\n\nOUTFIT: Tribal shaman attire \u2014 tan leather loincloth and belt, a layered fur-and-bone chest harness with bone charms and small painted wooden totems, rawhide arm-wraps, a feathered headband. Exposed muscular arms and chest with red and white ritual paint. Worn leather moccasins.\n\nWEAPONS: A tall gnarled wooden totem-staff topped with an animal skull (wolf or horned beast) wrapped in leather thongs and hanging feathers, held in the right hand.\n\nPOSE (east_attack): East-facing. Staff thrust forward, a burst of blue spirit-energy and floating feathers erupting outward.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:27:13.000Z",
+      "approvedAt": "2026-04-22T05:27:13.000Z",
+      "spritecookAssetId": "d7ecdc73-4047-4864-acad-d98ee449c01e"
+    },
+    "east_spell": {
+      "path": "images/spritecook/shaman_male_east_spell.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human male shaman (distinctly masculine jaw and build), dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry adult male build.\n\nOUTFIT: Tribal shaman attire \u2014 tan leather loincloth and belt, a layered fur-and-bone chest harness with bone charms and small painted wooden totems, rawhide arm-wraps, a feathered headband. Exposed muscular arms and chest with red and white ritual paint. Worn leather moccasins.\n\nWEAPONS: A tall gnarled wooden totem-staff topped with an animal skull (wolf or horned beast) wrapped in leather thongs and hanging feathers, held in the right hand.\n\nPOSE (east_spell): East-facing. Staff raised high, free hand up, a swirling totem of blue spirit-light with an ancestral face forming above.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:27:13.000Z",
+      "approvedAt": "2026-04-22T05:27:13.000Z",
+      "spritecookAssetId": "7a531464-6593-49be-8ae7-7fe34b63c477"
+    },
+    "east_block": {
+      "path": "images/spritecook/shaman_male_east_block.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human male shaman (distinctly masculine jaw and build), dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry adult male build.\n\nOUTFIT: Tribal shaman attire \u2014 tan leather loincloth and belt, a layered fur-and-bone chest harness with bone charms and small painted wooden totems, rawhide arm-wraps, a feathered headband. Exposed muscular arms and chest with red and white ritual paint. Worn leather moccasins.\n\nWEAPONS: A tall gnarled wooden totem-staff topped with an animal skull (wolf or horned beast) wrapped in leather thongs and hanging feathers, held in the right hand.\n\nPOSE (east_block): East-facing. Staff held diagonally, a translucent blue spirit-barrier forming from the staff-top outward.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:27:13.000Z",
+      "approvedAt": "2026-04-22T05:27:13.000Z",
+      "spritecookAssetId": "a6ea6a38-61f9-491c-b6a4-d109c793f084"
+    },
+    "east_ko": {
+      "path": "images/spritecook/shaman_male_east_ko.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Tribal human male shaman (distinctly masculine jaw and build), dark-brown skin, long black braids beaded with bone and feather charms, sharp amber eyes, a red painted war-stripe across the eyes, strong wiry adult male build.\n\nOUTFIT: Tribal shaman attire \u2014 tan leather loincloth and belt, a layered fur-and-bone chest harness with bone charms and small painted wooden totems, rawhide arm-wraps, a feathered headband. Exposed muscular arms and chest with red and white ritual paint. Worn leather moccasins.\n\nWEAPONS: A tall gnarled wooden totem-staff topped with an animal skull (wolf or horned beast) wrapped in leather thongs and hanging feathers, held in the right hand.\n\nPOSE (east_ko): East-facing, slumped on one knee, staff fallen beside his, braids splayed, mantle disheveled.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T05:27:13.000Z",
+      "approvedAt": "2026-04-22T05:27:13.000Z",
+      "spritecookAssetId": "6429bb2c-ce3e-409d-99e7-fba3b6541a6d"
+    }
+  },
+  "notes": "Tribal spirit caster. Feathers/bones/paint + spirit-staff."
+}

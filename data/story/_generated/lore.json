@@ -1,0 +1,1976 @@
+[
+  {
+    "id": "lore_old_road_b44qcy2_001",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": null,
+    "lines": [
+      "This stretch of the road is cracked and overgrown.",
+      "Once, travelers shared tales by the fire here. Now, only silence remains."
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "Search for remnants of those stories.",
+        "next": "#remnants_found",
+        "effects": []
+      },
+      {
+        "id": "move_on",
+        "text": "Move past the memories.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "remnants_found": {
+        "lines": [
+          "A weathered stone tablet lies half-buried in moss.",
+          "The inscriptions speak of hope and shared journeys."
+        ],
+        "choices": [
+          {
+            "id": "record",
+            "text": "Record the tablet's message.",
+            "next": null,
+            "effects": [
+              {
+                "type": "lore_unlock",
+                "loreId": "lore_old_road_tablet_001"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_old_road_b44qcy2_002",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "You can feel it, can't you? The weight of what was.",
+      "The road remembers, even if we wish it wouldn't."
+    ],
+    "choices": [
+      {
+        "id": "ask_about_past",
+        "text": "Ask about the road's history.",
+        "next": "#road_history",
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "Ignore him and walk away.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "road_history": {
+        "lines": [
+          "This was once a bustling trade route, now forgotten.",
+          "The last caravan passed through five years ago."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Thank him for the information.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_old_road_b44qcy2_003",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "Lyra kneels beside a faded signpost, tracing the letters with her fingers.",
+      "\"These names... they were once vital to our lives.\""
+    ],
+    "choices": [
+      {
+        "id": "read_sign",
+        "text": "[Wisdom - WIS] Read the faded names.",
+        "skillCheck": {
+          "skill": "wisdom",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#names_read",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_old_road_sign_names_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#names_unreadable",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave her to her thoughts.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "names_read": {
+        "lines": [
+          "You recognize one name from a vanished merchant guild.",
+          "Their goods were once the pride of Brightfall."
+        ]
+      },
+      "names_unreadable": {
+        "lines": [
+          "The letters are too weathered to make sense of.",
+          "Lyra sighs, a quiet disappointment in her eyes."
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_old_road_b44qcy2_005",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": null,
+    "lines": [
+      "A scattered collection of broken carts lies abandoned.",
+      "Their wood is splintered, stories trapped within."
+    ],
+    "choices": [
+      {
+        "id": "inspect_carts",
+        "text": "Inspect the carts for belongings.",
+        "next": "#cart_contents",
+        "effects": []
+      },
+      {
+        "id": "move_along",
+        "text": "Move past without investigation.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "cart_contents": {
+        "lines": [
+          "A child's doll, worn and forgotten, catches your eye.",
+          "It tells tales of innocence lost, a reminder of what was."
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_library_ruins_c6l3f1q_001",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "bone_reader",
+    "lines": [
+      "Dusty tomes line the shelves, pages fluttering as if alive.",
+      "One book bears the sigil of the Ashen Veil, its content dark and twisting. "
+    ],
+    "choices": [
+      {
+        "id": "read_book",
+        "text": "[Intellect - INT] Open the book cautiously.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#book_pass",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_ashen_veil_secrets_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#book_fail",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "ignore_book",
+        "text": "Leave it closed, move on.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "book_pass": {
+        "lines": [
+          "A passage reveals part of the Veil's true purpose, unsettling yet enlightening."
+        ],
+        "choices": [
+          {
+            "id": "record",
+            "text": "Make a mental note of it.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "book_fail": {
+        "lines": [
+          "A gust of wind slams the book shut, as if warning you away."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Step back and breathe.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_library_ruins_c6l3f1q_002",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The shrinekeeper examines an old scroll, expression grave.",
+      "\"It speaks of the Sovereign's influence over forgotten minds.\""
+    ],
+    "choices": [
+      {
+        "id": "inquire",
+        "text": "Ask about the Sovereign.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave him to his reading.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_library_ruins_c6l3f1q_003",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "null",
+    "lines": [
+      "A cracked mural depicts the Ember Rift and figures shrouded in shadow.",
+      "Each figure's face bears a different expression, sorrowful or ecstatic."
+    ],
+    "choices": [
+      {
+        "id": "examine_mural",
+        "text": "[Perception - WIS] Study the mural closely.",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "WIS",
+          "dc": 10
+        },
+        "onPass": {
+          "next": "#mural_pass",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_mural_emotion_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#mural_fail",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "dismiss_mural",
+        "text": "Move on, it's just art.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "mural_pass": {
+        "lines": [
+          "You recognize one face — a member of the Emberguard missing for years."
+        ],
+        "choices": [
+          {
+            "id": "note_face",
+            "text": "Remember that face.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "mural_fail": {
+        "lines": [
+          "The details blur together, nothing reveals itself to you."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Stand back, move on.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_library_ruins_c6l3f1q_004",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "Yasha touches a stone tablet, eyes clouded with memory.",
+      "\"This once held the council's true history, now lost to the Veil.\""
+    ],
+    "choices": [
+      {
+        "id": "request_tablet",
+        "text": "Ask to see the tablet.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "walk_away",
+        "text": "Leave her to her thoughts.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_library_ruins_c6l3f1q_005",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "null",
+    "lines": [
+      "Scattered pages litter the floor, marked with erratic scribbles.",
+      "One page refers to a 'hidden path' towards the Rift."
+    ],
+    "choices": [
+      {
+        "id": "gather_pages",
+        "text": "Collect the pages for later.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "ignore_pages",
+        "text": "Leave them as they are.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_sovereigns_approach_cidglvs_001",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "ash_prophet_npc",
+    "lines": [
+      "The air hums with despair. Something beyond the gate waits for you.",
+      "An echo of past choices resonates here, drawing the unwary closer."
+    ],
+    "choices": [
+      {
+        "id": "approach",
+        "text": "Approach the gate cautiously.",
+        "effects": []
+      },
+      {
+        "id": "retreat",
+        "text": "Turn back, reconsider your path.",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_sovereigns_approach_cidglvs_002",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "null",
+    "lines": [
+      "A shattered relic lies half-buried. Its surface is etched with desperate prayers.",
+      "What once held power now feels like a warning."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "[Wisdom - WIS] Inspect the relic closely.",
+        "skillCheck": {
+          "skill": "wisdom",
+          "stat": "WIS",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#relic_found",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_shattered_relic_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#relic_dismissed",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "Leave it be, no point tempting fate.",
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "relic_found": {
+        "lines": [
+          "You find remnants of a long-forgotten truth, a past entwined with the current darkness."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Store the information for later.",
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "lore_ash_origin_found"
+              }
+            ]
+          }
+        ]
+      },
+      "relic_dismissed": {
+        "lines": [
+          "Better left undisturbed. The weight of the past lingers in the air."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Move on quietly.",
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_sovereigns_approach_cidglvs_003",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "bram_coldfire",
+    "lines": [
+      "Bram pauses, eyes narrowed at the horizon. A chill hangs in the air.",
+      "\"This place... it feels wrong. What draws us here may consume us.\""
+    ],
+    "choices": [
+      {
+        "id": "press_on",
+        "text": "Continue forward regardless of the warning.",
+        "effects": []
+      },
+      {
+        "id": "hesitate",
+        "text": "Take a moment to gather your thoughts.",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_old_road_cwu6s58_001",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "The old road stretches ahead, cracked and overgrown. Once, it was a path of hope.",
+      "Now, it leads only to memories lost to shadows."
+    ],
+    "choices": [
+      {
+        "id": "look_back",
+        "text": "Look back at the fading light.",
+        "effects": []
+      },
+      {
+        "id": "move_forward",
+        "text": "Press on, no time for nostalgia.",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_library_ruins_cz9jfpj_001",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "The shelves here still whisper, if you listen closely.",
+      "They remember knowledge lost to time, fragments of what once was."
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "[Intellect - INT] Search the shelves for anything useful.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#found_scroll",
+          "effects": [
+            {
+              "type": "grant_item",
+              "itemId": "ancient_scroll"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#nothing_found",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave the whispers behind and move on.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "found_scroll": {
+        "lines": [
+          "You unearth a scroll, its parchment brittle and delicate.",
+          "The ink spells out practices long forgotten, tied to the Veil."
+        ]
+      },
+      "nothing_found": {
+        "lines": [
+          "Just dust and decay. The knowledge here is better lost than found.",
+          "Some secrets were never meant to resurface."
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_old_road_dekqn8k_001",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": null,
+    "lines": [
+      "This path is worn by forgotten travelers. The dust has settled thick.",
+      "Once, laughter mingled with the wind; now, only silence remains."
+    ],
+    "choices": [
+      {
+        "id": "reflect",
+        "text": "Reflect on its past.",
+        "effects": []
+      },
+      {
+        "id": "move_on",
+        "text": "Move on; there's nothing for you here.",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_library_ruins_dl10emt_001",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "Tattered pages scattered across the floor. Each one speaks of the Rift's true origin.",
+      "The ink tells stories of a betrayal no one wanted to believe."
+    ],
+    "choices": [
+      {
+        "id": "collect",
+        "text": "[Intellect - INT] Gather the pages carefully.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_rift_origin_betrayal_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave them be.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_old_road_fxul3tm_001",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": null,
+    "lines": [
+      "A broken cart lies by the roadside, wheels sunk in mud.",
+      "A faded merchant's sign creaks overhead, swinging in the breeze."
+    ],
+    "choices": [
+      {
+        "id": "inspect",
+        "text": "Inspect the cart for clues.",
+        "next": "#cart_contents",
+        "effects": []
+      },
+      {
+        "id": "move_on",
+        "text": "Leave the cart alone and continue walking.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "cart_contents": {
+        "lines": [
+          "A torn ledger. The last entry notes a delivery to Brightfall.",
+          "The ink is smeared, perhaps from rain — or tears."
+        ],
+        "choices": [
+          {
+            "id": "read_entry",
+            "text": "Read the last entry.",
+            "next": null,
+            "effects": [
+              {
+                "type": "lore_unlock",
+                "loreId": "lore_old_road_merchants_001"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_old_road_fxul3tm_002",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "The scout sits by a flickering fire, eyes distant.",
+      "\"Used to be travelers would sing along this path. Not anymore.\""
+    ],
+    "choices": [
+      {
+        "id": "ask_about_travelers",
+        "text": "Ask what happened to the travelers.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "share_fire",
+        "text": "Sit by the fire and share stories.",
+        "next": null,
+        "effects": [
+          {
+            "type": "companion_approval",
+            "companionId": "lyra_ashwalker",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lore_old_road_fxul3tm_003",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": null,
+    "lines": [
+      "A dilapidated shrine stands overgrown with weeds.",
+      "Old stones bear faint carvings, almost illegible."
+    ],
+    "choices": [
+      {
+        "id": "clean_shrine",
+        "text": "[Dexterity - DEX] Clear away the weeds to see better.",
+        "skillCheck": {
+          "skill": "dexterity",
+          "stat": "DEX",
+          "dc": 12
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_old_road_shrine_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "Leave the shrine untouched. It's not your place.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_library_ruins_g9kr88h_001",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "Shelves of knowledge, now dust and ash. Forgotten tomes whisper tales of the Rift.",
+      "This place held answers once. Now, it only echoes silence."
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "[Intellect - INT] Search the remaining shelves for any texts.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#found_texts",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_library_hidden_texts_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#nothing_found",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave the ruins. There's nothing here for you now.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "found_texts": {
+        "lines": [
+          "You find a single unburned tome. Its pages detail the cult's rituals, the Long Look.",
+          "Knowledge lost, now reclaimed. This could change everything."
+        ],
+        "choices": [
+          {
+            "id": "read",
+            "text": "Read the tome now.",
+            "next": null,
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "library_ruins_searched"
+              }
+            ]
+          }
+        ]
+      },
+      "nothing_found": {
+        "lines": [
+          "Only dust remains in your hands. The answers still elude you."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Move on. This place is a dead end.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_library_ruins_g9kr88h_002",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "brightfall_innkeeper",
+    "lines": [
+      "They say the scholars here once knew the way to the Rift. They don't anymore.",
+      "Fragments of their knowledge are scattered, like the stones of this building."
+    ],
+    "choices": [
+      {
+        "id": "ask_scholar",
+        "text": "Ask about the scholars' fates.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "dismiss",
+        "text": "Dismiss the talk and focus on your mission.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_old_road_fhw2avm_001",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": null,
+    "lines": [
+      "A tattered cloak lies in the mud. The fabric is heavy with the weight of sorrow.",
+      "Someone abandoned it here, hoping to leave their past behind."
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "Search the cloak for clues.",
+        "next": "#cloak_contents",
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave it be. Not your burden.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "cloak_contents": {
+        "lines": [
+          "A single note remains, stained and torn: \"The road is no longer safe. Meet at the old tree.\"",
+          "Hope has fled this route."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Take the note for later.",
+            "next": null,
+            "effects": [
+              {
+                "type": "grant_item",
+                "itemId": "tattered_note"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_library_ruins_fniqs79_001",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "elderwood_hermit",
+    "lines": [
+      "Dusty shelves hold books untouched for years.",
+      "Pages speak of the Rift's first whispers, long before it opened."
+    ],
+    "choices": [
+      {
+        "id": "read",
+        "text": "[Intellect - INT] Study the nearest tome.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#tome_contents",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_rift_first_whispers_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave the books undisturbed.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "tome_contents": {
+        "lines": [
+          "The account details a ritual conducted long ago, a summoning gone wrong.",
+          "It suggests the Rift was never meant to close."
+        ],
+        "choices": [
+          {
+            "id": "remember",
+            "text": "File this information away for later.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_library_ruins_fniqs79_002",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "ash_prophet_npc",
+    "lines": [
+      "This place was once vibrant, full of seekers and scholars.",
+      "Now it echoes with forgotten truths and lost knowledge."
+    ],
+    "choices": [
+      {
+        "id": "inquire",
+        "text": "Ask about specific texts.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "walk_away",
+        "text": "Walk away, feeling the weight of neglect.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_library_ruins_fniqs79_003",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": null,
+    "lines": [
+      "A mural on the wall depicts the Rite of Awakening, elaborate and chaotic.",
+      "Something about it stirs a memory of the Ashen Veil."
+    ],
+    "choices": [
+      {
+        "id": "trace",
+        "text": "Trace the symbol with your finger.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "lore_ash_origin_found"
+          }
+        ]
+      },
+      {
+        "id": "ignore",
+        "text": "Step back and ignore it for now.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_library_ruins_fniqs79_004",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "These ruins are a library of lost hope, a sanctuary for secrets.",
+      "You seek knowledge, yet knowledge demands a price."
+    ],
+    "choices": [
+      {
+        "id": "ask_price",
+        "text": "Ask about the price for wisdom.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Turn away, feeling the chill of the air.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_library_ruins_fniqs79_005",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "bone_reader",
+    "lines": [
+      "Among these remains, the echoes of scholars linger.",
+      "They feared what they uncovered, and they should have."
+    ],
+    "choices": [
+      {
+        "id": "remember",
+        "text": "Remember their caution, it may serve you well.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "road_evidence_burned"
+          }
+        ]
+      },
+      {
+        "id": "dismiss",
+        "text": "Dismiss their warnings; your path is set.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_sovereigns_approach_g0kn4ym_003",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "A chill runs through the stones. This place is both gateway and grave, in equal measure."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "[Intellect - INT] Investigate the stones.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#stone_secrets",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "dismiss",
+        "text": "Dismiss the stones as mere rock.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_old_road_ghj22fq_001",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": null,
+    "lines": [
+      "A weathered stone sits at the road's edge, half-buried in soil.",
+      "It bears the names of travelers long lost to memory."
+    ],
+    "choices": [
+      {
+        "id": "touch",
+        "text": "Touch the stone.",
+        "effects": []
+      },
+      {
+        "id": "read",
+        "text": "[Wisdom - WIS] Read the names closely.",
+        "skillCheck": {
+          "skill": "wisdom",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#names_memories",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_old_road_travelers_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#names_faded",
+          "effects": []
+        },
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_library_ruins_gnwuo95_001",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "Shelves once laden with wisdom now stand bare.",
+      "Dust dances in the remnants of lost knowledge. They sought to remember, yet forgot too much."
+    ],
+    "choices": [
+      {
+        "id": "explore",
+        "text": "Search the remnants for something useful.",
+        "next": "#search_results",
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Turn away from the ruins. There's nothing left here.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "search_results": {
+        "lines": [
+          "A hidden compartment reveals a tarnished emblem of the Pact.",
+          "Its inscription speaks of a promise unkept, a warning unheeded."
+        ],
+        "choices": [
+          {
+            "id": "read",
+            "text": "Read the inscription.",
+            "next": null,
+            "effects": [
+              {
+                "type": "lore_unlock",
+                "loreId": "lore_pact_warning_001"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_library_ruins_gnwuo95_002",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "You did well to find this place. The past bleeds into our present, does it not?",
+      "Each shadow here tells a story — if only they were less mute."
+    ],
+    "choices": [
+      {
+        "id": "ask_about_stories",
+        "text": "What stories linger in these shadows?",
+        "next": null,
+        "effects": [
+          {
+            "type": "lore_unlock",
+            "loreId": "lore_shadows_story_001"
+          }
+        ]
+      },
+      {
+        "id": "move_on",
+        "text": "There's no point. Move on.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_old_road_gwmc0o3_001",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": null,
+    "lines": [
+      "A broken cart lies abandoned by the roadside.",
+      "The wheels are sunk in mud, and the canvas flaps listlessly in the wind."
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "Search the cart for anything useful.",
+        "next": "#cart_contents",
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave it. There's nothing to gain here.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "cart_contents": {
+        "lines": [
+          "Old rations, moldy and inedible. A small dagger, its hilt chipped but blade intact.",
+          "Someone tried to flee, but it ended poorly."
+        ],
+        "choices": [
+          {
+            "id": "take",
+            "text": "Take the dagger and move on.",
+            "next": null,
+            "effects": [
+              {
+                "type": "grant_item",
+                "itemId": "abandoned_dagger"
+              }
+            ]
+          },
+          {
+            "id": "discard",
+            "text": "Leave the dagger. Its past troubles you.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_old_road_gwmc0o3_002",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "The scout stands by a makeshift post.",
+      "\"This road used to connect villages. Now it only leads to shadows.\""
+    ],
+    "choices": [
+      {
+        "id": "ask_about_villages",
+        "text": "Ask about the lost villages.",
+        "next": "#lost_villages_info",
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Move along. There's no comfort here.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "lost_villages_info": {
+        "lines": [
+          "\"They were swallowed by the Veil. All of them. No survivors.\"",
+          "His voice drops, like a tomb's silence."
+        ]
+      },
+      "choices": [
+        {
+          "id": "go",
+          "text": "File that away. Move on.",
+          "next": null,
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "road_cultist_found"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "lore_old_road_gwmc0o3_003",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "Lyra points to a faded signpost, half-buried in leaves.",
+      "\"It used to say where to find the Ember Shrines. Now, it's just a whisper of what was.\""
+    ],
+    "choices": [
+      {
+        "id": "examine",
+        "text": "[Intellect - WIS] Examine the signpost closely.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_old_signpost_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "Ignore it. The past doesn't help now.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_sovereigns_approach_hj8l8yp_001",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "ash_prophet_npc",
+    "lines": [
+      "The air thickens with dread here. Shadows pool near the Riftgate, waiting."
+    ],
+    "choices": [
+      {
+        "id": "listen",
+        "text": "Listen closely for whispers in the dark.",
+        "next": "#whispers_heard",
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "Move on. There's nothing to gain here.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "whispers_heard": {
+        "lines": [
+          "Voices murmur in the void, speaking of lost paths and ancient debts."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Leave with the weight of the words.",
+            "next": null,
+            "effects": [
+              {
+                "type": "lore_unlock",
+                "loreId": "lore_prophetic_whispers_001"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_sovereigns_approach_hj8l8yp_002",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The shrine here is cracked, drawing in dark energy like a moth to flame.",
+      "A price was paid for silence, but the cost is rising."
+    ],
+    "choices": [
+      {
+        "id": "inspect",
+        "text": "[Intellect - WIS] Inspect the shrine for hidden inscriptions.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#inscription_found",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_shrine_inscription_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "walk_away",
+        "text": "Turn away. No good can come from this place.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "inscription_found": {
+        "lines": [
+          "An inscription speaks of a pact with forces beyond comprehension.",
+          "The words hint at old treaties broken, leading to the Rift's birth."
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_sovereigns_approach_hj8l8yp_003",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "captain_maer",
+    "lines": [
+      "Captain Maer stands watch, eyes reflecting both resolve and weariness.",
+      "\"We march toward our doom, or our salvation. Either way, the cost will be steep.\""
+    ],
+    "choices": [
+      {
+        "id": "ask_cost",
+        "text": "Ask about the cost Maer speaks of.",
+        "next": "#cost_revealed",
+        "effects": []
+      },
+      {
+        "id": "nod",
+        "text": "Simply nod in agreement. Move on.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "cost_revealed": {
+        "lines": [
+          "\"Every step forward is paid with blood. The question is whose?\""
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_sovereigns_approach_hj8l8yp_004",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "bone_reader",
+    "lines": [
+      "The bone reader kneels, sifting through remnants of lives lost.",
+      "\"Each fragment tells a story, but the truth is a curse.\""
+    ],
+    "choices": [
+      {
+        "id": "dig_into_bones",
+        "text": "[Strength - STR] Dig deeper to uncover hidden truths.",
+        "skillCheck": {
+          "skill": "strength",
+          "stat": "STR",
+          "dc": 14
+        },
+        "onPass": {
+          "next": "#truth_revealed",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_bone_truth_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "back_away",
+        "text": "Step back. Some truths are better left buried.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "truth_revealed": {
+        "lines": [
+          "You learn of a lost heir, bound to the Rift by blood and betrayal."
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_sovereigns_approach_hj8l8yp_005",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "null",
+    "lines": [
+      "A shattered stone lays beneath the shadow of the Riftgate.",
+      "Cracks form intricate patterns, like veins of the land marred by agony."
+    ],
+    "choices": [
+      {
+        "id": "examine_stone",
+        "text": "Examine the stone closely for latent energies.",
+        "next": "#energy_sensed",
+        "effects": []
+      },
+      {
+        "id": "leave_stone",
+        "text": "Leave it alone. No stone is worth the risk here.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "energy_sensed": {
+        "lines": [
+          "A pulse thrums beneath your fingers, a call to those who listen.",
+          "The stone vibrates with memories of ancient horrors."
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_old_road_hynydhb_001",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": null,
+    "lines": [
+      "A weathered signpost leans against a gnarled tree, barely legible now.",
+      "Once it pointed towards home, now it just points to lost paths."
+    ],
+    "choices": [
+      {
+        "id": "inspect",
+        "text": "Inspect the signpost closely.",
+        "next": "#sign_contents",
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave it be, no need to linger.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "mark",
+        "text": "Mark your way on the tree nearby.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "move_on",
+        "text": "Move on without a backward glance.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "sign_contents": {
+        "lines": [
+          "The inscription reads: 'To Emberwood, three days hence.'",
+          "The final word is scratched out, almost like it was forgotten."
+        ],
+        "choices": [
+          {
+            "id": "remember",
+            "text": "Remember the path it suggests.",
+            "next": null,
+            "effects": [
+              {
+                "type": "lore_unlock",
+                "loreId": "lore_forgotten_paths_001"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_old_road_hynydhb_002",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": "brightfall_innkeeper",
+    "lines": [
+      "The innkeeper recalls stories of travelers lost here,",
+      "\"Once a bustling road, now a whisper of what was.\""
+    ],
+    "choices": [
+      {
+        "id": "ask_more",
+        "text": "Ask for more details.",
+        "next": "#innkeeper_stories",
+        "effects": []
+      },
+      {
+        "id": "nod",
+        "text": "Nod, lost in thought.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "leave_inn",
+        "text": "Leave, unsure of what to make of it.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "innkeeper_stories": {
+        "lines": [
+          "\"People used to travel with hope. Now they flee with fear.\"",
+          "He pauses, eyes distant as if seeing the past."
+        ],
+        "choices": [
+          {
+            "id": "thank",
+            "text": "Thank him for the stories.",
+            "next": null,
+            "effects": []
+          },
+          {
+            "id": "question",
+            "text": "Question him about the fear.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_old_road_hynydhb_003",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "A scout surveys the area. \"Roads change, you know. This one was once safe.\"",
+      "Now, it's just another path where shadows linger."
+    ],
+    "choices": [
+      {
+        "id": "inquire",
+        "text": "Inquire about the recent dangers.",
+        "next": "#scout_warnings",
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Move on, the past is past.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "mourn",
+        "text": "Mourn for the lost safety.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "scout_warnings": {
+        "lines": [
+          "\"Cultists roam these woods. Travelers seldom return.\"",
+          "His eyes narrow, scanning the treeline."
+        ],
+        "choices": [
+          {
+            "id": "believe",
+            "text": "Believe his warning.",
+            "next": null,
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "road_cultist_found"
+              }
+            ]
+          },
+          {
+            "id": "doubt",
+            "text": "Doubt his tale, press forward regardless.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_old_road_hynydhb_004",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": null,
+    "lines": [
+      "A shallow grave lies half-covered by foliage, remnants of a past struggle.",
+      "The earth is disturbed, something was buried in haste."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "Investigate the grave.",
+        "next": "#grave_contents",
+        "effects": []
+      },
+      {
+        "id": "move_away",
+        "text": "Move away, respecting the dead.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "mark_spot",
+        "text": "Mark the spot, take note for later.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "grave_contents": {
+        "lines": [
+          "A rusted dagger peeks from the dirt, slick with dampness.",
+          "Next to it, a torn piece of cloth, stained dark."
+        ]
+      },
+      "choices": [
+        {
+          "id": "take_dagger",
+          "text": "Take the dagger, a useful find.",
+          "next": null,
+          "effects": [
+            {
+              "type": "grant_item",
+              "itemId": "rusted_dagger"
+            }
+          ]
+        },
+        {
+          "id": "leave_dagger",
+          "text": "Leave the dagger, better untouched.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "lore_old_road_hynydhb_005",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": "elderwood_hermit",
+    "lines": [
+      "The hermit whispers as he passes, \"The road remembers those who traveled it.\"",
+      "Be wary, for memory is a heavy burden."
+    ],
+    "choices": [
+      {
+        "id": "listen",
+        "text": "Listen to his words, wisdom shared.",
+        "next": null,
+        "effects": [
+          {
+            "type": "companion_approval",
+            "companionId": "lyra_ashwalker",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "id": "dismiss",
+        "text": "Dismiss him and move on.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "lore_library_ruins_ihdrgs2_001",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": null,
+    "lines": [
+      "A weathered tome rests on the altar, pages yellowed and brittle.",
+      "The title reads: 'The Origins of the Rift' in faded script."
+    ],
+    "choices": [
+      {
+        "id": "read",
+        "text": "Read the tome.",
+        "next": "#tome_content",
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "Leave it untouched,",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "take",
+        "text": "Take the tome with you.",
+        "next": null,
+        "effects": [
+          {
+            "type": "grant_item",
+            "itemId": "ancient_tome"
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "tome_content": {
+        "lines": [
+          "The first entry details a ritual conducted fifteen years ago, invoking the Rift.",
+          "It speaks of a promise made, a bargain struck in darkness."
+        ],
+        "choices": [
+          {
+            "id": "acknowledge",
+            "text": "Mark this knowledge for later.",
+            "next": null,
+            "effects": [
+              {
+                "type": "lore_unlock",
+                "loreId": "lore_rift_ritual_001"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lore_library_ruins_ihdrgs2_002",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "Lyra examines the shelves, dust swirling in the air.",
+      "\"These texts hold more than just words; they whisper truths long buried.\""
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "Search the shelves closely.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "discuss",
+        "text": "Ask her what she sees.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  }
+]

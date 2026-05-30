@@ -1,0 +1,56 @@
+{
+  "node": {
+    "{": {
+      "id": "faction_veilscar_d91lgs3_002",
+      "pool": "faction",
+      "act": 2,
+      "biome": "veilscar",
+      "tone": "political",
+      "speaker": "veil_shrinekeeper",
+      "lines": [
+        "This shrine was once a beacon. Now, it murmurs of lost faith.",
+        "You sense the weight of decisions made under its shadow."
+      ],
+      "choices": [
+        {
+          "id": "restore",
+          "text": "Offer to help restore the shrine.",
+          "next": null,
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "ashen_veil",
+              "amount": 1
+            },
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        {
+          "id": "negotiate",
+          "text": "Negotiate for the shrine's secrets.",
+          "next": "#shrine_secrets",
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Leave the shrine untouched, a relic of the past.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    }
+  },
+  "validationErrors": [
+    "missing id",
+    "missing pool",
+    "pool mismatch: got \"undefined\" expected \"faction\"",
+    "act must be integer",
+    "unknown biome: \"undefined\"",
+    "lines must be non-empty array",
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:06:43.736Z"
+}

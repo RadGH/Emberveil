@@ -1,0 +1,126 @@
+{
+  "main": [
+    {
+      "id": "mq_act1",
+      "title": "Blood at the Border",
+      "act": 1,
+      "giver": "silas",
+      "target": null,
+      "summary": "Silas suspects the goblin raids are a cover. Clear the Border Roads boss to find what the cult left behind."
+    },
+    {
+      "id": "mq_act2",
+      "title": "Embers Over Cinderhold",
+      "act": 2,
+      "giver": "silas",
+      "target": null,
+      "summary": "Silas asks you to find his missing daughter Lysa. The Ashen Veil took her to the Ember Plateau."
+    },
+    {
+      "id": "mq_act3",
+      "title": "The Veil Breach",
+      "act": 3,
+      "giver": "silas",
+      "target": null,
+      "summary": "Confront Silas at Dreadhearth. He will not survive Archfiend Malgrath alone. Choose: spare him or end it."
+    },
+    {
+      "id": "mq_act4",
+      "title": "Shards of the Architect",
+      "act": 4,
+      "giver": "kaela",
+      "target": null,
+      "summary": "Kaela Thorne has been tracking the cult through the portal. She asks for three void shards to trace the Architect."
+    },
+    {
+      "id": "mq_act5",
+      "title": "The Architect",
+      "act": 5,
+      "giver": "kaela",
+      "target": null,
+      "summary": "Marek Greel is the Architect. Silas was his puppet for decades. Put him down."
+    }
+  ],
+  "side": [
+    {
+      "id": "sq_thornwood_spider",
+      "title": "Spider Queen Bounty",
+      "act": 1,
+      "giver": null,
+      "target": "thornwood_boss",
+      "summary": null
+    },
+    {
+      "id": "sq_dust_obsidian",
+      "title": "Raze the Obsidian Fort",
+      "act": 2,
+      "giver": null,
+      "target": "obsidian_fort",
+      "summary": null
+    },
+    {
+      "id": "sq_dust_priest",
+      "title": "Silence the Veil High Priest",
+      "act": 2,
+      "giver": null,
+      "target": "veil_high_priest",
+      "summary": null
+    },
+    {
+      "id": "sq_ember_keep",
+      "title": "Inferno Keep Contract",
+      "act": 3,
+      "giver": null,
+      "target": "inferno_keep",
+      "summary": null
+    },
+    {
+      "id": "sq_hell_reliquary",
+      "title": "Demon Reliquary",
+      "act": 3,
+      "giver": null,
+      "target": "demon_reliquary",
+      "summary": null
+    },
+    {
+      "id": "sq_core_crypt",
+      "title": "Memory Crypt Sweep",
+      "act": 4,
+      "giver": null,
+      "target": "memory_crypt",
+      "summary": null
+    },
+    {
+      "id": "sq_core_fortress",
+      "title": "Shard Fortress Siege",
+      "act": 4,
+      "giver": null,
+      "target": "shard_fortress",
+      "summary": null
+    },
+    {
+      "id": "sq_rift_patrol",
+      "title": "Void Patrol Contract",
+      "act": 5,
+      "giver": null,
+      "target": "void_nexus_ambush",
+      "summary": null
+    },
+    {
+      "id": "sq_rift_camp",
+      "title": "Abyssal Camp",
+      "act": 5,
+      "giver": null,
+      "target": "abyssal_garrison",
+      "summary": null
+    },
+    {
+      "id": "sq_act6_dragons",
+      "title": "Dragon Patrol Bounty",
+      "act": 6,
+      "giver": null,
+      "target": "dragon_patrol",
+      "summary": null
+    }
+  ]
+}

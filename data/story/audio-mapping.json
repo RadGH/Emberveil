@@ -1,0 +1,23 @@
+{
+  "_comment": "Story Mode audio mapping — biome/act → music track. Tracks are resolved by StoryMapScreen._playBiomeMusic(). All paths relative to /public/music/.",
+  "actOverworld": {
+    "1": "overworld_act1.ogg",
+    "2": "overworld_act2.ogg",
+    "3": "overworld_act3.ogg",
+    "4": "overworld_act4.ogg",
+    "5": "overworld_act5.ogg",
+    "6": "overworld_act6.ogg"
+  },
+  "biomeOverride": {
+    "town":       "town_theme.ogg",
+    "brightfall": "town_theme.ogg",
+    "veilscar":   "overworld_act2.ogg",
+    "ashfields":  "overworld_act3.ogg"
+  },
+  "combat":   "combat_theme.ogg",
+  "combatCalm": ["combat_calm_01.ogg", "combat_calm_02.ogg", "combat_calm_03.ogg"],
+  "boss":     "boss_theme.ogg",
+  "title":    "title_theme.ogg",
+  "intro":    "intro_theme.ogg",
+  "town":     "town_theme.ogg"
+}

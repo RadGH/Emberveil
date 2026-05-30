@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/companions.json",
+  "title": "Emberveil Companions & Hires File (v1)",
+  "description": "Canonical roster entities that are NOT enemies: tavern companions (COMPANIONS_ACT1, TownScreen.js), class pets (CLASS_PETS, companions.js), named hero hires (HIREABLES_ACT1, TownScreen.js), and companion power tiers (COMPANION_POWER, companions.js). Field sets verified verbatim against the live source — additionalProperties:false guards against silent field loss.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "companions", "classPets", "hires", "companionPower"],
+  "properties": {
+    "version": { "const": 1 },
+    "source": { "type": "string" },
+    "companions": {
+      "description": "COMPANIONS_ACT1 — tavern-offered companions.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "className", "class", "level", "cost", "isCompanion", "attrs", "description"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "className": { "type": "string" },
+          "class": { "type": "string" },
+          "level": { "type": "number" },
+          "cost": { "type": "number" },
+          "isCompanion": { "type": "boolean" },
+          "wild": { "type": "boolean" },
+          "attrs": { "$ref": "#/$defs/attrs" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "classPets": {
+      "description": "CLASS_PETS — skill-talent-unlocked pets keyed by pet id.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "className", "class", "isCompanion", "isPet", "ownerClass", "level", "attrs", "description"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "className": { "type": "string" },
+          "class": { "type": "string" },
+          "isCompanion": { "type": "boolean" },
+          "isPet": { "type": "boolean" },
+          "ownerClass": { "type": "string" },
+          "level": { "type": "number" },
+          "attrs": { "$ref": "#/$defs/attrs" },
+          "sprite": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "hires": {
+      "description": "HIREABLES_ACT1 — named hero mercenaries.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "className", "class", "level", "attrs", "personality", "description", "personalityNote"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "className": { "type": "string" },
+          "class": { "type": "string" },
+          "level": { "type": "number" },
+          "attrs": { "$ref": "#/$defs/attrs" },
+          "personality": { "type": "string" },
+          "description": { "type": "string" },
+          "personalityNote": { "type": "string" },
+          "appearance": { "type": "string" }
+        }
+      }
+    },
+    "companionPower": {
+      "description": "COMPANION_POWER — companion id -> power tier (1..5).",
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 1, "maximum": 5 }
+    }
+  },
+  "$defs": {
+    "attrs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["STR", "DEX", "INT", "CON"],
+      "properties": {
+        "STR": { "type": "number" },
+        "DEX": { "type": "number" },
+        "INT": { "type": "number" },
+        "CON": { "type": "number" }
+      }
+    }
+  }
+}

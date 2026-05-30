@@ -1,0 +1,53 @@
+{
+  "node": {
+    "id": "shrine_riftgate_he21hlv_001",
+    "pool": "shrine",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "corrupted",
+    "speaker": null,
+    "lines": [
+      "The shrine's edges bleed a thick, dark mist.",
+      "It shudders as if alive, whispering forgotten names."
+    ],
+    "choices": [
+      {
+        "id": "breathe_in",
+        "text": "[Wisdom - CON] Inhale the mist.",
+        "skillCheck": {
+          "skill": "wisdom",
+          "stat": "CON",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#whispers_heard",
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "ashen_veil",
+              "amount": 1
+            },
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#sickened",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Step back. Let it be.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"breathe_in\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:09:43.678Z"
+}

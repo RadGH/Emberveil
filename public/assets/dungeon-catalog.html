@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Dungeon Catalog — Emberveil</title>
+<style>
+body { padding: 1rem 1rem 4rem; }
+.wrap { max-width: 1000px; margin: 0 auto; }
+h1 {
+  font-family: 'Cinzel',Georgia,serif;
+  font-size: 1.4rem; margin: 0 0 0.2rem;
+  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+  background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+.filters {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 8px; padding: 0.6rem 0.75rem; margin: 0 0 0.75rem;
+}
+.filters input[type=text] {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text); padding: 0.3rem 0.6rem; font: inherit; font-size: 0.8rem;
+  min-width: 200px; flex: 1 1 200px;
+}
+.filters input[type=text]:focus { outline: none; border-color: var(--gold); }
+.count { color: var(--muted); font-size: 0.78rem; margin-left: auto; }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 0.75rem; }
+.dcard {
+  background: var(--card); border: 1px solid var(--border-subtle,#2a1f30);
+  border-radius: 9px; overflow: hidden; cursor: pointer;
+  transition: border-color 0.15s;
+}
+.dcard:hover { border-color: var(--border-hi,rgba(232,160,32,0.45)); }
+.dcard.expanded { border-color: var(--accent); }
+.dcard-header {
+  padding: 0.75rem 0.9rem 0.6rem;
+  display: flex; flex-direction: column; gap: 0.2rem;
+}
+.dcard-name {
+  font-family: 'Cinzel',Georgia,serif; font-size: 1rem;
+  font-weight: 700; color: var(--gold-bright); letter-spacing: 0.05em;
+}
+.dcard-sub { font-size: 0.76rem; color: var(--muted); }
+.dcard-badges { display: flex; gap: 0.4rem; margin-top: 0.25rem; flex-wrap: wrap; }
+.badge {
+  display: inline-block; padding: 1px 7px; border-radius: 3px;
+  font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-zone    { background: rgba(60,100,180,0.2); color: #80b0ff; }
+.badge-level   { background: rgba(180,100,20,0.2); color: #e8a060; }
+.badge-stages  { background: rgba(60,140,60,0.18); color: #80d880; }
+.badge-diff    { border: 1px solid currentColor; opacity: 0.9; }
+.dcard-details {
+  display: none; border-top: 1px solid var(--border-subtle,#2a1f30);
+  padding: 0.7rem 0.9rem; font-size: 0.8rem;
+}
+.dcard.expanded .dcard-details { display: block; }
+.detail-row { display: flex; gap: 0.5rem; margin-bottom: 0.4rem; }
+.detail-label { color: var(--muted); min-width: 90px; font-size: 0.75rem; }
+.detail-value { color: var(--text); flex: 1; }
+.reward-row { display: flex; gap: 0.75rem; margin-top: 0.2rem; flex-wrap: wrap; }
+.reward-chip {
+  background: rgba(232,160,32,0.1); border: 1px solid rgba(232,160,32,0.2);
+  border-radius: 4px; padding: 2px 8px; font-size: 0.76rem; color: var(--gold);
+}
+
+/* Encounter rating table inside expanded dungeon card */
+.enc-table { width: 100%; border-collapse: collapse; margin-top: 0.4rem; font-size: 0.75rem; }
+.enc-table th { text-align: left; color: var(--muted); font-weight: 600; padding: 2px 6px 4px 0; }
+.enc-table td { padding: 2px 6px 2px 0; color: var(--text); }
+.enc-table tr:not(:last-child) td { border-bottom: 1px solid var(--border-subtle,#2a1f30); }
+.diff-dot {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 4px; vertical-align: middle;
+}
+.ratings-note { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; }
+
+.empty { text-align: center; color: var(--muted); padding: 2rem; }
+</style>
+</head>
+<body class="ev-themed">
+<div class="wrap">
+  <h1>Dungeon Catalog</h1>
+  <p class="sub">
+    Side-branch dungeons accessible from the world map. Click a card to expand stage and reward details.
+    Dungeon data is derived from <code>src/maps/mapData.js</code>.
+    Encounter difficulty ratings are from <code>public/assets/data/encounter-ratings.json</code>
+    (run <code>node scripts/rate-encounters.mjs</code> to update).
+  </p>
+
+  <div class="filters">
+    <input type="text" id="search" placeholder="Search dungeon name or zone...">
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="card-grid" id="cardGrid"></div>
+  <div class="empty" id="empty" style="display:none">No dungeons match the current filter.</div>
+</div>
+
+<script type="module">
+import { getDungeons } from './data/data-source.js';
+
+let _all      = [];
+let _ratings  = {};   // encounter id -> rating object
+let _ratingsLoaded = false;
+
+const grid   = document.getElementById('cardGrid');
+const search = document.getElementById('search');
+const count  = document.getElementById('count');
+const empty  = document.getElementById('empty');
+
+// Load encounter ratings (generated by rate-encounters.mjs)
+fetch('./data/encounter-ratings.json')
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    if (data && Array.isArray(data.ratings)) {
+      for (const r of data.ratings) _ratings[r.id] = r;
+    }
+    _ratingsLoaded = true;
+    if (_all.length) render();
+  })
+  .catch(() => { _ratingsLoaded = true; if (_all.length) render(); });
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function ratingBadge(encId) {
+  const r = _ratings[encId];
+  if (!r) return '';
+  const colors = { easy: '#60c060', normal: '#e0c020', hard: '#e08020', deadly: '#e04040' };
+  const color  = colors[r.difficulty] || '#c0c0c0';
+  return `<span class="badge badge-diff" style="color:${color};border-color:${color};">${esc(r.difficulty)} ${r.winRatePct}%</span>`;
+}
+
+function encounterRatingRow(encId, label) {
+  const r = _ratings[encId];
+  if (!r) return `<tr><td>${esc(label || encId)}</td><td colspan="3" style="color:var(--muted)">no rating</td></tr>`;
+  const colors = { easy: '#60c060', normal: '#e0c020', hard: '#e08020', deadly: '#e04040' };
+  const color  = colors[r.difficulty] || '#c0c0c0';
+  return `<tr>
+    <td>${esc(label || r.name || encId)}</td>
+    <td><span class="diff-dot" style="background:${color}"></span>${esc(r.difficulty)}</td>
+    <td>${r.winRatePct}%</td>
+    <td>${r.avgRounds} rnd</td>
+  </tr>`;
+}
+
+function buildCard(d) {
+  const card = document.createElement('div');
+  card.className = 'dcard';
+  const rewardGold  = d.reward?.gold  ? `${d.reward.gold}g` : '';
+  const rewardXp    = d.reward?.xp    ? `${d.reward.xp} XP` : '';
+  const rewardItem  = d.reward?.item  ? d.reward.item.replace(/_/g,' ') : '';
+  const rewardChips = [rewardGold, rewardXp, rewardItem]
+    .filter(Boolean)
+    .map(r => `<span class="reward-chip">${esc(r)}</span>`)
+    .join('');
+
+  const zoneLabel = (d.parentZone || '').replace(/_/g,' ');
+
+  // Gather encounter ids from stages for rating display
+  const stageEncs = (d.stages || [])
+    .filter(s => s.encounter)
+    .map(s => ({ encId: s.encounter, name: s.name || s.encounter }));
+
+  // Rating badge for the boss stage (last stage with an encounter)
+  const bossStage = [...stageEncs].reverse().find(s => true);
+  const bossRatingBadge = bossStage ? ratingBadge(bossStage.encId) : '';
+
+  // Build encounter rows table
+  const encRows = stageEncs.map(s => encounterRatingRow(s.encId, s.name)).join('');
+  const encTable = stageEncs.length > 0 ? `
+    <div class="detail-row">
+      <span class="detail-label">Enc. Ratings</span>
+      <span class="detail-value">
+        <table class="enc-table">
+          <thead><tr><th>Stage</th><th>Tier</th><th>Win%</th><th>Avg</th></tr></thead>
+          <tbody>${encRows}</tbody>
+        </table>
+        <div class="ratings-note">vs. typical party at act level. Run <code>rate-encounters.mjs</code> to refresh.</div>
+      </span>
+    </div>
+  ` : '';
+
+  card.innerHTML = `
+    <div class="dcard-header">
+      <div class="dcard-name">${esc(d.name)}</div>
+      <div class="dcard-sub">${esc(zoneLabel)}</div>
+      <div class="dcard-badges">
+        <span class="badge badge-level">Min Lv ${d.minLevel}</span>
+        <span class="badge badge-stages">${d.stageCount} stages</span>
+        ${d.parentZone ? `<span class="badge badge-zone">${esc(zoneLabel)}</span>` : ''}
+        ${bossRatingBadge}
+      </div>
+    </div>
+    <div class="dcard-details">
+      <div class="detail-row">
+        <span class="detail-label">Location</span>
+        <span class="detail-value">${esc(zoneLabel || 'Unknown zone')}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Stages</span>
+        <span class="detail-value">${d.stageCount} stages (combat / lore / shrine)</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Final Boss</span>
+        <span class="detail-value">${esc(d.bossName || d.bossEncounter || 'Unknown')}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Rewards</span>
+        <span class="detail-value">
+          <div class="reward-row">${rewardChips || 'None'}</div>
+        </span>
+      </div>
+      ${encTable}
+    </div>
+  `;
+  card.querySelector('.dcard-header').addEventListener('click', () => {
+    card.classList.toggle('expanded');
+  });
+  return card;
+}
+
+function render() {
+  const q = search.value.toLowerCase();
+  const filtered = _all.filter(d => {
+    if (!q) return true;
+    const blob = [d.name, d.parentZone, d.bossName, d.bossEncounter].join(' ').toLowerCase();
+    return blob.includes(q);
+  });
+
+  grid.innerHTML = '';
+  for (const d of filtered) grid.appendChild(buildCard(d));
+  count.textContent = `${filtered.length} of ${_all.length} dungeons`;
+  empty.style.display = filtered.length === 0 ? 'block' : 'none';
+}
+
+search.addEventListener('input', render);
+
+getDungeons().then(data => {
+  _all = data;
+  if (_ratingsLoaded) render();
+}).catch(err => {
+  grid.innerHTML = `<div class="empty">Failed to load dungeon data: ${err.message}</div>`;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/npcs.json",
+  "title": "Emberveil NPCs File (v1)",
+  "description": "Canonical NPC appearances — the subset of appearances.js APPEARANCES with playable === false (mentors, rivals, recurring NPCs, recruitable roadside heroes, and inline-encounter enemy/boss sprite registrations). Same entry shape as heroes.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "entities"],
+  "properties": {
+    "version": { "const": 1 },
+    "source": { "type": "string" },
+    "entities": {
+      "type": "array",
+      "items": { "$ref": "heroes.json#/$defs/appearance" }
+    }
+  }
+}

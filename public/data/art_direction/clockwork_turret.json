@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "clockwork_turret",
+  "displayName": "Clockwork Turret",
+  "class": "companion",
+  "isCompanion": true,
+  "pixelHeight": 140,
+  "identity": "A small clockwork turret, the size of a cat. Brass body standing on three ornate bronze legs, central glowing arcane-blue crystal eye, exposed gears turning on the sides, brass barrel mounted on top, tiny pennant flag. Polished brass and amber wood, steampunk-fantasy.",
+  "outfit": "Brass plating with rivets; amber-wood inlays; bronze legs; pennant flag on top.",
+  "weapons": "Top-mounted brass barrel that fires arcane-blue bolts.",
+  "attackStyle": "East-facing profile, firing the brass barrel — muzzle flash of arcane-blue energy, steam puff, gears mid-spin.",
+  "koStyle": "East-facing profile, tipped on its side, gears loose and scattered, crystal eye dim and cracked, wisp of smoke.",
+  "southStyle": "Front-facing idle, crystal eye lit, legs planted, barrel aimed slightly up.",
+  "portraitStyle": "Front-view portrait, full turret visible with workshop glow atmosphere.",
+  "bannedSubstrings": ["modern", "industrial", "sci-fi", "laser", "robot", "cyberpunk", "plastic", "neon"],
+  "notes": "M269 Tinker class companion — 5 poses only (portrait, south, east, east_attack, east_ko), matching war_dog companion framework."
+}

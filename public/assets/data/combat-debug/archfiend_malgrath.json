@@ -1,0 +1,3010 @@
+{
+  "key": "archfiend_malgrath",
+  "label": "Act 3 boss",
+  "act": 3,
+  "runs": 5,
+  "winRate": 0,
+  "avgRounds": 8.6,
+  "aggregate": {
+    "meter": 9001,
+    "damageApply": 9001,
+    "logParsed": 9001,
+    "meter_vs_apply": 0,
+    "meter_vs_log": 0,
+    "apply_vs_log": 0
+  },
+  "parityWarnings": [],
+  "perRun": [
+    {
+      "seed": 1337,
+      "winner": "enemies",
+      "rounds": 5,
+      "eventCount": 139,
+      "totals": {
+        "meter": 1381,
+        "damageApply": 1381,
+        "logParsed": 1381
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 9,
+        "Whirlwind": 12,
+        "Smite": 75,
+        "Blizzard": 9,
+        "Attack": 1197,
+        "Aimed Shot": 53,
+        "Cleave": 26
+      },
+      "clericHeals": 2,
+      "clericAttacks": 1,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 23,
+        "initiative_roll": 7,
+        "turn_order": 5,
+        "turn_start": 27,
+        "ai_decision": 12,
+        "skill_cast_attempt": 12,
+        "hit_check": 35,
+        "crit_check": 20,
+        "damage_calc": 33,
+        "damage_apply": 33,
+        "meter_add": 33,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 12,
+          "Cleave": 26
+        },
+        "Clr": {
+          "Smite": 75
+        },
+        "Mag": {
+          "Blizzard": 9
+        },
+        "Rng": {
+          "Multi-Shot": 9,
+          "Aimed Shot": 53
+        }
+      }
+    },
+    {
+      "seed": 1338,
+      "winner": "enemies",
+      "rounds": 10,
+      "eventCount": 249,
+      "totals": {
+        "meter": 1692,
+        "damageApply": 1692,
+        "logParsed": 1692
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 27,
+        "Whirlwind": 24,
+        "Smite": 150,
+        "Blizzard": 9,
+        "Attack": 1338,
+        "Aimed Shot": 106,
+        "Cleave": 38
+      },
+      "clericHeals": 4,
+      "clericAttacks": 2,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 36,
+        "initiative_roll": 7,
+        "turn_order": 10,
+        "turn_start": 53,
+        "ai_decision": 25,
+        "skill_cast_attempt": 25,
+        "hit_check": 70,
+        "crit_check": 37,
+        "damage_calc": 50,
+        "damage_apply": 50,
+        "meter_add": 50,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 24,
+          "Cleave": 38
+        },
+        "Clr": {
+          "Smite": 150
+        },
+        "Mag": {
+          "Blizzard": 9
+        },
+        "Rng": {
+          "Multi-Shot": 27,
+          "Aimed Shot": 106
+        }
+      }
+    },
+    {
+      "seed": 1339,
+      "winner": "enemies",
+      "rounds": 8,
+      "eventCount": 223,
+      "totals": {
+        "meter": 1775,
+        "damageApply": 1775,
+        "logParsed": 1775
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 18,
+        "Whirlwind": 16,
+        "Smite": 150,
+        "Blizzard": 15,
+        "Aimed Shot": 106,
+        "Cleave": 32,
+        "Fireball": 63,
+        "Attack": 1375
+      },
+      "clericHeals": 3,
+      "clericAttacks": 2,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Fireball",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 35,
+        "initiative_roll": 7,
+        "turn_order": 8,
+        "turn_start": 45,
+        "ai_decision": 21,
+        "skill_cast_attempt": 21,
+        "hit_check": 61,
+        "crit_check": 34,
+        "damage_calc": 47,
+        "damage_apply": 47,
+        "meter_add": 47,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 16,
+          "Cleave": 32
+        },
+        "Clr": {
+          "Smite": 150
+        },
+        "Mag": {
+          "Blizzard": 15,
+          "Fireball": 63
+        },
+        "Rng": {
+          "Multi-Shot": 18,
+          "Aimed Shot": 106
+        }
+      }
+    },
+    {
+      "seed": 1340,
+      "winner": "enemies",
+      "rounds": 12,
+      "eventCount": 282,
+      "totals": {
+        "meter": 2111,
+        "damageApply": 2111,
+        "logParsed": 2111
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 15,
+        "Whirlwind": 20,
+        "Smite": 351,
+        "Blizzard": 6,
+        "Attack": 1559,
+        "Aimed Shot": 106,
+        "Cleave": 54
+      },
+      "clericHeals": 4,
+      "clericAttacks": 5,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 39,
+        "initiative_roll": 7,
+        "turn_order": 12,
+        "turn_start": 64,
+        "ai_decision": 28,
+        "skill_cast_attempt": 26,
+        "hit_check": 83,
+        "crit_check": 34,
+        "damage_calc": 52,
+        "damage_apply": 52,
+        "meter_add": 52,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 20,
+          "Cleave": 54,
+          "Attack": 3
+        },
+        "Clr": {
+          "Smite": 351,
+          "Attack": 3
+        },
+        "Mag": {
+          "Blizzard": 6
+        },
+        "Rng": {
+          "Multi-Shot": 15,
+          "Aimed Shot": 106
+        }
+      }
+    },
+    {
+      "seed": 1341,
+      "winner": "enemies",
+      "rounds": 8,
+      "eventCount": 242,
+      "totals": {
+        "meter": 2042,
+        "damageApply": 2042,
+        "logParsed": 2042
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 18,
+        "Whirlwind": 25,
+        "Smite": 225,
+        "Blizzard": 15,
+        "Attack": 1526,
+        "Aimed Shot": 146,
+        "Cleave": 24,
+        "Fireball": 63
+      },
+      "clericHeals": 4,
+      "clericAttacks": 3,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Fireball",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 39,
+        "initiative_roll": 7,
+        "turn_order": 8,
+        "turn_start": 46,
+        "ai_decision": 22,
+        "skill_cast_attempt": 22,
+        "hit_check": 66,
+        "crit_check": 37,
+        "damage_calc": 53,
+        "damage_apply": 53,
+        "meter_add": 53,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 25,
+          "Cleave": 24
+        },
+        "Clr": {
+          "Smite": 225
+        },
+        "Mag": {
+          "Blizzard": 15,
+          "Fireball": 63
+        },
+        "Rng": {
+          "Multi-Shot": 18,
+          "Aimed Shot": 146
+        }
+      }
+    }
+  ],
+  "sampleEvents": [
+    {
+      "round": 2,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Hell Knight: 93 dmg (Aimed Shot)",
+        "type": "hero",
+        "dmg": 93
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 4,
+        "source": "Cleave",
+        "target": "Archfiend Malgrath",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Archfiend Malgrath",
+        "raw": 42,
+        "final": 4,
+        "source": "Cleave",
+        "hpAfter": 12588
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Archfiend Malgrath: 4 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 4
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "hit": false
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Hell Knight.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 4,
+        "source": "Cleave",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "raw": 42,
+        "final": 4,
+        "source": "Cleave",
+        "hpAfter": 1911
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Hell Knight: 4 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 4
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "heal",
+        "amount": 180,
+        "source": "Heal",
+        "target": "Mag"
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr heals Mag for 180",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 17,
+        "source": "Fireball",
+        "target": "Archfiend Malgrath",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Archfiend Malgrath",
+        "raw": 82,
+        "final": 17,
+        "source": "Fireball",
+        "hpAfter": 12571
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Archfiend Malgrath: 17 dmg (Fireball)",
+        "type": "hero",
+        "dmg": 17
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 23,
+        "source": "Fireball",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Hell Knight",
+        "raw": 82,
+        "final": 23,
+        "source": "Fireball",
+        "hpAfter": 1721
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Hell Knight: 23 dmg (Fireball)",
+        "type": "hero",
+        "dmg": 23
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 23,
+        "source": "Fireball",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Hell Knight",
+        "raw": 82,
+        "final": 23,
+        "source": "Fireball",
+        "hpAfter": 1888
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Hell Knight: 23 dmg (Fireball)",
+        "type": "hero",
+        "dmg": 23
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Archfiend Malgrath",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Archfiend Malgrath",
+        "target": "Mag",
+        "hit": false
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Archfiend Malgrath",
+      "kind": "log_line",
+      "data": {
+        "msg": "Archfiend Malgrath misses Mag.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Hell Knight",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Hell Knight",
+        "kind": "dmg",
+        "amount": 75,
+        "source": "Attack",
+        "target": "Mag",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Hell Knight",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "Mag",
+        "raw": 102,
+        "final": 75,
+        "source": "Attack",
+        "hpAfter": 115
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight → Mag: 75 dmg",
+        "type": "hero",
+        "dmg": 75
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Hell Knight",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "Mag",
+        "hit": false
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight misses Mag.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 3,
+      "data": {
+        "round": 3
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Multi-Shot",
+        "target": "Archfiend Malgrath",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Archfiend Malgrath",
+        "raw": 30,
+        "final": 3,
+        "source": "Multi-Shot",
+        "hpAfter": 12568
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Archfiend Malgrath: 3 dmg (Multi-Shot)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Multi-Shot",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Hell Knight",
+        "raw": 30,
+        "final": 3,
+        "source": "Multi-Shot",
+        "hpAfter": 1718
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Hell Knight: 3 dmg (Multi-Shot)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Multi-Shot",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Hell Knight",
+        "raw": 30,
+        "final": 3,
+        "source": "Multi-Shot",
+        "hpAfter": 1885
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Hell Knight: 3 dmg (Multi-Shot)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Archfiend Malgrath",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Archfiend Malgrath",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 12566
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Archfiend Malgrath: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 1716
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Hell Knight: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 1883
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Hell Knight: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "dmg",
+        "amount": 75,
+        "source": "Smite",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Clr",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Clr",
+        "target": "Hell Knight",
+        "raw": 101,
+        "final": 75,
+        "source": "Smite",
+        "hpAfter": 1641
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr → Hell Knight: 75 dmg (Smite)",
+        "type": "hero",
+        "dmg": 75
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Blizzard",
+        "target": "Archfiend Malgrath",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Archfiend Malgrath",
+        "raw": 30,
+        "final": 3,
+        "source": "Blizzard",
+        "hpAfter": 12563
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Archfiend Malgrath: 3 dmg (Blizzard)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Blizzard",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Hell Knight",
+        "raw": 30,
+        "final": 3,
+        "source": "Blizzard",
+        "hpAfter": 1638
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Hell Knight: 3 dmg (Blizzard)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Blizzard",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Hell Knight",
+        "raw": 30,
+        "final": 3,
+        "source": "Blizzard",
+        "hpAfter": 1880
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Hell Knight: 3 dmg (Blizzard)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Archfiend Malgrath",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Archfiend Malgrath",
+        "kind": "dmg",
+        "amount": 152,
+        "source": "Attack",
+        "target": "Mag",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Archfiend Malgrath",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Archfiend Malgrath",
+        "target": "Mag",
+        "raw": 179,
+        "final": 152,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Archfiend Malgrath",
+      "kind": "log_line",
+      "data": {
+        "msg": "Archfiend Malgrath → Mag: 152 dmg",
+        "type": "hero",
+        "dmg": 152
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Hell Knight",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "Rng",
+        "hit": false
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight misses Rng.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Hell Knight",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Hell Knight",
+        "kind": "dmg",
+        "amount": 80,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Hell Knight",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "Rng",
+        "raw": 107,
+        "final": 80,
+        "source": "Attack",
+        "hpAfter": 110
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight → Rng: 80 dmg",
+        "type": "hero",
+        "dmg": 80
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 4,
+      "data": {
+        "round": 4
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 53,
+        "source": "Aimed Shot",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Hell Knight",
+        "raw": 79,
+        "final": 53,
+        "source": "Aimed Shot",
+        "hpAfter": 1585
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Hell Knight: 53 dmg (Aimed Shot)",
+        "type": "hero",
+        "dmg": 53
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 4,
+        "source": "Cleave",
+        "target": "Archfiend Malgrath",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Archfiend Malgrath",
+        "raw": 42,
+        "final": 4,
+        "source": "Cleave",
+        "hpAfter": 12559
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Archfiend Malgrath: 4 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 4
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 4,
+        "source": "Cleave",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "raw": 42,
+        "final": 4,
+        "source": "Cleave",
+        "hpAfter": 1581
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Hell Knight: 4 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 4
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 4,
+        "source": "Cleave",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "raw": 42,
+        "final": 4,
+        "source": "Cleave",
+        "hpAfter": 1876
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Hell Knight: 4 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 4
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "heal",
+        "amount": 180,
+        "source": "Heal",
+        "target": "Rng"
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr heals Rng for 180",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Archfiend Malgrath",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Archfiend Malgrath",
+        "kind": "dmg",
+        "amount": 103,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Archfiend Malgrath",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Archfiend Malgrath",
+        "target": "Rng",
+        "raw": 130,
+        "final": 103,
+        "source": "Attack",
+        "hpAfter": 87
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Archfiend Malgrath",
+      "kind": "log_line",
+      "data": {
+        "msg": "Archfiend Malgrath → Rng: 103 dmg",
+        "type": "hero",
+        "dmg": 103
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Hell Knight",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Hell Knight",
+        "kind": "dmg",
+        "amount": 90,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Hell Knight",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "Rng",
+        "raw": 117,
+        "final": 90,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight → Rng: 90 dmg",
+        "type": "hero",
+        "dmg": 90
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Hell Knight",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Hell Knight",
+        "kind": "dmg",
+        "amount": 76,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Hell Knight",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "War",
+        "raw": 103,
+        "final": 76,
+        "source": "Attack",
+        "hpAfter": 134
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight → War: 76 dmg",
+        "type": "hero",
+        "dmg": 76
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 5,
+      "data": {
+        "round": 5
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Archfiend Malgrath",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Archfiend Malgrath",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 12557
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Archfiend Malgrath: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 3,
+        "source": "Whirlwind",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "raw": 20,
+        "final": 3,
+        "source": "Whirlwind",
+        "hpAfter": 1578
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Hell Knight: 3 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 3
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 1874
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Hell Knight: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "dmg",
+        "amount": 75,
+        "source": "Smite",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Clr",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Clr",
+        "target": "Hell Knight",
+        "raw": 101,
+        "final": 75,
+        "source": "Smite",
+        "hpAfter": 1503
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr → Hell Knight: 75 dmg (Smite)",
+        "type": "hero",
+        "dmg": 75
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Archfiend Malgrath",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Archfiend Malgrath",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Archfiend Malgrath",
+      "kind": "log_line",
+      "data": {
+        "msg": "Archfiend Malgrath misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Hell Knight",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Hell Knight",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Hell Knight",
+        "kind": "dmg",
+        "amount": 93,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Hell Knight",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "War",
+        "raw": 120,
+        "final": 93,
+        "source": "Attack",
+        "hpAfter": 41
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight → War: 93 dmg",
+        "type": "hero",
+        "dmg": 93
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 6,
+      "data": {
+        "round": 6
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Archfiend Malgrath",
+        "hit": false
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Archfiend Malgrath.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 4,
+        "source": "Cleave",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "raw": 42,
+        "final": 4,
+        "source": "Cleave",
+        "hpAfter": 1499
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Hell Knight: 4 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 4
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "hit": false
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Hell Knight.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "heal",
+        "amount": 180,
+        "source": "Heal",
+        "target": "War"
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr heals War for 180",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Archfiend Malgrath",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Archfiend Malgrath",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Archfiend Malgrath",
+      "kind": "log_line",
+      "data": {
+        "msg": "Archfiend Malgrath misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Hell Knight",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Hell Knight",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Hell Knight",
+        "kind": "dmg",
+        "amount": 68,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Hell Knight",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "War",
+        "raw": 95,
+        "final": 68,
+        "source": "Attack",
+        "hpAfter": 142
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight → War: 68 dmg",
+        "type": "hero",
+        "dmg": 68
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 7,
+      "data": {
+        "round": 7
+      }
+    },
+    {
+      "round": 7,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Archfiend Malgrath",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Archfiend Malgrath",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 12555
+      }
+    },
+    {
+      "round": 7,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Archfiend Malgrath: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 7,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 1497
+      }
+    },
+    {
+      "round": 7,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Hell Knight: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 7,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Hell Knight",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Hell Knight",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 1872
+      }
+    },
+    {
+      "round": 7,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Hell Knight: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Clr",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Clr",
+        "target": "Hell Knight",
+        "hit": false
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr misses Hell Knight.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Archfiend Malgrath",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Archfiend Malgrath",
+        "kind": "dmg",
+        "amount": 98,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Archfiend Malgrath",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Archfiend Malgrath",
+        "target": "War",
+        "raw": 125,
+        "final": 98,
+        "source": "Attack",
+        "hpAfter": 44
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Archfiend Malgrath",
+      "kind": "log_line",
+      "data": {
+        "msg": "Archfiend Malgrath → War: 98 dmg",
+        "type": "hero",
+        "dmg": 98
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Hell Knight",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Hell Knight",
+        "kind": "dmg",
+        "amount": 84,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Hell Knight",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "War",
+        "raw": 111,
+        "final": 84,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight → War: 84 dmg",
+        "type": "hero",
+        "dmg": 84
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Hell Knight",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Hell Knight",
+        "kind": "dmg",
+        "amount": 100,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Hell Knight",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "Clr",
+        "raw": 127,
+        "final": 100,
+        "source": "Attack",
+        "hpAfter": 150
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight → Clr: 100 dmg",
+        "type": "hero",
+        "dmg": 100
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 8,
+      "data": {
+        "round": 8
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "heal",
+        "amount": 180,
+        "source": "Heal",
+        "target": "Clr"
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr heals Clr for 180",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Archfiend Malgrath",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Archfiend Malgrath",
+        "kind": "dmg",
+        "amount": 150,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Archfiend Malgrath",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Archfiend Malgrath",
+        "target": "Clr",
+        "raw": 177,
+        "final": 150,
+        "source": "Attack",
+        "hpAfter": 100
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Archfiend Malgrath",
+      "kind": "log_line",
+      "data": {
+        "msg": "Archfiend Malgrath → Clr: 150 dmg",
+        "type": "hero",
+        "dmg": 150
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Hell Knight",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Hell Knight",
+        "kind": "dmg",
+        "amount": 95,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Hell Knight",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "Clr",
+        "raw": 122,
+        "final": 95,
+        "source": "Attack",
+        "hpAfter": 5
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight → Clr: 95 dmg",
+        "type": "hero",
+        "dmg": 95
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Hell Knight",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Hell Knight",
+        "kind": "dmg",
+        "amount": 88,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Hell Knight",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Hell Knight",
+        "target": "Clr",
+        "raw": 115,
+        "final": 88,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Hell Knight",
+      "kind": "log_line",
+      "data": {
+        "msg": "Hell Knight → Clr: 88 dmg",
+        "type": "hero",
+        "dmg": 88
+      }
+    },
+    {
+      "kind": "combat_end",
+      "data": {
+        "winner": "enemies",
+        "rounds": 8
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 12,
+      "actor": "Hell Knight",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 12,
+      "actor": "Hell Knight",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Archfiend Malgrath",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 6,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Archfiend Malgrath",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCast",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 6,
+          "isCrit": false,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Archfiend Malgrath",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 8,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Archfiend Malgrath",
+          "dealt": 17,
+          "isCrit": false,
+          "rawDmg": 82,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 23,
+          "isCrit": false,
+          "rawDmg": 82,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 23,
+          "isCrit": false,
+          "rawDmg": 82,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCast",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 63,
+          "isCrit": false,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Archfiend Malgrath",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 6,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Archfiend Malgrath",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCast",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 9,
+          "isCrit": false,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Archfiend Malgrath",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 12,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 5,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Archfiend Malgrath",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 5,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 3,
+          "isCrit": true,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 5,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCrit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 5,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 5,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 7,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 6,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 4,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 6,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 4,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 7,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Archfiend Malgrath",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 7,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 7,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 7,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Hell Knight",
+          "dealt": 6,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+[
+  {
+    "id": "maer_tessaly_01",
+    "trigger": "nodeResolved",
+    "cooldown": 5,
+    "companionA": "captain_maer",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "captain_maer",  "text": "You've stolen from two of our camp supplies." },
+      { "speaker": "tessaly_veil",  "text": "I redistributed—" },
+      { "speaker": "captain_maer",  "text": "I don't care what you call it. Not again." },
+      { "speaker": "tessaly_veil",  "text": "Understood. Captain." }
+    ]
+  },
+  {
+    "id": "maer_tessaly_02",
+    "trigger": "nodeResolved",
+    "cooldown": 6,
+    "companionA": "captain_maer",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "tessaly_veil",  "text": "You were an officer. You know how to give orders people actually follow." },
+      { "speaker": "captain_maer",  "text": "I learned to give orders people can live with. Different thing." }
+    ]
+  },
+  {
+    "id": "maer_tessaly_03",
+    "trigger": "nodeResolved",
+    "cooldown": 7,
+    "companionA": "captain_maer",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "captain_maer",  "text": "I need to know I can trust you when it matters." },
+      { "speaker": "tessaly_veil",  "text": "When it matters, I'm exactly where I need to be. That's the only guarantee I give." }
+    ]
+  },
+  {
+    "id": "maer_tessaly_04",
+    "trigger": "nodeResolved",
+    "cooldown": 8,
+    "companionA": "captain_maer",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "tessaly_veil",  "text": "You didn't turn me in at Stoneward. You could have." },
+      { "speaker": "captain_maer",  "text": "We needed you. Doesn't mean I forgot." }
+    ]
+  },
+  {
+    "id": "maer_tessaly_05",
+    "trigger": "nodeResolved",
+    "cooldown": 9,
+    "companionA": "captain_maer",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "captain_maer",  "text": "What do you actually want out of all this?" },
+      { "speaker": "tessaly_veil",  "text": "To reach the end with more options than I started with." },
+      { "speaker": "captain_maer",  "text": "That's the most honest thing you've said to me." },
+      { "speaker": "tessaly_veil",  "text": "Don't get used to it." }
+    ]
+  }
+]

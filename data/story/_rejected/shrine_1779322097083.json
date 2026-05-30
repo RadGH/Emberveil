@@ -1,0 +1,26 @@
+{
+  "node": [
+    {
+      "id": "question",
+      "text": "Ask what lies beneath the stone.",
+      "next": null,
+      "effects": []
+    },
+    {
+      "id": "remain_silent",
+      "text": "Remain silent and listen.",
+      "next": null,
+      "effects": []
+    }
+  ],
+  "validationErrors": [
+    "missing id",
+    "missing pool",
+    "pool mismatch: got \"undefined\" expected \"shrine\"",
+    "act must be integer",
+    "unknown biome: \"undefined\"",
+    "lines must be non-empty array",
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:08:17.083Z"
+}

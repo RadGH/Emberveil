@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/uniques.json",
+  "title": "Emberveil Uniques File (v1)",
+  "description": "Canonical resolved unique-item data. This is the live runtime value of the UNIQUES const formerly inlined in src/game/uniques.js (24 uniques across 5 acts). ALL unique logic (generateUnique, getUniquesForAct, getUniquesForBoss) stays in uniques.js; only the data moved. Byte-parity proven by scripts/verify-items-parity.mjs.",
+  "type": "object",
+  "required": ["version", "uniques"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "source": { "type": "string" },
+    "uniques": {
+      "type": "object",
+      "minProperties": 1,
+      "description": "Map of unique id -> unique definition. The key equals the unique's `id` field.",
+      "additionalProperties": { "$ref": "#/$defs/unique" }
+    }
+  },
+  "$defs": {
+    "unique": {
+      "type": "object",
+      "required": [
+        "id", "name", "slot", "baseItemId", "act", "rarity", "quality",
+        "fixedAffixes", "randomAffixes", "legendaryEffect", "lore", "bossSource"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "slot": { "type": "string" },
+        "baseItemId": { "type": "string" },
+        "act": { "type": "integer" },
+        "rarity": { "type": "string" },
+        "quality": { "type": "string" },
+        "fixedAffixes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["stat", "value"],
+            "additionalProperties": false,
+            "properties": {
+              "stat": { "type": "string" },
+              "value": { "type": "number" }
+            }
+          }
+        },
+        "randomAffixes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["stat", "min", "max"],
+            "additionalProperties": false,
+            "properties": {
+              "stat": { "type": "string" },
+              "min": { "type": "number" },
+              "max": { "type": "number" }
+            }
+          }
+        },
+        "legendaryEffect": {
+          "type": "object",
+          "required": ["id", "desc"],
+          "additionalProperties": false,
+          "properties": {
+            "id": { "type": "string" },
+            "desc": { "type": "string" }
+          }
+        },
+        "lore": { "type": "string" },
+        "bossSource": {
+          "description": "Boss enemy id that drops this unique, or null for open-world.",
+          "oneOf": [
+            { "type": "string" },
+            { "type": "null" }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/boss-phases.json",
+  "title": "Emberveil Boss Phases File (v1)",
+  "description": "Canonical multi-phase boss data. `phases` = BOSS_PHASES (bossPhases.js) keyed by enemy id. `deathDialog` = BOSS_DEATH_DIALOG (bossDeathDialog.js) keyed by enemy id.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "phases", "deathDialog"],
+  "properties": {
+    "version": { "const": 1 },
+    "source": { "type": "string" },
+    "phases": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["phases"],
+        "properties": {
+          "phases": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["hpThreshold", "name"],
+              "properties": {
+                "hpThreshold": { "type": "number", "minimum": 0, "maximum": 1 },
+                "name": { "type": "string" },
+                "onEnter": { "type": "string" },
+                "addSpells": { "type": "array", "items": { "type": "string" } },
+                "swapSpells": { "type": "array", "items": { "type": "string" } },
+                "addStatuses": {
+                  "type": "array",
+                  "items": { "$ref": "entity.json#/$defs/statusEffect" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "deathDialog": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["bossLine", "heroLine", "narratorLine"],
+        "properties": {
+          "bossLine": { "type": "string" },
+          "heroLine": { "type": "string" },
+          "narratorLine": { "type": "string" }
+        }
+      }
+    }
+  }
+}

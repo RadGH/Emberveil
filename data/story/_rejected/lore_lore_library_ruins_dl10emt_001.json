@@ -1,0 +1,48 @@
+{
+  "node": {
+    "id": "lore_library_ruins_dl10emt_001",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "Tattered pages scattered across the floor. Each one speaks of the Rift's true origin.",
+      "The ink tells stories of a betrayal no one wanted to believe."
+    ],
+    "choices": [
+      {
+        "id": "collect",
+        "text": "[Intellect - INT] Gather the pages carefully.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_rift_origin_betrayal_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Leave them be.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"collect\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:08:21.795Z"
+}

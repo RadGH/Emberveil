@@ -1,0 +1,75 @@
+{
+  "node": {
+    "id": "shrine_emberwood_jiyu3ef_001",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The air stills. This shrine feels abandoned, though the stone thrums."
+    ],
+    "choices": [
+      {
+        "id": "whisper",
+        "text": "[Wisdom - WIS] Whisper an old prayer.",
+        "skillCheck": {
+          "skill": "religion",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#whispered",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#failed_whisper",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Leave. It’s not worth the risk.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "whispered": {
+        "lines": [
+          "A flicker of warmth in the cold stone. It knows your voice."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Depart with a sense of relief.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "failed_whisper": {
+        "lines": [
+          "The words fizzle in the air. There's a disquieting silence."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Step back; something feels wrong.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"whisper\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:11:46.787Z"
+}

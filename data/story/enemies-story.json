@@ -1,0 +1,182 @@
+[
+  {
+    "id": "ash_cultist",
+    "name": "Ash Cultist",
+    "family": "cultist",
+    "archetype": "humanoid/warrior",
+    "baseStatBlock": "veil_cultist",
+    "spriteId": "ash_cultist",
+    "description": "Rank-and-file Ashen Veil foot soldier. Ash-dusted robes over boiled leather. Carries a short blade and a cult brand on the forearm. True believer in the outer-ring sense — stares into every Rift aperture they can find."
+  },
+  {
+    "id": "ash_ritualist",
+    "name": "Ash Ritualist",
+    "family": "cultist",
+    "archetype": "humanoid/caster",
+    "baseStatBlock": "veil_sorcerer",
+    "spriteId": "ash_ritualist",
+    "description": "Mid-circle Ashen Veil caster. Ceremonial ash-paint on the face. Channels Rift energy as red-ember fire. Speaks in half-formed Veil-pidgin under stress. More dangerous than the rank-and-file because they understand what they're doing."
+  },
+  {
+    "id": "veil_sprite",
+    "name": "Veil Sprite",
+    "family": "veilspawn",
+    "archetype": "elemental",
+    "baseStatBlock": "wisp",
+    "spriteId": "veil_sprite",
+    "description": "Small Rift-born entity. Glowing purple-white, no clear body-form. Moves erratically. Not organized — just hungry in the direction of anything warm."
+  },
+  {
+    "id": "corpse_lantern",
+    "name": "Corpse Lantern",
+    "family": "undead",
+    "archetype": "construct/undead",
+    "baseStatBlock": "skeleton",
+    "spriteId": "corpse_lantern",
+    "description": "Undead construct: a skeleton whose ribcage has been fitted with a Rift-energy lantern. The lantern burns purple-white and functions as the creature's core. Smashing the lantern is faster than killing the bones."
+  },
+  {
+    "id": "bog_witch",
+    "name": "Bog Witch",
+    "family": "beast/caster",
+    "archetype": "humanoid/caster",
+    "baseStatBlock": "veil_sorcerer",
+    "spriteId": "bog_witch",
+    "description": "Plague Fen-dwelling practitioner who has incorporated Veil-spore into her craft. Tattered robes, fen-mud patterns on skin. Casts green-toxic spore clouds. Not Veil-affiliated — opportunist. Sells services to whoever can navigate the fen."
+  },
+  {
+    "id": "stonehide_boar",
+    "name": "Stonehide Boar",
+    "family": "beast",
+    "archetype": "beast/quadruped",
+    "baseStatBlock": "large_beast",
+    "spriteId": "stonehide_boar",
+    "description": "Stoneward-region giant boar. Mineral-dense hide from decades of mineral-spring contact. Enormous tusks. Territorial. Not Veil-touched — just very large and very territorial about its spring access."
+  },
+  {
+    "id": "storm_harpy",
+    "name": "Storm Harpy",
+    "family": "beast",
+    "archetype": "beast/avian",
+    "baseStatBlock": "flying_beast",
+    "spriteId": "storm_harpy",
+    "description": "Large avian predator, Gloomridge peaks. Wingspan six meters. Feathers with crackling yellow-white lightning static charge. Dives from altitude. Nests in the high crags and attacks anything that approaches."
+  },
+  {
+    "id": "ember_drake_small",
+    "name": "Ember Drake",
+    "family": "dragon",
+    "archetype": "beast/reptile",
+    "baseStatBlock": "drake",
+    "spriteId": "ember_drake_small",
+    "description": "Juvenile ember-drake, approximately dog-sized. Fire-red scales, orange-white flame breath from the mouth. Lives near heat-vents in the Emberwood. Not domesticable. Not intelligent in the conversational sense."
+  },
+  {
+    "id": "veil_shade",
+    "name": "Veil Shade",
+    "family": "veilspawn",
+    "archetype": "elemental",
+    "baseStatBlock": "shadow_entity",
+    "spriteId": "veil_shade",
+    "description": "Larger Rift-born entity. Shadow-form with a visible core of purple-white light. Mimics the outline of people it has recently absorbed. Not organized in the way a person is organized. Organized in the way a predator is."
+  },
+  {
+    "id": "ash_golem",
+    "name": "Ash Golem",
+    "family": "construct",
+    "archetype": "construct",
+    "baseStatBlock": "golem",
+    "spriteId": "ash_golem",
+    "description": "Construct built from compressed ash-plains debris and Rift-residue. Humanoid in shape. Arms designed for crushing. Not intelligent — follows the last instruction it was given until a new instruction arrives or it's destroyed."
+  },
+  {
+    "id": "cultist_captain",
+    "name": "Cultist Captain",
+    "family": "cultist/elite",
+    "archetype": "humanoid/warrior",
+    "baseStatBlock": "elite_cultist",
+    "spriteId": "cultist_captain",
+    "description": "Elite Ashen Veil field commander. Heavy cult-sigil armor, ash-black. Longer Rift exposure than rank-and-file — occasional language drift. Commands cells with tactical competence and genuine ideological commitment."
+  },
+  {
+    "id": "drowned_soldier",
+    "name": "Drowned Soldier",
+    "family": "undead",
+    "archetype": "humanoid/warrior",
+    "baseStatBlock": "zombie_warrior",
+    "spriteId": "drowned_soldier",
+    "description": "Undead Emberguard soldier, Plague Fen origin. Armor corroded by fen water. Still carries the patrol formation habit. Fen-plague reanimation produces a slower, tougher result than Veil reanimation."
+  },
+  {
+    "id": "bone_revenant",
+    "name": "Bone Revenant",
+    "family": "undead/elite",
+    "archetype": "humanoid/undead",
+    "baseStatBlock": "elite_undead",
+    "spriteId": "bone_revenant",
+    "description": "Elite undead. Skeleton reinforced with iron wire and Veil-energy binding. Self-reassembles. The binding is the threat — destroying the bones only delays it. The binding must be disrupted."
+  },
+  {
+    "id": "veil_hulk",
+    "name": "Veil Hulk",
+    "family": "veilspawn/elite",
+    "archetype": "elemental/construct",
+    "baseStatBlock": "heavy_veilspawn",
+    "spriteId": "veil_hulk",
+    "description": "Heavy Rift-born construct. Partially solid, partially energy-form. The solid parts are debris the entity has absorbed and shaped into limbs. Moves slowly; hits everything near it."
+  },
+  {
+    "id": "corrupted_guardian",
+    "name": "Corrupted Guardian",
+    "family": "boss/act1",
+    "archetype": "construct/boss",
+    "baseStatBlock": "boss_construct",
+    "spriteId": "corrupted_guardian",
+    "description": "Act 1 boss. A Pact-stone construct — one of the original land-guardians — that has been overwritten by the Ashen Veil. Its Pact-resonance now runs on Rift-frequency. Physically massive. The overwriting is visible as purple-white veining through what was previously warm stone."
+  },
+  {
+    "id": "plague_herald",
+    "name": "Plague Herald",
+    "family": "boss/optional",
+    "archetype": "humanoid/boss",
+    "baseStatBlock": "boss_caster",
+    "spriteId": "plague_herald",
+    "description": "Optional boss. Plague Harvesters' chief collector, Plague Fen. Cult-adjacent but not cult-affiliated — a very profitable arrangement. Carries containment canisters of weaponized spore. Robes stained green. Plague-immune."
+  },
+  {
+    "id": "veil_champion",
+    "name": "Veil Champion",
+    "family": "boss/act2",
+    "archetype": "humanoid/boss",
+    "baseStatBlock": "boss_warrior",
+    "spriteId": "veil_champion",
+    "description": "Act 2 boss. The Herald's field enforcer. Inner-circle Ashen Veil warrior with decades of Rift exposure. Veil-pidgin fluency. Ash-black heavy armor with cult-sigil inlay. Technically human. Functionally something else."
+  },
+  {
+    "id": "den_mother_ash",
+    "name": "Den Mother",
+    "family": "beast/boss",
+    "archetype": "beast/boss",
+    "baseStatBlock": "boss_beast",
+    "spriteId": "den_mother_ash",
+    "description": "Beast boss. Enormous furred predator, Emberwood origin, Veil-touched. Four-meter length. The Veil exposure has made her territorial behavior catastrophically aggressive. Six cubs in the den — she knows you're near them."
+  },
+  {
+    "id": "architect_fragment",
+    "name": "Architect Fragment",
+    "family": "boss/optional",
+    "archetype": "construct/boss",
+    "baseStatBlock": "boss_construct",
+    "spriteId": "architect_fragment",
+    "description": "Optional boss. A detached maintenance subsystem from the Architect's Verge construction network. Has been running on its last instruction for an indeterminate time. The instruction was probably 'prevent unauthorized access.' It is very thorough."
+  },
+  {
+    "id": "emberveil_sovereign_story",
+    "name": "The Emberveil Sovereign",
+    "family": "boss/act3",
+    "archetype": "construct/elemental/boss",
+    "baseStatBlock": "boss_sovereign",
+    "spriteId": "emberveil_sovereign_story",
+    "description": "Act 3 final boss. Was a scholar. Forty years of Crown exposure. Still human in syntax. Not in the functional sense. The Rift speaks through him; the entity beyond the Rift organizes through him. The Crown is the mechanism. The Sovereign is what the mechanism has made."
+  }
+]

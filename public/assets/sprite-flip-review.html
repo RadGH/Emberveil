@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<title>Sprite Flip Review</title>
+<style>
+  body { margin:0; background:#0b0810; color:#e8d8b8; font-family:-apple-system,system-ui,sans-serif; padding:1rem 1rem 6rem; }
+  h1 { color:#e8a020; font-size:1.1rem; margin:0 0 0.25rem; }
+  p.sub { color:#8a7a6a; font-size:0.75rem; margin:0 0 1rem; }
+  h2 { color:#e8a020; font-size:0.9rem; margin:1.5rem 0 0.5rem; border-bottom:1px solid #2a1f30; padding-bottom:0.3rem; }
+  h2.legacy { color:#6a5a4a; }
+  .controls { position:sticky; top:0; background:#0b0810; padding:0.5rem 0; z-index:10; display:flex; gap:0.5rem; flex-wrap:wrap; border-bottom:1px solid #2a1f30; }
+  .controls button, .controls input { background:#1a1220; color:#e8d8b8; border:1px solid #3a2a40; padding:0.4rem 0.7rem; border-radius:4px; font-size:0.75rem; cursor:pointer; }
+  .controls button.primary { background:#e8a020; color:#0b0810; border-color:#e8a020; font-weight:700; }
+  .controls input[type=search] { flex:1; min-width:140px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:0.6rem; margin-top:0.5rem; }
+  .card { background:#1a1220; border:2px solid #2a1f30; border-radius:6px; padding:0.4rem; cursor:pointer; user-select:none; transition:border-color .1s; text-align:center; position:relative; }
+  .card.flagged { border-color:#e85020; background:#2a1210; }
+  .card.spritecook { border-color:#204060; }
+  .card.spritecook.flagged { border-color:#e85020; background:#2a1210; }
+  .card img { width:100%; height:110px; object-fit:contain; image-rendering:pixelated; background:#050308; border-radius:3px; }
+  .card .name { font-size:0.6rem; color:#8a7a6a; margin-top:0.25rem; word-break:break-all; line-height:1.2; }
+  .card .badge { position:absolute; top:4px; left:4px; font-size:0.5rem; padding:1px 4px; border-radius:2px; background:#204060; color:#60a0e0; }
+  .card::after { content:'east-facing'; position:absolute; top:4px; right:4px; font-size:0.55rem; color:#e8a020; background:#0b0810cc; padding:1px 4px; border-radius:2px; }
+  .card.flagged::after { content:'FLIP ME'; color:#ff6040; }
+  .legacy-section .card { opacity:0.6; }
+  .legacy-section .card:hover { opacity:1; }
+  .output { position:fixed; left:0; right:0; bottom:0; background:#050308; border-top:2px solid #e8a020; padding:0.6rem 1rem; max-height:40vh; overflow:auto; }
+  .output textarea { width:100%; min-height:70px; background:#0b0810; color:#e8d8b8; border:1px solid #3a2a40; border-radius:3px; font-family:ui-monospace,monospace; font-size:0.7rem; padding:0.4rem; box-sizing:border-box; }
+  .count { color:#e8a020; font-weight:700; }
+  .toggle-legacy { font-size:0.7rem; color:#6a5a4a; cursor:pointer; text-decoration:underline; margin-top:0.5rem; display:inline-block; }
+</style>
+</head>
+<body class="ev-themed">
+<h1>Sprite Flip Review</h1>
+<p class="sub">Tap any sprite whose art is facing <b>west (left)</b> despite being an east-facing pose. Flagged sprites will be listed at the bottom -- copy the prompt and send it back to Claude to bake in the flips. SpriteCook sprites are shown first.</p>
+
+<div class="controls">
+  <input type="search" id="filter" placeholder="Filter by name...">
+  <button id="only-flagged">Show flagged only</button>
+  <button id="clear">Clear all</button>
+  <button class="primary" id="copy">Copy prompt</button>
+  <span style="align-self:center;font-size:0.75rem">Flagged: <span class="count" id="count">0</span></span>
+</div>
+
+<div id="spritecook-section">
+  <h2>SpriteCook Sprites</h2>
+  <div class="grid" id="grid-spritecook"></div>
+</div>
+
+<div id="legacy-section" class="legacy-section" style="display:none">
+  <h2 class="legacy">Legacy Sprites (images/sprites/)</h2>
+  <span class="toggle-legacy" id="toggle-legacy">Show legacy sprites</span>
+  <div class="grid" id="grid-legacy" style="display:none"></div>
+</div>
+
+<div class="output">
+  <div style="font-size:0.7rem;color:#8a7a6a;margin-bottom:0.3rem">Prompt to paste back to Claude:</div>
+  <textarea id="out" readonly></textarea>
+</div>
+
+<script>
+const STORAGE_KEY = 'sprite_flip_flagged_v2';
+let flagged = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
+let spritecookEntries = []; // {key, file, src, label}
+let legacyFiles = [];
+let filterText = '';
+let onlyFlagged = false;
+let legacyVisible = false;
+
+// Load SpriteCook manifest
+fetch('../images/spritecook/spritecook-assets.json')
+  .then(r => r.json())
+  .then(manifest => {
+    const spritecookCharNames = new Set();
+    for (const [charName, poses] of Object.entries(manifest)) {
+      if (charName === '_meta') continue;
+      spritecookCharNames.add(charName);
+      for (const [poseKey, info] of Object.entries(poses)) {
+        // Only show east-facing poses (east, east_attack, east_spell, east_ko, east_block)
+        if (!poseKey.startsWith('east')) continue;
+        spritecookEntries.push({
+          key: `spritecook:${charName}/${info.file}`,
+          file: info.file,
+          src: `../images/spritecook/${info.file}`,
+          label: `${charName} - ${poseKey}`,
+          charName
+        });
+      }
+    }
+
+    // Now load legacy list and filter out characters that have SpriteCook versions
+    return fetch('./_east_sprites.json')
+      .then(r => r.json())
+      .then(list => {
+        legacyFiles = list.filter(f => {
+          // Extract character name from filename like "warrior_east.png" -> "warrior"
+          const base = f.replace('.png', '');
+          // Remove _east, _east_attack, _east_spell, _east_ko, _east_block, _east_flipped suffixes
+          const charName = base.replace(/_(east_(?:attack|spell|ko|block|flipped)|east)$/, '');
+          return !spritecookCharNames.has(charName);
+        });
+      })
+      .catch(() => { legacyFiles = []; });
+  })
+  .then(() => render())
+  .catch(err => {
+    console.error('Failed to load SpriteCook manifest:', err);
+    // Fallback: load legacy only
+    fetch('./_east_sprites.json')
+      .then(r => r.json())
+      .then(list => { legacyFiles = list; render(); });
+  });
+
+const gridSC = document.getElementById('grid-spritecook');
+const gridLegacy = document.getElementById('grid-legacy');
+const out = document.getElementById('out');
+const countEl = document.getElementById('count');
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...flagged]));
+}
+
+function renderGrid(gridEl, items, isSpritecook) {
+  const visible = items.filter(item => {
+    const key = typeof item === 'string' ? item : item.key;
+    const searchText = typeof item === 'string' ? item : item.label;
+    if (onlyFlagged && !flagged.has(key)) return false;
+    if (filterText && !searchText.toLowerCase().includes(filterText)) return false;
+    return true;
+  });
+
+  gridEl.innerHTML = visible.map(item => {
+    const key = typeof item === 'string' ? item : item.key;
+    const src = typeof item === 'string' ? `../images/sprites/${item}` : item.src;
+    const label = typeof item === 'string' ? item.replace('.png','').replace(/_east/,'') : item.label;
+    const cls = `card${flagged.has(key) ? ' flagged' : ''}${isSpritecook ? ' spritecook' : ''}`;
+    const badge = isSpritecook ? '<div class="badge">SC</div>' : '';
+    return `<div class="${cls}" data-key="${key}">
+      ${badge}
+      <img src="${src}" loading="lazy" alt="">
+      <div class="name">${label}</div>
+    </div>`;
+  }).join('');
+
+  gridEl.querySelectorAll('.card').forEach(c => {
+    c.addEventListener('click', () => {
+      const key = c.dataset.key;
+      if (flagged.has(key)) flagged.delete(key); else flagged.add(key);
+      save();
+      c.classList.toggle('flagged');
+      updateOutput();
+    });
+  });
+}
+
+function render() {
+  renderGrid(gridSC, spritecookEntries, true);
+
+  // Show legacy section only if there are legacy-only sprites
+  const legacySection = document.getElementById('legacy-section');
+  if (legacyFiles.length > 0) {
+    legacySection.style.display = '';
+    if (legacyVisible) {
+      renderGrid(gridLegacy, legacyFiles, false);
+    }
+  } else {
+    legacySection.style.display = 'none';
+  }
+
+  updateOutput();
+}
+
+function updateOutput() {
+  countEl.textContent = flagged.size;
+  const list = [...flagged].sort();
+  if (list.length === 0) {
+    out.value = '(no sprites flagged yet -- tap any sprite facing the wrong way)';
+    return;
+  }
+
+  const scFlags = list.filter(k => k.startsWith('spritecook:'));
+  const legacyFlags = list.filter(k => !k.startsWith('spritecook:'));
+
+  let prompt = 'The following sprites are named "_east" but the art faces west. Please flip them horizontally at render time (add a flipX override in the sprite config so they match the other east-facing sprites). Do NOT modify the PNG files -- handle it in code so it is easy to revert.\n';
+
+  if (scFlags.length) {
+    prompt += '\nSpriteCook sprites (images/spritecook/):\n';
+    prompt += scFlags.map(k => '- ' + k.replace('spritecook:', '')).join('\n');
+  }
+  if (legacyFlags.length) {
+    prompt += '\nLegacy sprites (images/sprites/):\n';
+    prompt += legacyFlags.map(f => '- ' + f).join('\n');
+  }
+
+  out.value = prompt;
+}
+
+document.getElementById('filter').addEventListener('input', e => {
+  filterText = e.target.value.toLowerCase();
+  render();
+});
+document.getElementById('only-flagged').addEventListener('click', e => {
+  onlyFlagged = !onlyFlagged;
+  e.target.textContent = onlyFlagged ? 'Show all' : 'Show flagged only';
+  render();
+});
+document.getElementById('clear').addEventListener('click', () => {
+  if (!confirm('Clear all flags?')) return;
+  flagged.clear();
+  save();
+  render();
+});
+document.getElementById('copy').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(out.value); alert('Copied!'); }
+  catch { out.select(); document.execCommand('copy'); alert('Copied!'); }
+});
+document.getElementById('toggle-legacy').addEventListener('click', e => {
+  legacyVisible = !legacyVisible;
+  e.target.textContent = legacyVisible ? 'Hide legacy sprites' : 'Show legacy sprites';
+  gridLegacy.style.display = legacyVisible ? '' : 'none';
+  if (legacyVisible) renderGrid(gridLegacy, legacyFiles, false);
+});
+</script>
+</body>
+</html>

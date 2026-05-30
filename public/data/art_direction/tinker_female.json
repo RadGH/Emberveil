@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "tinker_female",
+  "displayName": "Tinker (Female)",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "identity": "A human female tinker-mage in her 30s. Red hair in a practical coil braided with brass hair-pins, brass goggles pushed up on forehead. Leather workshop apron over a long-sleeved tunic, many small tool-pockets, visible brass pocket-watch on chain, clockwork hair-ornaments. Bronze-and-amber color palette with faint arcane-blue rune-glow from a gadget at her chest.",
+  "outfit": "Leather workshop apron over long-sleeved tunic and trousers. Brass goggles on forehead. Tool-belt with wrenches, springs, small gears. Brass pocket-watch on chain. Sturdy boots.",
+  "weapons": "Brass hand-crossbow; clockwork grenades; pocket-watch arcane focus.",
+  "attackStyle": "East-facing profile, mid-strike — firing a brass hand-crossbow at an off-screen target, one foot forward.",
+  "spellStyle": "East-facing profile, channelling arcane magic — arcane-blue sparks swirl around a glowing brass pocket-watch orb held in the palm.",
+  "blockStyle": "East-facing profile, arm up deploying a segmented brass shield-plate from a wrist bracer, sparks of arcane blue.",
+  "koStyle": "East-facing profile, knocked-down on the ground, tools scattered around — brass gears, wrenches, loose springs.",
+  "southStyle": "Full-body idle, facing camera, hands near tool-belt.",
+  "portraitStyle": "Head-and-shoulders bust, facing camera, curious clever expression, warm lamp-lit rim light, arcane-blue gadget glow at chest.",
+  "bannedSubstrings": ["modern", "industrial", "sci-fi", "laser", "robot", "cyberpunk", "plastic", "neon"],
+  "notes": "M269 Tinker class (female) — clockwork-mechanist aesthetic; brass/copper/wood/leather."
+}

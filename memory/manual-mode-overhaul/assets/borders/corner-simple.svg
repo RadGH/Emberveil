@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <!--
+    corner-simple — thin open L-bracket for mini / dense layouts
+    Usage: top-left corner as-is; rotate 90/180/270 for other corners.
+    No fill element — lowest DOM weight of the three variants.
+    Arm length: 10px. Stroke: 2px square cap.
+  -->
+  <!-- L-bracket: horizontal arm (top edge) + vertical arm (left edge) -->
+  <polyline points="14,4 4,4 4,14"
+            fill="none"
+            stroke="var(--border-stroke, var(--gold-rim, #c8a020))"
+            stroke-width="2"
+            stroke-linecap="square"
+            stroke-linejoin="miter"/>
+  <!-- Inner accent: short parallel line 3px inside the bracket -->
+  <polyline points="13,7 7,7 7,13"
+            fill="none"
+            stroke="var(--border-stroke, var(--gold-rim, #c8a020))"
+            stroke-width="0.8"
+            stroke-linecap="square"
+            stroke-linejoin="miter"
+            opacity="0.4"/>
+</svg>

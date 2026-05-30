@@ -1,0 +1,41 @@
+{
+  "node": {
+    "id": "side_quest_riftgate_jue9mqe_002",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "bram_coldfire",
+    "lines": [
+      "There's a hidden cache near the gate. Worth the trouble if you can find it."
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "Search for the cache.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_find_cache",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "cache_search_active"
+          }
+        ]
+      },
+      {
+        "id": "pass",
+        "text": "Leave it be.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "unknown flag \"cache_search_active\" in effect"
+  ],
+  "rejectedAt": "2026-05-21T00:11:42.194Z"
+}

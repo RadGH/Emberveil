@@ -1,0 +1,18 @@
+{
+  "node": {
+    "id": "lore_old_road_fhw2avm_002",
+    "pool": "lore",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "melancholy",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "The scout shakes his head, eyes distant. \"Used to be a trade route. Now? Just shadows and whispers.\"",
+      "He gestures down the path, where the trees loom ominously."
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:08:14.312Z"
+}

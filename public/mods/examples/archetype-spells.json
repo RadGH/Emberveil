@@ -1,0 +1,148 @@
+{
+  "id": "archetype_spells",
+  "version": "1.0.0",
+  "name": "Archetype Spells Pack",
+  "author": "Emberveil",
+  "description": "Eight mechanically distinct spells from the 24-archetype catalog, each expressed purely in the v1 Effect DSL. No runtime changes required — all ops (damage, heal, applyStatus, buff, setFlag, requireFlag, resourceSwap, ritual, onHit, onCrit, onKill, onEvent, consumeStatus, echo, modifyTurnOrder, incrementFlag, consumeFlag, requireFlags) already shipped in M128/M133.",
+  "skills": [
+    {
+      "id": "arch_active_reflect",
+      "name": "Mirror Ward",
+      "class": "guardian",
+      "unlockLevel": 4,
+      "mpCost": 5,
+      "cooldown": 3,
+      "description": "Grants an ally the Reflective status for 1 round. Next incoming hit triggers a 200% damage return against the attacker via onEvent('onDamaged').",
+      "targeting": { "side": "ally", "count": 1 },
+      "effects": [
+        { "op": "applyStatus", "status": "reflective", "duration": 1, "stacks": 1, "target": "target" },
+        { "op": "onEvent", "event": "onDamaged", "effects": [
+          { "op": "requireFlag", "flag": "reflective_active" },
+          { "op": "damage", "stat": "int", "mult": 2.0, "amount": 0, "target": "target" },
+          { "op": "consumeStatus", "status": "reflective", "target": "self" }
+        ] }
+      ],
+      "tags": ["reflect", "defense", "reactive"]
+    },
+    {
+      "id": "arch_damage_on_dodge",
+      "name": "Riposte Sigil",
+      "class": "rogue",
+      "unlockLevel": 5,
+      "mpCost": 4,
+      "cooldown": 2,
+      "description": "Self-buff: when the caster dodges an attack, reflexively counters with a dex-scaling strike (onEvent('onDodge')).",
+      "targeting": { "side": "self" },
+      "effects": [
+        { "op": "applyStatus", "status": "riposte_ready", "duration": 3, "stacks": 1, "target": "self" },
+        { "op": "onEvent", "event": "onDodge", "effects": [
+          { "op": "damage", "stat": "dex", "mult": 0.9, "amount": 2, "target": "target" }
+        ] }
+      ],
+      "tags": ["counter", "dex", "reactive"]
+    },
+    {
+      "id": "arch_resource_swap_exchange",
+      "name": "Equivalent Exchange",
+      "class": "warlock",
+      "unlockLevel": 3,
+      "mpCost": 0,
+      "cooldown": 2,
+      "description": "Burns 12 HP to restore 12 MP, then applies a +int buff for 2 rounds. Demonstrates the resourceSwap op paired with buff.",
+      "targeting": { "side": "self" },
+      "effects": [
+        { "op": "resourceSwap", "from": "hp", "to": "mp", "amount": 12, "target": "self" },
+        { "op": "buff", "key": "int", "amount": 3, "duration": 2, "target": "self" }
+      ],
+      "tags": ["resource", "buff", "warlock"]
+    },
+    {
+      "id": "arch_delayed_payload",
+      "name": "Slow Detonation",
+      "class": "pyromancer",
+      "unlockLevel": 6,
+      "mpCost": 7,
+      "cooldown": 4,
+      "description": "Marks an enemy; detonates in 2 rounds for 2.5x int damage plus burn. Uses ritual op for multi-round delay.",
+      "targeting": { "side": "enemy", "count": 1 },
+      "effects": [
+        { "op": "applyStatus", "status": "marked_detonate", "duration": 2, "target": "target" },
+        { "op": "ritual", "rounds": 2, "thenEffects": [
+          { "op": "damage", "stat": "int", "mult": 2.5, "amount": 6, "target": "target" },
+          { "op": "applyStatus", "status": "burn", "duration": 3, "stacks": 2, "target": "target" },
+          { "op": "consumeStatus", "status": "marked_detonate", "target": "target" }
+        ] }
+      ],
+      "tags": ["ritual", "delayed", "fire"]
+    },
+    {
+      "id": "arch_chain_link_buffs",
+      "name": "Chain Link Hymn",
+      "class": "cleric",
+      "unlockLevel": 4,
+      "mpCost": 5,
+      "cooldown": 2,
+      "description": "Increments a chain flag each cast; damage scales with chain stacks. Encourages repeated casting to ramp party power.",
+      "targeting": { "side": "ally", "count": 99, "aoe": true },
+      "effects": [
+        { "op": "incrementFlag", "flag": "hymn_chain", "by": 1 },
+        { "op": "buff", "key": "str", "amount": 2, "duration": 3, "target": "allAllies" },
+        { "op": "buff", "key": "int", "amount": 2, "duration": 3, "target": "allAllies" },
+        { "op": "requireFlags", "flags": ["hymn_chain"] },
+        { "op": "heal", "stat": "int", "mult": 0.6, "amount": 4, "target": "allAllies" }
+      ],
+      "tags": ["chain", "buff", "party"]
+    },
+    {
+      "id": "arch_persistent_aura",
+      "name": "Embersong Aura",
+      "class": "paladin",
+      "unlockLevel": 5,
+      "mpCost": 8,
+      "cooldown": 5,
+      "description": "Applies a long-duration aura to all allies granting +armor; simultaneously applies a weakening aura to all enemies. Pure applyStatus, stacks-of-1 across groups.",
+      "targeting": { "side": "all" },
+      "effects": [
+        { "op": "applyStatus", "status": "aura_emberward", "duration": 6, "stacks": 1, "target": "allAllies" },
+        { "op": "buff", "key": "armor", "amount": 3, "duration": 6, "target": "allAllies" },
+        { "op": "applyStatus", "status": "aura_weakened", "duration": 6, "stacks": 1, "target": "allEnemies" }
+      ],
+      "tags": ["aura", "party", "persistent"]
+    },
+    {
+      "id": "arch_momentum_strike",
+      "name": "Momentum Strike",
+      "class": "rogue",
+      "unlockLevel": 3,
+      "mpCost": 3,
+      "cooldown": 1,
+      "description": "Light strike that increments a momentum flag on hit; crits add an extra momentum tick. Later casts grow stronger implicitly through the flag ledger (consumable by other skills).",
+      "targeting": { "side": "enemy", "count": 1 },
+      "effects": [
+        { "op": "damage", "stat": "dex", "mult": 0.8, "amount": 2, "target": "target" },
+        { "op": "onHit", "effects": [ { "op": "incrementFlag", "flag": "momentum", "by": 1 } ] },
+        { "op": "onCrit", "effects": [ { "op": "incrementFlag", "flag": "momentum", "by": 1 } ] }
+      ],
+      "tags": ["momentum", "flag", "ramp"]
+    },
+    {
+      "id": "arch_mark_and_chain",
+      "name": "Mark & Chain",
+      "class": "ranger",
+      "unlockLevel": 4,
+      "mpCost": 4,
+      "cooldown": 2,
+      "description": "Marks an enemy; every subsequent hit on marked targets triggers a chain-lightning echo via the onHit + requireFlag + echo pipeline.",
+      "targeting": { "side": "enemy", "count": 1 },
+      "effects": [
+        { "op": "setFlag", "flag": "marked_chain", "value": true },
+        { "op": "damage", "stat": "dex", "mult": 0.5, "amount": 3, "target": "target" },
+        { "op": "onHit", "effects": [
+          { "op": "requireFlag", "flag": "marked_chain" },
+          { "op": "echo", "of": "ex_thunderclap", "mult": 0.35 }
+        ] }
+      ],
+      "tags": ["mark", "chain", "echo"]
+    }
+  ]
+}

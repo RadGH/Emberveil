@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emberveil.rsg/schemas/v1/enemies.json",
+  "title": "Emberveil Enemies / Bosses File (v1)",
+  "description": "Canonical enemy (and boss) stat blocks keyed by id. Covers ENEMIES, ENEMIES_ACT4, ENEMIES_ACT5, ENEMIES_ACT6 from mapData.js, plus inline encounter enemies that had no base dict entry (giant_spider, the inline dragon/void roster), and hidden-boss creatures. Used for both enemies.json and bosses.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "entities"],
+  "properties": {
+    "version": { "const": 1 },
+    "source": { "type": "string" },
+    "entities": {
+      "type": "object",
+      "additionalProperties": { "$ref": "entity.json#/$defs/combatant" }
+    }
+  }
+}

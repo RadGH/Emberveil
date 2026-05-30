@@ -1,0 +1,68 @@
+{
+  "node": {
+    "id": "shrine_ash_plains_gj2njnh_001",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": "bone_reader",
+    "lines": [
+      "The ashes whisper secrets long forgotten.",
+      "This shrine feels like it remembers violence."
+    ],
+    "choices": [
+      {
+        "id": "offer_ash",
+        "text": "Leave a handful of ash on the stone.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "shrine_purified"
+          }
+        ]
+      },
+      {
+        "id": "examine",
+        "text": "[Perception - WIS] Inspect the shrine closely.",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#whispers_heard",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#nothing_found",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Step away, let it be forgotten.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "whispers_heard": {
+        "lines": [
+          "A voice echoes through the ashes. \"Remember us.\"",
+          "The way forward is clearer, but the cost is steep."
+        ]
+      },
+      "nothing_found": {
+        "lines": [
+          "The shrine remains cold. Nothing stirs in the ash.",
+          "Perhaps it holds nothing worthy of attention."
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"examine\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:09:35.360Z"
+}

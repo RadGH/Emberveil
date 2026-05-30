@@ -1,0 +1,11 @@
+{
+  "_comment": "Per-act win-rate floors. If any act's win-rate in the latest rebalance snapshot drops below its floor, or drops more than alertOnDropPct percentage points from the prior snapshot, check-regression.mjs emits an alert.",
+  "actWinRateFloors": {
+    "1": 0.60,
+    "2": 0.50,
+    "3": 0.40,
+    "4": 0.30,
+    "5": 0.25
+  },
+  "alertOnDropPct": 10
+}

@@ -1,0 +1,70 @@
+{
+  "node": {
+    "id": "merchant_crossroads_fmqk2yu_001",
+    "pool": "merchant",
+    "act": 3,
+    "biome": "crossroads",
+    "tone": "desperate",
+    "speaker": "brightfall_innkeeper",
+    "lines": [
+      "Food and supplies are running low. Prices are steep, but I have what you need.",
+      "Take what you can. The road ahead is grim."
+    ],
+    "choices": [
+      {
+        "id": "buy_rations",
+        "text": "Buy basic supplies. (50 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -50
+          },
+          {
+            "type": "grant_item",
+            "itemId": "travel_rations"
+          }
+        ]
+      },
+      {
+        "id": "haggle",
+        "text": "[Diplomacy - INT] Try to negotiate a better price.",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "INT",
+          "dc": 15
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -30
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -50
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"haggle\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:08:19.779Z"
+}

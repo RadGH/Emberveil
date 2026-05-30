@@ -1,0 +1,48 @@
+{
+  "version": "M388",
+  "match_rule": "Exact match against the entries in `applies_to`. Lookup order: (1) iterate icons in array order; (2) for each icon, test the spell id against each entry in `applies_to` for exact equality (case-sensitive); (3) first match wins; (4) if no match, fall back to `fallback_icon` below. The `basic_attack:<damageType>` form is the convention for weapon-typed basic-attack icons (M388 task B).",
+  "fallback_icon": "spell-attack-melee.svg",
+  "fallback_rationale": "If no icon matches the spell id, render the generic melee-attack icon. Logging is the implementer's job — never silently swallow a miss in production; warn once per unmatched id.",
+  "icons": [
+    {
+      "file": "spell-attack-melee.svg",
+      "category": "attack",
+      "applies_to": ["basic_attack:physical"]
+    },
+    {
+      "file": "spell-attack-magic.svg",
+      "category": "attack",
+      "applies_to": ["basic_attack:magic", "basic_attack:arcane"]
+    },
+    {
+      "file": "spell-fireball.svg",
+      "category": "magic",
+      "applies_to": ["fireball", "fire_blast", "basic_attack:fire"]
+    },
+    {
+      "file": "spell-cleave.svg",
+      "category": "attack",
+      "applies_to": ["cleave", "whirlwind", "sweep"]
+    },
+    {
+      "file": "spell-chain-lightning.svg",
+      "category": "magic",
+      "applies_to": ["chain_lightning", "lightning_bolt", "basic_attack:lightning"]
+    },
+    {
+      "file": "spell-heal.svg",
+      "category": "heal",
+      "applies_to": ["heal", "cure", "mend", "minor_heal"]
+    },
+    {
+      "file": "spell-mass-heal.svg",
+      "category": "heal",
+      "applies_to": ["mass_heal", "group_cure", "party_heal", "healing_aura"]
+    },
+    {
+      "file": "spell-holy-strike.svg",
+      "category": "attack",
+      "applies_to": ["holy_strike", "smite", "divine_blow", "basic_attack:holy"]
+    }
+  ]
+}

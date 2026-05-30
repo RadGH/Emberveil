@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combat Grid PoC — Perspective Squares on Battle Background</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #e8e8e8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+
+    .header {
+      padding: 20px;
+      background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+      border-bottom: 1px solid #333;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #f0e8d8;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #8a8a8a;
+      margin-bottom: 12px;
+    }
+
+    .viewport-info {
+      font-size: 12px;
+      color: #666;
+      font-family: 'Courier New', monospace;
+    }
+
+    .viewport-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .battlefield {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/game13/public/images/menu_bg/menu_wide.jpg');
+      background-size: cover;
+      background-position: center;
+      background-color: #1a1a2e;
+    }
+
+    /* Fallback if image not found */
+    .battlefield::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg,
+        rgba(42, 34, 56, 0.6) 0%,
+        rgba(46, 36, 56, 0.7) 30%,
+        rgba(26, 17, 40, 0.8) 100%);
+      pointer-events: none;
+    }
+
+    /* Grid overlay container */
+    .grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      perspective: 800px;
+      z-index: 10;
+    }
+
+    /* Grid rows — each row is narrower as it recedes */
+    .grid-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex: 1;
+      transform-origin: center bottom;
+    }
+
+    /* Scale rows progressively as they recede (front to back) */
+    .grid-row:nth-child(1) { transform: scaleY(1.0) scaleX(1.0); }
+    .grid-row:nth-child(2) { transform: scaleY(0.85) scaleX(0.88); }
+    .grid-row:nth-child(3) { transform: scaleY(0.70) scaleX(0.76); }
+    .grid-row:nth-child(4) { transform: scaleY(0.55) scaleX(0.64); }
+    .grid-row:nth-child(5) { transform: scaleY(0.40) scaleX(0.52); }
+
+    /* Individual tile (rhombus/parallelogram) */
+    .tile {
+      position: relative;
+      width: 12%;
+      aspect-ratio: 2 / 1;
+      border: 1px solid rgba(200, 160, 32, 0.35);
+      background: transparent;
+      margin: 0 1px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    /* Tile hover highlight */
+    .tile:hover {
+      border-color: rgba(200, 160, 32, 0.7);
+      box-shadow: 0 0 12px rgba(200, 160, 32, 0.25) inset;
+    }
+
+    /* Active tile indicator (constant glow on one tile) */
+    .tile.active {
+      border-color: rgba(200, 160, 32, 0.9);
+      box-shadow: 0 0 16px rgba(200, 160, 32, 0.5) inset,
+                  0 0 24px rgba(200, 160, 32, 0.3);
+      animation: pulse-active 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-active {
+      0%, 100% {
+        border-color: rgba(200, 160, 32, 0.8);
+        box-shadow: 0 0 16px rgba(200, 160, 32, 0.5) inset,
+                    0 0 24px rgba(200, 160, 32, 0.3);
+      }
+      50% {
+        border-color: rgba(200, 160, 32, 1);
+        box-shadow: 0 0 20px rgba(200, 160, 32, 0.7) inset,
+                    0 0 32px rgba(200, 160, 32, 0.5);
+      }
+    }
+
+    /* Sprite placeholders */
+    .sprite {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      border-radius: 2px;
+      z-index: 20;
+    }
+
+    .hero {
+      background: rgba(64, 168, 255, 0.4);
+      border: 1px solid rgba(64, 168, 255, 0.8);
+      color: #40a8ff;
+    }
+
+    .enemy {
+      background: rgba(204, 48, 32, 0.4);
+      border: 1px solid rgba(204, 48, 32, 0.8);
+      color: #cc3020;
+    }
+
+    /* Hero sprite on row 0 (front), left side */
+    .hero-f { left: 5%; top: 50%; width: 8%; aspect-ratio: 1; transform: translateY(-50%); }
+    .hero-s { left: 18%; top: 50%; width: 8%; aspect-ratio: 1; transform: translateY(-50%); }
+    .hero-p { left: 31%; top: 50%; width: 8%; aspect-ratio: 1; transform: translateY(-50%); }
+
+    /* Enemy sprite on row 2 (middle-back), right side */
+    .enemy-e1 { right: 8%; top: 35%; width: 7%; aspect-ratio: 1; transform: translateY(-50%); }
+    .enemy-e2 { right: 22%; top: 35%; width: 7%; aspect-ratio: 1; transform: translateY(-50%); }
+    .enemy-e3 { right: 36%; top: 35%; width: 7%; aspect-ratio: 1; transform: translateY(-50%); }
+    .enemy-e4 { right: 50%; top: 35%; width: 7%; aspect-ratio: 1; transform: translateY(-50%); }
+
+    .caption {
+      padding: 16px 20px;
+      background: #0a0a0a;
+      border-top: 1px solid #333;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #999;
+    }
+
+    .caption strong {
+      color: #c8a020;
+    }
+
+    .code-ref {
+      display: inline-block;
+      background: rgba(200, 160, 32, 0.15);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      margin: 0 2px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Combat Grid PoC</h1>
+    <p class="subtitle">Perspective-grid overlay on dungeon battle background</p>
+    <p class="viewport-info">Viewport: 1280×800 (16:10 aspect) — 5 rows × 8 columns 2.5D grid with foreshortened perspective</p>
+  </div>
+
+  <div class="viewport-container">
+    <!-- Background image -->
+    <div class="battlefield"></div>
+
+    <!-- Grid overlay -->
+    <div class="grid-overlay">
+      <!-- Row 4 (back, smallest) -->
+      <div class="grid-row">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="grid-row">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+      </div>
+
+      <!-- Row 2 (middle) — enemies positioned here -->
+      <div class="grid-row">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile active"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+      </div>
+
+      <!-- Row 1 -->
+      <div class="grid-row">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+      </div>
+
+      <!-- Row 0 (front, largest) — heroes positioned here -->
+      <div class="grid-row">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+      </div>
+    </div>
+
+    <!-- Hero sprites (left side, front row) -->
+    <div class="sprite hero hero-f">F</div>
+    <div class="sprite hero hero-s">S</div>
+    <div class="sprite hero hero-p">P</div>
+
+    <!-- Enemy sprites (right side, middle row) -->
+    <div class="sprite enemy enemy-e1">E1</div>
+    <div class="sprite enemy enemy-e2">E2</div>
+    <div class="sprite enemy enemy-e3">E3</div>
+    <div class="sprite enemy enemy-e4">E4</div>
+  </div>
+
+  <div class="caption">
+    <strong>Proof of Concept:</strong> A 5-row × 8-column perspective grid rendered over a combat background image. Gold tile borders (0.35 alpha) converge toward upper-center vanishing point. Heroes (F=Fighter, S=Stormcaller, P=Paladin) occupy left-front tiles; Enemies (E1-E4) occupy right-middle tiles. The active tile (row 2, center) pulses gold to demonstrate click-to-target selection. Background source: <span class="code-ref">public/images/menu_bg/menu_wide.jpg</span> — atmospheric fantasy environment serving as reference for the 80/20 playfield-to-sky split.
+  </div>
+</div>
+
+</body>
+</html>

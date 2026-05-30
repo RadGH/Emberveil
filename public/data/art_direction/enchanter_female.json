@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "enchanter_female",
+  "displayName": "Enchanter (Female)",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "pendingReview": true,
+  "milestone": "M396",
+  "identity": "Human WOMAN (female), about 28 years old, calm composed face, long dark wavy hair past her shoulders, glowing pale-lavender eyes.",
+  "outfit": "Long midnight-violet hooded robe with silver rune embroidery along the collar, hem, and cuffs.",
+  "weapons": "Slim silver staff topped with a floating violet enchantment glyph that pulses pale lavender when channeled.",
+  "palette": ["#1a1235", "#2e1f5e", "#5b3aaa", "#a880ff", "#dccfff", "#c8c8e8", "#f0e8ff"],
+  "bannedSubstrings": ["male", "man", "he/him", "beard", "child", "elderly", "fire", "demonic"],
+  "referenceSheet": {
+    "spritecookAssetId": "447bc27b-91d5-4c4a-9247-bd08d0e6701f",
+    "path": "images/spritecook/enchanter_female_portrait.png",
+    "generatedAt": "2026-05-03T12:01:00Z",
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait":   { "spritecookAssetId": "447bc27b-91d5-4c4a-9247-bd08d0e6701f", "path": "images/spritecook/enchanter_female_portrait.png",   "approvedAt": null },
+    "south":      { "spritecookAssetId": "021fa061-be29-4752-8503-e54e064a8e2b", "path": "images/spritecook/enchanter_female_south.png",      "approvedAt": null },
+    "east":       { "spritecookAssetId": "e7791e24-221f-4185-9c73-f00e2816db46", "path": "images/spritecook/enchanter_female_east.png",       "approvedAt": null },
+    "east_attack":{ "spritecookAssetId": "fd13ee21-0b24-45d8-8af9-f978d860b8be", "path": "images/spritecook/enchanter_female_east_attack.png","approvedAt": null },
+    "east_spell": { "spritecookAssetId": "1e43f6d3-9ac4-46c4-9718-197fd8ad38eb", "path": "images/spritecook/enchanter_female_east_spell.png", "approvedAt": null },
+    "east_block": { "spritecookAssetId": "ad0697ae-336d-4f3c-aa79-462c8cdcc33e", "path": "images/spritecook/enchanter_female_east_block.png", "approvedAt": null },
+    "east_ko":    { "spritecookAssetId": "b5fed681-cd42-4c14-a2ed-a32ba05c2c0b", "path": "images/spritecook/enchanter_female_east_ko.png",    "approvedAt": null }
+  }
+}

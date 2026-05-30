@@ -1,0 +1,19 @@
+{
+  "node": [
+    {
+      "id": "listen",
+      "text": "Listen to him speak.",
+      "effects": []
+    }
+  ],
+  "validationErrors": [
+    "missing id",
+    "missing pool",
+    "pool mismatch: got \"undefined\" expected \"lore\"",
+    "act must be integer",
+    "unknown biome: \"undefined\"",
+    "lines must be non-empty array",
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:09:01.476Z"
+}

@@ -1,0 +1,13 @@
+{
+  "node": "biome':'ash_plains','tone':'wry','speaker':'merchant_unusual','lines':['Welcome to my little emporium. I have items that might raise an eyebrow or two.'],'choices':[{",
+  "validationErrors": [
+    "missing id",
+    "missing pool",
+    "pool mismatch: got \"undefined\" expected \"merchant\"",
+    "act must be integer",
+    "unknown biome: \"undefined\"",
+    "lines must be non-empty array",
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:09:14.916Z"
+}

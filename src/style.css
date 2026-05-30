@@ -1,0 +1,307 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ember-themed checkbox — applied globally to all checkboxes */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(232, 160, 32, 0.7);
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(40,24,14,0.9), rgba(20,12,8,0.95));
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.4);
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+input[type="checkbox"]:hover {
+  border-color: #f0c060;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6), 0 0 6px rgba(232,160,32,0.5);
+}
+input[type="checkbox"]:checked {
+  background: linear-gradient(180deg, #e8a020 0%, #c04030 100%);
+  border-color: #f8d880;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.3), 0 0 6px rgba(232,160,32,0.6);
+}
+/* M322 → M323-fix: the checkmark is now rendered as an inline-SVG
+   background-image on the checkbox itself with background-size: 70%, so it
+   scales perfectly with whatever dimensions the checkbox is given. Works
+   identically on the default 18×18 box AND on 44×44 accessibility-sized
+   boxes — no glyph-vs-font-size mismatch. */
+input[type="checkbox"]:checked {
+  background-image:
+    /* dark checkmark */
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='%231a0a04' stroke-width='4' stroke-linecap='round' stroke-linejoin='round' d='M4 12 l6 6 L20 6'/></svg>"),
+    /* keep the existing gradient as the layered base */
+    linear-gradient(180deg, #e8a020 0%, #c04030 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center center, center center;
+  background-size: 70% 70%, 100% 100%;
+}
+/* The old ::before pseudo-element is no longer needed — the SVG handles
+   sizing — but keep an empty rule so any descendant rule cascading from
+   ::before stays scoped. */
+input[type="checkbox"]:checked::before {
+  content: none;
+}
+input[type="checkbox"]:focus-visible {
+  outline: 2px solid rgba(232,160,32,0.8);
+  outline-offset: 2px;
+}
+
+:root {
+  --color-bg: #0a0608;
+  --color-primary: #e8a020;
+  --color-accent: #c04030;
+  --color-text: #f0e8d8;
+  --color-muted: #8a7a6a;
+  --color-surface: #1a1218;
+  --color-surface2: #241a20;
+  --font-display: 'Cinzel', 'Georgia', serif;
+  --font-ui: 'Inter', 'Segoe UI', sans-serif;
+  --radius: 6px;
+
+  /* M296: Rarity & status color tokens (default palette; overridden by colorPalettes.js) */
+  --rarity-normal:    #c8c8c8;
+  --rarity-magic:     #6080ff;
+  --rarity-rare:      #e8d020;
+  --rarity-legendary: #ff8020;
+  --rarity-set:       #4fc870;
+  --status-poison:    #48c840;
+  --status-burn:      #ff6020;
+  --status-bleed:     #e03030;
+  --status-freeze:    #60c8ff;
+  --status-stun:      #ffd060;
+
+  /* M296: Font scale (overridden by fontScale.js) */
+  --ui-font-scale: 1.0;
+
+  /* M388 — manual-mode overhaul palette */
+  /* ── Core darks ── */
+  --ember-void:      #06030e;
+  --ember-deep:      #0d0820;
+  --ember-pit:       #1a1128;
+  /* ── Stone & ground ── */
+  --ember-stone:     #2e2438;
+  --ember-slate:     #3d3250;
+  /* ── Gold / UI rim ── */
+  --gold-rim:        #c8a020;
+  --gold-glow:       #f8e890;
+  --gold-dim:        #7a6010;
+  /* ── Fire / action ── */
+  --fire-core:       #ff7020;
+  --fire-bloom:      #ffc040;
+  /* ── Arcane / lightning ── */
+  --arc-blue:        #40a8ff;
+  --arc-pale:        #a0d8ff;
+  /* ── HP / status ── */
+  --hp-green:        #30cc60;
+  --hp-low:          #cc3020;
+  --shield-blue:     #4080e0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  scrollbar-color: rgba(200,150,70,0.8) rgba(20,14,8,0.6);
+  scrollbar-width: thin;
+  /* M296: font scale — only scales body text, not display headers */
+  font-size: calc(var(--ui-font-scale, 1.0) * 1rem);
+}
+/* M400 — TitleScreen toggles this on so iOS Chrome pull-to-refresh works
+   on the main menu (Browser PTR needs a scrollable, scrollTop=0 root).
+   Stripped on exit so in-game taps don't accidentally trigger refresh. */
+html.allow-overscroll-refresh,
+html.allow-overscroll-refresh body {
+  overflow-y: auto;
+  overscroll-behavior-y: auto;
+}
+html.allow-overscroll-refresh body {
+  /* M455: removed the calc(100% + 1px) min-height. The +1px was needed for
+     a now-fixed iOS Chrome PTR quirk; on desktop it added a permanent
+     scrollbar. The PTR gesture still works without it. */
+  min-height: 100%;
+}
+
+/* M296: WCAG tap-target minimum 44x44px for all interactive elements.
+   Use .compact-target to opt out for genuine small inline icons only.
+   M402 — gate the 44px floor on (pointer: coarse) so mouse-only desktop
+   users get a 24px floor (cursor-precise input doesn't need 44px). */
+button:not(.compact-target),
+[role="button"]:not(.compact-target),
+select:not(.compact-target),
+a[href]:not(.compact-target),
+input[type="checkbox"]:not(.compact-target),
+input[type="radio"]:not(.compact-target) {
+  min-width: 24px;
+  min-height: 24px;
+}
+@media (pointer: coarse) {
+  button:not(.compact-target),
+  [role="button"]:not(.compact-target),
+  select:not(.compact-target),
+  a[href]:not(.compact-target),
+  input[type="checkbox"]:not(.compact-target),
+  input[type="radio"]:not(.compact-target) {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Checkboxes and radios keep their intrinsic size but the label click area
+   satisfies 44px via the parent label's min-height. Override to avoid
+   stretching the styled checkbox glyph itself. */
+input[type="checkbox"],
+input[type="radio"] {
+  min-width: unset;
+  min-height: unset;
+}
+
+/* M296: reduce-motion — suppress screen-entry animations and canvas transitions
+   when isReducedMotion() is true; JS adds .reduce-motion to <html>. */
+html.reduce-motion .town-screen,
+html.reduce-motion .party-screen,
+html.reduce-motion .codex-screen,
+html.reduce-motion .forge-screen,
+html.reduce-motion .challenge-screen,
+html.reduce-motion .quest-log-screen,
+html.reduce-motion .ach-screen,
+html.reduce-motion .inv-screen,
+html.reduce-motion .skill-tree-screen,
+html.reduce-motion .level-up-screen {
+  animation: none !important;
+}
+
+/* Prefers-reduced-motion media fallback for when JS hasn't loaded yet */
+@media (prefers-reduced-motion: reduce) {
+  .town-screen, .party-screen, .codex-screen, .forge-screen,
+  .challenge-screen, .quest-log-screen, .ach-screen,
+  .inv-screen, .skill-tree-screen, .level-up-screen {
+    animation: none !important;
+  }
+}
+
+/* Desktop 14px floor — prevent shrunken UI on large screens */
+@media (min-width: 768px) {
+  #ui-overlay { font-size: 14px; }
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+#game-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#ui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#ui-overlay > * {
+  pointer-events: auto;
+}
+
+/* Smooth fade-in for all screen elements */
+@keyframes fadeInScreen {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.town-screen, .party-screen, .codex-screen, .forge-screen,
+.challenge-screen, .quest-log-screen, .ach-screen,
+.inv-screen, .skill-tree-screen, .level-up-screen {
+  animation: fadeInScreen 0.18s ease-out;
+}
+
+/* Themed scrollbars — dark fantasy amber/gold, applied globally */
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track {
+  background: rgba(20, 14, 8, 0.6);
+  border: 1px solid rgba(120, 80, 40, 0.35);
+}
+::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(200, 150, 70, 0.7), rgba(140, 90, 30, 0.85));
+  border-radius: 4px;
+  border: 1px solid rgba(60, 40, 20, 0.8);
+}
+::-webkit-scrollbar-thumb:hover,
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(255, 200, 100, 0.9), rgba(180, 120, 50, 0.95));
+}
+::-webkit-scrollbar-thumb:active,
+*::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, rgba(255, 220, 140, 1), rgba(210, 150, 70, 1));
+}
+::-webkit-scrollbar-corner,
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Touch feedback */
+button:active {
+  opacity: 0.75;
+  transform: scale(0.97);
+}
+
+/* Prevent text selection on game UI */
+#ui-overlay {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Prevent double-tap zoom on all interactive elements */
+button, [role="button"], input, select, canvas, a {
+  touch-action: manipulation;
+}
+
+/* Prevent pinch-zoom on the canvas */
+#game-canvas {
+  touch-action: none;
+}
+
+/* Pixel art sprites — never blur */
+img[src*="/sprites/"],
+img[src*="/companions/"],
+img[src*="/portraits/"],
+img[src*="/images/dragon_expansion/"],
+canvas {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}

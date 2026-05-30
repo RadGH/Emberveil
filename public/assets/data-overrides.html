@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Data Overrides — Emberveil</title>
+<style>
+body { padding: 1rem 1rem 4rem; }
+.wrap { max-width: 900px; margin: 0 auto; }
+h1 {
+  font-family: 'Cinzel',Georgia,serif;
+  font-size: 1.4rem; margin: 0 0 0.25rem;
+  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+  background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1.25rem; }
+.type-grid { display: grid; gap: 0.75rem; }
+.type-card {
+  background: var(--card); border: 1px solid var(--border-subtle, #2a1f30);
+  border-radius: 8px; padding: 0.75rem 1rem;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem;
+}
+.type-card.has-override { border-color: var(--accent); }
+.type-name {
+  font-family: 'Cinzel',Georgia,serif;
+  font-size: 0.9rem; letter-spacing: 0.05em;
+  color: var(--text); flex: 1 1 120px;
+}
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.badge-live { background: rgba(60,180,80,0.15); color: #60d880; border: 1px solid rgba(60,180,80,0.3); }
+.badge-override { background: rgba(232,160,32,0.15); color: var(--gold); border: 1px solid rgba(232,160,32,0.35); }
+.type-size { font-size: 0.75rem; color: var(--muted); min-width: 80px; }
+.btn {
+  padding: 0.35rem 0.7rem; font: inherit; font-size: 0.78rem;
+  border: 1px solid var(--border); border-radius: 5px;
+  cursor: pointer; background: var(--surface); color: var(--text);
+  transition: border-color 0.15s, background 0.15s;
+}
+.btn:hover { border-color: var(--gold); background: var(--card-h); }
+.btn-danger { border-color: rgba(200,60,40,0.5); color: #e06050; }
+.btn-danger:hover { background: rgba(200,60,40,0.1); border-color: #e06050; }
+.btn-upload { border-color: rgba(60,120,220,0.5); color: #80a8ff; }
+.btn-upload:hover { background: rgba(60,120,220,0.1); border-color: #80a8ff; }
+.milestone-note {
+  font-size: 0.78rem; color: var(--muted);
+  background: var(--surface); border: 1px solid var(--border-subtle, #2a1f30);
+  border-radius: 6px; padding: 0.5rem 0.75rem; margin-top: 0.4rem;
+  font-style: italic;
+}
+.global-actions {
+  margin: 1.25rem 0 0.5rem;
+  display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center;
+}
+.section-title {
+  font-family: 'Cinzel',Georgia,serif; font-size: 0.75rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted); margin: 1rem 0 0.5rem;
+}
+#toast {
+  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  background: var(--card); border: 1px solid var(--accent); border-radius: 6px;
+  padding: 0.5rem 1.25rem; font-size: 0.84rem; color: var(--gold);
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  z-index: 999;
+}
+#toast.show { opacity: 1; }
+</style>
+</head>
+<body class="ev-themed">
+<div class="wrap">
+  <h1>Data Overrides</h1>
+  <p class="sub">
+    All devtool catalog pages read live data from <code>/assets/data/*.json</code> (generated on each build).
+    Upload a custom JSON file here to override any data type. Overrides are stored in localStorage and persist
+    across tool pages. Revert to restore live build data.
+  </p>
+
+  <div class="type-grid" id="typeGrid"></div>
+
+  <div class="global-actions">
+    <button class="btn btn-danger" id="clearAll">Clear All Overrides</button>
+    <span id="overrideCount" style="font-size:0.8rem;color:var(--muted);"></span>
+  </div>
+
+  <div class="section-title">Milestone Snapshots</div>
+  <div class="milestone-note" id="snapshotNote">
+    Loading available snapshots...
+  </div>
+  <div id="snapshotPanel" style="margin-top:0.6rem;display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+    <select id="snapshotSelect" class="btn" style="min-width:160px;">
+      <option value="">Select milestone...</option>
+    </select>
+    <select id="snapshotTypeSelect" class="btn" style="min-width:160px;">
+      <option value="">All types</option>
+    </select>
+    <button class="btn" id="snapshotRestoreBtn" disabled>Restore from Snapshot</button>
+    <button class="btn" id="snapshotRestoreAllBtn" disabled>Restore All Types</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script type="module">
+import {
+  DATA_TYPES, getOverrideStatus, setOverride, clearOverride, clearAllOverrides
+} from './data/data-source.js';
+
+const grid = document.getElementById('typeGrid');
+const clearAllBtn = document.getElementById('clearAll');
+const overrideCountEl = document.getElementById('overrideCount');
+const toast = document.getElementById('toast');
+let toastTimer = null;
+
+const LABELS = {
+  'companions':     'Companions',
+  'classes':        'Classes',
+  'enemies':        'Enemies',
+  'dungeons':       'Dungeons',
+  'status-effects': 'Status Effects',
+  'achievements':   'Achievements',
+  'skills':         'Skills',
+  'affixes':        'Affixes',
+  'items':          'Items',
+  'bosses':         'Bosses',
+};
+
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+function fmtSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  return (bytes / 1024).toFixed(1) + ' KB';
+}
+
+function render() {
+  const status = getOverrideStatus();
+  let overrideCount = 0;
+  grid.innerHTML = '';
+  for (const type of DATA_TYPES) {
+    const s = status[type];
+    if (s.hasOverride) overrideCount++;
+    const card = document.createElement('div');
+    card.className = 'type-card' + (s.hasOverride ? ' has-override' : '');
+    card.dataset.type = type;
+
+    const badge = s.hasOverride
+      ? `<span class="badge badge-override">Override Active</span>`
+      : `<span class="badge badge-live">Live</span>`;
+    const sizeStr = s.hasOverride ? `<span class="type-size">${fmtSize(s.size)}</span>` : `<span class="type-size"></span>`;
+    const revertBtn = s.hasOverride
+      ? `<button class="btn btn-danger revert-btn" data-type="${type}">Revert to Default</button>`
+      : '';
+    card.innerHTML = `
+      <span class="type-name">${LABELS[type] || type}</span>
+      ${badge}
+      ${sizeStr}
+      <button class="btn btn-upload upload-btn" data-type="${type}">Upload Override</button>
+      ${revertBtn}
+    `;
+    grid.appendChild(card);
+  }
+  overrideCountEl.textContent = overrideCount > 0
+    ? `${overrideCount} of ${DATA_TYPES.length} types overridden`
+    : 'No overrides active';
+}
+
+// Hidden file input (reused for all upload triggers)
+const fileInput = document.createElement('input');
+fileInput.type = 'file';
+fileInput.accept = '.json';
+let _pendingType = null;
+fileInput.addEventListener('change', async () => {
+  if (!fileInput.files.length || !_pendingType) return;
+  const file = fileInput.files[0];
+  try {
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+    setOverride(_pendingType, parsed);
+    render();
+    showToast(`Override loaded for "${LABELS[_pendingType] || _pendingType}"`);
+  } catch (err) {
+    alert('Failed to parse JSON: ' + err.message);
+  }
+  fileInput.value = '';
+  _pendingType = null;
+});
+
+grid.addEventListener('click', e => {
+  const uploadBtn = e.target.closest('.upload-btn');
+  const revertBtn = e.target.closest('.revert-btn');
+  if (uploadBtn) {
+    _pendingType = uploadBtn.dataset.type;
+    fileInput.click();
+  } else if (revertBtn) {
+    const type = revertBtn.dataset.type;
+    clearOverride(type);
+    render();
+    showToast(`Reverted "${LABELS[type] || type}" to live data`);
+  }
+});
+
+clearAllBtn.addEventListener('click', () => {
+  if (!confirm('Remove all data overrides and revert to live data?')) return;
+  clearAllOverrides();
+  render();
+  showToast('All overrides cleared');
+});
+
+render();
+
+// ─── Milestone Snapshot Restore ──────────────────────────────────────────
+
+const snapshotNote      = document.getElementById('snapshotNote');
+const snapshotSelect    = document.getElementById('snapshotSelect');
+const snapshotTypeSelect = document.getElementById('snapshotTypeSelect');
+const snapshotRestoreBtn    = document.getElementById('snapshotRestoreBtn');
+const snapshotRestoreAllBtn = document.getElementById('snapshotRestoreAllBtn');
+
+const SNAPSHOT_BASE = './data/snapshots/';
+
+async function loadSnapshotManifests() {
+  // Attempt to discover snapshots by fetching a known index, or by probing
+  // milestone numbers relative to the latest release-summary.
+  // Strategy: fetch release-summary.json to know the latest milestone, then
+  // probe M### folders downward until we get 404s (up to 20 back).
+  let latestMilestone = 0;
+  try {
+    const rs = await fetch('./release-summary.json');
+    if (rs.ok) {
+      const data = await rs.json();
+      latestMilestone = data.milestone || 0;
+    }
+  } catch (_) {}
+
+  const manifests = [];
+  const probeStart = latestMilestone > 0 ? latestMilestone : 320;
+  const probeEnd   = Math.max(probeStart - 30, 1);
+
+  const probes = [];
+  for (let m = probeStart; m >= probeEnd; m--) {
+    probes.push(m);
+  }
+
+  const results = await Promise.allSettled(
+    probes.map(async m => {
+      const url = SNAPSHOT_BASE + 'M' + m + '/manifest.json';
+      const r = await fetch(url);
+      if (!r.ok) return null;
+      const data = await r.json();
+      return { milestone: m, ...data };
+    })
+  );
+
+  for (const r of results) {
+    if (r.status === 'fulfilled' && r.value !== null) {
+      manifests.push(r.value);
+    }
+  }
+
+  manifests.sort((a, b) => b.milestone - a.milestone);
+  return manifests;
+}
+
+async function initSnapshotPanel() {
+  const manifests = await loadSnapshotManifests();
+
+  if (!manifests.length) {
+    snapshotNote.innerHTML =
+      'No milestone snapshots found yet. Snapshots are created automatically on each <code>release.sh game13</code> run starting with M313.';
+    snapshotPanel.style.display = 'none';
+    return;
+  }
+
+  snapshotNote.innerHTML =
+    manifests.length + ' snapshot(s) available. Select a milestone and optionally a data type, then restore.';
+
+  // Populate milestone select
+  for (const mf of manifests) {
+    const opt = document.createElement('option');
+    opt.value = 'M' + mf.milestone;
+    opt.textContent = 'M' + mf.milestone + ' (' + (mf.created ? mf.created.slice(0, 10) : 'no date') + ')';
+    snapshotSelect.appendChild(opt);
+  }
+
+  // Populate type select from first manifest types
+  const allTypes = manifests[0].types || DATA_TYPES;
+  for (const t of allTypes) {
+    const opt = document.createElement('option');
+    opt.value = t;
+    opt.textContent = LABELS[t] || t;
+    snapshotTypeSelect.appendChild(opt);
+  }
+
+  snapshotSelect.disabled = false;
+  snapshotRestoreBtn.disabled = false;
+  snapshotRestoreAllBtn.disabled = false;
+
+  async function fetchAndApply(milestoneKey, type) {
+    const url = SNAPSHOT_BASE + milestoneKey + '/' + type + '.json';
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + url);
+    const data = await r.json();
+    setOverride(type, data);
+    return type;
+  }
+
+  snapshotRestoreBtn.addEventListener('click', async () => {
+    const mKey  = snapshotSelect.value;
+    const type  = snapshotTypeSelect.value;
+    if (!mKey) { alert('Select a milestone first.'); return; }
+    if (!type) { alert('Select a data type first, or use "Restore All Types".'); return; }
+    try {
+      await fetchAndApply(mKey, type);
+      render();
+      showToast('Restored ' + (LABELS[type] || type) + ' from ' + mKey);
+    } catch (err) {
+      alert('Restore failed: ' + err.message);
+    }
+  });
+
+  snapshotRestoreAllBtn.addEventListener('click', async () => {
+    const mKey = snapshotSelect.value;
+    if (!mKey) { alert('Select a milestone first.'); return; }
+    const mf = manifests.find(m => 'M' + m.milestone === mKey);
+    const types = (mf && mf.types) ? mf.types : DATA_TYPES;
+    const results = await Promise.allSettled(types.map(t => fetchAndApply(mKey, t)));
+    const ok = results.filter(r => r.status === 'fulfilled').length;
+    const fail = results.length - ok;
+    render();
+    showToast('Restored ' + ok + ' type(s) from ' + mKey + (fail ? '; ' + fail + ' failed' : ''));
+  });
+}
+
+initSnapshotPanel();
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "node": {
+    "id": "side_quest_ash_plains_h9bixqo_001",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "bone_reader",
+    "lines": [
+      "The air is thick with ash. Lost souls wander here.",
+      "Find the bones of the fallen. They deserve rest."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to find the bones.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_find_fallen_bones",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "fallen_bones_active"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "\"Not my concern.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "unknown flag \"fallen_bones_active\" in effect"
+  ],
+  "rejectedAt": "2026-05-21T00:09:45.823Z"
+}

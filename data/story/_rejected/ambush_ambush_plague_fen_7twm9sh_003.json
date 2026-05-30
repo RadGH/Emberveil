@@ -1,0 +1,89 @@
+{
+  "node": {
+    "id": "ambush_plague_fen_7twm9sh_003",
+    "pool": "ambush",
+    "act": 2,
+    "biome": "plague_fen",
+    "tone": "hostile",
+    "speaker": "null",
+    "lines": [
+      "A figure steps from the shadows, covered in rot and grime.",
+      "\"Strangers roam the Fen? I’ll collect my due.\""
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Engage the figure.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "plague_wretch"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "deceive",
+        "text": "[Deception - CHA] Pretend to be lost.",
+        "skillCheck": {
+          "skill": "deception",
+          "stat": "CHA",
+          "dc": 14
+        },
+        "onPass": {
+          "next": "#deceived",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "plague_wretch"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "pay_toll",
+        "text": "Offer a gold coin to pass.",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -10
+          },
+          {
+            "type": "faction_delta",
+            "faction": "plague_harvesters",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "deceived": {
+        "lines": [
+          "The figure narrows its eyes, considering.",
+          "\"Very well. But beware the dark paths you tread.\""
+        ],
+        "choices": [
+          {
+            "id": "leave",
+            "text": "Leave the area cautiously.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"deceive\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:02:56.560Z"
+}

@@ -1,0 +1,60 @@
+[
+  {
+    "id": "lr_construct_guardians",
+    "act": 2,
+    "biomes": ["library_ruins"],
+    "themeTags": ["construct", "library", "ancient"],
+    "type": "combat",
+    "primaryRole": "frontline",
+    "enemyComposition": [
+      { "role": "frontline", "count": 2, "enemyId": "molten_golem" }
+    ],
+    "budgetWeight": 1.2,
+    "baseWeight": 0.55,
+    "rewards": { "goldRange": [50, 90], "lootTier": 2 },
+    "preDialog": "pool:ambush#ambush_library_constructs_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "lr_arrival_marek",
+    "act": 2,
+    "biomes": ["library_ruins"],
+    "themeTags": ["arrival", "lore", "scholar"],
+    "type": "event",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.60,
+    "rewards": { "goldRange": [0, 0], "lootTier": 0 },
+    "preDialog": "pool:arrival#arrival_library_ruins_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "lr_burned_lore",
+    "act": 2,
+    "biomes": ["library_ruins"],
+    "themeTags": ["lore", "history", "suppression"],
+    "type": "lore",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.65,
+    "rewards": { "goldRange": [0, 25], "lootTier": 1 },
+    "preDialog": "pool:lore#lore_library_burned_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "lr_thornwhisper_scholar",
+    "act": 2,
+    "biomes": ["library_ruins"],
+    "themeTags": ["faction", "scholar", "thornpact"],
+    "type": "event",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.50,
+    "rewards": { "goldRange": [0, 0], "lootTier": 0 },
+    "preDialog": "pool:faction#faction_thornwhisper_scholar_001",
+    "weatherCompatible": ["all"]
+  }
+]

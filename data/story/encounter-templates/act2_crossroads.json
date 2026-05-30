@@ -1,0 +1,60 @@
+[
+  {
+    "id": "cr_crossroads_mugging",
+    "act": 2,
+    "biomes": ["crossroads"],
+    "themeTags": ["bandit", "urban", "mugging"],
+    "type": "combat",
+    "primaryRole": "frontline",
+    "enemyComposition": [
+      { "role": "frontline", "count": 3, "enemyId": "bandit" }
+    ],
+    "budgetWeight": 0.90,
+    "baseWeight": 0.65,
+    "rewards": { "goldRange": [25, 55], "lootTier": 1 },
+    "preDialog": "pool:ambush#ambush_crossroads_mugging_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "cr_junction_arrival",
+    "act": 2,
+    "biomes": ["crossroads"],
+    "themeTags": ["arrival", "merchant", "faction"],
+    "type": "event",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.65,
+    "rewards": { "goldRange": [0, 0], "lootTier": 0 },
+    "preDialog": "pool:arrival#arrival_crossroads_junction_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "cr_iron_covenant_checkpoint",
+    "act": 2,
+    "biomes": ["crossroads"],
+    "themeTags": ["faction", "iron_covenant", "tax"],
+    "type": "event",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.55,
+    "rewards": { "goldRange": [0, 0], "lootTier": 0 },
+    "preDialog": "pool:faction#faction_iron_covenant_checkpoint_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "cr_thornpact_courier",
+    "act": 2,
+    "biomes": ["crossroads"],
+    "themeTags": ["faction", "thornpact", "merchant"],
+    "type": "merchant",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.45,
+    "rewards": { "goldRange": [0, 50], "lootTier": 1 },
+    "preDialog": "pool:merchant#merchant_thornpact_courier_001",
+    "weatherCompatible": ["all"]
+  }
+]

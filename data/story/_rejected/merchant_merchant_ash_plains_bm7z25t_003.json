@@ -1,0 +1,104 @@
+{
+  "node": {
+    "id": "merchant_ash_plains_bm7z25t_003",
+    "pool": "merchant",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "wry",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "Patrols are thin. Supplies are thinner. What do you want?",
+      "Prices are what they are, take it or leave it."
+    ],
+    "choices": [
+      {
+        "id": "pay_full_price",
+        "text": "Pay the full price. (30 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -30
+          },
+          {
+            "type": "grant_item",
+            "itemId": "ash_supply"
+          }
+        ]
+      },
+      {
+        "id": "bargain",
+        "text": "[Intimidation - CHA] Try to haggle the price down.",
+        "skillCheck": {
+          "skill": "intimidation",
+          "stat": "CHA",
+          "dc": 14
+        },
+        "onPass": {
+          "next": "#successful_bargain",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#failed_bargain",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Walk away from the deal.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "successful_bargain": {
+        "lines": [
+          "\"Fine, fine. Ten off, but don't tell the others. They don't take kindly to haggling.\""
+        ],
+        "choices": [
+          {
+            "id": "buy",
+            "text": "Take the deal and buy.",
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -20
+              },
+              {
+                "type": "grant_item",
+                "itemId": "ash_supply"
+              }
+            ]
+          }
+        ]
+      },
+      "failed_bargain": {
+        "lines": [
+          "He stands firm. \"You think you can scare me? Not happening. Full price, or nothing.\""
+        ],
+        "choices": [
+          {
+            "id": "pay",
+            "text": "Pay full price anyway.",
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -30
+              },
+              {
+                "type": "grant_item",
+                "itemId": "ash_supply"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"bargain\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:06:05.334Z"
+}

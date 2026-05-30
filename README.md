@@ -1,68 +1,33 @@
-# Emberveil
+# Emberveil (game13)
 
-A dark-fantasy party RPG — hire heroes, explore a branching world map, fight turn-based battles, unlock tap weapons, and chase the dragon through six acts.
+A portrait-first, portrait-locked RPG with deep combat simulation, 19 classes, passive trees, a world map, random events, and an evolving companion/gear system.
 
-**Play: https://emberveil.radgh.com/**
+- **Play the latest milestone:** https://radgh.github.io/RSG-Demos/game13/
+- **Asset gallery:** https://radgh.github.io/RSG-Demos/game13/assets/
+- **Design doc:** [`game.md`](./game.md)
+- **Working instructions for Claude Code:** [`CLAUDE.md`](./CLAUDE.md)
 
-**Send feedback:** https://docs.google.com/forms/d/e/1FAIpQLScWHFEQ8Kbxvsxg5nKerJOPqkYntAkRLCihqQchypNdqayvmA/viewform?usp=publish-editor
+## Database (Supabase) migrations
 
----
+Cloud persistence (saves, run stats, telemetry, combat history) is backed by Supabase. Schema changes live as numbered, additive, idempotent SQL files under [`supabase/migrations/`](./supabase/migrations/):
 
-## About
+- `0001_saves_table.sql` — main `saves` table for cloud save slots.
+- `0002_run_stats.sql` — `run_stats` table + RLS policies for per-user run history.
+- `0003_telemetry_events.sql` — `telemetry_events` table for opt-in gameplay telemetry.
+- `0004_run_stats_combat_history.sql` — adds the `combat_history` JSONB column + trim trigger so the Statistics screen can show last-50 fights across devices.
 
-Emberveil is built as a mobile-first web game (portrait, iPhone 14 Pro target) that also runs on desktop browsers. No install, no login — open the URL and play.
+**To apply a migration:** open the Supabase dashboard for the project → **SQL Editor → New query** → paste the file's contents → **Run**. There is no `supabase` CLI step for this project — the migrations are hand-applied via the dashboard.
 
-**Features**
-- 19 playable hero classes with talent trees and passive skills
-- 10 recruitable companions with distinct sprites and stats
-- 6-act campaign across themed zones (ember plains, thornwood, ashen peaks, the void, etc.)
-- Turn-based party combat with skills, buffs, shields, and revives
-- Tap weapons & utilities — 10 + 10 real-time abilities layered over combat
-- Towns with merchants, blacksmith (reroll affixes), cleric, tavern (hire), forge, guild hall, and a purple black market in later acts
-- Deterministic per-town merchant rolls, fame rewards, dragon-kin recruits
-- Save/load, NG+, achievements, codex, quest log
+Migrations are written to be idempotent (`CREATE TABLE IF NOT EXISTS`, `ADD COLUMN IF NOT EXISTS`, `CREATE OR REPLACE`, `DROP TRIGGER IF EXISTS`), so re-running a file is safe. They are also additive — no migration drops or renames an existing column, so older clients keep working after a newer migration is applied.
 
----
+**Graceful degradation:** code paths that depend on a not-yet-applied migration no-op rather than crash. For example, `runStatsClient.listCombatHistory()` returns an empty list if the `combat_history` column doesn't exist yet, and the Statistics screen falls back to local-only data. This means you can ship client code that references a new column before the SQL is applied, and the game still runs.
 
-## This repository
+## Documentation
 
-This repo holds the **built, deployable artifact** of Emberveil — it is not the source code. It is a pre-compiled `dist/` bundle pushed from the source repo on every milestone release.
+Human-readable architecture notes live under [`docs/`](./docs/). They are regenerated whenever the underlying systems change so future contributors (and future LLM sessions) don't have to re-audit the codebase from scratch.
 
-- `index.html` — entry point
-- `assets/` — hashed JS/CSS bundles (Vite output)
-- `images/` — backgrounds, sprites, UI art
-- `music/` — Ogg Vorbis music tracks (~64kbps)
-- `sfx/` — Ogg Vorbis sound effects
-- `game-info/` — in-game info pages
+- [**Mod System & Schema Guide**](./docs/mod-system/README.md) — combat cycle, data shapes, proposed mod-safe JSON schema, and 50 functionally-distinct spell ideas.
 
-All images are optimized (JPEG/PNG minified) and all audio is transcoded to Ogg Vorbis before push.
+## Tech
 
----
-
-## Deployment
-
-Hosted on a Cloudways server with automatic git pull on webhook trigger.
-
-**Flow:**
-1. Source repo (`game13/`) builds a release via `release.sh game13`
-2. A post-release step force-pushes the optimized `dist/` to this repo's `main` branch
-3. Cloudways receives the webhook and pulls `main` into the document root at `emberveil.radgh.com`
-4. Nginx serves static files with SPA fallback (`try_files $uri $uri/ /index.html;`)
-
-**Force-push is intentional** — this repo tracks the *current* build, not history. Each push replaces the previous state entirely. Release history lives in the source repo's milestone tags.
-
----
-
-## Tech stack
-
-- **Build:** Vite (vanilla JS, no framework)
-- **Rendering:** HTML5 Canvas 2D + DOM overlays
-- **Audio:** Web Audio API with Ogg Vorbis file playback + synth fallback
-- **State:** Singleton `GameState` with localStorage save/load and migration
-- **RNG:** mulberry32 seeded per-town for deterministic merchant stock
-
----
-
-## License
-
-© 2026 RadGH. All rights reserved. Code and assets are provided for play only — no redistribution.
+JS + Vite. Portrait-only (393×852 target). See `CLAUDE.md` for dev commands and milestone workflow.

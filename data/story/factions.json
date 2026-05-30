@@ -1,0 +1,92 @@
+[
+  {
+    "id": "emberguard",
+    "name": "The Emberguard",
+    "description": "Brightfall's standing militia, sworn to the old compact of the ember-shrines. Once a genuine protective force, the Emberguard has been gradually compromised by political pressure from the Brightfall Council, leading to missions that have little to do with their founding purpose and much to do with institutional self-preservation. Officers of genuine principle — like Captain Maer — resign or are pushed out. Those who remain are not uniformly corrupt, but the chain of command is.",
+    "color": "#e8a020",
+    "homeBiome": "stoneward",
+    "alliedFactions": ["ancient_pact"],
+    "hostileFactions": ["ashen_veil"],
+    "thresholds": { "hostile": -5, "neutral": 0, "friendly": 5, "devoted": 9 }
+  },
+  {
+    "id": "ashen_veil",
+    "name": "The Ashen Veil",
+    "description": "A cult organized around the Ember Rift and the entity partly through it. Not simply a criminal gang or a religious movement — the Ashen Veil is a structured intelligence operation with a genuine ideology. Converts believe, correctly, that the Veil is real and has been suppressed by political power. They believe, incorrectly, that opening it fully will produce something other than catastrophe. The leadership knows better and doesn't care. The rank and file does not know better and would care if they did.",
+    "color": "#8040c0",
+    "homeBiome": "veilscar",
+    "alliedFactions": [],
+    "hostileFactions": ["emberguard", "ancient_pact", "brightfall_council"],
+    "thresholds": { "hostile": -5, "neutral": 0, "friendly": 5, "devoted": 9 }
+  },
+  {
+    "id": "ancient_pact",
+    "name": "The Ancient Pact",
+    "description": "Not a faction in the organizational sense — more a covenant, an ongoing agreement between the settlers' descendants and the land's pre-human interest in its own survival. The Pact-stones are its infrastructure. The stone-monks, Thornwhisper Circle, and Elderwood hermits are its maintainers. The Ashen Veil is its existential threat. Supporting the Pact means protecting sacred sites, opposing Veil corruption of shrine networks, and occasionally making promises to things that don't communicate in words.",
+    "color": "#40a880",
+    "homeBiome": "emberwood",
+    "alliedFactions": ["emberguard", "thornwhisper_circle"],
+    "hostileFactions": ["ashen_veil"],
+    "thresholds": { "hostile": -5, "neutral": 0, "friendly": 5, "devoted": 9 }
+  },
+  {
+    "id": "thornwhisper_circle",
+    "name": "The Thornwhisper Circle",
+    "description": "Nominally neutral druid-scholars who study the world's corruption patterns. Actually the most effective intelligence operation working against the Ashen Veil. The Circle's neutrality doctrine is a functional cover. Every Circle member is simultaneously a researcher and a field asset. Their published work is genuine scholarship; their unpublished work includes detailed cell-mapping of Veil operations, a list of compromised officials that would cause a governmental crisis, and a plan for coordinated action that is waiting for the right moment.",
+    "color": "#60c060",
+    "homeBiome": "crossroads",
+    "alliedFactions": ["ancient_pact"],
+    "hostileFactions": ["ashen_veil"],
+    "thresholds": { "hostile": -5, "neutral": 0, "friendly": 5, "devoted": 9 }
+  },
+  {
+    "id": "plague_harvesters",
+    "name": "The Plague Harvesters",
+    "description": "Opportunists who have built a profitable operation around the Plague Fen's contamination. They collect Veil-spore samples, living specimens, and — for premium clients — contaminated human tissue. Their clients are diverse: alchemists seeking edge-case ingredients, Veil cells seeking operational components, and the occasional Brightfall Council official attempting research they cannot fund officially. The Harvesters have no ideology. They have a price list.",
+    "color": "#80c040",
+    "homeBiome": "plague_fen",
+    "alliedFactions": [],
+    "hostileFactions": [],
+    "thresholds": { "hostile": -5, "neutral": 0, "friendly": 5, "devoted": 9 }
+  },
+  {
+    "id": "iron_covenant",
+    "name": "The Iron Covenant",
+    "description": "A coalition of trade-city states that enforces law and taxation at the Crossroads and major transit points. Bureaucratic, professional, and entirely consistent — they tax everyone equally and enforce contracts without favoritism. This makes them one of the most reliable institutions in the region and one of the most genuinely unpopular. The Iron Covenant's current leadership has been aware of the Ashen Veil's Crossroads operations for two years and has done nothing about it, which is either corruption or a policy dispute about jurisdiction that has not been resolved.",
+    "color": "#c0c0d0",
+    "homeBiome": "crossroads",
+    "alliedFactions": [],
+    "hostileFactions": [],
+    "thresholds": { "hostile": -5, "neutral": 0, "friendly": 5, "devoted": 9 }
+  },
+  {
+    "id": "brightfall_council",
+    "name": "The Brightfall Council",
+    "description": "The nominal government of Brightfall and its surrounding territories. Nine seats. At least one compromised by Ashen Veil influence. The Council's public position on the Veil is firm opposition; its private actions have systematically defunded every institution capable of opposing the Veil effectively. Whether this is deliberate policy or institutional incompetence is an open question with increasingly closed-looking evidence. The Council opened the Rift thirty years ago, though no current member was present for that decision.",
+    "color": "#c0a040",
+    "homeBiome": "emberwood",
+    "alliedFactions": ["emberguard"],
+    "hostileFactions": ["ashen_veil"],
+    "thresholds": { "hostile": -5, "neutral": 0, "friendly": 5, "devoted": 9 }
+  },
+  {
+    "id": "wanderers_guild",
+    "name": "The Wanderers Guild",
+    "description": "A travelers' trade cooperative with a fixed rate schedule, a dispute resolution process, and an intelligence network that functions better than most governments'. Guild members travel everywhere, observe everything, and report to a central registry that has been building a picture of regional faction activity for sixty years. The Guild's formal neutrality is genuine at the member level; at the leadership level, the Guild is deeply concerned about Veil expansion for purely practical reasons — the Veil is bad for trade routes.",
+    "color": "#a07840",
+    "homeBiome": "old_road",
+    "alliedFactions": [],
+    "hostileFactions": [],
+    "thresholds": { "hostile": -5, "neutral": 0, "friendly": 5, "devoted": 9 }
+  },
+  {
+    "id": "oathless",
+    "name": "The Oathless",
+    "description": "Former Emberguard soldiers who refused specific orders and were discharged for it. Not an organization — a category. They have no leadership, no charter, no treasury. What they have is a shared understanding that they were right to refuse and that this did not prevent the orders from being carried out by others. Some Oathless fight for hire. Some have stopped fighting. A few have been making their way toward the Crossroads with a vague intention to form something more organized. They haven't yet.",
+    "color": "#806060",
+    "homeBiome": "ash_plains",
+    "alliedFactions": [],
+    "hostileFactions": ["ashen_veil"],
+    "thresholds": { "hostile": -5, "neutral": 0, "friendly": 5, "devoted": 9 }
+  }
+]

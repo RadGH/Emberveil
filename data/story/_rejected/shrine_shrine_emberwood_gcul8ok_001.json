@@ -1,0 +1,68 @@
+{
+  "node": {
+    "id": "shrine_emberwood_gcul8ok_001",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The stone hums softly, an echo of prayers long forgotten.",
+      "Shadows flicker at the edges, shapes that should not be."
+    ],
+    "choices": [
+      {
+        "id": "offer_silence",
+        "text": "Offer your silence to the stone.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "whisper",
+        "text": "[Intellect - WIS] Whisper an old prayer.",
+        "skillCheck": {
+          "skill": "religion",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#prayer_heard",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#prayer_failed",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Leave it be, for now.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "prayer_heard": {
+        "lines": [
+          "A soft light blooms from the stone, warm and inviting.",
+          "The shadows recede, as if soothed by your words."
+        ]
+      },
+      "prayer_failed": {
+        "lines": [
+          "Your voice falters in the gloom, swallowed by the silence.",
+          "The shadows swirl, a displeased whisper in the night."
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"whisper\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:08:55.205Z"
+}

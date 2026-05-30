@@ -1,0 +1,33 @@
+{
+  "id": "example_custom_weapons",
+  "version": "1.0.0",
+  "name": "Custom Weapons Example",
+  "items": [
+    {
+      "id": "stormblade",
+      "name": "Stormblade",
+      "weaponCategory": "sword",
+      "dmg": [12, 18],
+      "tier": 3,
+      "rarity": "rare",
+      "effects": [
+        { "op": "onHit", "effects": [{ "op": "applyStatus", "type": "shock", "duration": 2, "target": "target" }] }
+      ],
+      "tags": ["lightning", "one_handed"],
+      "description": "A blade humming with captured lightning."
+    },
+    {
+      "id": "bone_greataxe",
+      "name": "Bone Greataxe",
+      "weaponCategory": "axe",
+      "dmg": [20, 28],
+      "tier": 4,
+      "rarity": "epic",
+      "effects": [
+        { "op": "onCrit", "effects": [{ "op": "applyStatus", "type": "bleed", "duration": 3, "tickMult": 0.3, "target": "target" }] }
+      ],
+      "tags": ["two_handed", "necrotic"],
+      "description": "Carved from an ancient warlord's femur."
+    }
+  ]
+}

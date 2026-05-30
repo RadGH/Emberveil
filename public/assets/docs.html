@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>Documentation — game13</title>
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<style>
+/* M376 — cap docs page at a comfortable reading width. Long-form prose
+   becomes hard to scan on ultrawide displays; 1100px keeps line length
+   under control while leaving room for the side nav. */
+main.container { max-width: 1100px; margin: 0 auto; }
+.doc-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem; margin-top: 1rem; }
+.doc-view { max-width: 760px; }
+.doc-nav { border-right: 1px solid var(--border-subtle); padding-right: 1rem; }
+.doc-nav h3 { font-family: var(--font-display); margin: 0 0 .6rem; font-size: .9rem; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; }
+.doc-nav a { display: block; padding: .4rem .6rem; color: var(--ink); text-decoration: none; border-radius: 4px; font-size: .9rem; }
+.doc-nav a:hover { background: var(--card-h); color: var(--gold-glow); }
+.doc-nav a.active { background: var(--card); color: var(--gold-glow); border-left: 3px solid var(--gold); }
+.doc-view { background: var(--card); border: 1px solid var(--border-subtle); border-radius: var(--radius); padding: 1.2rem 1.6rem; min-height: 400px; }
+/* Article interior: only h2+ (h1 is the page title — one per page for SEO). */
+.doc-view h2:first-child { margin-top: 0; border-bottom: 1px solid var(--border); padding-bottom: .5rem; color: var(--gold-glow); font-size: 42px; }
+.doc-view h2 { font-family: var(--font-display); color: var(--gold); margin-top: 1.6rem; }
+.doc-view ul, .doc-view ol { padding-left: 1.6rem; margin-left: 0; }
+.doc-view h3 { color: var(--gold-glow); margin-top: 1.2rem; }
+.doc-view code { background: #0a0608; color: #ffc070; padding: 1px 5px; border-radius: 3px; font-size: .9em; }
+.doc-view pre { background: #0a0608; border: 1px solid var(--border-subtle); border-radius: 6px; padding: .8rem 1rem; overflow-x: auto; }
+.doc-view pre code { background: transparent; padding: 0; color: #e8d080; }
+.doc-view table { border-collapse: collapse; margin: .8rem 0; }
+.doc-view th, .doc-view td { border: 1px solid var(--border-subtle); padding: .4rem .7rem; text-align: left; }
+.doc-view th { background: var(--bg1); color: var(--gold); }
+.doc-view blockquote { border-left: 3px solid var(--gold); padding-left: 1rem; color: var(--muted); margin: 1rem 0; }
+.doc-view a { color: var(--gold-glow); }
+.doc-view ul, .doc-view ol { line-height: 1.7; }
+.doc-err { color: #ff9090; }
+@media (max-width: 720px) {
+  .doc-wrap { grid-template-columns: 1fr; }
+  .doc-nav { border-right: none; border-bottom: 1px solid var(--border-subtle); padding-right: 0; padding-bottom: .8rem; }
+}
+</style>
+</head>
+<body class="ev-themed">
+<main class="container">
+  <header class="page-header">
+    <h1>Documentation</h1>
+    <p class="sub">Canonical policy + reference docs. Source of truth lives in <code>public/docs/*.md</code>; edits propagate to every session.</p>
+  </header>
+
+  <div class="doc-wrap">
+    <nav class="doc-nav" id="docNav">
+      <h3>Reviews</h3>
+      <a data-doc="ux-review-m367.md">UX Review (M367)</a>
+      <h3 style="margin-top:1rem">Policies</h3>
+      <a data-doc="no-silent-shelving.md">No Silent Shelving</a>
+      <a data-doc="image-policy.md">Image Policy</a>
+      <a data-doc="asset-types.md">Asset Types</a>
+      <h3 style="margin-top:1rem">Reference</h3>
+      <a data-doc="prompt-templates.md">Prompt Templates</a>
+      <a data-doc="schema-reference.md">Schema Reference</a>
+      <a data-doc="mod-authoring.md">Mod Authoring</a>
+      <a data-doc="spell-mechanics.md">Spell Mechanics</a>
+      <h3 style="margin-top:1rem">Backend</h3>
+      <a data-doc="supabase-setup.md">Supabase Setup</a>
+    </nav>
+    <article class="doc-view" id="docView">
+      <p class="sub">Select a document from the list.</p>
+    </article>
+  </div>
+</main>
+
+<script>
+// Minimal markdown renderer — covers what our docs actually use.
+function escHtml(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function renderInline(s){
+  s = s.replace(/`([^`]+)`/g, (_,c)=>'<code>'+escHtml(c)+'</code>');
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  return s;
+}
+function renderMarkdown(md){
+  const lines = md.split('\n');
+  let out = [], i = 0, inCode = false, codeBuf = [];
+  function flushPara(buf){ if(buf.length){ out.push('<p>'+renderInline(escHtml(buf.join(' ')))+'</p>'); buf.length=0; } }
+  function isTableSep(l){ return /^\s*\|?(\s*:?-+:?\s*\|)+\s*:?-+:?\s*\|?\s*$/.test(l); }
+  let para = [];
+  while(i < lines.length){
+    const line = lines[i];
+    if(line.startsWith('```')){
+      flushPara(para);
+      if(inCode){ out.push('<pre><code>'+escHtml(codeBuf.join('\n'))+'</code></pre>'); codeBuf=[]; inCode=false; }
+      else { inCode = true; }
+      i++; continue;
+    }
+    if(inCode){ codeBuf.push(line); i++; continue; }
+    if(/^#{1,6}\s/.test(line)){
+      flushPara(para);
+      const m = line.match(/^(#{1,6})\s(.*)$/);
+      out.push(`<h${m[1].length}>${renderInline(escHtml(m[2]))}</h${m[1].length}>`);
+      i++; continue;
+    }
+    if(/^\s*$/.test(line)){ flushPara(para); i++; continue; }
+    if(/^>\s?/.test(line)){
+      flushPara(para);
+      const bq=[]; while(i<lines.length && /^>\s?/.test(lines[i])){ bq.push(lines[i].replace(/^>\s?/,'')); i++; }
+      out.push('<blockquote>'+renderInline(escHtml(bq.join(' ')))+'</blockquote>');
+      continue;
+    }
+    if(/^\s*[-*]\s/.test(line)){
+      flushPara(para);
+      const items=[]; while(i<lines.length && /^\s*[-*]\s/.test(lines[i])){ items.push(lines[i].replace(/^\s*[-*]\s/,'')); i++; }
+      out.push('<ul>'+items.map(it=>'<li>'+renderInline(escHtml(it))+'</li>').join('')+'</ul>');
+      continue;
+    }
+    if(/^\s*\d+\.\s/.test(line)){
+      flushPara(para);
+      const items=[]; while(i<lines.length && /^\s*\d+\.\s/.test(lines[i])){ items.push(lines[i].replace(/^\s*\d+\.\s/,'')); i++; }
+      out.push('<ol>'+items.map(it=>'<li>'+renderInline(escHtml(it))+'</li>').join('')+'</ol>');
+      continue;
+    }
+    // tables: header row + separator
+    if(line.includes('|') && i+1<lines.length && isTableSep(lines[i+1])){
+      flushPara(para);
+      const header = line.trim().replace(/^\||\|$/g,'').split('|').map(c=>c.trim());
+      i += 2;
+      const rows=[];
+      while(i<lines.length && lines[i].includes('|')){
+        rows.push(lines[i].trim().replace(/^\||\|$/g,'').split('|').map(c=>c.trim()));
+        i++;
+      }
+      let t='<table><thead><tr>'+header.map(h=>'<th>'+renderInline(escHtml(h))+'</th>').join('')+'</tr></thead><tbody>';
+      for(const r of rows){ t+='<tr>'+r.map(c=>'<td>'+renderInline(escHtml(c))+'</td>').join('')+'</tr>'; }
+      t+='</tbody></table>';
+      out.push(t);
+      continue;
+    }
+    para.push(line);
+    i++;
+  }
+  flushPara(para);
+  if(inCode) out.push('<pre><code>'+escHtml(codeBuf.join('\n'))+'</code></pre>');
+  return out.join('\n');
+}
+
+const view = document.getElementById('docView');
+const nav = document.getElementById('docNav');
+async function load(name){
+  for(const a of nav.querySelectorAll('a')) a.classList.toggle('active', a.dataset.doc===name);
+  view.innerHTML = '<p class="sub">Loading…</p>';
+  try {
+    const r = await fetch('../docs/'+name);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const md = await r.text();
+    view.innerHTML = renderMarkdown(md);
+    if(location.hash !== '#'+name) history.replaceState(null,'', '#'+name);
+  } catch(e){
+    view.innerHTML = '<p class="doc-err">Failed to load '+name+': '+e.message+'</p>';
+  }
+}
+nav.addEventListener('click', e => {
+  const a = e.target.closest('a[data-doc]');
+  if(!a) return;
+  e.preventDefault();
+  load(a.dataset.doc);
+});
+const initial = location.hash.replace(/^#/,'') || 'no-silent-shelving.md';
+load(initial);
+</script>
+</body>
+</html>

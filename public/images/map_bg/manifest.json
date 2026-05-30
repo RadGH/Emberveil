@@ -1,0 +1,73 @@
+{
+  "version": "M388",
+  "generated": "2026-04-30",
+  "model": "gpt-image-1.5",
+  "acts": [
+    {
+      "act": 1,
+      "biome": "border-roads",
+      "variants": ["v1", "v2", "v3"],
+      "default_variant": "v1",
+      "variant_notes": {
+        "v1": "canonical — dusk, torches, moonlight",
+        "v2": "alt — early dawn, dewy grass, mist",
+        "v3": "alt — stormy night, lightning, rain on flagstone"
+      }
+    },
+    {
+      "act": 2,
+      "biome": "ashen-wastes",
+      "variants": ["v1", "v2", "v3"],
+      "default_variant": "v1",
+      "variant_notes": {
+        "v1": "canonical — lava cracks, volcanic spires",
+        "v2": "alt — ash-fall storm, dim red-gray, no visible lava",
+        "v3": "alt — active caldera edge, distant erupting volcano"
+      }
+    },
+    {
+      "act": 3,
+      "biome": "shattered-hell",
+      "variants": ["v1", "v2", "v3"],
+      "default_variant": "v1",
+      "variant_notes": {
+        "v1": "canonical — purple necrotic, crystalline ceiling",
+        "v2": "alt — bone-littered, skull-pillars in distance",
+        "v3": "alt — flesh-cathedral, sickly green tint"
+      }
+    },
+    {
+      "act": 4,
+      "biome": "cosmic-rift",
+      "variants": ["v1", "v2", "v3"],
+      "default_variant": "v1",
+      "variant_notes": {
+        "v1": "canonical (re-rolled) — dark obsidian floor with caustic blue cracks",
+        "v2": "alt — nebula burst, vivid pink-purple sky over dark floor",
+        "v3": "alt — twin suns (cold blue + dim red), dual-color light"
+      }
+    },
+    {
+      "act": 5,
+      "biome": "primordial-nexus",
+      "variants": ["v1", "v2", "v3"],
+      "default_variant": "v1",
+      "variant_notes": {
+        "v1": "canonical (re-rolled) — dark stone, gold rune-edges only, diffuse gold light",
+        "v2": "alt — vertical gold-light columns, temple-pillared",
+        "v3": "alt — ritual dawn, distant cosmic rings, low mist"
+      }
+    },
+    {
+      "act": 6,
+      "biome": "dragon-expansion",
+      "variants": ["v1", "v2", "v3"],
+      "default_variant": "v1",
+      "variant_notes": {
+        "v1": "canonical — polished obsidian, gold inlay, distant hoard piles",
+        "v2": "alt — dragonfire-scarred, charred floor with ember cracks",
+        "v3": "alt — throne-hall with scale-pillars in distance"
+      }
+    }
+  ]
+}

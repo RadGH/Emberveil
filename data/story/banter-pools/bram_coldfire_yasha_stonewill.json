@@ -1,0 +1,60 @@
+[
+  {
+    "id": "bram_yasha_01",
+    "trigger": "nodeResolved",
+    "cooldown": 5,
+    "companionA": "bram_coldfire",
+    "companionB": "yasha_stonewill",
+    "lines": [
+      { "speaker": "bram_coldfire",   "text": "Do your teachings address what happens when the world ends?" },
+      { "speaker": "yasha_stonewill", "text": "We focus on what happens the moment before." }
+    ]
+  },
+  {
+    "id": "bram_yasha_02",
+    "trigger": "nodeResolved",
+    "cooldown": 6,
+    "companionA": "bram_coldfire",
+    "companionB": "yasha_stonewill",
+    "lines": [
+      { "speaker": "yasha_stonewill", "text": "You understand the veil better than most." },
+      { "speaker": "bram_coldfire",   "text": "I understand how to ask better questions about it." },
+      { "speaker": "yasha_stonewill", "text": "That is the same thing." }
+    ]
+  },
+  {
+    "id": "bram_yasha_03",
+    "trigger": "nodeResolved",
+    "cooldown": 7,
+    "companionA": "bram_coldfire",
+    "companionB": "yasha_stonewill",
+    "lines": [
+      { "speaker": "bram_coldfire",   "text": "The ritual the monks recorded — does your order still practice it?" },
+      { "speaker": "yasha_stonewill", "text": "Some things are not practiced. They are endured." }
+    ]
+  },
+  {
+    "id": "bram_yasha_04",
+    "trigger": "nodeResolved",
+    "cooldown": 8,
+    "companionA": "bram_coldfire",
+    "companionB": "yasha_stonewill",
+    "lines": [
+      { "speaker": "yasha_stonewill", "text": "You carry too many books." },
+      { "speaker": "bram_coldfire",   "text": "You carry too few." }
+    ]
+  },
+  {
+    "id": "bram_yasha_05",
+    "trigger": "nodeResolved",
+    "cooldown": 9,
+    "companionA": "bram_coldfire",
+    "companionB": "yasha_stonewill",
+    "lines": [
+      { "speaker": "bram_coldfire",   "text": "Are you afraid of what we might find at the rift?" },
+      { "speaker": "yasha_stonewill", "text": "I have been trained to face what cannot be run from." },
+      { "speaker": "bram_coldfire",   "text": "That's not what I asked." },
+      { "speaker": "yasha_stonewill", "text": "No. It is not." }
+    ]
+  }
+]

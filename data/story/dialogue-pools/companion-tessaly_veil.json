@@ -1,0 +1,326 @@
+{
+  "nodes": [
+    {
+      "id": "tessaly_intro_001",
+      "pool": "companion-tessaly_veil",
+      "companionId": "tessaly_veil",
+      "act": 1,
+      "biome": "fen",
+      "tone": "amused",
+      "speaker": "tessaly_veil",
+      "lines": [
+        "She drops out of a tree. Literally.",
+        "\"I've been following you for half a mile. You're either very confident or very unobservant.\""
+      ],
+      "choices": [
+        {
+          "id": "confident",
+          "text": "\"Confident.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 1 }, { "type": "set_flag", "flag": "companion_sable_met" }]
+        },
+        {
+          "id": "ask_why",
+          "text": "\"Why were you following us?\"",
+          "next": "#tessaly_reason",
+          "effects": [{ "type": "set_flag", "flag": "companion_sable_met" }]
+        }
+      ],
+      "nodes": {
+        "tessaly_reason": {
+          "lines": ["\"You're going the same direction I need to go, and there are fewer of you than the cult cell I've been avoiding.\" She spreads her hands. \"Practical.\""],
+          "choices": [{ "id": "accept", "text": "\"Come on, then.\"", "next": null, "effects": [] }]
+        }
+      }
+    },
+    {
+      "id": "tessaly_knives_001",
+      "pool": "companion-tessaly_veil",
+      "companionId": "tessaly_veil",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "practical",
+      "speaker": "tessaly_veil",
+      "lines": [
+        "She has twelve knives.",
+        "You count them while she sharpens them and wonder if that's too many or not enough."
+      ],
+      "choices": [
+        {
+          "id": "ask_number",
+          "text": "\"Twelve seems like a lot.\"",
+          "next": "#tessaly_twelve",
+          "effects": []
+        },
+        {
+          "id": "ask_technique",
+          "text": "[Perception - INT] Ask about her throwing technique.",
+          "skillCheck": { "skill": "perception", "stat": "INT", "dc": 10 },
+          "onPass": { "next": "#tessaly_teaches", "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 2 }] },
+          "onFail": { "next": null, "effects": [] }
+        }
+      ],
+      "nodes": {
+        "tessaly_twelve": {
+          "lines": ["\"I've lost three.\" She holds one up to the light. \"Twelve is nine plus backup.\""],
+          "choices": [{ "id": "go", "text": "\"Right.\"", "next": null, "effects": [] }]
+        },
+        "tessaly_teaches": {
+          "lines": ["She corrects your grip before you ask her to. \"Three fingers. Weight forward. You throw like someone who learned from a book.\""],
+          "choices": [{ "id": "go", "text": "\"I did, actually.\"", "next": null, "effects": [] }]
+        }
+      }
+    },
+    {
+      "id": "tessaly_past_001",
+      "pool": "companion-tessaly_veil",
+      "companionId": "tessaly_veil",
+      "act": 1,
+      "biome": "emberwood",
+      "tone": "guarded",
+      "speaker": "tessaly_veil",
+      "lines": [
+        "She doesn't talk about where she learned her skills.",
+        "\"Trades. Various. Nothing to do with the Veil, before you ask.\""
+      ],
+      "choices": [
+        {
+          "id": "push",
+          "text": "Push anyway.",
+          "next": "#tessaly_deflects",
+          "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": -1 }]
+        },
+        {
+          "id": "drop",
+          "text": "\"I wasn't going to ask.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 1 }]
+        }
+      ],
+      "nodes": {
+        "tessaly_deflects": {
+          "lines": ["\"Trades. Various.\" She says it again, exactly the same. The conversation is closed."],
+          "choices": [{ "id": "go", "text": "Accept that.", "next": null, "effects": [] }]
+        }
+      }
+    },
+    {
+      "id": "tessaly_poison_001",
+      "pool": "companion-tessaly_veil",
+      "companionId": "tessaly_veil",
+      "act": 2,
+      "biome": "plague_fen",
+      "tone": "professional",
+      "speaker": "tessaly_veil",
+      "lines": [
+        "She offers a vial. Green. Stoppered with wax.",
+        "\"Plague Fen has interesting flora. This renders you immune to three of the current active strains.\""
+      ],
+      "choices": [
+        {
+          "id": "drink",
+          "text": "Take the antidote.",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 2 }, { "type": "set_flag", "flag": "fen_poison_immunity" }]
+        },
+        {
+          "id": "ask_how",
+          "text": "\"How do you know it works?\"",
+          "next": "#tessaly_tested",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "tessaly_tested": {
+          "lines": ["\"I tested it.\" A brief pause. \"On myself.\" Another pause. \"I'm still here, so.\""],
+          "choices": [{ "id": "drink", "text": "Drink it.", "next": null, "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 1 }, { "type": "set_flag", "flag": "fen_poison_immunity" }] }]
+        }
+      }
+    },
+    {
+      "id": "tessaly_cult_encounter_001",
+      "pool": "companion-tessaly_veil",
+      "companionId": "tessaly_veil",
+      "act": 2,
+      "biome": "veilscar",
+      "tone": "tense",
+      "speaker": "tessaly_veil",
+      "lines": [
+        "She freezes when the cult patrol passes.",
+        "When they're gone: \"I know that sigil. I've seen it on someone I used to trust.\""
+      ],
+      "choices": [
+        {
+          "id": "ask",
+          "text": "\"Who?\"",
+          "next": "#tessaly_person",
+          "effects": []
+        },
+        {
+          "id": "leave_it",
+          "text": "\"You don't have to tell me.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 2 }]
+        }
+      ],
+      "nodes": {
+        "tessaly_person": {
+          "lines": ["\"My employer, three contracts ago.\" Her voice is very level. \"I didn't know what I was working for. Now I do.\""],
+          "choices": [{ "id": "believe", "text": "\"I believe you.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 3 }] }, { "id": "skeptical", "text": "\"That's convenient.\"", "next": "#tessaly_stung", "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": -2 }] }]
+        },
+        "tessaly_stung": {
+          "lines": ["She looks at you for a moment. \"Yes. I suppose it is.\" She says nothing more for the rest of the day."],
+          "choices": [{ "id": "go", "text": "Move on.", "next": null, "effects": [] }]
+        }
+      }
+    },
+    {
+      "id": "tessaly_skill_moment_001",
+      "pool": "companion-tessaly_veil",
+      "companionId": "tessaly_veil",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "impressive",
+      "speaker": null,
+      "lines": [
+        "She opens the locked gatehouse in under thirty seconds.",
+        "She glances back. \"It was a three-tumbler. Almost offensive.\""
+      ],
+      "choices": [
+        {
+          "id": "compliment",
+          "text": "\"Remind me not to lock anything around you.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 1 }]
+        },
+        {
+          "id": "learn",
+          "text": "[Mechanisms - INT] Ask her to teach you.",
+          "skillCheck": { "skill": "mechanisms", "stat": "INT", "dc": 12 },
+          "onPass": { "next": null, "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 3 }] },
+          "onFail": { "next": "#tessaly_teaches_slowly", "effects": [] }
+        }
+      ],
+      "nodes": {
+        "tessaly_teaches_slowly": {
+          "lines": ["\"We'll need more time than we have. But I'll start you on the basics.\""],
+          "choices": [{ "id": "go", "text": "Accept the offer.", "next": null, "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 2 }] }]
+        }
+      }
+    },
+    {
+      "id": "tessaly_approval_high_001",
+      "pool": "companion-tessaly_veil",
+      "companionId": "tessaly_veil",
+      "act": 2,
+      "biome": "crossroads",
+      "tone": "rare-warmth",
+      "speaker": "tessaly_veil",
+      "lines": [
+        "\"You're better to travel with than I expected.\"",
+        "She says it like she's surprised by herself for saying it."
+      ],
+      "choices": [
+        {
+          "id": "thanks",
+          "text": "\"You're not what I expected either.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 1 }]
+        }
+      ]
+    },
+    {
+      "id": "tessaly_reveal_001",
+      "pool": "companion-tessaly_veil",
+      "companionId": "tessaly_veil",
+      "act": 3,
+      "biome": "riftgate",
+      "tone": "vulnerable",
+      "speaker": "tessaly_veil",
+      "lines": [
+        "\"The name 'Veil' in my name is a coincidence.\"",
+        "A long pause. \"My grandmother named me. She was a veil-touched seer. She died before I understood what that meant.\""
+      ],
+      "choices": [
+        {
+          "id": "ask_meaning",
+          "text": "Ask what it means to her now.",
+          "next": "#tessaly_meaning",
+          "effects": []
+        },
+        {
+          "id": "accept",
+          "text": "\"It's a good name regardless.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 2 }]
+        }
+      ],
+      "nodes": {
+        "tessaly_meaning": {
+          "lines": ["\"It means I've spent my whole life being associated with something my grandmother saw in a vision.\" She tilts her head. \"Apparently it was accurate.\""],
+          "choices": [{ "id": "go", "text": "\"Grandmothers usually are.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 1 }] }]
+        }
+      }
+    },
+    {
+      "id": "tessaly_face_wrap_001",
+      "pool": "companion-tessaly_veil",
+      "companionId": "tessaly_veil",
+      "act": 1,
+      "biome": "stoneward",
+      "tone": "practical-dark",
+      "speaker": "tessaly_veil",
+      "lines": [
+        "She wears the face-wrap in the Stoneward, which is not unreasonable.",
+        "She keeps it on in the inn, which is unusual."
+      ],
+      "choices": [
+        {
+          "id": "ask",
+          "text": "Ask why she keeps it on inside.",
+          "next": "#tessaly_keeps_on",
+          "effects": []
+        },
+        {
+          "id": "ignore",
+          "text": "It's not your business.",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 1 }]
+        }
+      ],
+      "nodes": {
+        "tessaly_keeps_on": {
+          "lines": ["\"Habit. And the Stoneward keeps records of visitors. Faces specifically.\" She glances at you. \"I'd rather not be in the records.\""],
+          "choices": [{ "id": "understand", "text": "\"Understood. We'll handle the registration.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 2 }] }]
+        }
+      }
+    },
+    {
+      "id": "tessaly_rift_ready_001",
+      "pool": "companion-tessaly_veil",
+      "companionId": "tessaly_veil",
+      "act": 3,
+      "biome": "sovereigns_approach",
+      "tone": "dry-ready",
+      "speaker": "tessaly_veil",
+      "lines": [
+        "She's checking each knife with the focused calm of someone who expects to use all of them.",
+        "\"Nine opponents to a knife is statistically manageable. Assuming they come in sequence.\""
+      ],
+      "choices": [
+        {
+          "id": "practical",
+          "text": "\"They won't come in sequence.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 1 }]
+        },
+        {
+          "id": "joke",
+          "text": "\"Then we'll have to fight them until they're in sequence.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "tessaly_veil", "amount": 2 }]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "node": {
+    "id": "arrival_sovereigns_approach_yiibh0i_002",
+    "pool": "arrival",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "tense",
+    "speaker": "bram_coldfire",
+    "lines": [
+      "Ahead lies the Sovereign's domain. Tread carefully.",
+      "Every step could summon its wrath."
+    ],
+    "choices": [
+      {
+        "id": "approach_cautiously",
+        "text": "Move with stealth.",
+        "skillCheck": {
+          "skill": "stealth",
+          "stat": "DEX",
+          "dc": 14
+        },
+        "onPass": {
+          "next": null,
+          "effects": []
+        },
+        "onFail": {
+          "next": "#alerted",
+          "effects": []
+        }
+      },
+      {
+        "id": " charge_forward",
+        "text": "Let's confront whatever lies ahead.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "alerted": {
+        "lines": [
+          "You stumble, a branch snaps beneath your boot.",
+          "A shadow shifts, alert and hungry."
+        ],
+        "choices": [
+          {
+            "id": "retreat",
+            "text": "Back away slowly.",
+            "next": null,
+            "effects": []
+          },
+          {
+            "id": "prepare_fight",
+            "text": "Ready yourselves for combat.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"approach_cautiously\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-20T23:55:18.237Z"
+}

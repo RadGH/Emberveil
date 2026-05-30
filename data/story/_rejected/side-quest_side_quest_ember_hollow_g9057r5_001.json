@@ -1,0 +1,41 @@
+{
+  "node": {
+    "id": "side_quest_ember_hollow_g9057r5_001",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "ember_hollow",
+    "tone": "resolute",
+    "speaker": "elderwood_hermit",
+    "lines": [
+      "This place is hollow now. It cries for aid."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to help restore the shrine.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_restore_embershrine",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "ember_shrine_active"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "It's not our fight.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "unknown flag \"ember_shrine_active\" in effect"
+  ],
+  "rejectedAt": "2026-05-21T00:08:47.868Z"
+}

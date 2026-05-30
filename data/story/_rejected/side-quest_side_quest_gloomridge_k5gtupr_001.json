@@ -1,0 +1,42 @@
+{
+  "node": {
+    "id": "side_quest_gloomridge_k5gtupr_001",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "gloomridge",
+    "tone": "wary",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "Recently, shadows have been moving near the old quarry.",
+      "I swear I saw something lurking among the stones."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "Agree to check the quarry.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_quarry_investigation",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "quarry_investigation_active"
+          }
+        ]
+      },
+      {
+        "id": "dismiss",
+        "text": "It's probably nothing. Move on.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "unknown flag \"quarry_investigation_active\" in effect"
+  ],
+  "rejectedAt": "2026-05-21T00:11:56.354Z"
+}

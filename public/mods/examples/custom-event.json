@@ -1,0 +1,44 @@
+{
+  "id": "example_custom_event",
+  "version": "1.0.0",
+  "name": "Custom Event Example",
+  "events": [
+    {
+      "id": "hermits_bargain",
+      "title": "The Hermit's Bargain",
+      "actRange": [2, 4],
+      "weight": 10,
+      "nodes": [
+        {
+          "id": "start",
+          "text": "A robed hermit steps from the shadows. 'A trade, travelers. My herbs for a story you'd rather forget.'",
+          "choices": [
+            { "text": "Accept the trade", "next": "accept" },
+            { "text": "Refuse politely", "next": "refuse" },
+            { "text": "Draw steel", "next": "fight" }
+          ]
+        },
+        {
+          "id": "accept",
+          "text": "The hermit smiles thinly. Your memory dims — but three potent salves warm your pack.",
+          "effects": [
+            { "op": "damage", "target": "self", "flat": 0 },
+            { "op": "setFlag", "flag": "traded_memory", "duration": -1 }
+          ],
+          "end": true
+        },
+        {
+          "id": "refuse",
+          "text": "The hermit nods. 'Wise. Most aren't.' He offers a single salve in parting.",
+          "end": true
+        },
+        {
+          "id": "fight",
+          "text": "The hermit sighs and unfurls a staff of white bone.",
+          "combat": "hermit_encounter",
+          "end": true
+        }
+      ]
+    }
+  ]
+}

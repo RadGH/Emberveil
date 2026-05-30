@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<title>Tools &middot; Brainstorm &mdash; RSG</title>
+<link rel="stylesheet" href="./_tool-styles.css">
+<style>
+  :root {
+    --bg: #0b0810; --panel: #1a1220; --panel-alt: #12101a; --border: #2a1f30;
+    --gold: #e8a020; --gold-dim: #a67818; --crimson: #c04030; --parchment: #e8d8b8;
+    --muted: #8a7a6a; --accent: #60a0e0; --warn: #e85020; --green: #40a060; --purple: #a060e0;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--parchment);
+    font-family: 'Inter','Segoe UI',system-ui,sans-serif; padding: 1rem 1rem 7rem; line-height: 1.45; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  h1 { font-family: 'Cinzel',Georgia,serif; color: var(--gold); font-size: 1.4rem;
+    margin: 0 0 0.25rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+    background: linear-gradient(180deg,#f8d880 0%,#e8a020 40%,#c04030 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  p.sub { color: var(--muted); font-size: 0.85rem; margin: 0 0 1rem; }
+
+  .controls { position: sticky; top: 0; z-index: 50;
+    background: rgba(11,8,16,0.95); backdrop-filter: blur(6px);
+    padding: 0.6rem 0; margin: 0 -1rem 1rem; padding-left: 1rem; padding-right: 1rem;
+    border-bottom: 1px solid var(--border); display: flex; gap: 0.5rem; flex-wrap: wrap;
+    align-items: center; }
+  .controls input[type=text] { background: var(--panel); border: 1px solid var(--border);
+    color: var(--parchment); padding: 0.45rem 0.7rem; border-radius: 4px; font: inherit;
+    font-size: 0.85rem; flex: 1; min-width: 180px; min-height: 36px; }
+  .controls select, .controls .ch-btn { background: var(--panel); border: 1px solid var(--border);
+    color: var(--parchment); padding: 0.45rem 0.7rem; border-radius: 4px; font: inherit;
+    font-size: 0.78rem; cursor: pointer; min-height: 36px; }
+  .controls .ch-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .tag-bar { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-bottom: 0.75rem; }
+  .tag-pill { background: var(--panel); border: 1px solid var(--border); color: var(--muted);
+    padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.65rem;
+    letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+    user-select: none; min-height: 28px; display: inline-flex; align-items: center; }
+  .tag-pill.on { background: rgba(232,160,32,0.18); color: var(--gold); border-color: var(--gold); }
+
+  .summary-bar { background: var(--panel); border: 1px solid var(--border); padding: 0.7rem 1rem;
+    border-radius: 6px; margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;
+    align-items: center; font-size: 0.85rem; }
+  .summary-bar .selected-count { color: var(--gold); font-weight: 700; font-size: 1rem; }
+  .summary-bar .copy-btn { background: rgba(232,160,32,0.2); border: 1px solid var(--gold);
+    color: var(--gold); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;
+    font-weight: 700; letter-spacing: 0.05em; font-size: 0.8rem; min-height: 44px;
+    text-transform: uppercase; }
+  .summary-bar .copy-btn:hover { background: rgba(232,160,32,0.35); color: #fff; }
+  .summary-bar .copy-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .summary-bar .clear-btn { background: transparent; border: 1px solid var(--border);
+    color: var(--muted); padding: 0.4rem 0.85rem; border-radius: 4px; cursor: pointer;
+    font-size: 0.75rem; min-height: 36px; }
+  .summary-bar .clear-btn:hover { color: var(--warn); border-color: var(--warn); }
+
+  .section { margin-bottom: 1.5rem; }
+  .section-h { display: flex; justify-content: space-between; align-items: baseline;
+    margin: 0 0 0.5rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+  .section-h h2 { font-family: 'Cinzel',serif; color: var(--gold); font-size: 1rem;
+    margin: 0; letter-spacing: 0.06em; text-transform: uppercase; }
+  .section-h .meta { color: var(--muted); font-size: 0.7rem; }
+  .section-intro { color: var(--muted); font-size: 0.78rem; margin: 0 0 0.6rem; font-style: italic; }
+
+  .item { display: flex; gap: 0.7rem; padding: 0.6rem 0.75rem; border-radius: 5px;
+    background: var(--panel-alt); border: 1px solid var(--border); margin-bottom: 0.4rem;
+    cursor: pointer; transition: all 0.12s; }
+  .item:hover { border-color: rgba(232,160,32,0.4); background: rgba(26,18,32,0.85); }
+  .item.checked { background: rgba(64,160,96,0.1); border-color: rgba(64,160,96,0.4); }
+  .item input { margin-top: 0.15rem; flex-shrink: 0; width: 16px; height: 16px;
+    accent-color: var(--gold); cursor: pointer; }
+  .item-body { flex: 1; min-width: 0; }
+  .item-title { font-weight: 700; color: var(--parchment); font-size: 0.85rem; margin: 0 0 0.15rem; }
+  .item.checked .item-title { color: #aef0c0; }
+  .item-rationale { color: var(--muted); font-size: 0.75rem; line-height: 1.4; }
+  .item-meta { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.3rem; }
+  .badge { font-size: 0.6rem; padding: 0.1rem 0.4rem; border-radius: 3px; letter-spacing: 0.06em;
+    text-transform: uppercase; font-weight: 700; border: 1px solid; }
+  .badge.eff-small  { color: #60c080; border-color: #60c080; background: rgba(96,192,128,0.1); }
+  .badge.eff-medium { color: #e8a020; border-color: #e8a020; background: rgba(232,160,32,0.1); }
+  .badge.eff-large  { color: #e85020; border-color: #e85020; background: rgba(232,80,32,0.1); }
+  .badge.tag { color: var(--accent); border-color: rgba(96,160,224,0.4); background: rgba(96,160,224,0.08); }
+  .item.hidden { display: none; }
+  /* Approved items — non-interactive, displayed with green checkmark */
+  .item.approved { background: rgba(64,160,96,0.08); border-color: rgba(64,160,96,0.35); cursor: default; }
+  .item.approved:hover { border-color: rgba(64,160,96,0.5); }
+  .item.approved .approved-mark { color: #7ec67e; font-size: 1.1rem; font-weight: 900; line-height: 1; margin-top: 0.1rem; flex-shrink: 0; width: 16px; text-align: center; }
+  .item.approved .item-title { color: #aef0c0; }
+  .item.approved .badge.approved-badge { color: #7ec67e; border-color: #7ec67e; background: rgba(126,198,126,0.12); }
+
+  .approved-section { background: rgba(64,160,96,0.05); border: 1px solid rgba(64,160,96,0.25); border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1.5rem; }
+  .approved-section .section-h h2 { color: #7ec67e; }
+  .approved-section .section-h { border-bottom-color: rgba(64,160,96,0.25); }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: #0a0510; padding: 0.7rem 1.4rem; border-radius: 4px;
+    font-weight: 700; font-size: 0.85rem; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(-0.3rem); }
+</style>
+</head>
+<body class="ev-themed">
+<div class="wrap">
+  <h1>Brainstorm</h1>
+  <p class="sub">100+ feature candidates surfaced from a screen / website / tooling audit. Tap items to select; the bar at the bottom lets you Copy Prompt to hand the selection back to Claude. <strong style="color:#7ec67e">Approved items</strong> have been moved to the dedicated section below and are tracked in <a href="./wishlist.html" style="color:var(--gold)">wishlist.html</a>.</p>
+
+  <div class="controls">
+    <input type="text" id="filter-q" placeholder="Search title / rationale…" autocomplete="off">
+    <select id="filter-effort">
+      <option value="">All efforts</option>
+      <option value="small">Small (1–3d)</option>
+      <option value="medium">Medium (3–7d)</option>
+      <option value="large">Large (1–2wk+)</option>
+    </select>
+    <button class="ch-btn" type="button" id="btn-collapse">Collapse all</button>
+    <button class="ch-btn" type="button" id="btn-expand">Expand all</button>
+  </div>
+
+  <div class="tag-bar" id="tag-bar"><!-- populated by JS --></div>
+
+  <div class="summary-bar">
+    <div><span class="selected-count" id="sel-count">0</span> selected</div>
+    <button class="copy-btn" type="button" id="copy-btn" disabled>Copy Prompt</button>
+    <button class="clear-btn" type="button" id="clear-btn">Clear selection</button>
+    <div style="color:var(--muted);font-size:0.72rem;flex:1;text-align:right">
+      Selection persists across reloads (localStorage). Selecting the section header (★) checks every visible item in that section.
+    </div>
+  </div>
+
+  <div id="sections"><!-- populated by JS --></div>
+</div>
+
+<div class="toast" id="toast">Copied to clipboard</div>
+
+<script type="module">
+const STORAGE = 'rsg.brainstorm.selection.v1';
+
+// ── Data ──────────────────────────────────────────────────────────────────
+// Each item: { id, title, rationale, effort, tag }. id is auto-generated below.
+const SECTIONS = [
+  { key: 'screens', title: '1. Screen-by-screen UX audit', intro: 'Concrete UX changes per screen. Includes the Spells/Inventory unification proposal and the map-button rename.', items: [
+    { title: 'Unified Spells / Passives / Attributes / Inventory tabbed panel', rationale: 'Reduce screen count; quick item swaps during skill-point allocation flow.', effort:'medium', tag:'ui' },
+    { title: 'Rename map "Inventory" button to "Party" (opens unified Party + Inventory)', rationale: 'Clearer intent; collapses the Inventory + Town notification-bubble overlap.', effort:'medium', tag:'ui' },
+    { title: 'Notification bubble disambiguation: Inventory tab gets bubble for unequipped/upgrades; map Town button shows level-up points only', rationale: 'Eliminates the misleading "skill points available" bubble on the map Inventory button.', effort:'small', tag:'ui' },
+    { title: 'Quick-equip toast on item pickup', rationale: 'Show "Auto-equipped X to Y" or "X is an upgrade for Z — equip?" when loot drops, so the player doesn\'t have to open inventory after every fight.', effort:'small', tag:'ui' },
+    { title: 'Combat preview tooltip on skill upgrade selection', rationale: '"This upgrade adds N% damage / changes targeting to AoE" — contextual hint when picking talents.', effort:'small', tag:'ui' },
+    { title: 'Drag-drop equip from backpack', rationale: 'Faster tactile feedback on mobile; current click-loop requires multiple taps.', effort:'medium', tag:'ui' },
+    { title: 'Scroll-position memory on InventoryScreen tab switch', rationale: 'Preserve scroll depth when jumping between characters.', effort:'small', tag:'ui' },
+    { title: 'Party member sort options (level / role / dps / tank)', rationale: 'Faster reordering; sort is fixed today.', effort:'small', tag:'ui' },
+    { title: 'Bench indicator badge ("N inactive")', rationale: 'Visibility into bench size without opening Party tab.', effort:'small', tag:'ui' },
+    { title: 'MapScreen zone fast-travel as dropdown (not tabs)', rationale: 'Reduce horizontal width on phones once 6+ zones are unlocked.', effort:'medium', tag:'ui' },
+    { title: 'Status effect tooltips show duration remaining (not just type)', rationale: 'Players can\'t tell when burns / blocks expire without counting rounds.', effort:'small', tag:'ui' },
+    { title: 'Codex auto-open on first-encounter monster', rationale: 'Teach mechanics on first sight without forcing a lookup.', effort:'medium', tag:'ui' },
+    { title: 'Dual-comparison mode in Inventory (compare both rings / offhand at once)', rationale: 'Better multi-slot planning.', effort:'small', tag:'ui' },
+    { title: 'Party screen role icons (Tank / DPS / Support / Healer)', rationale: 'Visual scan vs reading stats.', effort:'small', tag:'ui' },
+    { title: 'Boss-intro splash card before boss combat', rationale: 'Sells the moment; differentiates from regular fights.', effort:'medium', tag:'ui' },
+  ]},
+
+  { key: 'gameplay', title: '2. New gameplay elements', intro: 'Combat depth, status mechanics, new node types.', items: [
+    { title: 'Combo system (3+ hits same type → bonus multiplier)', rationale: 'Reward player tactics; depth beyond raw stats.', effort:'medium', tag:'combat' },
+    { title: 'Per-turn stance toggle (Defensive / Balanced / Offensive)', rationale: 'Simple strategic choice each turn; affects dmg / armor / regen tradeoff.', effort:'medium', tag:'combat' },
+    { title: 'Environmental tile hazards (fire, ice, poison clouds in combat arena)', rationale: 'Position matters; adds puzzle layer.', effort:'large', tag:'combat' },
+    { title: 'Multi-phase boss fights (HP checkpoints unlock new attack patterns)', rationale: 'Generalize the Unraveler pattern to 3-5 other final bosses.', effort:'large', tag:'combat' },
+    { title: 'Companion level-sync option (scale companion to party avg)', rationale: 'Reduce friction when swapping companions mid-act.', effort:'small', tag:'gameplay' },
+    { title: 'Flee from combat (DEX check; failure costs gold)', rationale: 'Recovery option early-act instead of auto-wipe.', effort:'medium', tag:'combat' },
+    { title: 'Interrupt system (fast heroes interrupt slow ones on crit)', rationale: 'Natural consequence of attack-speed; adds risk.', effort:'small', tag:'combat' },
+    { title: 'Steal-buff mechanic (Rogue) — pull enemy buffs to self', rationale: 'New effect type; high-skill play.', effort:'small', tag:'combat' },
+    { title: 'Bleed-stack burst finisher skill', rationale: 'Make bleed-focused builds rewarding beyond passive DoT.', effort:'medium', tag:'combat' },
+    { title: 'Curse system (negative buff that spreads on death)', rationale: 'Differentiate curses from poison/burn; Warlock identity.', effort:'medium', tag:'combat' },
+    { title: 'Knockback / push mechanics on melee hits', rationale: 'Position changes mid-combat; interacts with hazard tiles.', effort:'large', tag:'combat' },
+    { title: 'Cover / line-of-sight (ranged blocked by allies)', rationale: 'Tactical positioning layer; affects healer placement.', effort:'large', tag:'combat' },
+    { title: 'Resonance: matching elemental stacks → AoE burst', rationale: 'Combo fire+burn or ice+freeze for bonus damage.', effort:'medium', tag:'combat' },
+    { title: 'Cursed legendaries (positive stat + negative side effect)', rationale: 'High-rarity tradeoffs; Black Market tie-in.', effort:'medium', tag:'content' },
+    { title: 'New node type: Travelling merchant (stops on the path; one-time stock)', rationale: 'Adds urgency / decision moment outside of towns.', effort:'medium', tag:'gameplay' },
+    { title: 'New node type: Skill check (single attribute roll, success/fail branches)', rationale: 'More variety than combat/dialog; rewards stat investment.', effort:'small', tag:'gameplay' },
+  ]},
+
+  { key: 'content', title: '3. New content', intro: 'Classes, acts, bosses, companions, items, lore.', items: [
+    { title: 'Act 7: Hidden realm (post-Act-6 epilogue, NG+ exclusive)', rationale: 'Extend endgame; reward mastery playthroughs.', effort:'large', tag:'content' },
+    { title: '5 new companion archetypes (tank / buffer / debuffer / healer / summoner)', rationale: 'Current companions are mostly DPS — diversify.', effort:'large', tag:'content' },
+    { title: '40 new affixes (elemental combos, conditional triggers, set bonuses)', rationale: 'Deepen itemization beyond the current ~30 affixes.', effort:'large', tag:'content' },
+    { title: 'Boss-themed loot tables (e.g. Unraveler always drops void-themed items)', rationale: 'Memorable rewards for memorable fights.', effort:'medium', tag:'content' },
+    { title: 'Craftable unique items (5/act, recipe unlocks on boss kill)', rationale: 'Bridge merchant/blacksmith/enchanter workflows.', effort:'medium', tag:'content' },
+    { title: 'Hidden boss encounters (gated by rare-loot-finds or stat thresholds)', rationale: 'Easter eggs for completionists / speedrunners.', effort:'medium', tag:'content' },
+    { title: 'Companion subquests (tavern dialog → personal arc → stat boost)', rationale: 'Deepen companion narrative beyond pure stats.', effort:'large', tag:'content' },
+    { title: 'Recurring rival encounter (scales with party level, mini-boss)', rationale: 'Combat variety; non-linear progression feel.', effort:'medium', tag:'content' },
+    { title: '8 new dialogue branches per act (gated on party comp / past choices)', rationale: 'Replay value; story is mostly linear today.', effort:'large', tag:'content' },
+    { title: 'Pet-breeding / training system (companions pass traits to offspring)', rationale: 'Long-term engagement goal alternative to hiring.', effort:'large', tag:'content' },
+    { title: 'Seasonal events (act-specific limited-time challenges)', rationale: 'Drive recurring engagement; rotate cosmetics.', effort:'large', tag:'content' },
+    { title: 'Procedural challenge dungeon (random Act 1-4 enemies + twists)', rationale: 'Replayable post-game content for build-testing.', effort:'medium', tag:'content' },
+    { title: 'Artifact relic weapons (act-boss drops, soulbound, flavor text)', rationale: 'Memorable loot tied to story beats.', effort:'medium', tag:'content' },
+    { title: 'Guild faction quests (Guild Hall → favor → exclusive rewards)', rationale: 'Parallel progression axis.', effort:'large', tag:'content' },
+    { title: 'Companion class-up (companion becomes hero class, can dual-class)', rationale: 'Persistent companion growth; merge party/companion gap.', effort:'large', tag:'content' },
+  ]},
+
+  { key: 'expansions', title: '4. Expansions to existing features', intro: 'Make existing systems richer.', items: [
+    { title: 'Crafting recipe unlocks via lore-node exploration', rationale: 'Make Blacksmith/Enchanter discovery dynamic instead of static stock.', effort:'medium', tag:'content' },
+    { title: 'Tap weapon cosmetic skins (achievement-locked, cosmetic only)', rationale: 'Reward mastery; visual variety.', effort:'small', tag:'content' },
+    { title: 'Achievement tiers (bronze → silver → gold → platinum → diamond)', rationale: 'Extend ceiling; current 15 are all binary.', effort:'small', tag:'content' },
+    { title: 'Dialog skill-check failure consequences (combat, stat loss)', rationale: 'Make dialog less binary; tension matters.', effort:'medium', tag:'content' },
+    { title: 'Quest log branch tree visualization', rationale: 'QuestLogScreen is linear; show decision tree.', effort:'medium', tag:'ui' },
+    { title: 'Passive tree visual graph (PoE-style interconnected nodes)', rationale: 'Current passives are flat list; visual aid.', effort:'large', tag:'content' },
+    { title: 'Spell categorization in SkillTreeScreen (elemental / phys / heal tabs)', rationale: 'Reduce cognitive load on 14 classes × 4 skills.', effort:'small', tag:'ui' },
+    { title: 'Searchable affix legend / catalog with roll ranges', rationale: 'Currently no index; only see affixes on item tooltips.', effort:'small', tag:'devtool' },
+    { title: 'Tavern companion generator (custom class / appearance / personality)', rationale: 'Deepen companion ownership; leverage seeded RNG.', effort:'medium', tag:'content' },
+    { title: 'Hardcore monument on title screen (display fallen heroes)', rationale: 'Honor losses; community feature.', effort:'medium', tag:'content' },
+    { title: 'Fame-locked appearance / weapon variety unlocks', rationale: 'Long-term carrot; fame is invisible today.', effort:'medium', tag:'content' },
+    { title: 'Transmogrification (cosmetic-only item recolor)', rationale: 'Customize looks without sacrificing gear.', effort:'small', tag:'content' },
+    { title: 'Enchanter upgrade preview (before/after stats on hover)', rationale: 'Half-done per CLAUDE.md; finalize the tooltip.', effort:'small', tag:'ui' },
+    { title: 'Potion belt (combat-quick consumables, separate from inventory)', rationale: 'QoL for healing flow; UX win.', effort:'medium', tag:'ui' },
+    { title: 'Boss-specific dialogue preludes (every boss gets a 2-3 line intro)', rationale: 'Sells stakes; cheap content.', effort:'small', tag:'content' },
+  ]},
+
+  { key: 'a11y', title: '5. Accessibility', intro: 'Audit pass — no dedicated a11y work to date.', items: [
+    { title: 'Colorblind palettes (deuteranopia / protanopia / tritanopia)', rationale: 'Rarity colors today are red/blue/yellow/orange — collide for ~8% of players.', effort:'medium', tag:'accessibility' },
+    { title: 'Screen-reader support (ARIA labels, semantic-HTML audit)', rationale: 'Currently zero a11y instrumentation; full audit needed.', effort:'large', tag:'accessibility' },
+    { title: 'Font-size scaling (Settings → 80%/100%/120%/150%)', rationale: 'Fixed 1rem today; mobile readability win.', effort:'medium', tag:'accessibility' },
+    { title: 'Keyboard navigation across screens (arrow + enter)', rationale: 'Mouse/touch only today; unblocks desktop power users + a11y users.', effort:'large', tag:'accessibility' },
+    { title: 'Tap-target validation (all buttons ≥ 44×44px per WCAG)', rationale: 'Many tooltip-trigger areas likely undersized on mobile.', effort:'medium', tag:'accessibility' },
+    { title: 'Sound-cue toggles (turn-ready, combat-end, loot-drop beeps)', rationale: 'Low-vision aid; also useful low-volume.', effort:'small', tag:'accessibility' },
+    { title: 'Reduce-motion toggle (kill parallax, screen wipes)', rationale: 'Already partial; expand coverage.', effort:'medium', tag:'accessibility' },
+    { title: 'High-contrast theme (boost text/button contrast)', rationale: 'Low-vision aid; dark theme only today.', effort:'medium', tag:'accessibility' },
+    { title: 'Plain-language status descriptions (not just icon names)', rationale: 'Cognitive accessibility; avoid jargon.', effort:'small', tag:'accessibility' },
+    { title: 'Cooldown audio cue + visible round timer', rationale: 'Help disabled players track turn order without counting.', effort:'small', tag:'accessibility' },
+    { title: 'Subtitle / caption mode for combat log', rationale: 'Screen-reader friendly real-time combat narration.', effort:'medium', tag:'accessibility' },
+    { title: 'One-handed mode layout (controls collapsed to bottom-right)', rationale: 'Holding-phone-with-baby use case.', effort:'medium', tag:'accessibility' },
+  ]},
+
+  { key: 'devtool', title: '6. Claude-driven simulators & benchmarks', intro: 'What data + APIs would let a Claude agent auto-balance the game.', items: [
+    { title: 'Headless combat simulator API (spawn combatants, run N rounds, return stats)', rationale: 'Currently Monte Carlo lives in scripts; expose as a clean Node API for Claude to call.', effort:'medium', tag:'devtool' },
+    { title: 'Batch rebalance reports (test 50 skill tweaks in parallel, compare win-rates)', rationale: 'Currently serial; parallelize + CSV export.', effort:'medium', tag:'devtool' },
+    { title: 'Automated end-to-end playthrough (seeded RNG, full Act 1-4 run, softlock detection)', rationale: 'Smoke test after balance changes.', effort:'large', tag:'devtool' },
+    { title: 'Regression alerts on rebalance (alert if Act 1 win-rate drops >10%)', rationale: 'Safety net; currently manual comparison.', effort:'medium', tag:'devtool' },
+    { title: 'Item-generation validator (every affix rolls within bounds)', rationale: 'Catch balance bugs early.', effort:'small', tag:'devtool' },
+    { title: 'Party composition analyzer (recommend optimal team for each act/boss)', rationale: 'Build recommendation engine.', effort:'large', tag:'devtool' },
+    { title: 'Affix coverage report (which affixes never appear in Act 1-2 loot)', rationale: 'Identify dead content; gap analysis.', effort:'small', tag:'devtool' },
+    { title: 'Combat-log replayer (save fight trace JSON, replay visually on demand)', rationale: 'Debug tool; invaluable for balance QA.', effort:'medium', tag:'devtool' },
+    { title: 'Status-effect interaction matrix (all 2-effect combos, computed outcomes)', rationale: 'Identify unintended synergies.', effort:'small', tag:'devtool' },
+    { title: 'Encounter difficulty rating (predicted win-rate, flag too-hard fights)', rationale: 'Proactive balance feedback; uses simulator.', effort:'medium', tag:'devtool' },
+    { title: 'Talent-tree path analyzer (min levels to unlock all skills per class)', rationale: 'Validate skill gating.', effort:'small', tag:'devtool' },
+    { title: 'Save-file load-tester (load 100 random saves, check for crashes)', rationale: 'Prevent save-corruption regressions.', effort:'small', tag:'devtool' },
+    { title: 'Loot distribution audit (drop chance per act; flag rare over-drop)', rationale: 'Balance economy beyond gut-check.', effort:'medium', tag:'devtool' },
+    { title: 'Player-build recorder (export equipped gear + skills as a "loadout" JSON)', rationale: 'Lets the user share builds + lets Claude analyse popular ones.', effort:'small', tag:'devtool' },
+    { title: 'Difficulty-curve dashboard (chart: average level vs zone level across saves)', rationale: 'See if players are out-leveling content.', effort:'medium', tag:'devtool' },
+  ]},
+
+  { key: 'website', title: '7. Website & dev tools audit', intro: '15+ HTML tools today. Some obsolete, some missing.', items: [
+    { title: 'Companion catalog page (sortable table: name, class, stats, skills)', rationale: 'Missing entirely; companions are semi-documented in code only.', effort:'small', tag:'devtool' },
+    { title: 'Dungeon catalog page (location, stages, mini-boss, rewards)', rationale: 'Data lives in mapData.js; expose for designers.', effort:'small', tag:'devtool' },
+    { title: 'Status effect catalog page (full glossary, sources, interactions)', rationale: 'No public reference exists.', effort:'small', tag:'devtool' },
+    { title: 'Affix interaction matrix page (which stack / conflict / multiply)', rationale: 'Critical for balance; no visual map today.', effort:'medium', tag:'devtool' },
+    { title: 'Achievement roadmap page (prerequisites, unlock conditions, rarity)', rationale: 'Help players chase trophies.', effort:'small', tag:'devtool' },
+    { title: 'Skill interaction simulator (test "skill A + skill B" combo)', rationale: 'Useful for balance design.', effort:'medium', tag:'devtool' },
+    { title: 'image-review-manifest deprecation pass (1.6 MB; stale entries)', rationale: 'Clean it up.', effort:'medium', tag:'devtool' },
+    { title: 'character-redesign archive (preserve old versions, currently overwritten)', rationale: 'Design history.', effort:'small', tag:'devtool' },
+    { title: 'wishlist.html: group by milestone target', rationale: 'Currently flat list; hard to prioritise.', effort:'small', tag:'devtool' },
+    { title: 'Balance report: JSON + CSV export (currently HTML only)', rationale: 'Enable downstream Claude analysis.', effort:'small', tag:'devtool' },
+    { title: 'enemy-audit "used in encounters" column', rationale: 'Currently isolated; context helps.', effort:'small', tag:'devtool' },
+    { title: 'Spell catalog: side-by-side skill comparison', rationale: 'Helps streamline talent design.', effort:'medium', tag:'devtool' },
+    { title: 'Rebalance report diff view (old → new highlighted)', rationale: 'Currently fresh report each time; hard to spot changes.', effort:'small', tag:'devtool' },
+    { title: 'Asset-pipeline trace tool (which scripts touch which files)', rationale: 'Reduce confusion on stale workflows.', effort:'small', tag:'devtool' },
+    { title: 'Tools-menu landing page (replace bare /assets/ index with curated table)', rationale: 'Discoverability for the 15+ tools that already exist.', effort:'small', tag:'devtool' },
+  ]},
+
+  { key: 'milestone', title: '8. Milestone / changelog / news flow', intro: 'How releases get documented + presented.', items: [
+    { title: 'In-game "What\'s New?" splash on first launch after update', rationale: 'Engage players with patch notes; currently external only.', effort:'medium', tag:'content' },
+    { title: 'Changelog categorization (Bug Fix / Feature / Balance / QoL / Art icons)', rationale: 'Improve scannability; flat lists are hard.', effort:'small', tag:'content' },
+    { title: 'Per-feature "shipped in M###" badge (visible at the feature itself)', rationale: 'Celebrate; drive engagement ("new in M291!").', effort:'small', tag:'content' },
+    { title: 'Public roadmap page (upcoming acts, major features)', rationale: 'Manage expectations; hype building.', effort:'medium', tag:'content' },
+    { title: '"Patch notes" shortcut in GameMenu (link to latest release summary)', rationale: 'Discoverability without leaving the game.', effort:'small', tag:'ui' },
+    { title: 'Achievement-unlock toast notifications', rationale: 'Celebration moment; currently silent unlock.', effort:'small', tag:'ui' },
+    { title: 'Boss-defeat cinematic dialog (capture story beat, not just combat)', rationale: 'Leverage story; minimal boss dialog today.', effort:'large', tag:'content' },
+    { title: 'In-game lore compendium (unlocked as you discover lore nodes)', rationale: 'Help follow the 4-act narrative.', effort:'medium', tag:'content' },
+    { title: 'Backward-compat notes on release (flag breaking saves, migration info)', rationale: 'Reduce confusion when mechanics change.', effort:'small', tag:'devtool' },
+    { title: 'Versioned asset archive (snapshot per milestone for archaeology)', rationale: 'Preserve design history; valuable for postmortems.', effort:'small', tag:'devtool' },
+    { title: 'release.sh prompt for changelog category tags', rationale: 'Force categorization at release time so the player-facing changelog organizes itself.', effort:'small', tag:'devtool' },
+    { title: 'public/news/ folder + rotating "Latest News" widget on the asset gallery', rationale: 'A place for non-changelog announcements (events, dev diaries).', effort:'medium', tag:'content' },
+    { title: 'Auto-tweet/share-card generator on milestone release', rationale: 'Cross-post hype; uses the existing release summary.', effort:'medium', tag:'devtool' },
+  ]},
+
+  // M315 Balance Follow-Up items
+  { key: 'balance315', title: '9. Balance Follow-Up (M315 findings)', intro: 'Items identified during the M315 deep balance analysis. All are candidates for a dedicated balance milestone.', items: [
+    { title: 'Diminishing returns on stun across the whole party', rationale: 'Reality Shard stun reduced from 20%→10% in M315 but no immunity window was verified in CombatScreen. Need to confirm stun immunity (2+priorCount rounds) is working and extend it to all stun sources. Target: no enemy group can lock the same hero for more than 1 consecutive round on average.', effort:'small', tag:'balance' },
+    { title: 'Per-class power-curve tuning (rogue DEX scaling cap)', rationale: 'Rogue with DEX=48 and Assassinate (2.50x) is still the highest single-target DPS by a large margin. Consider diminishing returns on DEX above 30 specifically for Backstab-family skills, or a hard cap on conditionBonus vs stunned targets. Other classes have much lower effective multipliers.', effort:'medium', tag:'balance' },
+    { title: 'Act 1-2 early-game combat tension (level 1-8 difficulty)', rationale: 'Sim shows Act 1 boss losing to a level-5 party in ~4 rounds with ~22% HP loss. Target is 20-40% HP loss. The 1.3x damage multiplier and 1.3x HP boost brought Act 1 closer, but AoE skills (Chain Lightning, Cleave) one-shot trash in round 1. Consider per-enemy count caps or minimum hit chance floors for Act 1 bosses.', effort:'small', tag:'balance' },
+    { title: 'The Architect boss retuning (currently 0% win rate for non-tank parties)', rationale: 'At HP=2500, dmg=[96,156], armor=48, hit=90, The Architect destroys parties without a warrior tank. Consider HP 2500→2200 or removing the 2 accompanying Abyssal Knights to reduce round-1 burst damage. Boss phase transitions (if any) should create breathing room.', effort:'small', tag:'balance' },
+    { title: 'Sim vs real-game parity: life steal, stun immunity, healer timing', rationale: 'The combat simulator does not model: (1) life steal restoring HP mid-combat between attacks in a round; (2) stun immunity windows; (3) healer priority being affected by enemy targeting order. These gaps make sim results underestimate party survival. Before the next balance pass, improve sim fidelity so results are closer to real outcomes.', effort:'medium', tag:'devtool' },
+    { title: 'Act 4 regular encounter HP pressure (void_horde still trivial at 20 rounds)', rationale: 'After M315 boost, Act 4 void_horde shows only 10% HP loss for a lv20 party. Target is 25-40%. The void_wraith and star_horror need either more HP (current: 240/270) or a second-wave mechanic. Alternatively, add a 4th enemy to void_horde.', effort:'small', tag:'balance' },
+    { title: 'Meteor missing-target-multiplier investigation', rationale: 'User reported "Meteor doing 3 dmg". Analysis showed the formula is correct (230% INT = ~205 base). The 3 dmg is likely armor-subtraction on a partially-mitigated hit. Add a combat log entry showing pre-mitigation dmg on spell hits so players can verify the formula is working.', effort:'small', tag:'ui' },
+  ]},
+];
+
+// Build IDs deterministically from section + index so localStorage survives reorders.
+SECTIONS.forEach(s => s.items.forEach((it, i) => { it.id = `${s.key}-${i}`; }));
+
+// Items approved on 2026-04-26 — moved to wishlist.html for tracking.
+// These render in a separate "Approved" section at the top, non-interactive.
+const APPROVED = new Set([
+  // 1. Screen-by-screen UX audit
+  'screens-0','screens-1','screens-2','screens-3','screens-4','screens-6','screens-9','screens-10','screens-12','screens-13','screens-14',
+  // 2. Gameplay
+  'gameplay-3','gameplay-4','gameplay-5','gameplay-7','gameplay-8','gameplay-9','gameplay-14','gameplay-15',
+  // 3. Content
+  'content-2','content-3','content-4','content-5','content-8','content-11',
+  // 4. Expansions
+  'expansions-0','expansions-9','expansions-10','expansions-12','expansions-13','expansions-14',
+  // 5. Accessibility
+  'a11y-0','a11y-2','a11y-3','a11y-4','a11y-6','a11y-8','a11y-10',
+  // 6. Devtool sims
+  'devtool-0','devtool-1','devtool-2','devtool-3','devtool-4','devtool-6','devtool-7','devtool-8','devtool-9','devtool-11','devtool-12',
+  // 7. Website tools
+  'website-0','website-1','website-2','website-3','website-4','website-5','website-6','website-7','website-8','website-11','website-12','website-13','website-14',
+  // 8. Milestone / changelog flow
+  'milestone-0','milestone-1','milestone-2','milestone-3','milestone-4','milestone-5','milestone-6','milestone-7','milestone-8','milestone-9','milestone-10','milestone-11',
+]);
+// Approved items are removed from selection state (idempotent).
+[...APPROVED].forEach(id => { /* not added to state */ });
+
+// All unique tags (for the tag-filter pills)
+const ALL_TAGS = [...new Set(SECTIONS.flatMap(s => s.items.map(i => i.tag)))].sort();
+
+// ── State ─────────────────────────────────────────────────────────────────
+const state = (() => {
+  try { return new Set(JSON.parse(localStorage.getItem(STORAGE) || '[]')); }
+  catch { return new Set(); }
+})();
+// Strip approved IDs from any persisted selection (they've moved to wishlist).
+// Done after APPROVED is defined — see init().
+const filterState = { q: '', effort: '', tags: new Set() };
+const persist = () => { try { localStorage.setItem(STORAGE, JSON.stringify([...state])); } catch {} };
+
+// ── Render ────────────────────────────────────────────────────────────────
+function esc(s) { return String(s ?? '').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c])); }
+
+function renderTags() {
+  const bar = document.getElementById('tag-bar');
+  bar.innerHTML = ALL_TAGS.map(t => `<button class="tag-pill${filterState.tags.has(t)?' on':''}" data-tag="${esc(t)}">${esc(t)}</button>`).join('');
+  bar.querySelectorAll('.tag-pill').forEach(b => b.addEventListener('click', () => {
+    const t = b.dataset.tag;
+    if (filterState.tags.has(t)) filterState.tags.delete(t); else filterState.tags.add(t);
+    renderTags(); applyFilters();
+  }));
+}
+
+function renderSections() {
+  const root = document.getElementById('sections');
+  // First: Approved section at top (non-interactive)
+  const approvedItems = SECTIONS.flatMap(s => s.items.filter(it => APPROVED.has(it.id)).map(it => ({ ...it, _section: s.title })));
+  const approvedHtml = approvedItems.length === 0 ? '' : `
+    <section class="section approved-section" data-section="__approved">
+      <div class="section-h">
+        <h2>✓ Approved (${approvedItems.length}) — tracking in wishlist.html</h2>
+        <span class="meta">moved 2026-04-26</span>
+      </div>
+      <p class="section-intro">These items have been approved and moved to <a href="./wishlist.html" style="color:#7ec67e">wishlist.html</a> for milestone tracking. They're displayed here for reference and cannot be selected.</p>
+      <div class="section-body">${approvedItems.map(it => `
+        <div class="item approved" data-id="${it.id}" data-tag="${esc(it.tag)}" data-effort="${esc(it.effort)}">
+          <div class="approved-mark">✓</div>
+          <div class="item-body">
+            <div class="item-title">${esc(it.title)}</div>
+            <div class="item-rationale">${esc(it.rationale)} <span style="color:#7ec67e;font-size:0.7rem">— from ${esc(it._section)}</span></div>
+            <div class="item-meta">
+              <span class="badge eff-${esc(it.effort)}">${esc(it.effort)}</span>
+              <span class="badge tag">${esc(it.tag)}</span>
+              <span class="badge approved-badge">approved</span>
+            </div>
+          </div>
+        </div>`).join('')}</div>
+    </section>`;
+
+  // Then: original sections, with approved items filtered out
+  const sectionsHtml = SECTIONS.map(s => {
+    const items = s.items.filter(it => !APPROVED.has(it.id));
+    if (items.length === 0) return '';
+    const itemsHtml = items.map(it => {
+      const checked = state.has(it.id);
+      return `<label class="item${checked?' checked':''}" data-id="${it.id}" data-tag="${esc(it.tag)}" data-effort="${esc(it.effort)}">
+        <input type="checkbox" ${checked?'checked':''}>
+        <div class="item-body">
+          <div class="item-title">${esc(it.title)}</div>
+          <div class="item-rationale">${esc(it.rationale)}</div>
+          <div class="item-meta">
+            <span class="badge eff-${esc(it.effort)}">${esc(it.effort)}</span>
+            <span class="badge tag">${esc(it.tag)}</span>
+          </div>
+        </div>
+      </label>`;
+    }).join('');
+    return `<section class="section" data-section="${s.key}">
+      <div class="section-h">
+        <h2><button type="button" class="ch-btn" data-section-toggle="${s.key}" title="Select all visible items in this section">★</button> ${esc(s.title)}</h2>
+        <span class="meta">${items.length} items</span>
+      </div>
+      <p class="section-intro">${esc(s.intro)}</p>
+      <div class="section-body">${itemsHtml}</div>
+    </section>`;
+  }).join('');
+  root.innerHTML = approvedHtml + sectionsHtml;
+  // Wire items (skip approved — non-interactive)
+  root.querySelectorAll('.item:not(.approved)').forEach(el => {
+    el.addEventListener('click', e => {
+      // Avoid double-toggling when clicking the input directly
+      if (e.target.tagName === 'INPUT') return;
+      e.preventDefault();
+      const cb = el.querySelector('input');
+      cb.checked = !cb.checked;
+      const id = el.dataset.id;
+      if (cb.checked) state.add(id); else state.delete(id);
+      el.classList.toggle('checked', cb.checked);
+      persist(); updateCount();
+    });
+    el.querySelector('input').addEventListener('change', () => {
+      const id = el.dataset.id;
+      if (el.querySelector('input').checked) state.add(id); else state.delete(id);
+      el.classList.toggle('checked', el.querySelector('input').checked);
+      persist(); updateCount();
+    });
+  });
+  // Section "select all visible" star
+  root.querySelectorAll('[data-section-toggle]').forEach(b => {
+    b.addEventListener('click', e => {
+      e.stopPropagation();
+      const key = b.dataset.sectionToggle;
+      const sec = root.querySelector(`[data-section="${key}"]`);
+      const visible = sec.querySelectorAll('.item:not(.hidden)');
+      const allChecked = [...visible].every(it => it.querySelector('input').checked);
+      visible.forEach(it => {
+        const cb = it.querySelector('input');
+        cb.checked = !allChecked;
+        const id = it.dataset.id;
+        if (cb.checked) state.add(id); else state.delete(id);
+        it.classList.toggle('checked', cb.checked);
+      });
+      persist(); updateCount();
+    });
+  });
+}
+
+function updateCount() {
+  document.getElementById('sel-count').textContent = state.size;
+  document.getElementById('copy-btn').disabled = state.size === 0;
+}
+
+function applyFilters() {
+  const q = filterState.q.toLowerCase();
+  const ef = filterState.effort;
+  const tags = filterState.tags;
+  document.querySelectorAll('.item:not(.approved)').forEach(el => {
+    const it = SECTIONS.flatMap(s => s.items).find(x => x.id === el.dataset.id);
+    if (!it) return;
+    const hay = (it.title + ' ' + it.rationale).toLowerCase();
+    let show = true;
+    if (q && !hay.includes(q)) show = false;
+    if (ef && it.effort !== ef) show = false;
+    if (tags.size && !tags.has(it.tag)) show = false;
+    el.classList.toggle('hidden', !show);
+  });
+  // Hide section if all items hidden
+  document.querySelectorAll('section.section').forEach(sec => {
+    const anyVisible = sec.querySelectorAll('.item:not(.hidden)').length > 0;
+    sec.style.display = anyVisible ? '' : 'none';
+  });
+}
+
+function copyPrompt() {
+  if (!state.size) return;
+  const flatItems = SECTIONS.flatMap(s => s.items.map(it => ({ ...it, section: s.title })));
+  const picked = flatItems.filter(it => state.has(it.id));
+  // Group by section for the prompt
+  const bySec = {};
+  for (const it of picked) {
+    if (!bySec[it.section]) bySec[it.section] = [];
+    bySec[it.section].push(it);
+  }
+  const lines = [
+    `I picked the following ${picked.length} feature(s) from the Emberveil brainstorm at /assets/brainstorm.html. Please plan and implement them in upcoming milestone(s).`,
+    '',
+  ];
+  for (const [sec, items] of Object.entries(bySec)) {
+    lines.push(`## ${sec}`);
+    lines.push('');
+    for (const it of items) {
+      lines.push(`- **${it.title}** _[${it.effort}, ${it.tag}]_ — ${it.rationale}`);
+    }
+    lines.push('');
+  }
+  lines.push('When you start, group by milestone (small items first), confirm scope before opening tickets that need design discussion, and follow the no-silent-shelving rule from CLAUDE.md.');
+  const text = lines.join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const t = document.getElementById('toast');
+    t.textContent = `Copied ${picked.length} feature${picked.length === 1 ? '' : 's'} to clipboard`;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1800);
+  }).catch(err => {
+    alert('Clipboard write failed: ' + err.message + '\n\nPrompt content:\n\n' + text);
+  });
+}
+
+function init() {
+  // Clean approved IDs from selection state (idempotent).
+  let cleaned = false;
+  for (const id of [...state]) { if (APPROVED.has(id)) { state.delete(id); cleaned = true; } }
+  if (cleaned) persist();
+  renderTags();
+  renderSections();
+  updateCount();
+  document.getElementById('filter-q').addEventListener('input', e => { filterState.q = e.target.value; applyFilters(); });
+  document.getElementById('filter-effort').addEventListener('change', e => { filterState.effort = e.target.value; applyFilters(); });
+  document.getElementById('btn-collapse').addEventListener('click', () => {
+    document.querySelectorAll('section.section .section-body').forEach(b => b.style.display = 'none');
+  });
+  document.getElementById('btn-expand').addEventListener('click', () => {
+    document.querySelectorAll('section.section .section-body').forEach(b => b.style.display = '');
+  });
+  document.getElementById('copy-btn').addEventListener('click', copyPrompt);
+  document.getElementById('clear-btn').addEventListener('click', () => {
+    if (!state.size) return;
+    if (!confirm(`Clear all ${state.size} selections?`)) return;
+    state.clear(); persist(); renderSections(); updateCount();
+  });
+}
+init();
+</script>
+</body>
+</html>

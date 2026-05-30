@@ -1,0 +1,42 @@
+{
+  "node": {
+    "id": "side_quest_gloomridge_k5gtupr_003",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "gloomridge",
+    "tone": "wary",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The shrine's taint is deepening. We need to cleanse it.",
+      "Will you assist with the ritual? It requires focus."
+    ],
+    "choices": [
+      {
+        "id": "help",
+        "text": "Agree to help with the ritual.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_shrine_cleansing",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "shrine_cleansing_active"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "Rituals are no concern of mine.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "unknown flag \"shrine_cleansing_active\" in effect"
+  ],
+  "rejectedAt": "2026-05-21T00:11:56.354Z"
+}

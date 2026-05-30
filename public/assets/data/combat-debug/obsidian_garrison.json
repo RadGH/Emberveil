@@ -1,0 +1,3125 @@
+{
+  "key": "obsidian_garrison",
+  "label": "Act 2",
+  "act": 2,
+  "runs": 5,
+  "winRate": 0,
+  "avgRounds": 22,
+  "aggregate": {
+    "meter": 17327,
+    "damageApply": 17327,
+    "logParsed": 17327,
+    "meter_vs_apply": 0,
+    "meter_vs_log": 0,
+    "apply_vs_log": 0
+  },
+  "parityWarnings": [],
+  "perRun": [
+    {
+      "seed": 1337,
+      "winner": "enemies",
+      "rounds": 39,
+      "eventCount": 688,
+      "totals": {
+        "meter": 4724,
+        "damageApply": 4724,
+        "logParsed": 4724
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 130,
+        "Whirlwind": 76,
+        "Attack": 1711,
+        "Blizzard": 123,
+        "Aimed Shot": 536,
+        "Cleave": 327,
+        "Fireball": 355,
+        "Smite": 1443,
+        "Magic Missile": 23
+      },
+      "clericHeals": 7,
+      "clericAttacks": 25,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Fireball",
+        "Magic Missile",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 96,
+        "initiative_roll": 8,
+        "turn_order": 39,
+        "turn_start": 161,
+        "ai_decision": 104,
+        "skill_cast_attempt": 58,
+        "hit_check": 193,
+        "crit_check": 79,
+        "damage_calc": 149,
+        "damage_apply": 149,
+        "meter_add": 149,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 76,
+          "Cleave": 327,
+          "Attack": 16
+        },
+        "Clr": {
+          "Smite": 1443,
+          "Attack": 45
+        },
+        "Mag": {
+          "Blizzard": 123,
+          "Fireball": 355,
+          "Magic Missile": 23,
+          "Attack": 6
+        },
+        "Rng": {
+          "Multi-Shot": 130,
+          "Aimed Shot": 536,
+          "Attack": 18
+        }
+      }
+    },
+    {
+      "seed": 1338,
+      "winner": "enemies",
+      "rounds": 16,
+      "eventCount": 412,
+      "totals": {
+        "meter": 2964,
+        "damageApply": 2964,
+        "logParsed": 2964
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 121,
+        "Whirlwind": 62,
+        "Attack": 1375,
+        "Blizzard": 39,
+        "Aimed Shot": 265,
+        "Cleave": 165,
+        "Smite": 800,
+        "Fireball": 137
+      },
+      "clericHeals": 5,
+      "clericAttacks": 5,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Fireball",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 50,
+        "initiative_roll": 8,
+        "turn_order": 16,
+        "turn_start": 89,
+        "ai_decision": 39,
+        "skill_cast_attempt": 33,
+        "hit_check": 125,
+        "crit_check": 45,
+        "damage_calc": 81,
+        "damage_apply": 81,
+        "meter_add": 81,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 62,
+          "Cleave": 165,
+          "Attack": 18
+        },
+        "Clr": {
+          "Smite": 800,
+          "Attack": 17
+        },
+        "Mag": {
+          "Blizzard": 39,
+          "Fireball": 137
+        },
+        "Rng": {
+          "Multi-Shot": 121,
+          "Aimed Shot": 265
+        }
+      }
+    },
+    {
+      "seed": 1339,
+      "winner": "enemies",
+      "rounds": 16,
+      "eventCount": 494,
+      "totals": {
+        "meter": 3405,
+        "damageApply": 3405,
+        "logParsed": 3405
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 135,
+        "Whirlwind": 94,
+        "Attack": 1450,
+        "Blizzard": 72,
+        "Aimed Shot": 300,
+        "Cleave": 195,
+        "Fireball": 359,
+        "Smite": 800
+      },
+      "clericHeals": 5,
+      "clericAttacks": 6,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Fireball",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 71,
+        "initiative_roll": 8,
+        "turn_order": 16,
+        "turn_start": 96,
+        "ai_decision": 44,
+        "skill_cast_attempt": 37,
+        "hit_check": 142,
+        "crit_check": 69,
+        "damage_calc": 108,
+        "damage_apply": 108,
+        "meter_add": 108,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 94,
+          "Cleave": 195,
+          "Attack": 21
+        },
+        "Clr": {
+          "Smite": 800,
+          "Attack": 24
+        },
+        "Mag": {
+          "Blizzard": 72,
+          "Fireball": 359
+        },
+        "Rng": {
+          "Multi-Shot": 135,
+          "Aimed Shot": 300
+        }
+      }
+    },
+    {
+      "seed": 1340,
+      "winner": "enemies",
+      "rounds": 23,
+      "eventCount": 495,
+      "totals": {
+        "meter": 3690,
+        "damageApply": 3690,
+        "logParsed": 3690
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 120,
+        "Whirlwind": 76,
+        "Attack": 1630,
+        "Blizzard": 36,
+        "Aimed Shot": 300,
+        "Cleave": 291,
+        "Fireball": 37,
+        "Smite": 1200
+      },
+      "clericHeals": 6,
+      "clericAttacks": 9,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Fireball",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 55,
+        "initiative_roll": 8,
+        "turn_order": 23,
+        "turn_start": 118,
+        "ai_decision": 59,
+        "skill_cast_attempt": 39,
+        "hit_check": 150,
+        "crit_check": 50,
+        "damage_calc": 101,
+        "damage_apply": 101,
+        "meter_add": 101,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 76,
+          "Cleave": 291,
+          "Attack": 76
+        },
+        "Clr": {
+          "Smite": 1200,
+          "Attack": 34
+        },
+        "Mag": {
+          "Blizzard": 36,
+          "Fireball": 37
+        },
+        "Rng": {
+          "Multi-Shot": 120,
+          "Aimed Shot": 300,
+          "Attack": 31
+        }
+      }
+    },
+    {
+      "seed": 1341,
+      "winner": "enemies",
+      "rounds": 16,
+      "eventCount": 438,
+      "totals": {
+        "meter": 2544,
+        "damageApply": 2544,
+        "logParsed": 2544
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 96,
+        "Whirlwind": 58,
+        "Attack": 1434,
+        "Smite": 400,
+        "Blizzard": 58,
+        "Aimed Shot": 150,
+        "Cleave": 253,
+        "Fireball": 95
+      },
+      "clericHeals": 5,
+      "clericAttacks": 3,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Fireball",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 56,
+        "initiative_roll": 8,
+        "turn_order": 16,
+        "turn_start": 92,
+        "ai_decision": 41,
+        "skill_cast_attempt": 34,
+        "hit_check": 127,
+        "crit_check": 49,
+        "damage_calc": 88,
+        "damage_apply": 91,
+        "meter_add": 91,
+        "status_apply": 3,
+        "status_tick": 6,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 58,
+          "Cleave": 253,
+          "Dragon Breath": 90,
+          "Attack": 10
+        },
+        "Clr": {
+          "Smite": 400,
+          "Attack": 12
+        },
+        "Mag": {
+          "Blizzard": 58,
+          "Fireball": 95
+        },
+        "Rng": {
+          "Multi-Shot": 96,
+          "Aimed Shot": 150
+        }
+      }
+    }
+  ],
+  "sampleEvents": [
+    {
+      "round": 8,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 33,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "Rng",
+        "raw": 60,
+        "final": 33,
+        "source": "Attack",
+        "hpAfter": 64
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → Rng: 33 dmg",
+        "type": "hero",
+        "dmg": 33
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Clr",
+      "kind": "status_apply",
+      "data": {
+        "actor": "Clr",
+        "status": "buff",
+        "skill": "Sanctuary",
+        "targets": 3
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Molten Golem",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Molten Golem",
+        "kind": "dmg",
+        "amount": 68,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Molten Golem",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Molten Golem",
+        "target": "Rng",
+        "raw": 95,
+        "final": 68,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Molten Golem",
+      "kind": "log_line",
+      "data": {
+        "msg": "Molten Golem → Rng: 68 dmg",
+        "type": "hero",
+        "dmg": 68
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 9,
+      "data": {
+        "round": 9
+      }
+    },
+    {
+      "round": 9,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 2,
+        "source": "Whirlwind",
+        "target": "Molten Golem",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 9,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Molten Golem",
+        "raw": 20,
+        "final": 2,
+        "source": "Whirlwind",
+        "hpAfter": 1376
+      }
+    },
+    {
+      "round": 9,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Molten Golem: 2 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 2
+      }
+    },
+    {
+      "round": 9,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Ash Wraith",
+        "hit": false
+      }
+    },
+    {
+      "round": 9,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Ash Wraith.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 9,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Ash Wraith",
+        "hit": false
+      }
+    },
+    {
+      "round": 9,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Ash Wraith.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 22,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "War",
+        "raw": 49,
+        "final": 22,
+        "source": "Attack",
+        "hpAfter": 188
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → War: 22 dmg",
+        "type": "hero",
+        "dmg": 22
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 42,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "War",
+        "raw": 69,
+        "final": 42,
+        "source": "Attack",
+        "hpAfter": 146
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → War: 42 dmg",
+        "type": "hero",
+        "dmg": 42
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "heal",
+        "amount": 180,
+        "source": "Heal",
+        "target": "War"
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr heals War for 180",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Molten Golem",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Molten Golem",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Molten Golem",
+      "kind": "log_line",
+      "data": {
+        "msg": "Molten Golem misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 10,
+      "data": {
+        "round": 10
+      }
+    },
+    {
+      "round": 10,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Molten Golem",
+        "hit": false
+      }
+    },
+    {
+      "round": 10,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Molten Golem.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 10,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Ash Wraith",
+        "hit": false
+      }
+    },
+    {
+      "round": 10,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Ash Wraith.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 10,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 21,
+        "source": "Cleave",
+        "target": "Ash Wraith",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 10,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Ash Wraith",
+        "raw": 42,
+        "final": 21,
+        "source": "Cleave",
+        "hpAfter": 505
+      }
+    },
+    {
+      "round": 10,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Ash Wraith: 21 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 21
+      }
+    },
+    {
+      "round": 10,
+      "actor": "Ash Wraith",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 10,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 10,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 31,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 10,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "War",
+        "raw": 58,
+        "final": 31,
+        "source": "Attack",
+        "hpAfter": 179
+      }
+    },
+    {
+      "round": 10,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → War: 31 dmg",
+        "type": "hero",
+        "dmg": 31
+      }
+    },
+    {
+      "round": 10,
+      "actor": "Clr",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Clr",
+        "target": "Ash Wraith",
+        "hit": false
+      }
+    },
+    {
+      "round": 10,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr misses Ash Wraith.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 10,
+      "actor": "Molten Golem",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Molten Golem",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 10,
+      "actor": "Molten Golem",
+      "kind": "log_line",
+      "data": {
+        "msg": "Molten Golem misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 11,
+      "data": {
+        "round": 11
+      }
+    },
+    {
+      "round": 11,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Ash Wraith",
+        "hit": false
+      }
+    },
+    {
+      "round": 11,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Ash Wraith.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 11,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 42,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 11,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "War",
+        "raw": 69,
+        "final": 42,
+        "source": "Attack",
+        "hpAfter": 137
+      }
+    },
+    {
+      "round": 11,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → War: 42 dmg",
+        "type": "hero",
+        "dmg": 42
+      }
+    },
+    {
+      "round": 11,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 27,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 11,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "War",
+        "raw": 54,
+        "final": 27,
+        "source": "Attack",
+        "hpAfter": 110
+      }
+    },
+    {
+      "round": 11,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → War: 27 dmg",
+        "type": "hero",
+        "dmg": 27
+      }
+    },
+    {
+      "round": 11,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "heal",
+        "amount": 180,
+        "source": "Heal",
+        "target": "War"
+      }
+    },
+    {
+      "round": 11,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr heals War for 180",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 11,
+      "actor": "Molten Golem",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Molten Golem",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 11,
+      "actor": "Molten Golem",
+      "kind": "log_line",
+      "data": {
+        "msg": "Molten Golem misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 12,
+      "data": {
+        "round": 12
+      }
+    },
+    {
+      "round": 12,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 5,
+        "source": "Cleave",
+        "target": "Molten Golem",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 12,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Molten Golem",
+        "raw": 42,
+        "final": 5,
+        "source": "Cleave",
+        "hpAfter": 1371
+      }
+    },
+    {
+      "round": 12,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Molten Golem: 5 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 5
+      }
+    },
+    {
+      "round": 12,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 21,
+        "source": "Cleave",
+        "target": "Ash Wraith",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 12,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Ash Wraith",
+        "raw": 42,
+        "final": 21,
+        "source": "Cleave",
+        "hpAfter": 479
+      }
+    },
+    {
+      "round": 12,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Ash Wraith: 21 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 21
+      }
+    },
+    {
+      "round": 12,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Ash Wraith",
+        "hit": false
+      }
+    },
+    {
+      "round": 12,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Ash Wraith.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 12,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 46,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 12,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "War",
+        "raw": 73,
+        "final": 46,
+        "source": "Attack",
+        "hpAfter": 164
+      }
+    },
+    {
+      "round": 12,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → War: 46 dmg",
+        "type": "hero",
+        "dmg": 46
+      }
+    },
+    {
+      "round": 12,
+      "actor": "Ash Wraith",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 12,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 12,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "dmg",
+        "amount": 4,
+        "source": "Attack",
+        "target": "Ash Wraith",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 12,
+      "actor": "Clr",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Clr",
+        "target": "Ash Wraith",
+        "raw": 8,
+        "final": 4,
+        "source": "Attack",
+        "hpAfter": 475
+      }
+    },
+    {
+      "round": 12,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr → Ash Wraith: 4 dmg",
+        "type": "hero",
+        "dmg": 4
+      }
+    },
+    {
+      "round": 12,
+      "actor": "Molten Golem",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Molten Golem",
+        "kind": "dmg",
+        "amount": 45,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 12,
+      "actor": "Molten Golem",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Molten Golem",
+        "target": "War",
+        "raw": 72,
+        "final": 45,
+        "source": "Attack",
+        "hpAfter": 119
+      }
+    },
+    {
+      "round": 12,
+      "actor": "Molten Golem",
+      "kind": "log_line",
+      "data": {
+        "msg": "Molten Golem → War: 45 dmg",
+        "type": "hero",
+        "dmg": 45
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 13,
+      "data": {
+        "round": 13
+      }
+    },
+    {
+      "round": 13,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 10,
+        "source": "Attack",
+        "target": "Ash Wraith",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 13,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Ash Wraith",
+        "raw": 14,
+        "final": 10,
+        "source": "Attack",
+        "hpAfter": 465
+      }
+    },
+    {
+      "round": 13,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Ash Wraith: 10 dmg",
+        "type": "hero",
+        "dmg": 10
+      }
+    },
+    {
+      "round": 13,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 22,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 13,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "War",
+        "raw": 49,
+        "final": 22,
+        "source": "Attack",
+        "hpAfter": 97
+      }
+    },
+    {
+      "round": 13,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → War: 22 dmg",
+        "type": "hero",
+        "dmg": 22
+      }
+    },
+    {
+      "round": 13,
+      "actor": "Ash Wraith",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 13,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 13,
+      "actor": "Clr",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Clr",
+        "target": "Ash Wraith",
+        "hit": false
+      }
+    },
+    {
+      "round": 13,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr misses Ash Wraith.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 13,
+      "actor": "Molten Golem",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Molten Golem",
+        "kind": "dmg",
+        "amount": 64,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 13,
+      "actor": "Molten Golem",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Molten Golem",
+        "target": "War",
+        "raw": 91,
+        "final": 64,
+        "source": "Attack",
+        "hpAfter": 33
+      }
+    },
+    {
+      "round": 13,
+      "actor": "Molten Golem",
+      "kind": "log_line",
+      "data": {
+        "msg": "Molten Golem → War: 64 dmg",
+        "type": "hero",
+        "dmg": 64
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 14,
+      "data": {
+        "round": 14
+      }
+    },
+    {
+      "round": 14,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 5,
+        "source": "Cleave",
+        "target": "Molten Golem",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 14,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Molten Golem",
+        "raw": 42,
+        "final": 5,
+        "source": "Cleave",
+        "hpAfter": 1366
+      }
+    },
+    {
+      "round": 14,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Molten Golem: 5 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 5
+      }
+    },
+    {
+      "round": 14,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 21,
+        "source": "Cleave",
+        "target": "Ash Wraith",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 14,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Ash Wraith",
+        "raw": 42,
+        "final": 21,
+        "source": "Cleave",
+        "hpAfter": 444
+      }
+    },
+    {
+      "round": 14,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Ash Wraith: 21 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 21
+      }
+    },
+    {
+      "round": 14,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 21,
+        "source": "Cleave",
+        "target": "Ash Wraith",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 14,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Ash Wraith",
+        "raw": 42,
+        "final": 21,
+        "source": "Cleave",
+        "hpAfter": 484
+      }
+    },
+    {
+      "round": 14,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Ash Wraith: 21 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 21
+      }
+    },
+    {
+      "round": 14,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 42,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 14,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "War",
+        "raw": 69,
+        "final": 42,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 14,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → War: 42 dmg",
+        "type": "hero",
+        "dmg": 42
+      }
+    },
+    {
+      "round": 14,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 30,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 14,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "Clr",
+        "raw": 57,
+        "final": 30,
+        "source": "Attack",
+        "hpAfter": 220
+      }
+    },
+    {
+      "round": 14,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → Clr: 30 dmg",
+        "type": "hero",
+        "dmg": 30
+      }
+    },
+    {
+      "round": 14,
+      "actor": "Clr",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Clr",
+        "target": "Ash Wraith",
+        "hit": false
+      }
+    },
+    {
+      "round": 14,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr misses Ash Wraith.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 14,
+      "actor": "Molten Golem",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Molten Golem",
+        "kind": "dmg",
+        "amount": 69,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 14,
+      "actor": "Molten Golem",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Molten Golem",
+        "target": "Clr",
+        "raw": 96,
+        "final": 69,
+        "source": "Attack",
+        "hpAfter": 151
+      }
+    },
+    {
+      "round": 14,
+      "actor": "Molten Golem",
+      "kind": "log_line",
+      "data": {
+        "msg": "Molten Golem → Clr: 69 dmg",
+        "type": "hero",
+        "dmg": 69
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 15,
+      "data": {
+        "round": 15
+      }
+    },
+    {
+      "round": 15,
+      "actor": "Ash Wraith",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "Clr",
+        "hit": false
+      }
+    },
+    {
+      "round": 15,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith misses Clr.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 15,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 23,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 15,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "Clr",
+        "raw": 50,
+        "final": 23,
+        "source": "Attack",
+        "hpAfter": 128
+      }
+    },
+    {
+      "round": 15,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → Clr: 23 dmg",
+        "type": "hero",
+        "dmg": 23
+      }
+    },
+    {
+      "round": 15,
+      "actor": "Clr",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Clr",
+        "target": "Ash Wraith",
+        "hit": false
+      }
+    },
+    {
+      "round": 15,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr misses Ash Wraith.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 15,
+      "actor": "Molten Golem",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Molten Golem",
+        "kind": "dmg",
+        "amount": 72,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 15,
+      "actor": "Molten Golem",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Molten Golem",
+        "target": "Clr",
+        "raw": 99,
+        "final": 72,
+        "source": "Attack",
+        "hpAfter": 56
+      }
+    },
+    {
+      "round": 15,
+      "actor": "Molten Golem",
+      "kind": "log_line",
+      "data": {
+        "msg": "Molten Golem → Clr: 72 dmg",
+        "type": "hero",
+        "dmg": 72
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 16,
+      "data": {
+        "round": 16
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 22,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "Clr",
+        "raw": 49,
+        "final": 22,
+        "source": "Attack",
+        "hpAfter": 34
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → Clr: 22 dmg",
+        "type": "hero",
+        "dmg": 22
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Ash Wraith",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Ash Wraith",
+        "kind": "dmg",
+        "amount": 21,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Ash Wraith",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Ash Wraith",
+        "target": "Clr",
+        "raw": 48,
+        "final": 21,
+        "source": "Attack",
+        "hpAfter": 13
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Ash Wraith",
+      "kind": "log_line",
+      "data": {
+        "msg": "Ash Wraith → Clr: 21 dmg",
+        "type": "hero",
+        "dmg": 21
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "dmg",
+        "amount": 8,
+        "source": "Attack",
+        "target": "Ash Wraith",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Clr",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Clr",
+        "target": "Ash Wraith",
+        "raw": 12,
+        "final": 8,
+        "source": "Attack",
+        "hpAfter": 436
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr → Ash Wraith: 8 dmg",
+        "type": "hero",
+        "dmg": 8
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Molten Golem",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Molten Golem",
+        "kind": "dmg",
+        "amount": 43,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Molten Golem",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Molten Golem",
+        "target": "Clr",
+        "raw": 70,
+        "final": 43,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 16,
+      "actor": "Molten Golem",
+      "kind": "log_line",
+      "data": {
+        "msg": "Molten Golem → Clr: 43 dmg",
+        "type": "hero",
+        "dmg": 43
+      }
+    },
+    {
+      "kind": "combat_end",
+      "data": {
+        "winner": "enemies",
+        "rounds": 16
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 23,
+      "actor": "Molten Golem",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 23,
+      "actor": "Molten Golem",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 6,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 6,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 6,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 18,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 11,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 11,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCast",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 22,
+          "isCrit": false,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Molten Golem",
+          "dealt": 5,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 21,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 21,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 47,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Molten Golem",
+          "dealt": 21,
+          "isCrit": false,
+          "rawDmg": 82,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 37,
+          "isCrit": false,
+          "rawDmg": 82,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 37,
+          "isCrit": false,
+          "rawDmg": 82,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCast",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 95,
+          "isCrit": false,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Molten Golem",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 6,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 6,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 6,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 20,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Molten Golem",
+          "dealt": 3,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 11,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 11,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 11,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCast",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 36,
+          "isCrit": false,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Molten Golem",
+          "dealt": 5,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 21,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 34,
+          "isCrit": true,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCrit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 34,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onKill",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 34,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "status_apply",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "target": "Molten Golem",
+        "type": "burn",
+        "duration": 2,
+        "power": 6,
+        "src": "legendary"
+      }
+    },
+    {
+      "kind": "status_apply",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "target": "Ash Wraith",
+        "type": "burn",
+        "duration": 2,
+        "power": 6,
+        "src": "legendary"
+      }
+    },
+    {
+      "kind": "status_apply",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "target": "Ash Wraith",
+        "type": "burn",
+        "duration": 2,
+        "power": 6,
+        "src": "legendary"
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 60,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "status_tick",
+      "round": 5,
+      "actor": "Molten Golem",
+      "data": {
+        "target": "Ash Wraith",
+        "type": "burn",
+        "amount": 6,
+        "duration": 2,
+        "hpAfter": 528
+      }
+    },
+    {
+      "kind": "status_tick",
+      "round": 5,
+      "actor": "Molten Golem",
+      "data": {
+        "target": "Ash Wraith",
+        "type": "burn",
+        "amount": 6,
+        "duration": 2,
+        "hpAfter": 610
+      }
+    },
+    {
+      "kind": "status_tick",
+      "round": 5,
+      "actor": "Molten Golem",
+      "data": {
+        "target": "Molten Golem",
+        "type": "burn",
+        "amount": 6,
+        "duration": 2,
+        "hpAfter": 1402
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 5,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 0,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "status_tick",
+      "round": 6,
+      "actor": "Molten Golem",
+      "data": {
+        "target": "Ash Wraith",
+        "type": "burn",
+        "amount": 6,
+        "duration": 1,
+        "hpAfter": 522
+      }
+    },
+    {
+      "kind": "status_tick",
+      "round": 6,
+      "actor": "Molten Golem",
+      "data": {
+        "target": "Ash Wraith",
+        "type": "burn",
+        "amount": 6,
+        "duration": 1,
+        "hpAfter": 590
+      }
+    },
+    {
+      "kind": "status_tick",
+      "round": 6,
+      "actor": "Molten Golem",
+      "data": {
+        "target": "Molten Golem",
+        "type": "burn",
+        "amount": 6,
+        "duration": 1,
+        "hpAfter": 1393
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 6,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Molten Golem",
+          "dealt": 5,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 6,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 21,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 6,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 26,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 7,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Molten Golem",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 7,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 8,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 7,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 8,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 7,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 18,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 8,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Molten Golem",
+          "dealt": 5,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 8,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 21,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 8,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 26,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 9,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Molten Golem",
+          "dealt": 2,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 9,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 2,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 10,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 21,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 10,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 21,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 12,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Molten Golem",
+          "dealt": 5,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 12,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 21,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 12,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 26,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 13,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 10,
+          "isCrit": false,
+          "rawDmg": 14,
+          "skillId": "attack"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 14,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Molten Golem",
+          "dealt": 5,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 14,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 21,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 14,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 21,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 14,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Ash Wraith",
+          "dealt": 47,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    }
+  ]
+}

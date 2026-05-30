@@ -1,0 +1,52 @@
+{
+  "_comment": "Scenario file for batch-rebalance.mjs. Each entry defines a skill-tweak variant. The base encounter/party are defined per-scenario or inherit defaults. Add variant entries here to compare win-rate impact of skill stat changes.",
+  "defaults": {
+    "runs": 200,
+    "act": 1,
+    "seed": 42
+  },
+  "scenarios": [
+    {
+      "id": "baseline_act1",
+      "label": "Baseline Act 1 — goblin patrol",
+      "encounter": "goblin_patrol",
+      "act": 1,
+      "partyTemplate": "default_warrior_l5"
+    },
+    {
+      "id": "baseline_act1_boss",
+      "label": "Baseline Act 1 Boss — border_boss",
+      "encounter": "border_boss",
+      "act": 1,
+      "partyTemplate": "default_warrior_l5"
+    },
+    {
+      "id": "baseline_act2",
+      "label": "Baseline Act 2 — ash patrol",
+      "encounter": "ash_patrol",
+      "act": 2,
+      "partyTemplate": "default_warrior_l10"
+    },
+    {
+      "id": "baseline_act3",
+      "label": "Baseline Act 3 — demon patrol",
+      "encounter": "demon_patrol",
+      "act": 3,
+      "partyTemplate": "default_warrior_l15"
+    },
+    {
+      "id": "baseline_act4",
+      "label": "Baseline Act 4 — void horde",
+      "encounter": "void_horde",
+      "act": 4,
+      "partyTemplate": "default_warrior_l20"
+    },
+    {
+      "id": "baseline_act5",
+      "label": "Baseline Act 5 — primordial patrol",
+      "encounter": "primordial_patrol",
+      "act": 5,
+      "partyTemplate": "default_warrior_l25"
+    }
+  ]
+}

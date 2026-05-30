@@ -1,0 +1,3848 @@
+{
+  "nodes": [
+    {
+      "id": "merchant_unusual_cart_001",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "eccentric",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "I sell things I shouldn't have, at prices that don't make sense.",
+        "Everything here is genuine. Whether that's a selling point depends on you."
+      ],
+      "choices": [
+        {
+          "id": "browse",
+          "text": "Browse the wares.",
+          "next": "#merchant_wares",
+          "effects": []
+        },
+        {
+          "id": "ask_source",
+          "text": "[Perception - INT] Where did you get all this?",
+          "skillCheck": {
+            "skill": "perception",
+            "stat": "INT",
+            "dc": 12
+          },
+          "onPass": {
+            "next": "#merchant_source",
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "market_unlocked"
+              }
+            ]
+          },
+          "onFail": {
+            "next": "#merchant_deflects",
+            "effects": []
+          }
+        },
+        {
+          "id": "leave",
+          "text": "Move on.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "merchant_wares": {
+          "lines": [
+            "He spreads his hands. \"Veil-glass, pre-war coins, one completely unlabeled vial. What's your poison?\""
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Buy the unlabeled vial. (35 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -35
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "unlabeled_vial"
+                }
+              ]
+            },
+            {
+              "id": "pass",
+              "text": "Pass.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        },
+        "merchant_source": {
+          "lines": [
+            "He leans in. \"Mostly from people who won't be needing them.\" He lets that land. \"They sold to me. Voluntarily. Mostly.\""
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Browse.",
+              "next": "#merchant_wares"
+            }
+          ]
+        },
+        "merchant_deflects": {
+          "lines": [
+            "\"Acquisitions.\" He straightens his coat. \"It's a legal term.\""
+          ],
+          "choices": [
+            {
+              "id": "browse",
+              "text": "Browse.",
+              "next": "#merchant_wares"
+            },
+            {
+              "id": "leave",
+              "text": "Leave.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_faction_emberguard_001",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "stoneward",
+      "tone": "official",
+      "speaker": "road_scout_npc",
+      "lines": [
+        "Emberguard supply depot. Authorized personnel only.",
+        "...We're open to civilians with valid identification or coin."
+      ],
+      "choices": [
+        {
+          "id": "buy_ally",
+          "text": "Present Emberguard credentials.",
+          "requires": {
+            "flag": "emberguard_allied"
+          },
+          "next": "#ally_discount",
+          "effects": []
+        },
+        {
+          "id": "buy_normal",
+          "text": "Buy at standard rates.",
+          "next": null,
+          "effects": [
+            {
+              "type": "open_shop",
+              "shopId": "emberguard_supply"
+            }
+          ]
+        },
+        {
+          "id": "steal",
+          "text": "[Stealth - DEX] Pocket something while he checks credentials.",
+          "skillCheck": {
+            "skill": "stealth",
+            "stat": "DEX",
+            "dc": 14
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "grant_item",
+                "itemId": "emberguard_ration"
+              },
+              {
+                "type": "faction_delta",
+                "faction": "emberguard",
+                "amount": -2
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "faction_delta",
+                "faction": "emberguard",
+                "amount": -3
+              },
+              {
+                "type": "start_combat",
+                "enemyGroup": [
+                  "veil_warden",
+                  "veil_warden"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "nodes": {
+        "ally_discount": {
+          "lines": [
+            "He stamps your papers and waves you through. \"Twenty percent off, soldier. You've earned it.\""
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Shop at ally rates.",
+              "next": null,
+              "effects": [
+                {
+                  "type": "open_shop",
+                  "shopId": "emberguard_supply_discount"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_ration_cart_001",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "desperate",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Rations for sale. What's left of them.",
+        "War's been hard on supply lines. Hard on everything."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a full supply kit. (20 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -20
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            },
+            {
+              "type": "companion_approval",
+              "companionId": "yasha_stonewill",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "id": "haggle",
+          "text": "[Diplomacy - INT] Haggle the price down.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 11
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -12
+              },
+              {
+                "type": "grant_item",
+                "itemId": "travel_rations"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -20
+              },
+              {
+                "type": "grant_item",
+                "itemId": "travel_rations"
+              }
+            ]
+          }
+        },
+        {
+          "id": "donate",
+          "text": "Buy twice as much and leave half for the refugees behind you.",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -40
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            },
+            {
+              "type": "companion_approval",
+              "companionId": "lyra_ashwalker",
+              "amount": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "merchant_ashen_veil_fence_001",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "veilscar",
+      "tone": "conspiratorial",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "He trades in cult artifacts. Veil-touched items that the Emberguard confiscate and he... reacquires.",
+        "Everything has a price. Even forbidden knowledge."
+      ],
+      "choices": [
+        {
+          "id": "buy",
+          "text": "Browse the catalog. (set_flag market_unlocked)",
+          "next": null,
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "market_unlocked"
+            },
+            {
+              "type": "open_shop",
+              "shopId": "veil_fence_wares"
+            }
+          ]
+        },
+        {
+          "id": "report",
+          "text": "[Diplomacy] Report him to the nearest Emberguard post.",
+          "requires": {
+            "flag": "emberguard_allied"
+          },
+          "next": "#reported",
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "emberguard",
+              "amount": 2
+            },
+            {
+              "type": "faction_delta",
+              "faction": "ashen_veil",
+              "amount": -1
+            }
+          ]
+        },
+        {
+          "id": "leave",
+          "text": "Keep walking.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "reported": {
+          "lines": [
+            "The guards come quickly. The fence is gone faster."
+          ],
+          "choices": [
+            {
+              "id": "go",
+              "text": "Watch them search the empty stall.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_medicine_wagon_001",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "plague_fen",
+      "tone": "grim-practical",
+      "speaker": "swamp_guide",
+      "lines": [
+        "Medicine wagon. Everything here treats symptoms.",
+        "The actual disease — that's above my pay grade."
+      ],
+      "choices": [
+        {
+          "id": "buy_antidote",
+          "text": "Buy plague antidote kits. (30 gold each)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -30
+            },
+            {
+              "type": "grant_item",
+              "itemId": "plague_antidote"
+            }
+          ]
+        },
+        {
+          "id": "medicine_craft",
+          "text": "[Medicine - INT] Ask for the base components and mix your own.",
+          "skillCheck": {
+            "skill": "medicine",
+            "stat": "INT",
+            "dc": 13
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -15
+              },
+              {
+                "type": "grant_item",
+                "itemId": "plague_antidote"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -15
+              }
+            ]
+          }
+        },
+        {
+          "id": "ask_what_plague",
+          "text": "What exactly are we dealing with?",
+          "next": "#wagon_intel",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "wagon_intel": {
+          "lines": [
+            "\"Three stages. Coughing. Seeing things. The third stage — you don't notice because you're in it already.\" She pauses. \"It doesn't kill you. It just makes you work for the Harvesters.\""
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Buy everything. Generously.",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -45
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "plague_antidote"
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "plague_antidote"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_library_ruins_scholar_001",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "library_ruins",
+      "tone": "academic",
+      "speaker": "marek_greel_story",
+      "lines": [
+        "I sell maps. Old ones.",
+        "Dangerous ones, if you're the sort who goes where maps lead."
+      ],
+      "choices": [
+        {
+          "id": "buy_map",
+          "text": "Buy a pre-Sovereign map of the Veilscar. (40 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -40
+            },
+            {
+              "type": "reveal_path",
+              "pathId": "veilscar_hidden_route"
+            },
+            {
+              "type": "set_flag",
+              "flag": "veilscar_entered"
+            }
+          ]
+        },
+        {
+          "id": "trade_lore",
+          "text": "[Arcana - INT] Trade a piece of discovered lore.",
+          "requires": {
+            "flag": "library_ruins_searched"
+          },
+          "skillCheck": {
+            "skill": "arcana",
+            "stat": "INT",
+            "dc": 12
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "reveal_path",
+                "pathId": "veilscar_hidden_route"
+              },
+              {
+                "type": "lore_unlock",
+                "loreId": "lore_marek_veil_eye_001"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": []
+          }
+        },
+        {
+          "id": "leave",
+          "text": "Maps are expensive when you can use your eyes.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_thornpact_courier_001",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "crossroads",
+      "tone": "covert",
+      "speaker": "faction_envoy_thornpact",
+      "lines": [
+        "Herbs. Officially.",
+        "Unofficially: intelligence reports. But only for the right buyers."
+      ],
+      "choices": [
+        {
+          "id": "buy_herbs",
+          "text": "Buy the herbs. (15 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -15
+            },
+            {
+              "type": "grant_item",
+              "itemId": "thornpact_herbs"
+            }
+          ]
+        },
+        {
+          "id": "buy_intel",
+          "text": "[Perception - INT] Ask about the intelligence.",
+          "skillCheck": {
+            "skill": "perception",
+            "stat": "INT",
+            "dc": 13
+          },
+          "onPass": {
+            "next": "#intel_sale",
+            "effects": [
+              {
+                "type": "faction_delta",
+                "faction": "thornwhisper_circle",
+                "amount": 1
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": []
+          }
+        }
+      ],
+      "nodes": {
+        "intel_sale": {
+          "lines": [
+            "She glances around once. \"Ashen Veil cell in the eastern crossroads inn. Third floor, room four. They're expecting a courier — you could be that courier.\""
+          ],
+          "choices": [
+            {
+              "id": "accept",
+              "text": "Accept the job. (50 gold reward on completion)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "quest_advance",
+                  "questId": "sq_thornpact_intel_courier",
+                  "step": "accepted"
+                }
+              ]
+            },
+            {
+              "id": "decline",
+              "text": "Decline.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_forge_materials_001",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "stoneward",
+      "tone": "craftsmanlike",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "Raw forge materials. Stone-grade iron, ember-cured leather.",
+        "The Stoneward smiths know their business. Pity about the road tax."
+      ],
+      "choices": [
+        {
+          "id": "buy_iron",
+          "text": "Buy iron ingots. (25 gold for three)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -25
+            },
+            {
+              "type": "grant_item",
+              "itemId": "iron_ingot"
+            },
+            {
+              "type": "set_flag",
+              "flag": "forge_visited"
+            }
+          ]
+        },
+        {
+          "id": "bargain_crafting",
+          "text": "[Crafting - INT] Evaluate the quality and name your price.",
+          "skillCheck": {
+            "skill": "crafting",
+            "stat": "INT",
+            "dc": 11
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -18
+              },
+              {
+                "type": "grant_item",
+                "itemId": "iron_ingot"
+              },
+              {
+                "type": "set_flag",
+                "flag": "forge_visited"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -25
+              },
+              {
+                "type": "grant_item",
+                "itemId": "iron_ingot"
+              },
+              {
+                "type": "set_flag",
+                "flag": "forge_visited"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "merchant_black_market_001",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "riftgate",
+      "tone": "clandestine",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "Purple tent, purple light. The kind that doesn't ask questions.",
+        "Everything here is expensive, illegal, and exactly what you need."
+      ],
+      "choices": [
+        {
+          "id": "browse",
+          "text": "Browse.",
+          "requires": {
+            "flag": "market_unlocked"
+          },
+          "next": null,
+          "effects": [
+            {
+              "type": "open_shop",
+              "shopId": "black_market_rift"
+            }
+          ]
+        },
+        {
+          "id": "gain_access",
+          "text": "[Deception - INT] Find the password.",
+          "skillCheck": {
+            "skill": "deception",
+            "stat": "INT",
+            "dc": 15
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "market_unlocked"
+              },
+              {
+                "type": "open_shop",
+                "shopId": "black_market_rift"
+              }
+            ]
+          },
+          "onFail": {
+            "next": "#turned_away",
+            "effects": []
+          }
+        }
+      ],
+      "nodes": {
+        "turned_away": {
+          "lines": [
+            "A flat stare. \"Wrong password. Come back when you've learned how to knock.\""
+          ],
+          "choices": [
+            {
+              "id": "go",
+              "text": "Leave.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_wanderers_guild_001",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "emberwood",
+      "tone": "collegial",
+      "speaker": "road_scout_npc",
+      "lines": [
+        "Wanderers Guild trader. You've got the road-dust look — one of us?",
+        "We keep fair prices between travelers. No gouging. Old rule."
+      ],
+      "choices": [
+        {
+          "id": "claim_membership",
+          "text": "Claim Guild membership. (5% discount forever)",
+          "skillCheck": {
+            "skill": "deception",
+            "stat": "INT",
+            "dc": 10
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "faction_delta",
+                "faction": "wanderers_guild",
+                "amount": 2
+              },
+              {
+                "type": "open_shop",
+                "shopId": "guild_trader_discount"
+              }
+            ]
+          },
+          "onFail": {
+            "next": "#real_member",
+            "effects": [
+              {
+                "type": "faction_delta",
+                "faction": "wanderers_guild",
+                "amount": -1
+              }
+            ]
+          }
+        },
+        {
+          "id": "honest",
+          "text": "Admit you're not a member. Buy at fair rates.",
+          "next": null,
+          "effects": [
+            {
+              "type": "open_shop",
+              "shopId": "guild_trader_fair"
+            },
+            {
+              "type": "faction_delta",
+              "faction": "wanderers_guild",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "nodes": {
+        "real_member": {
+          "lines": [
+            "He knows every member by their road-callus. Yours aren't in the right places."
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Buy at standard rates. Gracefully.",
+              "next": null,
+              "effects": [
+                {
+                  "type": "open_shop",
+                  "shopId": "guild_trader_fair"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_old_road_b44rrmq_001",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Rations, fresh as the road allows. Try not to ask too many questions.",
+        "You won't find better fare, unless you count the trees. They won't sell you anything, though."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a small supply kit. (10 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -10
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "insult_quality",
+          "text": "[Deception - INT] Insult the quality of the rations.",
+          "skillCheck": {
+            "skill": "deception",
+            "stat": "INT",
+            "dc": 10
+          },
+          "onPass": {
+            "next": "#retort",
+            "effects": []
+          },
+          "onFail": {
+            "next": "#leave",
+            "effects": []
+          },
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_bm7z25t_001",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Welcome to the Ash Plains. Ration supplies are running low, like everything else here.",
+        "But I'm still open for business. What do you need?"
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a few rations. (25 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -25
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "ask_conditions",
+          "text": "[Perception - WIS] What’s the mood like around here?",
+          "skillCheck": {
+            "skill": "perception",
+            "stat": "WIS",
+            "dc": 10
+          },
+          "onPass": {
+            "next": "#mood_ash_plains",
+            "effects": []
+          },
+          "onFail": {
+            "next": "#mood_fail",
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Move on.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "mood_ash_plains": {
+          "lines": [
+            "He shrugs. \"People are either too scared or too tired to care. It's just ash and echoes here.\""
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Take a look at the rations.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        },
+        "mood_fail": {
+          "lines": [
+            "\"Yeah, it's normal. Like the weather. Gray and dreary.\" He shifts uncomfortably."
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Buy rations anyway.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_ash_plains_bm7z25t_002",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "Got some items that defy explanation. Or maybe just logic. Depends on the day.",
+        "Care to browse something unusual?"
+      ],
+      "choices": [
+        {
+          "id": "browse_items",
+          "text": "Browse the unusual wares.",
+          "next": "#unusual_wares",
+          "effects": []
+        },
+        {
+          "id": "inquire_origin",
+          "text": "[Diplomacy - INT] Where do you get these things?",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 12
+          },
+          "onPass": {
+            "next": "#info_obtained",
+            "effects": []
+          },
+          "onFail": {
+            "next": "#info_deflected",
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "walk_away",
+          "text": "Move on, no thanks.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "unusual_wares": {
+          "lines": [
+            "\"Veil-glass, a bone charm, and a few oddities that might explode. Your choice!\""
+          ],
+          "choices": [
+            {
+              "id": "buy_glass",
+              "text": "Buy the Veil-glass. (40 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -40
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "veil_glass"
+                }
+              ]
+            },
+            {
+              "id": "pass",
+              "text": "Pass on the wares.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        },
+        "info_obtained": {
+          "lines": [
+            "He smirks. \"Let's just say I have a good eye for discarded treasures.\""
+          ],
+          "choices": [
+            {
+              "id": "browse",
+              "text": "Look at the wares now.",
+              "next": "#unusual_wares",
+              "effects": []
+            }
+          ]
+        },
+        "info_deflected": {
+          "lines": [
+            "\"Let's just say I have my sources. But you won't meet them.\""
+          ],
+          "choices": [
+            {
+              "id": "browse",
+              "text": "Look at the wares anyway.",
+              "next": "#unusual_wares",
+              "effects": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_ash_plains_bm7z25t_003",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "road_scout_npc",
+      "lines": [
+        "Patrols are thin. Supplies are thinner. What do you want?",
+        "Prices are what they are, take it or leave it."
+      ],
+      "choices": [
+        {
+          "id": "pay_full_price",
+          "text": "Pay the full price. (30 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -30
+            },
+            {
+              "type": "grant_item",
+              "itemId": "ash_supply"
+            }
+          ]
+        },
+        {
+          "id": "bargain",
+          "text": "[Intimidation - CHA] Try to haggle the price down.",
+          "skillCheck": {
+            "skill": "intimidation",
+            "stat": "CHA",
+            "dc": 14
+          },
+          "onPass": {
+            "next": "#successful_bargain",
+            "effects": []
+          },
+          "onFail": {
+            "next": "#failed_bargain",
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Walk away from the deal.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "successful_bargain": {
+          "lines": [
+            "\"Fine, fine. Ten off, but don't tell the others. They don't take kindly to haggling.\""
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Take the deal and buy.",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -20
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "ash_supply"
+                }
+              ]
+            }
+          ]
+        },
+        "failed_bargain": {
+          "lines": [
+            "He stands firm. \"You think you can scare me? Not happening. Full price, or nothing.\""
+          ],
+          "choices": [
+            {
+              "id": "pay",
+              "text": "Pay full price anyway.",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -30
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "ash_supply"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_ash_plains_bm7z25t_004",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "veil_shrinekeeper",
+      "lines": [
+        "You seek atonement or supplies? Choices are limited, like the sun here.",
+        "But I’ve got what you may need."
+      ],
+      "choices": [
+        {
+          "id": "atone",
+          "text": "Offer a token for atonement. (15 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -15
+            },
+            {
+              "type": "grant_item",
+              "itemId": "atonement_token"
+            }
+          ]
+        },
+        {
+          "id": "buy_supplies",
+          "text": "Buy some supplies. (20 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -20
+            },
+            {
+              "type": "grant_item",
+              "itemId": "ash_supply"
+            }
+          ]
+        },
+        {
+          "id": "leave",
+          "text": "Leave the shrine without anything.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {}
+    },
+    {
+      "id": "merchant_ash_plains_bm7z25t_005",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "bone_reader",
+      "lines": [
+        "I sell stories, secrets, and perhaps a few trinkets. Everyone wants something.",
+        "What's your interest today?"
+      ],
+      "choices": [
+        {
+          "id": "buy_story",
+          "text": "Buy a story for 10 gold.",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -10
+            },
+            {
+              "type": "grant_item",
+              "itemId": "tale_of_ashes"
+            }
+          ]
+        },
+        {
+          "id": "ask_secrets",
+          "text": "[Occult - INT] What secrets do you know?",
+          "skillCheck": {
+            "skill": "occult",
+            "stat": "INT",
+            "dc": 13
+          },
+          "onPass": {
+            "next": "#revealed_secret",
+            "effects": []
+          },
+          "onFail": {
+            "next": "#no_secret",
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Walk away from this deal.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "revealed_secret": {
+          "lines": [
+            "\"The Veil's influence grows. Most don’t see it, but you will.\""
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Buy a story, regardless.",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -10
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "tale_of_ashes"
+                }
+              ]
+            }
+          ]
+        },
+        "no_secret": {
+          "lines": [
+            "\"Secrets are earned, not given freely. Pay or leave.\""
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Buy a story anyway.",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -10
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "tale_of_ashes"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_crossroads_cw000f0_001",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "crossroads",
+      "tone": "desperate",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Rations are running low, friend. What I have left isn't much.",
+        "You'll need to make do, or gamble against the Veil."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy whatever rations you have left. (25 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -25
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "ask_wellbeing",
+          "text": "[Diplomacy - INT] Ask how they’ve been holding up.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 10
+          },
+          "onPass": {
+            "next": "#innkeeper_support",
+            "effects": []
+          },
+          "onFail": {
+            "next": "#innkeeper_mourns",
+            "effects": []
+          },
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_crossroads_cw000f0_002",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "crossroads",
+      "tone": "desperate",
+      "speaker": "road_scout_npc",
+      "lines": [
+        "Every coin counts more than ever. I'm only selling to keep the lights on.",
+        "What do you need? Make it quick."
+      ],
+      "choices": [
+        {
+          "id": "buy_gear",
+          "text": "Buy some worn gear. (15 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -15
+            },
+            {
+              "type": "grant_item",
+              "itemId": "worn_gear"
+            }
+          ]
+        },
+        {
+          "id": "ask_news",
+          "text": "What’s happening around here?",
+          "next": "#scout_news",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_crossroads_cw000f0_003",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "crossroads",
+      "tone": "desperate",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "Survival's a tricky business these days. I've got some odds and ends.",
+        "You won't find these anywhere else... or maybe you will."
+      ],
+      "choices": [
+        {
+          "id": "browse_wares",
+          "text": "Browse the strange wares.",
+          "next": "#merchant_unusual_wares",
+          "effects": []
+        },
+        {
+          "id": "ask_source",
+          "text": "[Perception - INT] Where did you get all this?",
+          "skillCheck": {
+            "skill": "perception",
+            "stat": "INT",
+            "dc": 12
+          },
+          "onPass": {
+            "next": "#merchant_unusual_source",
+            "effects": []
+          },
+          "onFail": {
+            "next": "#merchant_unusual_deflects",
+            "effects": []
+          },
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_crossroads_cw000f0_004",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "crossroads",
+      "tone": "desperate",
+      "speaker": "veil_convert",
+      "lines": [
+        "You look like a person who understands sacrifice.",
+        "I have some items... for the right motivation."
+      ],
+      "choices": [
+        {
+          "id": "trade_items",
+          "text": "Offer supplies. (3 items)",
+          "next": null,
+          "effects": [
+            {
+              "type": "grant_item",
+              "itemId": "veil_features"
+            }
+          ]
+        },
+        {
+          "id": "leave_empty",
+          "text": "Leave without saying anything.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_crossroads_cw000f0_005",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "crossroads",
+      "tone": "desperate",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "Everything's gone wrong, friend. We barter for scraps now.",
+        "What do you need, if anything?"
+      ],
+      "choices": [
+        {
+          "id": "buy_scraps",
+          "text": "Buy some scrap materials. (10 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -10
+            },
+            {
+              "type": "grant_item",
+              "itemId": "scrap_materials"
+            }
+          ]
+        },
+        {
+          "id": "ask_how",
+          "text": "How are you managing?",
+          "next": "#merchant_unusual_how",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_dlvrwvp_001",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "You look like you need something stronger than water.",
+        "Care for a drink? Gold helps you choose."
+      ],
+      "choices": [
+        {
+          "id": "buy_drink",
+          "text": "Buy a drink. (5 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -5
+            },
+            {
+              "type": "grant_item",
+              "itemId": "strong_drink"
+            }
+          ]
+        },
+        {
+          "id": "ask_special",
+          "text": "What’s the house special?",
+          "next": "#merchant_old_road_dlvrwvp_special",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_dlvrwvp_002",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "I have what you're looking for. If you know what that is.",
+        "Mystery meat? Or something finer? Choices, my friend."
+      ],
+      "choices": [
+        {
+          "id": "buy_meat",
+          "text": "Buy the mystery meat. (10 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -10
+            },
+            {
+              "type": "grant_item",
+              "itemId": "mystery_meat"
+            }
+          ]
+        },
+        {
+          "id": "inquire_source",
+          "text": "[Intellect - INT] Ask about the source.",
+          "skillCheck": {
+            "skill": "intellect",
+            "stat": "INT",
+            "dc": 12
+          },
+          "onPass": {
+            "next": "#merchant_old_road_dlvrwvp_source",
+            "effects": []
+          },
+          "onFail": {
+            "next": "#merchant_old_road_dlvrwvp_deflect",
+            "effects": []
+          },
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_dvgi5ku_001",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Ash Plains goods, fresh from the last caravan. If you want to call it fresh.",
+        "You won't find this at any ordinary market—just ordinary prices."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a few supplies. (15 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -15
+            },
+            {
+              "type": "grant_item",
+              "itemId": "ash_rations"
+            }
+          ]
+        },
+        {
+          "id": "bargain",
+          "text": "[Diplomacy - INT] Try to negotiate a better price.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 10
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -10
+              },
+              {
+                "type": "grant_item",
+                "itemId": "ash_rations"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -15
+              }
+            ]
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Leave without buying anything.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_dvgi5ku_002",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "You want trinkets or wisdom? I have both, though the price is different.",
+        "Items from the Veil might be cursed or just overpriced. Who can tell?"
+      ],
+      "choices": [
+        {
+          "id": "inspect",
+          "text": "Inspect the wares.",
+          "next": "#merchant_ash_plains_dvgi5ku_wares",
+          "effects": []
+        },
+        {
+          "id": "ask_curse",
+          "text": "What’s the curse on these items?",
+          "next": null,
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Decide it's too risky and leave.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_dvgi5ku_003",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "road_scout_npc",
+      "lines": [
+        "If you're here for rations, you're in luck. If not, move along.",
+        "We've got what you need to survive—if you can pay."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a survival kit. (30 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -30
+            },
+            {
+              "type": "grant_item",
+              "itemId": "survival_kit"
+            }
+          ]
+        },
+        {
+          "id": "haggling",
+          "text": "[Intimidation - CON] Intimidate for a discount.",
+          "skillCheck": {
+            "skill": "intimidation",
+            "stat": "CON",
+            "dc": 12
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -20
+              },
+              {
+                "type": "grant_item",
+                "itemId": "survival_kit"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -30
+              }
+            ]
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Walk away empty-handed.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_dvgi5ku_004",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "veil_convert",
+      "lines": [
+        "We sell relics from the Veil—some useful, some just... interesting.",
+        "Digging through the ash, you never know what might turn up."
+      ],
+      "choices": [
+        {
+          "id": "buy_relic",
+          "text": "Purchase a relic. (50 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -50
+            },
+            {
+              "type": "grant_item",
+              "itemId": "veil_relic"
+            }
+          ]
+        },
+        {
+          "id": "ask_origin",
+          "text": "Where did you get these relics?",
+          "next": null,
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Decide against buying a relic.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_dvgi5ku_005",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "captain_maer",
+      "lines": [
+        "Only the brave or foolish venture here, looking for supplies.",
+        "Choose wisely, the ash is thick with secrets."
+      ],
+      "choices": [
+        {
+          "id": "buy_ammo",
+          "text": "Buy ammunition. (25 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -25
+            },
+            {
+              "type": "grant_item",
+              "itemId": "ash_ammo"
+            }
+          ]
+        },
+        {
+          "id": "negotiate",
+          "text": "[Deception - INT] Attempt to deceive for a better price.",
+          "skillCheck": {
+            "skill": "deception",
+            "stat": "INT",
+            "dc": 11
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -15
+              },
+              {
+                "type": "grant_item",
+                "itemId": "ash_ammo"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -25
+              }
+            ]
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Leave without making a purchase.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_riftgate_ekt20n6_001",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "riftgate",
+      "tone": "desperate",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Rations are scarce. I've only got a few left.",
+        "Take what you can carry, but it's going fast."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a basic supply kit. (30 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -30
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "haggle",
+          "text": "[Diplomacy - INT] Try to get a lower price.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 13
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -25
+              },
+              {
+                "type": "grant_item",
+                "itemId": "travel_rations"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -30
+              }
+            ]
+          },
+          "effects": []
+        },
+        {
+          "id": "donate",
+          "text": "Buy some for the travelers behind you.",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -60
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "merchant_riftgate_ekt20n6_002",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "riftgate",
+      "tone": "desperate",
+      "speaker": "veil_shrinekeeper",
+      "lines": [
+        "You seek knowledge? It's worth more than gold here.",
+        "The Veilscar holds secrets, but at a price."
+      ],
+      "choices": [
+        {
+          "id": "buy_info",
+          "text": "Buy information about the Veilscar. (50 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -50
+            },
+            {
+              "type": "set_flag",
+              "flag": "veil_lens_active"
+            }
+          ]
+        },
+        {
+          "id": "ask_free",
+          "text": "[Intellect - WIS] Ask for insights without payment.",
+          "skillCheck": {
+            "skill": "intellect",
+            "stat": "WIS",
+            "dc": 15
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "veil_lens_active"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Leave without purchase.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_riftgate_ekt20n6_003",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "riftgate",
+      "tone": "desperate",
+      "speaker": "road_scout_npc",
+      "lines": [
+        "We've got weapons, but they aren't pretty.",
+        "Choose fast; danger hangs in the air."
+      ],
+      "choices": [
+        {
+          "id": "buy_weapon",
+          "text": "Buy a makeshift weapon. (40 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -40
+            },
+            {
+              "type": "grant_item",
+              "itemId": "makeshift_weapon"
+            }
+          ]
+        },
+        {
+          "id": "inspect",
+          "text": "[Perception - DEX] Inspect the weapons for quality.",
+          "skillCheck": {
+            "skill": "perception",
+            "stat": "DEX",
+            "dc": 12
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "grant_item",
+                "itemId": "makeshift_weapon"
+              },
+              {
+                "type": "gold_delta",
+                "amount": -20
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -40
+              }
+            ]
+          },
+          "effects": []
+        },
+        {
+          "id": "walk_away",
+          "text": "Walk away from the deal.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_riftgate_ekt20n6_004",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "riftgate",
+      "tone": "desperate",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "I've got something rare, if you're interested.",
+        "Not many are brave or foolish enough to barter here."
+      ],
+      "choices": [
+        {
+          "id": "buy_veil_item",
+          "text": "Buy a Veil-related item. (75 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -75
+            },
+            {
+              "type": "grant_item",
+              "itemId": "veil_artifact"
+            }
+          ]
+        },
+        {
+          "id": "question",
+          "text": "[Intellect - INT] Ask about the item’s origins.",
+          "skillCheck": {
+            "skill": "intellect",
+            "stat": "INT",
+            "dc": 14
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "lore_ash_origin_found"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "decline",
+          "text": "Decline the unusual offer.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_riftgate_ekt20n6_005",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "riftgate",
+      "tone": "desperate",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "What I have left is for those who are willing.",
+        "I can't do this for free; the Veil doesn't grant mercy."
+      ],
+      "choices": [
+        {
+          "id": "buy_potions",
+          "text": "Buy potions for survival. (50 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -50
+            },
+            {
+              "type": "grant_item",
+              "itemId": "healing_potion"
+            }
+          ]
+        },
+        {
+          "id": "ask_discount",
+          "text": "[Diplomacy - INT] Try for a discount.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 10
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -40
+              },
+              {
+                "type": "grant_item",
+                "itemId": "healing_potion"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -50
+              }
+            ]
+          },
+          "effects": []
+        },
+        {
+          "id": "walk_away",
+          "text": "Walk away; it's too much.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_f7czwx8_001",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Got supplies, but don’t ask for miracles.",
+        "I can’t feed you hope, just bread. If you’re lucky."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a loaf of bread. (5 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -5
+            },
+            {
+              "type": "grant_item",
+              "itemId": "loaf_of_bread"
+            }
+          ]
+        },
+        {
+          "id": "ask_special",
+          "text": "What’s the special today?",
+          "next": "#merchant_old_road_f7czwx8_001_special",
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Move along.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "merchant_old_road_f7czwx8_001_special": {
+          "lines": [
+            "He shrugs. \"If you call stale a special, then I guess it is.\""
+          ],
+          "choices": [
+            {
+              "id": "buy_rations",
+              "text": "Get the stale bread anyway. (5 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -5
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "stale_bread"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_old_road_f7czwx8_002",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "Got some oddities here. Take a look, if you dare.",
+        "Prices are negotiable, but my patience isn’t."
+      ],
+      "choices": [
+        {
+          "id": "browse",
+          "text": "Browse the oddities.",
+          "next": "#merchant_old_road_f7czwx8_002_wares",
+          "effects": []
+        },
+        {
+          "id": "haggle",
+          "text": "[Diplomacy - INT] Try to haggle the price.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 12
+          },
+          "onPass": {
+            "next": "#merchant_old_road_f7czwx8_002_discount",
+            "effects": []
+          },
+          "onFail": {
+            "next": "#merchant_old_road_f7czwx8_002_no_discount",
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Move on.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_fkrfcq7_001",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Ashen wares for those with coin. Or perhaps some old stories?",
+        "The flames around here have a way of making you rethink your choices."
+      ],
+      "choices": [
+        {
+          "id": "buy_wares",
+          "text": "Browse the wares.",
+          "next": null,
+          "effects": []
+        },
+        {
+          "id": "ask_stories",
+          "text": "Ask for a tale of the Ash Plains.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_crossroads_fnnsr8s_001",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "crossroads",
+      "tone": "desperate",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Rations scarce, friend. Only what I've managed to scrape together.",
+        "You won't find better prices here, but they're still too high for many."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a few rations. (20 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -20
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "leave_empty",
+          "text": "Move on, no coin left to spend.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_crossroads_fnnsr8s_002",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "crossroads",
+      "tone": "desperate",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "Got items no one else would dare to sell. You interested?",
+        "Best bargains come with a cost. Sometimes, a heavy one."
+      ],
+      "choices": [
+        {
+          "id": "browse",
+          "text": "Browse the wares.",
+          "next": "pool:merchant#merchant_crossroads_wares",
+          "effects": []
+        },
+        {
+          "id": "ask_origin",
+          "text": "[Intellect - INT] Where do these come from?",
+          "skillCheck": {
+            "skill": "intellect",
+            "stat": "INT",
+            "dc": 15
+          },
+          "onPass": {
+            "next": "pool:merchant#merchant_crossroads_origin",
+            "effects": []
+          },
+          "onFail": {
+            "next": "pool:merchant#merchant_crossroads_deflects",
+            "effects": []
+          },
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_fvfyikg_001",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "I've got rations, if you're still hungry for adventure.",
+        "War's been tough on appetites and prices alike."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a basic supply kit. (15 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -15
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "ask_haggling",
+          "text": "[Diplomacy - INT] Can we strike a better deal?",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 10
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -5
+              },
+              {
+                "type": "grant_item",
+                "itemId": "travel_rations"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -15
+              }
+            ]
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Walk away from the stand.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_fvfyikg_002",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "I sell cures and curios, but they don't all mix well.",
+        "Ever tried a Veil-glass charm? It sparkles… sometimes."
+      ],
+      "choices": [
+        {
+          "id": "buy_curios",
+          "text": "Buy a Veil-glass charm. (25 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -25
+            },
+            {
+              "type": "grant_item",
+              "itemId": "veil_glass_charm"
+            }
+          ]
+        },
+        {
+          "id": "probe_origin",
+          "text": "[Perception - INT] Where do these come from?",
+          "skillCheck": {
+            "skill": "perception",
+            "stat": "INT",
+            "dc": 12
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "market_unlocked"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Move on, no interest.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_fvfyikg_003",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "road_scout_npc",
+      "lines": [
+        "You’ll find supplies here, if you can pay the toll.",
+        "I don't take IOUs. Just gold or good stories."
+      ],
+      "choices": [
+        {
+          "id": "pay_toll",
+          "text": "Pay the toll. (10 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -10
+            },
+            {
+              "type": "open_shop",
+              "shopId": "road_scout_supply"
+            }
+          ]
+        },
+        {
+          "id": "offer_story",
+          "text": "Tell a tale instead. (Use storytelling)",
+          "next": null,
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "No gold. No stories. Just leaving.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_fvfyikg_004",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "strange_wanderer",
+      "lines": [
+        "Got some oddities for odd folks. Look around.",
+        "You won’t find these trinkets in Brightfall."
+      ],
+      "choices": [
+        {
+          "id": "inspect_items",
+          "text": "Browse the oddities.",
+          "next": null,
+          "effects": []
+        },
+        {
+          "id": "ask_origin",
+          "text": "[Intellect - INT] Where did you find these?",
+          "skillCheck": {
+            "skill": "intellect",
+            "stat": "INT",
+            "dc": 11
+          },
+          "onPass": {
+            "next": null,
+            "effects": []
+          },
+          "onFail": {
+            "next": null,
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "No unusual treasures today.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_fvfyikg_005",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "old_peddler",
+      "lines": [
+        "If you’re after something special, I can help... for a price.",
+        "It's not just gold I want. A good tale’s worth its weight."
+      ],
+      "choices": [
+        {
+          "id": "share_story",
+          "text": "Share a tale in exchange for goods.",
+          "next": null,
+          "effects": []
+        },
+        {
+          "id": "pay_gold",
+          "text": "Pay 20 gold for a rare item.",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -20
+            },
+            {
+              "type": "grant_item",
+              "itemId": "rare_item"
+            }
+          ]
+        },
+        {
+          "id": "leave",
+          "text": "No stories, no gold. Goodbye.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_gecl8ow_001",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Greetings, weary traveler. Rations are limited, but I have some... interesting options."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy some rations. (25 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -25
+            },
+            {
+              "type": "grant_item",
+              "itemId": "ash_rations"
+            }
+          ]
+        },
+        {
+          "id": "haggle",
+          "text": "[Diplomacy - INT] Try to haggle down the price.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 13
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -20
+              },
+              {
+                "type": "grant_item",
+                "itemId": "ash_rations"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -25
+              },
+              {
+                "type": "grant_item",
+                "itemId": "ash_rations"
+              }
+            ]
+          },
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_fbimufn_001",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Rations are slim, but I've got what's left. If you can pay, that is.",
+        "You're not the only ones hungry these days."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a supply kit. (20 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -20
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "haggle",
+          "text": "[Diplomacy - INT] Try to negotiate a better price.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 10
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -15
+              },
+              {
+                "type": "grant_item",
+                "itemId": "travel_rations"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -20
+              },
+              {
+                "type": "grant_item",
+                "itemId": "travel_rations"
+              }
+            ]
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Shake your head and walk away.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_fix001",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Dust and bones, the usual fare. What can I get you?",
+        "Rations or rumors, both in short supply."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a pack of rations. (25 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -25
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "ask_rumors",
+          "text": "What rumors are worth my time?",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_crossroads_fmqk2yu_001",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "crossroads",
+      "tone": "desperate",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Food and supplies are running low. Prices are steep, but I have what you need.",
+        "Take what you can. The road ahead is grim."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy basic supplies. (50 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -50
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "haggle",
+          "text": "[Diplomacy - INT] Try to negotiate a better price.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 15
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -30
+              },
+              {
+                "type": "grant_item",
+                "itemId": "travel_rations"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -50
+              },
+              {
+                "type": "grant_item",
+                "itemId": "travel_rations"
+              }
+            ]
+          },
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_fta6rhx_001",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Rations, though they’ve seen better days.",
+        "Got a few loaves that still resemble bread."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy two loaves for 5 gold.",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -5
+            },
+            {
+              "type": "grant_item",
+              "itemId": "stale_bread"
+            }
+          ]
+        },
+        {
+          "id": "haggle",
+          "text": "[Diplomacy - INT] Try to bargain for a better price.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 10
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -3
+              },
+              {
+                "type": "grant_item",
+                "itemId": "stale_bread"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -5
+              }
+            ]
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Move along without buying.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_fta6rhx_002",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "I’ve got a collection of oddities. None are stolen, I promise.",
+        "Most just borrowed indefinitely, you see."
+      ],
+      "choices": [
+        {
+          "id": "browse",
+          "text": "Browse the oddities.",
+          "next": "#merchant_oddities",
+          "effects": []
+        },
+        {
+          "id": "inquire",
+          "text": "What’s the strangest item?",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_old_road_fta6rhx_003",
+      "pool": "merchant",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "wry",
+      "speaker": "road_scout_npc",
+      "lines": [
+        "You won’t find much here, unless you’re hunting bandits.",
+        "But I do have some rations, good enough to last a bit."
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy rations for 10 gold.",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -10
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "check_goods",
+          "text": "[Perception - WIS] Inspect the goods more closely.",
+          "skillCheck": {
+            "skill": "perception",
+            "stat": "WIS",
+            "dc": 12
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "grant_item",
+                "itemId": "road_map"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "No thanks, I'll keep moving.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_g4ekib2_001",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Ash Plains special — dried fruits smoked in bramblefire.",
+        "Taste the despair, only slightly sweet. What do you say?"
+      ],
+      "choices": [
+        {
+          "id": "buy_special",
+          "text": "Buy the special. (15 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -15
+            },
+            {
+              "type": "grant_item",
+              "itemId": "smoked_dried_fruits"
+            }
+          ]
+        },
+        {
+          "id": "ask_origin",
+          "text": "[Diplomacy - INT] Where do you source these?",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 10
+          },
+          "onPass": {
+            "next": "#merchant_origin_info",
+            "effects": []
+          },
+          "onFail": {
+            "next": null,
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Leave the stand.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "merchant_origin_info": {
+          "lines": [
+            "Most are from the old gardens. Just don't ask the details, alright?"
+          ],
+          "choices": [
+            {
+              "id": "accept_info",
+              "text": "Accept the information and buy. (15 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -15
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "smoked_dried_fruits"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_ash_plains_g4ekib2_002",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "merchant_unusual",
+      "lines": [
+        "Out here, everything's for sale. Even my sanity, at a discount.",
+        "What'll it be? A trinket or a tale of woe?"
+      ],
+      "choices": [
+        {
+          "id": "browse_trinkets",
+          "text": "Browse the trinkets.",
+          "next": "#merchant_trinkets",
+          "effects": []
+        },
+        {
+          "id": "ask_stories",
+          "text": "What tales do you have?",
+          "next": "#merchant_stories",
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Move on.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "merchant_trinkets": {
+          "lines": [
+            "He shows a collection of oddities. \"Got a Veilshard that's just a rock, or a vial of something...\""
+          ],
+          "choices": [
+            {
+              "id": "buy_trinket",
+              "text": "Buy the Veilshard. (20 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -20
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "veilshard"
+                }
+              ]
+            }
+          ]
+        },
+        "merchant_stories": {
+          "lines": [
+            "He chuckles. \"Every trinket has its price, and so do my stories. How about twenty gold for this one?\""
+          ],
+          "choices": [
+            {
+              "id": "buy_story",
+              "text": "Pay for a story. (20 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -20
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "tale_of_woe"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_ash_plains_g4ekib2_003",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "veil_shrinekeeper",
+      "lines": [
+        "Not much left to trade here, but I do have some lore for the right price.",
+        "Knowledge is power, or so they say."
+      ],
+      "choices": [
+        {
+          "id": "buy_lore",
+          "text": "Pay for a piece of lore. (25 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -25
+            },
+            {
+              "type": "grant_item",
+              "itemId": "lore_fragment"
+            }
+          ]
+        },
+        {
+          "id": "barter_info",
+          "text": "[Intellect - INT] Offer local information.",
+          "skillCheck": {
+            "skill": "intellect",
+            "stat": "INT",
+            "dc": 12
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "grant_item",
+                "itemId": "lore_fragment"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Walk away.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_g4ekib2_004",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "I found some interesting herbs. Not legal, but then again, neither are we."
+      ],
+      "choices": [
+        {
+          "id": "buy_herbs",
+          "text": "Buy the herbs. (30 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -30
+            },
+            {
+              "type": "grant_item",
+              "itemId": "illegal_herbs"
+            }
+          ]
+        },
+        {
+          "id": "ask_about_effects",
+          "text": "What do these do?",
+          "next": "#merchant_herb_effects",
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Leave the stall.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "merchant_herb_effects": {
+          "lines": [
+            "They may help you forget, or remember too much. Depends on the day, really."
+          ],
+          "choices": [
+            {
+              "id": "buy_herbs",
+              "text": "I'll take the risk. (30 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -30
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "illegal_herbs"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_ash_plains_g4ekib2_005",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "bone_reader",
+      "lines": [
+        "You look like you've seen shadows. I have charms to ward them off or invite them closer.",
+        "Care to make a deal?"
+      ],
+      "choices": [
+        {
+          "id": "buy_charms",
+          "text": "Buy a charm. (50 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -50
+            },
+            {
+              "type": "grant_item",
+              "itemId": "shadow_charm"
+            }
+          ]
+        },
+        {
+          "id": "inquire_risk",
+          "text": "What's the catch?",
+          "next": "#merchant_charm_risk",
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Walk away from the deal.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "merchant_charm_risk": {
+          "lines": [
+            "The charm works, but shadows have a way of biting back. Just a warning."
+          ],
+          "choices": [
+            {
+              "id": "buy_charms",
+              "text": "I'll take my chances. (50 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -50
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "shadow_charm"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_riftgate_gq89a9t_001",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "riftgate",
+      "tone": "desperate",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Rations are scarce. What little I have is priced to move.",
+        "War's done a number on us all, hasn't it?"
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy what you can. (30 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -30
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "haggle",
+          "text": "[Diplomacy - INT] Try to lower the price.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 13
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -20
+              },
+              {
+                "type": "grant_item",
+                "itemId": "travel_rations"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -30
+              },
+              {
+                "type": "grant_item",
+                "itemId": "travel_rations"
+              }
+            ]
+          },
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_crossroads_h71o1yo_001",
+      "pool": "merchant",
+      "act": 3,
+      "biome": "crossroads",
+      "tone": "desperate",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "Rations, if you can pay. Slim pickings these days.",
+        "Gold's good, but trust is better. What'll it be?"
+      ],
+      "choices": [
+        {
+          "id": "buy_rations",
+          "text": "Buy a small supply kit. (15 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -15
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        {
+          "id": "barter",
+          "text": "[Diplomacy - INT] Offer something in trade.",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 10
+          },
+          "onPass": {
+            "next": null,
+            "effects": [
+              {
+                "type": "grant_item",
+                "itemId": "travel_rations"
+              }
+            ]
+          },
+          "onFail": {
+            "next": null,
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Walk away.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "merchant_ash_plains_hh1z3n7_001",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "bone_reader",
+      "lines": [
+        "I sell memories, if you have the gold. Or the courage."
+      ],
+      "choices": [
+        {
+          "id": "browse",
+          "text": "Take a look at the wares.",
+          "next": "#merchant_ash_plains_hh1z3n7_001_wares",
+          "effects": []
+        },
+        {
+          "id": "ask_source",
+          "text": "[Diplomacy - INT] Where do these come from?",
+          "skillCheck": {
+            "skill": "diplomacy",
+            "stat": "INT",
+            "dc": 13
+          },
+          "onPass": {
+            "next": "#merchant_ash_plains_hh1z3n7_001_source",
+            "effects": []
+          },
+          "onFail": {
+            "next": "#merchant_ash_plains_hh1z3n7_001_deflect",
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Walk away, uninterested.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "merchant_ash_plains_hh1z3n7_001_wares": {
+          "lines": [
+            "A collection of odd trinkets laid out. \"From the ashes of the past, literally.\""
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Purchase a memory vial. (30 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -30
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "memory_vial"
+                }
+              ]
+            },
+            {
+              "id": "pass",
+              "text": "Decide against it.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        },
+        "merchant_ash_plains_hh1z3n7_001_source": {
+          "lines": [
+            "He leans in, eyes glinting. \"Some things are best left unsaid, you know.\""
+          ],
+          "choices": [
+            {
+              "id": "browse",
+              "text": "Browse the wares again.",
+              "next": "#merchant_ash_plains_hh1z3n7_001_wares",
+              "effects": []
+            }
+          ]
+        },
+        "merchant_ash_plains_hh1z3n7_001_deflect": {
+          "lines": [
+            "\"Let's just say, the past has its price.\" He shrugs, dismissive."
+          ],
+          "choices": [
+            {
+              "id": "browse",
+              "text": "Take a look at the wares.",
+              "next": "#merchant_ash_plains_hh1z3n7_001_wares",
+              "effects": []
+            },
+            {
+              "id": "leave",
+              "text": "Leave the conversation.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_ash_plains_hh1z3n7_002",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "veil_shrinekeeper",
+      "lines": [
+        "Welcome to the shrine. I offer both blessings and curiosities."
+      ],
+      "choices": [
+        {
+          "id": "bless",
+          "text": "Receive a blessing. (5 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -5
+            },
+            {
+              "type": "grant_item",
+              "itemId": "blessing_token"
+            }
+          ]
+        },
+        {
+          "id": "browse",
+          "text": "View the oddities for sale.",
+          "next": "#merchant_ash_plains_hh1z3n7_002_wares",
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Move on, nothing of interest.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "merchant_ash_plains_hh1z3n7_002_wares": {
+          "lines": [
+            "\"I have enchanted stones and whispers of the Veil. Choose wisely.\""
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Buy a whisper stone. (25 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -25
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "whisper_stone"
+                }
+              ]
+            },
+            {
+              "id": "pass",
+              "text": "Decide to pass.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_ash_plains_hh1z3n7_003",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "ash_prophet_npc",
+      "lines": [
+        "The ash holds truths. If you can afford them, they're yours."
+      ],
+      "choices": [
+        {
+          "id": "ask_prices",
+          "text": "[Intellect - INT] Inquire about the cost.",
+          "skillCheck": {
+            "skill": "intellect",
+            "stat": "INT",
+            "dc": 10
+          },
+          "onPass": {
+            "next": "#merchant_ash_plains_hh1z3n7_003_prices",
+            "effects": []
+          },
+          "onFail": {
+            "next": "#merchant_ash_plains_hh1z3n7_003_deflect",
+            "effects": []
+          },
+          "effects": []
+        },
+        {
+          "id": "leave",
+          "text": "Walk away, uninterested.",
+          "next": null,
+          "effects": []
+        },
+        {
+          "id": "browse",
+          "text": "Look at the displayed items.",
+          "next": "#merchant_ash_plains_hh1z3n7_003_wares",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "merchant_ash_plains_hh1z3n7_003_prices": {
+          "lines": [
+            "\"Truth costs a good deal, stranger. Twenty gold for a glimpse.\""
+          ],
+          "choices": [
+            {
+              "id": "purchase",
+              "text": "Buy a truth glimpse. (20 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -20
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "truth_glimpse"
+                }
+              ]
+            },
+            {
+              "id": "pass",
+              "text": "Decide against it.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        },
+        "merchant_ash_plains_hh1z3n7_003_deflect": {
+          "lines": [
+            "\"It's not the price but the wisdom that matters, eh?\" He chuckles."
+          ],
+          "choices": [
+            {
+              "id": "browse",
+              "text": "Look at the displayed items.",
+              "next": "#merchant_ash_plains_hh1z3n7_003_wares",
+              "effects": []
+            }
+          ]
+        },
+        "merchant_ash_plains_hh1z3n7_003_wares": {
+          "lines": [
+            "Various talismans and ash-infused relics await. \"Pick your poison.\""
+          ],
+          "choices": [
+            {
+              "id": "buy",
+              "text": "Purchase a talisman. (15 gold)",
+              "next": null,
+              "effects": [
+                {
+                  "type": "gold_delta",
+                  "amount": -15
+                },
+                {
+                  "type": "grant_item",
+                  "itemId": "ash_talisman"
+                }
+              ]
+            },
+            {
+              "id": "pass",
+              "text": "Move on without buying.",
+              "next": null,
+              "effects": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "merchant_ash_plains_hh1z3n7_004",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "yasha_stonewill",
+      "lines": [
+        "Not much left to trade, but I’ve got stories for gold."
+      ],
+      "choices": [
+        {
+          "id": "buy_story",
+          "text": "Purchase a tale of the Ashen Veil. (10 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -10
+            },
+            {
+              "type": "grant_item",
+              "itemId": "veil_story"
+            }
+          ]
+        },
+        {
+          "id": "leave",
+          "text": "Decide against trading.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {}
+    },
+    {
+      "id": "merchant_ash_plains_hh1z3n7_005",
+      "pool": "merchant",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "wry",
+      "speaker": "brightfall_innkeeper",
+      "lines": [
+        "The inn's a bit dusty, but the drinks are strong."
+      ],
+      "choices": [
+        {
+          "id": "buy_drink",
+          "text": "Buy a drink. (5 gold)",
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -5
+            },
+            {
+              "type": "grant_item",
+              "itemId": "strong_drink"
+            }
+          ]
+        },
+        {
+          "id": "leave",
+          "text": "Head out, not thirsty.",
+          "next": null,
+          "effects": []
+        }
+      ],
+      "nodes": {}
+    }
+  ]
+}

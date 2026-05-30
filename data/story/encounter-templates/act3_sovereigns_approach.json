@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sa_emberveil_sovereign_boss",
+    "act": 3,
+    "biomes": ["sovereigns_approach"],
+    "themeTags": ["boss", "final", "sovereign"],
+    "type": "boss",
+    "primaryRole": "boss",
+    "enemyComposition": [
+      { "role": "frontline", "count": 2, "enemyId": "veil_warden" },
+      { "role": "caster", "count": 2, "enemyId": "veil_sorcerer" },
+      { "role": "boss", "count": 1, "enemyId": "emberveil_sovereign" }
+    ],
+    "budgetWeight": 3.0,
+    "baseWeight": 1.0,
+    "rewards": { "goldRange": [300, 500], "lootTier": 6 },
+    "preDialog": null,
+    "weatherCompatible": ["all"]
+  }
+]

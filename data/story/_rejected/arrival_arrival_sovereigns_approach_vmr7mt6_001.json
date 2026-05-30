@@ -1,0 +1,75 @@
+{
+  "node": {
+    "id": "arrival_sovereigns_approach_vmr7mt6_001",
+    "pool": "arrival",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "tense",
+    "speaker": "ash_prophet_npc",
+    "lines": [
+      "The path is not yours to tread lightly.",
+      "State your purpose, or turn back."
+    ],
+    "choices": [
+      {
+        "id": "state_purpose",
+        "text": "We seek the Sovereign. Let us pass.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "intimidate",
+        "text": "[Intimidation - STR] Step forward threateningly.",
+        "skillCheck": {
+          "skill": "intimidation",
+          "stat": "strength",
+          "dc": 14
+        },
+        "onPass": {
+          "next": "#intimidated",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "gate_intimidated"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "pool:ambush#ambush_sovereign_guard_001",
+          "effects": []
+        }
+      },
+      {
+        "id": "retreat",
+        "text": "We reconsider our approach.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "intimidated": {
+        "lines": [
+          "He steps aside with a wary eye.",
+          "\"You may pass, but tread carefully.\""
+        ],
+        "choices": [
+          {
+            "id": "enter",
+            "text": "Proceed down the path.",
+            "next": null,
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "riftgate_breached"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"intimidate\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-20T23:52:57.345Z"
+}

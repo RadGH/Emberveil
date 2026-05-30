@@ -1,0 +1,129 @@
+[
+  {
+    "id": "ew_cultist_road_cell",
+    "act": 1,
+    "biomes": ["emberwood"],
+    "themeTags": ["cult", "ambush", "road"],
+    "type": "combat",
+    "primaryRole": "caster",
+    "enemyComposition": [
+      { "role": "frontline", "count": 2, "enemyId": "veil_cultist" },
+      { "role": "caster", "count": 1, "enemyId": "veil_sorcerer" }
+    ],
+    "budgetWeight": 1.0,
+    "baseWeight": 0.70,
+    "rewards": { "goldRange": [35, 70], "lootTier": 2 },
+    "preDialog": "pool:ambush#ambush_cult_road_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "ew_corrupted_wolf_pack",
+    "act": 1,
+    "biomes": ["emberwood"],
+    "themeTags": ["beast", "pack", "nature"],
+    "type": "combat",
+    "primaryRole": "striker",
+    "enemyComposition": [
+      { "role": "striker", "count": 3, "enemyId": "corrupted_wolf" },
+      { "role": "striker", "count": 1, "enemyId": "cinder_hound" }
+    ],
+    "budgetWeight": 0.85,
+    "baseWeight": 0.65,
+    "rewards": { "goldRange": [20, 45], "lootTier": 1 },
+    "preDialog": null,
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "ew_goblin_forward_scout",
+    "act": 1,
+    "biomes": ["emberwood"],
+    "themeTags": ["goblin", "scout", "forest"],
+    "type": "combat",
+    "primaryRole": "frontline",
+    "enemyComposition": [
+      { "role": "striker", "count": 3, "enemyId": "goblin_scout" },
+      { "role": "support", "count": 1, "enemyId": "goblin_shaman" }
+    ],
+    "budgetWeight": 0.80,
+    "baseWeight": 0.70,
+    "rewards": { "goldRange": [15, 40], "lootTier": 1 },
+    "preDialog": "pool:ambush#ambush_goblin_pack_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "ew_ember_shrine_cleanse",
+    "act": 1,
+    "biomes": ["emberwood"],
+    "themeTags": ["shrine", "ancient", "pact"],
+    "type": "shrine",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.40,
+    "rewards": { "goldRange": [0, 25], "lootTier": 1 },
+    "preDialog": "pool:shrine#shrine_ember_purified_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "ew_lore_hermit",
+    "act": 1,
+    "biomes": ["emberwood"],
+    "themeTags": ["lore", "npc", "memory"],
+    "type": "lore",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.55,
+    "rewards": { "goldRange": [0, 15], "lootTier": 0 },
+    "preDialog": "pool:lore#lore_travelers_memory_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "ew_cinder_hound_den",
+    "act": 1,
+    "biomes": ["emberwood"],
+    "themeTags": ["beast", "den", "fire"],
+    "type": "combat",
+    "primaryRole": "striker",
+    "enemyComposition": [
+      { "role": "striker", "count": 4, "enemyId": "cinder_hound" }
+    ],
+    "budgetWeight": 0.90,
+    "baseWeight": 0.55,
+    "rewards": { "goldRange": [10, 35], "lootTier": 1 },
+    "preDialog": "pool:ambush#ambush_cinder_hound_pack_001",
+    "weatherCompatible": ["clear", "overcast"]
+  },
+  {
+    "id": "ew_goblin_warlord_camp",
+    "act": 1,
+    "biomes": ["emberwood"],
+    "themeTags": ["goblin", "elite", "camp"],
+    "type": "elite",
+    "primaryRole": "frontline",
+    "enemyComposition": [
+      { "role": "frontline", "count": 2, "enemyId": "goblin_warrior" },
+      { "role": "striker", "count": 2, "enemyId": "goblin_scout" },
+      { "role": "boss", "count": 1, "enemyId": "goblin_warlord" }
+    ],
+    "budgetWeight": 1.5,
+    "baseWeight": 0.40,
+    "rewards": { "goldRange": [60, 120], "lootTier": 3 },
+    "preDialog": null,
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "ew_wandering_merchant_road",
+    "act": 1,
+    "biomes": ["emberwood", "anyBiome"],
+    "themeTags": ["merchant", "trade", "road"],
+    "type": "merchant",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.50,
+    "rewards": { "goldRange": [0, 0], "lootTier": 0 },
+    "preDialog": "pool:merchant#merchant_unusual_cart_001",
+    "weatherCompatible": ["all"]
+  }
+]

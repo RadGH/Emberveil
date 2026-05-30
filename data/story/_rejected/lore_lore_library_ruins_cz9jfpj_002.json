@@ -1,0 +1,18 @@
+{
+  "node": {
+    "id": "lore_library_ruins_cz9jfpj_002",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "\"This place was once a beacon of learning, now a tomb of silence.\"",
+      "The shrinekeeper's eyes reflect a haunting understanding."
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:06:20.788Z"
+}

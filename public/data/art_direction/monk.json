@@ -1,0 +1,85 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "monk",
+  "displayName": "Monk",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "identity": "Bald human male monk, shaven head, serene calm face, clean-shaven, warm brown eyes, lightly tanned skin, compact muscular build.",
+  "outfit": "Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.",
+  "weapons": "None. Bare fists held in a martial-arts guard are his weapon.",
+  "attackStyle": "East-facing. Mid-forward-kick, right leg extended in a high snap kick, left fist cocked at the chin. Robes flare. CRITICAL: character must be MID-STRIKE, clearly in motion \u2014 weapon in the middle of a swing, thrust, shot, or spell-cast, NOT an idle/battle-ready stance. Pose must be visually distinct from the east idle.",
+  "spellStyle": "East-facing. Both hands pressed together palm-to-palm at chest, a sphere of soft gold-white ki-energy glowing between them.",
+  "blockStyle": "East-facing. Arms up in a forearm-guard, both fists closed at head level. Crouched stance.",
+  "koStyle": "East-facing, seated in a slumped lotus position, head bowed, hands resting on knees.",
+  "southStyle": "Facing camera (south), calm martial idle. Bare fists held in a low martial guard at the hips. Serene expression.",
+  "portraitStyle": "Bust shot from mid-chest up, three-quarter view. Shaven head, serene face, orange robe + cream sash visible at shoulders.",
+  "bannedSubstrings": [
+    "sword",
+    "axe",
+    "bow",
+    "staff",
+    "plate armor",
+    "hair"
+  ],
+  "referenceSheet": {
+    "path": "images/pixellab/monk/reference.png",
+    "spritecookAssetId": "243298c9-00ac-4588-ad19-e7ed1bfa2fb9",
+    "prompt": "IDENTITY (this image becomes the canonical identity anchor \u2014 preserve in every downstream frame): Bald human male monk, shaven head, serene calm face, clean-shaven, warm brown eyes, lightly tanned skin, compact muscular build.\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are his weapon.\n\nCLASS: humanoid. Full-body view, head to feet visible. Character occupies ~70% of the canvas height. Feet aligned near the bottom; headroom above.\n\nPOSE: full-body side profile facing right (east), calm combat-ready idle. Head up, eyes visible. NOT a portrait bust, NOT a close-up \u2014 entire character from head to feet.\n\nSTYLE: detailed pixel art with clean readable silhouette, warm pixel-art palette, transparent background, no ground shadow.",
+    "bitforgeAssetId": null,
+    "sourcePortraitPath": "images/portraits/monk.png",
+    "generatedAt": "2026-04-21T08:15:39.764Z",
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait": {
+      "path": "images/spritecook/monk_portrait.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human male monk, shaven head, serene calm face, clean-shaven, warm brown eyes, lightly tanned skin, compact muscular build.\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are his weapon.\n\nPOSE (portrait): Bust shot from mid-chest up, three-quarter view. Shaven head, serene face, orange robe + cream sash visible at shoulders.\n\nFRAMING: bust shot from mid-chest up, three-quarter view, centered in a 256x256 canvas, shoulders fill the lower third.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "6f146aa3-82e5-4b45-8e88-7c642beb1987"
+    },
+    "south": {
+      "path": "images/spritecook/monk_south.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human male monk, shaven head, serene calm face, clean-shaven, warm brown eyes, lightly tanned skin, compact muscular build.\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are his weapon.\n\nPOSE (south): Facing camera (south), calm martial idle. Bare fists held in a low martial guard at the hips. Serene expression.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "0f87289c-1c7f-4a5d-964d-a6bf934881dd"
+    },
+    "east": {
+      "path": "images/spritecook/monk_east.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human male monk, shaven head, serene calm face, clean-shaven, warm brown eyes, lightly tanned skin, compact muscular build.\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are his weapon.\n\nPOSE (east): Neutral combat idle, consistent with reference sheet, full-body facing east.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "d9a8a51c-9937-4afb-90a3-4a29a105fe1d"
+    },
+    "east_attack": {
+      "path": "images/spritecook/monk_east_attack.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human male monk, shaven head, serene calm face, clean-shaven, warm brown eyes, lightly tanned skin, compact muscular build.\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are his weapon.\n\nPOSE (east_attack): East-facing. Mid-forward-kick, right leg extended in a high snap kick, left fist cocked at the chin. Robes flare.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "a34029a8-96c9-47a9-b12c-9b76f88b9970"
+    },
+    "east_spell": {
+      "path": "images/spritecook/monk_east_spell.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human male monk, shaven head, serene calm face, clean-shaven, warm brown eyes, lightly tanned skin, compact muscular build.\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are his weapon.\n\nPOSE (east_spell): East-facing. Both hands pressed together palm-to-palm at chest, a sphere of soft gold-white ki-energy glowing between them.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "a8cd8672-8bf2-4e3b-98be-0489bf013ea8"
+    },
+    "east_block": {
+      "path": "images/spritecook/monk_east_block.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human male monk, shaven head, serene calm face, clean-shaven, warm brown eyes, lightly tanned skin, compact muscular build.\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are his weapon.\n\nPOSE (east_block): East-facing. Arms up in a forearm-guard, both fists closed at head level. Crouched stance.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "fcc9be4a-809b-4b87-8bf4-b3efbb44e115"
+    },
+    "east_ko": {
+      "path": "images/spritecook/monk_east_ko.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human male monk, shaven head, serene calm face, clean-shaven, warm brown eyes, lightly tanned skin, compact muscular build.\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are his weapon.\n\nPOSE (east_ko): East-facing, seated in a slumped lotus position, head bowed, hands resting on knees.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "21f0f2d0-8efd-41ac-887e-a54a519cff66"
+    }
+  },
+  "notes": "Bare-handed martial artist. Zero weapons. Bald shaven head."
+}

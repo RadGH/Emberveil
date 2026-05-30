@@ -1,0 +1,244 @@
+{
+  "id": "archetype_spells_2",
+  "version": "1.0.0",
+  "name": "Archetype Spells Pack II",
+  "author": "Emberveil",
+  "description": "Ten additional archetype spells (M151) continuing the DSL-authored catalog from archetype-spells.json. Covers mutual revive, auto-revive, idle ramp, stacking armor shred, companion sacrifice, multi-round rituals, phase, guard-link redirect, overheal-to-barrier, and counter-magic. All authored purely in the v1 Effect DSL — two items (Conditional multi, Dash back-row strike) are shelved with explicit reasons because the DSL has no dynamic-target-count or row-targeting primitive yet; see /assets/wishlist.html.",
+  "skills": [
+    {
+      "id": "arch_counter_stance",
+      "name": "Iron Counter",
+      "class": "knight",
+      "unlockLevel": 4,
+      "mpCost": 5,
+      "cooldown": 3,
+      "description": "Self-buff: next 2 hits reflect 150% of incoming damage back to the attacker. Runtime: CombatScreen._applyDamage consumes counterStance status (M173).",
+      "targeting": { "side": "self" },
+      "effects": [
+        { "op": "applyStatus", "status": "counterStance", "amount": 150, "stacks": 2, "duration": 3, "target": "self" }
+      ],
+      "tags": ["counter", "reflect", "defense"]
+    },
+    {
+      "id": "arch_dispel_steal",
+      "name": "Thief's Whisper",
+      "class": "rogue",
+      "unlockLevel": 5,
+      "mpCost": 6,
+      "cooldown": 4,
+      "description": "Rip every stat buff (buff:str/int/dex/con/armor/etc) from one enemy and graft them onto the caster with the remaining duration intact. DSL: stealStatus with prefix='buff:'.",
+      "targeting": { "side": "enemy", "count": 1 },
+      "effects": [
+        { "op": "stealStatus", "prefix": "buff:", "from": "target", "to": "self" }
+      ],
+      "tags": ["dispel", "steal", "rogue"]
+    },
+    {
+      "id": "arch_targeted_silence",
+      "name": "Hush",
+      "class": "enchanter",
+      "unlockLevel": 3,
+      "mpCost": 4,
+      "cooldown": 3,
+      "description": "Applies 'silenced' to one enemy for 2 rounds. While silenced, AI skill-picker (M171) skips any magic/heal/mp-costing skill for that target; basic attacks still resolve.",
+      "targeting": { "side": "enemy", "count": 1 },
+      "effects": [
+        { "op": "applyStatus", "status": "silenced", "duration": 2, "stacks": 1, "target": "target" }
+      ],
+      "tags": ["silence", "debuff", "control"]
+    },
+    {
+      "id": "arch_soul_tether",
+      "name": "Soul Tether",
+      "class": "cleric",
+      "unlockLevel": 6,
+      "mpCost": 8,
+      "cooldown": 5,
+      "description": "Bind caster and one ally. If either drops to 0 HP, an onEvent('onDeath') hook resurrects the other at 25% maxHp via a single heal pulse. Tether lasts 4 rounds.",
+      "targeting": { "side": "ally", "count": 1 },
+      "effects": [
+        { "op": "applyStatus", "status": "soul_tether", "duration": 4, "stacks": 1, "target": "target" },
+        { "op": "applyStatus", "status": "soul_tether", "duration": 4, "stacks": 1, "target": "self" },
+        { "op": "onEvent", "event": "onDeath", "effects": [
+          { "op": "requireFlag", "flag": "soul_tether_active" },
+          { "op": "heal", "stat": "flat", "amount": 25, "target": "allAllies" },
+          { "op": "consumeStatus", "status": "soul_tether", "target": "self" },
+          { "op": "consumeStatus", "status": "soul_tether", "target": "target" }
+        ] }
+      ],
+      "tags": ["revive", "tether", "reactive"]
+    },
+    {
+      "id": "arch_second_wind",
+      "name": "Second Wind",
+      "class": "guardian",
+      "unlockLevel": 5,
+      "mpCost": 6,
+      "cooldown": 6,
+      "description": "Self-buff: the next fatal blow is converted into a 1-HP survival pulse. onEvent('onDeath') triggers a flat heal and consumes the buff.",
+      "targeting": { "side": "self" },
+      "effects": [
+        { "op": "applyStatus", "status": "second_wind", "duration": 8, "stacks": 1, "target": "self" },
+        { "op": "onEvent", "event": "onDeath", "effects": [
+          { "op": "requireFlag", "flag": "second_wind_ready" },
+          { "op": "heal", "stat": "flat", "amount": 1, "target": "self" },
+          { "op": "consumeStatus", "status": "second_wind", "target": "self" },
+          { "op": "setFlag", "flag": "second_wind_ready", "value": false }
+        ] }
+      ],
+      "tags": ["revive", "self", "reactive"]
+    },
+    {
+      "id": "arch_channel_ramp",
+      "name": "Channel Ramp",
+      "class": "warlock",
+      "unlockLevel": 4,
+      "mpCost": 3,
+      "cooldown": 1,
+      "description": "Self-buff that grows +25% power per round of not attacking (tracked via incrementFlag('idleRounds')). On next attack (onHit), consumes the ramp and adds a damage echo scaled by accumulated idle rounds.",
+      "targeting": { "side": "self" },
+      "effects": [
+        { "op": "applyStatus", "status": "channel_ramp", "duration": 6, "stacks": 1, "target": "self" },
+        { "op": "incrementFlag", "flag": "idleRounds", "by": 1 },
+        { "op": "onHit", "effects": [
+          { "op": "requireFlag", "flag": "idleRounds" },
+          { "op": "damage", "stat": "int", "mult": 0.25, "amount": 0, "target": "target" },
+          { "op": "consumeFlag", "flag": "idleRounds" },
+          { "op": "consumeStatus", "status": "channel_ramp", "target": "self" }
+        ] }
+      ],
+      "tags": ["ramp", "idle", "self"]
+    },
+    {
+      "id": "arch_armor_shred_stack",
+      "name": "Armor Shred",
+      "class": "rogue",
+      "unlockLevel": 3,
+      "mpCost": 3,
+      "cooldown": 1,
+      "description": "Dex-scaling strike that stacks an armor-reduction debuff. statusModel.addStatus already coalesces stacks across casts (statuses[].stacks += 1), so repeat casts accumulate -armor.",
+      "targeting": { "side": "enemy", "count": 1 },
+      "effects": [
+        { "op": "damage", "stat": "dex", "mult": 0.9, "amount": 2, "target": "target" },
+        { "op": "applyStatus", "status": "armor_shred", "duration": 4, "stacks": 1, "target": "target" },
+        { "op": "buff", "key": "armor", "amount": -2, "duration": 4, "target": "target" }
+      ],
+      "tags": ["debuff", "stack", "armor"]
+    },
+    {
+      "id": "arch_sacrifice_companion",
+      "name": "Sacrifice Companion",
+      "class": "warlock",
+      "unlockLevel": 7,
+      "mpCost": 0,
+      "cooldown": 8,
+      "description": "Slays a willing ally (full-HP damage to the target ally) and converts that life into a major int buff + heal for the caster. Uses damage+heal+buff only — no removeFromCombat op needed; the ally's onDeath hook handles cleanup elsewhere.",
+      "targeting": { "side": "ally", "count": 1 },
+      "effects": [
+        { "op": "damage", "stat": "flat", "mult": 0, "amount": 9999, "target": "target" },
+        { "op": "heal", "stat": "flat", "amount": 40, "target": "self" },
+        { "op": "buff", "key": "int", "amount": 6, "duration": 5, "target": "self" },
+        { "op": "buff", "key": "str", "amount": 4, "duration": 5, "target": "self" }
+      ],
+      "tags": ["sacrifice", "buff", "dark"]
+    },
+    {
+      "id": "arch_long_ritual",
+      "name": "Doom Ritual",
+      "class": "warlock",
+      "unlockLevel": 8,
+      "mpCost": 10,
+      "cooldown": 6,
+      "description": "A 3-round ritual. While channeling the caster applies 'channeling' status (interruptible — removable by stun/silence per statusModel). On completion, deals massive int damage to all enemies and applies doom.",
+      "targeting": { "side": "enemy", "count": 99, "aoe": true },
+      "effects": [
+        { "op": "applyStatus", "status": "channeling", "duration": 3, "stacks": 1, "target": "self" },
+        { "op": "ritual", "rounds": 3, "thenEffects": [
+          { "op": "damage", "stat": "int", "mult": 3.0, "amount": 12, "target": "allEnemies" },
+          { "op": "applyStatus", "status": "doom", "duration": 3, "stacks": 1, "target": "allEnemies" },
+          { "op": "consumeStatus", "status": "channeling", "target": "self" }
+        ] }
+      ],
+      "tags": ["ritual", "channel", "aoe"]
+    },
+    {
+      "id": "arch_phase",
+      "name": "Phase Shift",
+      "class": "chronomancer",
+      "unlockLevel": 5,
+      "mpCost": 6,
+      "cooldown": 4,
+      "description": "Caster becomes untargetable for 1 round and cannot act (setFlag skipTurn). Combat runtime checks the 'untargetable' status when selecting AI targets and the skipTurn flag when resolving the caster's next turn.",
+      "targeting": { "side": "self" },
+      "effects": [
+        { "op": "applyStatus", "status": "untargetable", "duration": 1, "stacks": 1, "target": "self" },
+        { "op": "setFlag", "flag": "skipTurn", "value": true }
+      ],
+      "tags": ["phase", "self", "evasion"]
+    },
+    {
+      "id": "arch_guard_link",
+      "name": "Guard Link",
+      "class": "guardian",
+      "unlockLevel": 5,
+      "mpCost": 5,
+      "cooldown": 3,
+      "description": "Applies 'redirect_to_caster' status on an ally for 1 round. Combat runtime (pending migration, tracked on wishlist alongside Soulbind) should route damage targeted at the ally to the caster while this status is active.",
+      "targeting": { "side": "ally", "count": 1 },
+      "effects": [
+        { "op": "applyStatus", "status": "redirect_to_caster", "duration": 1, "stacks": 1, "target": "target" },
+        { "op": "buff", "key": "armor", "amount": 2, "duration": 1, "target": "self" }
+      ],
+      "tags": ["redirect", "defense", "ally"]
+    },
+    {
+      "id": "arch_overheal_barrier",
+      "name": "Radiant Font",
+      "class": "cleric",
+      "unlockLevel": 5,
+      "mpCost": 6,
+      "cooldown": 3,
+      "description": "Heals an ally for a large amount, deliberately overshooting max HP. statusModel.overhealToBarrier() converts the overflow into a 3-round 'barrier' status with barrierHp matching the overflow.",
+      "targeting": { "side": "ally", "count": 1 },
+      "effects": [
+        { "op": "heal", "stat": "int", "mult": 2.5, "amount": 40, "target": "target" },
+        { "op": "applyStatus", "status": "barrier_ready", "duration": 3, "stacks": 1, "target": "target" }
+      ],
+      "tags": ["heal", "barrier", "overheal"]
+    },
+    {
+      "id": "arch_counter_magic_screen",
+      "name": "Counter-Magic Screen",
+      "class": "cryomancer",
+      "unlockLevel": 6,
+      "mpCost": 7,
+      "cooldown": 4,
+      "description": "Applies 'magic_reflect' to all allies for 1 round. On each incoming magical hit, onEvent('onSpellHit') returns 100% int damage to the caster of the incoming spell. Mirrors the arch_active_reflect pattern but party-wide and magic-only.",
+      "targeting": { "side": "ally", "count": 99, "aoe": true },
+      "effects": [
+        { "op": "applyStatus", "status": "magic_reflect", "duration": 1, "stacks": 1, "target": "allAllies" },
+        { "op": "onEvent", "event": "onSpellHit", "effects": [
+          { "op": "requireFlag", "flag": "magic_reflect_active" },
+          { "op": "damage", "stat": "int", "mult": 1.0, "amount": 0, "target": "target" },
+          { "op": "consumeStatus", "status": "magic_reflect", "target": "self" }
+        ] }
+      ],
+      "tags": ["reflect", "magic", "party"]
+    },
+    {
+      "id": "arch_soulbind",
+      "name": "Soulbind",
+      "class": "cleric",
+      "unlockLevel": 6,
+      "mpCost": 7,
+      "cooldown": 5,
+      "description": "Caster and one ally share the weight of pain. While bound (4 rounds), 50% of damage taken by either is redirected to the other. Runtime: CombatScreen._applyDamage soulbind block (M175).",
+      "targeting": { "side": "ally", "count": 1 },
+      "effects": [
+        { "op": "applyStatus", "status": "soulbind", "amount": 50, "duration": 4, "stacks": 1, "target": "self" },
+        { "op": "applyStatus", "status": "soulbind", "amount": 50, "duration": 4, "stacks": 1, "target": "target" }
+      ],
+      "tags": ["soulbind", "redirect", "ally"]
+    }
+  ]
+}

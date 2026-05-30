@@ -1,0 +1,43 @@
+{
+  "node": {
+    "id": "arrival_sovereigns_approach_vmr7mt6_004",
+    "pool": "arrival",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "tense",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "The Sovereign's minions roam here.",
+      "Stay sharp; they won't hesitate."
+    ],
+    "choices": [
+      {
+        "id": "stealth",
+        "text": "[Stealth - DEX] Move quietly through the shadows.",
+        "skillCheck": {
+          "skill": "stealth",
+          "stat": "dexterity",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#sneak_past",
+          "effects": []
+        },
+        "onFail": {
+          "next": "pool:ambush#ambush_sovereign_minion_001",
+          "effects": []
+        }
+      },
+      {
+        "id": "advance",
+        "text": "We'll push through boldly.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"stealth\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-20T23:52:57.345Z"
+}

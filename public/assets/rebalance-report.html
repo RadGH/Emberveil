@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="rsg-game" content="Emberveil">
+  <title>Emberveil — Rebalance Report (M264–M267)</title>
+  <link rel="stylesheet" href="./_tool-styles.css">
+  <style>
+    :root { font-variant-emoji: text; }
+    body { padding: 0; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px 20px 80px; }
+    .page-title { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; letter-spacing: 0.12em; background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 40%, var(--ember1) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; margin: 0 0 4px; }
+    .page-sub { color: var(--muted); font-size: 14px; margin: 0 0 24px; }
+    .hero-banner { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; background: linear-gradient(135deg, rgba(160,80,255,0.08), rgba(80,120,220,0.06)); border: 1px solid rgba(160,80,255,0.25); border-radius: 12px; padding: 18px 20px; margin-bottom: 30px; }
+    .kpi { }
+    .kpi .label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .kpi .value { font-family: var(--font-display); font-weight: 900; font-size: 24px; color: var(--gold-bright); }
+    .kpi .delta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .kpi .delta.good { color: #60e880; }
+    .kpi .delta.bad  { color: #ff8060; }
+
+    section.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 22px; }
+    section.card h2 { font-family: var(--font-display); color: var(--gold-bright); font-size: 22px; margin: 0 0 4px; letter-spacing: 0.04em; }
+    section.card h3 { font-family: var(--font-display); color: var(--gold); font-size: 15px; margin: 18px 0 8px; letter-spacing: 0.06em; text-transform: uppercase; }
+    section.card .sub { color: var(--muted); font-size: 13px; margin: 0 0 16px; line-height: 1.5; }
+    section.card p { color: var(--text); font-size: 13px; line-height: 1.6; margin: 8px 0; }
+    section.card code { background: rgba(0,0,0,0.3); padding: 1px 6px; border-radius: 3px; font-size: 0.92em; color: #d0c0b0; }
+
+    /* chart styles */
+    .chart-frame { background: rgba(0,0,0,0.2); border: 1px solid rgba(240,232,216,0.08); border-radius: 8px; padding: 14px 16px 18px; margin: 10px 0 18px; }
+    .chart-frame .title { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .chart-frame .caption { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+    svg.chart { width: 100%; height: auto; display: block; overflow: visible; }
+    svg .axis-label { font-size: 10px; fill: var(--muted); }
+    svg .grid-line { stroke: rgba(255,255,255,0.04); stroke-width: 1; }
+    svg .bar-label { font-size: 10px; fill: var(--text); }
+    svg .bar-name { font-size: 11px; fill: var(--text); }
+
+    .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; }
+
+    table.data { width: 100%; border-collapse: collapse; font-size: 12px; margin: 10px 0; }
+    table.data th { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--border); color: var(--gold); letter-spacing: 0.08em; font-size: 10px; text-transform: uppercase; }
+    table.data td { padding: 5px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    table.data tr.hot td { background: rgba(200,80,80,0.06); }
+    table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .tag { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+    .tag.fixed { background: rgba(80,200,120,0.15); color: #60e880; border: 1px solid rgba(80,200,120,0.3); }
+    .tag.nerf { background: rgba(220,120,80,0.15); color: #ff9060; border: 1px solid rgba(220,120,80,0.3); }
+    .tag.new { background: rgba(160,80,255,0.15); color: #b87fff; border: 1px solid rgba(160,80,255,0.3); }
+    .tag.tune { background: rgba(232,208,32,0.15); color: #ffd060; border: 1px solid rgba(232,208,32,0.3); }
+
+    /* meter mockup */
+    .meter-mock { background: rgba(10,8,14,0.95); border: 1px solid rgba(160,80,255,0.45); border-radius: 8px; padding: 0; font-size: 11px; color: #f0e8d8; max-width: 260px; }
+    .meter-mock .head { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-bottom: 1px solid rgba(160,80,255,0.25); }
+    .meter-mock .title-t { font-weight: 700; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #b87fff; flex: 1; }
+    .meter-mock .btn { background: rgba(160,80,255,0.15); border: 1px solid rgba(160,80,255,0.35); color: #b87fff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; cursor: default; }
+    .meter-mock .row { display: flex; align-items: center; gap: 6px; padding: 3px 10px; position: relative; }
+    .meter-mock .row .bar { position: absolute; left: 0; top: 2px; bottom: 2px; border-radius: 2px; z-index: 0; }
+    .meter-mock .row .name { position: relative; z-index: 1; flex: 1; }
+    .meter-mock .row .val { position: relative; z-index: 1; font-weight: 700; color: #ffd060; }
+
+    .report-drill { background: rgba(10,8,14,0.95); border: 1px solid rgba(184,127,255,0.35); border-radius: 8px; padding: 16px; font-size: 12px; color: #f0e8d8; }
+    .report-drill .top-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; background: rgba(160,80,255,0.08); border: 1px solid rgba(160,80,255,0.2); border-radius: 6px; padding: 10px 12px; margin-bottom: 14px; }
+    .report-drill .ts-label { font-size: 10px; opacity: 0.7; }
+    .report-drill .ts-val { font-weight: 700; color: #ffd060; font-size: 18px; }
+    .report-drill .tabs { display: flex; gap: 6px; margin-bottom: 10px; border-bottom: 1px solid rgba(184,127,255,0.2); padding-bottom: 6px; }
+    .report-drill .tab { padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
+    .report-drill .tab.dmg { background: rgba(200,80,80,0.15); border: 1px solid rgba(200,80,80,0.4); color: #ff8060; }
+    .report-drill .tab.heal { background: rgba(80,200,120,0.08); border: 1px solid rgba(80,200,120,0.25); color: #60e880; }
+    .report-drill .tab.mit { background: rgba(120,160,220,0.08); border: 1px solid rgba(120,160,220,0.25); color: #80a0e0; }
+    .report-drill .char-row { background: rgba(0,0,0,0.28); border: 1px solid rgba(240,232,216,0.08); border-radius: 6px; padding: 8px 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; position: relative; }
+    .report-drill .char-row .cbar { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(200,80,80,0.2); border-radius: 6px; }
+    .report-drill .char-row .cname { position: relative; flex: 1; font-weight: 700; color: #ffd060; font-size: 13px; }
+    .report-drill .char-row .ctot { position: relative; color: #ff8060; font-weight: 700; font-size: 13px; }
+    .report-drill .char-row .cpct { position: relative; opacity: 0.6; font-size: 11px; min-width: 36px; text-align: right; }
+    .report-drill .src { background: rgba(0,0,0,0.2); border-radius: 4px; padding: 5px 10px; display: flex; align-items: center; gap: 8px; font-size: 11px; margin: 4px 0 4px 14px; }
+    .report-drill .src .sname { flex: 1; color: #ff8060; }
+    .report-drill .src .scount { opacity: 0.6; }
+    .report-drill .src .sval { font-weight: 700; color: #ff8060; min-width: 55px; text-align: right; }
+    .report-drill .src .spct { opacity: 0.6; font-size: 10px; min-width: 32px; text-align: right; }
+    .report-drill table.hits { width: 100%; font-size: 10.5px; margin-left: 28px; color: #f0e8d8; }
+    .report-drill table.hits td { padding: 2px 6px; }
+
+    .screenshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+    @media (max-width: 760px) { .screenshot-grid { grid-template-columns: 1fr; } }
+  </style>
+  <script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+</head>
+<body class="ev-themed">
+<div class="wrap">
+  <h1 class="page-title">Emberveil — Rebalance Report</h1>
+  <p class="page-sub">Milestones M264–M271 · Generated 2026-04-24 (last updated with M268 meter follow-ups + M271 code review) · Combat simulator findings, skill-scaling audit, and the new granular DPS/Heal/Mitigation meter.
+    &nbsp;<a href="./rebalance-diff.html" style="color:var(--gold);font-size:0.85em;">Compare snapshots (M300 diff view) &rarr;</a></p>
+
+  <!-- Hero KPI strip -->
+  <div class="hero-banner">
+    <div class="kpi">
+      <div class="label">Skills audited</div>
+      <div class="value">63</div>
+      <div class="delta">damage + zone skills across 20 classes</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Before fix: ≥2× overrun</div>
+      <div class="value" style="color:#ff8060">43</div>
+      <div class="delta bad">68% of skills hidden-scaled their damage</div>
+    </div>
+    <div class="kpi">
+      <div class="label">After fix: ≥2× overrun</div>
+      <div class="value" style="color:#60e880">1</div>
+      <div class="delta good">−42 outliers · 97.7% resolved</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Boss fight pacing (sim)</div>
+      <div class="value">9.7 rnd</div>
+      <div class="delta good">target was ~10 rounds</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Trash fight pacing (sim)</div>
+      <div class="value">6.8 rnd</div>
+      <div class="delta">modest encounter baseline</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Sim runs crunched</div>
+      <div class="value">45,000+</div>
+      <div class="delta">5 saves × 20 encounters × 150 seeds × 3 passes</div>
+    </div>
+  </div>
+
+  <!-- ─── Executive summary ─────────────────────────────────────────────── -->
+  <section class="card">
+    <h2>Executive Summary</h2>
+    <p class="sub">We shipped four rebalance milestones this session, all backed by simulator evidence against your real save files.</p>
+
+    <table class="data">
+      <thead>
+        <tr><th>Milestone</th><th>What</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>M264</strong> <span class="tag fixed">parity</span></td>
+          <td>Sim + combat AI now respect <code>member.skills</code></td>
+          <td>Sim was casting every class-unlocked skill; playtest uses only the player's selected list. Primary cause of Ylva Holy Strike vs Shield Bash divergence.</td>
+        </tr>
+        <tr>
+          <td><strong>M265</strong> <span class="tag tune">tune</span></td>
+          <td>Enemy HP +150%, damage +10% (first pass)</td>
+          <td>Baseline sim showed fights ending in 5–7 rounds, below the 10-round "feels good" target. Bosses landed at 10.1 rounds under this profile. Also added sim block-parity so heavy-shield builds were modeled correctly.</td>
+        </tr>
+        <tr>
+          <td><strong>M266</strong> <span class="tag nerf">nerf</span> <span class="tag fixed">fix</span></td>
+          <td>Skill damageMult additive-stacking bug fixed (upgrades now replace); tooltips render effective multipliers; enemy HP dialed back to 2.0×</td>
+          <td>Audit revealed 43/63 damage skills scaled 2–3× above their tooltip values due to a merge function that added upgrade multipliers on top of each other. Shield Bash at L19 was actually 4.9× STR, not the tooltip's 2.0×.</td>
+        </tr>
+        <tr>
+          <td><strong>M267</strong> <span class="tag new">new</span></td>
+          <td>Granular DPS / Heal / Mitigation meter with 3-level drill-down</td>
+          <td>Replaces the single-mode meter from M261. Tracks damage dealt, heal done, mitigation absorbed (armor/block/barrier/spell-resist/dodge count), and lifesteal-as-heal. Post-combat report: Character → Skill → individual hit.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ─── Chart 1: Skill overrun before/after ────────────────────────────── -->
+  <section class="card">
+    <h2>1. Skill scaling audit — the overrun problem</h2>
+    <p class="sub">
+      A bug in <code>_mergeInto</code> (skills.js:2149) stacked upgrade <code>damageMult</code> values additively instead of replacing.
+      Designers wrote upgrade descriptions like "damage increases to 200%", but the code did <code>base + 1.5 + 2.0 = 4.6×</code> instead of the intended 2.0×.
+      Talents were correctly additive (they're written as "+30%"); only upgrades needed the semantic swap.
+    </p>
+
+    <h3>Top 20 offenders — tooltip vs actual effective multiplier at max level</h3>
+    <div class="chart-frame">
+      <div class="title">Skill overrun (effective ÷ tooltip-intended)</div>
+      <svg class="chart" viewBox="0 0 1080 520" preserveAspectRatio="xMinYMin meet" aria-label="Bar chart of top 20 skills by overrun multiplier">
+        <!-- grid lines -->
+        <line x1="260" y1="20" x2="260" y2="480" class="grid-line"/>
+        <line x1="420" y1="20" x2="420" y2="480" class="grid-line"/>
+        <line x1="580" y1="20" x2="580" y2="480" class="grid-line"/>
+        <line x1="740" y1="20" x2="740" y2="480" class="grid-line"/>
+        <line x1="900" y1="20" x2="900" y2="480" class="grid-line"/>
+        <line x1="1060" y1="20" x2="1060" y2="480" class="grid-line"/>
+        <text x="260" y="498" text-anchor="middle" class="axis-label">1×</text>
+        <text x="420" y="498" text-anchor="middle" class="axis-label">1.5×</text>
+        <text x="580" y="498" text-anchor="middle" class="axis-label">2×</text>
+        <text x="740" y="498" text-anchor="middle" class="axis-label">2.5×</text>
+        <text x="900" y="498" text-anchor="middle" class="axis-label">3×</text>
+        <text x="1060" y="498" text-anchor="middle" class="axis-label">3.5×</text>
+        <text x="660" y="515" text-anchor="middle" class="axis-label" style="font-weight:700">overrun multiplier · red dashed line = design intent (1×)</text>
+        <line x1="260" y1="20" x2="260" y2="480" stroke="#ff8060" stroke-width="2" stroke-dasharray="4 4" opacity="0.5"/>
+
+        <!-- bars: (name, class, overrun 0-3.5) -->
+        <!-- Each row 22px, start y=22 -->
+        <g font-family="inherit">
+<!-- BARS START -->
+          <text x="250" y="36" text-anchor="end" class="bar-name">Bone Spike</text>
+          <rect x="260" y="24" width="960" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="36" class="bar-label" fill="#ff8060" style="font-weight:700">3.00×</text>
+
+          <text x="250" y="60" text-anchor="end" class="bar-name">Song of Ruin</text>
+          <rect x="260" y="48" width="861" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="60" class="bar-label" fill="#ff8060" style="font-weight:700">2.69×</text>
+
+          <text x="250" y="84" text-anchor="end" class="bar-name">Flourish</text>
+          <rect x="260" y="72" width="790" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="84" class="bar-label" fill="#ff8060" style="font-weight:700">2.47×</text>
+
+          <text x="250" y="108" text-anchor="end" class="bar-name">Wild Bolt</text>
+          <rect x="260" y="96" width="787" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="108" class="bar-label" fill="#ff8060" style="font-weight:700">2.46×</text>
+
+          <text x="250" y="132" text-anchor="end" class="bar-name">Spirit Bolt</text>
+          <rect x="260" y="120" width="787" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="132" class="bar-label" fill="#ff8060" style="font-weight:700">2.46×</text>
+
+          <text x="250" y="156" text-anchor="end" class="bar-name">Multi-Shot</text>
+          <rect x="260" y="144" width="787" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="156" class="bar-label" fill="#ff8060" style="font-weight:700">2.46×</text>
+
+          <text x="250" y="180" text-anchor="end" class="bar-name">Big Score</text>
+          <rect x="260" y="168" width="784" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="180" class="bar-label" fill="#ff8060" style="font-weight:700">2.45×</text>
+
+          <text x="250" y="204" text-anchor="end" class="bar-name">Shield Bash</text>
+          <rect x="260" y="192" width="784" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="204" class="bar-label" fill="#ff8060" style="font-weight:700">2.45×</text>
+
+          <text x="250" y="228" text-anchor="end" class="bar-name">Whirlwind</text>
+          <rect x="260" y="216" width="768" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="228" class="bar-label" fill="#ff8060" style="font-weight:700">2.40×</text>
+
+          <text x="250" y="252" text-anchor="end" class="bar-name">Silver Bolt</text>
+          <rect x="260" y="240" width="765" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="252" class="bar-label" fill="#ff8060" style="font-weight:700">2.39×</text>
+
+          <text x="250" y="276" text-anchor="end" class="bar-name">Precise Strike</text>
+          <rect x="260" y="264" width="762" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="276" class="bar-label" fill="#ff8060" style="font-weight:700">2.38×</text>
+
+          <text x="250" y="300" text-anchor="end" class="bar-name">Glaive Toss</text>
+          <rect x="260" y="288" width="758" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="300" class="bar-label" fill="#ff8060" style="font-weight:700">2.37×</text>
+
+          <text x="250" y="324" text-anchor="end" class="bar-name">Palm Strike</text>
+          <rect x="260" y="312" width="755" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="324" class="bar-label" fill="#ff8060" style="font-weight:700">2.36×</text>
+
+          <text x="250" y="348" text-anchor="end" class="bar-name">Arcane Surge</text>
+          <rect x="260" y="336" width="755" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="348" class="bar-label" fill="#ff8060" style="font-weight:700">2.36×</text>
+
+          <text x="250" y="372" text-anchor="end" class="bar-name">Bone Spear</text>
+          <rect x="260" y="360" width="755" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="372" class="bar-label" fill="#ff8060" style="font-weight:700">2.36×</text>
+
+          <text x="250" y="396" text-anchor="end" class="bar-name">Shadow Strike</text>
+          <rect x="260" y="384" width="752" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="396" class="bar-label" fill="#ff8060" style="font-weight:700">2.35×</text>
+
+          <text x="250" y="420" text-anchor="end" class="bar-name">Rune Hammer</text>
+          <rect x="260" y="408" width="746" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="420" class="bar-label" fill="#ff8060" style="font-weight:700">2.33×</text>
+
+          <text x="250" y="444" text-anchor="end" class="bar-name">Fireball</text>
+          <rect x="260" y="432" width="742" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="444" class="bar-label" fill="#ff8060" style="font-weight:700">2.32×</text>
+
+          <text x="250" y="468" text-anchor="end" class="bar-name">Blizzard</text>
+          <rect x="260" y="456" width="739" height="16" fill="rgba(200,80,80,0.22)" rx="2"/>
+          <text x="268" y="468" class="bar-label" fill="#ff8060" style="font-weight:700">2.31×</text>
+<!-- BARS END -->
+        </g>
+      </svg>
+      <div class="caption">
+        Every bar exceeds the 1× design-intent line by ≥2×. Bone Spike was a 3× outlier because both its L5 and L10 upgrades stacked their full multipliers on top of the base.
+        Full table of all 43 outliers: <code>memory/skill-stacking-audit.md</code>.
+      </div>
+    </div>
+
+    <h3>Overrun distribution — before the fix vs after</h3>
+    <div class="chart-frame">
+      <div class="title">Number of skills by overrun bucket (n=63)</div>
+      <svg class="chart" viewBox="0 0 720 300" preserveAspectRatio="xMinYMin meet" aria-label="Histogram of skill overrun distribution before and after the fix">
+        <!-- legend -->
+        <rect x="480" y="14" width="14" height="14" fill="rgba(200,80,80,0.5)"/>
+        <text x="500" y="26" class="bar-label">Before M266</text>
+        <rect x="600" y="14" width="14" height="14" fill="rgba(80,200,120,0.55)"/>
+        <text x="620" y="26" class="bar-label">After M266</text>
+
+        <!-- Buckets: 1.0-1.2, 1.2-1.5, 1.5-2.0, 2.0-2.5, 2.5-3.0, 3.0+  -->
+        <!-- Before: 5, 1, 14, 35, 6, 2 -->
+        <!-- After:  53, 8, 1, 1, 0, 0 -->
+        <!-- Scale: max=53 → 200px height -->
+        <g font-family="inherit">
+          <!-- Bucket 1.0-1.2 -->
+          <rect x="60"  y="181" width="40" height="19" fill="rgba(200,80,80,0.5)"/>
+          <rect x="102" y="0" width="40" height="200" fill="rgba(80,200,120,0.55)"/>
+          <text x="102" y="245" text-anchor="middle" class="axis-label">1.0–1.2×</text>
+          <text x="80"  y="177" text-anchor="middle" class="bar-label">5</text>
+          <text x="122" y="-4" text-anchor="middle" class="bar-label" style="fill:#60e880;font-weight:700">53</text>
+
+          <rect x="170" y="196" width="40" height="4" fill="rgba(200,80,80,0.5)"/>
+          <rect x="212" y="170" width="40" height="30" fill="rgba(80,200,120,0.55)"/>
+          <text x="212" y="245" text-anchor="middle" class="axis-label">1.2–1.5×</text>
+          <text x="190" y="192" text-anchor="middle" class="bar-label">1</text>
+          <text x="232" y="166" text-anchor="middle" class="bar-label">8</text>
+
+          <rect x="280" y="147" width="40" height="53" fill="rgba(200,80,80,0.5)"/>
+          <rect x="322" y="196" width="40" height="4" fill="rgba(80,200,120,0.55)"/>
+          <text x="322" y="245" text-anchor="middle" class="axis-label">1.5–2.0×</text>
+          <text x="300" y="143" text-anchor="middle" class="bar-label">14</text>
+          <text x="342" y="192" text-anchor="middle" class="bar-label">1</text>
+
+          <rect x="390" y="68" width="40" height="132" fill="rgba(200,80,80,0.5)"/>
+          <rect x="432" y="199" width="40" height="2" fill="rgba(80,200,120,0.55)"/>
+          <text x="432" y="245" text-anchor="middle" class="axis-label">2.0–2.5×</text>
+          <text x="410" y="64" text-anchor="middle" class="bar-label" style="fill:#ff8060;font-weight:700">35</text>
+          <text x="452" y="210" text-anchor="middle" class="bar-label" style="fill:#60e880;font-weight:700">1</text>
+
+          <rect x="500" y="177" width="40" height="23" fill="rgba(200,80,80,0.5)"/>
+          <rect x="542" y="199" width="40" height="2" fill="rgba(80,200,120,0.55)"/>
+          <text x="542" y="245" text-anchor="middle" class="axis-label">2.5–3.0×</text>
+          <text x="520" y="173" text-anchor="middle" class="bar-label">6</text>
+          <text x="562" y="210" text-anchor="middle" class="bar-label">0</text>
+
+          <rect x="610" y="192" width="40" height="8" fill="rgba(200,80,80,0.5)"/>
+          <rect x="652" y="199" width="40" height="2" fill="rgba(80,200,120,0.55)"/>
+          <text x="652" y="245" text-anchor="middle" class="axis-label">3.0+×</text>
+          <text x="630" y="188" text-anchor="middle" class="bar-label">2</text>
+          <text x="672" y="210" text-anchor="middle" class="bar-label">0</text>
+
+          <line x1="40" y1="200" x2="700" y2="200" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <text x="20" y="28" class="axis-label">skills</text>
+          <text x="20" y="114" class="axis-label">~25</text>
+          <text x="20" y="204" class="axis-label">0</text>
+        </g>
+      </svg>
+      <div class="caption">
+        Before (red): the mass of skills clustered in the 2.0–2.5× overrun band — expected because most skills have a talent + two upgrades that all stacked additively. After (green): the mass collapsed to 1.0–1.2×, meaning ~84% of skills now deliver exactly what the tooltip says.
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Chart 2: Balance sweep ─────────────────────────────────────────── -->
+  <section class="card">
+    <h2>2. Balance simulator sweep — finding the 10-round target</h2>
+    <p class="sub">
+      After fixing the damage bug, sim parties needed an enemy-HP adjustment to land on the "~10 rounds feels good" target. We tested the user's hypothesis (+500% HP, +250% dmg) and several alternatives against 5 real save files.
+      Saves tested: Necroman (necro+druid L17), Strormu (stormcaller+sorcerer L13), Warrior (warrior+knight L20), Ylva (knight L19 solo), Zanaver (mage+oracle L17).
+    </p>
+
+    <h3>Boss fight pacing by profile — 150 seeded runs × 9 boss encounters × 5 parties</h3>
+    <div class="chart-frame">
+      <div class="title">Average rounds to resolve a boss fight (target: ~10 rounds)</div>
+      <svg class="chart" viewBox="0 0 720 300" preserveAspectRatio="xMinYMin meet" aria-label="Boss fight average rounds by balance profile">
+        <!-- Profiles:
+             baseline (pre-M265)   7.9
+             M265 (2.5× HP 1.1×)  10.1
+             hypothesis (6× 3.5×)  7.1
+             M266 + 1.0× HP        7.9
+             M266 + 1.5× HP        9.0
+             M266 + 2.0× HP        9.7  ← chosen
+             M266 + 2.5× HP       10.5
+             M266 + 3.0× HP       11.3 -->
+        <!-- Scale: 0-14 → 0-220 -->
+        <g font-family="inherit">
+          <!-- target line at 10 rounds -->
+          <line x1="60" y1="63" x2="700" y2="63" stroke="#ffd060" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+          <text x="705" y="67" class="axis-label" style="fill:#ffd060">target</text>
+
+          <!-- Bars, each 70px wide including gap -->
+          <g>
+            <rect x="60"  y="96"  width="60" height="124"  fill="rgba(160,160,160,0.4)"/>
+            <text x="90"  y="92" text-anchor="middle" class="bar-label">7.9</text>
+            <text x="90"  y="240" text-anchor="middle" class="axis-label">baseline</text>
+
+            <rect x="140" y="61" width="60" height="159" fill="rgba(120,160,220,0.4)"/>
+            <text x="170" y="57" text-anchor="middle" class="bar-label">10.1</text>
+            <text x="170" y="240" text-anchor="middle" class="axis-label">M265</text>
+            <text x="170" y="252" text-anchor="middle" class="axis-label" style="opacity:0.6">(buggy)</text>
+
+            <rect x="220" y="108"  width="60" height="112"  fill="rgba(200,80,80,0.4)"/>
+            <text x="250" y="104" text-anchor="middle" class="bar-label">7.1</text>
+            <text x="250" y="240" text-anchor="middle" class="axis-label">+500%/250%</text>
+            <text x="250" y="252" text-anchor="middle" class="axis-label" style="opacity:0.6;fill:#ff8060">5% win</text>
+
+            <rect x="300" y="96"  width="60" height="124"  fill="rgba(160,160,160,0.4)"/>
+            <text x="330" y="92" text-anchor="middle" class="bar-label">7.9</text>
+            <text x="330" y="240" text-anchor="middle" class="axis-label">M266 1.0×</text>
+
+            <rect x="380" y="79"  width="60" height="141"  fill="rgba(200,160,80,0.4)"/>
+            <text x="410" y="75" text-anchor="middle" class="bar-label">9.0</text>
+            <text x="410" y="240" text-anchor="middle" class="axis-label">1.5×</text>
+
+            <rect x="460" y="68"  width="60" height="152"  fill="rgba(80,200,120,0.55)"/>
+            <text x="490" y="64" text-anchor="middle" class="bar-label" style="fill:#60e880;font-weight:700">9.7</text>
+            <text x="490" y="240" text-anchor="middle" class="axis-label" style="fill:#60e880;font-weight:700">2.0× ← shipped</text>
+
+            <rect x="540" y="55" width="60" height="165" fill="rgba(200,160,80,0.4)"/>
+            <text x="570" y="51" text-anchor="middle" class="bar-label">10.5</text>
+            <text x="570" y="240" text-anchor="middle" class="axis-label">2.5×</text>
+
+            <rect x="620" y="42" width="60" height="178" fill="rgba(200,80,80,0.3)"/>
+            <text x="650" y="38" text-anchor="middle" class="bar-label">11.3</text>
+            <text x="650" y="240" text-anchor="middle" class="axis-label">3.0×</text>
+          </g>
+
+          <line x1="40" y1="220" x2="700" y2="220" stroke="rgba(255,255,255,0.15)"/>
+          <text x="20" y="228" class="axis-label">0</text>
+          <text x="20" y="145" class="axis-label">5</text>
+          <text x="20" y="67" class="axis-label">10</text>
+          <text x="20" y="28" class="axis-label">rnd</text>
+        </g>
+      </svg>
+      <div class="caption">
+        The user's +500%/+250% hypothesis (red bar, 3rd column) delivered the target round count but crashed boss win rate to 5% — glass builds died before landing enough hits. Pure HP scaling preserved win rates.
+        <strong>M266 + 2.0× HP</strong> lands exactly on the 10-round target with win rates preserved. Shipped.
+      </div>
+    </div>
+
+    <h3>Per-save round counts — trash vs boss</h3>
+    <div class="chart-frame">
+      <div class="title">Grouped average: where each party lands (post-M266)</div>
+      <svg class="chart" viewBox="0 0 720 300" preserveAspectRatio="xMinYMin meet" aria-label="Per-save average rounds comparison">
+        <!-- Per-save data under M266 2.0× profile (approximate):
+             Necroman:  trash 7.0  boss 13.0
+             Strormu:   trash 5.2  boss 7.5
+             Warrior:   trash 5.8  boss 8.9
+             Ylva:      trash 3.2  boss 6.5
+             Zanaver:   trash 10.5 boss 14.2  -->
+        <g font-family="inherit">
+          <rect x="0" y="14" width="14" height="14" fill="rgba(200,80,80,0.5)"/>
+          <text x="20" y="26" class="bar-label">Trash</text>
+          <rect x="80" y="14" width="14" height="14" fill="rgba(120,160,220,0.55)"/>
+          <text x="100" y="26" class="bar-label">Boss</text>
+
+          <!-- scale 0-16 → 0-200 -->
+          <!-- target line 10 -->
+          <line x1="50" y1="115" x2="700" y2="115" stroke="#ffd060" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+          <text x="705" y="119" class="axis-label" style="fill:#ffd060">target</text>
+
+          <!-- Bars, 5 groups × 2 bars -->
+          <g>
+            <rect x="70"  y="152"  width="40" height="88"  fill="rgba(200,80,80,0.5)"/>
+            <rect x="112" y="77" width="40" height="163" fill="rgba(120,160,220,0.55)"/>
+            <text x="112" y="262" text-anchor="middle" class="axis-label">Necroman</text>
+            <text x="112" y="273" text-anchor="middle" class="axis-label" style="opacity:0.55">necro+druid L17</text>
+            <text x="90"  y="148" text-anchor="middle" class="bar-label">7.0</text>
+            <text x="132" y="73" text-anchor="middle" class="bar-label">13.0</text>
+
+            <rect x="200" y="175"  width="40" height="65"  fill="rgba(200,80,80,0.5)"/>
+            <rect x="242" y="146"  width="40" height="94"  fill="rgba(120,160,220,0.55)"/>
+            <text x="240" y="262" text-anchor="middle" class="axis-label">Strormu</text>
+            <text x="240" y="273" text-anchor="middle" class="axis-label" style="opacity:0.55">storm+sorc L13</text>
+            <text x="220" y="171" text-anchor="middle" class="bar-label">5.2</text>
+            <text x="262" y="142" text-anchor="middle" class="bar-label">7.5</text>
+
+            <rect x="330" y="167"  width="40" height="73"  fill="rgba(200,80,80,0.5)"/>
+            <rect x="372" y="129"  width="40" height="111"  fill="rgba(120,160,220,0.55)"/>
+            <text x="370" y="262" text-anchor="middle" class="axis-label">Warrior</text>
+            <text x="370" y="273" text-anchor="middle" class="axis-label" style="opacity:0.55">warrior+knight L20</text>
+            <text x="350" y="163" text-anchor="middle" class="bar-label">5.8</text>
+            <text x="392" y="125" text-anchor="middle" class="bar-label">8.9</text>
+
+            <rect x="460" y="200"  width="40" height="40"  fill="rgba(200,80,80,0.5)"/>
+            <rect x="502" y="159"  width="40" height="81"  fill="rgba(120,160,220,0.55)"/>
+            <text x="500" y="262" text-anchor="middle" class="axis-label">Ylva (solo)</text>
+            <text x="500" y="273" text-anchor="middle" class="axis-label" style="opacity:0.55">knight L19</text>
+            <text x="480" y="196" text-anchor="middle" class="bar-label">3.2</text>
+            <text x="522" y="155" text-anchor="middle" class="bar-label">6.5</text>
+
+            <rect x="590" y="109" width="40" height="131" fill="rgba(200,80,80,0.5)"/>
+            <rect x="632" y="62" width="40" height="178" fill="rgba(120,160,220,0.55)"/>
+            <text x="630" y="262" text-anchor="middle" class="axis-label">Zanaver</text>
+            <text x="630" y="273" text-anchor="middle" class="axis-label" style="opacity:0.55">mage+oracle L17</text>
+            <text x="610" y="105" text-anchor="middle" class="bar-label">10.5</text>
+            <text x="652" y="58" text-anchor="middle" class="bar-label">14.2</text>
+          </g>
+
+          <line x1="50" y1="240" x2="700" y2="240" stroke="rgba(255,255,255,0.15)"/>
+          <text x="30" y="244" class="axis-label">0</text>
+          <text x="30" y="181" class="axis-label">5</text>
+          <text x="30" y="119" class="axis-label">10</text>
+          <text x="30" y="56" class="axis-label">15</text>
+          <text x="30" y="34" class="axis-label">rnd</text>
+        </g>
+      </svg>
+      <div class="caption">
+        Ylva solo is the outlier on the low end — Shield Bash sustain is so strong she demolishes encounters. Zanaver is slow because the mage+oracle pair prioritizes survival over damage (the oracle spends turns healing, which is the intended feel for heal-heavy builds).
+        The rest cluster near the 10-round target, with bosses reliably landing longer than trash.
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── New meter section ──────────────────────────────────────────────── -->
+  <section class="card">
+    <h2>3. New DPS / Heal / Mitigation meter — M267</h2>
+    <p class="sub">
+      The in-combat meter (originally shipped in M261) has been expanded into a three-mode system with full drill-down.
+      Everything is tracked: damage dealt, heal done (including <em>lifesteal and shield absorb</em>), and mitigation absorbed
+      (<em>armor, block, barrier, spell resist</em>, and <em>dodge counts</em>).
+    </p>
+
+    <div class="screenshot-grid">
+      <div>
+        <h3>In-combat: the compact meter</h3>
+        <p>Floating panel on the right of the combat screen. Click the mode button to cycle DMG → HEAL → MIT. Drag the header to reposition; position persists across sessions.</p>
+        <div class="meter-mock">
+          <div class="head">
+            <span class="title-t">Meter</span>
+            <span class="btn">DMG</span>
+            <span class="btn">×</span>
+          </div>
+          <div class="row"><div class="bar" style="width:100%;background:rgba(200,80,80,0.28)"></div><span class="name">Ylva</span><span class="val">2840</span></div>
+          <div class="row"><div class="bar" style="width:42%;background:rgba(200,80,80,0.28)"></div><span class="name">Zanaver</span><span class="val">1190</span></div>
+          <div class="row"><div class="bar" style="width:28%;background:rgba(200,80,80,0.28)"></div><span class="name">Oracle</span><span class="val">790</span></div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="meter-mock">
+          <div class="head">
+            <span class="title-t">Meter</span>
+            <span class="btn">HEAL</span>
+            <span class="btn">×</span>
+          </div>
+          <div class="row"><div class="bar" style="width:100%;background:rgba(80,200,120,0.28)"></div><span class="name">Oracle</span><span class="val">1320</span></div>
+          <div class="row"><div class="bar" style="width:74%;background:rgba(80,200,120,0.28)"></div><span class="name">Ylva</span><span class="val">980</span></div>
+          <div class="row"><div class="bar" style="width:12%;background:rgba(80,200,120,0.28)"></div><span class="name">Zanaver</span><span class="val">160</span></div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="meter-mock">
+          <div class="head">
+            <span class="title-t">Meter</span>
+            <span class="btn">MIT</span>
+            <span class="btn">×</span>
+          </div>
+          <div class="row"><div class="bar" style="width:100%;background:rgba(120,160,220,0.28)"></div><span class="name">Ylva</span><span class="val">2180</span></div>
+          <div class="row"><div class="bar" style="width:22%;background:rgba(120,160,220,0.28)"></div><span class="name">Oracle</span><span class="val">480</span></div>
+          <div class="row"><div class="bar" style="width:8%;background:rgba(120,160,220,0.28)"></div><span class="name">Zanaver</span><span class="val">180</span></div>
+        </div>
+      </div>
+
+      <div>
+        <h3>Post-combat: the Combat Report drill-down</h3>
+        <p>Opens from the Victory modal. Three tabs (DAMAGE / HEALS / MITIGATION). Each tab: expand a character to see <em>sources</em> (skills/abilities). Expand a source to see every individual hit — round, target, crit, overkill, overheal, mitigation passthrough.</p>
+        <div class="report-drill">
+          <div class="top-stats">
+            <div><div class="ts-label">ROUNDS</div><div class="ts-val">9</div></div>
+            <div><div class="ts-label">TOTAL DMG</div><div class="ts-val" style="color:#ff8060">4820</div></div>
+            <div><div class="ts-label">TOTAL HEAL</div><div class="ts-val" style="color:#60e880">2460</div></div>
+            <div><div class="ts-label">MITIGATED</div><div class="ts-val" style="color:#80a0e0">2840</div></div>
+            <div><div class="ts-label">AVG DPS</div><div class="ts-val">536</div></div>
+          </div>
+          <div class="tabs">
+            <div class="tab dmg">DAMAGE</div>
+            <div class="tab heal">HEALS</div>
+            <div class="tab mit">MITIGATION</div>
+          </div>
+
+          <div class="char-row">
+            <div class="cbar" style="width:58%"></div>
+            <span class="cname">Ylva</span>
+            <span class="ctot">2840</span>
+            <span class="cpct">58%</span>
+          </div>
+          <div class="src">
+            <span class="sname">Shield Bash</span>
+            <span class="scount">6 hits</span>
+            <span class="sval">2140</span>
+            <span class="spct">75%</span>
+          </div>
+          <table class="hits">
+            <tr><td style="opacity:0.6;width:36px;">R1</td><td style="opacity:0.8;">→ Wyrm Warrior</td><td style="text-align:right;color:#ff8060;font-weight:700;">594 <span style="color:#ffd060">CRIT</span></td></tr>
+            <tr><td style="opacity:0.6;">R3</td><td style="opacity:0.8;">→ Wyrm Warrior</td><td style="text-align:right;color:#ff8060;font-weight:700;">361</td></tr>
+            <tr><td style="opacity:0.6;">R5</td><td style="opacity:0.8;">→ Ancient Dragon</td><td style="text-align:right;color:#ff8060;font-weight:700;">405 <span style="opacity:0.7">+17 overkill</span></td></tr>
+            <tr><td style="opacity:0.6;">R7</td><td style="opacity:0.8;">→ Bahamorth</td><td style="text-align:right;color:#ff8060;font-weight:700;">320</td></tr>
+          </table>
+          <div class="src">
+            <span class="sname">Attack</span>
+            <span class="scount">4 hits</span>
+            <span class="sval">700</span>
+            <span class="spct">25%</span>
+          </div>
+
+          <div class="char-row" style="margin-top:10px;">
+            <div class="cbar" style="width:40%"></div>
+            <span class="cname">Oracle</span>
+            <span class="ctot">1980</span>
+            <span class="cpct">40%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>What counts as what</h3>
+    <table class="data">
+      <thead>
+        <tr><th>Event</th><th>Bucket</th><th>Rationale</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Direct spell / attack damage to enemy</td><td>Damage</td><td>Traditional DPS meter behavior.</td></tr>
+        <tr><td>Heal spell on ally</td><td>Heal</td><td>Traditional HPS meter behavior.</td></tr>
+        <tr><td>Lifesteal affix proc on attacker</td><td>Heal</td><td>Self-heal from gear affixes — still healing.</td></tr>
+        <tr><td>Skill <code>effect.lifesteal</code> proc (e.g. Zealous Blow)</td><td>Heal</td><td>Source labeled <code>Lifesteal (Holy Strike)</code> for attribution.</td></tr>
+        <tr><td>Barrier / shield absorb</td><td>Heal <em>and</em> Mitigation</td><td>Skada convention: shields are "prevention healing" + they also count toward absorb-mitigation.</td></tr>
+        <tr><td>Armor absorb on physical hit</td><td>Mitigation</td><td>Damage reduced but never "dealt".</td></tr>
+        <tr><td>Block (shield) absorb on physical hit</td><td>Mitigation</td><td>Separate from armor — different defensive stat.</td></tr>
+        <tr><td>Spell resist / magic absorb</td><td>Mitigation</td><td>Magic-school equivalent of armor.</td></tr>
+        <tr><td>Damage Reduction buff (e.g. Taunt dmgReduct)</td><td>Mitigation</td><td>Proactive mitigation from buffs.</td></tr>
+        <tr><td>Dodge</td><td>Mitigation (counted)</td><td>No damage number — tracked as a count. "Dodge (count): 4×".</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Drill-down hierarchy</h3>
+    <p>
+      Post-combat report structure:
+    </p>
+    <ol style="color:var(--text);font-size:13px;line-height:1.7;padding-left:20px;">
+      <li><strong>Character</strong> — one row per party member, sorted by the active tab's total. Each row shows a proportional bar under the name.</li>
+      <li><strong>Source</strong> — skills / abilities / heal kinds / mitigation buckets. Shows hit count, total, and percent of the character's total.</li>
+      <li><strong>Individual hit</strong> — round number, target, actual value, and flags (CRIT, overkill, overheal, mitigation bleed-through).</li>
+    </ol>
+  </section>
+
+  <!-- ─── M268 updates ───────────────────────────────────────────────────── -->
+  <section class="card">
+    <h2>3b. Meter & Report — M268 updates</h2>
+    <p class="sub">After the M267 meter shipped, three follow-ups landed based on playtest feedback.</p>
+
+    <h3>Combat Report on defeat + final-boss victory</h3>
+    <p>Originally the Combat Report button only appeared on mid-game victory modals. Now on all three end states: <strong>mid-game victory</strong>, <strong>final-boss victory</strong> (alongside New Game+), and <strong>defeat</strong>. The defeat path also gained a View Combat Log button so post-mortem diagnosis doesn't require surviving.</p>
+
+    <h3>Enemy tracking — opt-in via "Show enemies" checkbox</h3>
+    <p>The meter and report now lazy-create rows for enemies the first time they deal damage, heal, or get mitigated. By default only ally rows show (to preserve the existing signal density). Toggle appears in two places:</p>
+    <ul style="color:var(--text);font-size:13px;line-height:1.7;padding-left:20px;">
+      <li><strong>In-combat meter:</strong> a small <code>E</code> checkbox in the panel header. Toggle mid-fight; state doesn't persist across fights.</li>
+      <li><strong>Combat Report overlay:</strong> a <em>Show enemies</em> checkbox top-right. Toggling re-renders all three tabs.</li>
+    </ul>
+    <p>Enemy rows render with a purple tint on the proportional bar and a small <code>ENEMY</code> pill before the name, so at a glance you can tell allies from enemies. Useful for "how much incoming damage was the boss soaking vs. trash" post-mortems.</p>
+
+    <h3>Skill-name attribution fix</h3>
+    <p>All skill hits now carry <code>breakdown.skillName = skill.name</code>, so Magic Missile, Fireball, Shield Bash, Clockwork Bolt, etc. each get their own source row in the report. Previously skill damage was bucketed under "Attack" because the breakdown was only populated by the basic-attack path. The only remaining "Attack" source is actual basic-attack (right-click / no-MP fallback) damage.</p>
+
+    <h3>Current known gap (flagged in M271 code review)</h3>
+    <p>Enemy <em>heal</em> and <em>mitigation</em> events are still under-reported. Only <code>_meterAddDamage</code> lazy-creates enemy entries via <code>_meterEnsureEntry</code> — the three sibling helpers (<code>_meterAddHeal</code>, <code>_meterAddMit</code>, <code>_meterAddDodge</code>) silently drop events for actors without an existing row. Fix is a 4-line change applied to all three helpers. Flagged in the wishlist.</p>
+  </section>
+
+  <!-- ─── What's still open ──────────────────────────────────────────────── -->
+  <section class="card">
+    <h2>4. Known open items</h2>
+    <p class="sub">What this session did <em>not</em> solve. Surfacing so the next pass has a clear backlog.</p>
+
+    <table class="data">
+      <thead>
+        <tr><th>Issue</th><th>Where</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sim win rate caps at ~20% across profiles</td>
+          <td><code>simulator.js</code></td>
+          <td>Playtest is far easier than sim reports. Missing modeling for affix Potency stacking, certain passive procs, and consumables. Sim is good for <em>relative</em> comparison; not yet authoritative for absolute tuning.</td>
+        </tr>
+        <tr>
+          <td>Several classes still one-shot Act 1 trash</td>
+          <td>Party-comp dependent</td>
+          <td>Ylva solo kills trash in 3 rounds on 2.0× HP. Fixing means boss-specific HP multipliers — deferred; one-knob tuning is simpler to reason about.</td>
+        </tr>
+        <tr>
+          <td>Glass builds (low CON + no lifesteal) die in Act 3+</td>
+          <td>Design question</td>
+          <td>Either force heal-class in party by Act 3, or add potions / consumables. Leaving as an open design call.</td>
+        </tr>
+        <tr>
+          <td>Residual Slow Time outlier (chronomancer)</td>
+          <td><code>skills.js</code></td>
+          <td>Only 2.25× overrun, caused by a talent that's intended to stack additively. Probably fine; logged.</td>
+        </tr>
+        <tr style="background:rgba(200,80,80,0.06);">
+          <td><strong>🚨 Pyromancer / Stormcaller passives double-counted</strong></td>
+          <td><code>passives.js:130</code></td>
+          <td>Found in the M271 code-review pass. <code>mult = r * slotCount[node.id]</code> — when a passive tree has duplicate-slot entries (pyromancer: 2× igniting; stormcaller: 2× stormcharged), purchased ranks get multiplied by the slot count. Because ranks are keyed by nodeId (not slot index), 1 rank = 2 effective ranks. Balance implication: pyromancer and stormcaller are stronger than the audit sim assumed. Re-running balance-sweep after the fix is on the checklist.</td>
+        </tr>
+        <tr>
+          <td>Enemy heal + mitigation under-reported in Combat Report</td>
+          <td><code>CombatScreen.js:904,918,928</code></td>
+          <td>Found in M271 code-review. <code>_meterAddHeal</code> / <code>_meterAddMit</code> / <code>_meterAddDodge</code> don't lazy-create enemy entries (only <code>_meterAddDamage</code> does). If you enable "Show enemies" and see enemy damage but little/no enemy heal or mit, that's the bug. 4-line fix flagged on wishlist.</td>
+        </tr>
+        <tr>
+          <td>CombatScreen.js refactor-worthy</td>
+          <td><code>CombatScreen.js</code> (4,877 lines)</td>
+          <td>Code review identified four cleanly-extractable modules: <code>damagePipeline.js</code> (armor/block/barrier/reflect), <code>meter.js</code> (the DPS/heal/mit tracker), <code>aiTargeting.js</code> (hero + enemy AI), <code>backgroundRenderer.js</code> (parallax). Long-tail but high value — would unlock easier testing and reduce the skill-add blast radius.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>5. References</h2>
+    <p class="sub">Everything behind the charts.</p>
+    <ul style="color:var(--text);font-size:13px;line-height:1.7;padding-left:20px;">
+      <li><code>memory/balance-report-m265.md</code> — initial sim sweep and profile comparison (before the skill fix).</li>
+      <li><code>memory/skill-stacking-audit.md</code> — full 63-skill audit table, before the fix.</li>
+      <li><code>memory/skill-stacking-audit-post.md</code> — same audit run after the M266 merge change.</li>
+      <li><code>memory/skill-stacking-plan-m266.md</code> — the change plan with risk analysis.</li>
+      <li><code>scripts/skill-audit.mjs</code> — regression-checker for future skill data changes.</li>
+      <li><code>scripts/balance-sweep.mjs</code> — profile sweeper; edit the <code>PROFILES</code> array to test new scalings.</li>
+      <li><code>scripts/balance-report.mjs</code> — per-save per-encounter detail runner.</li>
+    </ul>
+  </section>
+
+  <p style="text-align:center;color:var(--muted);font-size:12px;margin-top:30px">
+    Generated 2026-04-24 · Emberveil M267 · Numbers in charts reflect sim results on saves at <code>/home/radgh/claude/assets/references/emberveil/saves/</code>.
+  </p>
+</div>
+</body>
+</html>

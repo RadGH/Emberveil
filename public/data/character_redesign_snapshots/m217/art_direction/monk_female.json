@@ -1,0 +1,85 @@
+{
+  "$schema": "../../schemas/v1/art-direction.json",
+  "spriteId": "monk_female",
+  "displayName": "Monk (Female)",
+  "class": "humanoid",
+  "pixelHeight": 180,
+  "identity": "Bald human female monk, shaven head, serene calm adult female face, warm brown eyes, lightly tanned skin, compact athletic muscular build (clearly female bone structure).",
+  "outfit": "Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.",
+  "weapons": "None. Bare fists held in a martial-arts guard are her weapon.",
+  "attackStyle": "East-facing. Mid-forward-kick, right leg extended in a high snap kick, left fist cocked at the chin. Robes flare. CRITICAL: character must be MID-STRIKE, clearly in motion \u2014 weapon in the middle of a swing, thrust, shot, or spell-cast, NOT an idle/battle-ready stance. Pose must be visually distinct from the east idle.",
+  "spellStyle": "East-facing. Both hands pressed together palm-to-palm at chest, a sphere of soft gold-white ki-energy glowing between them.",
+  "blockStyle": "East-facing. Arms up in a forearm-guard, both fists closed at head level. Crouched stance.",
+  "koStyle": "East-facing, seated in a slumped lotus position, head bowed, hands resting on knees.",
+  "southStyle": "Facing camera (south), calm martial idle. Bare fists held in a low martial guard at the hips. Serene expression.",
+  "portraitStyle": "Bust shot from mid-chest up, three-quarter view. Shaven head, serene face, orange robe + cream sash visible at shoulders.",
+  "bannedSubstrings": [
+    "sword",
+    "axe",
+    "bow",
+    "staff",
+    "plate armor",
+    "hair"
+  ],
+  "referenceSheet": {
+    "path": "images/pixellab/monk_female/reference.png",
+    "spritecookAssetId": "c6c30615-3012-4b47-80d3-436695ffb18a",
+    "prompt": "IDENTITY (must match reference sheet exactly): Bald human female monk, shaven head, serene calm adult female face, warm brown eyes, lightly tanned skin, compact athletic muscular build (clearly female bone structure).\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are her weapon.\n\nCLASS: humanoid. Full-body view, head to feet visible. Character occupies ~70% of the canvas height. Feet aligned near the bottom; headroom above.\n\nPOSE: full-body side profile facing right (east), calm combat-ready idle. Head up, eyes visible. NOT a portrait bust, NOT a close-up \u2014 entire character from head to feet.\n\nSTYLE: detailed pixel art with clean readable silhouette, warm pixel-art palette, transparent background, no ground shadow.",
+    "bitforgeAssetId": null,
+    "sourcePortraitPath": "images/portraits/monk.png",
+    "generatedAt": "2026-04-21T18:00:00.000Z",
+    "approvedAt": null
+  },
+  "frames": {
+    "portrait": {
+      "path": "images/spritecook/monk_female_portrait.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human female monk, shaven head, serene calm adult female face, warm brown eyes, lightly tanned skin, compact athletic muscular build (clearly female bone structure).\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are her weapon.\n\nPOSE (portrait): Bust shot from mid-chest up, three-quarter view. Shaven head, serene face, orange robe + cream sash visible at shoulders.\n\nFRAMING: bust shot from mid-chest up, three-quarter view, centered in a 256x256 canvas, shoulders fill the lower third.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "482ecdd1-d600-41ae-810e-abd28a073bc2"
+    },
+    "south": {
+      "path": "images/spritecook/monk_female_south.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human female monk, shaven head, serene calm adult female face, warm brown eyes, lightly tanned skin, compact athletic muscular build (clearly female bone structure).\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are her weapon.\n\nPOSE (south): Facing camera (south), calm martial idle. Bare fists held in a low martial guard at the hips. Serene expression.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "7f40b8f9-b846-4bed-a329-1072f5e51973"
+    },
+    "east": {
+      "path": "images/spritecook/monk_female_east.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human female monk, shaven head, serene calm adult female face, warm brown eyes, lightly tanned skin, compact athletic muscular build (clearly female bone structure).\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are her weapon.\n\nPOSE (east): Neutral combat idle, consistent with reference sheet, full-body facing east.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "84252a35-d4b2-4cff-81e3-03d030bbe1a1"
+    },
+    "east_attack": {
+      "path": "images/spritecook/monk_female_east_attack.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human female monk, shaven head, serene calm adult female face, warm brown eyes, lightly tanned skin, compact athletic muscular build (clearly female bone structure).\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are her weapon.\n\nPOSE (east_attack): East-facing. Mid-forward-kick, right leg extended in a high snap kick, left fist cocked at the chin. Robes flare.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "00120a2a-cb7f-4139-b73b-37e3f6862e23"
+    },
+    "east_spell": {
+      "path": "images/spritecook/monk_female_east_spell.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human female monk, shaven head, serene calm adult female face, warm brown eyes, lightly tanned skin, compact athletic muscular build (clearly female bone structure).\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are her weapon.\n\nPOSE (east_spell): East-facing. Both hands pressed together palm-to-palm at chest, a sphere of soft gold-white ki-energy glowing between them.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "0fbdedfe-a3a5-43fb-9b98-791b17e3a774"
+    },
+    "east_block": {
+      "path": "images/spritecook/monk_female_east_block.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human female monk, shaven head, serene calm adult female face, warm brown eyes, lightly tanned skin, compact athletic muscular build (clearly female bone structure).\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are her weapon.\n\nPOSE (east_block): East-facing. Arms up in a forearm-guard, both fists closed at head level. Crouched stance.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "9a81c164-8f0f-4ffe-937e-84fe64b5a492"
+    },
+    "east_ko": {
+      "path": "images/spritecook/monk_female_east_ko.png",
+      "prompt": "IDENTITY (must match reference sheet exactly): Bald human female monk, shaven head, serene calm adult female face, warm brown eyes, lightly tanned skin, compact athletic muscular build (clearly female bone structure).\n\nOUTFIT: Orange-and-ochre simple layered robes tied with a wide cream sash, bare arms, wooden prayer beads on one wrist, barefoot. A short cape of saffron cloth.\n\nWEAPONS: None. Bare fists held in a martial-arts guard are her weapon.\n\nPOSE (east_ko): East-facing, seated in a slumped lotus position, head bowed, hands resting on knees.\n\nFRAMING: full body, feet on bottom edge of 256x256 canvas.\n\nSCALE (non-negotiable): character must occupy approximately 180px of the 256px canvas height \u2014 roughly 70%. Do NOT stretch or upscale. Extra space above head and/or below feet is correct.\n\nSTYLE: pixel art, transparent background, no ground shadow, no borders, no text. Match the palette and style of the reference sheet.\n\nNEGATIVE: do not add weapons or props not listed in WEAPONS. Do not change palette, species, or outfit from the reference sheet. Do not zoom in \u2014 respect SCALE.",
+      "generatedAt": "2026-04-22T00:02:28.000Z",
+      "approvedAt": "2026-04-22T00:02:28.000Z",
+      "spritecookAssetId": "7a4909bc-c7d0-4aab-9071-7f5a1defda0b"
+    }
+  },
+  "notes": "Bare-handed martial artist. Zero weapons. Bald shaven head."
+}

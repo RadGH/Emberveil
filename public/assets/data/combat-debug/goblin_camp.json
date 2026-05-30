@@ -1,0 +1,2988 @@
+{
+  "key": "goblin_camp",
+  "label": "early Act 1",
+  "act": 1,
+  "runs": 5,
+  "winRate": 0,
+  "avgRounds": 9,
+  "aggregate": {
+    "meter": 10582,
+    "damageApply": 10582,
+    "logParsed": 10582,
+    "meter_vs_apply": 0,
+    "meter_vs_log": 0,
+    "apply_vs_log": 0
+  },
+  "parityWarnings": [],
+  "perRun": [
+    {
+      "seed": 1337,
+      "winner": "enemies",
+      "rounds": 9,
+      "eventCount": 329,
+      "totals": {
+        "meter": 2263,
+        "damageApply": 2263,
+        "logParsed": 2263
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 124,
+        "Whirlwind": 115,
+        "Blizzard": 60,
+        "Attack": 1546,
+        "Aimed Shot": 77,
+        "Cleave": 223,
+        "Fireball": 118
+      },
+      "clericHeals": 4,
+      "clericAttacks": 0,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Fireball",
+        "Multi-Shot",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 47,
+        "initiative_roll": 9,
+        "turn_order": 9,
+        "turn_start": 61,
+        "ai_decision": 23,
+        "skill_cast_attempt": 23,
+        "hit_check": 89,
+        "crit_check": 42,
+        "damage_calc": 70,
+        "damage_apply": 74,
+        "meter_add": 74,
+        "status_apply": 4,
+        "status_tick": 8,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 115,
+          "Cleave": 223,
+          "Dragon Breath": 120
+        },
+        "Clr": {},
+        "Mag": {
+          "Blizzard": 60,
+          "Fireball": 118
+        },
+        "Rng": {
+          "Multi-Shot": 124,
+          "Aimed Shot": 77
+        }
+      }
+    },
+    {
+      "seed": 1338,
+      "winner": "enemies",
+      "rounds": 8,
+      "eventCount": 241,
+      "totals": {
+        "meter": 1810,
+        "damageApply": 1810,
+        "logParsed": 1810
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 82,
+        "Whirlwind": 64,
+        "Smite": 198,
+        "Blizzard": 60,
+        "Attack": 1200,
+        "Aimed Shot": 77,
+        "Cleave": 129
+      },
+      "clericHeals": 3,
+      "clericAttacks": 2,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 30,
+        "initiative_roll": 9,
+        "turn_order": 8,
+        "turn_start": 48,
+        "ai_decision": 17,
+        "skill_cast_attempt": 17,
+        "hit_check": 66,
+        "crit_check": 28,
+        "damage_calc": 49,
+        "damage_apply": 53,
+        "meter_add": 53,
+        "status_apply": 4,
+        "status_tick": 8,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 64,
+          "Cleave": 129,
+          "Dragon Breath": 120
+        },
+        "Clr": {
+          "Smite": 198
+        },
+        "Mag": {
+          "Blizzard": 60
+        },
+        "Rng": {
+          "Multi-Shot": 82,
+          "Aimed Shot": 77
+        }
+      }
+    },
+    {
+      "seed": 1339,
+      "winner": "enemies",
+      "rounds": 7,
+      "eventCount": 204,
+      "totals": {
+        "meter": 1574,
+        "damageApply": 1574,
+        "logParsed": 1574
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 49,
+        "Whirlwind": 65,
+        "Smite": 99,
+        "Blizzard": 23,
+        "Attack": 1171,
+        "Aimed Shot": 77,
+        "Cleave": 90
+      },
+      "clericHeals": 2,
+      "clericAttacks": 1,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 23,
+        "initiative_roll": 9,
+        "turn_order": 7,
+        "turn_start": 43,
+        "ai_decision": 14,
+        "skill_cast_attempt": 14,
+        "hit_check": 56,
+        "crit_check": 20,
+        "damage_calc": 41,
+        "damage_apply": 45,
+        "meter_add": 45,
+        "status_apply": 4,
+        "status_tick": 8,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 65,
+          "Cleave": 90,
+          "Dragon Breath": 120
+        },
+        "Clr": {
+          "Smite": 99
+        },
+        "Mag": {
+          "Blizzard": 23
+        },
+        "Rng": {
+          "Multi-Shot": 49,
+          "Aimed Shot": 77
+        }
+      }
+    },
+    {
+      "seed": 1340,
+      "winner": "enemies",
+      "rounds": 12,
+      "eventCount": 326,
+      "totals": {
+        "meter": 2685,
+        "damageApply": 2685,
+        "logParsed": 2685
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 98,
+        "Whirlwind": 78,
+        "Smite": 397,
+        "Blizzard": 47,
+        "Attack": 1603,
+        "Aimed Shot": 154,
+        "Cleave": 157,
+        "Fireball": 151
+      },
+      "clericHeals": 5,
+      "clericAttacks": 4,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Fireball",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 38,
+        "initiative_roll": 9,
+        "turn_order": 12,
+        "turn_start": 70,
+        "ai_decision": 27,
+        "skill_cast_attempt": 27,
+        "hit_check": 97,
+        "crit_check": 39,
+        "damage_calc": 68,
+        "damage_apply": 68,
+        "meter_add": 68,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 78,
+          "Cleave": 157
+        },
+        "Clr": {
+          "Smite": 397
+        },
+        "Mag": {
+          "Blizzard": 47,
+          "Fireball": 151
+        },
+        "Rng": {
+          "Multi-Shot": 98,
+          "Aimed Shot": 154
+        }
+      }
+    },
+    {
+      "seed": 1341,
+      "winner": "enemies",
+      "rounds": 9,
+      "eventCount": 263,
+      "totals": {
+        "meter": 2250,
+        "damageApply": 2250,
+        "logParsed": 2250
+      },
+      "diffs": {
+        "meter_vs_apply": 0,
+        "meter_vs_log": 0,
+        "apply_vs_log": 0
+      },
+      "parityWarnings": [],
+      "perSkillMeter": {
+        "Multi-Shot": 79,
+        "Whirlwind": 50,
+        "Smite": 297,
+        "Blizzard": 33,
+        "Attack": 1366,
+        "Aimed Shot": 77,
+        "Cleave": 230,
+        "Fireball": 118
+      },
+      "clericHeals": 3,
+      "clericAttacks": 3,
+      "sourcesSeen": [
+        "Aimed Shot",
+        "Attack",
+        "Blizzard",
+        "Cleave",
+        "Fireball",
+        "Multi-Shot",
+        "Smite",
+        "Whirlwind"
+      ],
+      "realCounts": {
+        "legendary_proc": 36,
+        "initiative_roll": 9,
+        "turn_order": 9,
+        "turn_start": 53,
+        "ai_decision": 20,
+        "skill_cast_attempt": 20,
+        "hit_check": 75,
+        "crit_check": 32,
+        "damage_calc": 57,
+        "damage_apply": 57,
+        "meter_add": 57,
+        "report_finalize": 1
+      },
+      "damageBySource": {
+        "War": {
+          "Whirlwind": 50,
+          "Cleave": 230
+        },
+        "Clr": {
+          "Smite": 297
+        },
+        "Mag": {
+          "Blizzard": 33,
+          "Fireball": 118
+        },
+        "Rng": {
+          "Multi-Shot": 79,
+          "Aimed Shot": 77
+        }
+      }
+    }
+  ],
+  "sampleEvents": [
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Shaman",
+        "raw": 42,
+        "final": 24,
+        "source": "Cleave",
+        "hpAfter": 238
+      }
+    },
+    {
+      "round": 2,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Goblin Shaman: 24 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 24
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "heal",
+        "amount": 180,
+        "source": "Heal",
+        "target": "Mag"
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr heals Mag for 180",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 39,
+        "source": "Fireball",
+        "target": "Goblin Scout",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Goblin Scout",
+        "raw": 82,
+        "final": 39,
+        "source": "Fireball",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Goblin Scout: 39 dmg (Fireball)",
+        "type": "hero",
+        "dmg": 39
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 39,
+        "source": "Fireball",
+        "target": "Goblin Scout",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Goblin Scout",
+        "raw": 82,
+        "final": 39,
+        "source": "Fireball",
+        "hpAfter": 170
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Goblin Scout: 39 dmg (Fireball)",
+        "type": "hero",
+        "dmg": 39
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Mag",
+        "kind": "dmg",
+        "amount": 40,
+        "source": "Fireball",
+        "target": "Goblin Shaman",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Mag",
+        "target": "Goblin Shaman",
+        "raw": 82,
+        "final": 40,
+        "source": "Fireball",
+        "hpAfter": 198
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag → Goblin Shaman: 40 dmg (Fireball)",
+        "type": "hero",
+        "dmg": 40
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Mag",
+        "target": "Goblin Warrior",
+        "hit": false
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag misses Goblin Warrior.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Mag",
+        "target": "Goblin Warrior",
+        "hit": false
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Mag",
+      "kind": "log_line",
+      "data": {
+        "msg": "Mag misses Goblin Warrior.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Scout",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Scout",
+        "kind": "dmg",
+        "amount": 45,
+        "source": "Attack",
+        "target": "Mag",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Scout",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Scout",
+        "target": "Mag",
+        "raw": 72,
+        "final": 45,
+        "source": "Attack",
+        "hpAfter": 145
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Scout",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Scout → Mag: 45 dmg",
+        "type": "hero",
+        "dmg": 45
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Shaman",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Shaman",
+        "kind": "dmg",
+        "amount": 51,
+        "source": "Attack",
+        "target": "Mag",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Shaman",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Shaman",
+        "target": "Mag",
+        "raw": 78,
+        "final": 51,
+        "source": "Attack",
+        "hpAfter": 94
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Shaman",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Shaman → Mag: 51 dmg",
+        "type": "hero",
+        "dmg": 51
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 52,
+        "source": "Attack",
+        "target": "Mag",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "Mag",
+        "raw": 79,
+        "final": 52,
+        "source": "Attack",
+        "hpAfter": 42
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → Mag: 52 dmg",
+        "type": "hero",
+        "dmg": 52
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 61,
+        "source": "Attack",
+        "target": "Mag",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "Mag",
+        "raw": 88,
+        "final": 61,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 2,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → Mag: 61 dmg",
+        "type": "hero",
+        "dmg": 61
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 3,
+      "data": {
+        "round": 3
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 16,
+        "source": "Multi-Shot",
+        "target": "Goblin Scout",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Goblin Scout",
+        "raw": 30,
+        "final": 16,
+        "source": "Multi-Shot",
+        "hpAfter": 154
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Goblin Scout: 16 dmg (Multi-Shot)",
+        "type": "hero",
+        "dmg": 16
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 17,
+        "source": "Multi-Shot",
+        "target": "Goblin Shaman",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Goblin Shaman",
+        "raw": 30,
+        "final": 17,
+        "source": "Multi-Shot",
+        "hpAfter": 181
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Goblin Shaman: 17 dmg (Multi-Shot)",
+        "type": "hero",
+        "dmg": 17
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Rng",
+        "kind": "dmg",
+        "amount": 13,
+        "source": "Multi-Shot",
+        "target": "Goblin Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Rng",
+        "target": "Goblin Warrior",
+        "raw": 30,
+        "final": 13,
+        "source": "Multi-Shot",
+        "hpAfter": 372
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Rng",
+      "kind": "log_line",
+      "data": {
+        "msg": "Rng → Goblin Warrior: 13 dmg (Multi-Shot)",
+        "type": "hero",
+        "dmg": 13
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 8,
+        "source": "Whirlwind",
+        "target": "Goblin Scout",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Scout",
+        "raw": 20,
+        "final": 8,
+        "source": "Whirlwind",
+        "hpAfter": 146
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Goblin Scout: 8 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 8
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Shaman",
+        "hit": false
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Goblin Shaman.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 5,
+        "source": "Whirlwind",
+        "target": "Goblin Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Warrior",
+        "raw": 20,
+        "final": 5,
+        "source": "Whirlwind",
+        "hpAfter": 367
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Goblin Warrior: 5 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 5
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 5,
+        "source": "Whirlwind",
+        "target": "Goblin Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Warrior",
+        "raw": 20,
+        "final": 5,
+        "source": "Whirlwind",
+        "hpAfter": 380
+      }
+    },
+    {
+      "round": 3,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Goblin Warrior: 5 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 5
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "dmg",
+        "amount": 99,
+        "source": "Smite",
+        "target": "Goblin Scout",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Clr",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Clr",
+        "target": "Goblin Scout",
+        "raw": 101,
+        "final": 99,
+        "source": "Smite",
+        "hpAfter": 47
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr → Goblin Scout: 99 dmg (Smite)",
+        "type": "hero",
+        "dmg": 99
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Scout",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Scout",
+        "kind": "dmg",
+        "amount": 42,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Scout",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Scout",
+        "target": "Rng",
+        "raw": 69,
+        "final": 42,
+        "source": "Attack",
+        "hpAfter": 148
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Scout",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Scout → Rng: 42 dmg",
+        "type": "hero",
+        "dmg": 42
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Shaman",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Shaman",
+        "kind": "dmg",
+        "amount": 45,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Shaman",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Shaman",
+        "target": "Rng",
+        "raw": 72,
+        "final": 45,
+        "source": "Attack",
+        "hpAfter": 103
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Shaman",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Shaman → Rng: 45 dmg",
+        "type": "hero",
+        "dmg": 45
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 51,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "Rng",
+        "raw": 78,
+        "final": 51,
+        "source": "Attack",
+        "hpAfter": 52
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → Rng: 51 dmg",
+        "type": "hero",
+        "dmg": 51
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 69,
+        "source": "Attack",
+        "target": "Rng",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "Rng",
+        "raw": 96,
+        "final": 69,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 3,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → Rng: 69 dmg",
+        "type": "hero",
+        "dmg": 69
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 4,
+      "data": {
+        "round": 4
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 23,
+        "source": "Cleave",
+        "target": "Goblin Scout",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Scout",
+        "raw": 42,
+        "final": 23,
+        "source": "Cleave",
+        "hpAfter": 24
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Goblin Scout: 23 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 23
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 24,
+        "source": "Cleave",
+        "target": "Goblin Shaman",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Shaman",
+        "raw": 42,
+        "final": 24,
+        "source": "Cleave",
+        "hpAfter": 157
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Goblin Shaman: 24 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 24
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 33,
+        "source": "Cleave",
+        "target": "Goblin Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Warrior",
+        "raw": 42,
+        "final": 33,
+        "source": "Cleave",
+        "hpAfter": 334
+      }
+    },
+    {
+      "round": 4,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Goblin Warrior: 33 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 33
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Clr",
+      "kind": "status_apply",
+      "data": {
+        "actor": "Clr",
+        "status": "buff",
+        "skill": "Sanctuary",
+        "targets": 2
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Goblin Scout",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Scout",
+        "kind": "dmg",
+        "amount": 48,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Goblin Scout",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Scout",
+        "target": "War",
+        "raw": 75,
+        "final": 48,
+        "source": "Attack",
+        "hpAfter": 162
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Goblin Scout",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Scout → War: 48 dmg",
+        "type": "hero",
+        "dmg": 48
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Goblin Shaman",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Shaman",
+        "kind": "dmg",
+        "amount": 60,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Goblin Shaman",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Shaman",
+        "target": "War",
+        "raw": 87,
+        "final": 60,
+        "source": "Attack",
+        "hpAfter": 102
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Goblin Shaman",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Shaman → War: 60 dmg",
+        "type": "hero",
+        "dmg": 60
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Goblin Warrior",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 61,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "War",
+        "raw": 88,
+        "final": 61,
+        "source": "Attack",
+        "hpAfter": 41
+      }
+    },
+    {
+      "round": 4,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → War: 61 dmg",
+        "type": "hero",
+        "dmg": 61
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 5,
+      "data": {
+        "round": 5
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Scout",
+        "hit": false
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Goblin Scout.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Shaman",
+        "hit": false
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Goblin Shaman.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 5,
+        "source": "Whirlwind",
+        "target": "Goblin Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Warrior",
+        "raw": 20,
+        "final": 5,
+        "source": "Whirlwind",
+        "hpAfter": 329
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Goblin Warrior: 5 dmg (Whirlwind)",
+        "type": "hero",
+        "dmg": 5
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "hit_check",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Warrior",
+        "hit": false
+      }
+    },
+    {
+      "round": 5,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War misses Goblin Warrior.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "heal",
+        "amount": 180,
+        "source": "Heal",
+        "target": "War"
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr heals War for 180",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Goblin Scout",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Goblin Scout",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Goblin Scout",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Scout misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Goblin Shaman",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Goblin Shaman",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Goblin Shaman",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Shaman misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 54,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "War",
+        "raw": 81,
+        "final": 54,
+        "source": "Attack",
+        "hpAfter": 156
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → War: 54 dmg",
+        "type": "hero",
+        "dmg": 54
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 58,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "War",
+        "raw": 85,
+        "final": 58,
+        "source": "Attack",
+        "hpAfter": 98
+      }
+    },
+    {
+      "round": 5,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → War: 58 dmg",
+        "type": "hero",
+        "dmg": 58
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 6,
+      "data": {
+        "round": 6
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 23,
+        "source": "Cleave",
+        "target": "Goblin Scout",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Scout",
+        "raw": 42,
+        "final": 23,
+        "source": "Cleave",
+        "hpAfter": 1
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Goblin Scout: 23 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 23
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 24,
+        "source": "Cleave",
+        "target": "Goblin Shaman",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Shaman",
+        "raw": 42,
+        "final": 24,
+        "source": "Cleave",
+        "hpAfter": 133
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Goblin Shaman: 24 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 24
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "meter_add",
+      "data": {
+        "actor": "War",
+        "kind": "dmg",
+        "amount": 33,
+        "source": "Cleave",
+        "target": "Goblin Warrior",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "War",
+        "target": "Goblin Warrior",
+        "raw": 42,
+        "final": 33,
+        "source": "Cleave",
+        "hpAfter": 296
+      }
+    },
+    {
+      "round": 6,
+      "actor": "War",
+      "kind": "log_line",
+      "data": {
+        "msg": "War → Goblin Warrior: 33 dmg (Cleave)",
+        "type": "hero",
+        "dmg": 33
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Clr",
+      "kind": "status_apply",
+      "data": {
+        "actor": "Clr",
+        "status": "buff",
+        "skill": "Sanctuary",
+        "targets": 2
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Goblin Scout",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Scout",
+        "kind": "dmg",
+        "amount": 38,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Goblin Scout",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Scout",
+        "target": "War",
+        "raw": 65,
+        "final": 38,
+        "source": "Attack",
+        "hpAfter": 60
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Goblin Scout",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Scout → War: 38 dmg",
+        "type": "hero",
+        "dmg": 38
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Goblin Shaman",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Shaman",
+        "kind": "dmg",
+        "amount": 49,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Goblin Shaman",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Shaman",
+        "target": "War",
+        "raw": 76,
+        "final": 49,
+        "source": "Attack",
+        "hpAfter": 11
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Goblin Shaman",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Shaman → War: 49 dmg",
+        "type": "hero",
+        "dmg": 49
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Goblin Warrior",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "War",
+        "hit": false
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior misses War.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 72,
+        "source": "Attack",
+        "target": "War",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "War",
+        "raw": 99,
+        "final": 72,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 6,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → War: 72 dmg",
+        "type": "hero",
+        "dmg": 72
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 7,
+      "data": {
+        "round": 7
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "dmg",
+        "amount": 99,
+        "source": "Smite",
+        "target": "Goblin Scout",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Clr",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Clr",
+        "target": "Goblin Scout",
+        "raw": 101,
+        "final": 99,
+        "source": "Smite",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr → Goblin Scout: 99 dmg (Smite)",
+        "type": "hero",
+        "dmg": 99
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Goblin Shaman",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Shaman",
+        "kind": "dmg",
+        "amount": 62,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Goblin Shaman",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Shaman",
+        "target": "Clr",
+        "raw": 89,
+        "final": 62,
+        "source": "Attack",
+        "hpAfter": 188
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Goblin Shaman",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Shaman → Clr: 62 dmg",
+        "type": "hero",
+        "dmg": 62
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 54,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "Clr",
+        "raw": 81,
+        "final": 54,
+        "source": "Attack",
+        "hpAfter": 134
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → Clr: 54 dmg",
+        "type": "hero",
+        "dmg": 54
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 50,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "Clr",
+        "raw": 77,
+        "final": 50,
+        "source": "Attack",
+        "hpAfter": 84
+      }
+    },
+    {
+      "round": 7,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → Clr: 50 dmg",
+        "type": "hero",
+        "dmg": 50
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 8,
+      "data": {
+        "round": 8
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Clr",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Clr",
+        "kind": "heal",
+        "amount": 180,
+        "source": "Heal",
+        "target": "Clr"
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Clr",
+      "kind": "log_line",
+      "data": {
+        "msg": "Clr heals Clr for 180",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Goblin Shaman",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Shaman",
+        "kind": "dmg",
+        "amount": 67,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Goblin Shaman",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Shaman",
+        "target": "Clr",
+        "raw": 94,
+        "final": 67,
+        "source": "Attack",
+        "hpAfter": 183
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Goblin Shaman",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Shaman → Clr: 67 dmg",
+        "type": "hero",
+        "dmg": 67
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 69,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "Clr",
+        "raw": 96,
+        "final": 69,
+        "source": "Attack",
+        "hpAfter": 114
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → Clr: 69 dmg",
+        "type": "hero",
+        "dmg": 69
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Goblin Warrior",
+      "kind": "hit_check",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "Clr",
+        "hit": false
+      }
+    },
+    {
+      "round": 8,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior misses Clr.",
+        "type": "hero",
+        "dmg": null
+      }
+    },
+    {
+      "kind": "round_start",
+      "round": 9,
+      "data": {
+        "round": 9
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Clr",
+      "kind": "status_apply",
+      "data": {
+        "actor": "Clr",
+        "status": "buff",
+        "skill": "Sanctuary",
+        "targets": 1
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Goblin Shaman",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Shaman",
+        "kind": "dmg",
+        "amount": 50,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Goblin Shaman",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Shaman",
+        "target": "Clr",
+        "raw": 77,
+        "final": 50,
+        "source": "Attack",
+        "hpAfter": 64
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Goblin Shaman",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Shaman → Clr: 50 dmg",
+        "type": "hero",
+        "dmg": 50
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Goblin Warrior",
+      "kind": "meter_add",
+      "data": {
+        "actor": "Goblin Warrior",
+        "kind": "dmg",
+        "amount": 66,
+        "source": "Attack",
+        "target": "Clr",
+        "crit": false,
+        "overkill": 0
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Goblin Warrior",
+      "kind": "damage_apply",
+      "data": {
+        "actor": "Goblin Warrior",
+        "target": "Clr",
+        "raw": 93,
+        "final": 66,
+        "source": "Attack",
+        "hpAfter": 0
+      }
+    },
+    {
+      "round": 9,
+      "actor": "Goblin Warrior",
+      "kind": "log_line",
+      "data": {
+        "msg": "Goblin Warrior → Clr: 66 dmg",
+        "type": "hero",
+        "dmg": 66
+      }
+    },
+    {
+      "kind": "combat_end",
+      "data": {
+        "winner": "enemies",
+        "rounds": 9
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 12,
+      "actor": "Goblin Shaman",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 12,
+      "actor": "Goblin Shaman",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCombatStart",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "isCrit": false
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Scout",
+          "dealt": 8,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Shaman",
+          "dealt": 9,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 5,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 5,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 27,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Goblin Scout",
+          "dealt": 13,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 10,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 10,
+          "isCrit": false,
+          "rawDmg": 30,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 1,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCast",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 33,
+          "isCrit": false,
+          "skillId": "blizzard"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Scout",
+          "dealt": 23,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Scout",
+          "dealt": 23,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Shaman",
+          "dealt": 24,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Shaman",
+          "dealt": 70,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Goblin Scout",
+          "dealt": 39,
+          "isCrit": false,
+          "rawDmg": 82,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onKill",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Goblin Scout",
+          "dealt": 39,
+          "isCrit": false,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Goblin Scout",
+          "dealt": 39,
+          "isCrit": false,
+          "rawDmg": 82,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onHit",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Goblin Shaman",
+          "dealt": 40,
+          "isCrit": false,
+          "rawDmg": 82,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 2,
+      "actor": "Mag",
+      "data": {
+        "actor": "Mag",
+        "actorId": "h-m",
+        "hook": "onCast",
+        "effectIds": [
+          "mage_missile_aoe"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 118,
+          "isCrit": false,
+          "skillId": "fireball"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Scout",
+          "dealt": 8,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 5,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 5,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 3,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 18,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Scout",
+          "dealt": 23,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Shaman",
+          "dealt": 24,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 33,
+          "isCrit": true,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCrit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 33,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 4,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 80,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 5,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 5,
+          "isCrit": false,
+          "rawDmg": 20,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 5,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 5,
+          "isCrit": false,
+          "skillId": "whirlwind"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 6,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Scout",
+          "dealt": 23,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 6,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Shaman",
+          "dealt": 24,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 6,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onHit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 33,
+          "isCrit": true,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 6,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCrit",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 33,
+          "isCrit": false,
+          "rawDmg": 42,
+          "skillId": "cleave"
+        }
+      }
+    },
+    {
+      "kind": "legendary_proc",
+      "round": 6,
+      "actor": "War",
+      "data": {
+        "actor": "War",
+        "actorId": "h-w",
+        "hook": "onCast",
+        "effectIds": [
+          "dragon_fury_breath"
+        ],
+        "ctx": {
+          "target": "Goblin Warrior",
+          "dealt": 80,
+          "isCrit": false,
+          "skillId": "cleave"
+        }
+      }
+    }
+  ]
+}

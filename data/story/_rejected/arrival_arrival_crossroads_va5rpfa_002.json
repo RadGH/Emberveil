@@ -1,0 +1,54 @@
+{
+  "node": {
+    "id": "arrival_crossroads_va5rpfa_002",
+    "pool": "arrival",
+    "act": 2,
+    "biome": "crossroads",
+    "tone": "cautious",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "Strange folk linger here. Stay alert.",
+      "We might not be alone."
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "[Perception - WIS] Look for signs of danger.",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "WIS",
+          "dc": 10
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "crossroads_intel_bought"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        }
+      },
+      {
+        "id": "wait",
+        "text": "Let's wait and observe for a while.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "It's best we move on quickly.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"search\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-20T23:52:40.201Z"
+}

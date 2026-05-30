@@ -1,0 +1,132 @@
+/* EvTurnStrip — M388 styles. Phase 06 §9. */
+
+.ev-turn-strip {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: linear-gradient(180deg, rgba(20, 14, 36, 0.78), rgba(14, 9, 26, 0.78));
+  border: 1px solid var(--gold-dim, #6b5418);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  max-width: calc(100% - 24px);
+  overflow: hidden;
+  font-family: 'Cinzel', serif;
+}
+
+.ev-round-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--gold-rim, #c8a020);
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.ev-turn-strip__chips {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  flex: 1 1 auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.ev-turn-strip__chips::-webkit-scrollbar { display: none; }
+
+/* ── Chip ────────────────────────────────────────────────────────── */
+
+.ev-turn-chip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 36px;
+  flex: 0 0 auto;
+  padding: 2px;
+  border: 1px solid var(--border-stroke, #6b5418);
+  border-radius: 4px;
+  background: rgba(8, 4, 20, 0.55);
+  transition: filter 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.ev-turn-chip[data-side="hero"]      { --border-stroke: var(--gold-rim, #c8a020); }
+.ev-turn-chip[data-side="companion"] { --border-stroke: var(--gold-dim, #6b5418); }
+.ev-turn-chip[data-side="enemy"]     { --border-stroke: var(--hp-low, #cc3020); }
+
+.ev-turn-chip__portrait {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  object-position: top center;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border-radius: 2px;
+  display: block;
+}
+
+.ev-turn-chip__hp-bar {
+  margin-top: 2px;
+  width: 100%;
+  height: 3px;
+  background: rgba(60, 8, 8, 0.7);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.ev-turn-chip__hp-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #5fbf52, #2e8a32);
+  transition: width 220ms ease, background 220ms ease;
+}
+
+.ev-turn-chip[data-side="enemy"] .ev-turn-chip__hp-fill {
+  background: linear-gradient(90deg, #d8463a, #8a2222);
+}
+
+/* Active chip — gold pulse */
+.ev-turn-chip[data-state="active"] {
+  --border-stroke: var(--gold-glow, #f8e890);
+  border-color: var(--gold-glow, #f8e890);
+  animation: ev-chip-active-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes ev-chip-active-pulse {
+  0%, 100% { box-shadow: 0 0 4px 1px rgba(248, 232, 144, 0.4); }
+  50%      { box-shadow: 0 0 10px 3px rgba(248, 232, 144, 0.75); }
+}
+
+/* Dead chip */
+.ev-turn-chip[data-state="dead"] {
+  filter: grayscale(1) opacity(0.4);
+}
+.ev-turn-chip[data-state="dead"] .ev-turn-chip__hp-fill {
+  background: #555;
+}
+
+/* ── Mobile collapse (Phase 10 places a compact badge instead) ───── */
+@media (max-width: 700px) {
+  .ev-turn-strip {
+    top: 4px;
+    padding: 4px 8px;
+    gap: 6px;
+    max-width: calc(100% - 12px);
+  }
+  .ev-turn-chip {
+    width: 28px;
+  }
+  .ev-turn-chip__portrait {
+    width: 24px;
+    height: 24px;
+  }
+  .ev-round-label {
+    font-size: 0.65rem;
+  }
+}

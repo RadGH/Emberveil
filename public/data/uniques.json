@@ -1,0 +1,870 @@
+{
+  "version": 1,
+  "source": "src/game/uniques.js UNIQUES const (canonical-data migration)",
+  "uniques": {
+    "emberheart_pendant": {
+      "id": "emberheart_pendant",
+      "name": "Emberheart Pendant",
+      "slot": "necklace",
+      "baseItemId": "necklace",
+      "act": 1,
+      "rarity": "legendary",
+      "quality": "high",
+      "fixedAffixes": [
+        {
+          "stat": "int",
+          "value": 8
+        },
+        {
+          "stat": "hp",
+          "value": 20
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "spellPower",
+          "min": 0.08,
+          "max": 0.16
+        }
+      ],
+      "legendaryEffect": {
+        "id": "burn_extend",
+        "desc": "Burn effects you apply last 2 extra rounds."
+      },
+      "lore": "Forged in the first Ember-Breach, it pulses with trapped wildfire.",
+      "bossSource": "grax_veil_touched"
+    },
+    "thornblade": {
+      "id": "thornblade",
+      "name": "Thornblade",
+      "slot": "weapon",
+      "baseItemId": "dagger",
+      "act": 1,
+      "rarity": "legendary",
+      "quality": "high",
+      "fixedAffixes": [
+        {
+          "stat": "dex",
+          "value": 10
+        },
+        {
+          "stat": "critChance",
+          "value": 0.08
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "lifeSteal",
+          "min": 5,
+          "max": 10
+        }
+      ],
+      "legendaryEffect": {
+        "id": "crit_bleed_5",
+        "desc": "Critical hits apply Bleed for 3 rounds."
+      },
+      "lore": "Cut from the ancient Thornwood. The forest remembers every wound.",
+      "bossSource": null
+    },
+    "sentinels_gaze": {
+      "id": "sentinels_gaze",
+      "name": "Sentinel's Gaze",
+      "slot": "head",
+      "baseItemId": "heavy_helm",
+      "act": 1,
+      "rarity": "legendary",
+      "quality": "high",
+      "fixedAffixes": [
+        {
+          "stat": "con",
+          "value": 8
+        },
+        {
+          "stat": "armor",
+          "value": 6
+        },
+        {
+          "stat": "hp",
+          "value": 25
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "magicResist",
+          "min": 5,
+          "max": 12
+        }
+      ],
+      "legendaryEffect": {
+        "id": "cheat_death_once",
+        "desc": "Once per combat, survive a killing blow with 1 HP."
+      },
+      "lore": "The Sentinel who wore this helmed the final wall. It was never breached.",
+      "bossSource": null
+    },
+    "truthseeker": {
+      "id": "truthseeker",
+      "name": "Truthseeker",
+      "slot": "weapon",
+      "baseItemId": "wand",
+      "act": 1,
+      "rarity": "legendary",
+      "quality": "high",
+      "fixedAffixes": [
+        {
+          "stat": "int",
+          "value": 8
+        },
+        {
+          "stat": "spellPower",
+          "value": 0.1
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "critDamage",
+          "min": 0.15,
+          "max": 0.3
+        }
+      ],
+      "legendaryEffect": {
+        "id": "mage_missile_aoe",
+        "desc": "Bolt spells fire a bonus projectile at a second target for 60% damage."
+      },
+      "lore": "\"Every question is already answered — you need only cast the right spell.\"",
+      "bossSource": null
+    },
+    "lava_titans_mantle": {
+      "id": "lava_titans_mantle",
+      "name": "Lava Titan's Mantle",
+      "slot": "chest",
+      "baseItemId": "heavy_chest",
+      "act": 2,
+      "rarity": "legendary",
+      "quality": "elite",
+      "fixedAffixes": [
+        {
+          "stat": "str",
+          "value": 12
+        },
+        {
+          "stat": "armor",
+          "value": 12
+        },
+        {
+          "stat": "con",
+          "value": 8
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "hp",
+          "min": 40,
+          "max": 80
+        }
+      ],
+      "legendaryEffect": {
+        "id": "dragon_fury_breath",
+        "desc": "Killing an enemy triggers fire breath hitting all remaining enemies."
+      },
+      "lore": "Plate forged from cooled magma. Each blow threatens to reignite it.",
+      "bossSource": "lava_titan"
+    },
+    "magma_scepter": {
+      "id": "magma_scepter",
+      "name": "Magma Scepter",
+      "slot": "weapon",
+      "baseItemId": "scepter",
+      "act": 2,
+      "rarity": "legendary",
+      "quality": "elite",
+      "fixedAffixes": [
+        {
+          "stat": "int",
+          "value": 10
+        },
+        {
+          "stat": "spellPower",
+          "value": 0.12
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "critChance",
+          "min": 0.06,
+          "max": 0.12
+        }
+      ],
+      "legendaryEffect": {
+        "id": "burn_extend",
+        "desc": "Burn effects you apply last 2 extra rounds."
+      },
+      "lore": "Still warm. Always warm.",
+      "bossSource": null
+    },
+    "ashen_kite_shield": {
+      "id": "ashen_kite_shield",
+      "name": "Ashen Kite Shield",
+      "slot": "offhand",
+      "baseItemId": "kite_shield",
+      "act": 2,
+      "rarity": "legendary",
+      "quality": "elite",
+      "fixedAffixes": [
+        {
+          "stat": "con",
+          "value": 8
+        },
+        {
+          "stat": "block_power",
+          "value": 20
+        },
+        {
+          "stat": "magicResist",
+          "value": 10
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "armor",
+          "min": 6,
+          "max": 14
+        }
+      ],
+      "legendaryEffect": {
+        "id": "cheat_death_once",
+        "desc": "Once per combat, survive a killing blow with 1 HP."
+      },
+      "lore": "The ash sigil on its face was drawn in the last days of the Ember Wars.",
+      "bossSource": null
+    },
+    "dune_runners_shortbow": {
+      "id": "dune_runners_shortbow",
+      "name": "Dune Runner's Shortbow",
+      "slot": "weapon",
+      "baseItemId": "shortbow",
+      "act": 2,
+      "rarity": "legendary",
+      "quality": "elite",
+      "fixedAffixes": [
+        {
+          "stat": "dex",
+          "value": 12
+        },
+        {
+          "stat": "initiative",
+          "value": 3
+        },
+        {
+          "stat": "critChance",
+          "value": 0.07
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "hit",
+          "min": 4,
+          "max": 8
+        }
+      ],
+      "legendaryEffect": {
+        "id": "speed_combat_init",
+        "desc": "On combat start, gain +8 initiative for the first round."
+      },
+      "lore": "Carved from desert ironwood. You hear the dunes shift when you draw.",
+      "bossSource": null
+    },
+    "malgraths_soulbrand": {
+      "id": "malgraths_soulbrand",
+      "name": "Malgrath's Soulbrand",
+      "slot": "weapon",
+      "baseItemId": "staff",
+      "act": 3,
+      "rarity": "legendary",
+      "quality": "elite",
+      "fixedAffixes": [
+        {
+          "stat": "int",
+          "value": 14
+        },
+        {
+          "stat": "spellPower",
+          "value": 0.18
+        },
+        {
+          "stat": "lifeSteal",
+          "value": 8
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "critDamage",
+          "min": 0.2,
+          "max": 0.4
+        }
+      ],
+      "legendaryEffect": {
+        "id": "low_mana_shockwave",
+        "desc": "When below 25% mana, casting triggers an AoE shockwave."
+      },
+      "lore": "Malgrath branded this staff with his true name. It knows your weakness.",
+      "bossSource": "archfiend_malgrath"
+    },
+    "warlords_insignia": {
+      "id": "warlords_insignia",
+      "name": "Warlord's Insignia",
+      "slot": "ring1",
+      "baseItemId": "ring",
+      "act": 3,
+      "rarity": "legendary",
+      "quality": "elite",
+      "fixedAffixes": [
+        {
+          "stat": "str",
+          "value": 10
+        },
+        {
+          "stat": "con",
+          "value": 6
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "hp",
+          "min": 30,
+          "max": 60
+        }
+      ],
+      "legendaryEffect": {
+        "id": "rally_on_kill",
+        "desc": "Killing an enemy rallies the entire party for 1 round."
+      },
+      "lore": "Passed between generals for three centuries. Still smells of blood.",
+      "bossSource": null
+    },
+    "deadwalkers_greaves": {
+      "id": "deadwalkers_greaves",
+      "name": "Deadwalker's Greaves",
+      "slot": "feet",
+      "baseItemId": "heavy_boots",
+      "act": 3,
+      "rarity": "legendary",
+      "quality": "elite",
+      "fixedAffixes": [
+        {
+          "stat": "con",
+          "value": 8
+        },
+        {
+          "stat": "armor",
+          "value": 8
+        },
+        {
+          "stat": "lifeSteal",
+          "value": 7
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "hp",
+          "min": 30,
+          "max": 55
+        }
+      ],
+      "legendaryEffect": {
+        "id": "kill_party_heal",
+        "desc": "Killing blows heal the party for 10% of the target's max HP."
+      },
+      "lore": "The dead do not tire. These boots share that secret.",
+      "bossSource": null
+    },
+    "shadowweave_cloak": {
+      "id": "shadowweave_cloak",
+      "name": "Shadowweave Cloak",
+      "slot": "chest",
+      "baseItemId": "light_chest",
+      "act": 3,
+      "rarity": "legendary",
+      "quality": "elite",
+      "fixedAffixes": [
+        {
+          "stat": "dex",
+          "value": 12
+        },
+        {
+          "stat": "dodge",
+          "value": 10
+        },
+        {
+          "stat": "critChance",
+          "value": 0.07
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "initiative",
+          "min": 2,
+          "max": 4
+        }
+      ],
+      "legendaryEffect": {
+        "id": "crit_bleed_5",
+        "desc": "Critical hits apply Bleed for 3 rounds."
+      },
+      "lore": "\"Wear the shadow; become the wound.\"",
+      "bossSource": null
+    },
+    "sovereigns_eye": {
+      "id": "sovereigns_eye",
+      "name": "Sovereign's Eye",
+      "slot": "ring1",
+      "baseItemId": "ring",
+      "act": 4,
+      "rarity": "legendary",
+      "quality": "elite",
+      "fixedAffixes": [
+        {
+          "stat": "int",
+          "value": 12
+        },
+        {
+          "stat": "str",
+          "value": 10
+        },
+        {
+          "stat": "critChance",
+          "value": 0.1
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "critDamage",
+          "min": 0.25,
+          "max": 0.5
+        }
+      ],
+      "legendaryEffect": {
+        "id": "echo_cast",
+        "desc": "25% chance any skill echoes at 50% power."
+      },
+      "lore": "Plucked from the Sovereign's crown. It still judges everything it sees.",
+      "bossSource": "emberveil_sovereign"
+    },
+    "voidbinder": {
+      "id": "voidbinder",
+      "name": "Voidbinder",
+      "slot": "weapon",
+      "baseItemId": "dragonfang_dagger",
+      "act": 4,
+      "rarity": "legendary",
+      "quality": "exotic",
+      "fixedAffixes": [
+        {
+          "stat": "dex",
+          "value": 14
+        },
+        {
+          "stat": "critChance",
+          "value": 0.12
+        },
+        {
+          "stat": "manaSteal",
+          "value": 10
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "lifeSteal",
+          "min": 8,
+          "max": 15
+        }
+      ],
+      "legendaryEffect": {
+        "id": "echo_cast",
+        "desc": "25% chance any skill echoes at 50% power against the same target."
+      },
+      "lore": "It slips between realities. You are never sure where the blade really is.",
+      "bossSource": "the_unraveler"
+    },
+    "unravelers_sigil": {
+      "id": "unravelers_sigil",
+      "name": "Unraveler's Sigil",
+      "slot": "weapon",
+      "baseItemId": "staff",
+      "act": 4,
+      "rarity": "legendary",
+      "quality": "exotic",
+      "fixedAffixes": [
+        {
+          "stat": "int",
+          "value": 16
+        },
+        {
+          "stat": "spellPower",
+          "value": 0.2
+        },
+        {
+          "stat": "mp",
+          "value": 40
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "manaRegen",
+          "min": 3,
+          "max": 6
+        }
+      ],
+      "legendaryEffect": {
+        "id": "low_mana_shockwave",
+        "desc": "When below 25% mana, casting triggers an AoE shockwave."
+      },
+      "lore": "The Unraveler used this to pull threads from the fabric of being.",
+      "bossSource": "the_unraveler"
+    },
+    "gauntlets_of_void": {
+      "id": "gauntlets_of_void",
+      "name": "Gauntlets of the Void",
+      "slot": "hands",
+      "baseItemId": "heavy_gauntlets",
+      "act": 4,
+      "rarity": "legendary",
+      "quality": "elite",
+      "fixedAffixes": [
+        {
+          "stat": "str",
+          "value": 10
+        },
+        {
+          "stat": "manaSteal",
+          "value": 10
+        },
+        {
+          "stat": "critChance",
+          "value": 0.06
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "dmg",
+          "min": 5,
+          "max": 12
+        }
+      ],
+      "legendaryEffect": {
+        "id": "critical_armorpen",
+        "desc": "Critical hits reduce target armor by 30% for 1 round."
+      },
+      "lore": "Everything they touch loses something. No one knows what.",
+      "bossSource": null
+    },
+    "architects_blueprint": {
+      "id": "architects_blueprint",
+      "name": "The Architect's Blueprint",
+      "slot": "ring1",
+      "baseItemId": "ring",
+      "act": 5,
+      "rarity": "legendary",
+      "quality": "exotic",
+      "fixedAffixes": [
+        {
+          "stat": "int",
+          "value": 14
+        },
+        {
+          "stat": "str",
+          "value": 12
+        },
+        {
+          "stat": "dex",
+          "value": 12
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "spellPower",
+          "min": 0.12,
+          "max": 0.22
+        }
+      ],
+      "legendaryEffect": {
+        "id": "echo_cast",
+        "desc": "25% chance any skill echoes at 50% power."
+      },
+      "lore": "The Architect drew every possibility before choosing one. This ring holds the rest.",
+      "bossSource": "the_architect"
+    },
+    "staff_of_primordial": {
+      "id": "staff_of_primordial",
+      "name": "Staff of the Primordial",
+      "slot": "weapon",
+      "baseItemId": "dragonbone_staff",
+      "act": 5,
+      "rarity": "legendary",
+      "quality": "exotic",
+      "fixedAffixes": [
+        {
+          "stat": "int",
+          "value": 18
+        },
+        {
+          "stat": "spellPower",
+          "value": 0.25
+        },
+        {
+          "stat": "mp",
+          "value": 50
+        },
+        {
+          "stat": "critDamage",
+          "value": 0.4
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "critChance",
+          "min": 0.08,
+          "max": 0.16
+        }
+      ],
+      "legendaryEffect": {
+        "id": "mage_missile_aoe",
+        "desc": "All spells fire a bonus projectile at a second target for 60% damage."
+      },
+      "lore": "Before there was a world, there was this. Then: everything else.",
+      "bossSource": "the_architect"
+    },
+    "plate_of_creation": {
+      "id": "plate_of_creation",
+      "name": "Plate of Creation",
+      "slot": "chest",
+      "baseItemId": "dragonsteel_chest",
+      "act": 5,
+      "rarity": "legendary",
+      "quality": "exotic",
+      "fixedAffixes": [
+        {
+          "stat": "str",
+          "value": 16
+        },
+        {
+          "stat": "con",
+          "value": 14
+        },
+        {
+          "stat": "armor",
+          "value": 22
+        },
+        {
+          "stat": "hp",
+          "value": 80
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "magicResist",
+          "min": 12,
+          "max": 24
+        }
+      ],
+      "legendaryEffect": {
+        "id": "cheat_death_once",
+        "desc": "Once per combat, survive a killing blow with 1 HP."
+      },
+      "lore": "The first thing the Architect ever made. Still flawless.",
+      "bossSource": "the_architect"
+    },
+    "voidreaver_bow": {
+      "id": "voidreaver_bow",
+      "name": "Voidreaver Bow",
+      "slot": "weapon",
+      "baseItemId": "wyrmscale_bow",
+      "act": 5,
+      "rarity": "legendary",
+      "quality": "exotic",
+      "fixedAffixes": [
+        {
+          "stat": "dex",
+          "value": 16
+        },
+        {
+          "stat": "critChance",
+          "value": 0.12
+        },
+        {
+          "stat": "critDamage",
+          "value": 0.35
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "lifeSteal",
+          "min": 8,
+          "max": 14
+        }
+      ],
+      "legendaryEffect": {
+        "id": "crit_bleed_5",
+        "desc": "Critical hits apply Bleed for 3 rounds."
+      },
+      "lore": "Its arrows don't travel through space. They create a wound and follow.",
+      "bossSource": null
+    },
+    "greatsword_last_king": {
+      "id": "greatsword_last_king",
+      "name": "Greatsword of the Last King",
+      "slot": "weapon",
+      "baseItemId": "dragonfang_greatsword",
+      "act": 5,
+      "rarity": "legendary",
+      "quality": "exotic",
+      "fixedAffixes": [
+        {
+          "stat": "str",
+          "value": 18
+        },
+        {
+          "stat": "dmg",
+          "value": 14
+        },
+        {
+          "stat": "critChance",
+          "value": 0.08
+        },
+        {
+          "stat": "critDamage",
+          "value": 0.3
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "hp",
+          "min": 50,
+          "max": 90
+        }
+      ],
+      "legendaryEffect": {
+        "id": "rally_on_kill",
+        "desc": "Killing an enemy rallies the entire party for 1 round."
+      },
+      "lore": "He died alone on the Last Throne. The sword keeps fighting.",
+      "bossSource": null
+    },
+    "necklace_final_seal": {
+      "id": "necklace_final_seal",
+      "name": "Necklace of the Final Seal",
+      "slot": "necklace",
+      "baseItemId": "necklace",
+      "act": 5,
+      "rarity": "legendary",
+      "quality": "exotic",
+      "fixedAffixes": [
+        {
+          "stat": "int",
+          "value": 14
+        },
+        {
+          "stat": "str",
+          "value": 12
+        },
+        {
+          "stat": "dex",
+          "value": 10
+        },
+        {
+          "stat": "con",
+          "value": 10
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "magicResist",
+          "min": 10,
+          "max": 20
+        }
+      ],
+      "legendaryEffect": {
+        "id": "mana_on_attack",
+        "desc": "Basic attacks restore 3 mana."
+      },
+      "lore": "The seal on this pendant has held for a thousand years. It will hold one more day.",
+      "bossSource": null
+    },
+    "dragon_kings_headguard": {
+      "id": "dragon_kings_headguard",
+      "name": "Dragon-King's Headguard",
+      "slot": "head",
+      "baseItemId": "wyrmscale_helm",
+      "act": 5,
+      "rarity": "legendary",
+      "quality": "exotic",
+      "fixedAffixes": [
+        {
+          "stat": "str",
+          "value": 16
+        },
+        {
+          "stat": "con",
+          "value": 12
+        },
+        {
+          "stat": "armor",
+          "value": 16
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "hp",
+          "min": 60,
+          "max": 100
+        }
+      ],
+      "legendaryEffect": {
+        "id": "dragon_fury_breath",
+        "desc": "Killing an enemy triggers Dragon Breath hitting all remaining enemies."
+      },
+      "lore": "Bahamorth wore this at the height of his rule. It is heavier than it looks.",
+      "bossSource": "dragon_king"
+    },
+    "ancient_dragon_scale": {
+      "id": "ancient_dragon_scale",
+      "name": "Ancient Dragon Scale",
+      "slot": "chest",
+      "baseItemId": "wyrmscale_chest",
+      "act": 5,
+      "rarity": "legendary",
+      "quality": "exotic",
+      "fixedAffixes": [
+        {
+          "stat": "str",
+          "value": 14
+        },
+        {
+          "stat": "con",
+          "value": 14
+        },
+        {
+          "stat": "armor",
+          "value": 20
+        },
+        {
+          "stat": "magicResist",
+          "value": 14
+        }
+      ],
+      "randomAffixes": [
+        {
+          "stat": "hp",
+          "min": 70,
+          "max": 110
+        }
+      ],
+      "legendaryEffect": {
+        "id": "cheat_death_once",
+        "desc": "Once per combat, survive a killing blow with 1 HP."
+      },
+      "lore": "Scales shed only once, at the end of an Age. You hold the last one.",
+      "bossSource": "ancient_dragon"
+    }
+  }
+}

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="rsg-featured-image" content="../images/combat_bg/hell_breach_1.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="rsg-game" content="Emberveil">
+<title>20 Classes, 84 Skills & Combat Rework — Emberveil</title>
+<link rel="stylesheet" href="../assets/_tool-styles.css">
+<script src="../assets/_header.js" defer></script>
+<script src="../assets/_footer.js" defer></script>
+<style>
+/* ── Layout ── */
+body { padding: 0; overflow-x: hidden; }
+.report { max-width: 860px; margin: 0 auto; padding: 24px 16px 80px; }
+
+/* ── Hero Banner ── */
+.hero {
+  position: relative;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px 48px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0a0608 0%, #1a0a10 30%, #2a1018 60%, #0a0608 100%);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 600px 300px at 50% 70%, rgba(232,160,32,0.08), transparent),
+    radial-gradient(ellipse 200px 200px at 30% 40%, rgba(192,64,48,0.06), transparent),
+    radial-gradient(ellipse 200px 200px at 70% 50%, rgba(232,160,32,0.05), transparent);
+  pointer-events: none;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 40%, var(--ember1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+  opacity: 0;
+  animation: hero-fade 1s 0.2s ease-out forwards;
+}
+.hero-sub {
+  font-family: var(--font-display);
+  color: var(--muted);
+  font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 8px;
+  opacity: 0;
+  animation: hero-fade 1s 0.5s ease-out forwards;
+}
+.hero-tagline {
+  color: var(--text);
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  max-width: 540px;
+  margin-top: 20px;
+  opacity: 0;
+  animation: hero-fade 1s 0.8s ease-out forwards;
+}
+
+/* ── Ember Particles ── */
+.ember-field { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.ember {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0;
+  animation: ember-rise 4s ease-out infinite;
+}
+.ember:nth-child(1) { left: 15%; animation-delay: 0s; }
+.ember:nth-child(2) { left: 35%; animation-delay: 0.8s; width: 3px; height: 3px; background: var(--ember1); }
+.ember:nth-child(3) { left: 55%; animation-delay: 1.6s; }
+.ember:nth-child(4) { left: 75%; animation-delay: 2.4s; width: 3px; height: 3px; background: var(--ember1); }
+.ember:nth-child(5) { left: 45%; animation-delay: 3.2s; width: 2px; height: 2px; }
+.ember:nth-child(6) { left: 25%; animation-delay: 1.2s; width: 2px; height: 2px; background: var(--ember1); }
+.ember:nth-child(7) { left: 65%; animation-delay: 2s; width: 3px; height: 3px; }
+.ember:nth-child(8) { left: 85%; animation-delay: 0.4s; width: 2px; height: 2px; background: var(--ember1); }
+
+@keyframes ember-rise {
+  0% { bottom: -10px; opacity: 0; transform: translateX(0); }
+  20% { opacity: 0.8; }
+  100% { bottom: 110%; opacity: 0; transform: translateX(30px); }
+}
+
+/* ── Animations ── */
+@keyframes hero-fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.anim.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Stats Bar ── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 32px 0;
+}
+@media (max-width: 600px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 14px;
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 6px;
+}
+
+/* ── Feature Cards ── */
+.features { display: flex; flex-direction: column; gap: 16px; }
+.feature {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: border-color 0.2s, background 0.2s;
+}
+.feature:hover { background: var(--card-h); border-color: var(--border-hi); }
+.feature-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: linear-gradient(135deg, rgba(232,160,32,0.12), rgba(192,64,48,0.08));
+  border: 1px solid var(--border);
+}
+.feature h3 { margin-bottom: 6px; }
+.feature p { margin: 0; font-size: 13px; color: var(--text); line-height: 1.5; }
+.feature .tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-top: 8px;
+}
+.tag-new { background: rgba(90,180,110,0.15); color: #9fe2a8; border: 1px solid rgba(90,180,110,0.3); }
+.tag-rework { background: rgba(100,140,220,0.15); color: #a0c0f0; border: 1px solid rgba(100,140,220,0.3); }
+.tag-system { background: rgba(232,160,32,0.15); color: var(--gold-bright); border: 1px solid rgba(232,160,32,0.3); }
+
+/* ── Portrait Gallery ── */
+.gallery-section { margin: 36px 0; }
+.portrait-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 12px 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.portrait-scroll::-webkit-scrollbar { height: 6px; }
+.portrait-scroll::-webkit-scrollbar-track { background: transparent; }
+.portrait-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.portrait-item {
+  flex-shrink: 0;
+  width: 72px;
+  text-align: center;
+}
+.portrait-item img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  object-fit: cover;
+  transition: border-color 0.2s, transform 0.2s;
+  image-rendering: pixelated;
+}
+.portrait-item img:hover { border-color: var(--gold); transform: scale(1.1); }
+.portrait-item span {
+  display: block;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 4px;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Companion Grid ── */
+.companion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.companion-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  text-align: center;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.companion-card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+.companion-card img {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  image-rendering: pixelated;
+  margin-bottom: 6px;
+}
+.companion-card .name {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--gold-bright);
+}
+.companion-card .desc {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ── Timeline ── */
+.timeline { position: relative; padding-left: 28px; margin: 24px 0; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold), var(--ember1), transparent);
+}
+.tl-item { position: relative; margin-bottom: 20px; }
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 8px rgba(232,160,32,0.4);
+}
+.tl-date {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.tl-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gold-bright);
+  margin: 2px 0 4px;
+}
+.tl-desc { font-size: 13px; color: var(--text); }
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-hi), transparent);
+  margin: 36px 0;
+}
+
+/* ── CTA ── */
+.cta {
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 24px;
+}
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(180deg, var(--accent) 0%, #b87018 100%);
+  color: #1a0f05;
+  text-decoration: none;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: filter 0.15s, transform 0.1s;
+  box-shadow: 0 4px 20px rgba(232,160,32,0.3);
+}
+.cta-btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
+.cta-btn:active { transform: translateY(1px); }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .hero { min-height: 280px; padding: 48px 16px 36px; }
+  .feature { flex-direction: column; }
+  .feature-icon { width: 44px; height: 44px; font-size: 22px; }
+  .stat-num { font-size: 1.6rem; }
+  .companion-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+}
+</style>
+</head>
+<body class="ev-themed">
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="ember-field">
+    <div class="ember"></div><div class="ember"></div><div class="ember"></div><div class="ember"></div>
+    <div class="ember"></div><div class="ember"></div><div class="ember"></div><div class="ember"></div>
+  </div>
+  <h1 class="hero-title">20 Classes, 84 Skills & Combat Rework</h1>
+  <div class="hero-sub">Major Milestone Report</div>
+  <p class="hero-tagline">From placeholder sprites to a fully realized dark fantasy RPG -- 20 hero classes, 84 skills, 10 companions, and a complete combat overhaul.</p>
+</section>
+
+<div class="report">
+
+  <!-- ── Stats ── -->
+  <div class="stats-bar anim">
+    <div class="stat-card">
+      <div class="stat-num">20</div>
+      <div class="stat-label">Hero Classes</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">84</div>
+      <div class="stat-label">Skills Wired</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">10</div>
+      <div class="stat-label">Companions</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">60+</div>
+      <div class="stat-label">Sound Effects</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">75</div>
+      <div class="stat-label">Portraits</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">10</div>
+      <div class="stat-label">Map Backgrounds</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── Hero Portraits Gallery ── -->
+  <section class="gallery-section anim">
+    <h2>20 Hero Classes — All with Pixel Art Portraits</h2>
+    <p>Every hero class now has a SpriteCook-generated pixel art portrait, replacing all placeholder graphics. From Fighters to Chronomancers, each class has a distinct visual identity.</p>
+    <div class="portrait-scroll">
+      <div class="portrait-item"><img src="../images/portraits/fighter.png" alt="Fighter"><span>Fighter</span></div>
+      <div class="portrait-item"><img src="../images/portraits/paladin.png" alt="Paladin"><span>Paladin</span></div>
+      <div class="portrait-item"><img src="../images/portraits/ranger.png" alt="Ranger"><span>Ranger</span></div>
+      <div class="portrait-item"><img src="../images/portraits/mage.png" alt="Mage"><span>Mage</span></div>
+      <div class="portrait-item"><img src="../images/portraits/cleric.png" alt="Cleric"><span>Cleric</span></div>
+      <div class="portrait-item"><img src="../images/portraits/rogue.png" alt="Rogue"><span>Rogue</span></div>
+      <div class="portrait-item"><img src="../images/portraits/bard.png" alt="Bard"><span>Bard</span></div>
+      <div class="portrait-item"><img src="../images/portraits/druid.png" alt="Druid"><span>Druid</span></div>
+      <div class="portrait-item"><img src="../images/portraits/necromancer.png" alt="Necromancer"><span>Necromancer</span></div>
+      <div class="portrait-item"><img src="../images/portraits/warlock.png" alt="Warlock"><span>Warlock</span></div>
+      <div class="portrait-item"><img src="../images/portraits/demon_hunter.png" alt="Demon Hunter"><span>Demon Hunter</span></div>
+      <div class="portrait-item"><img src="../images/portraits/dragon_knight.png" alt="Dragon Knight"><span>Dragon Knight</span></div>
+      <div class="portrait-item"><img src="../images/portraits/oracle.png" alt="Oracle"><span>Oracle</span></div>
+      <div class="portrait-item"><img src="../images/portraits/pyromancer.png" alt="Pyromancer"><span>Pyromancer</span></div>
+      <div class="portrait-item"><img src="../images/portraits/stormcaller.png" alt="Stormcaller"><span>Stormcaller</span></div>
+      <div class="portrait-item"><img src="../images/portraits/swashbuckler.png" alt="Swashbuckler"><span>Swashbuckler</span></div>
+      <div class="portrait-item"><img src="../images/portraits/scavenger.png" alt="Scavenger"><span>Scavenger</span></div>
+      <div class="portrait-item"><img src="../images/portraits/tactician.png" alt="Tactician"><span>Tactician</span></div>
+      <div class="portrait-item"><img src="../images/portraits/chronomancer.png" alt="Chronomancer"><span>Chronomancer</span></div>
+      <div class="portrait-item"><img src="../images/portraits/warrior.png" alt="Warrior"><span>Warrior</span></div>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:#8a7a6a">Seven additional class concepts (Monk, Shaman, Witch Hunter, Knight, Sorcerer, Runesmith, Shadow Dancer) were originally listed but never implemented — they are now tracked in the <a href="/assets/wishlist.html" style="color:#e8a020">Wishlist</a>.</p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── Major Features ── -->
+  <h2 class="anim">Major Features</h2>
+  <div class="features">
+
+    <div class="feature anim">
+      <div class="feature-icon">&#9876;</div>
+      <div>
+        <h3>100% Skill Implementation</h3>
+        <p>All 84 skills across 20 hero classes are now fully wired and functional. Every active, passive, and talent ability triggers correctly in combat with proper damage calculations, status effects, and visual feedback.</p>
+        <span class="tag tag-system">Core System</span>
+      </div>
+    </div>
+
+    <div class="feature anim">
+      <div class="feature-icon">&#9878;</div>
+      <div>
+        <h3>Combat Rebalance</h3>
+        <p>A 50% damage scaling nerf brings fights into a satisfying rhythm instead of one-shot territory. Monte Carlo balance testing across thousands of simulated encounters validates the new curves. New affixes -- life steal, mana steal, and magic resist -- add meaningful itemization depth.</p>
+        <span class="tag tag-rework">Rework</span>
+      </div>
+    </div>
+
+    <div class="feature anim">
+      <div class="feature-icon">&#128054;</div>
+      <div>
+        <h3>10 Class Pet Companions</h3>
+        <p>Talent-unlocked companions join your party in combat. Each has unique pixel art portraits, idle and attack animations, and distinct combat behaviors. From the loyal Bone Hound to the ethereal Spirit Wisp, companions add tactical variety to every class.</p>
+        <span class="tag tag-new">New</span>
+      </div>
+    </div>
+
+    <div class="feature anim">
+      <div class="feature-icon">&#127912;</div>
+      <div>
+        <h3>Character Portraits Everywhere</h3>
+        <p>Hero portraits now appear in the tavern hire screen, party overview, inventory panels, skill trees, and combat HUD. Every screen where you interact with a character shows their face.</p>
+        <span class="tag tag-rework">Polish</span>
+      </div>
+    </div>
+
+    <div class="feature anim">
+      <div class="feature-icon">&#127925;</div>
+      <div>
+        <h3>60+ Sound Effects &amp; Music</h3>
+        <p>ElevenLabs-generated audio brings the world to life. Combat hits, spell casts, level-up fanfares, menu clicks, and 3 original music tracks (title, combat, exploration) replace all placeholder beeps.</p>
+        <span class="tag tag-new">New</span>
+      </div>
+    </div>
+
+    <div class="feature anim">
+      <div class="feature-icon">&#128444;</div>
+      <div>
+        <h3>Sprite Replacement Tool</h3>
+        <p>A new tool page in the asset gallery lets you manage and swap character graphics without touching code. Upload new pixel art, preview it in context, and hot-swap sprites across the entire game.</p>
+        <span class="tag tag-new">New</span>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── Companions Gallery ── -->
+  <section class="gallery-section anim">
+    <h2>Meet the Companions</h2>
+    <p>Unlocked through talent trees, these 10 companions fight alongside your heroes in combat.</p>
+    <div class="companion-grid">
+      <div class="companion-card">
+        <img src="../images/portraits/bone_hound.png" alt="Bone Hound">
+        <div class="name">Bone Hound</div>
+        <div class="desc">Necromancer pet</div>
+      </div>
+      <div class="companion-card">
+        <img src="../images/portraits/dire_wolf.png" alt="Dire Wolf">
+        <div class="name">Dire Wolf</div>
+        <div class="desc">Ranger companion</div>
+      </div>
+      <div class="companion-card">
+        <img src="../images/portraits/ember_drake.png" alt="Ember Drake">
+        <div class="name">Ember Drake</div>
+        <div class="desc">Dragon Knight ally</div>
+      </div>
+      <div class="companion-card">
+        <img src="../images/portraits/forest_owl.png" alt="Forest Owl">
+        <div class="name">Forest Owl</div>
+        <div class="desc">Druid familiar</div>
+      </div>
+      <div class="companion-card">
+        <img src="../images/portraits/shadow_cat.png" alt="Shadow Cat">
+        <div class="name">Shadow Cat</div>
+        <div class="desc">Rogue stalker</div>
+      </div>
+      <div class="companion-card">
+        <img src="../images/portraits/crystal_golem.png" alt="Crystal Golem">
+        <div class="name">Crystal Golem</div>
+        <div class="desc">Runesmith guardian</div>
+      </div>
+      <div class="companion-card">
+        <img src="../images/portraits/spirit_wisp.png" alt="Spirit Wisp">
+        <div class="name">Spirit Wisp</div>
+        <div class="desc">Oracle guide</div>
+      </div>
+      <div class="companion-card">
+        <img src="../images/portraits/ice_sprite.png" alt="Ice Sprite">
+        <div class="name">Ice Sprite</div>
+        <div class="desc">Mage elemental</div>
+      </div>
+      <div class="companion-card">
+        <img src="../images/portraits/swamp_frog.png" alt="Swamp Frog">
+        <div class="name">Swamp Frog</div>
+        <div class="desc">Shaman totem beast</div>
+      </div>
+      <div class="companion-card">
+        <img src="../images/portraits/void_moth.png" alt="Void Moth">
+        <div class="name">Void Moth</div>
+        <div class="desc">Warlock summon</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── Development Timeline ── -->
+  <section class="anim">
+    <h2>Development Timeline</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">M46-M53</div>
+        <div class="tl-title">Foundation &amp; Core Systems</div>
+        <div class="tl-desc">Party-based RPG framework, 5-act world map, town services, basic combat loop, initial 20 hero classes with placeholder art.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">M54-M58</div>
+        <div class="tl-title">Skill System &amp; Portraits</div>
+        <div class="tl-desc">84 skills wired across all classes. SpriteCook pixel art portraits generated for every hero, enemy, and boss. Character portraits integrated into all UI screens.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">M59-M62</div>
+        <div class="tl-title">Combat Overhaul</div>
+        <div class="tl-desc">50% damage scaling nerf, Monte Carlo balance testing, new affixes (life steal, mana steal, magic resist), forge system, black market vendor.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">M63-M64</div>
+        <div class="tl-title">Companions &amp; Audio</div>
+        <div class="tl-desc">10 companion creatures with portraits and animations. 60+ ElevenLabs SFX, 3 music tracks. Map backgrounds, menu parallax, achievements system.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">M65+</div>
+        <div class="tl-title">Tap Weapons &amp; Multi-Town</div>
+        <div class="tl-desc">Interactive tap combat system, multiple towns with scaling merchants, debug mode, and continued polish.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── CTA ── -->
+  <div class="cta anim">
+    <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Ready to lead your party through the Emberveil?</p>
+    <a href="/game13/" class="cta-btn">Play Emberveil</a>
+  </div>
+
+</div>
+
+<!-- ── Scroll Animation Observer ── -->
+<script>
+(function() {
+  var els = document.querySelectorAll('.anim');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(el) { el.classList.add('visible'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+</script>
+
+<!-- rsg-featured-image-applied -->
+<script>
+(function(){
+  var m=document.querySelector("meta[name='rsg-featured-image']");
+  if(!m)return;
+  var hero=document.querySelector(".hero");
+  if(!hero)return;
+  var ov=document.createElement("div");
+  ov.style.cssText="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,5,8,0.55) 0%,rgba(8,5,8,0.3) 40%,rgba(8,5,8,0.85) 100%);pointer-events:none;z-index:0;";
+  hero.style.position="relative";
+  hero.insertBefore(ov,hero.firstChild);
+  var bgImg=new Image();bgImg.src=m.content;
+  bgImg.onload=function(){hero.style.backgroundImage="url("+JSON.stringify(m.content)+")";
+  hero.style.backgroundSize="cover";
+  hero.style.backgroundPosition="center";};
+})();
+</script>
+</body>
+</html>

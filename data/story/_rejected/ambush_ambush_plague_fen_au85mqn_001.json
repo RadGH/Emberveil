@@ -1,0 +1,34 @@
+{
+  "node": {
+    "id": "ambush_plague_fen_au85mqn_001",
+    "pool": "ambush",
+    "act": 2,
+    "biome": "plague_fen",
+    "tone": "hostile",
+    "speaker": "plague_harvesters",
+    "lines": [
+      "You've wandered into our territory.",
+      "Time to pay the price for your meddling."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your weapon and fight.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "plague_harvester",
+              "plague_harvester"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:04:38.791Z"
+}

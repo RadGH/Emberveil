@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="rsg-featured-image" content="../images/map_bg/dust_roads_1.png">
+<meta name="rsg-news-date" content="2026-04-10">
+<meta name="rsg-news-title" content="Pre-Game Brainstorm">
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Emberveil Design Foundations — Emberveil</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+:root{
+  --bg:#0a0608;--bg2:#120d10;--surface:#1a1218;--surface2:#241a20;
+  --gold:#e8a020;--gold2:#f0c060;--crimson:#c04030;--purple:#7040c0;
+  --void:#2a1840;--hellfire:#ff4020;--volcanic:#ff8020;--frontier:#40a860;
+  --text:#f0e8d8;--muted:#8a7a6a;--dim:#4a3a32;
+  --font-display:'Cinzel',Georgia,serif;--font-ui:'Inter','Segoe UI',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-ui);overflow-x:hidden;line-height:1.6}
+
+/* PARTICLES */
+#particle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.5}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,6,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,160,32,0.2);padding:0 2rem;height:52px;display:flex;align-items:center;gap:1.5rem}
+nav a{color:var(--muted);text-decoration:none;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;white-space:nowrap}
+nav a:hover{color:var(--gold)}
+.nav-logo{font-family:var(--font-display);color:var(--gold);font-size:1rem;font-weight:900;letter-spacing:0.15em;margin-right:1rem;flex-shrink:0}
+
+/* LAYOUT */
+main{position:relative;z-index:1;padding-top:52px}
+section{max-width:1100px;margin:0 auto;padding:5rem 2rem}
+.section-label{font-size:0.65rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+
+h1,h2,h3{font-family:var(--font-display)}
+h2{font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:2.5rem;position:relative;display:inline-block}
+h2::after{content:'';position:absolute;bottom:-8px;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),transparent);animation:gradShift 3s ease infinite}
+@keyframes gradShift{0%,100%{opacity:1}50%{opacity:0.5}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(192,64,48,0.15) 0%,transparent 70%)}
+.hero-logo{font-family:var(--font-display);font-size:clamp(3rem,10vw,7rem);font-weight:900;letter-spacing:0.1em;background:linear-gradient(135deg,#f0c060,#e8a020,#c04030,#e8a020,#f0c060);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:logoShimmer 4s ease infinite,logoReveal 1.5s ease forwards}
+@keyframes logoShimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes logoReveal{from{opacity:0;transform:translateY(-30px) scale(0.9)}to{opacity:1;transform:translateY(0) scale(1)}}
+.hero-sub{font-size:clamp(0.9rem,2vw,1.2rem);color:var(--muted);letter-spacing:0.3em;text-transform:uppercase;margin-top:1rem;animation:fadeUp 1s ease 0.5s both}
+.hero-tagline{font-size:clamp(1rem,2.5vw,1.4rem);color:var(--text);margin-top:2rem;font-style:italic;animation:fadeUp 1s ease 0.8s both}
+.hero-badges{display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;margin-top:3rem;animation:fadeUp 1s ease 1.1s both}
+.badge{background:var(--surface);border:1px solid rgba(232,160,32,0.3);padding:0.4rem 1rem;border-radius:999px;font-size:0.75rem;font-weight:600;color:var(--gold);letter-spacing:0.05em}
+.scroll-hint{position:absolute;bottom:2rem;animation:bounce 2s ease infinite;color:var(--muted);font-size:0.75rem;letter-spacing:0.1em}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid rgba(232,160,32,0.15);border-radius:12px;padding:1.5rem;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s}
+.card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,160,32,0.05),transparent);opacity:0;transition:opacity 0.3s}
+.card:hover{border-color:rgba(232,160,32,0.4);transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,160,32,0.1)}
+.card:hover::before{opacity:1}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+
+/* REVEAL ANIMATION */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+
+/* SUMMARY */
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2rem}
+.stat-box{background:var(--surface2);border-radius:10px;padding:1.5rem;text-align:center}
+.stat-num{font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--gold);display:block}
+.stat-label{font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.25rem}
+
+/* ACT CARDS */
+.act-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+.act-card{border-radius:12px;padding:2rem 1.5rem;position:relative;overflow:hidden;transition:transform 0.3s}
+.act-card:hover{transform:translateY(-4px)}
+.act-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,0.6));pointer-events:none}
+.act-1{background:linear-gradient(135deg,#0d1a10,#1a2d18);border:1px solid rgba(64,168,96,0.4)}
+.act-2{background:linear-gradient(135deg,#1a0d08,#2d1a08);border:1px solid rgba(255,128,32,0.4)}
+.act-3{background:linear-gradient(135deg,#1a0808,#2d0808);border:1px solid rgba(255,64,32,0.4)}
+.act-4{background:linear-gradient(135deg,#100818,#1a0828);border:1px solid rgba(112,64,192,0.4)}
+.act-num{font-family:var(--font-display);font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;opacity:0.7}
+.act-title{font-family:var(--font-display);font-size:1.3rem;font-weight:700;margin:0.5rem 0;line-height:1.2}
+.act-boss{font-size:0.8rem;color:var(--muted);margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.1)}
+.act-boss span{color:var(--crimson);font-weight:600}
+.act-theme{display:inline-block;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.75rem;border-radius:999px;margin-bottom:0.75rem}
+.t-frontier{background:rgba(64,168,96,0.2);color:#6ddc96;border:1px solid rgba(64,168,96,0.3)}
+.t-volcanic{background:rgba(255,128,32,0.2);color:#ffaa50;border:1px solid rgba(255,128,32,0.3)}
+.t-hell{background:rgba(255,64,32,0.2);color:#ff8060;border:1px solid rgba(255,64,32,0.3)}
+.t-void{background:rgba(112,64,192,0.2);color:#a080e0;border:1px solid rgba(112,64,192,0.3)}
+
+/* CLASS CARDS */
+.class-card{background:var(--surface);border:1px solid rgba(232,160,32,0.12);border-radius:10px;padding:1.2rem;transition:all 0.25s}
+.class-card:hover{border-color:rgba(232,160,32,0.4);background:var(--surface2);transform:translateY(-2px)}
+.class-name{font-family:var(--font-display);font-size:1rem;font-weight:700;margin-bottom:0.4rem}
+.class-role{font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem}
+.class-hook{font-size:0.82rem;color:var(--text);opacity:0.85;margin-bottom:0.75rem}
+.class-weapons{font-size:0.7rem;color:var(--gold);opacity:0.8}
+
+/* TECH STACK */
+.tech-layer{display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;border-radius:8px;margin-bottom:0.75rem;position:relative;overflow:hidden}
+.tech-layer::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.tl-canvas::before{background:var(--gold)}
+.tl-ui::before{background:var(--frontier)}
+.tl-audio::before{background:var(--purple)}
+.tl-art::before{background:var(--volcanic)}
+.tl-data::before{background:var(--crimson)}
+.tech-icon{width:40px;height:40px;flex-shrink:0;opacity:0.9}
+.tech-label{font-weight:600;font-size:0.95rem}
+.tech-desc{font-size:0.8rem;color:var(--muted);margin-top:0.2rem}
+
+/* MILESTONE ROADMAP */
+.phase-bar{margin-bottom:2rem}
+.phase-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem}
+.phase-name{font-weight:600;font-size:0.9rem}
+.phase-range{font-size:0.75rem;color:var(--muted)}
+.progress-track{background:rgba(255,255,255,0.06);border-radius:999px;height:10px;overflow:hidden}
+.progress-fill{height:100%;border-radius:999px;position:relative;transition:width 1s ease}
+.progress-fill::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0.3) 50%,rgba(255,255,255,0) 100%);background-size:200% 100%;animation:shimmer 2s linear infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.ph-1{background:linear-gradient(90deg,var(--frontier),#60d888)}
+.ph-2{background:linear-gradient(90deg,var(--gold),#f0c060)}
+.ph-3{background:linear-gradient(90deg,var(--volcanic),#ffa040)}
+.ph-4{background:linear-gradient(90deg,var(--crimson),#ff6040)}
+.ph-5{background:linear-gradient(90deg,var(--purple),#a060e0)}
+.ph-6{background:linear-gradient(90deg,#606080,#8080a0)}
+.phase-milestones{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.75rem}
+.ms-pill{font-size:0.65rem;font-weight:600;letter-spacing:0.05em;padding:0.2rem 0.5rem;border-radius:4px;background:rgba(255,255,255,0.06);color:var(--muted)}
+.ms-pill.active{background:rgba(232,160,32,0.2);color:var(--gold)}
+
+/* RISK TABLE */
+table{width:100%;border-collapse:collapse;margin-top:1rem}
+th{text-align:left;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:0.75rem 1rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+td{padding:0.85rem 1rem;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.85rem;vertical-align:top}
+tr:hover td{background:rgba(232,160,32,0.03)}
+.risk-high{color:var(--crimson);font-weight:600}
+.risk-med{color:var(--volcanic);font-weight:600}
+.risk-low{color:var(--frontier);font-weight:600}
+
+/* FEATURE MATRIX */
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:2rem}
+.feature-item{display:flex;gap:1rem;align-items:flex-start;padding:1.2rem;background:var(--surface);border-radius:10px;border:1px solid rgba(255,255,255,0.06);transition:border-color 0.2s}
+.feature-item:hover{border-color:rgba(232,160,32,0.3)}
+.feature-icon{width:36px;height:36px;flex-shrink:0;color:var(--gold)}
+.feature-content h4{font-family:var(--font-display);font-size:0.9rem;font-weight:700;margin-bottom:0.3rem}
+.feature-content p{font-size:0.8rem;color:var(--muted);line-height:1.5}
+
+/* SUGGESTIONS */
+.suggestion-list{list-style:none;display:grid;gap:0.75rem;margin-top:1.5rem}
+.suggestion-list li{padding:1rem 1.5rem;background:var(--surface);border-radius:8px;border-left:3px solid;font-size:0.88rem;line-height:1.5}
+.s-green{border-color:var(--frontier)}
+.s-gold{border-color:var(--gold)}
+.s-purple{border-color:var(--purple)}
+.s-red{border-color:var(--crimson)}
+.s-orange{border-color:var(--volcanic)}
+
+/* CAUTIONS */
+.caution-box{background:linear-gradient(135deg,rgba(192,64,48,0.1),rgba(10,6,8,0));border:1px solid rgba(192,64,48,0.3);border-radius:10px;padding:1.2rem 1.5rem;margin-bottom:1rem;display:flex;gap:1rem;align-items:flex-start}
+.caution-icon{width:24px;height:24px;flex-shrink:0;color:var(--crimson)}
+.caution-box h4{font-weight:600;font-size:0.9rem;margin-bottom:0.3rem;color:var(--crimson)}
+.caution-box p{font-size:0.82rem;color:var(--muted);line-height:1.5}
+
+/* FOOTER */
+footer{text-align:center;padding:3rem 2rem;color:var(--dim);font-size:0.8rem;border-top:1px solid rgba(255,255,255,0.06)}
+footer strong{color:var(--muted)}
+
+/* SVG ICONS inline */
+.svg-icon{display:inline-block;vertical-align:middle}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5H26ZXKBCL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-5H26ZXKBCL");
+</script>
+</head>
+<body class="ev-themed">
+
+<canvas id="particle-canvas"></canvas>
+
+<script src="../assets/_header.js?v=3" data-base="assets"></script>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-logo" id="logo-text">EMBERVEIL</div>
+  <div class="hero-sub">Pre-Game Design Report · April 2026</div>
+  <div class="hero-tagline">"The veil between worlds is tearing. Answer the call."</div>
+  <div class="hero-badges">
+    <span class="badge">High Fantasy RPG</span>
+    <span class="badge">14 Classes</span>
+    <span class="badge">4 Acts · 50 Milestones</span>
+    <span class="badge">Mobile-First</span>
+    <span class="badge">Party of 8</span>
+    <span class="badge">Auto-Combat</span>
+    <span class="badge">PixelLab Art</span>
+    <span class="badge">New Game+</span>
+  </div>
+  <div class="scroll-hint">▼ &nbsp; Scroll to explore &nbsp; ▼</div>
+</section>
+
+<!-- EXECUTIVE SUMMARY -->
+<section id="summary">
+  <div class="section-label reveal">Executive Summary</div>
+  <h2 class="reveal">What Is Emberveil?</h2>
+  <p class="reveal" style="max-width:720px;font-size:1.05rem;color:var(--muted);line-height:1.8;margin-bottom:2rem">
+    Emberveil is a high-fantasy party RPG that runs entirely in the browser — no install, no app store. A lone hero grows into a party of 8 as they chase the Emberveil Corruption across four wildly different realms: medieval goblin kingdoms, volcanic wastelands, the Shattered Hell, and the Cosmic Void. Combat is cinematic and automatic, driven by smart AI with deep customization available between rounds. Every piece of equipment is procedurally generated. Every encounter tells a story.
+  </p>
+  <div class="summary-grid">
+    <div class="stat-box reveal reveal-delay-1"><span class="stat-num">14</span><span class="stat-label">Playable Classes</span></div>
+    <div class="stat-box reveal reveal-delay-2"><span class="stat-num">4</span><span class="stat-label">Acts + New Game+</span></div>
+    <div class="stat-box reveal reveal-delay-3"><span class="stat-num">50</span><span class="stat-label">Dev Milestones</span></div>
+    <div class="stat-box reveal reveal-delay-4"><span class="stat-num">8</span><span class="stat-label">Party Slots</span></div>
+    <div class="stat-box reveal reveal-delay-1"><span class="stat-num">12</span><span class="stat-label">Max Enemies/Combat</span></div>
+    <div class="stat-box reveal reveal-delay-2"><span class="stat-num">10</span><span class="stat-label">Equipment Slots</span></div>
+    <div class="stat-box reveal reveal-delay-3"><span class="stat-num">4</span><span class="stat-num" style="font-size:1.2rem">×</span><span class="stat-num">5</span><span class="stat-label">Rarity × Quality</span></div>
+    <div class="stat-box reveal reveal-delay-4"><span class="stat-num">∞</span><span class="stat-label">Procedural Items</span></div>
+  </div>
+</section>
+
+<!-- THE 4 ACTS -->
+<section id="acts">
+  <div class="section-label reveal">Story Arc</div>
+  <h2 class="reveal">Four Acts. Four Worlds.</h2>
+  <div class="act-cards">
+    <div class="act-card act-1 reveal reveal-delay-1">
+      <div class="act-num">Act I</div>
+      <span class="act-theme t-frontier">Medieval Frontier</span>
+      <div class="act-title">The Goblin Frontier</div>
+      <p style="font-size:0.85rem;color:#c0d8c0;line-height:1.6">Goblin warbands, smarter than they should be, pour from the borderlands. Something has given them purpose — and it wears the Emberveil's mark. Investigate the raids, rally allies, and stop the warlord before the capital falls.</p>
+      <div class="act-boss">Boss: <span>Grax the Veil-Touched</span> — goblin warlord mutated by Emberveil energy, commanding a berserker horde in three terrifying phases.</div>
+    </div>
+    <div class="act-card act-2 reveal reveal-delay-2">
+      <div class="act-num">Act II</div>
+      <span class="act-theme t-volcanic">Volcanic Badlands</span>
+      <div class="act-title">The Ashen Wastes</div>
+      <p style="font-size:0.85rem;color:#d8c0a0;line-height:1.6">The trail leads into volcanic badlands where a fire cult worships the corruption. Ancient dwarven ruins hide the original portal — the wound where the darkness first entered this world. Seal it before the Cinderborn complete their ritual.</p>
+      <div class="act-boss">Boss: <span>Embermaw the Undying</span> — fire elemental fused with Veil energy, immune to fire, reborn from the magma until the ritual seal is shattered.</div>
+    </div>
+    <div class="act-card act-3 reveal reveal-delay-3">
+      <div class="act-num">Act III</div>
+      <span class="act-theme t-hell">Infernal Realm</span>
+      <div class="act-title">The Shattered Hell</div>
+      <p style="font-size:0.85rem;color:#d8a090;line-height:1.6">Through the ancient portal lies a Hell already fractured by the corruption. Demon lords war with each other and the encroaching Void. Forge impossible alliances, navigate political betrayals, and reach the Void Gate at Hell's heart.</p>
+      <div class="act-boss">Boss: <span>Malachar the Splinter Lord</span> — demon partially merged with Void, splitting into copies and reassembling in maddening patterns.</div>
+    </div>
+    <div class="act-card act-4 reveal reveal-delay-4">
+      <div class="act-num">Act IV</div>
+      <span class="act-theme t-void">Cosmic Void</span>
+      <div class="act-title">The Cosmic Void</div>
+      <p style="font-size:0.85rem;color:#c0a8e0;line-height:1.6">Beyond the Void Gate: absolute darkness, shattered planets, impossible geometries. The Unraveler has been dismantling existence plane by plane. Gather the last world-seals and confront it before reality itself unravels. Three endings await.</p>
+      <div class="act-boss">Boss: <span>The Unraveler</span> — multi-phase cosmic horror that reshapes the battlefield each phase and summons echoes of defeated bosses.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 CLASSES -->
+<section id="classes">
+  <div class="section-label reveal">Character System</div>
+  <h2 class="reveal">14 Playable Classes</h2>
+  <p class="reveal" style="color:var(--muted);margin-bottom:2rem;max-width:680px">Each class has 4 skills that auto-unlock at levels 1, 5, 10, and 15. Skills each have talent upgrade branches. Max 4 active abilities per character. Max level 20.</p>
+  <div class="grid-4">
+    <div class="class-card reveal reveal-delay-1">
+      <div class="class-name">Warrior</div>
+      <div class="class-role">Frontline Tank</div>
+      <div class="class-hook">Shield Bash → Battle Cry → Whirlwind → Unbreakable. Masters of crowd control and absorbing punishment.</div>
+      <div class="class-weapons">Sword · Hammer · 2H Sword · Heavy Armor</div>
+    </div>
+    <div class="class-card reveal reveal-delay-2">
+      <div class="class-name">Paladin</div>
+      <div class="class-role">Holy Warrior</div>
+      <div class="class-hook">Holy Strike crits vs demons. Lay on Hands keeps allies alive. Consecration sustains entire fights.</div>
+      <div class="class-weapons">Sword · Scepter · Shield · Medium Armor</div>
+    </div>
+    <div class="class-card reveal reveal-delay-3">
+      <div class="class-name">Ranger</div>
+      <div class="class-role">Precision Ranged</div>
+      <div class="class-hook">Aimed Shot pierces armor. Rain of Arrows devastates entire enemy groups for 3 consecutive rounds.</div>
+      <div class="class-weapons">Bow · Crossbow · Javelin · Light Armor</div>
+    </div>
+    <div class="class-card reveal reveal-delay-4">
+      <div class="class-name">Rogue</div>
+      <div class="class-role">Burst Assassin</div>
+      <div class="class-hook">200% Backstab against stunned targets. Death Mark makes an enemy take 50% more damage from all sources.</div>
+      <div class="class-weapons">Dagger · Dagger (dual) · Light Armor</div>
+    </div>
+    <div class="class-card reveal reveal-delay-1">
+      <div class="class-name">Cleric</div>
+      <div class="class-role">Primary Healer</div>
+      <div class="class-hook">Mass Resurrection can auto-trigger on party wipe. Sanctuary makes one ally temporarily untargetable.</div>
+      <div class="class-weapons">Scepter · Staff · Wand · Cloth/Light</div>
+    </div>
+    <div class="class-card reveal reveal-delay-2">
+      <div class="class-name">Bard</div>
+      <div class="class-role">Support Maestro</div>
+      <div class="class-hook">Ballad of Valor grants one hero two turns in a single round. Song of Ruin strips all enemy buffs simultaneously.</div>
+      <div class="class-weapons">Dagger · Wand · Light Armor</div>
+    </div>
+    <div class="class-card reveal reveal-delay-3">
+      <div class="class-name">Mage</div>
+      <div class="class-role">AoE Glass Cannon</div>
+      <div class="class-hook">Fireball torches entire enemy groups. Blizzard blankets all enemies for 3 rounds. Arcane Surge: 400% INT damage.</div>
+      <div class="class-weapons">Staff · Wand · Cloth Armor</div>
+    </div>
+    <div class="class-card reveal reveal-delay-4">
+      <div class="class-name">Necromancer</div>
+      <div class="class-role">Army Builder</div>
+      <div class="class-hook">Raise Dead converts enemy corpses into skeleton allies. Death Coil applies Poison + Bleed to entire enemy field.</div>
+      <div class="class-weapons">Staff · Wand · Scepter · Cloth</div>
+    </div>
+    <div class="class-card reveal reveal-delay-1">
+      <div class="class-name">Warlock</div>
+      <div class="class-role">Chaos Dealer</div>
+      <div class="class-hook">Corruption spreads on enemy death. Soul Pact doubles all DoT duration at a cost of the Warlock's own HP.</div>
+      <div class="class-weapons">Staff · Wand · Cloth Armor</div>
+    </div>
+    <div class="class-card reveal reveal-delay-2">
+      <div class="class-name">Demon Hunter</div>
+      <div class="class-role">Specialist Killer</div>
+      <div class="class-hook">+50% damage vs demons. Vengeance gains stacking bonuses for each fallen ally — then unleashes it all at once.</div>
+      <div class="class-weapons">Crossbow · Dagger · Light Armor</div>
+    </div>
+    <div class="class-card reveal reveal-delay-3">
+      <div class="class-name">Scavenger</div>
+      <div class="class-role">Resource Specialist</div>
+      <div class="class-hook">Scrounge finds items mid-combat. Jackpot: 20% chance to loot a Magic+ item on each enemy killed.</div>
+      <div class="class-weapons">Any 1H · Light/Medium Armor</div>
+    </div>
+    <div class="class-card reveal reveal-delay-4">
+      <div class="class-name">Swashbuckler</div>
+      <div class="class-role">Flashy Duelist</div>
+      <div class="class-hook">Builds Flair stacks with Flourish, then releases them all in a Grandeur strike with random debuffs per stack.</div>
+      <div class="class-weapons">Sword · Dagger · Light Armor</div>
+    </div>
+    <div class="class-card reveal reveal-delay-1">
+      <div class="class-name">Dragon Knight</div>
+      <div class="class-role">Draconic Warrior</div>
+      <div class="class-hook">Choose fire/ice/lightning at creation. Draconic Fury turns all attacks into group AoE for 2 rounds.</div>
+      <div class="class-weapons">2H Sword · 2H Axe · Heavy/Medium</div>
+    </div>
+    <div class="class-card reveal reveal-delay-2">
+      <div class="class-name">Pyromancer</div>
+      <div class="class-role">Fire Specialist</div>
+      <div class="class-hook">Stack Burn on multiple targets simultaneously. Meteor ignites every enemy group on the field at once.</div>
+      <div class="class-weapons">Staff · Wand · Scepter · Cloth</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE MATRIX -->
+<section id="features">
+  <div class="section-label reveal">Feature Deep Dive</div>
+  <h2 class="reveal">Core Feature Matrix</h2>
+  <div class="feature-grid">
+    <div class="feature-item reveal">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L8 6H4v4L2 12l2 2v4h4l4 4 4-4h4v-4l2-2-2-2V6h-4L12 2z"/></svg>
+      <div class="feature-content"><h4>Cinematic Auto-Combat</h4><p>Characters act every 0.5 seconds in turn order. Each unit switches stance (attack/spell/death), moves on-screen, and triggers particle effects. Special abilities add suspenseful delays.</p></div>
+    </div>
+    <div class="feature-item reveal reveal-delay-1">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <div class="feature-content"><h4>AoE Group Combat</h4><p>Enemies are grouped in packs of 2-4 (max 12 total). Fireball hits a pack. Blizzard hits all packs. Even melee hits 1-3 adjacent targets. Group position matters.</p></div>
+    </div>
+    <div class="feature-item reveal reveal-delay-2">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+      <div class="feature-content"><h4>Procedural Equipment</h4><p>Every item is generated from base type + rarity (Normal/Magic/Rare/Legendary) + quality (Low → Exotic) + affix pool. Billions of possible items. 10 equipment slots per character.</p></div>
+    </div>
+    <div class="feature-item reveal reveal-delay-3">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      <div class="feature-content"><h4>Party of 8</h4><p>4 heroes + 4 companions. Start alone, hire from taverns, rescue in quests, summon via skills. Companions include war dogs, dragon whelplings, raised skeletons, and summoned wolves.</p></div>
+    </div>
+    <div class="feature-item reveal">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3l18 18M3 21L21 3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+      <div class="feature-content"><h4>Dialog + Skill Checks</h4><p>Encounters use portrait-left/NPC-right dialog with scrolling text. Choose persuasion, stealth, or lore to avoid combat or gain advantage. Choices persist as story flags.</p></div>
+    </div>
+    <div class="feature-item reveal reveal-delay-1">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="feature-content"><h4>Talent Trees</h4><p>Each class has 4 skills unlocked at levels 1/5/10/15. Each skill has 2-3 upgrade talents that change how it works — add Burn, extend duration, widen AoE, or reduce cooldown.</p></div>
+    </div>
+    <div class="feature-item reveal reveal-delay-2">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <div class="feature-content"><h4>Node Map Travel</h4><p>Linear maps with 3-8 nodes and branching paths. Fast travel to any visited node. Zone map shows multiple maps per act. Cinematic party movement between nodes.</p></div>
+    </div>
+    <div class="feature-item reveal reveal-delay-3">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      <div class="feature-content"><h4>OpenAI Backgrounds</h4><p>Each region has AI-generated scenic backgrounds. Goblin frontier forests, volcanic ash clouds, hellfire landscapes, and cosmic void vistas — all generated via OpenAI API.</p></div>
+    </div>
+    <div class="feature-item reveal">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      <div class="feature-content"><h4>Web Audio Music</h4><p>Dynamic ambient soundtrack that shifts with context — tavern folk tunes, tense combat percussion, atmospheric void ambience. Procedurally layered using Web Audio API.</p></div>
+    </div>
+    <div class="feature-item reveal reveal-delay-1">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <div class="feature-content"><h4>Fully Responsive</h4><p>iPhone 14 Pro primary (393×852). Portrait lock on mobile. Mouse, touch, keyboard, and gamepad all fully supported with on-screen button indicators for controller.</p></div>
+    </div>
+    <div class="feature-item reveal reveal-delay-2">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      <div class="feature-content"><h4>Quest Journal</h4><p>Main quests and side quests tracked with objectives, map markers, and rewards. Completing side quests unlocks powerful named companions and unique legendary items.</p></div>
+    </div>
+    <div class="feature-item reveal reveal-delay-3">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      <div class="feature-content"><h4>New Game+</h4><p>After completing Act 4, start over at Normal → Hard → Nightmare with higher level enemies. Story choices carry minor narrative acknowledgements across playthroughs.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+  <div class="section-label reveal">Technical Architecture</div>
+  <h2 class="reveal">Tech Stack</h2>
+  <div class="reveal" style="max-width:700px">
+    <div class="tech-layer tl-canvas" style="background:var(--surface)">
+      <svg class="tech-icon" viewBox="0 0 40 40" fill="none" stroke="#e8a020" stroke-width="1.5"><rect x="4" y="4" width="32" height="32" rx="3"/><path d="M14 28l6-16 6 16M10 22h20"/></svg>
+      <div><div class="tech-label">Canvas Layer — Game World</div><div class="tech-desc">HTML5 Canvas 2D for all game visuals: backgrounds, character sprites, combat animations, particle systems, map rendering, cinematic sequences.</div></div>
+    </div>
+    <div class="tech-layer tl-ui" style="background:var(--surface)">
+      <svg class="tech-icon" viewBox="0 0 40 40" fill="none" stroke="#40a860" stroke-width="1.5"><rect x="4" y="8" width="32" height="24" rx="2"/><path d="M4 14h32M14 8v4M26 8v4"/></svg>
+      <div><div class="tech-label">HTML/CSS Layer — UI</div><div class="tech-desc">All menus, panels, dialogs, tooltips, party displays, inventory grids, skill trees, and HUD elements. Positioned absolutely over canvas. SVG custom icons throughout.</div></div>
+    </div>
+    <div class="tech-layer tl-audio" style="background:var(--surface)">
+      <svg class="tech-icon" viewBox="0 0 40 40" fill="none" stroke="#7040c0" stroke-width="1.5"><circle cx="20" cy="20" r="12"/><circle cx="20" cy="20" r="6"/><path d="M20 8v4M20 28v4M8 20H4M36 20h-4"/></svg>
+      <div><div class="tech-label">Web Audio API — Sound</div><div class="tech-desc">Procedurally generated ambient music using oscillators, filters, and gain nodes. Sampled SFX for combat. Context-aware music layers — town, combat, boss fight, cinematic.</div></div>
+    </div>
+    <div class="tech-layer tl-art" style="background:var(--surface)">
+      <svg class="tech-icon" viewBox="0 0 40 40" fill="none" stroke="#ff8020" stroke-width="1.5"><circle cx="20" cy="20" r="14"/><path d="M20 6v4M20 30v4M6 20h4M30 20h4M10.1 10.1l2.8 2.8M27.1 27.1l2.8 2.8M10.1 29.9l2.8-2.8M27.1 12.9l2.8-2.8"/></svg>
+      <div><div class="tech-label">Art Generation — PixelLab + OpenAI</div><div class="tech-desc">PixelLab MCP for all character art (5 stances × 14 classes + companions + enemies). OpenAI API for region backgrounds. SVG for UI icons and decorative elements.</div></div>
+    </div>
+    <div class="tech-layer tl-data" style="background:var(--surface)">
+      <svg class="tech-icon" viewBox="0 0 40 40" fill="none" stroke="#c04030" stroke-width="1.5"><ellipse cx="20" cy="12" rx="14" ry="5"/><path d="M6 12v8c0 2.8 6.3 5 14 5s14-2.2 14-5v-8"/><path d="M6 20v8c0 2.8 6.3 5 14 5s14-2.2 14-5v-8"/></svg>
+      <div><div class="tech-label">Data Layer — localStorage + JS Modules</div><div class="tech-desc">Vite + Vanilla JS modules. No framework overhead. localStorage save system with 3 slots, full game state serialization. JSON content files for items, enemies, encounters, and dialog.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MILESTONE ROADMAP -->
+<section id="milestones">
+  <div class="section-label reveal">Development Plan</div>
+  <h2 class="reveal">50-Milestone Roadmap</h2>
+  <p class="reveal" style="color:var(--muted);margin-bottom:2.5rem">Work progresses in phases. Each milestone represents a shippable increment deployed to GitHub Pages. Phase 1 is active now.</p>
+  <div class="reveal">
+    <div class="phase-bar">
+      <div class="phase-header"><span class="phase-name">Phase 1 — Foundation</span><span class="phase-range">M1–M5 · Active</span></div>
+      <div class="progress-track"><div class="progress-fill ph-1" style="width:0%" data-target="20"></div></div>
+      <div class="phase-milestones">
+        <span class="ms-pill active">M1 · Project Scaffolding</span><span class="ms-pill active">M2 · Title Screen</span><span class="ms-pill active">M3 · Character Builder</span><span class="ms-pill active">M4 · First Town</span><span class="ms-pill active">M5 · Basic Combat</span>
+      </div>
+    </div>
+    <div class="phase-bar">
+      <div class="phase-header"><span class="phase-name">Phase 2 — Core Systems</span><span class="phase-range">M6–M10</span></div>
+      <div class="progress-track"><div class="progress-fill ph-2" style="width:0%" data-target="0"></div></div>
+      <div class="phase-milestones">
+        <span class="ms-pill">M6 · Equipment</span><span class="ms-pill">M7 · Skill Trees</span><span class="ms-pill">M8 · Save/Load</span><span class="ms-pill">M9 · Map Travel</span><span class="ms-pill">M10 · Encounter System</span>
+      </div>
+    </div>
+    <div class="phase-bar">
+      <div class="phase-header"><span class="phase-name">Phase 3 — Act 1 Content</span><span class="phase-range">M11–M15</span></div>
+      <div class="progress-track"><div class="progress-fill ph-3" style="width:0%" data-target="0"></div></div>
+      <div class="phase-milestones">
+        <span class="ms-pill">M11 · Act 1 Zones</span><span class="ms-pill">M12 · Enemies</span><span class="ms-pill">M13 · Story/Dialog</span><span class="ms-pill">M14 · Side Quests</span><span class="ms-pill">M15 · Boss: Grax</span>
+      </div>
+    </div>
+    <div class="phase-bar">
+      <div class="phase-header"><span class="phase-name">Phase 4 — Act 2 Content</span><span class="phase-range">M16–M20</span></div>
+      <div class="progress-track"><div class="progress-fill ph-4" style="width:0%" data-target="0"></div></div>
+      <div class="phase-milestones">
+        <span class="ms-pill">M16 · Ashen Zones</span><span class="ms-pill">M17 · Fire Enemies</span><span class="ms-pill">M18 · Cult Dialog</span><span class="ms-pill">M19 · Dwarven Ruins</span><span class="ms-pill">M20 · Boss: Embermaw</span>
+      </div>
+    </div>
+    <div class="phase-bar">
+      <div class="phase-header"><span class="phase-name">Phase 5 — Companions & Act 3</span><span class="phase-range">M21–M30</span></div>
+      <div class="progress-track"><div class="progress-fill ph-5" style="width:0%" data-target="0"></div></div>
+      <div class="phase-milestones">
+        <span class="ms-pill">M21 · Companion System</span><span class="ms-pill">M22 · Summoning</span><span class="ms-pill">M23 · Pet Slots</span><span class="ms-pill">M24 · Hell Zones</span><span class="ms-pill">M25 · Demon Enemies</span><span class="ms-pill">M26–M30 · Act 3 Full</span>
+      </div>
+    </div>
+    <div class="phase-bar">
+      <div class="phase-header"><span class="phase-name">Phase 6 — Act 4, Polish, Launch</span><span class="phase-range">M31–M50</span></div>
+      <div class="progress-track"><div class="progress-fill ph-6" style="width:0%" data-target="0"></div></div>
+      <div class="phase-milestones">
+        <span class="ms-pill">M31–M40 · Act 4 + Economy Depth</span><span class="ms-pill">M41–M45 · New Game+</span><span class="ms-pill">M46–M50 · Audio · Polish · Deploy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RISKS -->
+<section id="risks">
+  <div class="section-label reveal">Risk Assessment</div>
+  <h2 class="reveal">Risks &amp; Mitigations</h2>
+  <div class="reveal" style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Risk</th><th>Severity</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Mobile canvas performance</strong><br><span style="font-size:0.78rem;color:var(--muted)">12 enemies + animations + particles on mobile Safari could drop below 30fps</span></td>
+          <td><span class="risk-high">High</span></td>
+          <td>Off-screen sprite culling, sprite sheet atlasing, requestAnimationFrame budget cap (16ms), reduce particle count on low-end detection, canvas resolution scaling on DPR &gt;2.</td>
+        </tr>
+        <tr>
+          <td><strong>PixelLab art volume</strong><br><span style="font-size:0.78rem;color:var(--muted)">5 stances × 14+ classes + enemies + companions = 200+ generations before Act 2</span></td>
+          <td><span class="risk-med">Medium</span></td>
+          <td>SVG placeholder stances for all characters in M1–M5. Generate final art in parallel batches. Prioritize player-visible characters first. Track credit usage per milestone.</td>
+        </tr>
+        <tr>
+          <td><strong>Save format compatibility</strong><br><span style="font-size:0.78rem;color:var(--muted)">50 milestones means the data schema will evolve; old saves may break</span></td>
+          <td><span class="risk-med">Medium</span></td>
+          <td>Version field in every save slot from day one. Migration functions run on load to upgrade old schemas. Never remove a field — mark deprecated and ignore.</td>
+        </tr>
+        <tr>
+          <td><strong>Skill system complexity</strong><br><span style="font-size:0.78rem;color:var(--muted)">14 classes × 4 skills × 3 talents each = 168 effects to balance and test</span></td>
+          <td><span class="risk-med">Medium</span></td>
+          <td>Build a shared effect engine with composable primitives (damage, DoT, AoE, buff, debuff). New skills are just JSON configs — no new code per skill. Balance pass at each act boundary.</td>
+        </tr>
+        <tr>
+          <td><strong>OpenAI API costs</strong><br><span style="font-size:0.78rem;color:var(--muted)">Background generation at scale (16+ zones) could accumulate significant API costs</span></td>
+          <td><span class="risk-low">Low</span></td>
+          <td>Generate once and cache to disk. Never regenerate existing assets. Use 1024×1024 standard quality (not HD) for backgrounds. Store in public/images/ as permanent assets.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SUGGESTIONS -->
+<section id="suggestions">
+  <div class="section-label reveal">Creative Possibilities</div>
+  <h2 class="reveal">Suggestions &amp; Ideas</h2>
+  <ul class="suggestion-list reveal">
+    <li class="s-gold"><strong>Daily Challenge Mode:</strong> A seed-generated map shared by URL hash. All players face the same encounters and bosses. Leaderboard by fastest clear or highest score. Zero implementation cost once core map system exists.</li>
+    <li class="s-green"><strong>Companion Personalities:</strong> Each hireable companion has a personality trait (Loyal, Greedy, Brave, Cowardly) that affects their dialog in encounters and sometimes overrides their combat AI in interesting ways.</li>
+    <li class="s-purple"><strong>Void-Touched Items (New Game+ exclusive):</strong> Legendary items that have a fourth affix slot which can only roll Void-type modifiers. Visually distinct with purple corruption particle effects.</li>
+    <li class="s-orange"><strong>Environmental Hazard Nodes:</strong> Act 2 volcanic vents, Act 3 brimstone rivers — instead of combat, navigate a mini-game using party stats to avoid damage. Breaks up encounter monotony.</li>
+    <li class="s-red"><strong>Hidden Bosses:</strong> Each act has one optional boss only accessible by completing all side quests in that act. These drop Legendary gear and unique companions not obtainable any other way.</li>
+    <li class="s-green"><strong>Companion Quest Lines:</strong> Each named companion has a 3-step side quest chain. Completing their chain unlocks a unique ability or stance they gain permanently. Rewards player investment in specific companions.</li>
+    <li class="s-purple"><strong>Procedural Side Events:</strong> Between nodes, random flavor events: "A merchant's cart has overturned — help them?" Small gold rewards, occasional rare item. Keeps travel nodes from feeling empty.</li>
+    <li class="s-gold"><strong>Photo Mode:</strong> During dialog stances or victory screens, a screenshot button captures the canvas + UI as a PNG. Let players save and share their party compositions and moments.</li>
+  </ul>
+</section>
+
+<!-- CAUTIONS -->
+<section id="cautions" style="padding-bottom:2rem">
+  <div class="section-label reveal">Development Cautions</div>
+  <h2 class="reveal">Watch Points</h2>
+  <div class="reveal">
+    <div class="caution-box">
+      <svg class="caution-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div>
+        <h4>Test on Real Mobile Devices Early</h4>
+        <p>Safari on iPhone has quirks: Web Audio context requires user gesture to start; touch events behave differently than mouse events; canvas DPR needs explicit handling. Test M2 on iPhone before assuming desktop behavior translates.</p>
+      </div>
+    </div>
+    <div class="caution-box">
+      <svg class="caution-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div>
+        <h4>Combat AI Must Feel Smart Immediately</h4>
+        <p>Auto-play combat is only fun if the AI makes interesting choices. A Pyromancer that casts Flame Lance on a single target while ignoring a 6-enemy group ruins immersion. Invest in the AI priority system in M5-M7 before adding more skills.</p>
+      </div>
+    </div>
+    <div class="caution-box">
+      <svg class="caution-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div>
+        <h4>Tooltip Hover System is Critical Infrastructure</h4>
+        <p>The spec requires every item, skill, and stat to show a detailed tooltip with formulas shown. Build this as a shared component early (M6). It will be used hundreds of times. A late-stage tooltip refactor at M30 would be very painful.</p>
+      </div>
+    </div>
+    <div class="caution-box">
+      <svg class="caution-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div>
+        <h4>localStorage has a 5-10MB limit per origin</h4>
+        <p>Full game state including item inventories, story flags, and quest tracking can grow large. Consider compressing save data with a simple JSON diff scheme. Budget ~500KB per save slot to stay safe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Emberveil Pre-Game Design Report &nbsp;·&nbsp; <strong>April 10, 2026</strong></p>
+  <p style="margin-top:0.5rem">Built with <strong>Claude Code</strong> · All content auto-generated from design session</p>
+</footer>
+
+<script>
+// PARTICLE SYSTEM
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+const COLORS = ['#e8a020','#c04030','#f0c060','#ff6040','#a060e0','#60a0ff'];
+const particles = Array.from({length:80}, () => ({
+  x: Math.random() * canvas.width,
+  y: Math.random() * canvas.height,
+  vx: (Math.random() - 0.5) * 0.4,
+  vy: -(Math.random() * 0.8 + 0.2),
+  size: Math.random() * 2.5 + 0.5,
+  alpha: Math.random(),
+  color: COLORS[Math.floor(Math.random() * COLORS.length)],
+  life: Math.random(),
+  maxLife: Math.random() * 0.5 + 0.5
+}));
+
+function animParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.life -= 0.003;
+    if (p.life <= 0) {
+      p.x = Math.random() * canvas.width;
+      p.y = canvas.height + 10;
+      p.life = p.maxLife;
+      p.vy = -(Math.random() * 0.8 + 0.2);
+      p.vx = (Math.random() - 0.5) * 0.4;
+    }
+    p.x += p.vx;
+    p.y += p.vy;
+    const a = (p.life / p.maxLife) * 0.8;
+    ctx.globalAlpha = a;
+    ctx.fillStyle = p.color;
+    ctx.shadowBlur = 6;
+    ctx.shadowColor = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+  ctx.shadowBlur = 0;
+  requestAnimationFrame(animParticles);
+}
+animParticles();
+
+// SCROLL REVEAL
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+
+// PROGRESS BARS
+const bars = document.querySelectorAll('.progress-fill');
+const barObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const target = e.target.dataset.target;
+      e.target.style.width = target + '%';
+      barObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+bars.forEach(b => barObserver.observe(b));
+
+// LOGO LETTER ANIMATION
+const logo = document.getElementById('logo-text');
+const text = logo.textContent;
+logo.innerHTML = text.split('').map((c,i) =>
+  `<span style="display:inline-block;animation:letterDrop 0.6s ease ${i*0.07}s both">${c}</span>`
+).join('');
+const style = document.createElement('style');
+style.textContent = `@keyframes letterDrop{from{opacity:0;transform:translateY(-40px) rotate(-5deg)}to{opacity:1;transform:none}}
+.hero-logo span{background:linear-gradient(135deg,#f0c060,#e8a020,#c04030,#e8a020,#f0c060);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}`;
+document.head.appendChild(style);
+</script>
+<!-- rsg-featured-image-applied -->
+<script>
+(function(){
+  var m=document.querySelector("meta[name='rsg-featured-image']");
+  if(!m)return;
+  var hero=document.querySelector(".hero");
+  if(!hero)return;
+  var ov=document.createElement("div");
+  ov.style.cssText="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,5,8,0.55) 0%,rgba(8,5,8,0.3) 40%,rgba(8,5,8,0.85) 100%);pointer-events:none;z-index:0;";
+  hero.style.position="relative";
+  hero.insertBefore(ov,hero.firstChild);
+  var bgImg=new Image();bgImg.src=m.content;
+  bgImg.onload=function(){hero.style.backgroundImage="url("+JSON.stringify(m.content)+")";
+  hero.style.backgroundSize="cover";
+  hero.style.backgroundPosition="center";};
+})();
+</script>
+</body>
+</html>

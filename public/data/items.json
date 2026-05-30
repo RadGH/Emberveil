@@ -1,0 +1,1565 @@
+{
+  "version": 1,
+  "source": "src/game/items.js pure data consts (canonical-data migration)",
+  "RARITIES": [
+    "normal",
+    "magic",
+    "rare",
+    "legendary"
+  ],
+  "QUALITIES": [
+    "low",
+    "medium",
+    "high",
+    "elite",
+    "exotic"
+  ],
+  "RARITY_COLORS": {
+    "normal": "#c8c8c8",
+    "magic": "#6080ff",
+    "rare": "#e8d020",
+    "legendary": "#ff8020"
+  },
+  "WEAPON_BASES": {
+    "dagger": {
+      "name": "Dagger",
+      "type": "weapon",
+      "subtype": "dagger",
+      "weaponCategory": "light",
+      "dmg": [
+        3,
+        7
+      ],
+      "speed": 1.2,
+      "twoHanded": false,
+      "statScaling": "dex",
+      "armorPen": 0.1,
+      "attackSpeed": "fast"
+    },
+    "sword": {
+      "name": "Sword",
+      "type": "weapon",
+      "subtype": "sword",
+      "weaponCategory": "heavy",
+      "dmg": [
+        6,
+        14
+      ],
+      "speed": 1,
+      "twoHanded": false,
+      "statScaling": "str_dex"
+    },
+    "wand": {
+      "name": "Wand",
+      "type": "weapon",
+      "subtype": "wand",
+      "weaponCategory": "magic",
+      "dmg": [
+        4,
+        10
+      ],
+      "speed": 1.1,
+      "twoHanded": false,
+      "statScaling": "int",
+      "offHandOk": true
+    },
+    "scepter": {
+      "name": "Scepter",
+      "type": "weapon",
+      "subtype": "scepter",
+      "weaponCategory": "magic",
+      "dmg": [
+        5,
+        12
+      ],
+      "speed": 1,
+      "twoHanded": false,
+      "statScaling": "int",
+      "offHandOk": true
+    },
+    "staff": {
+      "name": "Staff",
+      "type": "weapon",
+      "subtype": "staff",
+      "weaponCategory": "magic",
+      "dmg": [
+        8,
+        20
+      ],
+      "speed": 0.9,
+      "twoHanded": true,
+      "statScaling": "int",
+      "intMult": 1.5
+    },
+    "hammer": {
+      "name": "Hammer",
+      "type": "weapon",
+      "subtype": "hammer",
+      "weaponCategory": "heavy",
+      "dmg": [
+        8,
+        16
+      ],
+      "speed": 0.8,
+      "twoHanded": false,
+      "statScaling": "str",
+      "stunChance": 0.1
+    },
+    "sword2h": {
+      "name": "Greatsword",
+      "type": "weapon",
+      "subtype": "sword2h",
+      "weaponCategory": "heavy",
+      "dmg": [
+        14,
+        28
+      ],
+      "speed": 0.7,
+      "twoHanded": true,
+      "statScaling": "str",
+      "strMult": 1.5
+    },
+    "axe2h": {
+      "name": "Greataxe",
+      "type": "weapon",
+      "subtype": "axe2h",
+      "weaponCategory": "heavy",
+      "dmg": [
+        16,
+        30
+      ],
+      "speed": 0.65,
+      "twoHanded": true,
+      "statScaling": "str",
+      "bleedChance": 0.15
+    },
+    "bow": {
+      "name": "Bow",
+      "type": "weapon",
+      "subtype": "bow",
+      "weaponCategory": "light",
+      "dmg": [
+        8,
+        16
+      ],
+      "speed": 1,
+      "twoHanded": true,
+      "statScaling": "dex",
+      "dexMult": 1.3,
+      "ranged": true
+    },
+    "crossbow": {
+      "name": "Crossbow",
+      "type": "weapon",
+      "subtype": "crossbow",
+      "weaponCategory": "light",
+      "dmg": [
+        12,
+        22
+      ],
+      "speed": 0.7,
+      "twoHanded": true,
+      "statScaling": "dex_str",
+      "ranged": true
+    },
+    "javelin": {
+      "name": "Javelin",
+      "type": "weapon",
+      "subtype": "javelin",
+      "weaponCategory": "light",
+      "dmg": [
+        9,
+        18
+      ],
+      "speed": 0.9,
+      "twoHanded": false,
+      "statScaling": "str_dex",
+      "ranged": true,
+      "throwable": true
+    },
+    "longsword": {
+      "name": "Longsword",
+      "type": "weapon",
+      "subtype": "sword",
+      "weaponCategory": "heavy",
+      "dmg": [
+        8,
+        16
+      ],
+      "speed": 0.95,
+      "twoHanded": false,
+      "statScaling": "str_dex"
+    },
+    "rapier": {
+      "name": "Rapier",
+      "type": "weapon",
+      "subtype": "sword",
+      "weaponCategory": "light",
+      "dmg": [
+        5,
+        11
+      ],
+      "speed": 1.25,
+      "twoHanded": false,
+      "statScaling": "dex",
+      "critBonus": 0.08,
+      "attackSpeed": "fast"
+    },
+    "shortbow": {
+      "name": "Shortbow",
+      "type": "weapon",
+      "subtype": "bow",
+      "weaponCategory": "light",
+      "dmg": [
+        6,
+        12
+      ],
+      "speed": 1.15,
+      "twoHanded": true,
+      "statScaling": "dex",
+      "ranged": true,
+      "attackSpeed": "fast"
+    },
+    "warhammer": {
+      "name": "Warhammer",
+      "type": "weapon",
+      "subtype": "hammer",
+      "weaponCategory": "heavy",
+      "dmg": [
+        10,
+        18
+      ],
+      "speed": 0.75,
+      "twoHanded": false,
+      "statScaling": "str",
+      "stunChance": 0.12
+    },
+    "battleaxe": {
+      "name": "Battleaxe",
+      "type": "weapon",
+      "subtype": "axe",
+      "weaponCategory": "heavy",
+      "dmg": [
+        9,
+        17
+      ],
+      "speed": 0.85,
+      "twoHanded": false,
+      "statScaling": "str",
+      "bleedChance": 0.1
+    },
+    "halberd": {
+      "name": "Halberd",
+      "type": "weapon",
+      "subtype": "polearm",
+      "weaponCategory": "heavy",
+      "dmg": [
+        13,
+        24
+      ],
+      "speed": 0.7,
+      "twoHanded": true,
+      "statScaling": "str_dex"
+    },
+    "spear": {
+      "name": "Spear",
+      "type": "weapon",
+      "subtype": "spear",
+      "weaponCategory": "light",
+      "dmg": [
+        8,
+        15
+      ],
+      "speed": 1,
+      "twoHanded": false,
+      "statScaling": "str_dex",
+      "reach": true
+    },
+    "quarterstaff": {
+      "name": "Quarterstaff",
+      "type": "weapon",
+      "subtype": "staff",
+      "weaponCategory": "magic",
+      "dmg": [
+        7,
+        14
+      ],
+      "speed": 1.05,
+      "twoHanded": true,
+      "statScaling": "str_int"
+    },
+    "orb": {
+      "name": "Orb",
+      "type": "weapon",
+      "subtype": "orb",
+      "weaponCategory": "magic",
+      "dmg": [
+        3,
+        8
+      ],
+      "speed": 1.1,
+      "twoHanded": false,
+      "statScaling": "int",
+      "offHandOk": true,
+      "intMult": 1.15
+    },
+    "tome": {
+      "name": "Tome",
+      "type": "weapon",
+      "subtype": "tome",
+      "weaponCategory": "magic",
+      "dmg": [
+        2,
+        6
+      ],
+      "speed": 1,
+      "twoHanded": false,
+      "statScaling": "int",
+      "offHandOk": true,
+      "mpBonus": 10
+    },
+    "greatsword": {
+      "name": "Greatsword",
+      "type": "weapon",
+      "subtype": "sword2h",
+      "weaponCategory": "heavy",
+      "dmg": [
+        15,
+        29
+      ],
+      "speed": 0.68,
+      "twoHanded": true,
+      "statScaling": "str",
+      "strMult": 1.5
+    },
+    "dragonfang_dagger": {
+      "name": "Dragonfang Dagger",
+      "type": "weapon",
+      "subtype": "dagger",
+      "weaponCategory": "light",
+      "dmg": [
+        14,
+        28
+      ],
+      "speed": 1.25,
+      "twoHanded": false,
+      "statScaling": "dex",
+      "armorPen": 0.25,
+      "bleedChance": 0.15,
+      "dragon": true,
+      "attackSpeed": "fast"
+    },
+    "dragonfang_sword": {
+      "name": "Dragonfang Sword",
+      "type": "weapon",
+      "subtype": "sword",
+      "weaponCategory": "heavy",
+      "dmg": [
+        22,
+        38
+      ],
+      "speed": 1,
+      "twoHanded": false,
+      "statScaling": "str_dex",
+      "burnChance": 0.15,
+      "dragon": true
+    },
+    "dragonfang_greatsword": {
+      "name": "Dragonfang Greatsword",
+      "type": "weapon",
+      "subtype": "sword2h",
+      "weaponCategory": "heavy",
+      "dmg": [
+        38,
+        62
+      ],
+      "speed": 0.7,
+      "twoHanded": true,
+      "statScaling": "str",
+      "strMult": 1.6,
+      "burnChance": 0.2,
+      "dragon": true
+    },
+    "wyrmscale_bow": {
+      "name": "Wyrmscale Bow",
+      "type": "weapon",
+      "subtype": "bow",
+      "weaponCategory": "light",
+      "dmg": [
+        26,
+        46
+      ],
+      "speed": 1,
+      "twoHanded": true,
+      "statScaling": "dex",
+      "dexMult": 1.35,
+      "ranged": true,
+      "dragon": true
+    },
+    "dragonbone_staff": {
+      "name": "Dragonbone Staff",
+      "type": "weapon",
+      "subtype": "staff",
+      "weaponCategory": "magic",
+      "dmg": [
+        24,
+        50
+      ],
+      "speed": 0.9,
+      "twoHanded": true,
+      "statScaling": "int",
+      "intMult": 1.6,
+      "burnChance": 0.2,
+      "dragon": true
+    },
+    "drakehammer": {
+      "name": "Drakehammer",
+      "type": "weapon",
+      "subtype": "hammer",
+      "weaponCategory": "heavy",
+      "dmg": [
+        24,
+        42
+      ],
+      "speed": 0.78,
+      "twoHanded": false,
+      "statScaling": "str",
+      "stunChance": 0.18,
+      "dragon": true
+    },
+    "dragontooth_wand": {
+      "name": "Dragontooth Wand",
+      "type": "weapon",
+      "subtype": "wand",
+      "weaponCategory": "magic",
+      "dmg": [
+        16,
+        34
+      ],
+      "speed": 1.1,
+      "twoHanded": false,
+      "statScaling": "int",
+      "offHandOk": true,
+      "burnChance": 0.2,
+      "dragon": true
+    },
+    "iron_mace": {
+      "name": "Iron Mace",
+      "type": "weapon",
+      "subtype": "mace",
+      "weaponCategory": "heavy",
+      "dmg": [
+        9,
+        17
+      ],
+      "speed": 0.85,
+      "twoHanded": false,
+      "statScaling": "str",
+      "stunChance": 0.08
+    },
+    "obsidian_scimitar": {
+      "name": "Obsidian Scimitar",
+      "type": "weapon",
+      "subtype": "sword",
+      "weaponCategory": "light",
+      "dmg": [
+        12,
+        22
+      ],
+      "speed": 1.1,
+      "twoHanded": false,
+      "statScaling": "dex",
+      "critBonus": 0.06
+    },
+    "ember_focus": {
+      "name": "Ember Focus",
+      "type": "weapon",
+      "subtype": "wand",
+      "weaponCategory": "magic",
+      "dmg": [
+        11,
+        21
+      ],
+      "speed": 1.1,
+      "twoHanded": false,
+      "statScaling": "int",
+      "offHandOk": true,
+      "burnChance": 0.1
+    },
+    "voidsteel_greatsword": {
+      "name": "Voidsteel Greatsword",
+      "type": "weapon",
+      "subtype": "sword2h",
+      "weaponCategory": "heavy",
+      "dmg": [
+        28,
+        46
+      ],
+      "speed": 0.7,
+      "twoHanded": true,
+      "statScaling": "str",
+      "strMult": 1.55
+    },
+    "starfall_bow": {
+      "name": "Starfall Bow",
+      "type": "weapon",
+      "subtype": "bow",
+      "weaponCategory": "light",
+      "dmg": [
+        18,
+        32
+      ],
+      "speed": 1,
+      "twoHanded": true,
+      "statScaling": "dex",
+      "dexMult": 1.3,
+      "ranged": true
+    },
+    "abyssal_rod": {
+      "name": "Abyssal Rod",
+      "type": "weapon",
+      "subtype": "staff",
+      "weaponCategory": "magic",
+      "dmg": [
+        20,
+        40
+      ],
+      "speed": 0.95,
+      "twoHanded": true,
+      "statScaling": "int",
+      "intMult": 1.55
+    }
+  },
+  "ARMOR_BASES": {
+    "cloth_helm": {
+      "name": "Hood",
+      "type": "armor",
+      "slot": "head",
+      "tier": "cloth",
+      "armor": 1,
+      "dodgeBonus": 0
+    },
+    "light_helm": {
+      "name": "Leather Cap",
+      "type": "armor",
+      "slot": "head",
+      "tier": "light",
+      "armor": 3,
+      "dodgeBonus": 0
+    },
+    "medium_helm": {
+      "name": "Chain Coif",
+      "type": "armor",
+      "slot": "head",
+      "tier": "medium",
+      "armor": 5,
+      "dodgeBonus": -1
+    },
+    "heavy_helm": {
+      "name": "War Helm",
+      "type": "armor",
+      "slot": "head",
+      "tier": "heavy",
+      "armor": 8,
+      "dodgeBonus": -2
+    },
+    "cloth_chest": {
+      "name": "Robes",
+      "type": "armor",
+      "slot": "chest",
+      "tier": "cloth",
+      "armor": 2,
+      "dodgeBonus": 0
+    },
+    "light_chest": {
+      "name": "Leather Armor",
+      "type": "armor",
+      "slot": "chest",
+      "tier": "light",
+      "armor": 6,
+      "dodgeBonus": 0
+    },
+    "medium_chest": {
+      "name": "Chain Shirt",
+      "type": "armor",
+      "slot": "chest",
+      "tier": "medium",
+      "armor": 10,
+      "dodgeBonus": -2
+    },
+    "heavy_chest": {
+      "name": "Plate Armor",
+      "type": "armor",
+      "slot": "chest",
+      "tier": "heavy",
+      "armor": 16,
+      "dodgeBonus": -4
+    },
+    "cloth_legs": {
+      "name": "Linen Leggings",
+      "type": "armor",
+      "slot": "legs",
+      "tier": "cloth",
+      "armor": 1,
+      "dodgeBonus": 0
+    },
+    "light_legs": {
+      "name": "Leather Legs",
+      "type": "armor",
+      "slot": "legs",
+      "tier": "light",
+      "armor": 4,
+      "dodgeBonus": 0
+    },
+    "medium_legs": {
+      "name": "Chain Legs",
+      "type": "armor",
+      "slot": "legs",
+      "tier": "medium",
+      "armor": 7,
+      "dodgeBonus": -1
+    },
+    "heavy_legs": {
+      "name": "Plate Legs",
+      "type": "armor",
+      "slot": "legs",
+      "tier": "heavy",
+      "armor": 11,
+      "dodgeBonus": -3
+    },
+    "shield": {
+      "name": "Shield",
+      "type": "armor",
+      "slot": "offhand",
+      "tier": "heavy",
+      "armor": 5,
+      "dodgeBonus": 5,
+      "blockChance": 0.2,
+      "blockPower": 10,
+      "isShield": true
+    },
+    "ring": {
+      "name": "Ring",
+      "type": "accessory",
+      "slot": "ring",
+      "tier": "any",
+      "armor": 0
+    },
+    "necklace": {
+      "name": "Necklace",
+      "type": "accessory",
+      "slot": "necklace",
+      "tier": "any",
+      "armor": 0
+    },
+    "plate_helm": {
+      "name": "Plate Helm",
+      "type": "armor",
+      "slot": "head",
+      "tier": "heavy",
+      "armor": 10,
+      "dodgeBonus": -3
+    },
+    "light_gauntlets": {
+      "name": "Leather Gauntlets",
+      "type": "armor",
+      "slot": "hands",
+      "tier": "light",
+      "armor": 3,
+      "dodgeBonus": 0
+    },
+    "heavy_gauntlets": {
+      "name": "Plate Gauntlets",
+      "type": "armor",
+      "slot": "hands",
+      "tier": "heavy",
+      "armor": 6,
+      "dodgeBonus": -1
+    },
+    "light_boots": {
+      "name": "Leather Boots",
+      "type": "armor",
+      "slot": "feet",
+      "tier": "light",
+      "armor": 3,
+      "dodgeBonus": 0
+    },
+    "heavy_boots": {
+      "name": "Plate Boots",
+      "type": "armor",
+      "slot": "feet",
+      "tier": "heavy",
+      "armor": 7,
+      "dodgeBonus": -2
+    },
+    "silver_amulet": {
+      "name": "Silver Amulet",
+      "type": "accessory",
+      "slot": "necklace",
+      "tier": "any",
+      "armor": 0
+    },
+    "gold_signet": {
+      "name": "Gold Signet",
+      "type": "accessory",
+      "slot": "ring",
+      "tier": "any",
+      "armor": 0
+    },
+    "quiver": {
+      "name": "Quiver",
+      "type": "armor",
+      "slot": "offhand",
+      "tier": "light",
+      "armor": 1,
+      "dodgeBonus": 1
+    },
+    "dragonscale_cloth": {
+      "name": "Dragonscale Robes",
+      "type": "armor",
+      "slot": "chest",
+      "tier": "cloth",
+      "armor": 8,
+      "dodgeBonus": 0,
+      "dragon": true
+    },
+    "wyrmscale_helm": {
+      "name": "Wyrmscale Helm",
+      "type": "armor",
+      "slot": "head",
+      "tier": "heavy",
+      "armor": 14,
+      "dodgeBonus": -2,
+      "dragon": true
+    },
+    "wyrmscale_chest": {
+      "name": "Wyrmscale Plate",
+      "type": "armor",
+      "slot": "chest",
+      "tier": "heavy",
+      "armor": 22,
+      "dodgeBonus": -3,
+      "dragon": true
+    },
+    "dragonsteel_chest": {
+      "name": "Dragonsteel Plate",
+      "type": "armor",
+      "slot": "chest",
+      "tier": "heavy",
+      "armor": 26,
+      "dodgeBonus": -3,
+      "dragon": true
+    },
+    "dragonhide_legs": {
+      "name": "Dragonhide Legs",
+      "type": "armor",
+      "slot": "legs",
+      "tier": "medium",
+      "armor": 12,
+      "dodgeBonus": -1,
+      "dragon": true
+    },
+    "dragonclaw_gauntlets": {
+      "name": "Dragonclaw Gauntlets",
+      "type": "armor",
+      "slot": "hands",
+      "tier": "heavy",
+      "armor": 10,
+      "dodgeBonus": -1,
+      "dragon": true
+    },
+    "dragonheart_ring": {
+      "name": "Dragonheart Ring",
+      "type": "accessory",
+      "slot": "ring",
+      "tier": "any",
+      "armor": 0,
+      "dragon": true
+    },
+    "dragontooth_amulet": {
+      "name": "Dragontooth Amulet",
+      "type": "accessory",
+      "slot": "necklace",
+      "tier": "any",
+      "armor": 0,
+      "dragon": true
+    },
+    "buckler": {
+      "name": "Buckler",
+      "type": "armor",
+      "slot": "offhand",
+      "tier": "light",
+      "armor": 3,
+      "dodgeBonus": 2,
+      "blockChance": 0.2,
+      "blockPower": 8,
+      "isShield": true
+    },
+    "kite_shield": {
+      "name": "Kite Shield",
+      "type": "armor",
+      "slot": "offhand",
+      "tier": "medium",
+      "armor": 7,
+      "dodgeBonus": 3,
+      "blockChance": 0.3,
+      "blockPower": 18,
+      "isShield": true
+    },
+    "tower_shield": {
+      "name": "Tower Shield",
+      "type": "armor",
+      "slot": "offhand",
+      "tier": "heavy",
+      "armor": 12,
+      "dodgeBonus": 4,
+      "blockChance": 0.4,
+      "blockPower": 32,
+      "isShield": true
+    },
+    "aegis_shield": {
+      "name": "Aegis Shield",
+      "type": "armor",
+      "slot": "offhand",
+      "tier": "heavy",
+      "armor": 18,
+      "dodgeBonus": 6,
+      "blockChance": 0.5,
+      "blockPower": 55,
+      "isShield": true
+    },
+    "warded_focus": {
+      "name": "Warded Focus",
+      "type": "armor",
+      "slot": "offhand",
+      "tier": "cloth",
+      "armor": 1,
+      "dodgeBonus": 1,
+      "barrier": 8,
+      "barrierRegen": 2,
+      "isMagicShield": true
+    },
+    "rune_aegis": {
+      "name": "Rune Aegis",
+      "type": "armor",
+      "slot": "offhand",
+      "tier": "cloth",
+      "armor": 2,
+      "dodgeBonus": 1,
+      "barrier": 18,
+      "barrierRegen": 4,
+      "isMagicShield": true
+    },
+    "spellguard_orb": {
+      "name": "Spellguard Orb",
+      "type": "armor",
+      "slot": "offhand",
+      "tier": "cloth",
+      "armor": 3,
+      "dodgeBonus": 2,
+      "barrier": 32,
+      "barrierRegen": 7,
+      "isMagicShield": true
+    },
+    "arcane_bulwark": {
+      "name": "Arcane Bulwark",
+      "type": "armor",
+      "slot": "offhand",
+      "tier": "cloth",
+      "armor": 4,
+      "dodgeBonus": 2,
+      "barrier": 55,
+      "barrierRegen": 11,
+      "isMagicShield": true
+    },
+    "scaled_chest": {
+      "name": "Scaled Hauberk",
+      "type": "armor",
+      "slot": "chest",
+      "tier": "medium",
+      "armor": 13,
+      "dodgeBonus": -2
+    },
+    "runed_chest": {
+      "name": "Runed Cuirass",
+      "type": "armor",
+      "slot": "chest",
+      "tier": "heavy",
+      "armor": 20,
+      "dodgeBonus": -4
+    },
+    "scaled_legs": {
+      "name": "Scaled Greaves",
+      "type": "armor",
+      "slot": "legs",
+      "tier": "medium",
+      "armor": 9,
+      "dodgeBonus": -1
+    },
+    "runed_legs": {
+      "name": "Runed Greaves",
+      "type": "armor",
+      "slot": "legs",
+      "tier": "heavy",
+      "armor": 14,
+      "dodgeBonus": -3
+    },
+    "medium_gauntlets": {
+      "name": "Chain Gauntlets",
+      "type": "armor",
+      "slot": "hands",
+      "tier": "medium",
+      "armor": 5,
+      "dodgeBonus": -1
+    },
+    "runed_gauntlets": {
+      "name": "Runed Gauntlets",
+      "type": "armor",
+      "slot": "hands",
+      "tier": "heavy",
+      "armor": 8,
+      "dodgeBonus": -1
+    },
+    "medium_boots": {
+      "name": "Chain Boots",
+      "type": "armor",
+      "slot": "feet",
+      "tier": "medium",
+      "armor": 5,
+      "dodgeBonus": -1
+    },
+    "runed_boots": {
+      "name": "Runed Sabatons",
+      "type": "armor",
+      "slot": "feet",
+      "tier": "heavy",
+      "armor": 9,
+      "dodgeBonus": -2
+    }
+  },
+  "AFFIXES_ACT1": {
+    "prefixes": [
+      {
+        "id": "of_str",
+        "name": "Sturdy",
+        "stat": "str",
+        "min": 1,
+        "max": 4
+      },
+      {
+        "id": "of_dex",
+        "name": "Swift",
+        "stat": "dex",
+        "min": 1,
+        "max": 4
+      },
+      {
+        "id": "of_int",
+        "name": "Wise",
+        "stat": "int",
+        "min": 1,
+        "max": 4
+      },
+      {
+        "id": "of_con",
+        "name": "Hardy",
+        "stat": "con",
+        "min": 1,
+        "max": 4
+      },
+      {
+        "id": "sharp",
+        "name": "Sharp",
+        "stat": "dmg",
+        "min": 1,
+        "max": 3,
+        "descriptor": "MELEE",
+        "physicalOnly": true
+      },
+      {
+        "id": "sturdy",
+        "name": "Reinforced",
+        "stat": "armor",
+        "min": 1,
+        "max": 3
+      },
+      {
+        "id": "potency",
+        "name": "Potent",
+        "stat": "spellPower",
+        "min": 0.05,
+        "max": 0.15,
+        "descriptor": "SPELL",
+        "magicOnly": true
+      },
+      {
+        "id": "lifeSteal",
+        "name": "Leeching",
+        "stat": "lifeSteal",
+        "min": 3,
+        "max": 12
+      },
+      {
+        "id": "manaSteal",
+        "name": "Siphoning",
+        "stat": "manaSteal",
+        "min": 3,
+        "max": 12
+      },
+      {
+        "id": "crit_chance",
+        "name": "Deadly",
+        "stat": "critChance",
+        "min": 0.02,
+        "max": 0.1,
+        "descriptor": "CRIT"
+      },
+      {
+        "id": "crit_damage",
+        "name": "Savage",
+        "stat": "critDamage",
+        "min": 0.1,
+        "max": 0.35,
+        "descriptor": "CRIT DMG"
+      }
+    ],
+    "suffixes": [
+      {
+        "id": "of_hp",
+        "name": "of Vitality",
+        "stat": "hp",
+        "min": 5,
+        "max": 20
+      },
+      {
+        "id": "of_mp",
+        "name": "of Focus",
+        "stat": "mp",
+        "min": 5,
+        "max": 15
+      },
+      {
+        "id": "of_hit",
+        "name": "of Accuracy",
+        "stat": "hit",
+        "min": 2,
+        "max": 8
+      },
+      {
+        "id": "of_dodge",
+        "name": "of Evasion",
+        "stat": "dodge",
+        "min": 2,
+        "max": 6
+      },
+      {
+        "id": "of_speed",
+        "name": "of Haste",
+        "stat": "initiative",
+        "min": 1,
+        "max": 3
+      },
+      {
+        "id": "of_gold",
+        "name": "of Fortune",
+        "stat": "goldFind",
+        "min": 0.05,
+        "max": 0.2
+      },
+      {
+        "id": "of_mana_regen",
+        "name": "of Regeneration",
+        "stat": "mana_regen",
+        "min": 0.5,
+        "max": 1.5
+      },
+      {
+        "id": "of_magic_resist",
+        "name": "of Warding",
+        "stat": "magicResist",
+        "min": 2,
+        "max": 8
+      }
+    ]
+  },
+  "SHIELD_AFFIXES": [
+    {
+      "id": "block_chance",
+      "name": "Bulwark",
+      "stat": "block_chance",
+      "min": 0.05,
+      "max": 0.15,
+      "shieldOnly": true,
+      "magicPlus": true
+    },
+    {
+      "id": "block_power",
+      "name": "Bracing",
+      "stat": "block_power",
+      "min": 10,
+      "max": 50,
+      "shieldOnly": true,
+      "magicPlus": true
+    },
+    {
+      "id": "shield_magic_resist",
+      "name": "Spellguard",
+      "stat": "magicResist",
+      "min": 5,
+      "max": 15,
+      "slots": [
+        "offhand",
+        "chest",
+        "legs"
+      ],
+      "armorTiers": [
+        "medium",
+        "heavy"
+      ],
+      "magicPlus": true
+    },
+    {
+      "id": "barrier_size",
+      "name": "Wardstone",
+      "stat": "barrier",
+      "min": 5,
+      "max": 30,
+      "magicShieldOnly": true,
+      "magicPlus": true
+    },
+    {
+      "id": "barrier_regen",
+      "name": "Conduit",
+      "stat": "barrierRegen",
+      "min": 2,
+      "max": 8,
+      "magicShieldOnly": true,
+      "magicPlus": true
+    }
+  ],
+  "ITEM_SETS": {
+    "goblin_slayer": {
+      "name": "Goblin Slayer's Garb",
+      "pieces": [
+        "goblin_helm",
+        "goblin_chest",
+        "goblin_blade"
+      ],
+      "bonuses": {
+        "2": {
+          "desc": "+10% damage vs goblins",
+          "dmgVsGoblin": 0.1
+        },
+        "3": {
+          "desc": "+15% damage vs goblins, +5 Dodge",
+          "dmgVsGoblin": 0.15,
+          "dodge": 5
+        }
+      }
+    },
+    "veil_warden": {
+      "name": "Veil Warden's Regalia",
+      "pieces": [
+        "veil_hood",
+        "veil_robe",
+        "veil_ring"
+      ],
+      "bonuses": {
+        "2": {
+          "desc": "+20 MP, +5% magic damage",
+          "mp": 20,
+          "magicDmgBonus": 0.05
+        },
+        "3": {
+          "desc": "+40 MP, +10% magic damage, Burn on hit",
+          "mp": 40,
+          "magicDmgBonus": 0.1,
+          "burnOnHit": true
+        }
+      }
+    },
+    "ashen_wanderer": {
+      "name": "Ashen Wanderer's Kit",
+      "pieces": [
+        "ashen_boots",
+        "ashen_cloak",
+        "ashen_gloves"
+      ],
+      "bonuses": {
+        "2": {
+          "desc": "+8 to all resistances, +5 HP regen/round",
+          "hpRegen": 5
+        },
+        "3": {
+          "desc": "+15 all resistances, +10 HP regen, immune to Burn",
+          "hpRegen": 10,
+          "burnImmune": true
+        }
+      }
+    },
+    "hell_touched": {
+      "name": "Hell-Touched Armor",
+      "pieces": [
+        "hell_helm",
+        "hell_chest",
+        "hell_gauntlets",
+        "hell_greaves"
+      ],
+      "bonuses": {
+        "2": {
+          "desc": "+25 armor, Thorns (5 dmg on hit)",
+          "thornsDmg": 5
+        },
+        "3": {
+          "desc": "+40 armor, Thorns 12 dmg",
+          "thornsDmg": 12
+        },
+        "4": {
+          "desc": "+60 armor, Thorns 20 dmg, +20% max HP",
+          "thornsDmg": 20,
+          "maxHpBonus": 0.2
+        }
+      }
+    }
+  },
+  "ITEM_SCORE_WEIGHTS": {
+    "dmg": {
+      "axis": "offense",
+      "weight": 5,
+      "asPct": false
+    },
+    "dmgPct": {
+      "axis": "offense",
+      "weight": 4,
+      "asPct": true
+    },
+    "critChance": {
+      "axis": "offense",
+      "weight": 8,
+      "asPct": true
+    },
+    "critDamage": {
+      "axis": "offense",
+      "weight": 6,
+      "asPct": true
+    },
+    "hit": {
+      "axis": "offense",
+      "weight": 2,
+      "asPct": false
+    },
+    "spellPower": {
+      "axis": "offense",
+      "weight": 4,
+      "asPct": true
+    },
+    "attackPower": {
+      "axis": "offense",
+      "weight": 4,
+      "asPct": false
+    },
+    "lifeSteal": {
+      "axis": "offense",
+      "weight": 3,
+      "asPct": false
+    },
+    "manaSteal": {
+      "axis": "offense",
+      "weight": 2,
+      "asPct": false
+    },
+    "armorPen": {
+      "axis": "offense",
+      "weight": 4,
+      "asPct": false
+    },
+    "bonusVsDemon": {
+      "axis": "offense",
+      "weight": 2,
+      "asPct": true
+    },
+    "bonusVsUndead": {
+      "axis": "offense",
+      "weight": 2,
+      "asPct": true
+    },
+    "hp": {
+      "axis": "defense",
+      "weight": 0.6,
+      "asPct": false
+    },
+    "armor": {
+      "axis": "defense",
+      "weight": 1,
+      "asPct": false
+    },
+    "magicResist": {
+      "axis": "defense",
+      "weight": 1,
+      "asPct": false
+    },
+    "blockChance": {
+      "axis": "defense",
+      "weight": 4,
+      "asPct": true
+    },
+    "blockPower": {
+      "axis": "defense",
+      "weight": 1,
+      "asPct": false
+    },
+    "dodge": {
+      "axis": "defense",
+      "weight": 4,
+      "asPct": false
+    },
+    "damageReduction": {
+      "axis": "defense",
+      "weight": 6,
+      "asPct": true
+    },
+    "thorns": {
+      "axis": "defense",
+      "weight": 2,
+      "asPct": false
+    },
+    "hpRegen": {
+      "axis": "defense",
+      "weight": 2,
+      "asPct": false
+    },
+    "str": {
+      "axis": "utility",
+      "weight": 4,
+      "asPct": false
+    },
+    "dex": {
+      "axis": "utility",
+      "weight": 4,
+      "asPct": false
+    },
+    "int": {
+      "axis": "utility",
+      "weight": 4,
+      "asPct": false
+    },
+    "con": {
+      "axis": "utility",
+      "weight": 4,
+      "asPct": false
+    },
+    "mp": {
+      "axis": "utility",
+      "weight": 0.4,
+      "asPct": false
+    },
+    "manaRegen": {
+      "axis": "utility",
+      "weight": 1,
+      "asPct": false
+    },
+    "magicFind": {
+      "axis": "utility",
+      "weight": 3,
+      "asPct": true
+    },
+    "goldFind": {
+      "axis": "utility",
+      "weight": 2,
+      "asPct": true
+    },
+    "cooldownReduction": {
+      "axis": "utility",
+      "weight": 4,
+      "asPct": true
+    },
+    "initiative": {
+      "axis": "utility",
+      "weight": 1,
+      "asPct": false
+    },
+    "xpFind": {
+      "axis": "utility",
+      "weight": 2,
+      "asPct": true
+    },
+    "tradePrices": {
+      "axis": "utility",
+      "weight": 2,
+      "asPct": true
+    }
+  },
+  "MATERIALS": {
+    "iron_scrap": {
+      "id": "iron_scrap",
+      "name": "Iron Scrap",
+      "icon": "🔩",
+      "desc": "Salvaged from normal weapons and armor."
+    },
+    "magic_essence": {
+      "id": "magic_essence",
+      "name": "Magic Essence",
+      "icon": "💜",
+      "desc": "Distilled from magic items."
+    },
+    "rare_dust": {
+      "id": "rare_dust",
+      "name": "Rare Dust",
+      "icon": "✨",
+      "desc": "Refined from rare items."
+    },
+    "legend_core": {
+      "id": "legend_core",
+      "name": "Legendary Core",
+      "icon": "🌟",
+      "desc": "Extracted from legendary items."
+    },
+    "void_shard": {
+      "id": "void_shard",
+      "name": "Void Shard",
+      "icon": "✦",
+      "desc": "Drops from void enemies. Used in endgame recipes."
+    }
+  },
+  "SALVAGE_YIELD": {
+    "normal": {
+      "iron_scrap": [
+        2,
+        4
+      ]
+    },
+    "magic": {
+      "iron_scrap": [
+        1,
+        2
+      ],
+      "magic_essence": [
+        1,
+        2
+      ]
+    },
+    "rare": {
+      "magic_essence": [
+        1,
+        3
+      ],
+      "rare_dust": [
+        1,
+        2
+      ]
+    },
+    "legendary": {
+      "rare_dust": [
+        1,
+        2
+      ],
+      "legend_core": [
+        1,
+        1
+      ]
+    }
+  },
+  "POTIONS": {
+    "healing_potion": {
+      "id": "healing_potion",
+      "name": "Healing Potion",
+      "icon": "🧪",
+      "type": "consumable",
+      "subtype": "potion",
+      "effect": {
+        "type": "heal",
+        "amount": 40
+      },
+      "target": "single",
+      "cost": 30,
+      "desc": "Restores 40 HP to one ally."
+    },
+    "greater_healing": {
+      "id": "greater_healing",
+      "name": "Greater Healing Potion",
+      "icon": "💊",
+      "type": "consumable",
+      "subtype": "potion",
+      "effect": {
+        "type": "heal",
+        "amount": 80
+      },
+      "target": "single",
+      "cost": 65,
+      "desc": "Restores 80 HP to one ally."
+    },
+    "mana_potion": {
+      "id": "mana_potion",
+      "name": "Mana Potion",
+      "icon": "🔵",
+      "type": "consumable",
+      "subtype": "potion",
+      "effect": {
+        "type": "mana",
+        "amount": 40
+      },
+      "target": "single",
+      "cost": 35,
+      "desc": "Restores 40 MP to one ally."
+    },
+    "revival_flask": {
+      "id": "revival_flask",
+      "name": "Revival Flask",
+      "icon": "⚗️",
+      "type": "consumable",
+      "subtype": "flask",
+      "effect": {
+        "type": "revive",
+        "pct": 0.25,
+        "immune": true
+      },
+      "target": "single",
+      "cost": 80,
+      "desc": "Revives a fallen ally at 25% max HP with damage immunity until their next action."
+    },
+    "group_tonic": {
+      "id": "group_tonic",
+      "name": "Group Tonic",
+      "icon": "🫙",
+      "type": "consumable",
+      "subtype": "flask",
+      "effect": {
+        "type": "heal",
+        "amount": 25
+      },
+      "target": "group",
+      "cost": 90,
+      "desc": "Restores 25 HP to all living allies."
+    },
+    "antidote": {
+      "id": "antidote",
+      "name": "Antidote",
+      "icon": "🟢",
+      "type": "consumable",
+      "subtype": "potion",
+      "effect": {
+        "type": "cleanse",
+        "statuses": [
+          "poison",
+          "bleed"
+        ]
+      },
+      "target": "single",
+      "cost": 25,
+      "desc": "Removes Poison and Bleed from one ally."
+    },
+    "portal_scroll": {
+      "id": "portal_scroll",
+      "name": "Town Portal Scroll",
+      "icon": "✦",
+      "type": "consumable",
+      "subtype": "scroll",
+      "effect": {
+        "type": "portal"
+      },
+      "target": "none",
+      "cost": 30,
+      "desc": "Opens a portal between your current location and town."
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "node": {
+    "id": "side_quest_ash_plains_jpecdeg_001",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "bone_reader",
+    "lines": [
+      "The ashes whisper of a lost child. Missing for a week now.",
+      "Search near the old ruins. Start where the shadows linger."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to search for the child.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_missing_child",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "missing_child_active"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "Say you're not interested.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "unknown flag \"missing_child_active\" in effect"
+  ],
+  "rejectedAt": "2026-05-21T00:11:29.848Z"
+}

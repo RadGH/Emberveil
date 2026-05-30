@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://emberveil.rsg/schemas/v1/appearance.json",
+  "title": "Emberveil Appearance (v1)",
+  "description": "Cosmetic layer. Maps an appearance id to a sprite set (used by spriteUtils). Any class can wear any appearance.",
+  "type": "object",
+  "required": ["id", "name", "sprite"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,47}$" },
+    "name": { "type": "string" },
+    "sprite": { "type": "string", "description": "Sprite key prefix, e.g. 'warrior' → images/spritecook/warrior_portrait.png + warrior_east.png, etc." },
+    "classDefault": { "type": "string", "description": "Optional: the class this was originally built for." },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  }
+}

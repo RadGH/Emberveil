@@ -1,0 +1,62 @@
+[
+  {
+    "id": "bram_tessaly_01",
+    "trigger": "nodeResolved",
+    "cooldown": 5,
+    "companionA": "bram_coldfire",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "tessaly_veil",   "text": "Mages. You act like knowledge is a sword. It's more like a lockpick." },
+      { "speaker": "bram_coldfire",  "text": "A lockpick opens a door. A sword ends an argument." },
+      { "speaker": "tessaly_veil",   "text": "And here I am, carrying both." }
+    ]
+  },
+  {
+    "id": "bram_tessaly_02",
+    "trigger": "nodeResolved",
+    "cooldown": 6,
+    "companionA": "bram_coldfire",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "bram_coldfire",  "text": "You know things you shouldn't. About the Veil's inner cells." },
+      { "speaker": "tessaly_veil",   "text": "Curiosity is a survival strategy." },
+      { "speaker": "bram_coldfire",  "text": "For a rogue, maybe. For a scholar, it's a liability." },
+      { "speaker": "tessaly_veil",   "text": "Lucky I'm neither." }
+    ]
+  },
+  {
+    "id": "bram_tessaly_03",
+    "trigger": "nodeResolved",
+    "cooldown": 7,
+    "companionA": "bram_coldfire",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "tessaly_veil",   "text": "How does it feel to hold fire in your hands?" },
+      { "speaker": "bram_coldfire",  "text": "Like being trusted with something that doesn't forgive mistakes." }
+    ]
+  },
+  {
+    "id": "bram_tessaly_04",
+    "trigger": "nodeResolved",
+    "cooldown": 8,
+    "companionA": "bram_coldfire",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "bram_coldfire",  "text": "You actually read my Rift notes." },
+      { "speaker": "tessaly_veil",   "text": "I read everything I can reach. Was it in reach? Then I read it." },
+      { "speaker": "bram_coldfire",  "text": "Those were locked." },
+      { "speaker": "tessaly_veil",   "text": "Yes." }
+    ]
+  },
+  {
+    "id": "bram_tessaly_05",
+    "trigger": "nodeResolved",
+    "cooldown": 9,
+    "companionA": "bram_coldfire",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "tessaly_veil",   "text": "If the Rift is real — if it's actually pulling things through — why study it instead of closing it?" },
+      { "speaker": "bram_coldfire",  "text": "Because you can't close what you don't understand. And so far, no one understands it." }
+    ]
+  }
+]

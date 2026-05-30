@@ -1,0 +1,186 @@
+{
+  "abyssal_knight": [
+    "Abyssal Garrison",
+    "Abyssal Tide",
+    "The Architect"
+  ],
+  "ancient_dragon": [
+    "The Ancient Dragon",
+    "Bahamorth, the Dragon King"
+  ],
+  "archfiend_malgrath": [
+    "Archfiend Malgrath"
+  ],
+  "ash_wraith": [
+    "Ash Patrol",
+    "Ash Swarm",
+    "Obsidian Garrison"
+  ],
+  "bandit": [
+    "Bandit Ambush"
+  ],
+  "bandit_captain": [
+    "Bandit Ambush"
+  ],
+  "cinder_hound": [
+    "Ash Patrol",
+    "Ash Swarm",
+    "Ember Ambush"
+  ],
+  "corrupted_bear": [
+    "Corrupted Predator"
+  ],
+  "corrupted_wolf": [
+    "Corrupted Predator",
+    "Corrupted Wolf Pack"
+  ],
+  "cosmic_titan": [
+    "Cosmic Assault"
+  ],
+  "demon_brute": [
+    "The Emberveil Sovereign",
+    "Rift Assault"
+  ],
+  "dragon_cultist": [
+    "Dragon Skyfall",
+    "Dragon Patrol",
+    "Storm Dragon Nest"
+  ],
+  "dragon_king": [
+    "Bahamorth, the Dragon King"
+  ],
+  "dragon_whelp": [
+    "The Ancient Dragon",
+    "Dragon Skyfall",
+    "Dragon Patrol",
+    "Wyrm Citadel"
+  ],
+  "echo_sovereign": [
+    "Echo of the Sovereign"
+  ],
+  "emberveil_sovereign": [
+    "The Emberveil Sovereign"
+  ],
+  "frost_wyrm": [
+    "Dragon Elite Flight",
+    "Frost Wyrm Pack"
+  ],
+  "genesis_worm": [
+    "Genesis Nest"
+  ],
+  "giant_spider": [
+    "Spider Hollow"
+  ],
+  "goblin_scout": [
+    "Goblin Vanguard",
+    "Corrupted Outpost",
+    "Goblin Camp",
+    "Goblin Patrol",
+    "Goblin Pair",
+    "Lone Goblin Scout"
+  ],
+  "goblin_shaman": [
+    "Goblin Vanguard",
+    "Goblin Camp",
+    "The Veil Wardens"
+  ],
+  "goblin_warlord": [
+    "Warlord's Vanguard"
+  ],
+  "goblin_warrior": [
+    "Goblin Vanguard",
+    "Warlord's Vanguard",
+    "Corrupted Outpost",
+    "Goblin Camp",
+    "Goblin Pair"
+  ],
+  "grax_veil_touched": [
+    "Grax the Veil-Touched"
+  ],
+  "hell_knight": [
+    "Archfiend Malgrath",
+    "Demon Horde",
+    "Demon Patrol",
+    "Hell Garrison"
+  ],
+  "imp": [
+    "Demon Horde",
+    "Demon Patrol",
+    "Hell Garrison"
+  ],
+  "lava_titan": [
+    "The Lava Titan"
+  ],
+  "molten_golem": [
+    "The Lava Titan",
+    "Obsidian Garrison"
+  ],
+  "primordial_elemental": [
+    "Abyssal Garrison",
+    "Abyssal Tide",
+    "Primordial Patrol"
+  ],
+  "reality_shard": [
+    "Abyssal Tide",
+    "Genesis Nest",
+    "Primordial Patrol"
+  ],
+  "star_horror": [
+    "Void Tide",
+    "Cosmic Assault",
+    "Void Horde"
+  ],
+  "storm_dragon": [
+    "Dragon Elite Flight",
+    "Storm Dragon Nest"
+  ],
+  "the_architect": [
+    "The Architect"
+  ],
+  "the_first_ember": [
+    "The First Ember"
+  ],
+  "the_unraveler": [
+    "The Unraveler"
+  ],
+  "vault_guardian": [
+    "The Vault Guardian"
+  ],
+  "veil_cultist": [
+    "Ash Swarm",
+    "Veil Cult Encampment",
+    "Veil High Priest"
+  ],
+  "veil_sorcerer": [
+    "Veil Cult Encampment",
+    "Veil High Priest"
+  ],
+  "veil_warden": [
+    "Grax the Veil-Touched",
+    "The Veil Wardens"
+  ],
+  "veilspawn_herald": [
+    "The Veilspawn Herald"
+  ],
+  "void_scholar": [
+    "The Void Scholar"
+  ],
+  "void_shade": [
+    "Demon Horde",
+    "The Emberveil Sovereign",
+    "Rift Assault",
+    "Void Nexus"
+  ],
+  "void_wraith": [
+    "Void Tide",
+    "The Unraveler",
+    "Void Horde"
+  ],
+  "wyrm_warrior": [
+    "Dragon Skyfall",
+    "Dragon Elite Flight",
+    "Bahamorth, the Dragon King",
+    "Frost Wyrm Pack",
+    "Wyrm Citadel"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "node": {
+    "id": "merchant_ash_plains_hh1z3n7_001",
+    "pool": "merchant",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "wry",
+    "speaker": "bone_reader",
+    "lines": [
+      "I sell memories, if you have the gold. Or the courage."
+    ],
+    "choices": [
+      {
+        "id": "browse",
+        "text": "Take a look at the wares.",
+        "next": "#merchant_ash_plains_hh1z3n7_001_wares",
+        "effects": []
+      },
+      {
+        "id": "ask_source",
+        "text": "[Diplomacy - INT] Where do these come from?",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "INT",
+          "dc": 13
+        },
+        "onPass": {
+          "next": "#merchant_ash_plains_hh1z3n7_001_source",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#merchant_ash_plains_hh1z3n7_001_deflect",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Walk away, uninterested.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "merchant_ash_plains_hh1z3n7_001_wares": {
+        "lines": [
+          "A collection of odd trinkets laid out. \"From the ashes of the past, literally.\""
+        ],
+        "choices": [
+          {
+            "id": "buy",
+            "text": "Purchase a memory vial. (30 gold)",
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -30
+              },
+              {
+                "type": "grant_item",
+                "itemId": "memory_vial"
+              }
+            ]
+          },
+          {
+            "id": "pass",
+            "text": "Decide against it.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "merchant_ash_plains_hh1z3n7_001_source": {
+        "lines": [
+          "He leans in, eyes glinting. \"Some things are best left unsaid, you know.\""
+        ],
+        "choices": [
+          {
+            "id": "browse",
+            "text": "Browse the wares again.",
+            "next": "#merchant_ash_plains_hh1z3n7_001_wares",
+            "effects": []
+          }
+        ]
+      },
+      "merchant_ash_plains_hh1z3n7_001_deflect": {
+        "lines": [
+          "\"Let's just say, the past has its price.\" He shrugs, dismissive."
+        ],
+        "choices": [
+          {
+            "id": "browse",
+            "text": "Take a look at the wares.",
+            "next": "#merchant_ash_plains_hh1z3n7_001_wares",
+            "effects": []
+          },
+          {
+            "id": "leave",
+            "text": "Leave the conversation.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"ask_source\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:09:59.987Z"
+}

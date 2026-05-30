@@ -1,0 +1,78 @@
+{
+  "node": {
+    "id": "lore_sovereigns_approach_cidglvs_002",
+    "pool": "lore",
+    "act": 3,
+    "biome": "sovereigns_approach",
+    "tone": "ominous",
+    "speaker": "null",
+    "lines": [
+      "A shattered relic lies half-buried. Its surface is etched with desperate prayers.",
+      "What once held power now feels like a warning."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "[Wisdom - WIS] Inspect the relic closely.",
+        "skillCheck": {
+          "skill": "wisdom",
+          "stat": "WIS",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#relic_found",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_shattered_relic_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#relic_dismissed",
+          "effects": []
+        }
+      },
+      {
+        "id": "ignore",
+        "text": "Leave it be, no point tempting fate.",
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "relic_found": {
+        "lines": [
+          "You find remnants of a long-forgotten truth, a past entwined with the current darkness."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Store the information for later.",
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "lore_ash_origin_found"
+              }
+            ]
+          }
+        ]
+      },
+      "relic_dismissed": {
+        "lines": [
+          "Better left undisturbed. The weight of the past lingers in the air."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Move on quietly.",
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"investigate\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:06:04.418Z"
+}

@@ -1,0 +1,334 @@
+{
+  "nodes": [
+    {
+      "id": "lyra_intro_001",
+      "pool": "companion-lyra_ashwalker",
+      "companionId": "lyra_ashwalker",
+      "act": 1,
+      "biome": "emberwood",
+      "tone": "wary",
+      "speaker": "lyra_ashwalker",
+      "lines": [
+        "She's watching the treeline when you find her.",
+        "\"I travel alone. Have for two years.\" A pause. \"Something changed today.\""
+      ],
+      "choices": [
+        {
+          "id": "ask_join",
+          "text": "Ask her to travel with you.",
+          "next": "#lyra_considers",
+          "effects": [{ "type": "set_flag", "flag": "companion_lyra_met" }]
+        },
+        {
+          "id": "leave",
+          "text": "Respect the solo stance. Leave her be.",
+          "next": null,
+          "effects": [{ "type": "set_flag", "flag": "companion_lyra_met" }]
+        }
+      ],
+      "nodes": {
+        "lyra_considers": {
+          "lines": ["She studies you for a moment that lasts too long. \"All right. Don't make me regret it.\""],
+          "choices": [{ "id": "agree", "text": "\"Fair.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 1 }] }]
+        }
+      }
+    },
+    {
+      "id": "lyra_camp_fire_001",
+      "pool": "companion-lyra_ashwalker",
+      "companionId": "lyra_ashwalker",
+      "act": 1,
+      "biome": "emberwood",
+      "tone": "quiet",
+      "speaker": "lyra_ashwalker",
+      "lines": [
+        "She tends the fire without being asked.",
+        "\"My mother taught me. Said a cold camp is a careless camp.\""
+      ],
+      "choices": [
+        {
+          "id": "ask_mother",
+          "text": "Ask about her mother.",
+          "next": "#lyra_mother",
+          "effects": []
+        },
+        {
+          "id": "just_sit",
+          "text": "Sit by the fire without talking.",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 1 }]
+        }
+      ],
+      "nodes": {
+        "lyra_mother": {
+          "lines": ["\"Ranger. Better than me, in her day.\" The fire pops. \"She didn't come back from the second Veil surge.\""],
+          "choices": [{ "id": "condolence", "text": "\"I'm sorry.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 1 }] }, { "id": "nothing", "text": "Say nothing. Let the fire do the talking.", "next": null, "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 2 }] }]
+        }
+      }
+    },
+    {
+      "id": "lyra_scar_001",
+      "pool": "companion-lyra_ashwalker",
+      "companionId": "lyra_ashwalker",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "tense",
+      "speaker": "lyra_ashwalker",
+      "lines": [
+        "She catches you looking at the scar along her jaw.",
+        "\"Cult blade. Two years ago.\" A flat look. \"They meant for me to stop breathing.\""
+      ],
+      "choices": [
+        {
+          "id": "ask_how",
+          "text": "Ask how she survived.",
+          "next": "#lyra_survival",
+          "effects": []
+        },
+        {
+          "id": "drop_it",
+          "text": "\"None of my business.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 1 }]
+        }
+      ],
+      "nodes": {
+        "lyra_survival": {
+          "lines": ["\"I didn't, exactly. There's a version of me that died in that fen. This version just... kept going.\""],
+          "choices": [{ "id": "go", "text": "\"Good habit.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 2 }] }]
+        }
+      }
+    },
+    {
+      "id": "lyra_quest_start_001",
+      "pool": "companion-lyra_ashwalker",
+      "companionId": "lyra_ashwalker",
+      "act": 1,
+      "biome": "gloomridge",
+      "tone": "urgent",
+      "speaker": "lyra_ashwalker",
+      "lines": [
+        "She stops walking. Stares at a cult marker on a tree.",
+        "\"That's a sign I haven't seen in two years. It means the cell is operational. And there's only one cell that uses this mark.\""
+      ],
+      "choices": [
+        {
+          "id": "ask",
+          "text": "Ask what she knows about the cell.",
+          "next": "#lyra_knows",
+          "effects": [{ "type": "set_flag", "flag": "lyra_quest_started" }]
+        },
+        {
+          "id": "move_on",
+          "text": "\"Leave it for now.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": -1 }]
+        }
+      ],
+      "nodes": {
+        "lyra_knows": {
+          "lines": ["\"They were the ones who killed my mother. I've been tracking them for two years.\" She meets your eyes. \"I would like to settle this.\""],
+          "choices": [{ "id": "help", "text": "\"Then we settle it.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 3 }, { "type": "quest_advance", "questId": "companion_quest_lyra", "step": "cell_identified" }] }]
+        }
+      }
+    },
+    {
+      "id": "lyra_camp_watch_001",
+      "pool": "companion-lyra_ashwalker",
+      "companionId": "lyra_ashwalker",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "reflective",
+      "speaker": "lyra_ashwalker",
+      "lines": [
+        "Midnight watch. She's already awake when you relieve her.",
+        "\"Couldn't sleep. The plains make sounds.\" She tilts her head. \"Different sounds than the wood.\""
+      ],
+      "choices": [
+        {
+          "id": "listen",
+          "text": "Listen with her.",
+          "next": "#lyra_listen",
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 1 }]
+        },
+        {
+          "id": "send_to_sleep",
+          "text": "\"Go sleep. I've got this.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 1 }]
+        }
+      ],
+      "nodes": {
+        "lyra_listen": {
+          "lines": ["A long silence. Then: \"When this is over, I don't know where I go. I've been moving so long that stopping feels like something I'd have to practice.\""],
+          "choices": [{ "id": "stay", "text": "\"You could stay. With us.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 2 }] }, { "id": "no_answer", "text": "Leave the question open.", "next": null, "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 1 }] }]
+        }
+      }
+    },
+    {
+      "id": "lyra_quest_confrontation_001",
+      "pool": "companion-lyra_ashwalker",
+      "companionId": "lyra_ashwalker",
+      "act": 2,
+      "biome": "veilscar",
+      "tone": "climactic-personal",
+      "speaker": "lyra_ashwalker",
+      "requires": { "flag": "lyra_quest_started" },
+      "lines": [
+        "The cell leader is cornered. He recognizes Lyra.",
+        "\"Ashwalker. You're more persistent than your mother was.\" Wrong thing to say."
+      ],
+      "choices": [
+        {
+          "id": "let_lyra",
+          "text": "Step back. Let Lyra handle this.",
+          "next": "#lyra_handles",
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 3 }]
+        },
+        {
+          "id": "intervene",
+          "text": "Intervene — take him alive for information.",
+          "next": "#intervention",
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": -1 }]
+        }
+      ],
+      "nodes": {
+        "lyra_handles": {
+          "lines": ["It's over quickly. She stands over him, breathing steady. \"She was better than me.\" She's not wrong. \"But I have more time left.\""],
+          "choices": [{ "id": "go", "text": "Leave the fen.", "next": null, "effects": [{ "type": "set_flag", "flag": "lyra_quest_completed" }, { "type": "quest_advance", "questId": "companion_quest_lyra", "step": "complete" }] }]
+        },
+        "intervention": {
+          "lines": ["He has information. You get it. Lyra gets closure later, in a different form."],
+          "choices": [{ "id": "go", "text": "Extract the information.", "next": null, "effects": [{ "type": "set_flag", "flag": "cultist_hideout_found" } ] }]
+        }
+      }
+    },
+    {
+      "id": "lyra_approval_high_001",
+      "pool": "companion-lyra_ashwalker",
+      "companionId": "lyra_ashwalker",
+      "act": 2,
+      "biome": "crossroads",
+      "tone": "warm-dry",
+      "speaker": "lyra_ashwalker",
+      "lines": [
+        "\"You're better than the last group I traveled with.\"",
+        "\"They were dead inside two months. Statistically, you're improving.\""
+      ],
+      "choices": [
+        {
+          "id": "thanks",
+          "text": "\"That's the warmest thing you've ever said to me.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 1 }]
+        },
+        {
+          "id": "what_killed_them",
+          "text": "\"What killed them?\"",
+          "next": "#lyra_old_group",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "lyra_old_group": {
+          "lines": ["\"Overconfidence, mostly. They beat the first three fights clean and decided that meant they were ready for the fourth.\""],
+          "choices": [{ "id": "go", "text": "\"Noted.\"", "next": null, "effects": [] }]
+        }
+      }
+    },
+    {
+      "id": "lyra_approval_low_001",
+      "pool": "companion-lyra_ashwalker",
+      "companionId": "lyra_ashwalker",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "cold",
+      "speaker": "lyra_ashwalker",
+      "lines": [
+        "\"Three choices in a row where you left someone in the dirt.\"",
+        "\"I'm still here. I'm deciding if that's a mistake.\""
+      ],
+      "choices": [
+        {
+          "id": "defend",
+          "text": "\"We had limited options.\"",
+          "next": "#lyra_unconvinced",
+          "effects": []
+        },
+        {
+          "id": "apologize",
+          "text": "\"You're right. I'll do better.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 2 }]
+        }
+      ],
+      "nodes": {
+        "lyra_unconvinced": {
+          "lines": ["\"Everyone has limited options. Not everyone makes the same ones.\""],
+          "choices": [{ "id": "go", "text": "Let her have that one.", "next": null, "effects": [] }]
+        }
+      }
+    },
+    {
+      "id": "lyra_rift_moment_001",
+      "pool": "companion-lyra_ashwalker",
+      "companionId": "lyra_ashwalker",
+      "act": 3,
+      "biome": "riftgate",
+      "tone": "resolute",
+      "speaker": "lyra_ashwalker",
+      "lines": [
+        "\"I didn't expect to be here.\"",
+        "\"I mean that literally — when I set out, I expected to die somewhere quiet in the Gloomridge. Not here.\""
+      ],
+      "choices": [
+        {
+          "id": "glad",
+          "text": "\"I'm glad you didn't.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 2 }]
+        },
+        {
+          "id": "practical",
+          "text": "\"The Rift first. Philosophy later.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 1 }]
+        }
+      ]
+    },
+    {
+      "id": "lyra_quest_complete_reflect_001",
+      "pool": "companion-lyra_ashwalker",
+      "companionId": "lyra_ashwalker",
+      "act": 3,
+      "biome": "sovereigns_approach",
+      "tone": "resolved",
+      "speaker": "lyra_ashwalker",
+      "requires": { "flag": "lyra_quest_completed" },
+      "lines": [
+        "She walks differently now. Less forward lean.",
+        "\"I thought it would feel like more. Two years, and it just feels like... quiet.\""
+      ],
+      "choices": [
+        {
+          "id": "affirm",
+          "text": "\"Quiet is what you fought for.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "lyra_ashwalker", "amount": 2 }]
+        },
+        {
+          "id": "ask",
+          "text": "\"Is that enough?\"",
+          "next": "#lyra_enough",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "lyra_enough": {
+          "lines": ["\"Ask me again after we close the Rift.\""],
+          "choices": [{ "id": "go", "text": "\"Deal.\"", "next": null, "effects": [] }]
+        }
+      }
+    }
+  ]
+}

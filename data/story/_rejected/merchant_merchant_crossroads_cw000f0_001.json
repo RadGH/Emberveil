@@ -1,0 +1,52 @@
+{
+  "node": {
+    "id": "merchant_crossroads_cw000f0_001",
+    "pool": "merchant",
+    "act": 3,
+    "biome": "crossroads",
+    "tone": "desperate",
+    "speaker": "brightfall_innkeeper",
+    "lines": [
+      "Rations are running low, friend. What I have left isn't much.",
+      "You'll need to make do, or gamble against the Veil."
+    ],
+    "choices": [
+      {
+        "id": "buy_rations",
+        "text": "Buy whatever rations you have left. (25 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -25
+          },
+          {
+            "type": "grant_item",
+            "itemId": "travel_rations"
+          }
+        ]
+      },
+      {
+        "id": "ask_wellbeing",
+        "text": "[Diplomacy - INT] Ask how they’ve been holding up.",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "INT",
+          "dc": 10
+        },
+        "onPass": {
+          "next": "#innkeeper_support",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#innkeeper_mourns",
+          "effects": []
+        }
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"ask_wellbeing\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:06:36.874Z"
+}
