@@ -56,11 +56,34 @@ implementation had dozens of major issues.
 - Fixed `play.html` so `npm run dev` loads `/src/main.js` instead of a stale hashed
   build artifact.
 
+## R02 Map Status
+
+- Added deterministic Story map generation:
+  - `storyMapGen.js`: seed/act/salt driven act maps with 5 Act-1 sub-regions,
+    3-lane strip layout, open/hidden edges, waypoint guarantees, boss node, and
+    salt-bump retry with safety fallback.
+  - `storyMapGraph.js`: map save projection, open-edge traversal, region visibility,
+    indexes, and reachability helpers.
+  - `storyMapValidator.js`: connectivity, quest-critical reachability, boss
+    reachability, sub-region stitch, waypoint coverage, and hidden-lock satisfiability.
+  - `storyMapMutations.js`: `revealPath`, `blockPath`, `revealNodesByTag`,
+    `mutateNode`, `unlockTransition`, `setWaypointState`, `applyWorldMutation`,
+    and `visitNode`.
+  - `storyMapRendererShared.js`: shared node/road view helpers.
+- `storyMode.newGame()` now generates and persists the initial Act-1 map.
+- `StoryMapScreen` now renders the generated map, curved roads, hidden/locked roads,
+  biome bands, region paging, cross-region arrow affordances, fogged locked regions,
+  pressure chip, node drawer, 44 px nodes, and visit-state travel.
+- Story effects now call the live map mutation API where a map exists, falling back
+  to pending mutation queues only when authored effects target unavailable map ids.
+
 ## Verification
 
 - R00 `npm test`: passed, 26 files / 308 tests.
 - R01 `npm test`: passed, 30 files / 320 tests.
+- R02 `npm test`: passed, 31 files / 325 tests.
 - R01 `npm run build`: passed.
+- R02 `npm run build`: passed.
 - Build warnings still present: missing `source/game13_releases/game_meta.json` for
   release metadata scripts, non-module static site scripts, and large Vite chunks.
   These are baseline repo warnings, not Story Mode regressions.
@@ -71,7 +94,11 @@ implementation had dozens of major issues.
   iPhone 14 Pro viewport reached Title -> New Game -> Story Mode, selected
   Warbringer/Relaxed, entered the Story foundation map, and had no page errors or
   horizontal overflow.
-- R01 `npm run lint`: passed with 143 baseline warnings and 0 errors.
+- R02 direct Playwright browser smoke on `http://127.0.0.1:5213/play.html`: passed.
+  iPhone 14 Pro viewport reached Title -> New Game -> Story Mode, selected a
+  storyteller, tapped a node, used Travel, paged to the next sub-region, and had no
+  page errors or horizontal overflow.
+- R02 `npm run lint`: passed with 143 baseline warnings and 0 errors.
 - Existing Playwright specs `e2e/gameplay.spec.js` and one `e2e/new-ui-smoke.spec.js`
   assertion are stale/unrelated: `gameplay.spec.js` still opens `/` instead of
   `/play.html`, and the New UI combat assertion fails on a pre-existing UI-overhaul
@@ -79,9 +106,12 @@ implementation had dozens of major issues.
 
 ## Not Done Yet
 
-- Generated map traversal is not done yet; it is scheduled for R02.
 - Quest engine, dialog conductor, companions, banter, encounter builder, storyteller
   Director, sim policy, authored content, generated assets, balance matrix, audio,
   tools, and full acts are not done yet.
+- Node-specific outcomes are still placeholders: visiting a node updates map state
+  but does not yet launch dialog, combat, rewards, quests, or skill checks. That work
+  is scheduled for R03/R04.
+- Region visuals are color biome bands, not final painted biome backgrounds yet.
 - Full manual Classic combat smoke is still not done; the browser smoke verified
   title-to-character-builder only in R00. R01 smoke covered the new Story route.

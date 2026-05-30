@@ -36,7 +36,7 @@ export class StoryNewGameScreen {
           </button>
           <div class="sng-mode-card sng-story-card">
             <span class="sng-mode-title">Story Mode</span>
-            <span class="sng-mode-copy">Foundation milestone: separate saves, ledger, predicates, effects, and a visible map handoff.</span>
+            <span class="sng-mode-copy">Redo build: separate saves, ledger, predicates, effects, and deterministic map traversal are active.</span>
             <div class="sng-storytellers">
               ${STORYTELLERS.map(s => `
                 <button type="button" class="sng-storyteller${s.id === this._storytellerId ? ' selected' : ''}" data-storyteller="${s.id}">
@@ -50,7 +50,7 @@ export class StoryNewGameScreen {
                 <button type="button" class="sng-pill${d === this._difficulty ? ' selected' : ''}" data-difficulty="${d}">${d}</button>
               `).join('')}
             </div>
-            <button type="button" class="sng-start-story" id="sng-start-story">Start Story Foundation</button>
+            <button type="button" class="sng-start-story" id="sng-start-story">Start Story Mode</button>
           </div>
         </div>
       </section>

@@ -61,6 +61,9 @@ late blocker fixes, and QA gaps called out in the handoff prompt.
   StoryMapScreen together.
 - Travel must never throw, fog-of-war must lock correctly, and Travel combat must have
   a defined encounter path before this milestone can ship.
+- R02a lands map traversal without combat start; encounter-backed Travel moves to
+  R04 with the encounter builder so the non-null combat guarantee can be tested
+  against real templates instead of fake placeholders.
 
 ### R03 — Quests, Dialog, Companions
 

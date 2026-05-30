@@ -46,7 +46,8 @@ describe('story effect runner', () => {
     expect(gs.story.factions.faction_a).toBe(10);
     expect(gs.story.companions.find(c => c.id === 'maera').recruited).toBe(true);
     expect(gs.story.quests.q1.status).toBe('complete');
-    expect(gs.story.pendingMapMutations).toHaveLength(5);
+    expect(gs.story.pendingMapMutations).toHaveLength(3);
+    expect(gs.story.flags.transition_act2).toBe(true);
     expect(gs.story.pendingEncounters[0].template).toBe('ambush_1');
     expect(gs.story.loreDiscovered).toEqual(['lore_1']);
     expect(gs.gold).toBe(25);

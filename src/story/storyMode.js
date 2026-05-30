@@ -3,6 +3,7 @@ import { GameState } from '../game/gameState.js';
 import { CLASSES } from '../game/classes.js';
 import { buildStartingEquipment } from '../game/items.js';
 import { createDefaultStoryLedger, normalizeStoryteller } from './storyLedger.js';
+import { generateAct } from './storyMapGen.js';
 
 export function newGame(opts = {}) {
   const cls = CLASSES.find(c => c.id === (opts.classId || 'warrior')) || CLASSES[0];
@@ -33,6 +34,10 @@ export function newGame(opts = {}) {
     ...opts,
     storytellerId: normalizeStoryteller(opts.storytellerId),
   });
+  const generated = generateAct({ seed: gs.story.campaignSeed, act: gs.story.act, salt: gs.story.saltOffset });
+  gs.story.currentMapId = generated.graph.mapId;
+  gs.story.currentNodeId = generated.graph.entryNodeId;
+  gs.story.maps[generated.graph.mapId] = generated.mapSave;
   gs.act = gs.story.act;
   gs.zoneId = gs.story.currentMapId;
   gs.nodeId = gs.story.currentNodeId;

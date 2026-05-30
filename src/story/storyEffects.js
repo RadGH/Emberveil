@@ -1,4 +1,13 @@
 import { clampInt, QUEST_STATUS, requireStory, uniquePush } from './storyLedger.js';
+import {
+  applyWorldMutation,
+  blockPath,
+  mutateNode,
+  revealNodesByTag,
+  revealPath,
+  setWaypointState,
+  unlockTransition,
+} from './storyMapMutations.js';
 
 export const EFFECT_TYPES = Object.freeze([
   'set_flag', 'clear_flag', 'set_counter', 'inc_counter', 'faction_delta',
@@ -72,12 +81,12 @@ const DISPATCH = {
     }
     pushQuestLog(ensureQuest(ctx, questId), e.text);
   },
-  reveal_path(e, ctx) { mapMutation(ctx, { type: 'reveal_path', from: e.from, to: e.to }); },
-  reveal_nodes_tag(e, ctx) { mapMutation(ctx, { type: 'reveal_nodes_tag', tag: e.tag, count: e.count || 1 }); },
-  block_path(e, ctx) { mapMutation(ctx, { type: 'block_path', from: e.from, to: e.to }); },
-  mutate_node(e, ctx) { mapMutation(ctx, { type: 'mutate_node', nodeId: e.nodeId, overlay: e.overlay }); },
-  unlock_waypoint(e, ctx) { mapMutation(ctx, { type: 'unlock_waypoint', nodeId: e.nodeId }); },
-  unlock_map_transition(e, ctx) { mapMutation(ctx, { type: 'unlock_map_transition', targetMap: e.targetMap }); },
+  reveal_path(e, ctx) { if (!revealPath(ctx.gs, e.from, e.to)) mapMutation(ctx, { type: 'reveal_path', from: e.from, to: e.to }); },
+  reveal_nodes_tag(e, ctx) { const ids = revealNodesByTag(ctx.gs, e.tag, e.count || 1); if (!ids.length) mapMutation(ctx, { type: 'reveal_nodes_tag', tag: e.tag, count: e.count || 1 }); },
+  block_path(e, ctx) { if (!blockPath(ctx.gs, e.from, e.to)) mapMutation(ctx, { type: 'block_path', from: e.from, to: e.to }); },
+  mutate_node(e, ctx) { mutateNode(ctx.gs, e.nodeId, e.overlay); mapMutation(ctx, { type: 'mutate_node', nodeId: e.nodeId, overlay: e.overlay }); },
+  unlock_waypoint(e, ctx) { setWaypointState(ctx.gs, e.nodeId, 'activated'); },
+  unlock_map_transition(e, ctx) { unlockTransition(ctx.gs, e.targetMap); },
   start_encounter(e, ctx) { story(ctx).pendingEncounters.push({ template: e.template, queuedAt: new Date().toISOString() }); },
   lore_unlock(e, ctx) { uniquePush(story(ctx).loreDiscovered, e.loreId); },
   gold(e, ctx) { ctx.gs.gold = Math.max(0, Math.trunc(Number(ctx.gs.gold || 0) + Number(e.amount || 0))); },
@@ -85,7 +94,7 @@ const DISPATCH = {
     ctx.gs.inventory = Array.isArray(ctx.gs.inventory) ? ctx.gs.inventory : [];
     ctx.gs.inventory.push(e.itemId ? { id: e.itemId, source: 'story_reward' } : generatedItem(e.generate));
   },
-  world_mutation(e, ctx) { uniquePush(story(ctx).worldMutations, e.id); },
+  world_mutation(e, ctx) { applyWorldMutation(ctx.gs, e.id); },
   corruption(e, ctx) { story(ctx).worldCorruption = clampInt((story(ctx).worldCorruption || 0) + Number(e.amount || 0), 0, 100); },
   pressure(e, ctx) { story(ctx).pressureMeter = clampInt((story(ctx).pressureMeter || 0) + Number(e.amount || 0), 0, 100); },
   add_toll(e, ctx) { story(ctx).pendingTolls.push({ tollType: e.tollType, value: e.value, source: e.source || 'story' }); },
