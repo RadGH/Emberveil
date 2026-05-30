@@ -97,6 +97,31 @@ implementation had dozens of major issues.
 - Map generation now guarantees a reachable opening dialog node so the dialog path
   is smoke-testable from a fresh Story start.
 
+## R04 Director/Encounter/Skill Check Status
+
+- Added the storyteller profile registry and director runtime under `src/story/`:
+  - `storyStorytellers.js`: the six storyteller profiles, pressure-band helpers,
+    and profile lookup by normalized storyteller id.
+  - `storyDirector.js`: candidate building, pressure-aware weighting, forced
+    intent support, preview/step APIs, and recent-history recording for director
+    decisions.
+  - `storyEncounterBuilder.js`: non-null encounter construction for map nodes,
+    role/family resolver, encounter history tracking, and a synthetic fallback
+    when authored templates are unavailable.
+  - `storySkillCheck.js`: 18-skill affinity table and a resolver for story skill
+    checks.
+  - `storyEnemyInstance.js`: additive enemy-instance helper for future modifier
+    composition.
+- Added a headless Story campaign sim under `sim/story/` with policies, a CLI, and
+  tests. The sim now exercises the director layer instead of treating the route as
+  a flat deterministic path.
+- Story map travel now pushes `CombatScreen` for combat and boss nodes using the
+  Story encounter builder, and `StoryCompanions` syncs the active story companion
+  into `gs.companions` so the live combat UI can see it.
+- This is still not full Story Mode completion. The current sim and route logic are
+  enough to prove the director/encounter layer exists, but the full authored content
+  batch, act wiring, balance matrix, and tool pages remain pending.
+
 ## Verification
 
 - R00 `npm test`: passed, 26 files / 308 tests.
@@ -132,8 +157,9 @@ implementation had dozens of major issues.
 
 ## Not Done Yet
 
-- Banter, encounter builder, storyteller Director, sim policy, full authored content,
-  generated assets, balance matrix, audio, tools, and full acts are not done yet.
+- Banter, full authored content, generated assets, balance matrix, audio, tools,
+  and full acts are not done yet. The director and encounter scaffolding exist now,
+  but the content depth and act coverage from the plan are still incomplete.
 - Full companion content is not done yet: Tessaly/Bram/Yasha Act-2 intros,
   all personal quest lines, all 15 banter pair files, companion swap UI at
   activated waypoints, and banter delivery overlay are still pending.

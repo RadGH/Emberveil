@@ -1,8 +1,10 @@
 import { GameState } from '../../game/gameState.js';
+import { CombatScreen } from './CombatScreen.js';
 import { createEl, injectStyles, removeEl } from '../../utils/dom.js';
 import { currentMap, visitNode } from '../../story/storyMapMutations.js';
 import { nodeTypeLabel, pointFor, regionViewModel, roadPath } from '../../story/storyMapRendererShared.js';
 import { getOpenOutgoing } from '../../story/storyMapGraph.js';
+import { buildEncounterForNode } from '../../story/storyEncounterBuilder.js';
 import { recordTick } from '../../story/storyLedger.js';
 
 export class StoryMapScreen {
@@ -20,6 +22,11 @@ export class StoryMapScreen {
     injectStyles('story-map-styles', STORY_MAP_STYLES);
     this._el = createEl('div', 'story-map-screen');
     this.manager.uiOverlay.appendChild(this._el);
+    this._render();
+  }
+
+  onResume() {
+    if (this._el) this._el.style.display = 'block';
     this._render();
   }
 
@@ -112,7 +119,7 @@ export class StoryMapScreen {
           <span class="sms-chip">${node.biome}</span>
           ${waypoint}
         </div>
-        <p class="sms-node-copy">Not done yet: node-specific dialog, encounters, rewards, and quest outcomes land in later redo milestones. This node can still be visited now to exercise map state, fog, saves, and pagination.</p>
+        <p class="sms-node-copy">Not done yet: node rewards, quest outcomes, and full act wiring still land in later redo milestones. This node can still be visited now to exercise map state, fog, saves, combat, and pagination.</p>
         <button type="button" class="sms-travel" id="sms-travel" ${canTravel ? '' : 'disabled'}>${current ? 'Current Node' : 'Travel'}</button>
       </aside>
     `;
@@ -150,7 +157,11 @@ export class StoryMapScreen {
       this.audio.playSfx('click');
       this._regionIndex = graph.nodes[nodeId]?.regionIndex || this._regionIndex;
       this._render();
-      if (graph.nodes[nodeId]?.type === 'dialog') {
+      const nodeType = graph.nodes[nodeId]?.type;
+      if (nodeType === 'combat' || nodeType === 'boss') {
+        const encounter = buildEncounterForNode(gs, nodeId);
+        this.manager.push(new CombatScreen(this.manager, this.audio, null, encounter));
+      } else if (nodeType === 'dialog') {
         import('./StoryDialogScreen.js').then(mod => {
           this.manager.push(new mod.StoryDialogScreen(this.manager, this.audio, 'pool:arrival#arrival_emberwood_001', () => this._render()));
         });

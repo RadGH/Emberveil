@@ -79,6 +79,11 @@ late blocker fixes, and QA gaps called out in the handoff prompt.
 - `buildEncounterForNode` is non-null by construction for Travel nodes.
 - Skill affinity tests cover all 18 skills across all 10 classes.
 
+Status note: the runtime scaffolding for R04 now exists in `src/story/` and
+`sim/story/`, but the plan-level content depth and act coverage are still
+unfinished. This milestone is still open until the authored content and full
+campaign coverage land.
+
 ### R05+ — Content, Acts, Tools, Balance, Release
 
 - Build content to the plan counts, review generated dialog/art, wire Acts 1-3,

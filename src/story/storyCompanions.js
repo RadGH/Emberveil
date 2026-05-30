@@ -31,6 +31,7 @@ export function recruitCompanion(gs, id) {
   companion.alive = companion.alive !== false;
   companion.benchedAt = null;
   story.activeCompanionId = companion.id;
+  syncCombatCompanion(gs);
   return companion;
 }
 
@@ -40,6 +41,7 @@ export function dismissCompanion(gs, id) {
   companion.active = false;
   companion.benchedAt = story.currentNodeId || null;
   if (story.activeCompanionId === id) story.activeCompanionId = null;
+  syncCombatCompanion(gs);
   return companion;
 }
 
@@ -58,6 +60,7 @@ export function swapActiveCompanion(gs, id) {
   next.active = true;
   next.benchedAt = null;
   story.activeCompanionId = next.id;
+  syncCombatCompanion(gs);
   return true;
 }
 
@@ -102,6 +105,12 @@ export function storyCompanionAsHeroMember(gs, id = requireStory(gs).activeCompa
 export function assembleCombatParty(gs) {
   const active = storyCompanionAsHeroMember(gs);
   return active ? [...(gs.party || []), active] : [...(gs.party || [])];
+}
+
+export function syncCombatCompanion(gs) {
+  const active = storyCompanionAsHeroMember(gs);
+  gs.companions = active ? [active] : [];
+  return gs.companions;
 }
 
 function avg(values) {

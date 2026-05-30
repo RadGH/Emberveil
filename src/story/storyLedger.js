@@ -52,8 +52,15 @@ export function createDefaultStoryLedger(opts = {}) {
     recentHistory: {
       nodeIds: [],
       nodeTypes: [],
+      enemyFamilies: [],
+      skillLabels: [],
+      rewardTypes: [],
+      biomes: [],
+      tones: [],
       outcomes: [],
       storytellerEvents: [],
+      lastType: null,
+      sameTypeStreak: 0,
       winStreak: 0,
       lossStreak: 0,
     },
@@ -156,8 +163,20 @@ export function recordTick(gs, outcome = {}) {
   const h = requireStory(gs).recentHistory = normalizeRecentHistory(requireStory(gs).recentHistory);
   pushLimited(h.nodeIds, outcome.nodeId, 20);
   pushLimited(h.nodeTypes, outcome.nodeType, 20);
+  pushLimited(h.enemyFamilies, outcome.enemyFamily, 10);
+  pushLimited(h.skillLabels, outcome.skillLabel, 10);
+  pushLimited(h.rewardTypes, outcome.rewardType, 10);
+  pushLimited(h.biomes, outcome.biome, 5);
+  pushLimited(h.tones, outcome.tonalTag, 8);
   pushLimited(h.outcomes, outcome.outcomeId || outcome.result, 20);
   if (outcome.storytellerEvent) pushLimited(h.storytellerEvents, outcome.storytellerEvent, 20);
+  if (outcome.nodeType) {
+    if (h.lastType === outcome.nodeType) h.sameTypeStreak += 1;
+    else {
+      h.sameTypeStreak = 1;
+      h.lastType = outcome.nodeType;
+    }
+  }
   if (outcome.combatResult === 'win') {
     h.winStreak += 1;
     h.lossStreak = 0;
@@ -189,8 +208,15 @@ function normalizeRecentHistory(value) {
   return {
     nodeIds: Array.isArray(v.nodeIds) ? [...v.nodeIds] : [],
     nodeTypes: Array.isArray(v.nodeTypes) ? [...v.nodeTypes] : [],
+    enemyFamilies: Array.isArray(v.enemyFamilies) ? [...v.enemyFamilies] : [],
+    skillLabels: Array.isArray(v.skillLabels) ? [...v.skillLabels] : [],
+    rewardTypes: Array.isArray(v.rewardTypes) ? [...v.rewardTypes] : [],
+    biomes: Array.isArray(v.biomes) ? [...v.biomes] : [],
+    tones: Array.isArray(v.tones) ? [...v.tones] : [],
     outcomes: Array.isArray(v.outcomes) ? [...v.outcomes] : [],
     storytellerEvents: Array.isArray(v.storytellerEvents) ? [...v.storytellerEvents] : [],
+    lastType: typeof v.lastType === 'string' ? v.lastType : null,
+    sameTypeStreak: Math.max(0, Math.trunc(Number(v.sameTypeStreak) || 0)),
     winStreak: Math.max(0, Math.trunc(Number(v.winStreak) || 0)),
     lossStreak: Math.max(0, Math.trunc(Number(v.lossStreak) || 0)),
   };
