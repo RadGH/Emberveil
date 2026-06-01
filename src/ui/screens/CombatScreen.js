@@ -6,6 +6,7 @@
 import { createEl, removeEl, injectStyles } from '../../utils/dom.js';
 import { GameState } from '../../game/gameState.js';
 import { getSpritePath } from '../../game/spriteUtils.js';
+import { getSiteBaseHref } from '../../utils/siteBase.js';
 import { getCompanionPower, companionPowerMult } from '../../game/companions.js';
 import { findNearestTown, ACT1_ZONES, ACT2_ZONES, ACT3_ZONES, ACT4_ZONES, ACT5_ZONES, ACT6_ZONES, ZONE_DROP_CHANCE, ZONE_FAME_MULT, ZONE_UNLOCK_MAP, ZONE_NAMES, ACT_BOSS_ZONES, BOSS_TAP_DROPS } from '../../maps/mapData.js';
 const _ALL_ZONES_CS = [...ACT1_ZONES, ...ACT2_ZONES, ...ACT3_ZONES, ...ACT4_ZONES, ...ACT5_ZONES, ...ACT6_ZONES];
@@ -239,7 +240,7 @@ let _combatBgManifest = null;
 let _combatBgManifestFetch = null;
 function _ensureCombatBgManifest() {
   if (_combatBgManifest || _combatBgManifestFetch) return;
-  const url = `${import.meta.env.BASE_URL}images/combat_bg/backgrounds.json`;
+  const url = `${getSiteBaseHref()}images/combat_bg/backgrounds.json`;
   _combatBgManifestFetch = fetch(url)
     .then(r => (r.ok ? r.json() : null))
     .then(j => { _combatBgManifest = j || {}; })
@@ -261,7 +262,7 @@ function _getCombatBgImage(zoneId) {
   for (let i = 0; i < zoneId.length; i++) seed = (seed * 31 + zoneId.charCodeAt(i)) | 0;
   const pick = entry.backgrounds[Math.abs(seed) % entry.backgrounds.length];
   const img = new Image();
-  img.src = `${import.meta.env.BASE_URL}images/combat_bg/${pick}`;
+  img.src = `${getSiteBaseHref()}images/combat_bg/${pick}`;
   _combatBgCache[zoneId] = { img, status: 'loading' };
   return null; // first draw returns null; subsequent draws hit the completed image
 }
@@ -269,7 +270,7 @@ function _getCombatBgImage(zoneId) {
 function _loadSprite(key) {
   if (_spriteCache[key]) return _spriteCache[key];
   const imgs = {};
-  const BASE = import.meta.env.BASE_URL;
+  const BASE = getSiteBaseHref();
   const spritesBase = `${BASE}images/sprites/${key}`;
   // M484b — 'death' removed: there is no <id>_death.png file. The renderer
   // maps stance='death' → 'east_ko' at draw time (line ~7299), so preloading
@@ -7952,4 +7953,3 @@ const COMBAT_STYLES = `
   .boss-death-cinematic.bdc-fade-out .bdc-inner { animation: none; }
 }
 `;
-

@@ -21,8 +21,9 @@ import { GameState } from '../game/gameState.js';
 import { STATUS_META } from '../game/statusEffects.js';
 import { createStatusParticleEl, hasStatusParticle } from './statusParticles.js';
 import { getSpritePath } from '../game/spriteUtils.js';
+import { getSiteBaseHref } from '../utils/siteBase.js';
 
-const PORTRAIT_BASE = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/';
+const PORTRAIT_BASE = getSiteBaseHref();
 
 /**
  * M391 — party-UI portrait. Returns the south-facing portrait variant per the

@@ -22,6 +22,7 @@ import { TitleScreen } from './TitleScreen.js';
 import { newBadgeIfRecent } from '../../game/featureRegistry.js';
 import { GameState } from '../../game/gameState.js';
 import { getNextFameThreshold } from '../../game/fame.js';
+import { getSiteBaseHref } from '../../utils/siteBase.js';
 
 injectStyles('game-menu-styles', `
   .gm-overlay {
@@ -388,7 +389,7 @@ export class GameMenuScreen {
         <div class="gm-whatsnew-title" id="gm-wn-title">What's New</div>
         <div class="gm-whatsnew-meta" id="gm-wn-meta">Loading...</div>
         <div class="gm-whatsnew-body" id="gm-wn-body"></div>
-        <a class="gm-whatsnew-link" href="${import.meta.env.BASE_URL}assets/changelog.html" target="_blank" rel="noopener">Full history</a>
+        <a class="gm-whatsnew-link" href="${getSiteBaseHref()}assets/changelog.html" target="_blank" rel="noopener">Full history</a>
         <div class="gm-confirm-row">
           <button type="button" class="gm-btn gm-primary" id="gm-wn-close">Close</button>
         </div>
@@ -405,7 +406,7 @@ export class GameMenuScreen {
     });
 
     // Fetch the baked release summary JSON — honor Vite BASE_URL for sub-path deploys
-    fetch(`${import.meta.env.BASE_URL}assets/release-summary.json`)
+    fetch(`${getSiteBaseHref()}assets/release-summary.json`)
       .then(r => r.ok ? r.json() : null)
       .then(data => {
         if (!this._whatsNewEl) return;

@@ -14,8 +14,9 @@
 
 import { ensureEvSymbols, appendEvCorners } from './evSymbols.js';
 import { getSpritePath } from '../game/spriteUtils.js';
+import { getSiteBaseHref } from '../utils/siteBase.js';
 
-const PORTRAIT_BASE = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/';
+const PORTRAIT_BASE = getSiteBaseHref();
 
 function resolveChipPortraitFallbacks(c) {
   // M482b — include c.enemyId BEFORE c.id. Enemy combatants get a synthetic

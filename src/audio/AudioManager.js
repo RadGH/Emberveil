@@ -3,6 +3,7 @@
  * Uses procedural synthesis for ambient music layers.
  */
 import { debug } from '../utils/debug.js';
+import { getSiteBaseHref } from '../utils/siteBase.js';
 
 export class AudioManager {
   constructor() {
@@ -60,11 +61,7 @@ export class AudioManager {
   }
 
   _baseUrl() {
-    try {
-      return (import.meta.env && import.meta.env.BASE_URL) || '/';
-    } catch (_) {
-      return '/';
-    }
+    return getSiteBaseHref();
   }
 
   _tryPlayMusicFile(name) {

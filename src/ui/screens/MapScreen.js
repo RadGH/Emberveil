@@ -4,6 +4,7 @@
  */
 import { createEl, removeEl, injectStyles } from '../../utils/dom.js';
 import { GameState } from '../../game/gameState.js';
+import { getSiteBaseHref } from '../../utils/siteBase.js';
 import { computeItemScores } from '../../game/items.js';
 import { PROLOGUE_ZONES, ACT1_ZONES, ACT2_ZONES, ACT3_ZONES, ACT4_ZONES, ACT5_ZONES, ACT6_ZONES, NODE_TYPES, DIALOG_EVENTS, ENCOUNTERS, ZONE_ENCOUNTER_POOLS, findNearestTown, resolveBigFightEncounter, isHiddenNodeUnlocked, getHiddenBossEncounter, HIDDEN_BOSS_ENCOUNTERS } from '../../maps/mapData.js';
 import { getRandomEvent, RANDOM_EVENTS } from '../../maps/randomEvents.js';
@@ -718,7 +719,7 @@ export class MapScreen {
           dragon_throne: 'images/dragon_expansion/dragon_throne_bg.jpg',
         };
         const rel = ZONE_BG_OVERRIDE[zoneId] || `images/map_bg/${zoneId}.jpg`;
-        img.src = `${import.meta.env.BASE_URL}${rel}`;
+        img.src = `${getSiteBaseHref()}${rel}`;
         img._zoneId = zoneId;
         img.onerror = () => { this._bgFailed.add(zoneId); this._bgImg = null; };
         this._bgImg = img;

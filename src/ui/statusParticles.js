@@ -20,7 +20,9 @@
  *   createStatusParticleEl(type, opts)→ HTMLElement | null
  */
 
-const BASE = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/';
+import { getSiteBaseHref } from '../utils/siteBase.js';
+
+const BASE = getSiteBaseHref();
 
 // Map of status-type → preferred filename stems. Aliases are listed so that
 // internal status names (`burn`, `freeze`, `sleep`) resolve to the same file

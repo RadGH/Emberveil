@@ -644,16 +644,10 @@
     const data = (LIVE?.companions || []).slice(0, 12);
     if (!data.length) { root.remove(); return; }
 
-    // M486: companion sprites were regenerated in M468 under
-    // public/images/openai_v2/<id>_portrait.png. Prefer that path; the
-    // <img onerror> hook downgrades to the legacy spritecook path so any
-    // companion not yet in the v2 set (e.g. war_dog) still renders.
-    const v2Path = id => './images/openai_v2/' + id + '_portrait.png';
-
     const track = el('div', { class: 'carousel-track' });
     data.forEach(c => {
       const fallback = (c.portrait || '').replace(/^\.\.\//, './');
-      const primary = c.id ? v2Path(c.id) : fallback;
+      const primary = fallback || (c.id ? './images/spritecook/' + c.id + '_portrait.png' : '');
       const img = el('img', {
         src: primary, alt: c.name, class: 'pixel',
         onerror: function () {

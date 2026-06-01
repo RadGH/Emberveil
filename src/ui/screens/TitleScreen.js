@@ -16,6 +16,7 @@ import { debug } from '../../utils/debug.js';
 import { MILESTONE } from '../../version.js';
 import { authManager, LOGIN_UI_DISABLED } from '../../auth/authManager.js';
 import { isReducedMotion } from '../../utils/motion.js';
+import { getSiteBaseHref } from '../../utils/siteBase.js';
 
 const PHASES = { CLOUDS: 0, LOGO_DROP: 1, MENU: 2 };
 
@@ -270,14 +271,12 @@ export class TitleScreen {
     });
     this._el.querySelector('#btn-website').addEventListener('click', () => {
       this.audio.playSfx('click');
-      const baseUrl = import.meta.env.BASE_URL || '/';
-      window.location.href = baseUrl;
+      window.location.href = getSiteBaseHref();
     });
     // M330 — Privacy policy link (lives at <BASE_URL>/privacy.html).
     this._el.querySelector('#btn-privacy').addEventListener('click', () => {
       this.audio.playSfx('click');
-      const baseUrl = import.meta.env.BASE_URL || '/';
-      window.open(`${baseUrl.replace(/\/$/, '')}/privacy.html`, '_blank', 'noopener');
+      window.open(`${getSiteBaseHref()}privacy.html`, '_blank', 'noopener');
     });
 
     this._injectStyles();

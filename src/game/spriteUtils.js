@@ -14,6 +14,7 @@ import { CLASSES } from './classes.js';
 import { resolveSprite } from './appearances.js';
 import { logImage } from '../utils/imageLog.js';
 import { getSpriteAdjustmentCss } from './spriteAdjustments.js';
+import { getSiteBaseHref } from '../utils/siteBase.js';
 
 // ---------------------------------------------------------------------------
 // Manifest loader (single fetch, cached). Synchronous getSpritePath() reads
@@ -23,7 +24,7 @@ import { getSpriteAdjustmentCss } from './spriteAdjustments.js';
 // ---------------------------------------------------------------------------
 let _manifest = null;
 let _manifestPromise = null;
-const _BASE = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/';
+const _BASE = getSiteBaseHref();
 
 /** Index appearances/companions/enemies/bosses by id → sprites map. */
 function _indexManifest(raw) {
