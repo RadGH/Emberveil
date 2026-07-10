@@ -37,3 +37,7 @@ public/sfx_original/
 __pycache__/
 *.pyc
 scripts/.*-legacy-snapshot.json
+
+# Local-only docs/keys bundle (contains tokens) — never commit
+old_docs/
+references/
