@@ -1,6 +1,12 @@
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
+  // Our source uses the build-time __APP_BASE__ global (set from VITE_BASE) for
+  // asset URLs. Vitest doesn't run the vite build's define, so provide it here
+  // as the root path so modules that read it at import time don't throw.
+  define: {
+    __APP_BASE__: JSON.stringify('/'),
+  },
   test: {
     include: [
       'src/**/__tests__/**/*.test.js',
