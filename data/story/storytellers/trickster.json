@@ -1,0 +1,18 @@
+{
+  "id": "trickster",
+  "displayName": "The Trickster",
+  "bio": "Embraces chaos. Every sixth decision ignores soft scoring entirely and picks from the unfiltered eligible set.",
+  "portraitImage": "images/openai_v2/storyteller_trickster_portrait.png",
+  "preferredThemes": ["chaos", "surprise", "mystery", "trick"],
+  "combatFrequency": 0.5,
+  "skillCheckVariety": 0.85,
+  "thematicConsistency": 0.4,
+  "pressureBias": 0.0,
+  "rules": {
+    "maxSameTypeStreak": 3,
+    "minNodesBetweenBosses": 20,
+    "forceRestAfterBrutalFight": false,
+    "fallbackAllowed": true
+  },
+  "uniqueMechanic": "every_6th_random"
+}

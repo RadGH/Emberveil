@@ -1,0 +1,76 @@
+{
+  "node": {
+    "id": "lore_library_ruins_c6l3f1q_003",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "null",
+    "lines": [
+      "A cracked mural depicts the Ember Rift and figures shrouded in shadow.",
+      "Each figure's face bears a different expression, sorrowful or ecstatic."
+    ],
+    "choices": [
+      {
+        "id": "examine_mural",
+        "text": "[Perception - WIS] Study the mural closely.",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "WIS",
+          "dc": 10
+        },
+        "onPass": {
+          "next": "#mural_pass",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_mural_emotion_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#mural_fail",
+          "effects": []
+        }
+      },
+      {
+        "id": "dismiss_mural",
+        "text": "Move on, it's just art.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "mural_pass": {
+        "lines": [
+          "You recognize one face — a member of the Emberguard missing for years."
+        ],
+        "choices": [
+          {
+            "id": "note_face",
+            "text": "Remember that face.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "mural_fail": {
+        "lines": [
+          "The details blur together, nothing reveals itself to you."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Stand back, move on.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"examine_mural\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:05:47.675Z"
+}

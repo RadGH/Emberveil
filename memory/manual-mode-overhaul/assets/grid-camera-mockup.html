@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280">
+  <title>Phase 04 — Grid/Camera Mockup</title>
+  <style>
+    /* ── Palette tokens (from Phase 00) ── */
+    :root {
+      --ember-void:  #06030e;
+      --ember-deep:  #0d0820;
+      --ember-pit:   #1a1128;
+      --ember-stone: #2e2438;
+      --ember-slate: #3d3250;
+      --gold-rim:    #c8a020;
+      --gold-glow:   #f8e890;
+      --gold-dim:    #7a6010;
+      --fire-core:   #ff7020;
+      --fire-bloom:  #ffc040;
+      --arc-blue:    #40a8ff;
+      --arc-pale:    #a0d8ff;
+      --hp-green:    #30cc60;
+      --hp-low:      #cc3020;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--ember-void);
+      color: #e0d8f0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 13px;
+      padding: 20px;
+      min-width: 1280px;
+    }
+
+    h1 {
+      font-size: 18px;
+      color: var(--gold-glow);
+      border-bottom: 1px solid var(--gold-dim);
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── Scenario wrapper ── */
+    .scenario {
+      margin-bottom: 48px;
+    }
+
+    .scenario-label {
+      font-size: 13px;
+      color: var(--gold-rim);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+      padding: 4px 10px;
+      background: var(--ember-deep);
+      display: inline-block;
+      border: 1px solid var(--gold-dim);
+    }
+
+    /* ── Battlefield container ── */
+    .ev-battlefield {
+      position: relative;
+      width: 1200px;
+      height: 500px;
+      background: linear-gradient(
+        to bottom,
+        #0a0615 0%,
+        #150e28 20%,
+        #1e1530 40%,
+        #2a1e3a 60%,
+        #261830 80%,
+        #1a1020 100%
+      );
+      overflow: hidden;
+      border: 1px solid var(--ember-pit);
+    }
+
+    /* 80/20 sky/ground visual split indicator */
+    .ev-battlefield::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 20%;
+      background: linear-gradient(
+        to bottom,
+        rgba(6, 3, 14, 0.9) 0%,
+        rgba(10, 6, 22, 0.4) 100%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Atmospheric vignette */
+    .ev-battlefield::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse 90% 80% at 50% 60%,
+        transparent 40%,
+        rgba(6, 3, 14, 0.65) 100%
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── SVG tile grid ── */
+    svg.ev-grid {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .ev-tile {
+      fill: var(--ember-stone);
+      stroke: var(--ember-pit);
+      stroke-width: 1;
+      transition: fill 120ms ease;
+    }
+
+    .ev-tile:hover {
+      fill: var(--gold-dim);
+      stroke: var(--gold-rim);
+    }
+
+    /* ── Row-label zones ── */
+    .zone-label {
+      position: absolute;
+      left: 4px;
+      font-size: 9px;
+      color: rgba(200, 160, 32, 0.5);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      z-index: 5;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    /* ── Sprite stand-ins ── */
+    .ev-sprite-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .ev-piece {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+      transform: translateX(-50%) translateY(-100%);
+      border: 2px solid rgba(255,255,255,0.4);
+      letter-spacing: 0;
+    }
+
+    .ev-piece.hero {
+      background: radial-gradient(circle at 40% 35%, #6a5a9e, #3a2a6e);
+      border-color: var(--gold-rim);
+      box-shadow: 0 0 10px rgba(200, 160, 32, 0.5);
+    }
+
+    .ev-piece.companion {
+      background: radial-gradient(circle at 40% 35%, #4a7040, #2a4020);
+      border-color: var(--hp-green);
+      box-shadow: 0 0 8px rgba(48, 204, 96, 0.4);
+    }
+
+    .ev-piece.enemy {
+      background: radial-gradient(circle at 40% 35%, #8a2020, #500808);
+      border-color: var(--hp-low);
+      box-shadow: 0 0 8px rgba(204, 48, 32, 0.4);
+    }
+
+    .ev-piece.active {
+      box-shadow: 0 0 0 3px var(--gold-glow), 0 0 16px 6px rgba(248, 232, 144, 0.5);
+    }
+
+    /* ── Legend ── */
+    .legend {
+      display: flex;
+      gap: 20px;
+      margin-top: 8px;
+      font-size: 11px;
+      color: rgba(200,190,220,0.7);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1.5px solid;
+      flex-shrink: 0;
+    }
+
+    .legend-dot.hero     { background: #3a2a6e; border-color: var(--gold-rim); }
+    .legend-dot.companion{ background: #2a4020; border-color: var(--hp-green); }
+    .legend-dot.enemy    { background: #500808; border-color: var(--hp-low);   }
+
+    .stat-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 6px;
+      font-size: 11px;
+      color: rgba(200,190,220,0.6);
+    }
+
+    .stat-row strong {
+      color: var(--gold-rim);
+    }
+  </style>
+</head>
+<body>
+
+<h1>Phase 04 — 2.5D Grid + Camera Mockup — Party Shape Demonstrations</h1>
+
+<!-- ══════════════════════════════════════════════════════
+     SHARED GRID COMPUTATION ENGINE
+     ══════════════════════════════════════════════════════ -->
+<script>
+  // ── Constants ──────────────────────────────────────────
+  const COLS = 8;
+  const ROWS = 6;
+  const DEPTH_SCALE = 0.85;       // per-row scale factor toward vanishing point
+  const TILE_ASPECT = 2;          // tileW / tileH = 2:1
+  const VIEWPORT_TOP_PCT = 0.20;  // top 20% = sky band; grid starts below
+
+  // Row assignments:
+  // 0 = enemy back, 1 = enemy mid, 2 = enemy front,
+  // 3 = hero back,  4 = hero front, 5 = companion row
+
+  const HERO_COL_RANGE   = { start: 0, count: 4 };
+  const ENEMY_COL_RANGE  = { start: 4, count: 4 };
+
+  // ── Layout builder ──────────────────────────────────────
+  function buildLayout(bw, bh) {
+    const gridTop = bh * VIEWPORT_TOP_PCT;
+    const vanishX = bw * 0.5;
+    const vanishY = bh * 0.15;
+    const baseTileW = bw / COLS;       // tile width at front row (row 5)
+    return { bw, bh, gridTop, vanishX, vanishY, baseTileW };
+  }
+
+  // ── grid (col, row) → screen (cx, cy, scale, tileW, tileH) ────
+  function gridToScreen(col, row, L) {
+    const scale  = Math.pow(DEPTH_SCALE, ROWS - 1 - row);
+    const tileW  = L.baseTileW * scale;
+    const tileH  = tileW / TILE_ASPECT;
+
+    // Cumulative Y offset: sum tileH for all rows before this one
+    let yOffset = 0;
+    for (let r = 0; r < row; r++) {
+      const rs = Math.pow(DEPTH_SCALE, ROWS - 1 - r);
+      yOffset += (L.baseTileW / TILE_ASPECT) * rs;
+    }
+    const cy = L.gridTop + yOffset + tileH * 0.5;
+
+    // X: center full row span on vanishX
+    const gridSpanW = tileW * COLS;
+    const leftEdge  = L.vanishX - gridSpanW * 0.5;
+    const cx        = leftEdge + tileW * (col + 0.5);
+
+    return { cx, cy, scale, tileW, tileH };
+  }
+
+  // ── Tile rhombus 4-corner points string ─────────────────
+  function tilePoints(cx, cy, tileW, tileH) {
+    const hw = tileW / 2, hh = tileH / 2;
+    return `${cx},${cy - hh} ${cx + hw},${cy} ${cx},${cy + hh} ${cx - hw},${cy}`;
+  }
+
+  // ── Sprite anchor: foot touches tile mid-rear edge ───────
+  function spriteAnchor(cx, cy, tileH, spriteW, spriteH) {
+    const footY = cy - tileH / 2;
+    return { left: cx - spriteW / 2, top: footY - spriteH };
+  }
+
+  // ── Centering: leftmost column for a group ───────────────
+  function centerStartCol(count, colRange) {
+    const clamped = Math.min(count, colRange.count);
+    const offset  = Math.floor((colRange.count - clamped) / 2);
+    return colRange.start + offset;
+  }
+
+  // ── computeAnchors ───────────────────────────────────────
+  function computeAnchors(partyShape, enemyShape) {
+    const heroStartCol       = centerStartCol(partyShape.heroes,     HERO_COL_RANGE);
+    const companionStartCol  = centerStartCol(partyShape.companions, HERO_COL_RANGE);
+    const enemyFrontCount    = Math.min(enemyShape.front, 4);
+    const enemyBackCount     = Math.min(enemyShape.back,  4);
+    const enemyFrontStartCol = centerStartCol(enemyFrontCount, ENEMY_COL_RANGE);
+    const enemyBackStartCol  = centerStartCol(enemyBackCount,  ENEMY_COL_RANGE);
+
+    return {
+      heroAnchor:       { col: heroStartCol,       row: 4 },
+      companionAnchor:  { col: companionStartCol,  row: 5 },
+      enemyFrontAnchor: { col: enemyFrontStartCol, row: 2 },
+      enemyBackAnchor:  { col: enemyBackStartCol,  row: 0 },
+    };
+  }
+
+  // ── Base sprite display sizes (row 5, scale=1.0) ─────────
+  const SPRITE_SIZES = {
+    hero:      { w: 80, h: 110 },
+    companion: { w: 60, h: 80  },
+    enemy:     { w: 64, h: 90  },
+  };
+
+  // ── Render a scenario into a given container ─────────────
+  function renderScenario(containerId, bw, bh, partyShape, enemyShape, labels) {
+    const container = document.getElementById(containerId);
+    const L = buildLayout(bw, bh);
+
+    // -- Build SVG tile grid --
+    const svg = container.querySelector('svg.ev-grid');
+    svg.setAttribute('viewBox', `0 0 ${bw} ${bh}`);
+
+    const rowNames = ['Enemy Back', 'Enemy Mid', 'Enemy Front', 'Hero Back', 'Hero Front', 'Companion'];
+    const rowColors = ['#2a1428', '#2e1a30', '#321e3a', '#1e2832', '#1e2a38', '#1a2e22'];
+    const strokeColors = ['#1a0a18', '#1e0e20', '#220e28', '#0e1820', '#0e1c28', '#0a1e10'];
+
+    let svgContent = '';
+    for (let row = 0; row < ROWS; row++) {
+      for (let col = 0; col < COLS; col++) {
+        const g = gridToScreen(col, row, L);
+        const pts = tilePoints(g.cx, g.cy, g.tileW, g.tileH);
+        svgContent += `<polygon class="ev-tile"
+          data-col="${col}" data-row="${row}"
+          points="${pts}"
+          fill="${rowColors[row]}"
+          stroke="${strokeColors[row]}"
+          stroke-width="1"
+          title="Tile (${col},${row}) — ${rowNames[row]}"
+        />`;
+      }
+    }
+
+    // Dividing line between hero/enemy halves (visual center guide)
+    const centerX = L.vanishX;
+    svgContent += `<line x1="${centerX}" y1="${L.gridTop}" x2="${centerX}" y2="${bh}"
+      stroke="rgba(200,160,32,0.15)" stroke-width="1" stroke-dasharray="4,6"/>`;
+
+    svg.innerHTML = svgContent;
+
+    // -- Zone row labels --
+    const spriteLayer = container.querySelector('.ev-sprite-layer');
+    spriteLayer.innerHTML = '';
+
+    // Row Y label helper
+    const rowLabels = [
+      { row: 0, text: 'Enemy Back'    },
+      { row: 2, text: 'Enemy Front'   },
+      { row: 3, text: 'Hero Back'     },
+      { row: 4, text: 'Hero Front'    },
+      { row: 5, text: 'Companion'     },
+    ];
+    rowLabels.forEach(({ row, text }) => {
+      const g = gridToScreen(0, row, L);
+      const el = document.createElement('div');
+      el.className = 'zone-label';
+      el.style.top = `${g.cy - g.tileH / 2}px`;
+      el.textContent = text;
+      spriteLayer.appendChild(el);
+    });
+
+    // -- Compute anchors --
+    const anchors = computeAnchors(partyShape, enemyShape);
+
+    // -- Place pieces --
+    const pieces = [];
+
+    // Heroes on row 4
+    for (let i = 0; i < partyShape.heroes; i++) {
+      pieces.push({
+        type: 'hero',
+        col: anchors.heroAnchor.col + i,
+        row: anchors.heroAnchor.row,
+        label: labels.heroes?.[i] || 'H' + (i + 1),
+        active: i === 0,
+      });
+    }
+
+    // Companions on row 5
+    for (let i = 0; i < partyShape.companions; i++) {
+      pieces.push({
+        type: 'companion',
+        col: anchors.companionAnchor.col + i,
+        row: anchors.companionAnchor.row,
+        label: labels.companions?.[i] || 'C' + (i + 1),
+      });
+    }
+
+    // Front enemies on row 2
+    for (let i = 0; i < Math.min(enemyShape.front, 4); i++) {
+      pieces.push({
+        type: 'enemy',
+        col: anchors.enemyFrontAnchor.col + i,
+        row: anchors.enemyFrontAnchor.row,
+        label: labels.enemies?.[i] || 'E' + (i + 1),
+      });
+    }
+
+    // Back enemies on row 0 (overflow or explicit)
+    for (let i = 0; i < Math.min(enemyShape.back, 4); i++) {
+      pieces.push({
+        type: 'enemy',
+        col: anchors.enemyBackAnchor.col + i,
+        row: anchors.enemyBackAnchor.row,
+        label: labels.enemies?.[Math.min(enemyShape.front, 4) + i] || 'E' + (Math.min(enemyShape.front, 4) + i + 1),
+      });
+    }
+
+    // Render each piece
+    pieces.forEach(piece => {
+      const g    = gridToScreen(piece.col, piece.row, L);
+      const base = SPRITE_SIZES[piece.type];
+      const sw   = base.w * g.scale;
+      const sh   = base.h * g.scale;
+      const anch = spriteAnchor(g.cx, g.cy, g.tileH, sw, sh);
+
+      // Highlight the tile this piece is on
+      const tileEl = svg.querySelector(`polygon[data-col="${piece.col}"][data-row="${piece.row}"]`);
+      if (tileEl) {
+        const highlightColors = {
+          hero:      '#2a2060',
+          companion: '#153020',
+          enemy:     '#3a1010',
+        };
+        tileEl.setAttribute('fill', highlightColors[piece.type]);
+        tileEl.setAttribute('stroke', piece.type === 'hero' ? '#7a6010' : (piece.type === 'companion' ? '#204820' : '#601010'));
+      }
+
+      // Circle stand-in
+      const el = document.createElement('div');
+      el.className = `ev-piece ${piece.type}${piece.active ? ' active' : ''}`;
+      el.style.left   = `${anch.left + sw / 2}px`;  // absolute center X, then translateX(-50%)
+      el.style.top    = `${anch.top + sh}px`;         // foot Y, then translateY(-100%)
+      el.style.width  = `${sw}px`;
+      el.style.height = `${sw}px`;   // circle: same as width
+      el.style.fontSize = `${Math.max(8, sw * 0.18)}px`;
+      el.title = `${piece.type} @ (${piece.col},${piece.row})`;
+      el.textContent = piece.label;
+      spriteLayer.appendChild(el);
+    });
+
+    return L;
+  }
+
+  // ── Build a scenario section ─────────────────────────────
+  function buildScenario(containerId, title, partyShape, enemyShape, labels, note) {
+    const BW = 1200, BH = 500;
+    const wrap = document.getElementById(containerId);
+
+    // Render
+    const L = renderScenario(containerId + '-bf', BW, BH, partyShape, enemyShape, labels);
+
+    // Stats
+    const anchors = computeAnchors(partyShape, enemyShape);
+    const statsEl = document.getElementById(containerId + '-stats');
+    if (statsEl) {
+      const heroG = gridToScreen(anchors.heroAnchor.col, anchors.heroAnchor.row, L);
+      statsEl.innerHTML =
+        `<strong>Hero anchor:</strong> col ${anchors.heroAnchor.col}, row ${anchors.heroAnchor.row} | ` +
+        `<strong>Companion anchor:</strong> col ${anchors.companionAnchor.col}, row ${anchors.companionAnchor.row} | ` +
+        `<strong>Enemy front anchor:</strong> col ${anchors.enemyFrontAnchor.col}, row ${anchors.enemyFrontAnchor.row} | ` +
+        `<strong>Enemy back anchor:</strong> col ${anchors.enemyBackAnchor.col}, row ${anchors.enemyBackAnchor.row} &nbsp;|&nbsp; ` +
+        `<strong>Front tile (row 4) tileW:</strong> ${heroG.tileW.toFixed(1)}px`;
+    }
+  }
+</script>
+
+<!-- ══════════════════════════════════════════════════════
+     SCENARIO A — Full party (4 heroes + 3 companions + 4 enemies)
+     ══════════════════════════════════════════════════════ -->
+<div class="scenario">
+  <div class="scenario-label">Scenario A — Full party: 4 heroes + 3 companions + 4 front enemies</div>
+  <div class="ev-battlefield" id="sc-a-bf">
+    <svg class="ev-grid"></svg>
+    <div class="ev-sprite-layer"></div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot hero"></div> Hero (row 4, cols 0–3)</div>
+    <div class="legend-item"><div class="legend-dot companion"></div> Companion (row 5, centered)</div>
+    <div class="legend-item"><div class="legend-dot enemy"></div> Enemy (row 2, cols 4–7)</div>
+  </div>
+  <div class="stat-row" id="sc-a-stats"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     SCENARIO B — Partial party (2 heroes + 0 companions + 4 enemies)
+     Fixes user complaint #1: 2-hero party should appear centered, not left-hugging
+     ══════════════════════════════════════════════════════ -->
+<div class="scenario">
+  <div class="scenario-label">Scenario B — 2 heroes (no companions) + 4 front enemies — centering fix</div>
+  <div class="ev-battlefield" id="sc-b-bf">
+    <svg class="ev-grid"></svg>
+    <div class="ev-sprite-layer"></div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot hero"></div> 2 heroes centered in cols 0–3 (anchor col 1)</div>
+    <div class="legend-item"><div class="legend-dot enemy"></div> 4 enemies centered in cols 4–7 (anchor col 4)</div>
+  </div>
+  <div class="stat-row" id="sc-b-stats"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     SCENARIO C — Solo hero (1 hero + 0 companions + 2 enemies)
+     ══════════════════════════════════════════════════════ -->
+<div class="scenario">
+  <div class="scenario-label">Scenario C — 1 hero solo + 0 companions + 2 front enemies</div>
+  <div class="ev-battlefield" id="sc-c-bf">
+    <svg class="ev-grid"></svg>
+    <div class="ev-sprite-layer"></div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot hero"></div> 1 hero, anchor col 1 (center of 0–3)</div>
+    <div class="legend-item"><div class="legend-dot enemy"></div> 2 enemies, anchor col 5 (center of 4–7)</div>
+  </div>
+  <div class="stat-row" id="sc-c-stats"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     SCENARIO D — Max load (4 heroes + 3 companions + 5 enemies across 2 rows)
+     ══════════════════════════════════════════════════════ -->
+<div class="scenario">
+  <div class="scenario-label">Scenario D — Max: 4 heroes + 3 companions + 4 front + 1 back enemy</div>
+  <div class="ev-battlefield" id="sc-d-bf">
+    <svg class="ev-grid"></svg>
+    <div class="ev-sprite-layer"></div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot hero"></div> 4 heroes (row 4, cols 0–3)</div>
+    <div class="legend-item"><div class="legend-dot companion"></div> 3 companions (row 5, centered col 0–2)</div>
+    <div class="legend-item"><div class="legend-dot enemy"></div> 4 front (row 2) + 1 back (row 0) — back centered</div>
+  </div>
+  <div class="stat-row" id="sc-d-stats"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     INIT ALL SCENARIOS
+     ══════════════════════════════════════════════════════ -->
+<script>
+  buildScenario('sc-a', 'Scenario A',
+    { heroes: 4, companions: 3 },
+    { front: 4, back: 0 },
+    {
+      heroes:     ['Ftr', 'Stm', 'Pal', 'Pyr'],
+      companions: ['Dog', 'Owl', 'Cat'],
+      enemies:    ['Gb1', 'Gb2', 'Gb3', 'Gb4'],
+    }
+  );
+
+  buildScenario('sc-b', 'Scenario B',
+    { heroes: 2, companions: 0 },
+    { front: 4, back: 0 },
+    {
+      heroes:  ['Ftr', 'Pal'],
+      enemies: ['Gb1', 'Gb2', 'Gb3', 'Gb4'],
+    }
+  );
+
+  buildScenario('sc-c', 'Scenario C',
+    { heroes: 1, companions: 0 },
+    { front: 2, back: 0 },
+    {
+      heroes:  ['Ftr'],
+      enemies: ['Gb1', 'Gb2'],
+    }
+  );
+
+  buildScenario('sc-d', 'Scenario D',
+    { heroes: 4, companions: 3 },
+    { front: 4, back: 1 },
+    {
+      heroes:     ['Ftr', 'Stm', 'Pal', 'Pyr'],
+      companions: ['Dog', 'Owl', 'Cat'],
+      enemies:    ['Gb1', 'Gb2', 'Gb3', 'Gb4', 'Boss'],
+    }
+  );
+</script>
+
+<!-- ══════════════════════════════════════════════════════
+     NOTES
+     ══════════════════════════════════════════════════════ -->
+<div style="margin-top:32px; padding:16px; background:var(--ember-deep); border:1px solid var(--gold-dim); max-width:1200px;">
+  <p style="color:var(--gold-rim); font-size:12px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Implementation Notes</p>
+  <ul style="color:rgba(200,190,220,0.7); font-size:12px; line-height:1.7; padding-left:20px;">
+    <li>Circles represent sprite stand-ins. Each circle's foot touches the mid-rear (top vertex) of its tile — this is the <code>spriteAnchor()</code> calculation.</li>
+    <li>The dashed vertical center line divides hero columns (0–3) from enemy columns (4–7).</li>
+    <li>Row depth scale: front row (5) = 1.0 → back row (0) = 0.85^5 ≈ 0.444. Tile widths reflect this.</li>
+    <li>Hover any tile to see the gold highlight state (targeting-active mode CSS).</li>
+    <li>Scenario B demonstrates the centering fix — 2 heroes land at cols 1–2, not 0–1.</li>
+    <li>Scenario D shows enemy overflow: 4 in front row, 1 in back row (centered in its row, col 5).</li>
+    <li>Top 20% of battlefield = sky band (darkened gradient). Grid starts at 20% down.</li>
+    <li>All numbers are computed live from the formula in Phase 04 spec — no hardcoded positions.</li>
+  </ul>
+</div>
+
+</body>
+</html>

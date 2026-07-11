@@ -1,0 +1,75 @@
+{
+  "id": "secondary_act2_library_archive",
+  "category": "secondary",
+  "act": 2,
+  "title": "What Was Indexed",
+  "summary": "The Library Ruins hold an archive of pre-Sovereign research — forty years of Veil-observation records that the Brightfall Council officially does not acknowledge exist. Getting inside requires the Thornwhisper Circle's access codes. Deciding what to do with the contents is harder.",
+  "startCondition": { "flag": "veilscar_entered" },
+  "phases": [
+    {
+      "id": "access_library",
+      "label": "Gain access to the Library Ruins via the Thornwhisper Circle",
+      "completeCondition": { "flag": "library_ruins_searched" },
+      "onComplete": [
+        { "type": "faction_delta", "faction": "thornwhisper_circle", "amount": 1 },
+        { "type": "quest_log", "text": "Nessa Sorroway provides the access codes without explanation. The library's interior is intact — someone maintained it. Forty years of systematic observation, charted and cross-indexed. The Veil has been expanding for sixty years, not thirty. The official record begins at the founding of the Brightfall Council." }
+      ],
+      "nextPhase": "decode_archive"
+    },
+    {
+      "id": "decode_archive",
+      "label": "Decode the archive's encrypted final section",
+      "completeCondition": { "flag": "library_archive_decoded" },
+      "onComplete": [
+        { "type": "set_flag", "flag": "ash_plains_lore_known" },
+        { "type": "set_flag", "flag": "brightfall_council_compromised" },
+        { "type": "quest_log", "text": "The encrypted section contains names. Council members, Emberguard commanders, Ashen Veil operatives — a documented decade of coordination. The council did not simply fail to stop the Veil's expansion. It contracted to manage the expansion's rate and direction. This is the document that changes everything, if it reaches people who can act on it." }
+      ],
+      "nextPhase": "decide_archive_fate"
+    },
+    {
+      "id": "decide_archive_fate",
+      "label": "Decide what to do with the archive",
+      "completeCondition": {
+        "any": [
+          { "flag": "archive_shared_openly" },
+          { "flag": "archive_shared_selectively" },
+          { "flag": "archive_suppressed" }
+        ]
+      },
+      "onComplete": [
+        { "type": "quest_log", "text": "The archive's fate is decided. What follows from that decision will depend on who reads it, when, and what they choose to do." }
+      ],
+      "nextPhase": null
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "shared_openly",
+      "condition": { "flag": "archive_shared_openly" },
+      "effects": [
+        { "type": "faction_delta", "faction": "brightfall_council", "amount": -4 },
+        { "type": "faction_delta", "faction": "wanderers_guild", "amount": 2 },
+        { "type": "faction_delta", "faction": "iron_covenant", "amount": 1 },
+        { "type": "gold", "amount": 80 }
+      ]
+    },
+    {
+      "id": "shared_selectively",
+      "condition": { "flag": "archive_shared_selectively" },
+      "effects": [
+        { "type": "faction_delta", "faction": "thornwhisper_circle", "amount": 3 },
+        { "type": "faction_delta", "faction": "ancient_pact", "amount": 1 },
+        { "type": "gold", "amount": 120 }
+      ]
+    },
+    {
+      "id": "suppressed",
+      "condition": { "flag": "archive_suppressed" },
+      "effects": [
+        { "type": "faction_delta", "faction": "brightfall_council", "amount": 2 },
+        { "type": "gold", "amount": 200 }
+      ]
+    }
+  ]
+}

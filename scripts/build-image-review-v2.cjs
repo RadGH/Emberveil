@@ -66,6 +66,7 @@ function buildCharacters() {
   // visible on the Image Review V2 page next to the existing SpriteCook/
   // PixelLab versions. The script (openai-spritesheet-gen.py) writes
   // entries here on every run; this merge replays them after the rebuild.
+  // M518b — also includes openai-portrait entries (storyteller portraits).
   if (fs.existsSync(OPENAI_SIDECAR)) {
     try {
       const sc = JSON.parse(fs.readFileSync(OPENAI_SIDECAR, 'utf8'));
@@ -82,12 +83,44 @@ function buildCharacters() {
         });
         merged++;
       }
-      if (merged) console.log(`merged ${merged} openai sidecar entries`);
+      if (merged) console.log(`merged ${merged} openai sidecar entries (including storytellers)`);
     } catch (err) {
       console.warn('failed to read openai sidecar:', err.message);
     }
   }
   return out;
+}
+
+/**
+ * M518b — Storyteller portraits bucket.
+ * Extracted from the openai sidecar (source: 'openai-portrait', category: 'storyteller').
+ * Returned as a top-level array so image-review-v2.html can surface them as a
+ * distinct group above the character/enemy/companion list.
+ */
+function buildStorytellers() {
+  if (!fs.existsSync(OPENAI_SIDECAR)) return [];
+  try {
+    const sc = JSON.parse(fs.readFileSync(OPENAI_SIDECAR, 'utf8'));
+    return (sc.entries || [])
+      .filter(e => e.category === 'storyteller')
+      .map(e => ({
+        id: e.id,
+        category: 'storyteller',
+        group: e.group,
+        pose: e.pose || 'portrait',
+        file: e.file,
+        displayName: e.group
+          ? e.group.replace(/^storyteller_/, '').replace(/_/g, ' ')
+              .replace(/\b\w/g, c => c.toUpperCase())
+          : e.id,
+        prompt: e.prompt || null,
+        source: e.source || 'openai-portrait',
+        generatedAt: e.generatedAt || null,
+      }));
+  } catch (err) {
+    console.warn('failed to read openai sidecar for storytellers:', err.message);
+    return [];
+  }
 }
 
 function buildBackgrounds() {
@@ -160,6 +193,7 @@ function main() {
   }
   const data = {
     _meta: { generated: new Date().toISOString() },
+    storytellers: buildStorytellers(),
     characters: buildCharacters(),
     backgrounds: buildBackgrounds(),
     tap_weapons: buildTapWeapons(),
@@ -168,6 +202,7 @@ function main() {
   };
   fs.writeFileSync(OUT, JSON.stringify(data, null, 2) + '\n');
   console.log(`wrote ${OUT}`);
+  console.log(`  storytellers: ${data.storytellers.length}`);
   console.log(`  characters:   ${data.characters.length}`);
   console.log(`  backgrounds:  ${data.backgrounds.length}`);
   console.log(`  tap_weapons:  ${data.tap_weapons.length}`);

@@ -1,0 +1,1608 @@
+[
+  {
+    "id": "shrine_emberwood_fbikd8i_001",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The air sits thick here. Shadows flicker against the stone.",
+      "Something stirs in the silence — waiting."
+    ],
+    "choices": [
+      {
+        "id": "offer_silence",
+        "text": "Offer your silence. Speak nothing.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "tap_stone",
+        "text": "[Dexterity - DEX] Tap the stone lightly with your fingers.",
+        "skillCheck": {
+          "skill": "dexterity",
+          "stat": "DEX",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#whisper_response",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#nothing_happens",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave_quietly",
+        "text": "Back away without disturbing it.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "whisper_response": {
+        "lines": [
+          "A voice, thin as a wisp, whispers back.",
+          "\"You listen too closely, wanderer. Be careful.\""
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Withdraw. This isn't your place.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "nothing_happens": {
+        "lines": [
+          "The stone remains unresponsive. Only the wind moves.",
+          "Perhaps it is not ready for you."
+        ]
+      },
+      "}},{": "shrine_emberwood_fbikd8i_002",
+      "pool": "shrine",
+      "act": 1,
+      "biome": "emberwood",
+      "tone": "eerie",
+      "speaker": null,
+      "lines": [
+        "The flames flicker, casting strange shapes.",
+        "This shrine feels both alive and dead at once."
+      ],
+      "choices": [
+        {
+          "id": "poke_flame",
+          "text": "Poke the flame. See what happens.",
+          "next": null,
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        {
+          "id": "leave",
+          "text": "Leave it be. It's not worth the risk.",
+          "next": null,
+          "effects": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "shrine_emberwood_fbikd8i_003",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "Yasha eyes the shrine with unease.",
+      "\"I sense something restless here. We should tread carefully.\""
+    ],
+    "choices": [
+      {
+        "id": "examine",
+        "text": "Examine the shrine more closely.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "retreat",
+        "text": "Retreat and find a safer path.",
+        "next": null,
+        "effects": [
+          {
+            "type": "companion_approval",
+            "companionId": "yasha_stonewill",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shrine_ash_plains_fpno826_001",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": "bone_reader",
+    "lines": [
+      "The shrine is half-buried in ash.",
+      "Whispers linger here, insistent and wrong."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "[Perception - WIS] Examine the shrine closely.",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#discover_message",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#haunting_voices",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Step back and leave it undisturbed.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "discover_message": {
+        "lines": [
+          "A sigil emerges, hidden beneath the ash.",
+          "It speaks of something lost, something forgotten."
+        ],
+        "choices": [
+          {
+            "id": "mark_sigil",
+            "text": "Mark the sigil with your blood.",
+            "next": null,
+            "effects": [
+              {
+                "type": "faction_delta",
+                "faction": "ashen_veil",
+                "amount": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_ash_plains_fpno826_002",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": null,
+    "lines": [
+      "The stone is warm to the touch.",
+      "A low hum vibrates through the air."
+    ],
+    "choices": [
+      {
+        "id": "touch_stone",
+        "text": "Touch the stone and listen.",
+        "next": "#resonate",
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "Leave it be, too unsettling.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "resonate": {
+        "lines": [
+          "The hum shifts, forming shapes in the air.",
+          "Visions of ash clouds dance behind your eyes."
+        ],
+        "choices": [
+          {
+            "id": "document",
+            "text": "Note the visions in your journal.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_ash_plains_fpno826_003",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "This place troubles the soul.",
+      "Speak your intent or retreat."
+    ],
+    "choices": [
+      {
+        "id": "state_intent",
+        "text": "Declare your purpose here.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "retreat",
+        "text": "Turn back at the unease.",
+        "next": null,
+        "effects": [
+          {
+            "type": "companion_approval",
+            "companionId": "bram_coldfire",
+            "amount": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shrine_ash_plains_fpno826_004",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": null,
+    "lines": [
+      "Ash swirls around the shrine.",
+      "A faint glow flickers beneath the surface."
+    ],
+    "choices": [
+      {
+        "id": "scoop_ash",
+        "text": "Scoop some ash into a vial.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "kneel",
+        "text": "Kneel before the shrine and listen.",
+        "next": "#whispers_ash",
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "whispers_ash": {
+        "lines": [
+          "Soft voices murmur secrets of the past.",
+          "You discern a name: \"Eldran, the Forsaken.\""
+        ],
+        "choices": [
+          {
+            "id": "seek_eldran",
+            "text": "Pledge to seek this Eldran.",
+            "next": null,
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "lore_ash_origin_found"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_ember_hollow_g4lc1hz_001",
+    "pool": "shrine",
+    "act": 3,
+    "biome": "ember_hollow",
+    "tone": "corrupted",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The shrine is a husk, shadows flickering at its heart.",
+      "Something twisted feeds on the remnants of faith."
+    ],
+    "choices": [
+      {
+        "id": "examine",
+        "text": "[Perception - WIS] Inspect the shrine closely.",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "WIS",
+          "dc": 13
+        },
+        "onPass": {
+          "next": "#revealed",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#fading",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Step back. This place is lost.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "shrine_emberwood_gcul8ok_001",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The stone hums softly, an echo of prayers long forgotten.",
+      "Shadows flicker at the edges, shapes that should not be."
+    ],
+    "choices": [
+      {
+        "id": "offer_silence",
+        "text": "Offer your silence to the stone.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "whisper",
+        "text": "[Intellect - WIS] Whisper an old prayer.",
+        "skillCheck": {
+          "skill": "religion",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#prayer_heard",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#prayer_failed",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave it be, for now.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "prayer_heard": {
+        "lines": [
+          "A soft light blooms from the stone, warm and inviting.",
+          "The shadows recede, as if soothed by your words."
+        ]
+      },
+      "prayer_failed": {
+        "lines": [
+          "Your voice falters in the gloom, swallowed by the silence.",
+          "The shadows swirl, a displeased whisper in the night."
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_ash_plains_gj2njnh_001",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": "bone_reader",
+    "lines": [
+      "The ashes whisper secrets long forgotten.",
+      "This shrine feels like it remembers violence."
+    ],
+    "choices": [
+      {
+        "id": "offer_ash",
+        "text": "Leave a handful of ash on the stone.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "shrine_purified"
+          }
+        ]
+      },
+      {
+        "id": "examine",
+        "text": "[Perception - WIS] Inspect the shrine closely.",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#whispers_heard",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#nothing_found",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Step away, let it be forgotten.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "whispers_heard": {
+        "lines": [
+          "A voice echoes through the ashes. \"Remember us.\"",
+          "The way forward is clearer, but the cost is steep."
+        ]
+      },
+      "nothing_found": {
+        "lines": [
+          "The shrine remains cold. Nothing stirs in the ash.",
+          "Perhaps it holds nothing worthy of attention."
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_riftgate_he21hlv_001",
+    "pool": "shrine",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "corrupted",
+    "speaker": null,
+    "lines": [
+      "The shrine's edges bleed a thick, dark mist.",
+      "It shudders as if alive, whispering forgotten names."
+    ],
+    "choices": [
+      {
+        "id": "breathe_in",
+        "text": "[Wisdom - CON] Inhale the mist.",
+        "skillCheck": {
+          "skill": "wisdom",
+          "stat": "CON",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#whispers_heard",
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "ashen_veil",
+              "amount": 1
+            },
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#sickened",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Step back. Let it be.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "shrine_riftgate_he21hlv_002",
+    "pool": "shrine",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "corrupted",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "\"This place has forgotten itself. It waits for an offering.\"",
+      "A look of longing haunts the keeper's eyes."
+    ],
+    "choices": [
+      {
+        "id": "offer_life",
+        "text": "Offer a piece of your essence.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "memory_shrine_used"
+          }
+        ]
+      },
+      {
+        "id": "turn_away",
+        "text": "Refuse the offering. Walk away.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "shrine_emberwood_hm0qsje_001",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The flame flickers in an unnatural rhythm.",
+      "It seems to pulse, as if aware of your presence."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "[Perception - WIS] Examine the flame closely.",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#flame_speaks",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#flame_dims",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Step back, leave it be.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "flame_speaks": {
+        "lines": [
+          "A whisper escapes the flame, troubling yet melodic.",
+          "It speaks of forgotten truths in a tongue long lost."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Withdraw, mind spinning.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "flame_dims": {
+        "lines": [
+          "The flame flickers and wanes, as if it mourns your absence.",
+          "You feel a chill settle in the air."
+        ]
+      },
+      "nodes": {}
+    }
+  },
+  {
+    "id": "shrine_emberwood_hm0qsje_002",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "null",
+    "lines": [
+      "Twisted roots coil around the shrine's base.",
+      "A faint sound, like whispers, drifts through the air."
+    ],
+    "choices": [
+      {
+        "id": "listen",
+        "text": "Lean in closer to hear.",
+        "next": "#whispers_reveal",
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "Leave without investigating.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "whispers_reveal": {
+        "lines": [
+          "The whispers speak of a guardian. Something restless.",
+          "You sense the roots stir, almost alive."
+        ]
+      },
+      "nodes": {}
+    }
+  },
+  {
+    "id": "shrine_ember_hollow_hvir1005",
+    "pool": "shrine",
+    "act": 3,
+    "biome": "ember_hollow",
+    "tone": "corrupted",
+    "speaker": "elderwood_hermit",
+    "lines": [
+      "What was sacred decays in silence here.",
+      "You must confront the darkness left behind."
+    ],
+    "choices": [
+      {
+        "id": "face_darkness",
+        "text": "Engage with the remnants. Embrace their pain.",
+        "next": null,
+        "effects": [
+          {
+            "type": "faction_delta",
+            "faction": "ashen_veil",
+            "amount": 2
+          },
+          {
+            "type": "set_flag",
+            "flag": "shrine_purified"
+          }
+        ]
+      },
+      {
+        "id": "withdraw",
+        "text": "Retreat. This is not a fight worth having.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "shrine_emberwood_ic0g803_001",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The air here crackles with something old.",
+      "This shrine hasn't been venerated in years."
+    ],
+    "choices": [
+      {
+        "id": "offer_flame",
+        "text": "Light a candle as an offering.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "shrine_purified"
+          }
+        ]
+      },
+      {
+        "id": "approach",
+        "text": "[Wisdom - CON] Step closer and listen.",
+        "skillCheck": {
+          "skill": "wisdom",
+          "stat": "CON",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#hear_whispers",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#failure",
+          "effects": []
+        },
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "shrine_emberwood_ic0g803_002",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": null,
+    "lines": [
+      "The stone feels cold. Shadows seem to shift.",
+      "Something watches from the trees."
+    ],
+    "choices": [
+      {
+        "id": "ignore",
+        "text": "Leave it be.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "examine",
+        "text": "Search for markings on the shrine.",
+        "next": "#markings_found",
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "markings_found": {
+        "lines": [
+          "You find faded runes, whispering ancient secrets.",
+          "This place holds more than mere stone."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Back away, feeling unsettled.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_emberwood_ic0g803_003",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "I can feel it, the earth trembles here.",
+      "Something is bound to this shrine."
+    ],
+    "choices": [
+      {
+        "id": "offer_blood",
+        "text": "Offer a drop of blood.",
+        "next": null,
+        "effects": [
+          {
+            "type": "faction_delta",
+            "faction": "ancient_pact",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "id": "leave",
+        "text": "Retreat, this feels wrong.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "shrine_emberwood_ic0g803_004",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": null,
+    "lines": [
+      "The shrine is covered in moss, yet it hums.",
+      "You feel a pull, inviting you closer."
+    ],
+    "choices": [
+      {
+        "id": "touch",
+        "text": "Reach out and touch the stone.",
+        "next": "#stone_whispers",
+        "effects": []
+      },
+      {
+        "id": "observe",
+        "text": "Stand back and just watch.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "stone_whispers": {
+        "lines": [
+          "A voice echoes in your mind, fragmented and lost.",
+          "You hear words of warning, but they fade too quickly."
+        ],
+        "choices": [
+          {
+            "id": "retreat",
+            "text": "Pull back, shaken.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_emberwood_ic0g803_005",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "captain_maer",
+    "lines": [
+      "This shrine is a remnant of better days.",
+      "Its power wanes, yet it still calls."
+    ],
+    "choices": [
+      {
+        "id": "invoke",
+        "text": "[Arcana - INT] Attempt to invoke its power.",
+        "skillCheck": {
+          "skill": "arcana",
+          "stat": "INT",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#power_found",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#power_fades",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Walk away from it, uneasy.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "shrine_ash_plains_imb4g64_001",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": "bone_reader",
+    "lines": [
+      "The shrine stands alone, surrounded by charred remnants.",
+      "Something watches from within the ashes, beyond sight."
+    ],
+    "choices": [
+      {
+        "id": "approach",
+        "text": "Move closer to the shrine.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "inspect",
+        "text": "[Perception - WIS] Look for signs of life.",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#hidden_eyes",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#nothing_found",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Back away slowly.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "hidden_eyes": {
+        "lines": [
+          "You catch a glimpse — flares of movement behind the stones.",
+          "Whatever watches, it knows you."
+        ]
+      },
+      "nothing_found": {
+        "lines": [
+          "The ash holds still. No signs of life to be seen.",
+          "Only the wind whispers here."
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_emberwood_jiyu3ef_001",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The air stills. This shrine feels abandoned, though the stone thrums."
+    ],
+    "choices": [
+      {
+        "id": "whisper",
+        "text": "[Wisdom - WIS] Whisper an old prayer.",
+        "skillCheck": {
+          "skill": "religion",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#whispered",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#failed_whisper",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave. It’s not worth the risk.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "whispered": {
+        "lines": [
+          "A flicker of warmth in the cold stone. It knows your voice."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Depart with a sense of relief.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "failed_whisper": {
+        "lines": [
+          "The words fizzle in the air. There's a disquieting silence."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Step back; something feels wrong.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_emberwood_jiyu3ef_002",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": null,
+    "lines": [
+      "A chill runs through the wood. The shrine stands, cracked and weathered.",
+      "Something watches from the shadows."
+    ],
+    "choices": [
+      {
+        "id": "inspect",
+        "text": "Inspect the shrine closely.",
+        "next": "#shrine_inspection",
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "Leave it alone. It’s watching you.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "shrine_inspection": {
+        "lines": [
+          "The stone is cool to the touch. Symbols shift under your fingers, unsettling."
+        ],
+        "choices": [
+          {
+            "id": "mark",
+            "text": "[Intellect - INT] Mark the symbols down.",
+            "skillCheck": {
+              "skill": "arcana",
+              "stat": "INT",
+              "dc": 10
+            },
+            "onPass": {
+              "next": null,
+              "effects": [
+                {
+                  "type": "set_flag",
+                  "flag": "memory_shrine_used"
+                }
+              ]
+            },
+            "onFail": {
+              "next": null,
+              "effects": []
+            }
+          },
+          {
+            "id": "go",
+            "text": "Step away cautiously.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_emberwood_jiyu3ef_003",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "The shrine's energy is thick. I can almost hear it chanting.",
+      "Best not linger, unless you want to share its secrets."
+    ],
+    "choices": [
+      {
+        "id": "stay",
+        "text": "Stay and listen closely.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Move on. Secrets can be dangerous.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {}
+  },
+  {
+    "id": "shrine_emberwood_jiyu3ef_004",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": null,
+    "lines": [
+      "The shrine's glow pulses weakly in the dusk.",
+      "You sense a presence, twisting and writhing."
+    ],
+    "choices": [
+      {
+        "id": "invoke",
+        "text": "[Religion - CON] Invoke the old spirits.",
+        "skillCheck": {
+          "skill": "religion",
+          "stat": "CON",
+          "dc": 13
+        },
+        "onPass": {
+          "next": "#invocation_success",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#invocation_failure",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "back_off",
+        "text": "Back away slowly.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "invocation_success": {
+        "lines": [
+          "The glow intensifies; a fleeting whisper of gratitude brushes against you."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Withdraw, feeling a weight lift.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "invocation_failure": {
+        "lines": [
+          "The energy snaps back, a cold shivering through you. Shadows flicker.",
+          "You are not welcome here."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Flee from the shrine.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_emberwood_jiyu3ef_005",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "elderwood_hermit",
+    "lines": [
+      "The shrine is a mouth waiting for offerings.",
+      "You can fill it or you can leave, but it will hunger."
+    ],
+    "choices": [
+      {
+        "id": "offer_item",
+        "text": "Offer a small token. (5 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -5
+          },
+          {
+            "type": "set_flag",
+            "flag": "shrine_purified"
+          }
+        ]
+      },
+      {
+        "id": "deny",
+        "text": "Deny its call and walk away.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "shrine_ash_plains_k7gum6q_001",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": "bone_reader",
+    "lines": [
+      "The shrine is cracked, its surface warm to the touch.",
+      "Ash swirls around it like whispers, caught in a breeze."
+    ],
+    "choices": [
+      {
+        "id": "listen",
+        "text": "[Wisdom - CON] Try to listen closely.",
+        "skillCheck": {
+          "skill": "wisdom",
+          "stat": "CON",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#echoes_clear",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#echoes_muffled",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "offer_ash",
+        "text": "Leave a handful of ash as tribute.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "shrine_purified"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shrine_ash_plains_k7gum6q_002",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": null,
+    "lines": [
+      "The shrine's heartstone pulses faintly.",
+      "A memory stirs, lost in the haze of time."
+    ],
+    "choices": [
+      {
+        "id": "touch",
+        "text": "Touch the heartstone.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "memory_shrine_used"
+          }
+        ]
+      },
+      {
+        "id": "ignore",
+        "text": "Leave it be.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "shrine_ember_hollow_zdpq1_001",
+    "pool": "shrine",
+    "act": 3,
+    "biome": "ember_hollow",
+    "tone": "corrupted",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The stone pulses with a sickly glow.",
+      "This place once sang; now it whispers lies."
+    ],
+    "choices": [
+      {
+        "id": "cleanse",
+        "text": "[Religion - INT] Attempt a cleansing ritual.",
+        "skillCheck": {
+          "skill": "religion",
+          "stat": "INT",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#cleansed",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#backlash",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Leave it. This place is cursed.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "shrine_emberwood_kj3ke5m_001",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The air thickens here, treading close to something unspoken.",
+      "The shrine flickers, as if caught between realms."
+    ],
+    "choices": [
+      {
+        "id": "offer_incense",
+        "text": "Offer incense to the shrine. (5 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -5
+          },
+          {
+            "type": "set_flag",
+            "flag": "shrine_purified"
+          }
+        ]
+      },
+      {
+        "id": "whisper",
+        "text": "[Intellect - WIS] Whisper a question into the shadows.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#echo_answer",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#silence",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "leave",
+        "text": "Step back and leave it undisturbed.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "echo_answer": {
+        "lines": [
+          "A faint voice returns, echoing your query but never fully forming.",
+          "It lingers like smoke, leaving you unsettled."
+        ]
+      },
+      "silence": {
+        "lines": [
+          "The silence weighs heavy, pressing down like a shroud.",
+          "Nothing stirs, and the air feels colder."
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_emberwood_kj3ke5m_002",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "null",
+    "lines": [
+      "The shrine stands forlorn, wrapped in creeping vines.",
+      "A chill seeps from the stone, as if it remembers."
+    ],
+    "choices": [
+      {
+        "id": "touch",
+        "text": "Reach out to touch the stone.",
+        "next": "#cold_touch",
+        "effects": []
+      },
+      {
+        "id": "inspect",
+        "text": "Kneel and inspect the shrine closely.",
+        "next": "#hidden_markings",
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "cold_touch": {
+        "lines": [
+          "The stone is frigid, sending shocks up your arm.",
+          "An uninvited memory flashes — lost names, forgotten oaths."
+        ]
+      },
+      "hidden_markings": {
+        "lines": [
+          "You catch sight of faint markings, almost obscured by time.",
+          "They tell stories, but the language is not your own."
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_ash_plains_n0c8xbb_001",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": null,
+    "lines": [
+      "The shrine is covered in ash, almost indistinguishable from the ground.",
+      "A faint glow pulses beneath the soot, beckoning attention."
+    ],
+    "choices": [
+      {
+        "id": "inspect",
+        "text": "Kneel and inspect the shrine closely.",
+        "next": "#ash_lingers",
+        "effects": []
+      },
+      {
+        "id": "ignore",
+        "text": "Leave the shrine undisturbed.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "ash_lingers": {
+        "lines": [
+          "The ash shifts as you touch it, revealing ancient symbols below.",
+          "They flicker like dying embers, tinged with dark promise."
+        ],
+        "choices": [
+          {
+            "id": "leave",
+            "text": "Withdraw your hand. This is no place for curiosity.",
+            "next": null,
+            "effects": []
+          },
+          {
+            "id": "trace_symbols",
+            "text": "[Intellect - WIS] Attempt to trace the symbols.",
+            "skillCheck": {
+              "skill": "intellect",
+              "stat": "WIS",
+              "dc": 12
+            },
+            "onPass": {
+              "next": "#symbols_revealed",
+              "effects": [
+                {
+                  "type": "set_flag",
+                  "flag": "lore_ash_origin_found"
+                }
+              ]
+            },
+            "onFail": {
+              "next": "#symbols_fade",
+              "effects": []
+            }
+          },
+          {
+            "id": "invoke",
+            "text": "Call upon the remnants of the shrine.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "symbols_revealed": {
+        "lines": [
+          "The symbols glow brighter, whispering secrets of the past.",
+          "A fleeting vision of fire and ash floods your mind."
+        ]
+      },
+      "symbols_fade": {
+        "lines": [
+          "The symbols dim, their meaning slipping away like smoke.",
+          "Nothing more remains but the ash and silence."
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_ash_plains_n0c8xbb_002",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": "bone_reader",
+    "lines": [
+      "The bone-reader watches the shrine with a knowing gaze.",
+      "\"It remembers the fire, but not the flame. Something stirs here.\""
+    ],
+    "choices": [
+      {
+        "id": "wait",
+        "text": "Wait for something to happen.",
+        "next": "#waiting",
+        "effects": []
+      },
+      {
+        "id": "desecrate",
+        "text": "Desecrate the shrine. It deserves no reverence.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "shrine_smashed"
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "waiting": {
+        "lines": [
+          "Time stretches as you hold your breath, waiting for the unknown.",
+          "A pulse beneath the ash grows faint, then still."
+        ]
+      },
+      "waiting_failure": {
+        "lines": [
+          "Nothing comes. The shrine remains silent, a hollow memory."
+        ]
+      }
+    }
+  },
+  {
+    "id": "shrine_ash_plains_n0c8xbb_003",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "Yasha kneels, studying the crumbling shrine with dismay.",
+      "\"The land mourns here, lost in its own sorrow. What can we do?\""
+    ],
+    "choices": [
+      {
+        "id": "offer",
+        "text": "Offer a small token of your own ash.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "shrine_purified"
+          }
+        ]
+      },
+      {
+        "id": "consult",
+        "text": "Consult Yasha on the best course of action.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  }
+]

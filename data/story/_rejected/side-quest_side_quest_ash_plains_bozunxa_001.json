@@ -1,0 +1,18 @@
+{
+  "node": {
+    "id": "side_quest_ash_plains_bozunxa_001",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "bone_reader",
+    "lines": [
+      "The bones speak of a lost caravan.",
+      "It passed through here, near the hollow."
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:05:18.574Z"
+}

@@ -1,0 +1,126 @@
+{
+  "id": "primary_act2_veilscar",
+  "category": "primary",
+  "act": 2,
+  "title": "What the Veil Remembers",
+  "summary": "The Veilscar is not a region — it is an open wound. The Herald operates here, and the Herald has been expecting someone to come. The party's Act 1 choices shape which doors are open and which are already locked.",
+  "startCondition": { "flag": "act2_started" },
+  "phases": [
+    {
+      "id": "enter_veilscar",
+      "label": "Cross into the Veilscar region",
+      "completeCondition": { "flag": "veilscar_entered" },
+      "onComplete": [
+        { "type": "set_flag", "flag": "veilscar_faction_path_chosen" },
+        { "type": "faction_delta", "faction": "ashen_veil", "amount": -1 },
+        { "type": "quest_log", "text": "The Veilscar is worse than the reports. The ash is not falling — it is rising. The cult presence is visible, organized, and expecting trouble. The Herald's network has had months to prepare. The party has had the journey here." }
+      ],
+      "nextPhase": "identify_herald_network"
+    },
+    {
+      "id": "identify_herald_network",
+      "label": "Map the Herald's operation — supply lines, safehouses, cell structure",
+      "completeCondition": { "flag": "herald_network_mapped" },
+      "onComplete": [
+        { "type": "set_flag", "flag": "ash_scroll_location_known" },
+        { "type": "faction_delta", "faction": "thornwhisper_circle", "amount": 2 },
+        { "type": "quest_log", "text": "The Thornwhisper Circle's operative Nessa Sorroway has been building the same map for eighteen months. She shares it — or parts of it, carefully calibrated to what she has decided the party needs. The Herald is running three simultaneous operations. One of them is visible. Two are not." }
+      ],
+      "nextPhase": "choose_faction_approach_act2"
+    },
+    {
+      "id": "choose_faction_approach_act2",
+      "label": "Align with a faction strategy to penetrate the Herald's inner operations",
+      "completeCondition": {
+        "any": [
+          { "flag": "act2_emberguard_approach" },
+          { "flag": "act2_thornwhisper_approach" },
+          { "flag": "act2_oathless_approach" },
+          { "flag": "act2_independent_approach" }
+        ]
+      },
+      "onComplete": [
+        { "type": "quest_log", "text": "The approach is set. Every faction has something useful and something they want in return. The Herald will notice eventually — the question is how much work can be done before that." }
+      ],
+      "nextPhase": "disrupt_herald_operations"
+    },
+    {
+      "id": "disrupt_herald_operations",
+      "label": "Disrupt at least two of the Herald's three active operations",
+      "completeCondition": { "flag": "herald_ops_disrupted" },
+      "onComplete": [
+        { "type": "inc_counter", "counter": "worldCorruption", "amount": 5 },
+        { "type": "faction_delta", "faction": "ashen_veil", "amount": -3 },
+        { "type": "quest_log", "text": "Two operations are down. The third — the one involving the Plague Fen samples — is still running, and now the Herald knows the party is here. The quality of the response makes it clear: the Herald is not improvising." }
+      ],
+      "nextPhase": "find_sovereign_connection"
+    },
+    {
+      "id": "find_sovereign_connection",
+      "label": "Discover the link between the Herald and the Sovereign",
+      "completeCondition": { "flag": "sovereign_crown_intact" },
+      "onComplete": [
+        { "type": "set_flag", "flag": "riftgate_breached" },
+        { "type": "faction_delta", "faction": "ancient_pact", "amount": 2 },
+        { "type": "quest_log", "text": "The connection is not a chain of command. The Herald is not taking orders — the Herald is building something for the Sovereign that the Sovereign cannot build from inside the Rift. The Sovereign's Crown artifact is real, and it is almost complete." }
+      ],
+      "nextPhase": "confront_herald"
+    },
+    {
+      "id": "confront_herald",
+      "label": "Confront the Ashen Veil Herald",
+      "completeCondition": {
+        "any": [
+          { "flag": "herald_defeated" },
+          { "flag": "herald_escaped" },
+          { "flag": "herald_turned" }
+        ]
+      },
+      "onComplete": [
+        { "type": "set_flag", "flag": "act2_primary_complete" },
+        { "type": "quest_log", "text": "The Herald is resolved. The Crown is not complete — but the Sovereign is no longer waiting patiently. Whatever comes next will come from inside the Riftgate." }
+      ],
+      "nextPhase": "open_route_act3"
+    },
+    {
+      "id": "open_route_act3",
+      "label": "Secure the route to the Riftgate",
+      "completeCondition": { "flag": "act2_route_open" },
+      "onComplete": [
+        { "type": "set_flag", "flag": "act3_started" },
+        { "type": "unlock_map_transition", "targetMap": "act3_riftgate" },
+        { "type": "world_mutation", "id": "ember_hollow_destabilized" },
+        { "type": "quest_log", "text": "The Riftgate is ahead. The Sovereign's influence is already bleeding past it. The party goes forward." }
+      ],
+      "nextPhase": null
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "herald_defeated_act2",
+      "condition": { "all": [{ "flag": "herald_defeated" }, { "flag": "act2_route_open" }] },
+      "effects": [
+        { "type": "set_flag", "flag": "act2_completed" },
+        { "type": "faction_delta", "faction": "emberguard", "amount": 1 },
+        { "type": "gold", "amount": 200 }
+      ]
+    },
+    {
+      "id": "herald_escaped_act2",
+      "condition": { "all": [{ "flag": "herald_escaped" }, { "flag": "act2_route_open" }] },
+      "effects": [
+        { "type": "set_flag", "flag": "act2_completed" },
+        { "type": "gold", "amount": 100 }
+      ]
+    },
+    {
+      "id": "herald_turned_act2",
+      "condition": { "all": [{ "flag": "herald_turned" }, { "flag": "act2_route_open" }] },
+      "effects": [
+        { "type": "set_flag", "flag": "act2_completed" },
+        { "type": "faction_delta", "faction": "thornwhisper_circle", "amount": 2 },
+        { "type": "gold", "amount": 150 }
+      ]
+    }
+  ]
+}

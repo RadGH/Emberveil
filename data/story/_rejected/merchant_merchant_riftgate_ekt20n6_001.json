@@ -1,0 +1,81 @@
+{
+  "node": {
+    "id": "merchant_riftgate_ekt20n6_001",
+    "pool": "merchant",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "desperate",
+    "speaker": "brightfall_innkeeper",
+    "lines": [
+      "Rations are scarce. I've only got a few left.",
+      "Take what you can carry, but it's going fast."
+    ],
+    "choices": [
+      {
+        "id": "buy_rations",
+        "text": "Buy a basic supply kit. (30 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -30
+          },
+          {
+            "type": "grant_item",
+            "itemId": "travel_rations"
+          }
+        ]
+      },
+      {
+        "id": "haggle",
+        "text": "[Diplomacy - INT] Try to get a lower price.",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "INT",
+          "dc": 13
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -25
+            },
+            {
+              "type": "grant_item",
+              "itemId": "travel_rations"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "gold_delta",
+              "amount": -30
+            }
+          ]
+        }
+      },
+      {
+        "id": "donate",
+        "text": "Buy some for the travelers behind you.",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -60
+          },
+          {
+            "type": "grant_item",
+            "itemId": "travel_rations"
+          }
+        ]
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"haggle\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:07:51.366Z"
+}

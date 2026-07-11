@@ -1,0 +1,18 @@
+{
+  "node": {
+    "id": "faction_riftgate_fursr66_001",
+    "pool": "faction",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "conflicted",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "The air thrums with tension. \"This place... it feels wrong. Are we really ready for this?\"",
+      "Her hands tremble slightly, unsure."
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:08:27.074Z"
+}

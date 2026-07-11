@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-05-20T05:10:20.301Z"
+    "generated": "2026-05-21T23:04:09.816Z"
   },
   "tools": [
     {
@@ -198,7 +198,7 @@
       "desc": "Unified image catalog + pending-review queue. Replaces image-review.html and character-redesign.html.",
       "tag": "devtool",
       "milestone": "",
-      "updated": "2026-05-14",
+      "updated": "2026-05-21",
       "deprecated": false
     },
     {
@@ -207,7 +207,7 @@
       "desc": "(no description — add one in tools-meta.json)",
       "tag": "devtool",
       "milestone": "",
-      "updated": "2026-05-13",
+      "updated": "2026-05-21",
       "deprecated": false
     },
     {
@@ -253,6 +253,15 @@
       "tag": "docs",
       "milestone": "",
       "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Quest Graph",
+      "href": "quest-graph.html",
+      "desc": "(no description — add one in tools-meta.json)",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-05-21",
       "deprecated": false
     },
     {
@@ -361,6 +370,42 @@
       "tag": "devtool",
       "milestone": "",
       "updated": "2026-04-29",
+      "deprecated": false
+    },
+    {
+      "name": "Story Campaign Sim",
+      "href": "story-campaign-sim.html",
+      "desc": "(no description — add one in tools-meta.json)",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-05-21",
+      "deprecated": false
+    },
+    {
+      "name": "Story Dialog Review",
+      "href": "story-dialog-review.html",
+      "desc": "(no description — add one in tools-meta.json)",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-05-21",
+      "deprecated": false
+    },
+    {
+      "name": "Story Inspector",
+      "href": "story-inspector.html",
+      "desc": "(no description — add one in tools-meta.json)",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-05-21",
+      "deprecated": false
+    },
+    {
+      "name": "Storyteller Balance",
+      "href": "storyteller-balance.html",
+      "desc": "(no description — add one in tools-meta.json)",
+      "tag": "devtool",
+      "milestone": "",
+      "updated": "2026-05-21",
       "deprecated": false
     },
     {

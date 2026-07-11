@@ -1,0 +1,76 @@
+{
+  "node": {
+    "id": "lore_library_ruins_c6l3f1q_001",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "bone_reader",
+    "lines": [
+      "Dusty tomes line the shelves, pages fluttering as if alive.",
+      "One book bears the sigil of the Ashen Veil, its content dark and twisting. "
+    ],
+    "choices": [
+      {
+        "id": "read_book",
+        "text": "[Intellect - INT] Open the book cautiously.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#book_pass",
+          "effects": [
+            {
+              "type": "lore_unlock",
+              "loreId": "lore_ashen_veil_secrets_001"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#book_fail",
+          "effects": []
+        }
+      },
+      {
+        "id": "ignore_book",
+        "text": "Leave it closed, move on.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "book_pass": {
+        "lines": [
+          "A passage reveals part of the Veil's true purpose, unsettling yet enlightening."
+        ],
+        "choices": [
+          {
+            "id": "record",
+            "text": "Make a mental note of it.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "book_fail": {
+        "lines": [
+          "A gust of wind slams the book shut, as if warning you away."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Step back and breathe.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"read_book\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:05:47.674Z"
+}

@@ -1,0 +1,104 @@
+{
+  "node": {
+    "id": "merchant_ash_plains_bm7z25t_005",
+    "pool": "merchant",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "wry",
+    "speaker": "bone_reader",
+    "lines": [
+      "I sell stories, secrets, and perhaps a few trinkets. Everyone wants something.",
+      "What's your interest today?"
+    ],
+    "choices": [
+      {
+        "id": "buy_story",
+        "text": "Buy a story for 10 gold.",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -10
+          },
+          {
+            "type": "grant_item",
+            "itemId": "tale_of_ashes"
+          }
+        ]
+      },
+      {
+        "id": "ask_secrets",
+        "text": "[Occult - INT] What secrets do you know?",
+        "skillCheck": {
+          "skill": "occult",
+          "stat": "INT",
+          "dc": 13
+        },
+        "onPass": {
+          "next": "#revealed_secret",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#no_secret",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Walk away from this deal.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "revealed_secret": {
+        "lines": [
+          "\"The Veil's influence grows. Most don’t see it, but you will.\""
+        ],
+        "choices": [
+          {
+            "id": "buy",
+            "text": "Buy a story, regardless.",
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -10
+              },
+              {
+                "type": "grant_item",
+                "itemId": "tale_of_ashes"
+              }
+            ]
+          }
+        ]
+      },
+      "no_secret": {
+        "lines": [
+          "\"Secrets are earned, not given freely. Pay or leave.\""
+        ],
+        "choices": [
+          {
+            "id": "buy",
+            "text": "Buy a story anyway.",
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -10
+              },
+              {
+                "type": "grant_item",
+                "itemId": "tale_of_ashes"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"ask_secrets\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:06:05.334Z"
+}

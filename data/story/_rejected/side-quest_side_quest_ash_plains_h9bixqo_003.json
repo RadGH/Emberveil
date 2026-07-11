@@ -1,0 +1,42 @@
+{
+  "node": {
+    "id": "side_quest_ash_plains_h9bixqo_003",
+    "pool": "side-quest",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "grim",
+    "speaker": "bram_coldfire",
+    "lines": [
+      "The ash burns differently. It feels alive.",
+      "I need someone to gather samples from the deeper fields."
+    ],
+    "choices": [
+      {
+        "id": "collect",
+        "text": "Agree to gather samples.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_sample_ash",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "ash_samples_active"
+          }
+        ]
+      },
+      {
+        "id": "refuse",
+        "text": "\"Not worth the risk.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "unknown flag \"ash_samples_active\" in effect"
+  ],
+  "rejectedAt": "2026-05-21T00:09:45.823Z"
+}

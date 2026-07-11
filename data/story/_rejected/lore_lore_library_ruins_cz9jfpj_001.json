@@ -1,0 +1,62 @@
+{
+  "node": {
+    "id": "lore_library_ruins_cz9jfpj_001",
+    "pool": "lore",
+    "act": 2,
+    "biome": "library_ruins",
+    "tone": "revelatory",
+    "speaker": "lyra_ashwalker",
+    "lines": [
+      "The shelves here still whisper, if you listen closely.",
+      "They remember knowledge lost to time, fragments of what once was."
+    ],
+    "choices": [
+      {
+        "id": "search",
+        "text": "[Intellect - INT] Search the shelves for anything useful.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#found_scroll",
+          "effects": [
+            {
+              "type": "grant_item",
+              "itemId": "ancient_scroll"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#nothing_found",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Leave the whispers behind and move on.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "found_scroll": {
+        "lines": [
+          "You unearth a scroll, its parchment brittle and delicate.",
+          "The ink spells out practices long forgotten, tied to the Veil."
+        ]
+      },
+      "nothing_found": {
+        "lines": [
+          "Just dust and decay. The knowledge here is better lost than found.",
+          "Some secrets were never meant to resurface."
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"search\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:06:20.788Z"
+}

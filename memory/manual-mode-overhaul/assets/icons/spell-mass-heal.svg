@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Mass Heal — droplet cross with ring-of-six AoE peripheral -->
+  <!-- Central droplet (smaller to leave room for peripheral) -->
+  <path d="M16 11c-3 4-4 7-4 9a4 4 0 0 0 8 0c0-2-1-5-4-9z"/>
+  <!-- Inner cross -->
+  <path d="M14 19h4"/>
+  <path d="M16 17v4"/>
+  <!-- All-AoE peripheral: ring of 6 dots at r=13 from center -->
+  <circle cx="16" cy="3"    r="1.5" fill="currentColor" stroke="none"/>
+  <circle cx="27" cy="9.5"  r="1.5" fill="currentColor" stroke="none"/>
+  <circle cx="27" cy="22.5" r="1.5" fill="currentColor" stroke="none"/>
+  <circle cx="16" cy="29"   r="1.5" fill="currentColor" stroke="none"/>
+  <circle cx="5"  cy="22.5" r="1.5" fill="currentColor" stroke="none"/>
+  <circle cx="5"  cy="9.5"  r="1.5" fill="currentColor" stroke="none"/>
+</svg>

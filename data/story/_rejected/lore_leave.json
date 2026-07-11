@@ -1,0 +1,16 @@
+{
+  "node": {
+    "id": "leave",
+    "text": "Move on; there's little to gain here.",
+    "effects": []
+  },
+  "validationErrors": [
+    "missing pool",
+    "pool mismatch: got \"undefined\" expected \"lore\"",
+    "act must be integer",
+    "unknown biome: \"undefined\"",
+    "lines must be non-empty array",
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:09:01.477Z"
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Holy Strike — sword with radiant cross embedded at hilt, single target -->
+  <!-- Blade -->
+  <path d="M10 24L22 9"/>
+  <!-- Tip glint -->
+  <path d="M19 8l4-1-1 4"/>
+  <!-- Crossguard (horizontal) -->
+  <path d="M12 21L10 17M14 17L12 21"/>
+  <!-- Radiant cross at hilt -->
+  <path d="M13 20l-3-3"/>
+  <path d="M11 17h4"/>
+  <path d="M13 15v4"/>
+  <!-- Radiant rays emanating from cross -->
+  <path d="M10 14l-2-2M10 18l-3 0M12 13l0-3M16 17l3 0"/>
+  <!-- Divine glow ring (partial circle around the cross) -->
+  <path d="M10 12a5 5 0 0 1 6 5" stroke-width="1" stroke-dasharray="1.5 1"/>
+</svg>

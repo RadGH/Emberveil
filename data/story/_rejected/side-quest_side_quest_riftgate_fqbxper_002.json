@@ -1,0 +1,18 @@
+{
+  "node": {
+    "id": "side_quest_riftgate_fqbxper_002",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "bram_coldfire",
+    "lines": [
+      "We need to breach the gate with more than steel.",
+      "Find the lost sigils, or we risk our lives."
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:08:26.822Z"
+}

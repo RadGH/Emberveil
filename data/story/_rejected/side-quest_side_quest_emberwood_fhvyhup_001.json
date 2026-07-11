@@ -1,0 +1,42 @@
+{
+  "node": {
+    "id": "side_quest_emberwood_fhvyhup_001",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "wary",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "Something's not right. Heard whispers in the trees.",
+      "We lost two of ours last night. We need help."
+    ],
+    "choices": [
+      {
+        "id": "agree",
+        "text": "Agree to investigate the area.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_investigate_whispers",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "whispers_active"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "\"Not our problem.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "unknown flag \"whispers_active\" in effect"
+  ],
+  "rejectedAt": "2026-05-21T00:08:11.866Z"
+}

@@ -1,0 +1,48 @@
+{
+  "node": {
+    "id": "shrine_emberwood_ic0g803_001",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The air here crackles with something old.",
+      "This shrine hasn't been venerated in years."
+    ],
+    "choices": [
+      {
+        "id": "offer_flame",
+        "text": "Light a candle as an offering.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "shrine_purified"
+          }
+        ]
+      },
+      {
+        "id": "approach",
+        "text": "[Wisdom - CON] Step closer and listen.",
+        "skillCheck": {
+          "skill": "wisdom",
+          "stat": "CON",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#hear_whispers",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#failure",
+          "effects": []
+        }
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"approach\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:10:32.710Z"
+}

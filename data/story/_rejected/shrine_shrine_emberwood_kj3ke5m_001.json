@@ -1,0 +1,72 @@
+{
+  "node": {
+    "id": "shrine_emberwood_kj3ke5m_001",
+    "pool": "shrine",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "eerie",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The air thickens here, treading close to something unspoken.",
+      "The shrine flickers, as if caught between realms."
+    ],
+    "choices": [
+      {
+        "id": "offer_incense",
+        "text": "Offer incense to the shrine. (5 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -5
+          },
+          {
+            "type": "set_flag",
+            "flag": "shrine_purified"
+          }
+        ]
+      },
+      {
+        "id": "whisper",
+        "text": "[Intellect - WIS] Whisper a question into the shadows.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#echo_answer",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#silence",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Step back and leave it undisturbed.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "echo_answer": {
+        "lines": [
+          "A faint voice returns, echoing your query but never fully forming.",
+          "It lingers like smoke, leaving you unsettled."
+        ]
+      },
+      "silence": {
+        "lines": [
+          "The silence weighs heavy, pressing down like a shroud.",
+          "Nothing stirs, and the air feels colder."
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"whisper\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:13:57.518Z"
+}

@@ -1,0 +1,6 @@
+{
+  "relaxed":   { "budgetMult": 0.75 },
+  "normal":    { "budgetMult": 1.0 },
+  "hard":      { "budgetMult": 1.25 },
+  "nightmare": { "budgetMult": 1.5 }
+}

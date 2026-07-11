@@ -1,0 +1,1699 @@
+[
+  {
+    "id": "ambush_plague_fen_7twm9sh_001",
+    "pool": "ambush",
+    "act": 2,
+    "biome": "plague_fen",
+    "tone": "hostile",
+    "speaker": "plague_harvesters",
+    "lines": [
+      "You walk among the dead. Pay the price, or become one of them.",
+      "The Harvesters demand a toll."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your weapons.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "plague_harvester",
+              "plague_harvester"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pay_toll",
+        "text": "Pay the toll. (30 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -30
+          },
+          {
+            "type": "faction_delta",
+            "faction": "plague_harvesters",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_plague_fen_7twm9sh_002",
+    "pool": "ambush",
+    "act": 2,
+    "biome": "plague_fen",
+    "tone": "hostile",
+    "speaker": "plague_harvesters",
+    "lines": [
+      "You think this place is safe?",
+      "You’ll bleed for trespassing."
+    ],
+    "choices": [
+      {
+        "id": "run",
+        "text": "Turn and flee into the mist.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "plague_fen_quarantine"
+          }
+        ]
+      },
+      {
+        "id": "fight",
+        "text": "Prepare to fight.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "plague_harvester",
+              "plague_harvester",
+              "plague_wretch"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_plague_fen_7twm9sh_003",
+    "pool": "ambush",
+    "act": 2,
+    "biome": "plague_fen",
+    "tone": "hostile",
+    "speaker": "null",
+    "lines": [
+      "A figure steps from the shadows, covered in rot and grime.",
+      "\"Strangers roam the Fen? I’ll collect my due.\""
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Engage the figure.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "plague_wretch"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "deceive",
+        "text": "[Deception - CHA] Pretend to be lost.",
+        "skillCheck": {
+          "skill": "deception",
+          "stat": "CHA",
+          "dc": 14
+        },
+        "onPass": {
+          "next": "#deceived",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "plague_wretch"
+              ]
+            }
+          ]
+        },
+        "effects": []
+      },
+      {
+        "id": "pay_toll",
+        "text": "Offer a gold coin to pass.",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -10
+          },
+          {
+            "type": "faction_delta",
+            "faction": "plague_harvesters",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "deceived": {
+        "lines": [
+          "The figure narrows its eyes, considering.",
+          "\"Very well. But beware the dark paths you tread.\""
+        ],
+        "choices": [
+          {
+            "id": "leave",
+            "text": "Leave the area cautiously.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ambush_riftgate_8ucafl1_001",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "hostile",
+    "speaker": "ashen_veil_herald",
+    "lines": [
+      "The Herald approaches, eyes glinting with fervor.",
+      "\"Your passage is a sin. Offer a sacrifice or perish!\""
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Unsheathe your weapon.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_cultist",
+              "veil_sorcerer"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pay_sacrifice",
+        "text": "Offer gold. (30 gold)",
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -30
+          },
+          {
+            "type": "set_flag",
+            "flag": "road_cultist_found"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_riftgate_8ucafl1_002",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "hostile",
+    "speaker": null,
+    "lines": [
+      "Shadows writhe near the rift's edge.",
+      "Cold laughter echoes — you're not alone."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Prepare for battle.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_cultist"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sneak_away",
+        "text": "[Stealth - DEX] Slip into the shadows.",
+        "skillCheck": {
+          "skill": "stealth",
+          "stat": "DEX",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#escaped",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "veil_cultist"
+              ]
+            }
+          ]
+        },
+        "effects": []
+      },
+      {
+        "id": "intimidate",
+        "text": "[Intimidation - CHA] Challenge the shadows.",
+        "skillCheck": {
+          "skill": "intimidation",
+          "stat": "CHA",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#they_flee",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "veil_cultist"
+              ]
+            }
+          ]
+        },
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "escaped": {
+        "lines": [
+          "You melt into the darkness, avoiding their gaze."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Continue onward quietly.",
+            "effects": []
+          }
+        ]
+      },
+      "they_flee": {
+        "lines": [
+          "They back away, fear flickering in their eyes."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Press forward before they regroup.",
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ambush_riftgate_8ucafl1_003",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "hostile",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "A figure looms, shrouded in darkness.",
+      "\"You tread where only ashes should roam. Leave or be consumed.\""
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Engage the shrinekeeper.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_shrinekeeper"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "offer_bargain",
+        "text": "Negotiate for safe passage.",
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "road_cultist_found"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_riftgate_8ucafl1_004",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "hostile",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "\"Halt! The Veil doesn't take kindly to trespassers!\"",
+      "His eyes narrow. \"What brings you to this cursed place?\""
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your weapon against him.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "road_scout_npc"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "explain_intent",
+        "text": "\"We're seeking the truth.\"",
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "road_cultist_found"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_riftgate_8ucafl1_005",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "hostile",
+    "speaker": null,
+    "lines": [
+      "A sudden movement — then a chorus of snarls.",
+      "Corrupted beasts emerge, eyes glowing with hunger."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Stand your ground and fight.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "corrupted_wolf",
+              "corrupted_bear"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "flee",
+        "text": "Run back towards the rift.",
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "road_cultist_found"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_old_road_9v56h4u_001",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "ashen_veil_herald",
+    "lines": [
+      "Your path is barred. The Veil demands tribute.",
+      "Your coin or your life — choose swiftly."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your weapon.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_cultist"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pay_tithe",
+        "text": "Pay the tribute. (30 gold)",
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -30
+          },
+          {
+            "type": "faction_delta",
+            "faction": "ashen_veil",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_old_road_9v56h4u_002",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "You look lost. This road's not safe anymore.",
+      "Hand over your valuables, and you may pass."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Prepare for a fight.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "bandit",
+              "bandit"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "diplomacy",
+        "text": "[Diplomacy - CHA] Convince him to let you pass.",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "CHA",
+          "dc": 12
+        },
+        "onPass": {
+          "next": null,
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "bandit",
+                "bandit"
+              ]
+            }
+          ]
+        },
+        "effects": []
+      },
+      {
+        "id": "pay_off",
+        "text": "Hand over 15 gold.",
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -15
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_old_road_9v56h4u_003",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "captain_maer",
+    "lines": [
+      "Stop right there. This is Emberguard territory.",
+      "You owe me a reason to let you pass."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Stand your ground.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "emberguard_soldier",
+              "emberguard_soldier"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "explain",
+        "text": "State your purpose here.",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "ambush_old_road_9v56h4u_004",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "ashen_veil_herald",
+    "lines": [
+      "You've wandered into the wrong place, friend.",
+      "The Veil is hungry, and you're on the menu."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Prepare for battle.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_sorcerer"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "negotiate",
+        "text": "Attempt to negotiate a way through.",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "ambush_old_road_9v56h4u_005",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "This is no place for the unprepared.",
+      "Leave your coin or leave your life."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your weapon and fight.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "bandit"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pay_tithe",
+        "text": "Give him 20 gold to pass.",
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -20
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_architects_verge_b181t9l_001",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "architects_verge",
+    "tone": "hostile",
+    "speaker": "veil_cultist",
+    "lines": [
+      "You tread where the Sovereign beckons not.",
+      "Your presence here is an affront — prepare for reckoning."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Unsheathe your weapons.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_acolyte"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "surrender",
+        "text": "Offer to surrender.",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "ambush_architects_verge_b181t9l_002",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "architects_verge",
+    "tone": "hostile",
+    "speaker": "veil_acolyte",
+    "lines": [
+      "This place belongs to the Veil now.",
+      "Your intrusion will not be forgiven."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Engage them immediately.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_acolyte",
+              "veil_cultist"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "intimidate",
+        "text": "[Intimidation - CHA] Try to scare them off.",
+        "skillCheck": {
+          "skill": "intimidation",
+          "stat": "CHA",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#they_flee",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "veil_acolyte",
+                "veil_cultist"
+              ]
+            }
+          ]
+        },
+        "effects": []
+      },
+      {
+        "id": "bargain",
+        "text": "Offer information about the Emberguard in exchange for safe passage.",
+        "effects": [
+          {
+            "type": "faction_delta",
+            "faction": "ashen_veil",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "they_flee": {
+        "lines": [
+          "They hesitate, backing away. \"Not worth the blood,\" one whispers.",
+          "You gain a moment's reprieve as they retreat."
+        ]
+      }
+    }
+  },
+  {
+    "id": "ambush_old_road_bs6tpw1_001",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "ashen_veil_herald",
+    "lines": [
+      "You've wandered into territory that bleeds.",
+      "The Veil sees you — and demands tribute."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your weapons.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_cultist"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pay_tithe",
+        "text": "Offer gold. (30 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -30
+          },
+          {
+            "type": "faction_delta",
+            "faction": "ashen_veil",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_old_road_bs6tpw1_002",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "You think you can just pass by us?",
+      "We'll take what we need, one way or another."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Prepare for a fight.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "bandit",
+              "bandit"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "deceive",
+        "text": "[Deception - CHA] Pretend to be a guard.",
+        "skillCheck": {
+          "skill": "deception",
+          "stat": "CHA",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#deceived",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "bandit",
+                "bandit"
+              ]
+            }
+          ]
+        },
+        "effects": []
+      },
+      {
+        "id": "pay_off",
+        "text": "Offer them a bribe. (15 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -15
+          },
+          {
+            "type": "faction_delta",
+            "faction": "wanderers_guild",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "deceived": {
+        "lines": [
+          "They pause, then laugh. \"You're not even a real guard!\"",
+          "But they lower their weapons, at least for now."
+        ],
+        "choices": [
+          {
+            "id": "leave",
+            "text": "Back away slowly.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ambush_old_road_bs6tpw1_003",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "captain_maer",
+    "lines": [
+      "You’re trespassing. Simple as that.",
+      "State your purpose or prepare for consequences."
+    ],
+    "choices": [
+      {
+        "id": "explain",
+        "text": "State your business plainly.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "fight",
+        "text": "Reach for your weapon.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "emberguard",
+              "emberguard"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_old_road_bs6tpw1_004",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "ashen_veil_herald",
+    "lines": [
+      "You seek the truth, but you find only shadows.",
+      "The Veil will take what is owed."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your blade.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_sorcerer"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "intimidate",
+        "text": "[Intimidation - CHA] Threaten them with your might.",
+        "skillCheck": {
+          "skill": "intimidation",
+          "stat": "CHA",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#intimidated",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "veil_cultist",
+                "veil_sorcerer"
+              ]
+            }
+          ]
+        },
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "intimidated": {
+        "lines": [
+          "They hesitate, uncertainty flashing in their eyes.",
+          "But the resolve hardens quickly, and they stand firm."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Leave it be for now.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ambush_old_road_bs6tpw1_005",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "Look who wandered off the beaten path!",
+      "You’ll regret this decision soon enough."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Cross swords with them.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "bandit",
+              "bandit",
+              "bandit"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sneak_away",
+        "text": "[Stealth - DEX] Try to slip away unnoticed.",
+        "skillCheck": {
+          "skill": "stealth",
+          "stat": "DEX",
+          "dc": 14
+        },
+        "onPass": {
+          "next": "#escaped",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "bandit",
+                "bandit"
+              ]
+            }
+          ]
+        },
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "escaped": {
+        "lines": [
+          "You blend into the shadows, unseen.",
+          "The bandits scan the area, then move on."
+        ],
+        "choices": [
+          {
+            "id": "continue",
+            "text": "Continue down the road quietly.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ambush_riftgate_cr374xw_001",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "hostile",
+    "speaker": "ashen_veil_herald",
+    "lines": [
+      "You dare tread upon this sacred ground?",
+      "Prepare to feed the rift, intruders."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your weapons.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_sorcerer"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "intimidate",
+        "text": "[Intimidation - CHA] Threaten them with your presence.",
+        "skillCheck": {
+          "skill": "intimidation",
+          "stat": "CHA",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#back_down",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "veil_cultist",
+                "veil_sorcerer"
+              ]
+            }
+          ]
+        },
+        "effects": []
+      },
+      {
+        "id": "bribe",
+        "text": "Offer them coin to pass. (30 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -30
+          },
+          {
+            "type": "faction_delta",
+            "faction": "ashen_veil",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "back_down": {
+        "lines": [
+          "He hesitates, then gestures to his followers.",
+          "\"Leave them, for now. We have bigger prey.\""
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Leave while you can.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ambush_riftgate_cr374xw_002",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "hostile",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The rift burns brighter with your folly.",
+      "Surrender, or the Veil will consume you."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Stand and fight.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_cultist"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "submit",
+        "text": "Submit to their authority.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "veilscar_snuck_in"
+          },
+          {
+            "type": "faction_delta",
+            "faction": "ashen_veil",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_riftgate_cr374xw_003",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "hostile",
+    "speaker": "veil_cultist",
+    "lines": [
+      "Your presence defiles this place.",
+      "You will pay in blood!"
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Charge them head-on.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_cultist",
+              "veil_sorcerer"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "distract",
+        "text": "[Dexterity - DEX] Create a distraction to evade.",
+        "skillCheck": {
+          "skill": "dexterity",
+          "stat": "DEX",
+          "dc": 14
+        },
+        "onPass": {
+          "next": "#slip_away",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "veil_cultist",
+                "veil_cultist"
+              ]
+            }
+          ]
+        },
+        "effects": []
+      },
+      {
+        "id": "negotiate",
+        "text": "Attempt to negotiate a truce.",
+        "next": null,
+        "effects": [
+          {
+            "type": "faction_delta",
+            "faction": "ashen_veil",
+            "amount": -1
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "slip_away": {
+        "lines": [
+          "You slip into the shadows, avoiding their wrath.",
+          "They growl in frustration as you vanish."
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Continue deeper into the riftgate.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ambush_riftgate_cr374xw_004",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "hostile",
+    "speaker": "captain_maer",
+    "lines": [
+      "You thought you could cross here without consequence?",
+      "Your path ends in darkness."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your weapon against the captain.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "captain_maer",
+              "veil_cultist"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "surrender",
+        "text": "Surrender and beg for mercy.",
+        "next": null,
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "riftgate_breached"
+          },
+          {
+            "type": "faction_delta",
+            "faction": "emberguard",
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_riftgate_cr374xw_005",
+    "pool": "ambush",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "hostile",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "No one crosses the rift without paying a price.",
+      "Blood or coin — choose!"
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Face them in combat.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_scout"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pay",
+        "text": "Pay the toll. (50 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -50
+          },
+          {
+            "type": "faction_delta",
+            "faction": "ashen_veil",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_old_road_dnn883r_001",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "ashen_veil_herald",
+    "lines": [
+      "You tread on sacred ground. Your presence is a stain.",
+      "The Veil demands its due — blood or coin."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your weapon and charge.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist",
+              "veil_cultist",
+              "veil_sorcerer"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pay_tithe",
+        "text": "Offer a gold tithe. (30 gold)",
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -30
+          },
+          {
+            "type": "faction_delta",
+            "faction": "ashen_veil",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_old_road_dnn883r_002",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "captain_maer",
+    "lines": [
+      "Halt! You venture into a patrol zone.",
+      "State your intentions or be detained."
+    ],
+    "choices": [
+      {
+        "id": "intimidate",
+        "text": "[Intimidation - CHA] Challenge his authority.",
+        "skillCheck": {
+          "skill": "intimidation",
+          "stat": "CHA",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#gained_respect",
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "emberguard",
+              "amount": 1
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#detained",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "surrender",
+        "text": "Surrender peacefully.",
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "guardian_spared"
+          },
+          {
+            "type": "faction_delta",
+            "faction": "emberguard",
+            "amount": -1
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "gained_respect": {
+        "lines": [
+          "He narrows his eyes, surprised. \"Not many dare to challenge me...\""
+        ],
+        "choices": [
+          {
+            "id": "leave",
+            "text": "Move on with a nod.",
+            "effects": []
+          }
+        ]
+      },
+      "detained": {
+        "lines": [
+          "You feel the weight of his grip. \"You're coming with me.\""
+        ],
+        "choices": [
+          {
+            "id": "resist",
+            "text": "Attempt to break free.",
+            "effects": [
+              {
+                "type": "start_combat",
+                "enemyGroup": [
+                  "captain_maer"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ambush_old_road_dnn883r_003",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "You've wandered off the path, friend.",
+      "Tithes are due for those who stray."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Attack the shrinekeeper.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "offer_sacrifice",
+        "text": "Offer a minor item as tribute.",
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "road_evidence_burned"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_old_road_dnn883r_004",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "You've got some nerve passing through here.",
+      "This road belongs to the Veil; pay your toll."
+    ],
+    "choices": [
+      {
+        "id": "bribe",
+        "text": "Hand him 20 gold to pass.",
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -20
+          },
+          {
+            "type": "faction_delta",
+            "faction": "ashen_veil",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "id": "refuse",
+        "text": "Refuse to pay.",
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "veil_cultist"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_old_road_dnn883r_005",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "captain_maer",
+    "lines": [
+      "You’re lost in Emberwood’s grasp.",
+      "Answer quickly or face the consequences."
+    ],
+    "choices": [
+      {
+        "id": "demonstrate_strength",
+        "text": "[Strength - STR] Display your skills.",
+        "skillCheck": {
+          "skill": "strength",
+          "stat": "STR",
+          "dc": 14
+        },
+        "onPass": {
+          "next": "#impressed",
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "emberguard",
+              "amount": 1
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#retreat",
+          "effects": []
+        },
+        "effects": []
+      },
+      {
+        "id": "explore_options",
+        "text": "Negotiate your way through.",
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "guardian_ally"
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "impressed": {
+        "lines": [
+          "He raises an eyebrow, respect dawning.",
+          "\"Very well, you may pass.\""
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Continue on your way.",
+            "effects": []
+          }
+        ]
+      },
+      "retreat": {
+        "lines": [
+          "He shakes his head. \"You don't belong here.\""
+        ],
+        "choices": [
+          {
+            "id": "leave",
+            "text": "Back away slowly.",
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ambush_plague_fen_eee8vtq_001",
+    "pool": "ambush",
+    "act": 2,
+    "biome": "plague_fen",
+    "tone": "hostile",
+    "speaker": "plague_harvesters",
+    "lines": [
+      "The fog thickens, and they emerge, grinning beneath their masks.",
+      "\"Your kind don't belong here. Pay the toll or walk away — quickly.\""
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Draw your weapons.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "plague_harvester",
+              "plague_harvester"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pay_toll",
+        "text": "Offer them gold. (30 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -30
+          },
+          {
+            "type": "faction_delta",
+            "faction": "plague_harvesters",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ambush_plague_fen_eee8vtq_002",
+    "pool": "ambush",
+    "act": 2,
+    "biome": "plague_fen",
+    "tone": "hostile",
+    "speaker": "null",
+    "lines": [
+      "A rustle in the reeds, followed by a shriek.",
+      "Figures dart through the trees, eyes glowing with hunger."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Stand your ground.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "corrupted_stalker",
+              "corrupted_stalker",
+              "plague_harvester"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "flee",
+        "text": "Flee deeper into the fog.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  }
+]

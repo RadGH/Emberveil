@@ -43,6 +43,26 @@ export const ACHIEVEMENTS = [
       const deaths = r.perChar.reduce((a, c) => a + c.stats.deaths, 0);
       return totalFights >= 25 && deaths === 0;
     } },
+
+  // ---------------------------------------------------------------------------
+  // Story Mode achievements (M-S29)
+  // check(life, run, gs) — `gs` is the live game state; may be null for Classic.
+  // ---------------------------------------------------------------------------
+  { id: 'story_first_act_complete',        name: 'Into the Veil',         desc: 'Complete Act 1 of a Story Mode campaign.',                             tier: 'bronze', check: (l, _r, gs) => (gs?.story?.act || 0) >= 2 },
+  { id: 'story_pacifist_run',              name: 'Still Waters',           desc: 'Reach the end of Act 1 without initiating a single combat encounter.', tier: 'gold',   check: (_l, _r, gs) => !!(gs?.story?.flags?.['story_no_combat_act1']) },
+  { id: 'story_iron_judge_win',            name: 'Trial by Fire',          desc: "Complete a full campaign under the Iron Judge's watch.",               tier: 'gold',   check: (_l, _r, gs) => !!(gs?.story?.flags?.['story_iron_judge_complete']) },
+  { id: 'story_all_companions_recruited',  name: 'Band of Wanderers',      desc: 'Recruit all 4 available companions in a single campaign.',             tier: 'silver', check: (_l, _r, gs) => (gs?.story?.companions?.length || 0) >= 4 },
+  { id: 'story_redeemed_guardian',         name: 'The Guardian Redeemed',  desc: 'Resolve the Guardian encounter with a mercy outcome.',                  tier: 'silver', check: (_l, _r, gs) => !!(gs?.story?.flags?.['guardian_redeemed']) },
+  { id: 'story_corruption_max',            name: 'Touch of the Void',      desc: 'Reach maximum Corruption in a Story Mode campaign.',                    tier: 'silver', check: (_l, _r, gs) => (gs?.story?.counters?.corruption || 0) >= 100 },
+  { id: 'story_factions_all_friendly',     name: 'Diplomat Supreme',       desc: 'Reach Friendly standing with every faction before Act 3.',             tier: 'gold',   check: (_l, _r, gs) => {
+      if (!gs?.story?.factions) return false;
+      return Object.values(gs.story.factions).every(f => (f?.standing || 0) >= 50);
+    } },
+  { id: 'story_hidden_paths_50pct',        name: 'Road Less Traveled',     desc: 'Discover at least half of the hidden paths in an act.',                tier: 'bronze', check: (_l, _r, gs) => !!(gs?.story?.flags?.['hidden_paths_half_found']) },
+  { id: 'story_companion_devoted',         name: 'True Bond',              desc: 'Reach maximum approval with any companion.',                            tier: 'silver', check: (_l, _r, gs) => (gs?.story?.companions || []).some(c => (c?.approval || 0) >= 100) },
+  { id: 'story_secret_ending',             name: 'The Other Side',         desc: 'Discover the secret campaign ending.',                                  tier: 'gold',   check: (_l, _r, gs) => !!(gs?.story?.flags?.['secret_ending_reached']) },
+  { id: 'story_storyteller_chronicler_win',name: 'Written in Embers',      desc: 'Complete a campaign with the Chronicler as your storyteller.',         tier: 'bronze', check: (_l, _r, gs) => !!(gs?.story?.flags?.['story_chronicler_complete']) },
+  { id: 'story_trickster_chaos',           name: 'Chaos Theory',           desc: 'Accept 10 Trickster wild-card events in a single campaign.',           tier: 'silver', check: (_l, _r, gs) => (gs?.story?.counters?.trickster_events || 0) >= 10 },
 ];
 
 export function getAchievementsState() {

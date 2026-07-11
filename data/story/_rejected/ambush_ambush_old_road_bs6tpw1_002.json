@@ -1,0 +1,91 @@
+{
+  "node": {
+    "id": "ambush_old_road_bs6tpw1_002",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "You think you can just pass by us?",
+      "We'll take what we need, one way or another."
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "text": "Prepare for a fight.",
+        "next": null,
+        "effects": [
+          {
+            "type": "start_combat",
+            "enemyGroup": [
+              "bandit",
+              "bandit"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "deceive",
+        "text": "[Deception - CHA] Pretend to be a guard.",
+        "skillCheck": {
+          "skill": "deception",
+          "stat": "CHA",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#deceived",
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "start_combat",
+              "enemyGroup": [
+                "bandit",
+                "bandit"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "pay_off",
+        "text": "Offer them a bribe. (15 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -15
+          },
+          {
+            "type": "faction_delta",
+            "faction": "wanderers_guild",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "deceived": {
+        "lines": [
+          "They pause, then laugh. \"You're not even a real guard!\"",
+          "But they lower their weapons, at least for now."
+        ],
+        "choices": [
+          {
+            "id": "leave",
+            "text": "Back away slowly.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"deceive\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:05:54.066Z"
+}

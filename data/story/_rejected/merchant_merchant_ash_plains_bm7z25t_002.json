@@ -1,0 +1,105 @@
+{
+  "node": {
+    "id": "merchant_ash_plains_bm7z25t_002",
+    "pool": "merchant",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "wry",
+    "speaker": "merchant_unusual",
+    "lines": [
+      "Got some items that defy explanation. Or maybe just logic. Depends on the day.",
+      "Care to browse something unusual?"
+    ],
+    "choices": [
+      {
+        "id": "browse_items",
+        "text": "Browse the unusual wares.",
+        "next": "#unusual_wares",
+        "effects": []
+      },
+      {
+        "id": "inquire_origin",
+        "text": "[Diplomacy - INT] Where do you get these things?",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#info_obtained",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#info_deflected",
+          "effects": []
+        }
+      },
+      {
+        "id": "walk_away",
+        "text": "Move on, no thanks.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "unusual_wares": {
+        "lines": [
+          "\"Veil-glass, a bone charm, and a few oddities that might explode. Your choice!\""
+        ],
+        "choices": [
+          {
+            "id": "buy_glass",
+            "text": "Buy the Veil-glass. (40 gold)",
+            "next": null,
+            "effects": [
+              {
+                "type": "gold_delta",
+                "amount": -40
+              },
+              {
+                "type": "grant_item",
+                "itemId": "veil_glass"
+              }
+            ]
+          },
+          {
+            "id": "pass",
+            "text": "Pass on the wares.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      },
+      "info_obtained": {
+        "lines": [
+          "He smirks. \"Let's just say I have a good eye for discarded treasures.\""
+        ],
+        "choices": [
+          {
+            "id": "browse",
+            "text": "Look at the wares now.",
+            "next": "#unusual_wares",
+            "effects": []
+          }
+        ]
+      },
+      "info_deflected": {
+        "lines": [
+          "\"Let's just say I have my sources. But you won't meet them.\""
+        ],
+        "choices": [
+          {
+            "id": "browse",
+            "text": "Look at the wares anyway.",
+            "next": "#unusual_wares",
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"inquire_origin\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:06:05.334Z"
+}

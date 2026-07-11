@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <!--
+    corner-flourish — curling vine ornament for modals and tooltip cards
+    Usage: top-left corner as-is; rotate 90/180/270 for other corners.
+    Arms curve outward along top and left edges.
+    Leaf-dot terminals at arm ends.
+  -->
+  <!-- Core diamond, slightly smaller than lozenge variant -->
+  <rect x="10" y="10" width="12" height="12"
+        fill="var(--ember-deep, #0d0820)"
+        stroke="var(--border-stroke, var(--gold-rim, #c8a020))"
+        stroke-width="1.4"
+        transform="rotate(45 16 16)"/>
+  <!-- Vine arm curving toward top edge -->
+  <path d="M16,7.5 C15,5 11,3.5 8,2"
+        fill="none"
+        stroke="var(--border-stroke, var(--gold-rim, #c8a020))"
+        stroke-width="0.9"
+        stroke-linecap="round"/>
+  <!-- Vine arm curving toward left edge -->
+  <path d="M7.5,16 C5,15 3.5,11 2,8"
+        fill="none"
+        stroke="var(--border-stroke, var(--gold-rim, #c8a020))"
+        stroke-width="0.9"
+        stroke-linecap="round"/>
+  <!-- Leaf dot: top arm terminus -->
+  <circle cx="7.5" cy="2" r="1.4"
+          fill="var(--border-stroke, var(--gold-rim, #c8a020))"/>
+  <!-- Leaf dot: left arm terminus -->
+  <circle cx="2" cy="7.5" r="1.4"
+          fill="var(--border-stroke, var(--gold-rim, #c8a020))"/>
+  <!-- Secondary leaf-bud midpoint on top arm -->
+  <circle cx="11.5" cy="4.5" r="0.8"
+          fill="none"
+          stroke="var(--border-stroke, var(--gold-rim, #c8a020))"
+          stroke-width="0.8"/>
+  <!-- Secondary leaf-bud midpoint on left arm -->
+  <circle cx="4.5" cy="11.5" r="0.8"
+          fill="none"
+          stroke="var(--border-stroke, var(--gold-rim, #c8a020))"
+          stroke-width="0.8"/>
+</svg>

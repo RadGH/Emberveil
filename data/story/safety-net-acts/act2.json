@@ -1,0 +1,14 @@
+{
+  "mapId": "act2_fallback",
+  "act": 2,
+  "seed": 0,
+  "entryNodeId": "fb_a2_r0_c0_l1",
+  "subRegions": [
+    { "id": "veilscar",      "name": "Veilscar",      "biome": "veilscar",      "xOffset": 0 },
+    { "id": "plague_fen",    "name": "Plague Fen",    "biome": "plague_fen",    "xOffset": 1 },
+    { "id": "ash_plains",    "name": "Ash Plains",    "biome": "ash_plains",    "xOffset": 2 },
+    { "id": "library_ruins", "name": "Library Ruins", "biome": "library_ruins", "xOffset": 3 },
+    { "id": "crossroads",    "name": "Crossroads",    "biome": "crossroads",    "xOffset": 4 }
+  ],
+  "note": "Hand-authored safety-net. Generated programmatically by _buildMinimalFallback in storyMapGen.js when all 10 generation attempts fail. This file is reference only."
+}

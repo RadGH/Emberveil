@@ -1,0 +1,42 @@
+{
+  "node": {
+    "id": "side_quest_ember_hollow_kt44yjw_001",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "ember_hollow",
+    "tone": "resolute",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The heartstone lies shattered. We've lost much of our power.",
+      "You must find the shards before the Veil consumes this place."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to search for the shards.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_find_shards",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "shard_search_active"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "\"Not my concern.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "unknown flag \"shard_search_active\" in effect"
+  ],
+  "rejectedAt": "2026-05-21T00:12:21.206Z"
+}

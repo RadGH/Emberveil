@@ -1,0 +1,60 @@
+[
+  {
+    "id": "lyra_tessaly_01",
+    "trigger": "nodeResolved",
+    "cooldown": 5,
+    "companionA": "lyra_ashwalker",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "tessaly_veil",    "text": "You track by instinct. I track by intent. Guess which one wins." },
+      { "speaker": "lyra_ashwalker",  "text": "Instinct. Every time. Intent tells you where you want to go. Instinct tells you what's already there." }
+    ]
+  },
+  {
+    "id": "lyra_tessaly_02",
+    "trigger": "nodeResolved",
+    "cooldown": 6,
+    "companionA": "lyra_ashwalker",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "lyra_ashwalker",  "text": "You picked that lock in three seconds flat." },
+      { "speaker": "tessaly_veil",    "text": "Four. I was being careful." },
+      { "speaker": "lyra_ashwalker",  "text": "Noted." }
+    ]
+  },
+  {
+    "id": "lyra_tessaly_03",
+    "trigger": "nodeResolved",
+    "cooldown": 7,
+    "companionA": "lyra_ashwalker",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "tessaly_veil",    "text": "You scouts are too attached to the map. The map is a lie someone told about the territory." },
+      { "speaker": "lyra_ashwalker",  "text": "I update mine as I go." },
+      { "speaker": "tessaly_veil",    "text": "Fine. You're tolerable." }
+    ]
+  },
+  {
+    "id": "lyra_tessaly_04",
+    "trigger": "nodeResolved",
+    "cooldown": 8,
+    "companionA": "lyra_ashwalker",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "lyra_ashwalker",  "text": "Do you trust anyone?" },
+      { "speaker": "tessaly_veil",    "text": "I trust everyone to do exactly what they're likely to do. That's not trust, that's arithmetic." }
+    ]
+  },
+  {
+    "id": "lyra_tessaly_05",
+    "trigger": "nodeResolved",
+    "cooldown": 9,
+    "companionA": "lyra_ashwalker",
+    "companionB": "tessaly_veil",
+    "lines": [
+      { "speaker": "tessaly_veil",    "text": "You ever just run? No mission, no trail, no one counting on you?" },
+      { "speaker": "lyra_ashwalker",  "text": "Once. Felt wrong after a week." },
+      { "speaker": "tessaly_veil",    "text": "Yeah. Me too." }
+    ]
+  }
+]

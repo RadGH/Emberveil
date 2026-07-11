@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="rsg-game" content="Emberveil">
+<script src="./_header.js" defer></script>
+<script src="./_footer.js" defer></script>
+<link rel="stylesheet" href="./_shared-styles.css">
+<link rel="stylesheet" href="./_tool-styles.css">
+<title>Storyteller Balance — Emberveil</title>
+<style>
+body { padding: 1rem 1rem 5rem; }
+.wrap { max-width: 1200px; margin: 0 auto; }
+
+h1 {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 1.4rem; margin: 0 0 0.2rem;
+  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 900;
+  background: linear-gradient(180deg,#f8d880 0%,#e8a040 40%,#c04030 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+p.sub { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+
+.toolbar {
+  display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; align-items: flex-end;
+}
+.toolbar label { font-size: 0.82rem; color: var(--muted); display: flex; flex-direction: column; gap: 0.2rem; }
+.toolbar select {
+  background: var(--card, #221520);
+  border: 1px solid rgba(232,160,32,0.2);
+  border-radius: 6px; color: var(--fg, #f0e8d8); font-size: 0.88rem;
+  padding: 0.4rem 0.6rem; min-height: 38px; min-width: 180px;
+}
+
+/* Meta bar */
+.meta-bar {
+  display: flex; gap: 1.5rem; flex-wrap: wrap;
+  font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem;
+}
+.meta-bar strong { color: var(--fg, #f0e8d8); }
+
+/* Grid table */
+.matrix-scroll { overflow-x: auto; margin-bottom: 1.5rem; }
+.matrix-table { border-collapse: collapse; min-width: 680px; width: 100%; }
+
+.matrix-table th {
+  padding: 0.5rem 0.7rem; font-size: 0.76rem; text-transform: uppercase;
+  letter-spacing: 0.06em; color: #e8a020; font-weight: 700;
+  background: rgba(232,160,32,0.07); border-bottom: 1px solid rgba(232,160,32,0.2);
+  white-space: nowrap; text-align: center;
+}
+.matrix-table th.st-col { text-align: left; min-width: 200px; }
+
+.matrix-table td {
+  padding: 0.5rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+  vertical-align: middle;
+}
+.matrix-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* Storyteller name cell */
+.st-cell {
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.st-portrait {
+  width: 36px; height: 36px; border-radius: 4px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  object-fit: cover; flex-shrink: 0;
+}
+.st-name { font-weight: 600; font-size: 0.85rem; color: var(--fg, #f0e8d8); }
+
+/* Metric cell */
+.metric-cell { text-align: center; }
+.metric-main { font-size: 0.9rem; font-weight: 600; }
+.metric-sub  { font-size: 0.72rem; color: var(--muted); margin-top: 1px; }
+
+/* Threshold indicators */
+.pass-mark  { color: #50c050; font-size: 0.8rem; margin-left: 0.2rem; }
+.fail-mark  { color: #d05050; font-size: 0.8rem; margin-left: 0.2rem; }
+.warn-mark  { color: #d09030; font-size: 0.8rem; margin-left: 0.2rem; }
+
+/* Cell color coding */
+.cell-pass  { background: rgba(40,100,40,0.12); }
+.cell-fail  { background: rgba(120,30,30,0.14); }
+.cell-warn  { background: rgba(140,100,10,0.12); }
+
+/* No-data state */
+.no-data-card {
+  background: var(--card, #221520);
+  border: 1px solid rgba(232,160,32,0.2);
+  border-radius: 8px; padding: 2rem; text-align: center; color: var(--muted);
+}
+.no-data-card code {
+  display: inline-block; background: rgba(255,255,255,0.06);
+  border-radius: 4px; padding: 0.15rem 0.4rem; font-size: 0.82rem; margin: 0.25rem;
+}
+
+/* Legend */
+.legend {
+  display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.78rem; color: var(--muted);
+  margin-bottom: 0.8rem;
+}
+.legend-item { display: flex; align-items: center; gap: 0.3rem; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+.legend-dot.pass { background: #50c050; }
+.legend-dot.fail { background: #d05050; }
+.legend-dot.warn { background: #d09030; }
+
+/* Spark lines */
+.spark { display: block; }
+
+/* Diff header badges */
+.diff-badge {
+  display: inline-block; border-radius: 4px; padding: 0.1rem 0.4rem;
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.diff-relaxed  { background: rgba(80,180,80,0.15);  color: #60c060; }
+.diff-normal   { background: rgba(80,140,220,0.15); color: #70a0e0; }
+.diff-hard     { background: rgba(220,140,30,0.15); color: #d09030; }
+.diff-nightmare{ background: rgba(200,50,50,0.15);  color: #d06060; }
+
+.error-msg { color: #d06060; padding: 1rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Storyteller Balance Matrix</h1>
+  <p class="sub">6 storytellers &times; 4 difficulties. Metrics from simulation runs. Green = threshold pass; amber = warning; red = fail.</p>
+
+  <div class="toolbar">
+    <label>Run
+      <select id="run-select"></select>
+    </label>
+  </div>
+
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot pass"></span> Threshold pass</span>
+    <span class="legend-item"><span class="legend-dot warn"></span> Advisory / borderline</span>
+    <span class="legend-item"><span class="legend-dot fail"></span> Threshold fail</span>
+  </div>
+
+  <div id="matrix-area">
+    <div class="no-data-card">Loading&hellip;</div>
+  </div>
+</div>
+
+<script>
+// ---------------------------------------------------------------------------
+// Thresholds (mirrors check-storyteller-balance.mjs §10.8)
+// ---------------------------------------------------------------------------
+const THRESH = {
+  act1_normal:   { min: 0.90, label: 'Act-1 Normal ≥90%' },
+  act1_relaxed:  { min: 0.95, label: 'Act-1 Relaxed ≥95%', advisory: true },
+  act3_normal:   { min: 0.60, label: 'Act-3 Normal ≥60%' },
+};
+
+const DIFFS = ['relaxed', 'normal', 'hard', 'nightmare'];
+const STORYTELLERS = ['chronicler', 'ash_prophet', 'warbringer', 'trickster', 'pilgrim', 'iron_judge'];
+
+function humanName(id) {
+  return id.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+// ---------------------------------------------------------------------------
+// Threshold evaluation
+// ---------------------------------------------------------------------------
+function cellClass(storytellerId, difficulty, data) {
+  if (!data) return '';
+  if (difficulty === 'normal') {
+    if ((data.act1Rate || 0) < THRESH.act1_normal.min) return 'cell-fail';
+    if ((data.act1Rate || 0) < THRESH.act1_normal.min + 0.05) return 'cell-warn';
+    return 'cell-pass';
+  }
+  if (difficulty === 'relaxed') {
+    if ((data.act1Rate || 0) < THRESH.act1_relaxed.min) return 'cell-warn';
+    return 'cell-pass';
+  }
+  return '';
+}
+
+function act1Mark(rate, difficulty) {
+  if (difficulty === 'normal') {
+    if (rate >= THRESH.act1_normal.min) return '<span class="pass-mark">&#10003;</span>';
+    if (rate >= THRESH.act1_normal.min - 0.05) return '<span class="warn-mark">&#9651;</span>';
+    return '<span class="fail-mark">&#10007;</span>';
+  }
+  if (difficulty === 'relaxed') {
+    if (rate >= THRESH.act1_relaxed.min) return '<span class="pass-mark">&#10003;</span>';
+    return '<span class="warn-mark">&#9651;</span>';
+  }
+  return '';
+}
+
+function act3Mark(rate, difficulty) {
+  if (difficulty !== 'normal') return '';
+  if (rate >= THRESH.act3_normal.min) return '<span class="pass-mark">&#10003;</span>';
+  if (rate >= THRESH.act3_normal.min - 0.08) return '<span class="warn-mark">&#9651;</span>';
+  return '<span class="fail-mark">&#10007;</span>';
+}
+
+// ---------------------------------------------------------------------------
+// Render one run of data
+// ---------------------------------------------------------------------------
+function renderRun(runData) {
+  const area = document.getElementById('matrix-area');
+  area.innerHTML = '';
+
+  // Meta bar
+  const meta = document.createElement('div');
+  meta.className = 'meta-bar';
+  meta.innerHTML = `
+    <span>Generated: <strong>${new Date(runData.generatedAt).toLocaleString()}</strong></span>
+    <span>Milestone: <strong>${runData.milestone || '?'}</strong></span>
+    <span>Seeds/cell: <strong>${runData.seedCount || '?'}</strong></span>
+    <span>Storytellers: <strong>${(runData.storytellers || STORYTELLERS).length}</strong></span>
+    <span>Difficulties: <strong>${(runData.difficulties || DIFFS).length}</strong></span>
+  `;
+  area.appendChild(meta);
+
+  const cells  = runData.cells || {};
+  const stList = runData.storytellers || STORYTELLERS;
+  const dList  = runData.difficulties || DIFFS;
+
+  const scroll = document.createElement('div');
+  scroll.className = 'matrix-scroll';
+
+  const table = document.createElement('table');
+  table.className = 'matrix-table';
+
+  // Header row: storyteller col + one col per difficulty × metrics
+  const thead = document.createElement('thead');
+  const hrow1 = document.createElement('tr');
+
+  const thSt = document.createElement('th');
+  thSt.className = 'st-col';
+  thSt.textContent = 'Storyteller';
+  thSt.rowSpan = 2;
+  hrow1.appendChild(thSt);
+
+  for (const diff of dList) {
+    const th = document.createElement('th');
+    th.colSpan = 4;
+    th.innerHTML = `<span class="diff-badge diff-${diff}">${diff}</span>`;
+    hrow1.appendChild(th);
+  }
+  thead.appendChild(hrow1);
+
+  const hrow2 = document.createElement('tr');
+  for (const diff of dList) {
+    for (const lbl of ['Act-1%', 'Act-3%', 'Deaths', 'Approx']) {
+      const th = document.createElement('th');
+      th.textContent = lbl;
+      hrow2.appendChild(th);
+    }
+  }
+  thead.appendChild(hrow2);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+
+  for (const st of stList) {
+    const tr = document.createElement('tr');
+
+    // Storyteller name cell
+    const tdSt = document.createElement('td');
+    const portraitSrc = `../images/openai_v2/${st}_portrait.png`;
+    tdSt.innerHTML = `
+      <div class="st-cell">
+        <img class="st-portrait" src="${portraitSrc}" alt="${humanName(st)}" onerror="this.style.display='none'">
+        <span class="st-name">${humanName(st)}</span>
+      </div>`;
+    tr.appendChild(tdSt);
+
+    // One group of 4 td's per difficulty
+    for (const diff of dList) {
+      const key  = `${st}_${diff}`;
+      const data = cells[key];
+      const cc   = cellClass(st, diff, data);
+
+      if (!data || data.error || data.seeds === 0) {
+        for (let k = 0; k < 4; k++) {
+          const td = document.createElement('td');
+          td.className = 'metric-cell';
+          td.innerHTML = '<span class="metric-main" style="color:var(--muted)">—</span>';
+          tr.appendChild(td);
+        }
+        continue;
+      }
+
+      const act1Pct = Math.round((data.act1Rate || 0) * 100);
+      const act3Pct = Math.round((data.act3Rate || 0) * 100);
+      const deaths  = (data.medianDeaths || 0).toFixed(1);
+      const appr    = (data.approval     || 0).toFixed(1);
+
+      const td1 = document.createElement('td');
+      td1.className = 'metric-cell ' + cc;
+      td1.innerHTML = `<div class="metric-main">${act1Pct}%${act1Mark(data.act1Rate, diff)}</div><div class="metric-sub">Act-1</div>`;
+
+      const td3 = document.createElement('td');
+      td3.className = 'metric-cell ' + cc;
+      td3.innerHTML = `<div class="metric-main">${act3Pct}%${act3Mark(data.act3Rate, diff)}</div><div class="metric-sub">Act-3</div>`;
+
+      const tdD = document.createElement('td');
+      tdD.className = 'metric-cell';
+      tdD.innerHTML = `<div class="metric-main">${deaths}</div><div class="metric-sub">deaths</div>`;
+
+      const tdA = document.createElement('td');
+      tdA.className = 'metric-cell';
+      tdA.innerHTML = `<div class="metric-main">${appr}</div><div class="metric-sub">approval</div>`;
+
+      tr.appendChild(td1); tr.appendChild(td3); tr.appendChild(tdD); tr.appendChild(tdA);
+    }
+
+    tbody.appendChild(tr);
+  }
+
+  table.appendChild(tbody);
+  scroll.appendChild(table);
+  area.appendChild(scroll);
+
+  // Threshold summary
+  renderThresholdSummary(area, cells, stList);
+}
+
+// ---------------------------------------------------------------------------
+// Threshold summary section
+// ---------------------------------------------------------------------------
+function renderThresholdSummary(area, cells, stList) {
+  const section = document.createElement('div');
+  section.style.cssText = 'background:var(--card,#221520);border:1px solid rgba(232,160,32,0.2);border-radius:8px;padding:0.8rem;margin-top:0.5rem;';
+
+  const title = document.createElement('div');
+  title.style.cssText = 'font-family:Cinzel,serif;font-size:0.85rem;font-weight:700;color:#e8a020;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.6rem';
+  title.textContent = 'Threshold Summary (Binding)';
+  section.appendChild(title);
+
+  const grid = document.createElement('div');
+  grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.5rem';
+
+  for (const st of stList) {
+    const c = cells[`${st}_normal`];
+    if (!c) continue;
+    const a1 = Math.round((c.act1Rate || 0) * 100);
+    const a3 = Math.round((c.act3Rate || 0) * 100);
+    const a1ok = a1 >= 90, a3ok = a3 >= 60;
+    const card = document.createElement('div');
+    card.style.cssText = `border-radius:6px;padding:0.4rem 0.6rem;font-size:0.8rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)`;
+    card.innerHTML = `
+      <div style="font-weight:600;color:var(--fg,#f0e8d8);margin-bottom:0.2rem">${humanName(st)}</div>
+      <div>Act-1 (Normal): <strong style="color:${a1ok?'#50c050':'#d05050'}">${a1}%</strong> ${a1ok?'&#10003;':'&#10007;'}</div>
+      <div>Act-3 (Normal): <strong style="color:${a3ok?'#50c050':'#d05050'}">${a3}%</strong> ${a3ok?'&#10003;':'&#10007;'}</div>
+    `;
+    grid.appendChild(card);
+  }
+
+  section.appendChild(grid);
+  area.appendChild(section);
+}
+
+// ---------------------------------------------------------------------------
+// No-data state
+// ---------------------------------------------------------------------------
+function showNoData() {
+  document.getElementById('matrix-area').innerHTML = `
+    <div class="no-data-card">
+      <p style="font-size:1rem;color:var(--fg,#f0e8d8);margin-bottom:0.5rem">No balance runs recorded yet.</p>
+      <p>Generate data by running:</p>
+      <p><code>node scripts/build-storyteller-balance.cjs</code></p>
+      <p style="margin-top:0.4rem">or via the npm alias:</p>
+      <p><code>npm run check:story-balance</code></p>
+      <p style="margin-top:0.8rem;font-size:0.78rem">Output: <code>public/assets/data/story/balance/M&lt;N&gt;.json</code></p>
+    </div>
+  `;
+}
+
+// ---------------------------------------------------------------------------
+// Init
+// ---------------------------------------------------------------------------
+async function init() {
+  let index;
+  try {
+    const res = await fetch('./data/story/balance/index.json?' + Date.now());
+    if (res.ok) {
+      index = await res.json();
+    } else {
+      throw new Error('HTTP ' + res.status);
+    }
+  } catch (_) {
+    index = null;
+  }
+
+  // Build run list: try index first, then fall back to latest.json
+  let runs = [];
+  if (index && Array.isArray(index.runs) && index.runs.length) {
+    runs = index.runs; // [{milestone, file}]
+  } else {
+    // Try latest.json directly
+    try {
+      const res = await fetch('./data/story/balance/latest.json?' + Date.now());
+      if (res.ok) {
+        const d = await res.json();
+        runs = [{ milestone: d.milestone || 'latest', file: 'latest.json' }];
+      }
+    } catch (_) {}
+  }
+
+  if (!runs.length) {
+    showNoData();
+    return;
+  }
+
+  const sel = document.getElementById('run-select');
+  for (const r of runs.slice().reverse()) {
+    const opt = document.createElement('option');
+    opt.value = r.file;
+    opt.textContent = r.milestone + (r.date ? ' — ' + r.date : '');
+    sel.appendChild(opt);
+  }
+
+  async function loadRun(file) {
+    try {
+      const res = await fetch('./data/story/balance/' + file + '?' + Date.now());
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return await res.json();
+    } catch (err) {
+      document.getElementById('matrix-area').innerHTML = '<div class="error-msg">Failed to load run: ' + err.message + '</div>';
+      return null;
+    }
+  }
+
+  const initial = await loadRun(runs[runs.length - 1].file);
+  if (initial) renderRun(initial);
+
+  sel.addEventListener('change', async () => {
+    const data = await loadRun(sel.value);
+    if (data) renderRun(data);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

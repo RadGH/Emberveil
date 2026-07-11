@@ -1,0 +1,41 @@
+{
+  "node": {
+    "id": "side_quest_riftgate_jue9mqe_001",
+    "pool": "side-quest",
+    "act": 3,
+    "biome": "riftgate",
+    "tone": "resolute",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "The Veil's hunger is growing. We must disrupt their rituals."
+    ],
+    "choices": [
+      {
+        "id": "accept",
+        "text": "Agree to assist in disrupting the rituals.",
+        "next": null,
+        "effects": [
+          {
+            "type": "quest_advance",
+            "questId": "sq_disrupt_rituals",
+            "step": "accepted"
+          },
+          {
+            "type": "set_flag",
+            "flag": "ritual_disruption_active"
+          }
+        ]
+      },
+      {
+        "id": "decline",
+        "text": "\"Not interested.\"",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "unknown flag \"ritual_disruption_active\" in effect"
+  ],
+  "rejectedAt": "2026-05-21T00:11:42.193Z"
+}

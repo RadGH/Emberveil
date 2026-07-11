@@ -1,0 +1,26 @@
+{
+  "bossId": "_test_boss",
+  "variants": [
+    {
+      "id": "empowered",
+      "condition": { "flag": "test_boss_empowered" },
+      "phases": [
+        {
+          "threshold": 0.5,
+          "name": "Empowered Fury",
+          "onEnter": "The boss surges with dark energy!",
+          "addStatuses": [{ "type": "fury", "duration": 3, "power": 10 }]
+        }
+      ],
+      "nameOverride": "Empowered Test Boss",
+      "statMultipliers": { "hp": 1.25, "armor": 1.1 }
+    },
+    {
+      "id": "weakened",
+      "condition": { "flag": "test_boss_weakened" },
+      "phases": [],
+      "nameOverride": "Weakened Test Boss",
+      "statMultipliers": { "hp": 0.7, "armor": 0.5 }
+    }
+  ]
+}

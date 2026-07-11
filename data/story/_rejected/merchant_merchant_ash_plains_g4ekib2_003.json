@@ -1,0 +1,63 @@
+{
+  "node": {
+    "id": "merchant_ash_plains_g4ekib2_003",
+    "pool": "merchant",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "wry",
+    "speaker": "veil_shrinekeeper",
+    "lines": [
+      "Not much left to trade here, but I do have some lore for the right price.",
+      "Knowledge is power, or so they say."
+    ],
+    "choices": [
+      {
+        "id": "buy_lore",
+        "text": "Pay for a piece of lore. (25 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -25
+          },
+          {
+            "type": "grant_item",
+            "itemId": "lore_fragment"
+          }
+        ]
+      },
+      {
+        "id": "barter_info",
+        "text": "[Intellect - INT] Offer local information.",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "grant_item",
+              "itemId": "lore_fragment"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Walk away.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"barter_info\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:09:04.479Z"
+}

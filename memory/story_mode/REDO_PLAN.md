@@ -5,81 +5,65 @@ Branch: staging
 
 ## Objective
 
-Redo Story Mode from a clean pre-Story baseline. The prior M501-M521 implementation
-is not the implementation base for the redo because it contains the shallow systems,
-late blocker fixes, and QA gaps called out in the handoff prompt.
-
-## Baseline Decision
-
-- Requested baseline commit `594940819` is not present in this local Emberveil repo
-  or the nearby Codex/Claude checkouts I inspected.
-- Commit `40730a2` is the clean staging baseline currently available in this repo.
-  Its tree has no Story Mode source, data, sim, tools, or route imports after the
-  local source restore cleanup. The remote staging commit can keep the recovered
-  reference commit as a parent purely to reuse uploaded git objects; the shipped tree
-  must remain the clean baseline.
-- The mistakenly recovered old Story Mode implementation has been preserved only on
-  branch `recovered-story-mode-reference` for forensic comparisons.
-- The live redo work must be built forward from this clean baseline, using
-  `memory/story_mode/*` and `/home/radgh/codex/emberveil/references/*.md` as design
-  references, not as code to copy wholesale.
+Redo the Story Mode arc from the M500 design baseline with a higher quality bar than
+the M501-M521 pass. The restored source currently contains the prior Story Mode
+implementation, so this redo will use that code as forensic material and replace or
+harden shallow parts instead of blindly deleting working Classic Mode systems.
 
 ## Delta From Prior Pass
 
-1. No milestone ships without an end-to-end smoke that exercises the feature in the
-   UI or simulator path that will actually be used by players.
-2. Storyteller simulation must route through Director decisions. Byte-identical
-   storyteller runs are a failing test, not a documented limitation.
-3. Every effect, pool, validator, and fallback must be real when its consuming system
-   lands. Stub pools and no-op effects are blocked work, not acceptable placeholders.
-4. Generated prose and generated art require review before they become shipped game
-   assets. Validator-clean is not the same as narrative-ready.
-5. Release notes must explicitly name anything not done. No silent shelving.
+1. QA gates happen before milestone claims. Every meaningful change gets unit tests,
+   Story content validation, a production-like Vite build, and an iPhone 14 Pro
+   Playwright smoke where applicable.
+2. Storyteller simulation must exercise storyteller-aware routing. Byte-identical
+   storyteller runs are considered a failure, not a documented gap.
+3. Stub pools and placeholder behavior are not allowed. Any `_stub`, TODO, no-op
+   effect, or defensive fallback must either become real content/behavior or be
+   explicitly documented before release.
+4. Content quality is part of the build. Generated dialog must be narratively
+   reviewed before it is treated as shipped content.
+5. Balance acceptance uses the original plan thresholds, including Iron Judge
+   Act-3 Normal completion in the 30-70% band.
 
 ## Immediate Milestones
 
-### R00 — Clean Baseline Reset
+### R01 — Recovery And Baseline Verification
 
-- Restore the Classic Mode source and project tooling onto `staging`.
-- Remove prior Story Mode implementation artifacts from buildable source paths.
-- Preserve prompts, planning memory, findings, and handoff material in git.
-- Verify tests and build from the clean baseline.
-- Push `staging` so deployment no longer points at the flawed recovered Story Mode
-  source commit.
+- Restore source, scripts, tests, data, prompts, and memory into the Emberveil repo.
+- Exclude secrets, signed download URLs, local caches, generated test videos, and
+  prior build output from git.
+- Verify Story content manifest, quest graph, unit tests, and Vite build.
+- Push the recovered source to `staging`.
 
-### R01 — Foundation
+### R02 — Stub And Contract Audit
 
-- Implement mode split, Story save envelope, ledger, predicate DSL, and effect runner.
-- Tests cover migration, field names, deterministic RNG checkpointing, and every
-  initial effect type.
-- No Story UI is exposed until the save/ledger/predicate/effect contract is stable.
+- Search source/data/tools for stubs, TODOs, `console.warn` no-op handlers, `alert(`,
+  field-name drift, and fallback-only story paths.
+- Produce `memory/story_mode/REDO_AUDIT.md` with each finding mapped to fixed,
+  intentionally defensive, or blocked.
+- Fix immediate contract violations in the same milestone.
 
-### R02 — Map And Screen
+### R03 — Foundation Hardening
 
-- Implement deterministic map generation, validators, mutations, and playable mobile
-  StoryMapScreen together.
-- Travel must never throw, fog-of-war must lock correctly, and Travel combat must have
-  a defined encounter path before this milestone can ship.
+- Lock `pressureMeter`, `recentHistory`, and quest status constants behind helpers.
+- Add tests preventing the M514/M519/M521 regressions from returning.
+- Ensure all 22+ story effects mutate real state or fail validation.
 
-### R03 — Quests, Dialog, Companions
+### R04 — Director-Aware Sim And Balance
 
-- Implement quest engine, dialog conductor, companion recruitment/approval, and all
-  15 banter pairs with real entries before the systems are called complete.
+- Add/repair `directorAwarePolicy` so the campaign sim calls `stepDirector` and biases
+  node choice by storyteller intent.
+- Add tests proving the six storytellers produce observably different 100-node runs.
+- Rebuild the balance matrix and tune Iron Judge into the required 30-70% Act-3 band.
 
-### R04 — Director, Encounters, Skill Checks
+### R05 — Content Quality Pass
 
-- Implement all six storyteller mechanics plus a director-aware sim policy.
-- `buildEncounterForNode` is non-null by construction for Travel nodes.
-- Skill affinity tests cover all 18 skills across all 10 classes.
-
-### R05+ — Content, Acts, Tools, Balance, Release
-
-- Build content to the plan counts, review generated dialog/art, wire Acts 1-3,
-  add the authoring tools, run the 2400-run balance matrix, and complete deployed
-  mobile QA before claiming Story Mode is shipped.
+- Re-read generated dialog pools, reject weak/off-tone nodes, and record the review.
+- Remove placeholder pool files after real coverage is confirmed.
+- Verify all named companions are recruitable and all 15 banter pairs have live entries.
 
 ## Release Discipline
 
-Each redo milestone gets a focused commit. Any release/deploy milestone must include
-the release summary metadata, changelog/prompt-history updates, future milestone
-marking, asset report entry, and staging push required by the repo process.
+Each redo milestone must commit locally before push. A milestone is not complete until
+the final response or milestone report says what shipped, what was tested, and what is
+not done, if anything.

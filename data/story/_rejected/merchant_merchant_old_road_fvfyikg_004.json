@@ -1,0 +1,49 @@
+{
+  "node": {
+    "id": "merchant_old_road_fvfyikg_004",
+    "pool": "merchant",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "wry",
+    "speaker": "strange_wanderer",
+    "lines": [
+      "Got some oddities for odd folks. Look around.",
+      "You won’t find these trinkets in Brightfall."
+    ],
+    "choices": [
+      {
+        "id": "inspect_items",
+        "text": "Browse the oddities.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "ask_origin",
+        "text": "[Intellect - INT] Where did you find these?",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 11
+        },
+        "onPass": {
+          "next": null,
+          "effects": []
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "No unusual treasures today.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"ask_origin\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:08:49.085Z"
+}

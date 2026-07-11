@@ -1,0 +1,43 @@
+{
+  "node": {
+    "id": "merchant_crossroads_cw000f0_003",
+    "pool": "merchant",
+    "act": 3,
+    "biome": "crossroads",
+    "tone": "desperate",
+    "speaker": "merchant_unusual",
+    "lines": [
+      "Survival's a tricky business these days. I've got some odds and ends.",
+      "You won't find these anywhere else... or maybe you will."
+    ],
+    "choices": [
+      {
+        "id": "browse_wares",
+        "text": "Browse the strange wares.",
+        "next": "#merchant_unusual_wares",
+        "effects": []
+      },
+      {
+        "id": "ask_source",
+        "text": "[Perception - INT] Where did you get all this?",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#merchant_unusual_source",
+          "effects": []
+        },
+        "onFail": {
+          "next": "#merchant_unusual_deflects",
+          "effects": []
+        }
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"ask_source\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:06:36.875Z"
+}

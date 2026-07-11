@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emberveil — SVG Border System Preview (Phase 07)</title>
+<style>
+/* ── Palette tokens (from Phase 00) ── */
+:root {
+  --ember-void:   #06030e;
+  --ember-deep:   #0d0820;
+  --ember-pit:    #1a1128;
+  --ember-stone:  #2e2438;
+  --ember-slate:  #3d3250;
+  --gold-rim:     #c8a020;
+  --gold-glow:    #f8e890;
+  --gold-dim:     #7a6010;
+  --fire-core:    #ff7020;
+  --fire-bloom:   #ffc040;
+  --arc-blue:     #40a8ff;
+  --arc-pale:     #a0d8ff;
+  --hp-green:     #30cc60;
+  --hp-low:       #cc3020;
+  --shield-blue:  #4080e0;
+
+  /* Border system local tokens (overrideable per panel) */
+  --border-stroke: var(--gold-rim);
+  --border-width:  1.5px;
+  --panel-inset-glow: inset 0 0 16px rgba(0,0,0,0.72);
+}
+
+/* ── Reset + base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--ember-void);
+  font-family: 'Cinzel', Georgia, serif;
+  color: var(--gold-glow);
+  min-height: 100vh;
+  padding: 32px 24px 48px;
+}
+
+h1 {
+  font-size: 18px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-glow);
+  text-align: center;
+  margin-bottom: 6px;
+}
+.subtitle {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold-dim);
+  text-align: center;
+  margin-bottom: 36px;
+  letter-spacing: 0.06em;
+}
+
+/* ── Section headings ── */
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin: 32px 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #2a1e3a;
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px 24px;
+}
+
+/* ── Panel system ── */
+.ev-panel {
+  position: relative;
+  background: var(--ember-deep);
+  border: var(--border-width) solid var(--border-stroke);
+  box-shadow: var(--panel-inset-glow);
+  padding: 14px 16px 12px;
+  min-height: 90px;
+  /* Ensure corners aren't clipped */
+  overflow: visible;
+}
+
+/* Corner SVG anchoring */
+.ev-corner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  overflow: visible;
+}
+.ev-corner--tl { top: -11px; left: -11px; }
+.ev-corner--tr { top: -11px; right: -11px; transform: rotate(90deg);  transform-origin: 50% 50%; }
+.ev-corner--bl { bottom: -11px; left: -11px; transform: rotate(270deg); transform-origin: 50% 50%; }
+.ev-corner--br { bottom: -11px; right: -11px; transform: rotate(180deg); transform-origin: 50% 50%; }
+
+/* State modifiers — 1-2 variable overrides only */
+.ev-panel[data-state="active"] {
+  --border-stroke: var(--gold-glow);
+  --panel-inset-glow: inset 0 0 18px rgba(248,232,144,0.18);
+}
+.ev-panel[data-state="disabled"] {
+  --border-stroke: var(--gold-dim);
+  --panel-inset-glow: inset 0 0 12px rgba(0,0,0,0.85);
+  opacity: 0.55;
+}
+.ev-panel[data-state="selected"] {
+  --border-stroke: var(--arc-blue);
+  --panel-inset-glow: inset 0 0 14px rgba(64,168,255,0.22);
+}
+.ev-panel[data-state="enemy-target"] {
+  --border-stroke: var(--hp-low);
+  --panel-inset-glow: inset 0 0 14px rgba(204,48,32,0.28);
+}
+
+/* Mini panels (util-button scale) */
+.ev-panel--mini {
+  min-height: 0;
+  padding: 8px 10px;
+}
+.ev-panel--mini .ev-corner {
+  width: 24px;
+  height: 24px;
+}
+.ev-panel--mini .ev-corner--tl { top: -8px; left: -8px; }
+.ev-panel--mini .ev-corner--tr { top: -8px; right: -8px; }
+.ev-panel--mini .ev-corner--bl { bottom: -8px; left: -8px; }
+.ev-panel--mini .ev-corner--br { bottom: -8px; right: -8px; }
+
+/* Wide panel (modal / tooltip) */
+.ev-panel--wide {
+  grid-column: span 3;
+  min-height: 110px;
+  padding: 18px 24px 16px;
+}
+
+/* Seal bar — gradient accent on header area */
+.ev-panel__seal {
+  display: block;
+  height: 2px;
+  background: linear-gradient(to right,
+    transparent 0%,
+    var(--border-stroke) 20%,
+    var(--border-stroke) 80%,
+    transparent 100%);
+  margin: 0 0 10px;
+  opacity: 0.7;
+}
+
+/* ── Panel content helpers ── */
+.panel-label {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 8px;
+  display: block;
+}
+.panel-name {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--gold-glow);
+  margin-bottom: 4px;
+}
+.panel-class {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+}
+.bar-row { display: flex; flex-direction: column; gap: 4px; }
+.bar-track {
+  height: 6px;
+  background: var(--ember-pit);
+  border-radius: 1px;
+  overflow: hidden;
+  width: 100%;
+}
+.bar-fill { height: 100%; border-radius: 1px; }
+.bar-hp   { background: var(--hp-green); width: 78%; }
+.bar-mp   { background: var(--arc-blue); width: 55%; height: 5px; }
+.bar-hp-low { background: var(--hp-low); width: 22%; }
+
+.skill-row {
+  display: flex;
+  gap: 5px;
+  margin-top: 9px;
+}
+.skill-icon {
+  width: 26px;
+  height: 26px;
+  background: var(--ember-pit);
+  border: 1px solid var(--ember-stone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.skill-icon svg { width: 14px; height: 14px; }
+
+.tooltip-tag {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--arc-pale);
+  margin-bottom: 4px;
+  display: block;
+}
+.tooltip-desc {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-style: italic;
+  font-size: 12px;
+  color: #c8b8e0;
+  line-height: 1.5;
+}
+.badge {
+  display: inline-block;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border: 1px solid var(--fire-core);
+  color: var(--fire-bloom);
+  margin-top: 7px;
+}
+
+.util-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  padding: 4px 0;
+}
+.util-btn {
+  width: 36px;
+  height: 36px;
+  background: var(--ember-pit);
+  border: 1px solid var(--ember-stone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+.util-btn svg { width: 16px; height: 16px; fill: var(--gold-dim); }
+.util-btn:hover svg { fill: var(--gold-rim); }
+
+.chip-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.turn-chip {
+  width: 38px;
+  height: 38px;
+  background: var(--ember-pit);
+  border: 1.5px solid var(--border-stroke);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 10px;
+  color: var(--gold-dim);
+  letter-spacing: 0.05em;
+}
+
+.state-tag {
+  display: inline-block;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--border-stroke);
+  margin-top: 8px;
+  opacity: 0.9;
+}
+
+/* ── SVG fill helper — make path-based icons use currentColor ── */
+.icon-path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SYMBOL SPRITE BLOCK — swap inner content for real art later
+     ══════════════════════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+
+    <!-- LOZENGE: canonical HUD card corner -->
+    <symbol id="corner-lozenge" viewBox="0 0 32 32">
+      <rect x="9" y="9" width="14" height="14"
+            fill="var(--ember-deep,#0d0820)"
+            stroke="var(--border-stroke,#c8a020)" stroke-width="1.5"
+            transform="rotate(45 16 16)"/>
+      <line x1="16" y1="5" x2="16" y2="9"
+            stroke="var(--border-stroke,#c8a020)" stroke-width="1"
+            stroke-linecap="round" opacity="0.5"/>
+    </symbol>
+
+    <!-- FLOURISH: curling vine for premium panels -->
+    <symbol id="corner-flourish" viewBox="0 0 32 32">
+      <rect x="10" y="10" width="12" height="12"
+            fill="var(--ember-deep,#0d0820)"
+            stroke="var(--border-stroke,#c8a020)" stroke-width="1.4"
+            transform="rotate(45 16 16)"/>
+      <path d="M16,7.5 C15,5 11,3.5 8,2"
+            fill="none"
+            stroke="var(--border-stroke,#c8a020)" stroke-width="0.9" stroke-linecap="round"/>
+      <path d="M7.5,16 C5,15 3.5,11 2,8"
+            fill="none"
+            stroke="var(--border-stroke,#c8a020)" stroke-width="0.9" stroke-linecap="round"/>
+      <circle cx="7.5" cy="2" r="1.4"
+              fill="var(--border-stroke,#c8a020)"/>
+      <circle cx="2" cy="7.5" r="1.4"
+              fill="var(--border-stroke,#c8a020)"/>
+      <circle cx="11.5" cy="4.5" r="0.8"
+              fill="none"
+              stroke="var(--border-stroke,#c8a020)" stroke-width="0.8"/>
+      <circle cx="4.5" cy="11.5" r="0.8"
+              fill="none"
+              stroke="var(--border-stroke,#c8a020)" stroke-width="0.8"/>
+    </symbol>
+
+    <!-- SIMPLE: open L-bracket for mini / dense layouts -->
+    <symbol id="corner-simple" viewBox="0 0 32 32">
+      <polyline points="14,4 4,4 4,14"
+                fill="none"
+                stroke="var(--border-stroke,#c8a020)" stroke-width="2"
+                stroke-linecap="square" stroke-linejoin="miter"/>
+      <polyline points="13,7 7,7 7,13"
+                fill="none"
+                stroke="var(--border-stroke,#c8a020)" stroke-width="0.8"
+                stroke-linecap="square" stroke-linejoin="miter"
+                opacity="0.4"/>
+    </symbol>
+
+    <!-- Skill icon glyphs (inline placeholder set) -->
+    <symbol id="icon-sword" viewBox="0 0 16 16">
+      <line x1="3" y1="13" x2="11" y2="5" class="icon-path" stroke="var(--gold-rim,#c8a020)"/>
+      <line x1="11" y1="5" x2="13" y2="3" class="icon-path" stroke="var(--gold-rim,#c8a020)" stroke-width="2"/>
+      <line x1="5" y1="9" x2="3" y2="11" class="icon-path" stroke="var(--gold-rim,#c8a020)"/>
+    </symbol>
+    <symbol id="icon-flame" viewBox="0 0 16 16">
+      <path d="M8,14 C4,14 3,10 5,8 C5,10 7,10 7,8 C7,6 6,4 8,2 C9,5 11,6 11,9 C12,7 11,5 11,5 C13,7 13,11 11,13 C10,14 9,14 8,14Z"
+            fill="none" stroke="var(--fire-core,#ff7020)" stroke-width="1" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-bolt" viewBox="0 0 16 16">
+      <polyline points="10,2 6,9 9,9 6,14" fill="none" stroke="var(--arc-blue,#40a8ff)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-shield" viewBox="0 0 16 16">
+      <path d="M8,2 L13,4 L13,9 C13,12 8,14 8,14 C8,14 3,12 3,9 L3,4 Z" fill="none" stroke="var(--shield-blue,#4080e0)" stroke-width="1.2" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-gear" viewBox="0 0 16 16">
+      <circle cx="8" cy="8" r="2.5" fill="none" stroke="var(--gold-dim,#7a6010)" stroke-width="1.2"/>
+      <path d="M8,1.5 L8,3 M8,13 L8,14.5 M1.5,8 L3,8 M13,8 L14.5,8 M3.6,3.6 L4.7,4.7 M11.3,11.3 L12.4,12.4 M12.4,3.6 L11.3,4.7 M4.7,11.3 L3.6,12.4"
+            stroke="var(--gold-dim,#7a6010)" stroke-width="1.2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-layout" viewBox="0 0 16 16">
+      <rect x="2" y="2" width="5" height="5" fill="none" stroke="var(--gold-dim,#7a6010)" stroke-width="1.2"/>
+      <rect x="9" y="2" width="5" height="5" fill="none" stroke="var(--gold-dim,#7a6010)" stroke-width="1.2"/>
+      <rect x="2" y="9" width="12" height="5" fill="none" stroke="var(--gold-dim,#7a6010)" stroke-width="1.2"/>
+    </symbol>
+    <symbol id="icon-share" viewBox="0 0 16 16">
+      <circle cx="13" cy="3" r="1.5" fill="none" stroke="var(--gold-dim,#7a6010)" stroke-width="1.2"/>
+      <circle cx="3" cy="8" r="1.5" fill="none" stroke="var(--gold-dim,#7a6010)" stroke-width="1.2"/>
+      <circle cx="13" cy="13" r="1.5" fill="none" stroke="var(--gold-dim,#7a6010)" stroke-width="1.2"/>
+      <line x1="4.3" y1="7.3" x2="11.7" y2="3.7" stroke="var(--gold-dim,#7a6010)" stroke-width="1.2"/>
+      <line x1="4.3" y1="8.7" x2="11.7" y2="12.3" stroke="var(--gold-dim,#7a6010)" stroke-width="1.2"/>
+    </symbol>
+
+  </defs>
+</svg>
+
+<!-- ── Macro helper: corner group (reused via JavaScript below) ── -->
+
+<h1>Emberveil Border System</h1>
+<p class="subtitle">Phase 07 — SVG corner ornaments, edge rules, inset glow &amp; state matrix</p>
+
+<!-- ════════════════════════════════════════════════════════
+     ROW 1 — Corner variant comparison (default state)
+     ════════════════════════════════════════════════════════ -->
+<p class="section-label">Row 1 — Corner Variant Comparison (Default State)</p>
+<div class="grid">
+
+  <!-- Cell 1: Lozenge / hud-card -->
+  <div class="ev-panel" data-corner="lozenge" data-state="default">
+    <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <div class="ev-panel__body">
+      <span class="panel-label">Lozenge — hud-card</span>
+      <div class="panel-name">Fighter</div>
+      <div class="panel-class">Warrior</div>
+      <div class="bar-row">
+        <div class="bar-track"><div class="bar-fill bar-hp"></div></div>
+        <div class="bar-track"><div class="bar-fill bar-mp" style="height:5px"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-icon"><svg viewBox="0 0 16 16" width="14" height="14"><use href="#icon-sword"/></svg></div>
+        <div class="skill-icon"><svg viewBox="0 0 16 16" width="14" height="14"><use href="#icon-shield"/></svg></div>
+        <div class="skill-icon"><svg viewBox="0 0 16 16" width="14" height="14"><use href="#icon-flame"/></svg></div>
+      </div>
+      <span class="state-tag">Default</span>
+    </div>
+  </div>
+
+  <!-- Cell 2: Flourish / tooltip-card -->
+  <div class="ev-panel" data-corner="flourish" data-state="default">
+    <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <div class="ev-panel__body">
+      <span class="panel-label">Flourish — tooltip-card</span>
+      <span class="ev-panel__seal"></span>
+      <span class="panel-name" style="font-size:14px">Fireball</span>
+      <span class="tooltip-tag">Columns &nbsp;·&nbsp; AoE</span>
+      <span class="tooltip-desc">Deals 70% INT as Fire damage to a column of enemies.</span>
+      <span class="badge">Fire Damage</span>
+    </div>
+  </div>
+
+  <!-- Cell 3: Simple / util-button strip -->
+  <div class="ev-panel ev-panel--mini" data-corner="simple" data-state="default">
+    <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+    <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+    <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+    <svg class="ev-corner ev-corner--br" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+    <div class="ev-panel__body">
+      <span class="panel-label">Simple — util-button strip</span>
+      <div class="util-row">
+        <div class="util-btn"><svg viewBox="0 0 16 16" width="16" height="16"><use href="#icon-gear"/></svg></div>
+        <div class="util-btn"><svg viewBox="0 0 16 16" width="16" height="16"><use href="#icon-layout"/></svg></div>
+        <div class="util-btn"><svg viewBox="0 0 16 16" width="16" height="16"><use href="#icon-share"/></svg></div>
+      </div>
+      <span class="state-tag">Default</span>
+    </div>
+  </div>
+
+</div><!-- /grid row 1 -->
+
+<!-- ════════════════════════════════════════════════════════
+     ROW 2 — State matrix (Lozenge × 4 states)
+     ════════════════════════════════════════════════════════ -->
+<p class="section-label">Row 2 — Lozenge Corner × State Matrix</p>
+<div class="grid">
+
+  <!-- Cell 4: Active -->
+  <div class="ev-panel" data-corner="lozenge" data-state="active">
+    <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <div class="ev-panel__body">
+      <span class="panel-label">Lozenge — Active Turn</span>
+      <div class="panel-name">Stormcaller</div>
+      <div class="panel-class">Mage</div>
+      <div class="bar-row">
+        <div class="bar-track"><div class="bar-fill bar-hp" style="width:95%"></div></div>
+        <div class="bar-track"><div class="bar-fill bar-mp" style="height:5px;width:72%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-icon" style="border-color:var(--gold-glow)"><svg viewBox="0 0 16 16" width="14" height="14"><use href="#icon-bolt"/></svg></div>
+        <div class="skill-icon"><svg viewBox="0 0 16 16" width="14" height="14"><use href="#icon-flame"/></svg></div>
+      </div>
+      <span class="state-tag">Active</span>
+    </div>
+  </div>
+
+  <!-- Cell 5: Disabled -->
+  <div class="ev-panel" data-corner="lozenge" data-state="disabled">
+    <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <div class="ev-panel__body">
+      <span class="panel-label">Lozenge — Disabled (Dead)</span>
+      <div class="panel-name">Paladin</div>
+      <div class="panel-class">Holy Knight</div>
+      <div class="bar-row">
+        <div class="bar-track"><div class="bar-fill bar-hp" style="width:0%"></div></div>
+        <div class="bar-track"><div class="bar-fill bar-mp" style="height:5px;width:30%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-icon"><svg viewBox="0 0 16 16" width="14" height="14"><use href="#icon-shield"/></svg></div>
+        <div class="skill-icon"><svg viewBox="0 0 16 16" width="14" height="14"><use href="#icon-sword"/></svg></div>
+      </div>
+      <span class="state-tag">Disabled</span>
+    </div>
+  </div>
+
+  <!-- Cell 6: Selected (spell casting) -->
+  <div class="ev-panel" data-corner="lozenge" data-state="selected">
+    <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <div class="ev-panel__body">
+      <span class="panel-label">Lozenge — Spell Selected</span>
+      <div class="panel-name">Pyromanore</div>
+      <div class="panel-class">Fire Witch</div>
+      <div class="bar-row">
+        <div class="bar-track"><div class="bar-fill bar-hp" style="width:60%"></div></div>
+        <div class="bar-track"><div class="bar-fill bar-mp" style="height:5px;width:45%;background:var(--arc-pale)"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-icon" style="border-color:var(--arc-blue);box-shadow:0 0 6px rgba(64,168,255,0.5)">
+          <svg viewBox="0 0 16 16" width="14" height="14"><use href="#icon-bolt"/></svg>
+        </div>
+        <div class="skill-icon"><svg viewBox="0 0 16 16" width="14" height="14"><use href="#icon-flame"/></svg></div>
+      </div>
+      <span class="state-tag">Selected</span>
+    </div>
+  </div>
+
+</div><!-- /grid row 2 -->
+
+<!-- ════════════════════════════════════════════════════════
+     ROW 3 — Enemy-target + Turn chips + Modal (flourish wide)
+     ════════════════════════════════════════════════════════ -->
+<p class="section-label">Row 3 — Enemy-Target, Turn-Order Chips, and Modal (Flourish Wide)</p>
+<div class="grid">
+
+  <!-- Cell 7: Enemy-target highlight -->
+  <div class="ev-panel" data-corner="lozenge" data-state="enemy-target">
+    <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+    <div class="ev-panel__body">
+      <span class="panel-label">Lozenge — Enemy Target</span>
+      <div class="panel-name" style="color:var(--hp-low)">Goblin Seer</div>
+      <div class="panel-class" style="color:var(--hp-low);opacity:0.8">Enemy · Act II</div>
+      <div class="bar-row">
+        <div class="bar-track"><div class="bar-fill bar-hp-low" style="width:38%"></div></div>
+      </div>
+      <span class="state-tag">Enemy-Target</span>
+    </div>
+  </div>
+
+  <!-- Cell 8: Turn-order chip strip (simple corner at micro scale) -->
+  <div class="ev-panel ev-panel--mini" data-corner="simple" data-state="default">
+    <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+    <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+    <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+    <svg class="ev-corner ev-corner--br" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+    <div class="ev-panel__body">
+      <span class="panel-label">Simple — Turn-Order Chips</span>
+      <div class="chip-row">
+        <!-- Hero chip (gold border) -->
+        <div class="turn-chip" style="--border-stroke:var(--gold-rim)">F</div>
+        <div class="turn-chip" style="--border-stroke:var(--gold-rim);box-shadow:0 0 6px rgba(248,232,144,0.35)">S</div>
+        <div class="turn-chip" style="--border-stroke:var(--gold-dim);opacity:0.55">P</div>
+        <!-- Enemy chip (red border) -->
+        <div class="turn-chip" style="--border-stroke:var(--hp-low)">G</div>
+        <div class="turn-chip" style="--border-stroke:var(--hp-low)">G</div>
+      </div>
+      <span class="state-tag">Gold=Hero &nbsp;·&nbsp; Red=Enemy</span>
+    </div>
+  </div>
+
+  <!-- Cell 9: Flourish + seal bar (single-column) -->
+  <div class="ev-panel" data-corner="flourish" data-state="default"
+       style="--border-width:2px;--panel-inset-glow:inset 0 0 20px rgba(0,0,0,0.80)">
+    <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <div class="ev-panel__body">
+      <span class="panel-label">Flourish — Char Portrait Frame</span>
+      <span class="ev-panel__seal"></span>
+      <div style="width:56px;height:56px;background:var(--ember-pit);border:1px solid var(--ember-stone);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <circle cx="14" cy="10" r="6" fill="none" stroke="var(--gold-dim)" stroke-width="1.2"/>
+          <path d="M4,28 C4,20 24,20 24,28" fill="none" stroke="var(--gold-dim)" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="panel-name" style="text-align:center">Pyromanore</div>
+      <span class="state-tag" style="display:block;text-align:center">Default</span>
+    </div>
+  </div>
+
+</div><!-- /grid row 3 -->
+
+<!-- ════════════════════════════════════════════════════════
+     ROW 4 — Wide modal (flourish, spans all 3 columns)
+     ════════════════════════════════════════════════════════ -->
+<p class="section-label">Row 4 — Modal Panel, Flourish Wide (Replacement-Asset Slot Demo)</p>
+<div class="grid">
+
+  <!-- Cell 10–12: Modal spans 3 cols -->
+  <div class="ev-panel ev-panel--wide" data-corner="flourish" data-state="default"
+       style="--border-width:2px;--panel-inset-glow:inset 0 0 24px rgba(0,0,0,0.85)">
+    <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <div class="ev-panel__body">
+      <span class="panel-label">Flourish — Modal (wide) &nbsp;·&nbsp; Replacement-Asset Slot: swap &lt;symbol id="corner-flourish"&gt; to update all panels</span>
+      <span class="ev-panel__seal"></span>
+      <div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex:1;min-width:180px">
+          <div class="panel-name" style="font-size:16px;margin-bottom:6px">Level Up — Pyromanore</div>
+          <span class="tooltip-desc" style="font-size:13px">
+            Pyromanore has reached <strong style="color:var(--gold-glow)">Level 9</strong>.
+            Choose one talent to unlock for this character.
+          </span>
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+            <div class="ev-panel ev-panel--mini" data-corner="simple"
+                 style="flex:1;min-width:120px;--border-stroke:var(--arc-blue)">
+              <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+              <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+              <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+              <svg class="ev-corner ev-corner--br" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+              <span style="font-size:10px;color:var(--arc-pale);letter-spacing:0.14em;text-transform:uppercase">Arcane Surge</span><br>
+              <span style="font-size:11px;color:var(--gold-dim);font-family:'Crimson Text',serif;font-style:italic">+12% Spell Power</span>
+            </div>
+            <div class="ev-panel ev-panel--mini" data-corner="simple"
+                 style="flex:1;min-width:120px;--border-stroke:var(--fire-core)">
+              <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+              <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+              <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+              <svg class="ev-corner ev-corner--br" aria-hidden="true" width="24" height="24" viewBox="0 0 32 32"><use href="#corner-simple"/></svg>
+              <span style="font-size:10px;color:var(--fire-bloom);letter-spacing:0.14em;text-transform:uppercase">Conflagration</span><br>
+              <span style="font-size:11px;color:var(--gold-dim);font-family:'Crimson Text',serif;font-style:italic">Fire DoT +2 rounds</span>
+            </div>
+          </div>
+        </div>
+        <div style="flex:0 0 auto;text-align:right">
+          <span class="panel-label">Corner SVG Zoom</span>
+          <!-- Zoomed lozenge reference -->
+          <svg width="64" height="64" viewBox="0 0 32 32" aria-label="Lozenge corner, zoomed" style="display:block;margin-bottom:6px;background:var(--ember-pit)">
+            <use href="#corner-lozenge"/>
+          </svg>
+          <svg width="64" height="64" viewBox="0 0 32 32" aria-label="Flourish corner, zoomed" style="display:block;margin-bottom:6px;background:var(--ember-pit)">
+            <use href="#corner-flourish"/>
+          </svg>
+          <svg width="64" height="64" viewBox="0 0 32 32" aria-label="Simple corner, zoomed" style="display:block;background:var(--ember-pit)">
+            <use href="#corner-simple"/>
+          </svg>
+          <span class="panel-label" style="margin-top:4px">2× zoom: lozenge / flourish / simple</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /grid row 4 -->
+
+<p style="font-family:'Crimson Text',Georgia,serif;font-style:italic;font-size:11px;color:#3d3250;text-align:center;margin-top:48px;letter-spacing:0.08em;">
+  Phase 07 — SVG Border Token System — Emberveil Manual Mode Overhaul — 2026-04-29
+</p>
+
+</body>
+</html>

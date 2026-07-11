@@ -4,6 +4,7 @@
  */
 import { CharacterBuilderScreen } from './CharacterBuilderScreen.js';
 import { LoadGameScreen } from './LoadGameScreen.js';
+import { StoryNewGameScreen } from './StoryNewGameScreen.js';
 import { SettingsScreen } from './SettingsScreen.js';
 import { CombatSimulatorScreen } from './CombatSimulatorScreen.js';
 import { FormulaCodexScreen } from './FormulaCodexScreen.js';
@@ -227,7 +228,9 @@ export class TitleScreen {
 
     this._el.querySelector('#btn-new-game').addEventListener('click', () => {
       this.audio.playSfx('click');
-      this.manager.push(new CharacterBuilderScreen(this.manager, this.audio));
+      // M-S01: route through StoryNewGameScreen (mode picker). Classic tab
+      // routes to CharacterBuilderScreen from within StoryNewGameScreen.
+      this.manager.push(new StoryNewGameScreen(this.manager, this.audio));
     });
     this._el.querySelector('#btn-load-game').addEventListener('click', () => {
       this.audio.playSfx('click');

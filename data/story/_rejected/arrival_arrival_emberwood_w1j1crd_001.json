@@ -1,0 +1,56 @@
+{
+  "node": {
+    "id": "arrival_emberwood_w1j1crd_001",
+    "pool": "arrival",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "tense",
+    "speaker": "road_scout_npc",
+    "lines": [
+      "You tread on guarded ground.",
+      "State your purpose quickly. You look like trouble. "
+    ],
+    "choices": [
+      {
+        "id": "diplomatic",
+        "text": "[Diplomacy - INT] Convince him of your intent.",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "INT",
+          "dc": 11
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "ranger_camp_sheltered"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#barred",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "I’d rather not say. I'll move on.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "barred": {
+        "lines": [
+          "\"No reason to trust you. Move along.\"",
+          "He watches you depart, hands on his weapon."
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"diplomatic\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-20T23:54:49.457Z"
+}

@@ -1,0 +1,337 @@
+{
+  "nodes": [
+    {
+      "id": "maer_intro_001",
+      "pool": "companion-captain_maer",
+      "companionId": "captain_maer",
+      "act": 1,
+      "biome": "emberwood",
+      "tone": "professional",
+      "speaker": "captain_maer",
+      "lines": [
+        "Captain Maer. Emberguard — former, technically, as of this morning.",
+        "\"I resigned my commission rather than carry out an order I found unacceptable. Which puts us in similar positions, I think.\""
+      ],
+      "choices": [
+        {
+          "id": "ask_order",
+          "text": "Ask what the order was.",
+          "next": "#maer_order",
+          "effects": [{ "type": "set_flag", "flag": "companion_lyra_met" }]
+        },
+        {
+          "id": "accept",
+          "text": "\"Welcome to the unaligned.\"",
+          "next": null,
+          "effects": [{ "type": "set_flag", "flag": "companion_lyra_met" }, { "type": "companion_approval", "companionId": "captain_maer", "amount": 2 }]
+        }
+      ],
+      "nodes": {
+        "maer_order": {
+          "lines": ["\"Burn a village. Report it as cult activity.\" A pause. \"It wasn't.\""],
+          "choices": [{ "id": "accept_her", "text": "\"Then you made the right call.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 2 }] }, { "id": "neutral", "text": "\"That couldn't have been easy.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 1 }] }]
+        }
+      }
+    },
+    {
+      "id": "maer_armor_001",
+      "pool": "companion-captain_maer",
+      "companionId": "captain_maer",
+      "act": 1,
+      "biome": "stoneward",
+      "tone": "practical",
+      "speaker": "captain_maer",
+      "lines": [
+        "She keeps the Emberguard armor. The insignia is stripped.",
+        "\"The armor was earned. The insignia wasn't mine to keep.\""
+      ],
+      "choices": [
+        {
+          "id": "agree",
+          "text": "\"That's a fair distinction.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 1 }]
+        },
+        {
+          "id": "ask_miss",
+          "text": "\"Do you miss it? The Guard?\"",
+          "next": "#maer_misses",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "maer_misses": {
+          "lines": ["\"I miss what it was supposed to be.\" A beat. \"The Guard I joined isn't the Guard I left. That's not the same as missing the one I left.\""],
+          "choices": [{ "id": "go", "text": "Nod. Move on.", "next": null, "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 1 }] }]
+        }
+      }
+    },
+    {
+      "id": "maer_tactical_001",
+      "pool": "companion-captain_maer",
+      "companionId": "captain_maer",
+      "act": 1,
+      "biome": "old_road",
+      "tone": "professional",
+      "speaker": "captain_maer",
+      "lines": [
+        "Before every engagement, she does it: one sweep of the terrain, one look at the exits.",
+        "\"Twenty years of the habit. I've stopped being embarrassed about it.\""
+      ],
+      "choices": [
+        {
+          "id": "adopt_habit",
+          "text": "Start doing the same sweep.",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 2 }]
+        },
+        {
+          "id": "ask_saves",
+          "text": "\"How many times has it saved your life?\"",
+          "next": "#maer_counts",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "maer_counts": {
+          "lines": ["\"Directly? Three. Indirectly, through people I trained who had the habit? I don't know. I stopped counting the indirect ones.\""],
+          "choices": [{ "id": "go", "text": "\"Good habit.\"", "next": null, "effects": [] }]
+        }
+      }
+    },
+    {
+      "id": "maer_emberguard_confrontation_001",
+      "pool": "companion-captain_maer",
+      "companionId": "captain_maer",
+      "act": 2,
+      "biome": "crossroads",
+      "tone": "tense",
+      "speaker": "captain_maer",
+      "lines": [
+        "A current Emberguard patrol recognizes her.",
+        "The sergeant looks at her stripped armor. \"Maer.\" A pause with too much in it. \"That's a resignation or a desertion.\""
+      ],
+      "choices": [
+        {
+          "id": "maer_answers",
+          "text": "Let Maer handle it.",
+          "next": "#maer_response",
+          "effects": []
+        },
+        {
+          "id": "intervene",
+          "text": "Step in on her behalf.",
+          "next": "#you_intervene",
+          "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 1 }]
+        }
+      ],
+      "nodes": {
+        "maer_response": {
+          "lines": ["\"Resignation. Filed before I walked out the gate. Check the register, if you like.\" A long pause. \"I did things right, Sergeant. I always did.\""],
+          "choices": [{ "id": "go", "text": "The sergeant looks away first.", "next": null, "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 2 }] }]
+        },
+        "you_intervene": {
+          "lines": ["\"She's with us.\" The sergeant looks you over and decides he's not paid enough for this conversation."],
+          "choices": [{ "id": "go", "text": "Move on.", "next": null, "effects": [] }]
+        }
+      }
+    },
+    {
+      "id": "maer_leadership_001",
+      "pool": "companion-captain_maer",
+      "companionId": "captain_maer",
+      "act": 2,
+      "biome": "ash_plains",
+      "tone": "reflective",
+      "speaker": "captain_maer",
+      "lines": [
+        "\"You lead differently than I do.\"",
+        "She's watching you after the last decision. \"I'd say worse, but I'm not sure that's right. Different.\""
+      ],
+      "choices": [
+        {
+          "id": "ask_difference",
+          "text": "Ask what the difference is.",
+          "next": "#maer_difference",
+          "effects": []
+        },
+        {
+          "id": "ask_learn",
+          "text": "\"Teach me what you know.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 2 }]
+        }
+      ],
+      "nodes": {
+        "maer_difference": {
+          "lines": ["\"I lead from consequence. You seem to lead from principle. Both work. Consequences are more predictable. Principles hold longer.\""],
+          "choices": [{ "id": "go", "text": "\"I'll take longer.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 1 }] }]
+        }
+      }
+    },
+    {
+      "id": "maer_night_confession_001",
+      "pool": "companion-captain_maer",
+      "companionId": "captain_maer",
+      "act": 2,
+      "biome": "veilscar",
+      "tone": "raw",
+      "speaker": "captain_maer",
+      "lines": [
+        "\"I sent soldiers into the Veilscar on orders I was told were low-risk.\"",
+        "\"They weren't. I knew they weren't. I went along anyway.\" A long pause. \"That's the one I can't file cleanly.\""
+      ],
+      "choices": [
+        {
+          "id": "ask_why",
+          "text": "\"Why did you go along?\"",
+          "next": "#maer_why",
+          "effects": []
+        },
+        {
+          "id": "judgment",
+          "text": "\"Then carry it. Don't excuse it.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 1 }]
+        },
+        {
+          "id": "compassion",
+          "text": "\"Systems make it easy to go along. That doesn't make it right. But it's not simple.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 2 }]
+        }
+      ],
+      "nodes": {
+        "maer_why": {
+          "lines": ["\"Because I believed the Council had information I didn't. Because I trusted the system.\" She looks at her hands. \"Because I was tired and didn't want one more fight.\""],
+          "choices": [{ "id": "go", "text": "\"The last one's the honest one.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 1 }] }]
+        }
+      }
+    },
+    {
+      "id": "maer_approval_high_001",
+      "pool": "companion-captain_maer",
+      "companionId": "captain_maer",
+      "act": 2,
+      "biome": "crossroads",
+      "tone": "dry-respect",
+      "speaker": "captain_maer",
+      "lines": [
+        "\"I'd have promoted you, if I still had a command to promote you in.\"",
+        "A small shrug. \"Take it as a compliment.\""
+      ],
+      "choices": [
+        {
+          "id": "thanks",
+          "text": "\"Coming from you, I do.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 1 }]
+        }
+      ]
+    },
+    {
+      "id": "maer_rift_briefing_001",
+      "pool": "companion-captain_maer",
+      "companionId": "captain_maer",
+      "act": 3,
+      "biome": "riftgate",
+      "tone": "tactical-climactic",
+      "speaker": "captain_maer",
+      "lines": [
+        "She's done a full tactical assessment of the approach. On her own. Without being asked.",
+        "\"Three entry points. Two viable. One that the veilspawn won't expect because it requires going through the rift-adjacent pocket — dangerous but achievable.\""
+      ],
+      "choices": [
+        {
+          "id": "use_plan",
+          "text": "Use her plan.",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 2 }, { "type": "set_flag", "flag": "riftgate_breached" }]
+        },
+        {
+          "id": "modify",
+          "text": "[Perception - INT] Suggest a modification.",
+          "skillCheck": { "skill": "perception", "stat": "INT", "dc": 14 },
+          "onPass": { "next": "#maer_impressed", "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 3 }] },
+          "onFail": { "next": "#maer_politely_declines", "effects": [] }
+        }
+      ],
+      "nodes": {
+        "maer_impressed": {
+          "lines": ["She studies your modification. \"...That's better.\" She actually writes it down."],
+          "choices": [{ "id": "go", "text": "Move.", "next": null, "effects": [{ "type": "set_flag", "flag": "riftgate_breached" }] }]
+        },
+        "maer_politely_declines": {
+          "lines": ["\"I see what you're thinking. The sightline doesn't work at the second junction.\""],
+          "choices": [{ "id": "go", "text": "\"Right. Your plan.\"", "next": null, "effects": [{ "type": "set_flag", "flag": "riftgate_breached" }] }]
+        }
+      }
+    },
+    {
+      "id": "maer_council_verdict_001",
+      "pool": "companion-captain_maer",
+      "companionId": "captain_maer",
+      "act": 3,
+      "biome": "sovereigns_approach",
+      "tone": "resolved",
+      "speaker": "captain_maer",
+      "lines": [
+        "\"If we survive this, the Council has charges waiting.\"",
+        "\"Desertion. Unauthorized operation in restricted zones. I've counted seven so far.\""
+      ],
+      "choices": [
+        {
+          "id": "face_it",
+          "text": "\"We'll face it together.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 2 }]
+        },
+        {
+          "id": "ask_worried",
+          "text": "\"Are you worried?\"",
+          "next": "#maer_worried",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "maer_worried": {
+          "lines": ["\"Seven charges from a Council that may be compromised, after we closed the Rift that was destroying the world?\" A pause. \"I'll risk it.\""],
+          "choices": [{ "id": "go", "text": "\"Then let's give them something to charge us for.\"", "next": null, "effects": [] }]
+        }
+      }
+    },
+    {
+      "id": "maer_post_gate_001",
+      "pool": "companion-captain_maer",
+      "companionId": "captain_maer",
+      "act": 1,
+      "biome": "emberwood",
+      "tone": "dry-regret",
+      "speaker": "captain_maer",
+      "lines": [
+        "After the gate incident — however you handled it — she finds you later.",
+        "\"I was harder than I needed to be. At the gate. Old habit.\" A pause. \"I'm working on it.\""
+      ],
+      "choices": [
+        {
+          "id": "accept",
+          "text": "\"Noted. Forgotten.\"",
+          "next": null,
+          "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 2 }]
+        },
+        {
+          "id": "keep_it",
+          "text": "\"I haven't forgotten.\"",
+          "next": "#maer_fair",
+          "effects": []
+        }
+      ],
+      "nodes": {
+        "maer_fair": {
+          "lines": ["\"Fair.\" She doesn't argue the point. \"I'll earn it back.\""],
+          "choices": [{ "id": "go", "text": "\"That's all I ask.\"", "next": null, "effects": [{ "type": "companion_approval", "companionId": "captain_maer", "amount": 1 }] }]
+        }
+      }
+    }
+  ]
+}

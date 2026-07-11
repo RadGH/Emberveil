@@ -1,0 +1,156 @@
+[
+  {
+    "id": "emberwood",
+    "name": "Emberwood",
+    "palette": ["#c84828", "#e8a020", "#602010", "#f0d090"],
+    "soundscape": "crackling_embers",
+    "actTags": ["act1"],
+    "backgroundImage": "images/map_bg/act-1-border-roads-v1.png",
+    "backgroundOpacity": 0.55,
+    "backgroundDarken": 0.35,
+    "nodeDistribution": { "combat": 0.40, "dialog": 0.22, "shrine": 0.08, "lore": 0.10, "merchant": 0.06, "rest": 0.08, "event": 0.06 }
+  },
+  {
+    "id": "stoneward",
+    "name": "Stoneward",
+    "palette": ["#808090", "#c0b080", "#404850", "#e0d8c0"],
+    "soundscape": "wind_stone",
+    "actTags": ["act1"],
+    "backgroundImage": "images/map_bg/act-1-border-roads-v2.png",
+    "backgroundOpacity": 0.55,
+    "backgroundDarken": 0.35,
+    "nodeDistribution": { "combat": 0.42, "dialog": 0.18, "shrine": 0.06, "lore": 0.08, "merchant": 0.08, "rest": 0.10, "event": 0.08 }
+  },
+  {
+    "id": "fen",
+    "name": "Gloomfen",
+    "palette": ["#405030", "#80a040", "#203010", "#c0d880"],
+    "soundscape": "swamp_ambience",
+    "actTags": ["act1", "act2"],
+    "backgroundImage": "images/map_bg/act-1-border-roads-v3.png",
+    "backgroundOpacity": 0.55,
+    "backgroundDarken": 0.40,
+    "nodeDistribution": { "combat": 0.38, "dialog": 0.20, "shrine": 0.10, "lore": 0.12, "merchant": 0.04, "rest": 0.08, "event": 0.08 }
+  },
+  {
+    "id": "old_road",
+    "name": "Old Road",
+    "palette": ["#908060", "#c0a840", "#504030", "#f0e0a0"],
+    "soundscape": "road_wind",
+    "actTags": ["act1"],
+    "backgroundImage": "images/map_bg/act-1-border-roads-v1.png",
+    "backgroundOpacity": 0.50,
+    "backgroundDarken": 0.30,
+    "nodeDistribution": { "combat": 0.44, "dialog": 0.24, "shrine": 0.04, "lore": 0.08, "merchant": 0.10, "rest": 0.06, "event": 0.04 }
+  },
+  {
+    "id": "gloomridge",
+    "name": "Gloomridge",
+    "palette": ["#302838", "#5040a0", "#181020", "#9080e0"],
+    "soundscape": "deep_mountain",
+    "actTags": ["act1"],
+    "backgroundImage": "images/map_bg/act-1-border-roads-v2.png",
+    "backgroundOpacity": 0.45,
+    "backgroundDarken": 0.45,
+    "nodeDistribution": { "combat": 0.46, "dialog": 0.16, "shrine": 0.08, "lore": 0.10, "merchant": 0.04, "rest": 0.06, "event": 0.10 }
+  },
+  {
+    "id": "veilscar",
+    "name": "Veilscar",
+    "palette": ["#401858", "#8028b0", "#200830", "#d060f0"],
+    "soundscape": "rift_hum",
+    "actTags": ["act2"],
+    "backgroundImage": "images/map_bg/act-2-ashen-wastes-v1.png",
+    "backgroundOpacity": 0.55,
+    "backgroundDarken": 0.40,
+    "nodeDistribution": { "combat": 0.44, "dialog": 0.20, "shrine": 0.08, "lore": 0.12, "merchant": 0.04, "rest": 0.06, "event": 0.06 }
+  },
+  {
+    "id": "plague_fen",
+    "name": "Plague Fen",
+    "palette": ["#306020", "#60c030", "#102010", "#a0f060"],
+    "soundscape": "toxic_bog",
+    "actTags": ["act2"],
+    "backgroundImage": "images/map_bg/act-2-ashen-wastes-v2.png",
+    "backgroundOpacity": 0.50,
+    "backgroundDarken": 0.40,
+    "nodeDistribution": { "combat": 0.42, "dialog": 0.18, "shrine": 0.06, "lore": 0.14, "merchant": 0.04, "rest": 0.08, "event": 0.08 }
+  },
+  {
+    "id": "ash_plains",
+    "name": "Ash Plains",
+    "palette": ["#787070", "#d0c8b8", "#383030", "#f0ede8"],
+    "soundscape": "ashen_wind",
+    "actTags": ["act2"],
+    "backgroundImage": "images/map_bg/act-2-ashen-wastes-v3.png",
+    "backgroundOpacity": 0.60,
+    "backgroundDarken": 0.30,
+    "nodeDistribution": { "combat": 0.48, "dialog": 0.16, "shrine": 0.06, "lore": 0.08, "merchant": 0.06, "rest": 0.08, "event": 0.08 }
+  },
+  {
+    "id": "library_ruins",
+    "name": "Library Ruins",
+    "palette": ["#604820", "#d0a040", "#302010", "#f0d080"],
+    "soundscape": "ancient_silence",
+    "actTags": ["act2"],
+    "backgroundImage": "images/map_bg/act-2-ashen-wastes-v1.png",
+    "backgroundOpacity": 0.50,
+    "backgroundDarken": 0.38,
+    "nodeDistribution": { "combat": 0.30, "dialog": 0.28, "shrine": 0.08, "lore": 0.22, "merchant": 0.04, "rest": 0.04, "event": 0.04 }
+  },
+  {
+    "id": "crossroads",
+    "name": "Crossroads",
+    "palette": ["#806040", "#c09060", "#403020", "#e0c090"],
+    "soundscape": "busy_roads",
+    "actTags": ["act2"],
+    "backgroundImage": "images/map_bg/act-2-ashen-wastes-v2.png",
+    "backgroundOpacity": 0.50,
+    "backgroundDarken": 0.32,
+    "nodeDistribution": { "combat": 0.36, "dialog": 0.28, "shrine": 0.04, "lore": 0.06, "merchant": 0.14, "rest": 0.08, "event": 0.04 }
+  },
+  {
+    "id": "riftgate",
+    "name": "Riftgate",
+    "palette": ["#100820", "#5010a0", "#080010", "#c040f8"],
+    "soundscape": "rift_chaos",
+    "actTags": ["act3"],
+    "backgroundImage": "images/map_bg/act-3-shattered-hell-v1.png",
+    "backgroundOpacity": 0.55,
+    "backgroundDarken": 0.42,
+    "nodeDistribution": { "combat": 0.50, "dialog": 0.16, "shrine": 0.08, "lore": 0.10, "merchant": 0.02, "rest": 0.06, "event": 0.08 }
+  },
+  {
+    "id": "architects_verge",
+    "name": "Architect's Verge",
+    "palette": ["#284048", "#4890c0", "#101820", "#90d8f8"],
+    "soundscape": "crystalline_hum",
+    "actTags": ["act3"],
+    "backgroundImage": "images/map_bg/act-3-shattered-hell-v2.png",
+    "backgroundOpacity": 0.55,
+    "backgroundDarken": 0.38,
+    "nodeDistribution": { "combat": 0.38, "dialog": 0.22, "shrine": 0.10, "lore": 0.16, "merchant": 0.04, "rest": 0.04, "event": 0.06 }
+  },
+  {
+    "id": "ember_hollow",
+    "name": "Ember Hollow",
+    "palette": ["#501008", "#c82010", "#280804", "#f06020"],
+    "soundscape": "deep_ember",
+    "actTags": ["act3"],
+    "backgroundImage": "images/map_bg/act-3-shattered-hell-v3.png",
+    "backgroundOpacity": 0.55,
+    "backgroundDarken": 0.42,
+    "nodeDistribution": { "combat": 0.48, "dialog": 0.18, "shrine": 0.08, "lore": 0.08, "merchant": 0.02, "rest": 0.06, "event": 0.10 }
+  },
+  {
+    "id": "sovereigns_approach",
+    "name": "Sovereign's Approach",
+    "palette": ["#383028", "#a08050", "#181408", "#f0d0a0"],
+    "soundscape": "final_march",
+    "actTags": ["act3"],
+    "backgroundImage": "images/map_bg/abyssal_depths.jpg",
+    "backgroundOpacity": 0.60,
+    "backgroundDarken": 0.45,
+    "nodeDistribution": { "combat": 0.52, "dialog": 0.18, "shrine": 0.06, "lore": 0.08, "merchant": 0.02, "rest": 0.06, "event": 0.08 }
+  }
+]

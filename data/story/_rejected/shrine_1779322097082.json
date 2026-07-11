@@ -1,0 +1,16 @@
+{
+  "node": [
+    "The ash prophet stands still, eyes closed.",
+    "\"Do not disturb what sleeps beneath the stone.\""
+  ],
+  "validationErrors": [
+    "missing id",
+    "missing pool",
+    "pool mismatch: got \"undefined\" expected \"shrine\"",
+    "act must be integer",
+    "unknown biome: \"undefined\"",
+    "lines must be non-empty array",
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:08:17.082Z"
+}

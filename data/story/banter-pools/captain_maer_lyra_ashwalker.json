@@ -1,0 +1,59 @@
+[
+  {
+    "id": "maer_lyra_01",
+    "trigger": "nodeResolved",
+    "cooldown": 5,
+    "companionA": "captain_maer",
+    "companionB": "lyra_ashwalker",
+    "lines": [
+      { "speaker": "captain_maer",   "text": "Rangers don't answer to anyone. Must be freeing." },
+      { "speaker": "lyra_ashwalker", "text": "We answer to the road. The road is a harder master than any captain." }
+    ]
+  },
+  {
+    "id": "maer_lyra_02",
+    "trigger": "nodeResolved",
+    "cooldown": 6,
+    "companionA": "captain_maer",
+    "companionB": "lyra_ashwalker",
+    "lines": [
+      { "speaker": "lyra_ashwalker", "text": "You run a tight formation for a man traveling without orders." },
+      { "speaker": "captain_maer",   "text": "Habit. Twenty years of habit." }
+    ]
+  },
+  {
+    "id": "maer_lyra_03",
+    "trigger": "nodeResolved",
+    "cooldown": 7,
+    "companionA": "captain_maer",
+    "companionB": "lyra_ashwalker",
+    "lines": [
+      { "speaker": "captain_maer",   "text": "You disagree with half my calls. You do it quietly. I respect that." },
+      { "speaker": "lyra_ashwalker", "text": "Loud disagreement wastes time. I'll tell you after." },
+      { "speaker": "captain_maer",   "text": "Fair enough." }
+    ]
+  },
+  {
+    "id": "maer_lyra_04",
+    "trigger": "nodeResolved",
+    "cooldown": 8,
+    "companionA": "captain_maer",
+    "companionB": "lyra_ashwalker",
+    "lines": [
+      { "speaker": "lyra_ashwalker", "text": "The Emberguard lost a lot of good people to the Veil." },
+      { "speaker": "captain_maer",   "text": "Every good soldier who falls to them is a failure I carry." },
+      { "speaker": "lyra_ashwalker", "text": "Then carry lighter. Blame the Veil, not yourself." }
+    ]
+  },
+  {
+    "id": "maer_lyra_05",
+    "trigger": "nodeResolved",
+    "cooldown": 9,
+    "companionA": "captain_maer",
+    "companionB": "lyra_ashwalker",
+    "lines": [
+      { "speaker": "captain_maer",   "text": "If this goes badly—" },
+      { "speaker": "lyra_ashwalker", "text": "Then we went badly together. Don't rehearse it." }
+    ]
+  }
+]

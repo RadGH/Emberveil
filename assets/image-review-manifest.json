@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-05-20T05:10:20.241Z",
+    "generated": "2026-05-21T23:04:09.755Z",
     "derivedFrom": {
       "appearances": "public/data/entities/heroes.json + npcs.json (83 entries)",
       "classPets": "public/data/entities/companions.json classPets (11 entries)",
@@ -9,11 +9,11 @@
       "bossIds": "public/data/entities/bosses.json (12 bosses)"
     },
     "counts": {
-      "total": 1510,
+      "total": 1910,
       "by_status": {
         "ready": 1035,
         "pending": 2,
-        "orphaned": 409,
+        "orphaned": 809,
         "approved": 20,
         "candidate": 44
       },
@@ -24,7 +24,7 @@
         "enemy": 165,
         "background": 68,
         "tap-weapons": 9,
-        "orphan": 409,
+        "orphan": 809,
         "reference-sheet": 64
       }
     },
@@ -10176,6 +10176,96 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_ancient_guardian_npc_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ancient_guardian_npc_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ancient_guardian_npc_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ancient_guardian_npc_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ancient_guardian_npc_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ancient_guardian_npc_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ancient_guardian_npc_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ancient_guardian_npc_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ancient_guardian_npc_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ancient_guardian_npc_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ancient_guardian_npc_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ancient_guardian_npc_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ancient_guardian_npc_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ancient_guardian_npc_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ancient_guardian_npc_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ancient_guardian_npc_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ancient_guardian_npc_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ancient_guardian_npc_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ancient_guardian_npc_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ancient_guardian_npc_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_archfiend_malgrath_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -10190,6 +10280,456 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/archfiend_malgrath_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_architect_fragment_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/architect_fragment_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_architect_fragment_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/architect_fragment_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_architect_fragment_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/architect_fragment_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_architect_fragment_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/architect_fragment_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_architect_fragment_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/architect_fragment_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_architect_fragment_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/architect_fragment_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_architect_fragment_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/architect_fragment_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_architect_fragment_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/architect_fragment_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_architect_fragment_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/architect_fragment_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_architect_fragment_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/architect_fragment_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_cultist_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_cultist_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_cultist_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_cultist_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_cultist_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_cultist_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_cultist_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_cultist_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_cultist_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_cultist_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_cultist_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_cultist_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_cultist_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_cultist_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_cultist_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_cultist_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_cultist_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_cultist_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_cultist_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_cultist_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_golem_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_golem_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_golem_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_golem_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_golem_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_golem_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_golem_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_golem_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_golem_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_golem_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_golem_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_golem_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_golem_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_golem_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_golem_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_golem_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_golem_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_golem_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_golem_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_golem_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_prophet_npc_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_prophet_npc_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_prophet_npc_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_prophet_npc_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_prophet_npc_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_prophet_npc_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_prophet_npc_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_prophet_npc_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_prophet_npc_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_prophet_npc_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_prophet_npc_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_prophet_npc_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_prophet_npc_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_prophet_npc_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_prophet_npc_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_prophet_npc_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_prophet_npc_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_prophet_npc_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_prophet_npc_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_prophet_npc_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_ritualist_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_ritualist_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_ritualist_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_ritualist_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_ritualist_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_ritualist_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_ritualist_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_ritualist_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_ritualist_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_ritualist_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_ritualist_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_ritualist_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_ritualist_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_ritualist_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_ritualist_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_ritualist_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_ritualist_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_ritualist_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ash_ritualist_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ash_ritualist_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10235,6 +10775,96 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/ash_wraith_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ashen_veil_herald_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ashen_veil_herald_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ashen_veil_herald_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ashen_veil_herald_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ashen_veil_herald_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ashen_veil_herald_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ashen_veil_herald_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ashen_veil_herald_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ashen_veil_herald_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ashen_veil_herald_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ashen_veil_herald_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ashen_veil_herald_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ashen_veil_herald_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ashen_veil_herald_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ashen_veil_herald_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ashen_veil_herald_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ashen_veil_herald_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ashen_veil_herald_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ashen_veil_herald_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ashen_veil_herald_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10329,6 +10959,96 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_bog_witch_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bog_witch_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bog_witch_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bog_witch_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bog_witch_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bog_witch_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bog_witch_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bog_witch_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bog_witch_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bog_witch_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bog_witch_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bog_witch_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bog_witch_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bog_witch_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bog_witch_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bog_witch_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bog_witch_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bog_witch_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bog_witch_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bog_witch_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_bone_hound_east_block",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -10374,6 +11094,366 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_bone_reader_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_reader_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_reader_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_reader_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_reader_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_reader_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_reader_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_reader_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_reader_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_reader_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_reader_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_reader_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_reader_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_reader_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_reader_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_reader_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_reader_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_reader_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_reader_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_reader_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_revenant_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_revenant_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_revenant_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_revenant_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_revenant_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_revenant_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_revenant_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_revenant_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_revenant_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_revenant_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_revenant_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_revenant_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_revenant_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_revenant_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_revenant_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_revenant_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_revenant_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_revenant_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bone_revenant_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bone_revenant_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bram_coldfire_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bram_coldfire_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bram_coldfire_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bram_coldfire_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bram_coldfire_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bram_coldfire_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bram_coldfire_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bram_coldfire_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bram_coldfire_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bram_coldfire_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bram_coldfire_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bram_coldfire_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bram_coldfire_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bram_coldfire_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bram_coldfire_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bram_coldfire_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bram_coldfire_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bram_coldfire_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_bram_coldfire_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/bram_coldfire_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_brightfall_innkeeper_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/brightfall_innkeeper_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_brightfall_innkeeper_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/brightfall_innkeeper_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_brightfall_innkeeper_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/brightfall_innkeeper_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_brightfall_innkeeper_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/brightfall_innkeeper_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_brightfall_innkeeper_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/brightfall_innkeeper_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_brightfall_innkeeper_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/brightfall_innkeeper_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_brightfall_innkeeper_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/brightfall_innkeeper_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_brightfall_innkeeper_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/brightfall_innkeeper_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_brightfall_innkeeper_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/brightfall_innkeeper_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_brightfall_innkeeper_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/brightfall_innkeeper_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_bulwark_dorn_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -10397,6 +11477,96 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/bulwark_dorn_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_captain_maer_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/captain_maer_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_captain_maer_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/captain_maer_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_captain_maer_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/captain_maer_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_captain_maer_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/captain_maer_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_captain_maer_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/captain_maer_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_captain_maer_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/captain_maer_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_captain_maer_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/captain_maer_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_captain_maer_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/captain_maer_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_captain_maer_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/captain_maer_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_captain_maer_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/captain_maer_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10446,6 +11616,96 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_corpse_lantern_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corpse_lantern_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corpse_lantern_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corpse_lantern_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corpse_lantern_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corpse_lantern_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corpse_lantern_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corpse_lantern_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corpse_lantern_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corpse_lantern_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corpse_lantern_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corpse_lantern_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corpse_lantern_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corpse_lantern_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corpse_lantern_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corpse_lantern_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corpse_lantern_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corpse_lantern_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corpse_lantern_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corpse_lantern_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_corrupted_bear_east_block",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -10487,6 +11747,96 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/corrupted_bear_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corrupted_guardian_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corrupted_guardian_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corrupted_guardian_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corrupted_guardian_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corrupted_guardian_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corrupted_guardian_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corrupted_guardian_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corrupted_guardian_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corrupted_guardian_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corrupted_guardian_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corrupted_guardian_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corrupted_guardian_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corrupted_guardian_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corrupted_guardian_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corrupted_guardian_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corrupted_guardian_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corrupted_guardian_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corrupted_guardian_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_corrupted_guardian_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/corrupted_guardian_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10599,6 +11949,96 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_cultist_captain_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/cultist_captain_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_cultist_captain_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/cultist_captain_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_cultist_captain_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/cultist_captain_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_cultist_captain_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/cultist_captain_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_cultist_captain_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/cultist_captain_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_cultist_captain_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/cultist_captain_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_cultist_captain_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/cultist_captain_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_cultist_captain_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/cultist_captain_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_cultist_captain_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/cultist_captain_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_cultist_captain_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/cultist_captain_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_demon_brute_east_block",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -10640,6 +12080,96 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/demon_brute_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_den_mother_ash_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/den_mother_ash_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_den_mother_ash_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/den_mother_ash_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_den_mother_ash_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/den_mother_ash_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_den_mother_ash_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/den_mother_ash_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_den_mother_ash_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/den_mother_ash_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_den_mother_ash_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/den_mother_ash_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_den_mother_ash_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/den_mother_ash_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_den_mother_ash_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/den_mother_ash_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_den_mother_ash_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/den_mother_ash_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_den_mother_ash_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/den_mother_ash_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10842,6 +12372,96 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_drowned_soldier_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/drowned_soldier_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_drowned_soldier_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/drowned_soldier_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_drowned_soldier_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/drowned_soldier_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_drowned_soldier_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/drowned_soldier_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_drowned_soldier_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/drowned_soldier_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_drowned_soldier_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/drowned_soldier_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_drowned_soldier_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/drowned_soldier_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_drowned_soldier_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/drowned_soldier_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_drowned_soldier_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/drowned_soldier_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_drowned_soldier_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/drowned_soldier_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_echo_sovereign_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -10856,6 +12476,96 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/echo_sovereign_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_elderwood_hermit_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/elderwood_hermit_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_elderwood_hermit_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/elderwood_hermit_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_elderwood_hermit_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/elderwood_hermit_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_elderwood_hermit_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/elderwood_hermit_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_elderwood_hermit_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/elderwood_hermit_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_elderwood_hermit_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/elderwood_hermit_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_elderwood_hermit_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/elderwood_hermit_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_elderwood_hermit_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/elderwood_hermit_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_elderwood_hermit_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/elderwood_hermit_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_elderwood_hermit_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/elderwood_hermit_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -10905,6 +12615,96 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_ember_drake_small_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ember_drake_small_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ember_drake_small_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ember_drake_small_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ember_drake_small_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ember_drake_small_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ember_drake_small_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ember_drake_small_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ember_drake_small_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ember_drake_small_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ember_drake_small_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ember_drake_small_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ember_drake_small_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ember_drake_small_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ember_drake_small_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ember_drake_small_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ember_drake_small_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ember_drake_small_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_ember_drake_small_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/ember_drake_small_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_emberveil_sovereign_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -10919,6 +12719,186 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/emberveil_sovereign_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_emberveil_sovereign_story_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/emberveil_sovereign_story_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_emberveil_sovereign_story_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/emberveil_sovereign_story_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_emberveil_sovereign_story_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/emberveil_sovereign_story_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_emberveil_sovereign_story_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/emberveil_sovereign_story_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_emberveil_sovereign_story_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/emberveil_sovereign_story_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_emberveil_sovereign_story_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/emberveil_sovereign_story_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_emberveil_sovereign_story_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/emberveil_sovereign_story_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_emberveil_sovereign_story_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/emberveil_sovereign_story_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_emberveil_sovereign_story_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/emberveil_sovereign_story_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_emberveil_sovereign_story_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/emberveil_sovereign_story_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_faction_envoy_thornpact_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/faction_envoy_thornpact_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_faction_envoy_thornpact_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/faction_envoy_thornpact_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_faction_envoy_thornpact_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/faction_envoy_thornpact_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_faction_envoy_thornpact_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/faction_envoy_thornpact_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_faction_envoy_thornpact_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/faction_envoy_thornpact_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_faction_envoy_thornpact_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/faction_envoy_thornpact_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_faction_envoy_thornpact_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/faction_envoy_thornpact_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_faction_envoy_thornpact_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/faction_envoy_thornpact_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_faction_envoy_thornpact_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/faction_envoy_thornpact_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_faction_envoy_thornpact_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/faction_envoy_thornpact_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -11598,6 +13578,96 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_lyra_ashwalker_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/lyra_ashwalker_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_lyra_ashwalker_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/lyra_ashwalker_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_lyra_ashwalker_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/lyra_ashwalker_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_lyra_ashwalker_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/lyra_ashwalker_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_lyra_ashwalker_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/lyra_ashwalker_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_lyra_ashwalker_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/lyra_ashwalker_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_lyra_ashwalker_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/lyra_ashwalker_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_lyra_ashwalker_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/lyra_ashwalker_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_lyra_ashwalker_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/lyra_ashwalker_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_lyra_ashwalker_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/lyra_ashwalker_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_magnus_orre_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -11621,6 +13691,186 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/magnus_orre_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_marek_greel_story_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/marek_greel_story_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_marek_greel_story_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/marek_greel_story_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_marek_greel_story_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/marek_greel_story_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_marek_greel_story_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/marek_greel_story_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_marek_greel_story_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/marek_greel_story_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_marek_greel_story_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/marek_greel_story_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_marek_greel_story_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/marek_greel_story_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_marek_greel_story_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/marek_greel_story_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_marek_greel_story_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/marek_greel_story_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_marek_greel_story_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/marek_greel_story_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_merchant_unusual_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/merchant_unusual_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_merchant_unusual_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/merchant_unusual_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_merchant_unusual_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/merchant_unusual_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_merchant_unusual_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/merchant_unusual_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_merchant_unusual_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/merchant_unusual_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_merchant_unusual_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/merchant_unusual_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_merchant_unusual_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/merchant_unusual_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_merchant_unusual_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/merchant_unusual_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_merchant_unusual_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/merchant_unusual_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_merchant_unusual_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/merchant_unusual_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -11693,6 +13943,96 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/mother_yssira_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_orren_gravetide_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/orren_gravetide_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_orren_gravetide_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/orren_gravetide_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_orren_gravetide_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/orren_gravetide_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_orren_gravetide_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/orren_gravetide_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_orren_gravetide_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/orren_gravetide_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_orren_gravetide_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/orren_gravetide_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_orren_gravetide_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/orren_gravetide_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_orren_gravetide_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/orren_gravetide_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_orren_gravetide_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/orren_gravetide_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_orren_gravetide_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/orren_gravetide_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -12147,6 +14487,96 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_plague_herald_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/plague_herald_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_plague_herald_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/plague_herald_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_plague_herald_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/plague_herald_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_plague_herald_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/plague_herald_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_plague_herald_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/plague_herald_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_plague_herald_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/plague_herald_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_plague_herald_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/plague_herald_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_plague_herald_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/plague_herald_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_plague_herald_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/plague_herald_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_plague_herald_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/plague_herald_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_primordial_elemental_east_block",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -12233,6 +14663,186 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/reality_shard_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_rift_warden_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/rift_warden_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_rift_warden_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/rift_warden_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_rift_warden_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/rift_warden_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_rift_warden_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/rift_warden_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_rift_warden_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/rift_warden_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_rift_warden_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/rift_warden_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_rift_warden_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/rift_warden_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_rift_warden_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/rift_warden_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_rift_warden_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/rift_warden_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_rift_warden_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/rift_warden_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_road_scout_npc_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/road_scout_npc_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_road_scout_npc_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/road_scout_npc_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_road_scout_npc_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/road_scout_npc_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_road_scout_npc_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/road_scout_npc_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_road_scout_npc_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/road_scout_npc_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_road_scout_npc_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/road_scout_npc_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_road_scout_npc_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/road_scout_npc_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_road_scout_npc_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/road_scout_npc_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_road_scout_npc_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/road_scout_npc_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_road_scout_npc_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/road_scout_npc_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -12444,6 +15054,96 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_stonehide_boar_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/stonehide_boar_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_stonehide_boar_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/stonehide_boar_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_stonehide_boar_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/stonehide_boar_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_stonehide_boar_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/stonehide_boar_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_stonehide_boar_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/stonehide_boar_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_stonehide_boar_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/stonehide_boar_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_stonehide_boar_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/stonehide_boar_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_stonehide_boar_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/stonehide_boar_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_stonehide_boar_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/stonehide_boar_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_stonehide_boar_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/stonehide_boar_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_storm_dragon_east_cheer",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -12507,6 +15207,96 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_storm_harpy_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/storm_harpy_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_storm_harpy_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/storm_harpy_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_storm_harpy_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/storm_harpy_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_storm_harpy_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/storm_harpy_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_storm_harpy_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/storm_harpy_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_storm_harpy_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/storm_harpy_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_storm_harpy_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/storm_harpy_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_storm_harpy_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/storm_harpy_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_storm_harpy_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/storm_harpy_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_storm_harpy_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/storm_harpy_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_swamp_frog_east_block",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -12548,6 +15338,186 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/swamp_frog_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_swamp_guide_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/swamp_guide_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_swamp_guide_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/swamp_guide_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_swamp_guide_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/swamp_guide_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_swamp_guide_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/swamp_guide_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_swamp_guide_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/swamp_guide_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_swamp_guide_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/swamp_guide_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_swamp_guide_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/swamp_guide_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_swamp_guide_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/swamp_guide_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_swamp_guide_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/swamp_guide_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_swamp_guide_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/swamp_guide_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_tessaly_veil_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/tessaly_veil_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_tessaly_veil_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/tessaly_veil_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_tessaly_veil_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/tessaly_veil_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_tessaly_veil_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/tessaly_veil_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_tessaly_veil_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/tessaly_veil_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_tessaly_veil_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/tessaly_veil_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_tessaly_veil_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/tessaly_veil_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_tessaly_veil_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/tessaly_veil_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_tessaly_veil_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/tessaly_veil_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_tessaly_veil_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/tessaly_veil_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -12651,6 +15621,186 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_veil_champion_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_champion_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_champion_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_champion_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_champion_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_champion_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_champion_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_champion_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_champion_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_champion_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_champion_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_champion_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_champion_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_champion_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_champion_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_champion_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_champion_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_champion_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_champion_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_champion_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_convert_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_convert_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_convert_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_convert_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_convert_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_convert_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_convert_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_convert_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_convert_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_convert_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_convert_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_convert_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_convert_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_convert_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_convert_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_convert_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_convert_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_convert_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_convert_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_convert_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_veil_cultist_east_block",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -12696,6 +15846,276 @@
       "status": "orphaned"
     },
     {
+      "id": "orphan_images_openai_v2_veil_hulk_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_hulk_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_hulk_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_hulk_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_hulk_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_hulk_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_hulk_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_hulk_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_hulk_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_hulk_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_hulk_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_hulk_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_hulk_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_hulk_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_hulk_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_hulk_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_hulk_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_hulk_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_hulk_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_hulk_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shade_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shade_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shade_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shade_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shade_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shade_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shade_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shade_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shade_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shade_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shade_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shade_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shade_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shade_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shade_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shade_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shade_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shade_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shade_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shade_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shrinekeeper_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shrinekeeper_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shrinekeeper_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shrinekeeper_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shrinekeeper_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shrinekeeper_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shrinekeeper_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shrinekeeper_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shrinekeeper_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shrinekeeper_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shrinekeeper_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shrinekeeper_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shrinekeeper_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shrinekeeper_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shrinekeeper_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shrinekeeper_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shrinekeeper_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shrinekeeper_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_shrinekeeper_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_shrinekeeper_south.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
       "id": "orphan_images_openai_v2_veil_sorcerer_east_block",
       "category": "orphan",
       "group": "images/openai_v2",
@@ -12737,6 +16157,96 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/veil_sorcerer_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_sprite_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_sprite_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_sprite_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_sprite_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_sprite_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_sprite_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_sprite_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_sprite_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_sprite_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_sprite_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_sprite_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_sprite_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_sprite_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_sprite_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_sprite_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_sprite_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_sprite_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_sprite_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_veil_sprite_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/veil_sprite_south.png",
       "prompt": null,
       "status": "orphaned"
     },
@@ -13043,6 +16553,96 @@
       "group": "images/openai_v2",
       "pose": null,
       "file": "../images/openai_v2/wyrm_warrior_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_yasha_stonewill_east",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/yasha_stonewill_east.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_yasha_stonewill_east_attack",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/yasha_stonewill_east_attack.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_yasha_stonewill_east_block",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/yasha_stonewill_east_block.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_yasha_stonewill_east_cheer",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/yasha_stonewill_east_cheer.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_yasha_stonewill_east_ko",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/yasha_stonewill_east_ko.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_yasha_stonewill_east_spell",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/yasha_stonewill_east_spell.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_yasha_stonewill_east_wound",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/yasha_stonewill_east_wound.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_yasha_stonewill_openai_sheet",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/yasha_stonewill_openai_sheet.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_yasha_stonewill_portrait",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/yasha_stonewill_portrait.png",
+      "prompt": null,
+      "status": "orphaned"
+    },
+    {
+      "id": "orphan_images_openai_v2_yasha_stonewill_south",
+      "category": "orphan",
+      "group": "images/openai_v2",
+      "pose": null,
+      "file": "../images/openai_v2/yasha_stonewill_south.png",
       "prompt": null,
       "status": "orphaned"
     },

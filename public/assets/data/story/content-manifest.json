@@ -1,0 +1,398 @@
+{
+  "generatedAt": "2026-05-30T05:51:04.683Z",
+  "files": 78,
+  "predicates": 145,
+  "errors": 0,
+  "entries": [
+    {
+      "file": "data/story/achievements-story.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/audio-mapping.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/bram_coldfire_captain_maer.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/bram_coldfire_lyra_ashwalker.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/bram_coldfire_orren_gravetide.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/bram_coldfire_tessaly_veil.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/bram_coldfire_yasha_stonewill.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/captain_maer_lyra_ashwalker.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/captain_maer_orren_gravetide.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/captain_maer_tessaly_veil.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/captain_maer_yasha_stonewill.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/lyra_ashwalker_orren_gravetide.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/lyra_ashwalker_tessaly_veil.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/lyra_ashwalker_yasha_stonewill.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/orren_gravetide_tessaly_veil.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/orren_gravetide_yasha_stonewill.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/banter-pools/tessaly_veil_yasha_stonewill.json",
+      "predicates": 0,
+      "errors": 0
+    },
+    {
+      "file": "data/story/boss-variants/emberveil_sovereign_story.json",
+      "predicates": 4,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/ambush.json",
+      "predicates": 6,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/arrival.json",
+      "predicates": 8,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/companion-bram_coldfire.json",
+      "predicates": 9,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/companion-captain_maer.json",
+      "predicates": 9,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/companion-lyra_ashwalker.json",
+      "predicates": 11,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/companion-orren_gravetide.json",
+      "predicates": 13,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/companion-tessaly_veil.json",
+      "predicates": 13,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/companion-yasha_stonewill.json",
+      "predicates": 14,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/faction.json",
+      "predicates": 20,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/lore.json",
+      "predicates": 21,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/merchant.json",
+      "predicates": 25,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/shrine.json",
+      "predicates": 26,
+      "errors": 0
+    },
+    {
+      "file": "data/story/dialogue-pools/side-quest.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/difficulty-presets.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act1_emberwood.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act1_fen.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act1_gloomridge.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act1_oldroad.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act1_stoneward.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act2_ashplains.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act2_crossroads.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act2_libraryruins.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act2_plaguefen.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act2_veilscar.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act3_architects_verge.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act3_ember_hollow.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act3_riftgate.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/encounter-templates/act3_sovereigns_approach.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/enemies-story.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/faction-control-map.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/factions.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/lore-fragments.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/npcs.json",
+      "predicates": 29,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/companion_bram_personal.json",
+      "predicates": 36,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/companion_lyra_personal.json",
+      "predicates": 43,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/companion_maer_personal.json",
+      "predicates": 51,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/companion_orren_personal.json",
+      "predicates": 58,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/companion_tessaly_personal.json",
+      "predicates": 65,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/companion_yasha_personal.json",
+      "predicates": 72,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/primary_act1_emberwood.json",
+      "predicates": 83,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/primary_act2_veilscar.json",
+      "predicates": 94,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/primary_act3_riftgate.json",
+      "predicates": 105,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/secondary_act1_lost_caravan.json",
+      "predicates": 112,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/secondary_act1_purify_shrine.json",
+      "predicates": 119,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/secondary_act2_library_archive.json",
+      "predicates": 126,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/secondary_act2_plague_cure.json",
+      "predicates": 133,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/secondary_act3_architect_glyph.json",
+      "predicates": 139,
+      "errors": 0
+    },
+    {
+      "file": "data/story/quest-lines/secondary_act3_oathless_stand.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/safety-net-acts/act1.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/safety-net-acts/act2.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/safety-net-acts/act3.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/side-quest-templates.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/skill-affinities.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/storytellers/ash_prophet.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/storytellers/chronicler.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/storytellers/iron_judge.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/storytellers/pilgrim.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/storytellers/trickster.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/storytellers/warbringer.json",
+      "predicates": 145,
+      "errors": 0
+    },
+    {
+      "file": "data/story/world-mutations.json",
+      "predicates": 145,
+      "errors": 0
+    }
+  ]
+}

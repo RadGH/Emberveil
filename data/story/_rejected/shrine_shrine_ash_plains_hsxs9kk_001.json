@@ -1,0 +1,18 @@
+{
+  "node": {
+    "id": "shrine_ash_plains_hsxs9kk_001",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": "bone_reader",
+    "lines": [
+      "The shrine glows faintly, ash swirling like whispers.",
+      "It feels wrong, but it calls to you."
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:09:57.994Z"
+}

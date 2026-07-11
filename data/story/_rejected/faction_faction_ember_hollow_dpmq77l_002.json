@@ -1,0 +1,59 @@
+{
+  "node": {
+    "id": "faction_ember_hollow_dpmq77l_002",
+    "pool": "faction",
+    "act": 3,
+    "biome": "ember_hollow",
+    "tone": "conflicted",
+    "speaker": "yasha_stonewill",
+    "lines": [
+      "We can't ignore the consequences of our choices today.",
+      "If the heartstone falls, the Pact weakens further."
+    ],
+    "choices": [
+      {
+        "id": "convince",
+        "text": "[Diplomacy - CHA] Persuade Yasha to support restoration.",
+        "skillCheck": {
+          "skill": "diplomacy",
+          "stat": "CHA",
+          "dc": 15
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "ancient_pact",
+              "amount": 2
+            },
+            {
+              "type": "set_flag",
+              "flag": "ancient_pact_sealed"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "ancient_pact",
+              "amount": -1
+            }
+          ]
+        }
+      },
+      {
+        "id": "ignore",
+        "text": "Remain neutral and silent about the heartstone.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"convince\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:06:58.126Z"
+}

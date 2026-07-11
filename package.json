@@ -9,7 +9,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "check:story-balance": "node scripts/check-storyteller-balance.mjs",
+    "build:story-quest-graph": "node scripts/build-story-quest-graph.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",

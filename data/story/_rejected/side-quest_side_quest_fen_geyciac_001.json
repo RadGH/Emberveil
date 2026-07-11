@@ -1,0 +1,18 @@
+{
+  "node": {
+    "id": "side_quest_fen_geyciac_001",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "fen",
+    "tone": "wary",
+    "speaker": "elderwood_hermit",
+    "lines": [
+      "Geyciac lies beyond the shallows. Foul things stir there at dusk.",
+      "Not many return from the misty depths."
+    ]
+  },
+  "validationErrors": [
+    "choices must have 2+ options"
+  ],
+  "rejectedAt": "2026-05-21T00:08:53.170Z"
+}

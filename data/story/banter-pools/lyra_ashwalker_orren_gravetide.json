@@ -1,0 +1,59 @@
+[
+  {
+    "id": "lyra_orren_01",
+    "trigger": "nodeResolved",
+    "cooldown": 5,
+    "companionA": "lyra_ashwalker",
+    "companionB": "orren_gravetide",
+    "lines": [
+      { "speaker": "lyra_ashwalker",  "text": "You fight like someone who expects to lose." },
+      { "speaker": "orren_gravetide", "text": "I fight like someone who intends to survive." }
+    ]
+  },
+  {
+    "id": "lyra_orren_02",
+    "trigger": "nodeResolved",
+    "cooldown": 6,
+    "companionA": "lyra_ashwalker",
+    "companionB": "orren_gravetide",
+    "lines": [
+      { "speaker": "orren_gravetide", "text": "A ranger who reads maps but trusts her gut. Which wins?" },
+      { "speaker": "lyra_ashwalker",  "text": "The gut. Always the gut." }
+    ]
+  },
+  {
+    "id": "lyra_orren_03",
+    "trigger": "nodeResolved",
+    "cooldown": 7,
+    "companionA": "lyra_ashwalker",
+    "companionB": "orren_gravetide",
+    "lines": [
+      { "speaker": "lyra_ashwalker",  "text": "That ridge — something big passed through last night." },
+      { "speaker": "orren_gravetide", "text": "You want to follow it?" },
+      { "speaker": "lyra_ashwalker",  "text": "No. I want to know it's behind us." }
+    ]
+  },
+  {
+    "id": "lyra_orren_04",
+    "trigger": "nodeResolved",
+    "cooldown": 8,
+    "companionA": "lyra_ashwalker",
+    "companionB": "orren_gravetide",
+    "lines": [
+      { "speaker": "orren_gravetide", "text": "Do you ever miss the quiet of a keep? Four walls, a fire, no ash in your teeth?" },
+      { "speaker": "lyra_ashwalker",  "text": "A keep is a trap waiting to be sprung. I'll take the open road." }
+    ]
+  },
+  {
+    "id": "lyra_orren_05",
+    "trigger": "nodeResolved",
+    "cooldown": 9,
+    "companionA": "lyra_ashwalker",
+    "companionB": "orren_gravetide",
+    "lines": [
+      { "speaker": "lyra_ashwalker",  "text": "When this is over, where do you go?" },
+      { "speaker": "orren_gravetide", "text": "Wherever the next wrong is. And you?" },
+      { "speaker": "lyra_ashwalker",  "text": "Somewhere without a name on the map." }
+    ]
+  }
+]

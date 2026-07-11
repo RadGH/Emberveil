@@ -12,6 +12,8 @@ export class LoadGameScreen {
     this.audio = audio;
     this.noGameMenuEsc = true;
     this._el = null;
+    // M-S01: active tab ('classic' | 'story')
+    this._tab = 'classic';
   }
 
   onEnter() { this._build(); }
@@ -24,7 +26,14 @@ export class LoadGameScreen {
   }
 
   _render() {
-    const saves = SaveManager.listSaves().filter(s => s.gameMode !== 'story');
+    const allSaves = SaveManager.listSaves();
+    // M-S01: split saves by gameMode. Pre-existing saves without the field default to classic.
+    const saves = allSaves.filter(s => this._tab === 'story'
+      ? s.gameMode === 'story'
+      : s.gameMode !== 'story'
+    );
+    const hasStory   = allSaves.some(s => s.gameMode === 'story');
+    const hasClassic = allSaves.some(s => s.gameMode !== 'story');
     const rows = saves.length
       ? saves.map(save => {
           const lvl = save.level ?? save.party?.[0]?.level ?? '?';
@@ -125,13 +134,32 @@ export class LoadGameScreen {
         }).join('')
       : `<div class="ls-slot empty"><div class="lss-empty">No saves yet — start a new game.</div></div>`;
 
+    // M-S01: show Classic/Story tabs only when both modes have saves.
+    const tabsHtml = (hasClassic && hasStory) ? `
+      <div class="ls-mode-tabs" role="tablist">
+        <button type="button" class="ls-mode-tab${this._tab === 'classic' ? ' ls-mode-tab--active' : ''}"
+                data-tab="classic" role="tab" aria-selected="${this._tab === 'classic'}">Classic</button>
+        <button type="button" class="ls-mode-tab${this._tab === 'story' ? ' ls-mode-tab--active' : ''}"
+                data-tab="story" role="tab" aria-selected="${this._tab === 'story'}">Story Mode</button>
+      </div>
+    ` : '';
+
     this._el.innerHTML = `
       <div class="ls-panel">
         <div class="ls-title">Load Game</div>
+        ${tabsHtml}
         <div class="ls-slots" id="slot-list">${rows}</div>
       </div>
       <button type="button" class="ls-back ls-back-floating" id="ls-back">← Back</button>
     `;
+
+    this._el.querySelectorAll('.ls-mode-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        this.audio.playSfx('click');
+        this._tab = btn.dataset.tab;
+        this._render();
+      });
+    });
 
     this._el.querySelector('#ls-back').addEventListener('click', () => { this.audio.playSfx('click'); this.manager.pop(); });
 
@@ -144,6 +172,16 @@ export class LoadGameScreen {
           this.manager.replace(new RipViewScreen(this.manager, this.audio));
           return;
         }
+        // M-S01: Story saves always route to StoryMapScreen (forbidden to cross-load as Classic).
+        try {
+          const { GameState } = await import('../../game/gameState.js');
+          const gs = GameState.get();
+          if (gs.gameMode === 'story') {
+            const { StoryMapScreen } = await import('./StoryMapScreen.js');
+            this.manager.replace(new StoryMapScreen(this.manager, this.audio));
+            return;
+          }
+        } catch (_) { /* fall through */ }
         // M358: route based on the loaded GameState. If the player saved while
         // on an adventure node (not in a town), open the map at that node so
         // they don't get bounced back to the last town. Town saves still go
@@ -197,6 +235,20 @@ const LOAD_STYLES = `
   background: rgba(5,2,8,0.96); font-family: 'Inter', sans-serif; overflow-y: auto;
   padding: 2rem 0;
 }
+/* M-S01: Classic / Story mode tabs */
+.ls-mode-tabs {
+  display: flex; gap: 0;
+  border: 1px solid rgba(232,160,32,0.25); border-radius: 6px; overflow: hidden;
+}
+.ls-mode-tab {
+  flex: 1; padding: 0.55rem 1rem; min-height: 44px;
+  border: none; background: transparent;
+  color: #8a7a6a; font-family: 'Cinzel', serif; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.06em; cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.ls-mode-tab--active { background: rgba(232,160,32,0.18); color: #e8a020; }
+.ls-mode-tab:hover:not(.ls-mode-tab--active) { background: rgba(255,255,255,0.04); color: #c8b89c; }
 /* M312 #19: bottom padding so last card isn't hidden under floating Back btn */
 .ls-panel { width: 100%; max-width: 460px; padding: 2rem 2rem 6rem; display: flex; flex-direction: column; gap: 1.5rem; }
 .ls-title { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 700; color: #e8a020; text-align: center; letter-spacing: 0.1em; }

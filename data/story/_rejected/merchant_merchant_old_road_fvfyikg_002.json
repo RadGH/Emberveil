@@ -1,0 +1,63 @@
+{
+  "node": {
+    "id": "merchant_old_road_fvfyikg_002",
+    "pool": "merchant",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "wry",
+    "speaker": "merchant_unusual",
+    "lines": [
+      "I sell cures and curios, but they don't all mix well.",
+      "Ever tried a Veil-glass charm? It sparkles… sometimes."
+    ],
+    "choices": [
+      {
+        "id": "buy_curios",
+        "text": "Buy a Veil-glass charm. (25 gold)",
+        "next": null,
+        "effects": [
+          {
+            "type": "gold_delta",
+            "amount": -25
+          },
+          {
+            "type": "grant_item",
+            "itemId": "veil_glass_charm"
+          }
+        ]
+      },
+      {
+        "id": "probe_origin",
+        "text": "[Perception - INT] Where do these come from?",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "INT",
+          "dc": 12
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "market_unlocked"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Move on, no interest.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"probe_origin\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:08:49.084Z"
+}

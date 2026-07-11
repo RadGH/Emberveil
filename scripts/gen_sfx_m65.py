@@ -2,7 +2,7 @@
 """Generate M65 replacement/additional combat SFX via ElevenLabs Sound Generation API.
 Short, punchy, clang/boom style — not beeps."""
 import json, urllib.request, pathlib, time
-KEY = pathlib.Path("/home/radgh/claude/secrets/elevenlabs-api-key.txt").read_text().strip()
+KEY = pathlib.Path("/home/radgh/claude/assets/references/elevenlabs-api-key.txt").read_text().strip()
 OUT = pathlib.Path("/home/radgh/claude/game13/public/sfx")
 OUT.mkdir(parents=True, exist_ok=True)
 

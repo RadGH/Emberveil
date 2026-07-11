@@ -1,0 +1,87 @@
+{
+  "node": {
+    "id": "arrival_emberwood_ual3aas_002",
+    "pool": "arrival",
+    "act": 1,
+    "biome": "emberwood",
+    "tone": "tense",
+    "speaker": "captain_maer",
+    "lines": [
+      "The road is dangerous.",
+      "State your purpose, or move along."
+    ],
+    "choices": [
+      {
+        "id": "explain",
+        "text": "We seek information about the Ashen Veil.",
+        "next": null,
+        "effects": []
+      },
+      {
+        "id": "intimidate",
+        "text": "[Intimidation - STR] Let us pass, or else.",
+        "skillCheck": {
+          "skill": "intimidation",
+          "stat": "STR",
+          "dc": 14
+        },
+        "onPass": {
+          "next": "#after_pass",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "emberguard_allied"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#after_fail",
+          "effects": []
+        }
+      },
+      {
+        "id": "turn_back",
+        "text": "Forget it. We’ll take our chances elsewhere.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "after_pass": {
+        "lines": [
+          "He nods, opening the way. \"Be quick about it.\""
+        ],
+        "choices": [
+          {
+            "id": "enter_region",
+            "text": "Proceed onward.",
+            "next": null,
+            "effects": [
+              {
+                "type": "set_flag",
+                "flag": "arrived_brightfall"
+              }
+            ]
+          }
+        ]
+      },
+      "after_fail": {
+        "lines": [
+          "\"Your bravado won’t save you here. Leave now.\""
+        ],
+        "choices": [
+          {
+            "id": "retreat",
+            "text": "Back away cautiously.",
+            "next": null,
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"intimidate\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-20T23:52:23.878Z"
+}

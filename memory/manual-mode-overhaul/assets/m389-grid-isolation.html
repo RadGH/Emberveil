@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280">
+  <title>M389 — EvBattlefield Grid Isolation Preview</title>
+  <style>
+    /* ── Palette tokens (inlined from style.css) ── */
+    :root {
+      --ember-void:   #06030e;
+      --ember-deep:   #0d0820;
+      --ember-pit:    #1a1128;
+      --ember-stone:  #2e2438;
+      --ember-slate:  #3d3250;
+      --gold-rim:     #c8a020;
+      --gold-glow:    #f8e890;
+      --gold-dim:     #7a6010;
+      --fire-core:    #ff7020;
+      --fire-bloom:   #ffc040;
+      --arc-blue:     #40a8ff;
+      --arc-pale:     #a0d8ff;
+      --hp-green:     #30cc60;
+      --hp-low:       #cc3020;
+      --shield-blue:  #4080e0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--ember-void);
+      color: #e0d8f0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 13px;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 16px;
+      color: var(--gold-glow);
+      border-bottom: 1px solid var(--gold-dim);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── Controls ── */
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 7px 16px;
+      background: var(--ember-deep);
+      border: 1px solid var(--gold-dim);
+      color: var(--gold-rim);
+      font-family: inherit;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 120ms, border-color 120ms;
+    }
+
+    .btn:hover {
+      background: #1a1438;
+      border-color: var(--gold-rim);
+    }
+
+    .btn.active {
+      background: #261e40;
+      border-color: var(--gold-glow);
+      color: var(--gold-glow);
+    }
+
+    /* ── Debug strip ── */
+    .debug-strip {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      background: var(--ember-deep);
+      border: 1px solid var(--ember-pit);
+      font-size: 11px;
+      color: rgba(200, 190, 220, 0.65);
+      flex-wrap: wrap;
+    }
+
+    .debug-strip strong { color: var(--gold-rim); }
+
+    /* ── Battlefield ── */
+    .ev-battlefield {
+      position: relative;
+      width: 1200px;
+      height: 500px;
+      overflow: hidden;
+      border: 1px solid var(--ember-pit);
+    }
+
+    /* Background image */
+    .ev-battlefield__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Atmospheric vignette overlay */
+    .ev-battlefield::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse 90% 80% at 50% 60%,
+        transparent 38%,
+        rgba(6, 3, 14, 0.60) 100%
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── Inlined ev-battlefield.css (M389) ── */
+    .ev-grid {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .ev-tile {
+      fill: rgba(46, 36, 56, 0.35);
+      stroke: rgba(26, 17, 40, 0.55);
+      stroke-width: 1;
+      cursor: default;
+      transition: fill 120ms ease, filter 120ms ease;
+    }
+
+    .ev-battlefield.targeting-active .ev-tile.tile-targetable {
+      fill: rgba(46, 36, 56, 0.5);
+      stroke: rgba(180, 140, 60, 0.6);
+      cursor: crosshair;
+      pointer-events: painted;
+    }
+
+    .ev-battlefield.targeting-active .ev-tile.tile-targetable:hover {
+      fill: rgba(80, 64, 24, 0.7);
+      stroke: rgba(248, 232, 144, 0.9);
+      filter: drop-shadow(0 0 6px rgba(248, 232, 144, 0.6));
+    }
+
+    .ev-tile.tile-selected {
+      fill: rgba(61, 50, 80, 0.75);
+      stroke: rgba(248, 232, 144, 0.95);
+      stroke-width: 2;
+      filter: drop-shadow(0 0 10px rgba(248, 232, 144, 0.55));
+    }
+
+    .ev-tile.tile-active-actor {
+      animation: ev-tile-pulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes ev-tile-pulse {
+      0%, 100% { fill: rgba(46, 36, 56, 0.35); }
+      50%       { fill: rgba(62, 48, 80, 0.55); }
+    }
+
+    .ev-sprite-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .ev-fx-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* ── Preview-specific: placeholder rects for sprites ── */
+    .ev-piece {
+      position: absolute;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .ev-piece-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: inherit;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95);
+    }
+
+    .ev-piece.hero .ev-piece-inner {
+      background: linear-gradient(to bottom, rgba(80, 64, 140, 0.75), rgba(40, 28, 80, 0.85));
+      border: 1.5px solid rgba(200, 160, 32, 0.8);
+      box-shadow: inset 0 0 8px rgba(248, 232, 144, 0.15);
+    }
+
+    .ev-piece.enemy .ev-piece-inner {
+      background: linear-gradient(to bottom, rgba(140, 40, 40, 0.75), rgba(80, 12, 12, 0.85));
+      border: 1.5px solid rgba(204, 48, 32, 0.8);
+      box-shadow: inset 0 0 8px rgba(255, 80, 64, 0.15);
+    }
+
+    .ev-piece.companion .ev-piece-inner {
+      background: linear-gradient(to bottom, rgba(40, 100, 60, 0.75), rgba(20, 60, 30, 0.85));
+      border: 1.5px solid rgba(48, 204, 96, 0.8);
+      box-shadow: inset 0 0 8px rgba(48, 204, 96, 0.12);
+    }
+
+    /* Zone labels */
+    .zone-label {
+      position: absolute;
+      left: 4px;
+      font-size: 9px;
+      color: rgba(200, 160, 32, 0.45);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      z-index: 5;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    /* Vanishing point cross */
+    .vp-marker {
+      position: absolute;
+      z-index: 6;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Legend / notes */
+    .legend {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+      font-size: 11px;
+      color: rgba(200, 190, 220, 0.65);
+      flex-wrap: wrap;
+    }
+
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+
+    .legend-dot {
+      width: 11px; height: 11px;
+      border: 1.5px solid;
+      flex-shrink: 0;
+    }
+
+    .legend-dot.hero      { background: rgba(40, 28, 80, 0.8);  border-color: var(--gold-rim); }
+    .legend-dot.enemy     { background: rgba(80, 12, 12, 0.8);  border-color: var(--hp-low); }
+    .legend-dot.companion { background: rgba(20, 60, 30, 0.8);  border-color: var(--hp-green); }
+
+    .notes-box {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: var(--ember-deep);
+      border: 1px solid var(--gold-dim);
+      max-width: 1200px;
+    }
+
+    .notes-box h2 {
+      font-size: 11px;
+      color: var(--gold-rim);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+
+    .notes-box ul {
+      color: rgba(200, 190, 220, 0.65);
+      font-size: 11px;
+      line-height: 1.8;
+      padding-left: 18px;
+    }
+
+    .notes-box code {
+      background: rgba(255,255,255,0.07);
+      padding: 1px 4px;
+      font-size: 10px;
+    }
+
+    /* Targeting toggle: when on, SVG becomes clickable */
+    .ev-battlefield.targeting-active .ev-grid {
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+<h1>M389 — EvBattlefield Grid Isolation Preview</h1>
+
+<!-- Controls -->
+<div class="controls">
+  <button class="btn" id="btn-targeting" onclick="toggleTargeting()">Show Targeting</button>
+  <button class="btn" id="btn-party-full" onclick="setScenario('full')">Full Party (4H + 1C + 4E)</button>
+  <button class="btn" id="btn-party-2hero" onclick="setScenario('2hero')">2 Heroes + 4 Enemies</button>
+  <button class="btn" id="btn-party-solo" onclick="setScenario('solo')">Solo Hero + 2 Enemies</button>
+</div>
+
+<!-- Debug strip -->
+<div class="debug-strip" id="debug-strip">
+  <span><strong>Tile count:</strong> 36 (6x6)</span>
+  <span><strong>Front-tile width:</strong> <span id="dbg-front-w">—</span> px</span>
+  <span><strong>Vanishing point:</strong> <span id="dbg-vp">—</span></span>
+  <span><strong>Grid top:</strong> <span id="dbg-grid-top">—</span> px</span>
+  <span><strong>Scale row 0:</strong> 0.444 &nbsp;|&nbsp; <strong>Scale row 5:</strong> 1.000</span>
+  <span><strong>Back/front ratio:</strong> 0.444 (44.4% — 0.85^5)</span>
+</div>
+
+<!-- Battlefield -->
+<div class="ev-battlefield" id="battlefield">
+  <!-- Background image — relative path from memory/manual-mode-overhaul/assets/ to public/images/map_bg/ -->
+  <img class="ev-battlefield__bg"
+       src="../../../public/images/map_bg/act-1-border-roads-v1.png"
+       alt=""
+       aria-hidden="true"
+       onerror="this.style.display='none'; document.getElementById('battlefield').style.background='linear-gradient(to bottom, #08040f 0%, #130a22 20%, #1e1530 45%, #2a1e3a 70%, #1a1020 100%)'">
+
+  <!-- Layer 1: SVG tile grid -->
+  <svg class="ev-grid" id="ev-grid" aria-hidden="true"></svg>
+
+  <!-- Layer 2: Sprite stand-ins -->
+  <div class="ev-sprite-layer" id="ev-sprite-layer"></div>
+
+  <!-- Layer 3: FX layer (empty in preview) -->
+  <div class="ev-fx-layer" id="ev-fx-layer"></div>
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot hero"></div> Hero — rows 3–4, cols 0–2</div>
+  <div class="legend-item"><div class="legend-dot companion"></div> Companion — row 5, cols 0–2</div>
+  <div class="legend-item"><div class="legend-dot enemy"></div> Enemy — rows 0–2, cols 3–5</div>
+</div>
+
+<div class="notes-box">
+  <h2>Preview Notes</h2>
+  <ul>
+    <li>Grid math is the exact <code>gridToScreen()</code> from <code>EvBattlefield.js</code> — <code>DEPTH_SCALE=0.85</code>, <code>COLS=ROWS=6</code>.</li>
+    <li>Hero placeholder rectangles represent base display size scaled by row depth. Anchored at tile top vertex (mid-rear edge) per <code>spriteAnchor()</code>.</li>
+    <li>"Show Targeting" adds <code>.targeting-active</code> to the battlefield and <code>.tile-targetable</code> to all polygons — tiles become clickable and glow on hover.</li>
+    <li>BG image loaded via relative path; falls back to CSS gradient if the file is not reachable from this path.</li>
+    <li>Vanishing point cross is at <code>bw * 0.5</code>, <code>bh * 0.15</code> — 50% horizontal, 15% from battlefield top.</li>
+    <li>Dashed center line divides hero cols (0–2, left) from enemy cols (3–5, right).</li>
+  </ul>
+</div>
+
+<script>
+  // ── Constants matching EvBattlefield.js exactly ─────────────────────────────
+  const COLS = 6;
+  const ROWS = 6;
+  const DEPTH_SCALE = 0.85;
+  const VIEWPORT_TOP_PCT = 0.20;
+
+  // Base sprite display sizes at row 5 scale=1.0 (from EvBattlefield.js)
+  const BASE_HERO_W = 96,  BASE_HERO_H = 144;
+  const BASE_ENEMY_W = 80, BASE_ENEMY_H = 120;
+  const BASE_COMP_W = 72,  BASE_COMP_H = 96;
+
+  const HERO_COL_RANGE  = { start: 0, count: 3 };
+  const ENEMY_COL_RANGE = { start: 3, count: 3 };
+
+  // ── Grid math (verbatim from EvBattlefield.js) ───────────────────────────────
+  function buildLayout(bw, bh) {
+    return {
+      bw,
+      bh,
+      gridTop: bh * VIEWPORT_TOP_PCT,
+      vanishX: bw * 0.5,
+      vanishY: bh * 0.15,
+    };
+  }
+
+  function gridToScreen(col, row, L) {
+    const scale = Math.pow(DEPTH_SCALE, ROWS - 1 - row);
+    const baseTileW = L.bw / COLS;
+    const tileW = baseTileW * scale;
+    const tileH = tileW / 2;
+
+    let yOffset = 0;
+    for (let r = 0; r < row; r++) {
+      const rScale = Math.pow(DEPTH_SCALE, ROWS - 1 - r);
+      yOffset += (baseTileW / 2) * rScale;
+    }
+    const cy = L.gridTop + yOffset + tileH * 0.5;
+
+    const gridSpanW = tileW * COLS;
+    const leftEdge = L.vanishX - gridSpanW * 0.5;
+    const cx = leftEdge + tileW * (col + 0.5);
+
+    return { cx, cy, scale, tileW, tileH };
+  }
+
+  function spriteAnchor(cx, cy, tileH, spriteW, spriteH) {
+    const footY = cy - tileH / 2;
+    return { left: cx - spriteW / 2, top: footY - spriteH };
+  }
+
+  function centerStartCol(pieceCount, colRange) {
+    const clamped = Math.min(pieceCount, colRange.count);
+    const offset = Math.floor((colRange.count - clamped) / 2);
+    return colRange.start + offset;
+  }
+
+  // ── State ────────────────────────────────────────────────────────────────────
+  let _targeting = false;
+
+  // Scenarios: {party: [{label, baseW, baseH, type, rowHint}], companions: [...], enemies: [...]}
+  const SCENARIOS = {
+    full: {
+      party: [
+        { label: 'Ftr', type: 'hero', baseW: BASE_HERO_W, baseH: BASE_HERO_H, row: 4 },
+        { label: 'Stm', type: 'hero', baseW: BASE_HERO_W, baseH: BASE_HERO_H, row: 3 },
+        { label: 'Pal', type: 'hero', baseW: BASE_HERO_W, baseH: BASE_HERO_H, row: 4 },
+        { label: 'Pyr', type: 'hero', baseW: BASE_HERO_W, baseH: BASE_HERO_H, row: 3 },
+      ],
+      companions: [
+        { label: 'Dog', type: 'companion', baseW: BASE_COMP_W, baseH: BASE_COMP_H, row: 5 },
+      ],
+      enemies: [
+        { label: 'Gb1', type: 'enemy', baseW: BASE_ENEMY_W, baseH: BASE_ENEMY_H, row: 2 },
+        { label: 'Gb2', type: 'enemy', baseW: BASE_ENEMY_W, baseH: BASE_ENEMY_H, row: 2 },
+        { label: 'Gb3', type: 'enemy', baseW: BASE_ENEMY_W, baseH: BASE_ENEMY_H, row: 2 },
+        { label: 'Gb4', type: 'enemy', baseW: BASE_ENEMY_W, baseH: BASE_ENEMY_H, row: 1 },
+      ],
+    },
+    '2hero': {
+      party: [
+        { label: 'Ftr', type: 'hero', baseW: BASE_HERO_W, baseH: BASE_HERO_H, row: 4 },
+        { label: 'Pal', type: 'hero', baseW: BASE_HERO_W, baseH: BASE_HERO_H, row: 4 },
+      ],
+      companions: [],
+      enemies: [
+        { label: 'Gb1', type: 'enemy', baseW: BASE_ENEMY_W, baseH: BASE_ENEMY_H, row: 2 },
+        { label: 'Gb2', type: 'enemy', baseW: BASE_ENEMY_W, baseH: BASE_ENEMY_H, row: 2 },
+        { label: 'Gb3', type: 'enemy', baseW: BASE_ENEMY_W, baseH: BASE_ENEMY_H, row: 2 },
+        { label: 'Gb4', type: 'enemy', baseW: BASE_ENEMY_W, baseH: BASE_ENEMY_H, row: 2 },
+      ],
+    },
+    solo: {
+      party: [
+        { label: 'Ftr', type: 'hero', baseW: BASE_HERO_W, baseH: BASE_HERO_H, row: 4 },
+      ],
+      companions: [],
+      enemies: [
+        { label: 'Gb1', type: 'enemy', baseW: BASE_ENEMY_W, baseH: BASE_ENEMY_H, row: 2 },
+        { label: 'Gb2', type: 'enemy', baseW: BASE_ENEMY_W, baseH: BASE_ENEMY_H, row: 2 },
+      ],
+    },
+  };
+
+  let _currentScenario = 'full';
+
+  // ── Render ───────────────────────────────────────────────────────────────────
+  function render() {
+    const BW = 1200, BH = 500;
+    const L = buildLayout(BW, BH);
+    const scenario = SCENARIOS[_currentScenario];
+
+    // Update debug strip
+    const frontG = gridToScreen(0, 5, L);
+    document.getElementById('dbg-front-w').textContent = frontG.tileW.toFixed(1);
+    document.getElementById('dbg-vp').textContent = `(${L.vanishX.toFixed(0)}px, ${L.vanishY.toFixed(1)}px)`;
+    document.getElementById('dbg-grid-top').textContent = L.gridTop.toFixed(1);
+
+    // ── Build SVG ──
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const svg = document.getElementById('ev-grid');
+    svg.setAttribute('viewBox', `0 0 ${BW} ${BH}`);
+    svg.innerHTML = '';
+
+    // Row tint palette (subtle per-row differentiation so depth reads)
+    const rowFill = [
+      'rgba(42, 20, 40, 0.40)',  // row 0 — enemy back (most distant)
+      'rgba(46, 26, 48, 0.38)',  // row 1 — enemy mid
+      'rgba(50, 30, 58, 0.36)',  // row 2 — enemy front
+      'rgba(30, 36, 50, 0.36)',  // row 3 — hero back
+      'rgba(30, 42, 58, 0.38)',  // row 4 — hero front
+      'rgba(30, 46, 34, 0.36)',  // row 5 — companion
+    ];
+    const rowStroke = [
+      'rgba(26, 10, 24, 0.55)',
+      'rgba(28, 14, 28, 0.52)',
+      'rgba(32, 18, 36, 0.50)',
+      'rgba(14, 24, 32, 0.50)',
+      'rgba(14, 28, 36, 0.52)',
+      'rgba(14, 30, 18, 0.50)',
+    ];
+
+    // Draw all 36 tile polygons
+    for (let row = 0; row < ROWS; row++) {
+      for (let col = 0; col < COLS; col++) {
+        const { cx, cy, tileW, tileH } = gridToScreen(col, row, L);
+        const hw = tileW / 2, hh = tileH / 2;
+        const pts = [
+          `${cx},${(cy - hh).toFixed(2)}`,
+          `${(cx + hw).toFixed(2)},${cy.toFixed(2)}`,
+          `${cx},${(cy + hh).toFixed(2)}`,
+          `${(cx - hw).toFixed(2)},${cy.toFixed(2)}`,
+        ].join(' ');
+
+        const poly = document.createElementNS(svgNS, 'polygon');
+        poly.setAttribute('class', _targeting ? 'ev-tile tile-targetable' : 'ev-tile');
+        poly.setAttribute('data-col', String(col));
+        poly.setAttribute('data-row', String(row));
+        poly.setAttribute('points', pts);
+        // Override fill/stroke with row tints (not the rgba defaults — more readable on bg)
+        poly.style.fill   = rowFill[row];
+        poly.style.stroke = rowStroke[row];
+        poly.setAttribute('role', 'button');
+        poly.setAttribute('tabindex', '-1');
+        svg.appendChild(poly);
+      }
+    }
+
+    // Center dividing line (hero left / enemy right split at col 3)
+    // At each row, col boundary between 2 and 3 = right edge of col 2
+    // Draw a vertical visual indicator from row 0 top to row 5 bottom
+    const topRowG   = gridToScreen(2, 0, L);
+    const botRowG   = gridToScreen(3, 5, L);
+    // The boundary between col 2 right and col 3 left is at vanishX (they mirror across it)
+    const divLine = document.createElementNS(svgNS, 'line');
+    divLine.setAttribute('x1', String(L.vanishX.toFixed(1)));
+    divLine.setAttribute('y1', String((L.gridTop).toFixed(1)));
+    divLine.setAttribute('x2', String(L.vanishX.toFixed(1)));
+    divLine.setAttribute('y2', String(BH));
+    divLine.setAttribute('stroke', 'rgba(200, 160, 32, 0.12)');
+    divLine.setAttribute('stroke-width', '1');
+    divLine.setAttribute('stroke-dasharray', '4,7');
+    svg.appendChild(divLine);
+
+    // Vanishing point cross
+    const vpG = document.createElementNS(svgNS, 'g');
+    vpG.setAttribute('opacity', '0.35');
+    const crossSize = 10;
+    const vpH = document.createElementNS(svgNS, 'line');
+    vpH.setAttribute('x1', String(L.vanishX - crossSize)); vpH.setAttribute('y1', String(L.vanishY));
+    vpH.setAttribute('x2', String(L.vanishX + crossSize)); vpH.setAttribute('y2', String(L.vanishY));
+    vpH.setAttribute('stroke', '#f8e890'); vpH.setAttribute('stroke-width', '1');
+    const vpV = document.createElementNS(svgNS, 'line');
+    vpV.setAttribute('x1', String(L.vanishX)); vpV.setAttribute('y1', String(L.vanishY - crossSize));
+    vpV.setAttribute('x2', String(L.vanishX)); vpV.setAttribute('y2', String(L.vanishY + crossSize));
+    vpV.setAttribute('stroke', '#f8e890'); vpV.setAttribute('stroke-width', '1');
+    vpG.appendChild(vpH);
+    vpG.appendChild(vpV);
+    svg.appendChild(vpG);
+
+    // ── Build sprite stand-ins ──
+    const spriteLayer = document.getElementById('ev-sprite-layer');
+    spriteLayer.innerHTML = '';
+
+    // Zone row labels
+    [
+      { row: 0, text: 'Enemy Back' },
+      { row: 1, text: 'Enemy Mid' },
+      { row: 2, text: 'Enemy Front' },
+      { row: 3, text: 'Hero Back' },
+      { row: 4, text: 'Hero Front' },
+      { row: 5, text: 'Companion' },
+    ].forEach(({ row, text }) => {
+      const g = gridToScreen(0, row, L);
+      const lbl = document.createElement('div');
+      lbl.className = 'zone-label';
+      lbl.style.top = `${(g.cy - g.tileH / 2).toFixed(1)}px`;
+      lbl.textContent = text;
+      spriteLayer.appendChild(lbl);
+    });
+
+    // Place pieces
+    function placePieces(pieces, colRange) {
+      const count = pieces.length;
+      const startCol = centerStartCol(count, colRange);
+      pieces.forEach((piece, i) => {
+        const col = startCol + i;
+        const row = piece.row;
+
+        const { cx, cy, scale, tileW, tileH } = gridToScreen(col, row, L);
+
+        // Clamp width to 95% of tileW (same rule as EvBattlefield.js)
+        const maxW = tileW * 0.95;
+        const scaledW = piece.baseW * scale;
+        const scaledH = piece.baseH * scale;
+        const finalW = Math.min(scaledW, maxW);
+        const finalH = scaledH * (finalW / scaledW);
+
+        const anchor = spriteAnchor(cx, cy, tileH, finalW, finalH);
+
+        const el = document.createElement('div');
+        el.className = `ev-piece ${piece.type}`;
+        el.style.left   = `${anchor.left.toFixed(1)}px`;
+        el.style.top    = `${anchor.top.toFixed(1)}px`;
+        el.style.width  = `${finalW.toFixed(1)}px`;
+        el.style.height = `${finalH.toFixed(1)}px`;
+        el.title = `${piece.type} "${piece.label}" @ (${col},${row}) — ${finalW.toFixed(0)}x${finalH.toFixed(0)}px`;
+
+        const inner = document.createElement('div');
+        inner.className = 'ev-piece-inner';
+        inner.textContent = piece.label;
+        el.appendChild(inner);
+
+        spriteLayer.appendChild(el);
+
+        // Highlight the occupied tile in the SVG
+        const occupiedPoly = svg.querySelector(`polygon[data-col="${col}"][data-row="${row}"]`);
+        if (occupiedPoly) {
+          const highlightFill = {
+            hero:      'rgba(48, 36, 96, 0.60)',
+            enemy:     'rgba(96, 20, 20, 0.60)',
+            companion: 'rgba(20, 72, 36, 0.60)',
+          }[piece.type];
+          occupiedPoly.style.fill = highlightFill;
+          occupiedPoly.style.stroke = piece.type === 'hero'
+            ? 'rgba(200, 160, 32, 0.55)'
+            : piece.type === 'companion'
+              ? 'rgba(48, 204, 96, 0.55)'
+              : 'rgba(204, 48, 32, 0.55)';
+        }
+      });
+    }
+
+    placePieces(scenario.party,      HERO_COL_RANGE);
+    placePieces(scenario.companions, HERO_COL_RANGE);
+    placePieces(scenario.enemies,    ENEMY_COL_RANGE);
+
+    // Apply targeting-active class to battlefield if needed
+    const bf = document.getElementById('battlefield');
+    if (_targeting) {
+      bf.classList.add('targeting-active');
+      svg.style.pointerEvents = 'auto';
+    } else {
+      bf.classList.remove('targeting-active');
+      svg.style.pointerEvents = 'none';
+    }
+  }
+
+  // ── Targeting toggle ──────────────────────────────────────────────────────────
+  function toggleTargeting() {
+    _targeting = !_targeting;
+    const btn = document.getElementById('btn-targeting');
+    btn.classList.toggle('active', _targeting);
+    btn.textContent = _targeting ? 'Hide Targeting' : 'Show Targeting';
+    render();
+  }
+
+  // ── Scenario switch ───────────────────────────────────────────────────────────
+  function setScenario(key) {
+    _currentScenario = key;
+    document.querySelectorAll('.btn[id^="btn-party"]').forEach(b => b.classList.remove('active'));
+    document.getElementById(`btn-party-${key === '2hero' ? '2hero' : key}`).classList.add('active');
+    render();
+  }
+
+  // ── SVG tile click (targeting feedback) ──────────────────────────────────────
+  document.getElementById('ev-grid').addEventListener('click', function(e) {
+    if (!_targeting) return;
+    const poly = e.target.closest('[data-col][data-row]');
+    if (!poly) return;
+    document.querySelectorAll('.ev-tile.tile-selected').forEach(p => p.classList.remove('tile-selected'));
+    poly.classList.add('tile-selected');
+  });
+
+  // ── Initial render ────────────────────────────────────────────────────────────
+  document.getElementById('btn-party-full').classList.add('active');
+  render();
+</script>
+
+</body>
+</html>

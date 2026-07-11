@@ -1,0 +1,91 @@
+{
+  "node": {
+    "id": "ambush_old_road_dnn883r_002",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "captain_maer",
+    "lines": [
+      "Halt! You venture into a patrol zone.",
+      "State your intentions or be detained."
+    ],
+    "choices": [
+      {
+        "id": "intimidate",
+        "text": "[Intimidation - CHA] Challenge his authority.",
+        "skillCheck": {
+          "skill": "intimidation",
+          "stat": "CHA",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "#gained_respect",
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "emberguard",
+              "amount": 1
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#detained",
+          "effects": []
+        }
+      },
+      {
+        "id": "surrender",
+        "text": "Surrender peacefully.",
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "guardian_spared"
+          },
+          {
+            "type": "faction_delta",
+            "faction": "emberguard",
+            "amount": -1
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "gained_respect": {
+        "lines": [
+          "He narrows his eyes, surprised. \"Not many dare to challenge me...\""
+        ],
+        "choices": [
+          {
+            "id": "leave",
+            "text": "Move on with a nod.",
+            "effects": []
+          }
+        ]
+      },
+      "detained": {
+        "lines": [
+          "You feel the weight of his grip. \"You're coming with me.\""
+        ],
+        "choices": [
+          {
+            "id": "resist",
+            "text": "Attempt to break free.",
+            "effects": [
+              {
+                "type": "start_combat",
+                "enemyGroup": [
+                  "captain_maer"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"intimidate\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:07:15.830Z"
+}

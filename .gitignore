@@ -23,17 +23,9 @@ public/assets/openai_v2/raw/
 public/images/openai_v2/_pre_spritecook/
 public/images/openai_v2/*_openai_sheet.png
 public/images/_thumbs/
-public/archive/
-public/images/_bg-removal-backup/
-public/images/sprites_pixellab_archive/
-public/images/sprites_pixellab_test/
-public/data/character_redesign_snapshots/
 images/_thumbs/
 images/openai_v2/_pre_spritecook/
 images/openai_v2/*_openai_sheet.png
 public/music/_archive/
 public/sfx_original/
 *.log
-__pycache__/
-*.pyc
-scripts/.*-legacy-snapshot.json

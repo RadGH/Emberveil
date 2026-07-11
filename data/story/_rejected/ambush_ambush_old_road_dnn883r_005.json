@@ -1,0 +1,80 @@
+{
+  "node": {
+    "id": "ambush_old_road_dnn883r_005",
+    "pool": "ambush",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "confrontational",
+    "speaker": "captain_maer",
+    "lines": [
+      "You’re lost in Emberwood’s grasp.",
+      "Answer quickly or face the consequences."
+    ],
+    "choices": [
+      {
+        "id": "demonstrate_strength",
+        "text": "[Strength - STR] Display your skills.",
+        "skillCheck": {
+          "skill": "strength",
+          "stat": "STR",
+          "dc": 14
+        },
+        "onPass": {
+          "next": "#impressed",
+          "effects": [
+            {
+              "type": "faction_delta",
+              "faction": "emberguard",
+              "amount": 1
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#retreat",
+          "effects": []
+        }
+      },
+      {
+        "id": "explore_options",
+        "text": "Negotiate your way through.",
+        "effects": [
+          {
+            "type": "set_flag",
+            "flag": "guardian_ally"
+          }
+        ]
+      }
+    ],
+    "nodes": {
+      "impressed": {
+        "lines": [
+          "He raises an eyebrow, respect dawning.",
+          "\"Very well, you may pass.\""
+        ],
+        "choices": [
+          {
+            "id": "go",
+            "text": "Continue on your way.",
+            "effects": []
+          }
+        ]
+      },
+      "retreat": {
+        "lines": [
+          "He shakes his head. \"You don't belong here.\""
+        ],
+        "choices": [
+          {
+            "id": "leave",
+            "text": "Back away slowly.",
+            "effects": []
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"demonstrate_strength\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:07:15.830Z"
+}

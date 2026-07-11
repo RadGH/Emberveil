@@ -1,0 +1,43 @@
+{
+  "node": {
+    "id": "merchant_crossroads_fnnsr8s_002",
+    "pool": "merchant",
+    "act": 3,
+    "biome": "crossroads",
+    "tone": "desperate",
+    "speaker": "merchant_unusual",
+    "lines": [
+      "Got items no one else would dare to sell. You interested?",
+      "Best bargains come with a cost. Sometimes, a heavy one."
+    ],
+    "choices": [
+      {
+        "id": "browse",
+        "text": "Browse the wares.",
+        "next": "pool:merchant#merchant_crossroads_wares",
+        "effects": []
+      },
+      {
+        "id": "ask_origin",
+        "text": "[Intellect - INT] Where do these come from?",
+        "skillCheck": {
+          "skill": "intellect",
+          "stat": "INT",
+          "dc": 15
+        },
+        "onPass": {
+          "next": "pool:merchant#merchant_crossroads_origin",
+          "effects": []
+        },
+        "onFail": {
+          "next": "pool:merchant#merchant_crossroads_deflects",
+          "effects": []
+        }
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"ask_origin\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:08:22.578Z"
+}

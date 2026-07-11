@@ -1,0 +1,18 @@
+{
+  "id": "chronicler",
+  "displayName": "The Chronicler",
+  "bio": "Weaves consistent narrative threads across the campaign. Rewards players who follow a thematic arc with coherence bonuses.",
+  "portraitImage": "images/openai_v2/storyteller_chronicler_portrait.png",
+  "preferredThemes": ["lore", "investigation", "faction", "memory"],
+  "combatFrequency": 0.45,
+  "skillCheckVariety": 0.6,
+  "thematicConsistency": 0.85,
+  "pressureBias": 0.0,
+  "rules": {
+    "maxSameTypeStreak": 2,
+    "minNodesBetweenBosses": 25,
+    "forceRestAfterBrutalFight": true,
+    "fallbackAllowed": true
+  },
+  "uniqueMechanic": "narrative_coherence_bonus"
+}

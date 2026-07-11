@@ -1,0 +1,18 @@
+{
+  "id": "warbringer",
+  "displayName": "The Warbringer",
+  "bio": "Victory builds on victory. A win streak escalates the danger — and the rewards — with each consecutive combat triumph.",
+  "portraitImage": "images/openai_v2/storyteller_warbringer_portrait.png",
+  "preferredThemes": ["combat", "glory", "ambush", "siege"],
+  "combatFrequency": 0.7,
+  "skillCheckVariety": 0.4,
+  "thematicConsistency": 0.6,
+  "pressureBias": 0.15,
+  "rules": {
+    "maxSameTypeStreak": 4,
+    "minNodesBetweenBosses": 15,
+    "forceRestAfterBrutalFight": false,
+    "fallbackAllowed": true
+  },
+  "uniqueMechanic": "momentum_escalation"
+}

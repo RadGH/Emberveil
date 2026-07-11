@@ -2,7 +2,7 @@
 """M69: Generate 6 overworld music tracks + regenerate calmer combat/boss themes."""
 import json, urllib.request, pathlib, time, sys
 
-KEY = pathlib.Path("/home/radgh/claude/secrets/elevenlabs-api-key.txt").read_text().strip()
+KEY = pathlib.Path("/home/radgh/claude/assets/references/elevenlabs-api-key.txt").read_text().strip()
 OUT = pathlib.Path("/home/radgh/claude/game13/public/music")
 OUT.mkdir(parents=True, exist_ok=True)
 

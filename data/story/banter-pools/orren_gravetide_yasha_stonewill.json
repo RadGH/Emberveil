@@ -1,0 +1,62 @@
+[
+  {
+    "id": "orren_yasha_01",
+    "trigger": "nodeResolved",
+    "cooldown": 5,
+    "companionA": "orren_gravetide",
+    "companionB": "yasha_stonewill",
+    "lines": [
+      { "speaker": "orren_gravetide", "text": "A monk and a warrior. People keep expecting us to argue." },
+      { "speaker": "yasha_stonewill", "text": "We pursue the same end by different roads. No conflict." }
+    ]
+  },
+  {
+    "id": "orren_yasha_02",
+    "trigger": "nodeResolved",
+    "cooldown": 6,
+    "companionA": "orren_gravetide",
+    "companionB": "yasha_stonewill",
+    "lines": [
+      { "speaker": "yasha_stonewill", "text": "You train even when you don't need to." },
+      { "speaker": "orren_gravetide", "text": "If I wait until I need to, I'm already behind." },
+      { "speaker": "yasha_stonewill", "text": "We agree on something." }
+    ]
+  },
+  {
+    "id": "orren_yasha_03",
+    "trigger": "nodeResolved",
+    "cooldown": 7,
+    "companionA": "orren_gravetide",
+    "companionB": "yasha_stonewill",
+    "lines": [
+      { "speaker": "orren_gravetide", "text": "Your order — do they take oaths?" },
+      { "speaker": "yasha_stonewill", "text": "One. No oath can be broken that was honestly meant when it was sworn." },
+      { "speaker": "orren_gravetide", "text": "That's more honest than most codes I've sworn to." }
+    ]
+  },
+  {
+    "id": "orren_yasha_04",
+    "trigger": "nodeResolved",
+    "cooldown": 8,
+    "companionA": "orren_gravetide",
+    "companionB": "yasha_stonewill",
+    "lines": [
+      { "speaker": "yasha_stonewill", "text": "You stopped yourself from striking just then." },
+      { "speaker": "orren_gravetide", "text": "He wasn't worth the trouble." },
+      { "speaker": "yasha_stonewill", "text": "Restraint. Good." }
+    ]
+  },
+  {
+    "id": "orren_yasha_05",
+    "trigger": "nodeResolved",
+    "cooldown": 9,
+    "companionA": "orren_gravetide",
+    "companionB": "yasha_stonewill",
+    "lines": [
+      { "speaker": "orren_gravetide", "text": "You're probably the calmest person I've traveled with." },
+      { "speaker": "yasha_stonewill", "text": "The surface is calm. The interior argues constantly." },
+      { "speaker": "orren_gravetide", "text": "You just don't let it out." },
+      { "speaker": "yasha_stonewill", "text": "Not yet." }
+    ]
+  }
+]

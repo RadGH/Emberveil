@@ -1,0 +1,70 @@
+{
+  "node": {
+    "id": "shrine_ash_plains_fpno826_001",
+    "pool": "shrine",
+    "act": 2,
+    "biome": "ash_plains",
+    "tone": "eerie",
+    "speaker": "bone_reader",
+    "lines": [
+      "The shrine is half-buried in ash.",
+      "Whispers linger here, insistent and wrong."
+    ],
+    "choices": [
+      {
+        "id": "investigate",
+        "text": "[Perception - WIS] Examine the shrine closely.",
+        "skillCheck": {
+          "skill": "perception",
+          "stat": "WIS",
+          "dc": 12
+        },
+        "onPass": {
+          "next": "#discover_message",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "shrine_purified"
+            }
+          ]
+        },
+        "onFail": {
+          "next": "#haunting_voices",
+          "effects": []
+        }
+      },
+      {
+        "id": "leave",
+        "text": "Step back and leave it undisturbed.",
+        "next": null,
+        "effects": []
+      }
+    ],
+    "nodes": {
+      "discover_message": {
+        "lines": [
+          "A sigil emerges, hidden beneath the ash.",
+          "It speaks of something lost, something forgotten."
+        ],
+        "choices": [
+          {
+            "id": "mark_sigil",
+            "text": "Mark the sigil with your blood.",
+            "next": null,
+            "effects": [
+              {
+                "type": "faction_delta",
+                "faction": "ashen_veil",
+                "amount": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "validationErrors": [
+    "choice \"investigate\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:08:36.438Z"
+}

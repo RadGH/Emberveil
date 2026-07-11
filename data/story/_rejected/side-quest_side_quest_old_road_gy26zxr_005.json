@@ -1,0 +1,48 @@
+{
+  "node": {
+    "id": "side_quest_old_road_gy26zxr_005",
+    "pool": "side-quest",
+    "act": 1,
+    "biome": "old_road",
+    "tone": "wary",
+    "speaker": "null",
+    "lines": [
+      "Footprints in the mud, too many for comfort.",
+      "Someone's been watching. Keep your guard up."
+    ],
+    "choices": [
+      {
+        "id": "set_trap",
+        "text": "[Mechanisms - INT] Set a trap nearby.",
+        "skillCheck": {
+          "skill": "mechanisms",
+          "stat": "INT",
+          "dc": 14
+        },
+        "onPass": {
+          "next": null,
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "crossroads_ambush_survived"
+            }
+          ]
+        },
+        "onFail": {
+          "next": null,
+          "effects": []
+        }
+      },
+      {
+        "id": "stay_alert",
+        "text": "Remain vigilant and wait.",
+        "next": null,
+        "effects": []
+      }
+    ]
+  },
+  "validationErrors": [
+    "choice \"set_trap\" effects must be array"
+  ],
+  "rejectedAt": "2026-05-21T00:09:29.221Z"
+}

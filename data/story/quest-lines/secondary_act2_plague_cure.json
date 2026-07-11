@@ -1,0 +1,75 @@
+{
+  "id": "secondary_act2_plague_cure",
+  "category": "secondary",
+  "act": 2,
+  "title": "The Formula and the Cost",
+  "summary": "A bone-reader named Mira Ashbone has reverse-engineered a partial cure for the Plague Fen sickness. She needs three ingredients the Harvesters control. The Harvesters know what the cure means for their business. The side effects of the cure are real, documented, and uncomfortable.",
+  "startCondition": { "flag": "veilscar_entered" },
+  "phases": [
+    {
+      "id": "find_mira",
+      "label": "Find Mira Ashbone in the Ash Plains",
+      "completeCondition": { "flag": "plague_cure_found" },
+      "onComplete": [
+        { "type": "set_flag", "flag": "fen_poison_immunity" },
+        { "type": "quest_log", "text": "Mira has the formula. She has been testing it on herself for fourteen months to document the side effects, which she lists in the same tone she uses for everything else. The cure works. The side effects include temporary sensitivity to Veil-energy, meaning cured individuals can perceive cult activity for approximately three weeks before the sensitivity fades. This is a logistical problem for several parties." }
+      ],
+      "nextPhase": "acquire_ingredients"
+    },
+    {
+      "id": "acquire_ingredients",
+      "label": "Acquire the three ingredients from Plague Harvester territory",
+      "completeCondition": { "flag": "cure_ingredients_acquired" },
+      "onComplete": [
+        { "type": "set_flag", "flag": "plague_fen_quarantine" },
+        { "type": "inc_counter", "counter": "worldCorruption", "amount": 5 },
+        { "type": "faction_delta", "faction": "plague_harvesters", "amount": -2 },
+        { "type": "quest_log", "text": "The Harvesters contested two of the three acquisitions. The third they did not contest, which Mira notes is suspicious — they let you have the fen-spore catalyst. She has a theory about why. She writes it down and signs it." }
+      ],
+      "nextPhase": "distribute_cure"
+    },
+    {
+      "id": "distribute_cure",
+      "label": "Decide how and where to distribute the cure",
+      "completeCondition": {
+        "any": [
+          { "flag": "cure_distributed_widely" },
+          { "flag": "cure_sold" },
+          { "flag": "cure_withheld" }
+        ]
+      },
+      "onComplete": [
+        { "type": "quest_log", "text": "The cure is distributed — or not. Three weeks of Veil-sensitivity for the recipients, if it went out. Mira notes the final tally with the same tone she uses for everything. 'It was worth the side effects,' she says. She does not ask if the party agrees." }
+      ],
+      "nextPhase": null
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "widely_distributed",
+      "condition": { "flag": "cure_distributed_widely" },
+      "effects": [
+        { "type": "faction_delta", "faction": "brightfall_council", "amount": 1 },
+        { "type": "faction_delta", "faction": "iron_covenant", "amount": 1 },
+        { "type": "faction_delta", "faction": "plague_harvesters", "amount": -3 },
+        { "type": "set_flag", "flag": "plague_harvester_reported" },
+        { "type": "gold", "amount": 60 }
+      ]
+    },
+    {
+      "id": "cure_sold_outcome",
+      "condition": { "flag": "cure_sold" },
+      "effects": [
+        { "type": "faction_delta", "faction": "plague_harvesters", "amount": -1 },
+        { "type": "gold", "amount": 250 }
+      ]
+    },
+    {
+      "id": "cure_withheld_outcome",
+      "condition": { "flag": "cure_withheld" },
+      "effects": [
+        { "type": "faction_delta", "faction": "plague_harvesters", "amount": 1 }
+      ]
+    }
+  ]
+}

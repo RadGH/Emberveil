@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Phase 06 — Card Rail Preview (1280×800)</title>
+<style>
+/* ═══════════════════════════════════════════════════════════
+   PHASE 00 PALETTE TOKENS
+═══════════════════════════════════════════════════════════ */
+:root {
+  --ember-void:   #06030e;
+  --ember-deep:   #0d0820;
+  --ember-pit:    #1a1128;
+  --ember-stone:  #2e2438;
+  --ember-slate:  #3d3250;
+  --gold-rim:     #c8a020;
+  --gold-glow:    #f8e890;
+  --gold-dim:     #7a6010;
+  --fire-core:    #ff7020;
+  --fire-bloom:   #ffc040;
+  --arc-blue:     #40a8ff;
+  --arc-pale:     #a0d8ff;
+  --hp-green:     #30cc60;
+  --hp-low:       #cc3020;
+  --shield-blue:  #4080e0;
+
+  /* Border system (phase 07) */
+  --border-stroke: var(--gold-rim);
+  --border-width: 1.5px;
+  --panel-inset-glow: inset 0 0 16px rgba(0,0,0,0.72);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Cinzel', 'Georgia', serif;
+  background: var(--ember-void);
+  color: var(--gold-glow);
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATE SELECTOR STRIP
+═══════════════════════════════════════════════════════════ */
+#state-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: var(--ember-pit);
+  border-bottom: 1px solid var(--gold-dim);
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#state-strip label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-glow);
+  opacity: 0.8;
+}
+
+.state-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border: 1px solid var(--gold-dim);
+  background: var(--ember-deep);
+  color: var(--gold-rim);
+  cursor: pointer;
+  transition: background 120ms, border-color 120ms, color 120ms;
+}
+.state-btn:hover  { border-color: var(--gold-rim); color: var(--gold-glow); }
+.state-btn.active { background: var(--ember-stone); border-color: var(--gold-glow); color: var(--gold-glow); }
+
+/* ═══════════════════════════════════════════════════════════
+   SHARED EV-PANEL SYSTEM (phase 07)
+═══════════════════════════════════════════════════════════ */
+.ev-panel {
+  position: relative;
+  background: var(--ember-deep);
+  border: var(--border-width) solid var(--border-stroke);
+  box-shadow: var(--panel-inset-glow);
+  padding: 8px 10px;
+}
+.ev-corner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 2;
+}
+.ev-corner--tl { top: -10px;    left: -10px;  }
+.ev-corner--tr { top: -10px;    right: -10px; transform: rotate(90deg);  }
+.ev-corner--bl { bottom: -10px; left: -10px;  transform: rotate(270deg); }
+.ev-corner--br { bottom: -10px; right: -10px; transform: rotate(180deg); }
+
+/* Small corner (portrait frame scale) */
+.ev-corner--sm { width: 20px; height: 20px; }
+.ev-corner--tl.ev-corner--sm { top: -6px;  left: -6px; }
+.ev-corner--tr.ev-corner--sm { top: -6px;  right: -6px; }
+.ev-corner--bl.ev-corner--sm { bottom: -6px; left: -6px; }
+.ev-corner--br.ev-corner--sm { bottom: -6px; right: -6px; }
+
+/* ═══════════════════════════════════════════════════════════
+   TURN-ORDER STRIP
+═══════════════════════════════════════════════════════════ */
+.ev-turn-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(13,8,32,0.90);
+  border-bottom: 1px solid var(--gold-dim);
+  min-height: 56px;
+}
+
+.ev-round-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-glow);
+  white-space: nowrap;
+  border: 1px solid var(--gold-dim);
+  padding: 3px 9px;
+  background: var(--ember-deep);
+}
+
+.ev-turn-strip__chips {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.ev-turn-chip {
+  position: relative;
+  width: 40px;
+  height: 48px;
+  background: var(--ember-deep);
+  border: 1px solid var(--gold-dim);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 2px 2px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.ev-turn-chip[data-side="hero"]      { --border-stroke: var(--gold-rim); border-color: var(--gold-rim); }
+.ev-turn-chip[data-side="enemy"]     { --border-stroke: var(--hp-low);   border-color: var(--hp-low); }
+.ev-turn-chip[data-side="companion"] { --border-stroke: var(--gold-dim); border-color: var(--gold-dim); }
+
+.ev-turn-chip__portrait {
+  width: 32px; height: 32px;
+  object-fit: cover;
+  object-position: top center;
+  background: var(--ember-stone);
+  border-radius: 1px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+/* Fallback portrait placeholder */
+.ev-turn-chip__portrait-placeholder {
+  width: 32px; height: 32px;
+  background: var(--ember-stone);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.ev-turn-chip__hp-bar { width: 100%; height: 3px; background: var(--ember-stone); }
+.ev-turn-chip__hp-fill { height: 100%; background: var(--hp-green); transition: width 300ms; }
+
+.ev-turn-chip[data-state="active"] {
+  border-color: var(--gold-glow);
+  animation: chip-active-pulse 1.1s ease-in-out infinite;
+}
+@keyframes chip-active-pulse {
+  0%,100% { box-shadow: 0 0 4px 1px rgba(248,232,144,0.4); }
+  50%      { box-shadow: 0 0 10px 3px rgba(248,232,144,0.75); }
+}
+.ev-turn-chip[data-state="dead"] { filter: grayscale(1); opacity: 0.4; }
+
+/* ═══════════════════════════════════════════════════════════
+   HUD LAYOUT
+═══════════════════════════════════════════════════════════ */
+#ev-hud {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 16px 16px;
+  background: linear-gradient(to top, rgba(6,3,14,0.98) 60%, rgba(6,3,14,0.88));
+  border-top: 1px solid var(--gold-dim);
+}
+
+.ev-hud__card-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+}
+
+.ev-companion-row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CHARACTER CARD (ev-char-card)
+═══════════════════════════════════════════════════════════ */
+.ev-char-card {
+  flex: 0 0 200px;
+  min-width: 180px;
+  scroll-snap-align: start;
+  transition: box-shadow 300ms, border-color 200ms;
+}
+
+.ev-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Card header */
+.ev-card__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Portrait frame */
+.ev-card__portrait-frame {
+  position: relative;
+  flex-shrink: 0;
+  padding: 3px;
+  width: 54px;
+  height: 54px;
+  border: 1.5px solid var(--gold-rim);
+  background: var(--ember-pit);
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+}
+.ev-card__portrait-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  background: var(--ember-stone);
+}
+
+/* Portrait placeholder (circle silhouette) */
+.ev-portrait-placeholder {
+  width: 48px; height: 48px;
+  background: var(--ember-stone);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Identity */
+.ev-card__identity {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ev-card__name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold-glow);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.02em;
+}
+.ev-card__class-label {
+  font-size: 9px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold-rim);
+  opacity: 0.7;
+}
+
+/* Bars */
+.ev-card__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.ev-bar-group { display: flex; flex-direction: column; gap: 1px; }
+
+.ev-bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--ember-stone);
+  border: 1px solid var(--ember-pit);
+  position: relative;
+  overflow: hidden;
+}
+.ev-bar-track--mp { height: 5px; }
+
+.ev-bar {
+  height: 100%;
+  transition: width 300ms ease, background 400ms ease;
+  position: absolute;
+  top: 0; left: 0;
+}
+.ev-bar--hp     { background: var(--hp-green); }
+.ev-bar--hp-low { background: var(--hp-low); }
+.ev-bar--shield { background: var(--shield-blue); left: auto; right: 0; opacity: 0.6; }
+.ev-bar--mp     { background: var(--arc-blue); }
+
+.ev-bar-label {
+  font-family: 'Cinzel', monospace;
+  font-size: 10px;
+  color: var(--gold-rim);
+  opacity: 0.8;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Status icons */
+.ev-card__statuses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  min-height: 16px;
+}
+.ev-status-icon {
+  font-size: 10px;
+  background: var(--ember-stone);
+  border-radius: 2px;
+  padding: 1px 4px;
+  border: 1px solid rgba(200,160,32,0.3);
+  color: var(--gold-glow);
+  white-space: nowrap;
+}
+.ev-status-icon--burn   { border-color: var(--fire-core); color: var(--fire-core); }
+.ev-status-icon--stun   { border-color: var(--arc-blue);  color: var(--arc-blue); }
+.ev-status-icon--poison { border-color: #60c040; color: #60c040; }
+.ev-status-icon--silence { border-color: #a060c0; color: #a060c0; }
+
+/* Spell rail */
+.ev-card__spell-rail {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SPELL ICONS (phase 08)
+═══════════════════════════════════════════════════════════ */
+.spell-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  color: var(--gold-rim);
+  border-radius: 4px;
+  background: var(--ember-deep);
+  border: 1px solid var(--gold-dim);
+  transition: filter 0.15s, opacity 0.15s, box-shadow 0.15s;
+}
+.spell-icon svg { width: 22px; height: 22px; display: block; }
+
+/* Enabled */
+.spell-icon--enabled {
+  opacity: 1;
+  filter: none;
+  color: var(--gold-rim);
+}
+
+/* Not my turn */
+.spell-icon--not-my-turn,
+.spell-icon--disabled {
+  opacity: 0.3;
+  filter: grayscale(1);
+  pointer-events: none;
+  cursor: default;
+}
+
+/* On cooldown */
+.spell-icon--on-cooldown {
+  opacity: 0.6;
+  color: var(--gold-dim);
+}
+.spell-icon--on-cooldown::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: conic-gradient(
+    from -90deg,
+    rgba(6, 3, 14, 0.75) calc(var(--cd-pct, 0.5) * 360deg),
+    transparent 0deg
+  );
+  pointer-events: none;
+}
+.spell-icon--on-cooldown[data-cd]::before {
+  content: attr(data-cd);
+  position: absolute;
+  bottom: 1px; right: 3px;
+  font-size: 8px;
+  font-family: 'Cinzel', serif;
+  color: var(--gold-glow);
+  line-height: 1;
+  z-index: 1;
+}
+
+/* No mana */
+.spell-icon--no-mana {
+  animation: mana-warn 1s ease-in-out infinite alternate;
+  color: var(--arc-blue);
+  border-color: var(--arc-blue);
+}
+@keyframes mana-warn {
+  from { opacity: 0.45; }
+  to   { opacity: 0.85; }
+}
+
+/* Ready to cast */
+.spell-icon--ready {
+  color: var(--gold-glow);
+  border-color: var(--gold-rim);
+  box-shadow: 0 0 6px 1px rgba(200,160,32,0.55), inset 0 0 4px rgba(248,232,144,0.15);
+  animation: ready-pulse 1.2s ease-in-out infinite alternate;
+}
+@keyframes ready-pulse {
+  from { box-shadow: 0 0 4px 1px rgba(200,160,32,0.4), inset 0 0 3px rgba(248,232,144,0.1); }
+  to   { box-shadow: 0 0 10px 3px rgba(200,160,32,0.7), inset 0 0 6px rgba(248,232,144,0.25); }
+}
+
+/* Silenced magic overlay */
+.spell-icon--silenced::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(204, 48, 32, 0.35);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Item slot */
+.ev-spell-icon--item { position: relative; }
+.ev-item-count {
+  position: absolute;
+  bottom: 0; right: 2px;
+  font-size: 8px;
+  font-family: 'Cinzel', serif;
+  color: var(--fire-bloom);
+  line-height: 1;
+}
+
+/* Skip button */
+.ev-skip-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  background: var(--ember-pit);
+  border: 1px solid var(--gold-dim);
+  border-radius: 3px;
+  color: var(--gold-dim);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.ev-skip-btn:hover { border-color: var(--gold-rim); color: var(--gold-rim); }
+.ev-skip-btn svg { width: 16px; height: 16px; }
+
+/* ═══════════════════════════════════════════════════════════
+   CARD STATE OVERRIDES
+═══════════════════════════════════════════════════════════ */
+
+/* Active (player's turn) */
+.ev-char-card--active,
+.ev-char-card[data-state="active"] {
+  --border-stroke: var(--gold-glow);
+  --panel-inset-glow: inset 0 0 18px rgba(248,232,144,0.18);
+  animation: card-rim-pulse 1.4s ease-in-out infinite;
+}
+@keyframes card-rim-pulse {
+  0%,100% { box-shadow: inset 0 0 14px rgba(248,232,144,0.12), 0 0 8px rgba(200,160,32,0.3); }
+  50%      { box-shadow: inset 0 0 22px rgba(248,232,144,0.25), 0 0 16px rgba(200,160,32,0.55); }
+}
+
+/* Resolving */
+.ev-char-card[data-state="resolving"] {
+  --border-stroke: var(--gold-glow);
+  --panel-inset-glow: inset 0 0 14px rgba(248,232,144,0.10);
+}
+
+/* Silenced — card-level indicator */
+.ev-char-card[data-state="silenced"] .ev-card__name::after {
+  content: ' [Silenced]';
+  font-size: 8px;
+  color: #a060c0;
+  opacity: 0.9;
+}
+
+/* Dead */
+.ev-char-card[data-state="dead"] {
+  --border-stroke: var(--gold-dim);
+  --panel-inset-glow: inset 0 0 12px rgba(0,0,0,0.85);
+  opacity: 0.45;
+}
+.ev-char-card[data-state="dead"] .ev-card__portrait-img,
+.ev-char-card[data-state="dead"] .ev-portrait-placeholder {
+  filter: grayscale(1) opacity(0.4);
+}
+
+/* Stun overlay */
+.ev-card__stun-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(64,168,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+}
+.ev-card__stun-overlay svg {
+  width: 32px; height: 32px;
+  color: var(--arc-pale);
+  opacity: 0.8;
+}
+
+/* Extra attack badge */
+.ev-extra-attack-badge {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  color: var(--fire-bloom);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  animation: badge-fade 600ms forwards;
+}
+@keyframes badge-fade {
+  0%   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COMPANION CARD
+═══════════════════════════════════════════════════════════ */
+.ev-companion-card {
+  flex: 0 0 150px;
+}
+.ev-companion-card__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+}
+.ev-companion-card__portrait {
+  width: 36px; height: 36px;
+  object-fit: cover;
+  background: var(--ember-stone);
+  border: 1px solid var(--gold-dim);
+}
+.ev-companion-card__name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold-glow);
+}
+.ev-companion-card__ai-badge {
+  font-size: 8px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.15em;
+  background: var(--ember-stone);
+  border: 1px solid var(--gold-dim);
+  color: var(--gold-dim);
+  padding: 1px 4px;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOOLTIP CARD (right-edge, flourish variant)
+═══════════════════════════════════════════════════════════ */
+.ev-tooltip-card {
+  width: 200px;
+  flex-shrink: 0;
+  align-self: flex-end;
+  padding: 10px 12px;
+}
+.ev-tooltip__skill-icon {
+  width: 24px; height: 24px;
+  color: var(--gold-rim);
+  margin-bottom: 6px;
+}
+.ev-tooltip__name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold-glow);
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+.ev-tooltip__subtitle {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold-rim);
+  opacity: 0.7;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(200,160,32,0.25);
+}
+.ev-tooltip__description {
+  font-family: 'Crimson Text', 'Georgia', serif;
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(248,232,144,0.85);
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+.ev-tooltip__type-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 2px 6px;
+  border: 1px solid;
+  border-radius: 2px;
+}
+.ev-tooltip__type-badge--fire    { color: var(--fire-core); border-color: var(--fire-core); }
+.ev-tooltip__type-badge--magic   { color: var(--arc-blue);  border-color: var(--arc-blue); }
+.ev-tooltip__type-badge--holy    { color: var(--gold-glow); border-color: var(--gold-glow); }
+.ev-tooltip__type-badge--physical { color: var(--gold-rim); border-color: var(--gold-rim); }
+
+.ev-tooltip__cost-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+  font-size: 10px;
+  color: var(--gold-rim);
+  opacity: 0.8;
+}
+
+/* Seal bar (top divider under skill name) */
+.ev-tooltip-card::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-rim) 40%, var(--gold-rim) 60%, transparent);
+  margin: -4px -4px 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PREVIEW SCAFFOLD
+═══════════════════════════════════════════════════════════ */
+.preview-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--ember-void);
+}
+
+/* Fake battlefield */
+.preview-battlefield {
+  flex: 1;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(200,160,32,0.04) 0%, transparent 70%),
+    linear-gradient(to bottom, #0a0618 0%, #110c22 40%, #1a1128 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+.preview-battlefield__label {
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(200,160,32,0.25);
+}
+
+/* HUD section */
+.preview-hud-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 10px;
+  background: linear-gradient(to top, rgba(6,3,14,0.98) 60%, rgba(6,3,14,0.88));
+  border-top: 1px solid var(--gold-dim);
+  padding: 12px 16px 16px;
+}
+
+.preview-cards-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.preview-hero-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.preview-companion-row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     INLINE SVG SYMBOL BLOCK (phase 07 corner lozenge + flourish + simple)
+════════════════════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Lozenge — HUD card corners -->
+    <symbol id="corner-lozenge" viewBox="0 0 32 32">
+      <rect x="9" y="9" width="14" height="14"
+            fill="var(--ember-deep,#0d0820)"
+            stroke="var(--gold-rim,#c8a020)" stroke-width="1.5"
+            transform="rotate(45 16 16)"/>
+    </symbol>
+    <!-- Flourish — tooltip / modal corners -->
+    <symbol id="corner-flourish" viewBox="0 0 32 32">
+      <rect x="10" y="10" width="12" height="12"
+            fill="var(--ember-deep,#0d0820)"
+            stroke="var(--gold-rim,#c8a020)" stroke-width="1.4"
+            transform="rotate(45 16 16)"/>
+      <path d="M16,7 C14,4 9,3 6,1" fill="none"
+            stroke="var(--gold-rim,#c8a020)" stroke-width="0.9" stroke-linecap="round"/>
+      <path d="M7,16 C4,14 3,9 1,6" fill="none"
+            stroke="var(--gold-rim,#c8a020)" stroke-width="0.9" stroke-linecap="round"/>
+      <circle cx="5.5" cy="1.5" r="1.2" fill="var(--gold-rim,#c8a020)"/>
+      <circle cx="1.5" cy="5.5" r="1.2" fill="var(--gold-rim,#c8a020)"/>
+    </symbol>
+    <!-- Simple — chips / util buttons -->
+    <symbol id="corner-simple" viewBox="0 0 32 32">
+      <polyline points="14,4 4,4 4,14"
+                fill="none"
+                stroke="var(--gold-rim,#c8a020)" stroke-width="2"
+                stroke-linecap="square" stroke-linejoin="miter"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ═══════════════════════════════════════════════════════════
+     STATE SELECTOR
+════════════════════════════════════════════════════════════ -->
+<div id="state-strip">
+  <label>Preview state:</label>
+  <button class="state-btn active" onclick="setPreviewState('inactive')">Inactive</button>
+  <button class="state-btn" onclick="setPreviewState('active')">Active (Your Turn)</button>
+  <button class="state-btn" onclick="setPreviewState('resolving')">Resolving</button>
+  <button class="state-btn" onclick="setPreviewState('silenced')">Silenced</button>
+  <button class="state-btn" onclick="setPreviewState('dead')">Dead</button>
+  <span style="margin-left:16px; font-size:11px; opacity:0.5; font-family:Cinzel;">
+    Applies to all hero cards simultaneously — toggle to compare states
+  </span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TURN-ORDER STRIP
+════════════════════════════════════════════════════════════ -->
+<nav class="ev-turn-strip" id="ev-turn-strip" aria-label="Turn order">
+  <span class="ev-round-label" id="ev-round-label">Round 1</span>
+  <div class="ev-turn-strip__chips" role="list" aria-label="Initiative order">
+    <!-- Hero chips -->
+    <div class="ev-turn-chip" data-side="hero" data-state="active" role="listitem" aria-label="Fighter, active">
+      <div class="ev-turn-chip__portrait-placeholder ev-turn-chip__portrait">
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="#c8a020" stroke-width="1.2">
+          <circle cx="10" cy="6" r="5"/><path d="M3 22c0-4 3-7 7-7s7 3 7 7"/>
+        </svg>
+      </div>
+      <div class="ev-turn-chip__hp-bar"><div class="ev-turn-chip__hp-fill" style="width:100%"></div></div>
+    </div>
+    <div class="ev-turn-chip" data-side="enemy" data-state="inactive" role="listitem" aria-label="Goblin">
+      <div class="ev-turn-chip__portrait-placeholder ev-turn-chip__portrait">
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="#cc3020" stroke-width="1.2">
+          <circle cx="10" cy="6" r="5"/><path d="M3 22c0-4 3-7 7-7s7 3 7 7"/>
+        </svg>
+      </div>
+      <div class="ev-turn-chip__hp-bar"><div class="ev-turn-chip__hp-fill" style="width:72%; background:var(--hp-low)"></div></div>
+    </div>
+    <div class="ev-turn-chip" data-side="hero" data-state="inactive" role="listitem" aria-label="Stormcaller">
+      <div class="ev-turn-chip__portrait-placeholder ev-turn-chip__portrait">
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="#c8a020" stroke-width="1.2">
+          <circle cx="10" cy="6" r="5"/><path d="M3 22c0-4 3-7 7-7s7 3 7 7"/>
+        </svg>
+      </div>
+      <div class="ev-turn-chip__hp-bar"><div class="ev-turn-chip__hp-fill" style="width:85%"></div></div>
+    </div>
+    <div class="ev-turn-chip" data-side="companion" data-state="inactive" role="listitem" aria-label="War Dog">
+      <div class="ev-turn-chip__portrait-placeholder ev-turn-chip__portrait">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#7a6010" stroke-width="1.2">
+          <ellipse cx="10" cy="10" rx="7" ry="6"/>
+          <circle cx="10" cy="9" r="3"/>
+        </svg>
+      </div>
+      <div class="ev-turn-chip__hp-bar"><div class="ev-turn-chip__hp-fill" style="width:90%"></div></div>
+    </div>
+    <div class="ev-turn-chip" data-side="enemy" data-state="inactive" role="listitem" aria-label="Orc Brute">
+      <div class="ev-turn-chip__portrait-placeholder ev-turn-chip__portrait">
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="#cc3020" stroke-width="1.2">
+          <circle cx="10" cy="6" r="6"/><path d="M2 22c0-4 4-7 8-7s8 3 8 7"/>
+        </svg>
+      </div>
+      <div class="ev-turn-chip__hp-bar"><div class="ev-turn-chip__hp-fill" style="width:100%; background:var(--hp-low)"></div></div>
+    </div>
+    <div class="ev-turn-chip" data-side="hero" data-state="inactive" role="listitem" aria-label="Paladin">
+      <div class="ev-turn-chip__portrait-placeholder ev-turn-chip__portrait">
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="#c8a020" stroke-width="1.2">
+          <circle cx="10" cy="6" r="5"/><path d="M3 22c0-4 3-7 7-7s7 3 7 7"/>
+        </svg>
+      </div>
+      <div class="ev-turn-chip__hp-bar"><div class="ev-turn-chip__hp-fill" style="width:60%"></div></div>
+    </div>
+    <div class="ev-turn-chip" data-side="hero" data-state="inactive" role="listitem" aria-label="Pyromancer">
+      <div class="ev-turn-chip__portrait-placeholder ev-turn-chip__portrait">
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="#c8a020" stroke-width="1.2">
+          <circle cx="10" cy="6" r="5"/><path d="M3 22c0-4 3-7 7-7s7 3 7 7"/>
+        </svg>
+      </div>
+      <div class="ev-turn-chip__hp-bar"><div class="ev-turn-chip__hp-fill" style="width:78%"></div></div>
+    </div>
+    <div class="ev-turn-chip" data-side="enemy" data-state="dead" role="listitem" aria-label="Goblin Scout, dead">
+      <div class="ev-turn-chip__portrait-placeholder ev-turn-chip__portrait">
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="#cc3020" stroke-width="1.2">
+          <circle cx="10" cy="6" r="5"/><path d="M3 22c0-4 3-7 7-7s7 3 7 7"/>
+        </svg>
+      </div>
+      <div class="ev-turn-chip__hp-bar"><div class="ev-turn-chip__hp-fill" style="width:0%"></div></div>
+    </div>
+    <div class="ev-turn-chip" data-side="enemy" data-state="inactive" role="listitem" aria-label="Goblin Archer">
+      <div class="ev-turn-chip__portrait-placeholder ev-turn-chip__portrait">
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="#cc3020" stroke-width="1.2">
+          <circle cx="10" cy="6" r="5"/><path d="M3 22c0-4 3-7 7-7s7 3 7 7"/>
+        </svg>
+      </div>
+      <div class="ev-turn-chip__hp-bar"><div class="ev-turn-chip__hp-fill" style="width:45%; background:var(--hp-low)"></div></div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FAKE BATTLEFIELD
+════════════════════════════════════════════════════════════ -->
+<div class="preview-battlefield">
+  <span class="preview-battlefield__label">Battlefield (2.5D grid — phase 04)</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HUD — CARD ROW + TOOLTIP
+════════════════════════════════════════════════════════════ -->
+<div class="preview-hud-section">
+  <div class="preview-cards-area">
+
+    <!-- HERO CARDS ROW -->
+    <div class="preview-hero-row" id="hero-card-row" role="list">
+
+      <!-- ── FIGHTER ── -->
+      <article class="ev-panel ev-panel--card ev-char-card" id="ev-card-fighter" data-char-id="fighter" data-state="inactive" role="listitem" aria-label="Fighter">
+        <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <div class="ev-panel__body">
+          <header class="ev-card__header">
+            <div class="ev-card__portrait-frame">
+              <svg class="ev-portrait-placeholder" viewBox="0 0 48 48" fill="none" stroke="#3d3250" stroke-width="1.5" aria-hidden="true">
+                <circle cx="24" cy="15" r="9"/><path d="M6 46c0-10 8-16 18-16s18 6 18 16"/>
+              </svg>
+            </div>
+            <div class="ev-card__identity">
+              <span class="ev-card__name">Fighter</span>
+              <span class="ev-card__class-label">Warrior</span>
+            </div>
+          </header>
+          <div class="ev-card__bars">
+            <div class="ev-bar-group ev-bar-group--hp">
+              <div class="ev-bar-track" role="progressbar" aria-valuenow="156" aria-valuemax="156" aria-label="HP">
+                <div class="ev-bar ev-bar--hp" id="fighter-hp-bar" style="width:100%"></div>
+              </div>
+              <span class="ev-bar-label ev-bar-label--hp">156/156</span>
+            </div>
+            <div class="ev-bar-group ev-bar-group--mp">
+              <div class="ev-bar-track ev-bar-track--mp" role="progressbar" aria-valuenow="35" aria-valuemax="35" aria-label="MP">
+                <div class="ev-bar ev-bar--mp" style="width:100%"></div>
+              </div>
+              <span class="ev-bar-label ev-bar-label--mp">35/35</span>
+            </div>
+          </div>
+          <div class="ev-card__statuses" id="fighter-statuses"></div>
+          <div class="ev-card__spell-rail" id="ev-rail-fighter" role="toolbar" aria-label="Fighter actions">
+            <!-- Slot 0: Basic Attack (physical/sword) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="basic_attack" data-slot="0" aria-label="Basic Attack">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M8 24L24 8M20 7l3-1-1 3"/>
+                <path d="M24 24L8 8M12 7l-3-1 1 3"/>
+              </svg>
+            </button>
+            <!-- Slot 1: Cleave (melee AOE adjacent) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="cleave" data-slot="1" aria-label="Cleave — 8 MP">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M8 24L22 10M18 8l4-2-2 4"/>
+                <path d="M25 12a9 9 0 0 1 0 8" stroke-width="1"/>
+                <circle cx="26" cy="16" r="1.5" fill="currentColor"/>
+              </svg>
+            </button>
+            <!-- Slot 2: Shield Bash (buff) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="shield_bash" data-slot="2" aria-label="Shield Bash — 6 MP">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 5L7 9v7c0 6 4 10 9 11 5-1 9-5 9-11V9L16 5z"/>
+                <path d="M16 13v6M13 16l3-3 3 3"/>
+              </svg>
+            </button>
+            <!-- Slot 3: Whirlwind (AOE all) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="whirlwind" data-slot="3" aria-label="Whirlwind — 12 MP">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 16m-2 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0M16 14a5 5 0 1 1-5 5M16 9a9 9 0 0 1 7 14"/>
+                <circle cx="16" cy="3" r="1.5" fill="currentColor"/>
+                <circle cx="27" cy="9.5" r="1.5" fill="currentColor"/>
+                <circle cx="27" cy="22.5" r="1.5" fill="currentColor"/>
+                <circle cx="16" cy="29" r="1.5" fill="currentColor"/>
+                <circle cx="5" cy="22.5" r="1.5" fill="currentColor"/>
+                <circle cx="5" cy="9.5" r="1.5" fill="currentColor"/>
+              </svg>
+            </button>
+            <!-- Slot 4: Use Item (free action) -->
+            <button class="spell-icon spell-icon--not-my-turn ev-spell-icon--item" data-skill="use_item" data-slot="item" aria-label="Use Item (3 remaining)">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 6h6M12 10l-4 8c-1 2-1 4 0 6a6 6 0 0 0 10 2c2-2 2-5 0-8l-4-8"/>
+                <path d="M11 18c2-1 5 1 7-1"/>
+              </svg>
+              <span class="ev-item-count">3</span>
+            </button>
+            <button class="ev-skip-btn" data-skill="skip_turn" aria-label="End Turn">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 6h12M10 26h12M12 8v5l4 3-4 3v5M20 8v5l-4 3 4 3v5"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── STORMCALLER ── -->
+      <article class="ev-panel ev-panel--card ev-char-card" id="ev-card-stormcaller" data-char-id="stormcaller" data-state="inactive" role="listitem" aria-label="Stormcaller">
+        <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <div class="ev-panel__body">
+          <header class="ev-card__header">
+            <div class="ev-card__portrait-frame">
+              <svg class="ev-portrait-placeholder" viewBox="0 0 48 48" fill="none" stroke="#3d3250" stroke-width="1.5" aria-hidden="true">
+                <circle cx="24" cy="15" r="9"/><path d="M6 46c0-10 8-16 18-16s18 6 18 16"/>
+              </svg>
+            </div>
+            <div class="ev-card__identity">
+              <span class="ev-card__name">Stormcaller</span>
+              <span class="ev-card__class-label">Mage</span>
+            </div>
+          </header>
+          <div class="ev-card__bars">
+            <div class="ev-bar-group ev-bar-group--hp">
+              <div class="ev-bar-track" role="progressbar" aria-valuenow="128" aria-valuemax="326" aria-label="HP">
+                <div class="ev-bar ev-bar--hp" id="stormcaller-hp-bar" style="width:82%"></div>
+              </div>
+              <span class="ev-bar-label ev-bar-label--hp">128/326</span>
+            </div>
+            <div class="ev-bar-group ev-bar-group--mp">
+              <div class="ev-bar-track ev-bar-track--mp" role="progressbar" aria-valuenow="65" aria-valuemax="112" aria-label="MP">
+                <div class="ev-bar ev-bar--mp" style="width:58%"></div>
+              </div>
+              <span class="ev-bar-label ev-bar-label--mp">65/112</span>
+            </div>
+          </div>
+          <div class="ev-card__statuses" id="stormcaller-statuses"></div>
+          <div class="ev-card__spell-rail" id="ev-rail-stormcaller" role="toolbar" aria-label="Stormcaller actions">
+            <!-- Slot 0: Basic Attack (magic orb) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="basic_attack" data-slot="0" aria-label="Basic Attack">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="16" cy="16" r="8"/><circle cx="16" cy="16" r="3"/>
+                <path d="M16 8V6M16 26v-2M8 16H6M26 16h-2"/>
+              </svg>
+            </button>
+            <!-- Slot 1: Chain Lightning -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="chain_lightning" data-slot="1" aria-label="Chain Lightning — 18 MP">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M19 6l-6 10h5l-5 10M18 16l4 6"/>
+                <circle cx="22" cy="24" r="2" stroke-width="1" fill="none"/>
+                <circle cx="27" cy="20" r="1.5" stroke-width="1" fill="none"/>
+                <circle cx="29" cy="25" r="1.5" stroke-width="1" fill="none"/>
+                <line x1="22" y1="24" x2="27" y2="20" stroke-width="1"/>
+                <line x1="27" y1="20" x2="29" y2="25" stroke-width="1"/>
+              </svg>
+            </button>
+            <!-- Slot 2: Thunderstorm (AOE all, on cooldown) -->
+            <button class="spell-icon spell-icon--on-cooldown" data-skill="thunderstorm" data-slot="2" data-cd="2" style="--cd-pct:0.4" aria-label="Thunderstorm — on cooldown 2">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M19 6l-6 10h5l-5 10"/>
+                <circle cx="16" cy="3" r="1.5" fill="currentColor"/>
+                <circle cx="27" cy="9.5" r="1.5" fill="currentColor"/>
+                <circle cx="27" cy="22.5" r="1.5" fill="currentColor"/>
+                <circle cx="16" cy="29" r="1.5" fill="currentColor"/>
+                <circle cx="5" cy="22.5" r="1.5" fill="currentColor"/>
+                <circle cx="5" cy="9.5" r="1.5" fill="currentColor"/>
+              </svg>
+            </button>
+            <!-- Slot 3: Frost Nova (no mana) -->
+            <button class="spell-icon spell-icon--no-mana" data-skill="frost_nova" data-slot="3" aria-label="Frost Nova — not enough mana">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 6v20M7 11l18 10M7 21L25 11"/>
+                <path d="M13 8l3-2 3 2M13 24l3 2 3-2M7 13l-2 3 2 3M25 13l2 3-2 3"/>
+              </svg>
+            </button>
+            <!-- Item + Skip -->
+            <button class="spell-icon spell-icon--not-my-turn ev-spell-icon--item" data-skill="use_item" data-slot="item" aria-label="Use Item (1 remaining)">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 6h6M12 10l-4 8c-1 2-1 4 0 6a6 6 0 0 0 10 2c2-2 2-5 0-8l-4-8"/>
+                <path d="M11 18c2-1 5 1 7-1"/>
+              </svg>
+              <span class="ev-item-count">1</span>
+            </button>
+            <button class="ev-skip-btn" data-skill="skip_turn" aria-label="End Turn">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 6h12M10 26h12M12 8v5l4 3-4 3v5M20 8v5l-4 3 4 3v5"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── PALADIN ── -->
+      <article class="ev-panel ev-panel--card ev-char-card" id="ev-card-paladin" data-char-id="paladin" data-state="inactive" role="listitem" aria-label="Paladin">
+        <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <div class="ev-panel__body">
+          <header class="ev-card__header">
+            <div class="ev-card__portrait-frame">
+              <svg class="ev-portrait-placeholder" viewBox="0 0 48 48" fill="none" stroke="#3d3250" stroke-width="1.5" aria-hidden="true">
+                <circle cx="24" cy="15" r="9"/><path d="M6 46c0-10 8-16 18-16s18 6 18 16"/>
+              </svg>
+            </div>
+            <div class="ev-card__identity">
+              <span class="ev-card__name">Paladin</span>
+              <span class="ev-card__class-label">Holy Knight</span>
+            </div>
+          </header>
+          <div class="ev-card__bars">
+            <div class="ev-bar-group ev-bar-group--hp">
+              <div class="ev-bar-track" role="progressbar" aria-valuenow="176" aria-valuemax="326" aria-label="HP">
+                <div class="ev-bar ev-bar--hp" id="paladin-hp-bar" style="width:54%"></div>
+                <div class="ev-bar ev-bar--shield" style="width:15%"></div>
+              </div>
+              <span class="ev-bar-label ev-bar-label--hp">176/326</span>
+            </div>
+            <div class="ev-bar-group ev-bar-group--mp">
+              <div class="ev-bar-track ev-bar-track--mp" role="progressbar" aria-valuenow="58" aria-valuemax="58" aria-label="MP">
+                <div class="ev-bar ev-bar--mp" style="width:100%"></div>
+              </div>
+              <span class="ev-bar-label ev-bar-label--mp">58/58</span>
+            </div>
+          </div>
+          <div class="ev-card__statuses" id="paladin-statuses">
+            <span class="ev-status-icon ev-status-icon--shield" title="Divine Shield">Shld</span>
+          </div>
+          <div class="ev-card__spell-rail" id="ev-rail-paladin" role="toolbar" aria-label="Paladin actions">
+            <!-- Slot 0: Basic Attack (holy) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="basic_attack" data-slot="0" aria-label="Basic Attack">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 7v18M9 14h14"/><circle cx="16" cy="16" r="3"/>
+                <path d="M12 12l-3-3M20 12l3-3M12 20l-3 3M20 20l3 3"/>
+              </svg>
+            </button>
+            <!-- Slot 1: Holy Strike -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="holy_strike" data-slot="1" aria-label="Holy Strike — 14 MP">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M9 23L23 9M19 7l4-2-2 4"/>
+                <path d="M16 10v4M14 12h4"/>
+              </svg>
+            </button>
+            <!-- Slot 2: Lay on Hands (heal) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="lay_on_hands" data-slot="2" aria-label="Lay on Hands — 20 MP">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 8c-4 5-6 9-6 12a6 6 0 0 0 12 0c0-3-2-7-6-12z"/>
+                <path d="M13 18h6M16 15v6"/>
+              </svg>
+            </button>
+            <!-- Slot 3: Consecrate (AOE all) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="consecrate" data-slot="3" aria-label="Consecrate — 25 MP">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="16" cy="10" r="4"/>
+                <path d="M16 14v12M11 19h10"/>
+                <circle cx="16" cy="3" r="1.5" fill="currentColor"/>
+                <circle cx="27" cy="9.5" r="1.5" fill="currentColor"/>
+                <circle cx="27" cy="22.5" r="1.5" fill="currentColor"/>
+                <circle cx="16" cy="29" r="1.5" fill="currentColor"/>
+                <circle cx="5" cy="22.5" r="1.5" fill="currentColor"/>
+                <circle cx="5" cy="9.5" r="1.5" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="spell-icon spell-icon--not-my-turn ev-spell-icon--item" data-skill="use_item" data-slot="item" aria-label="Use Item">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 6h6M12 10l-4 8c-1 2-1 4 0 6a6 6 0 0 0 10 2c2-2 2-5 0-8l-4-8"/>
+                <path d="M11 18c2-1 5 1 7-1"/>
+              </svg>
+              <span class="ev-item-count">2</span>
+            </button>
+            <button class="ev-skip-btn" data-skill="skip_turn" aria-label="End Turn">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 6h12M10 26h12M12 8v5l4 3-4 3v5M20 8v5l-4 3 4 3v5"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── PYROMANCER ── -->
+      <article class="ev-panel ev-panel--card ev-char-card" id="ev-card-pyromancer" data-char-id="pyromancer" data-state="inactive" role="listitem" aria-label="Pyromancer">
+        <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <div class="ev-panel__body">
+          <header class="ev-card__header">
+            <div class="ev-card__portrait-frame">
+              <svg class="ev-portrait-placeholder" viewBox="0 0 48 48" fill="none" stroke="#3d3250" stroke-width="1.5" aria-hidden="true">
+                <circle cx="24" cy="15" r="9"/><path d="M6 46c0-10 8-16 18-16s18 6 18 16"/>
+              </svg>
+            </div>
+            <div class="ev-card__identity">
+              <span class="ev-card__name">Pyromancer</span>
+              <span class="ev-card__class-label">Mage</span>
+            </div>
+          </header>
+          <div class="ev-card__bars">
+            <div class="ev-bar-group ev-bar-group--hp">
+              <div class="ev-bar-track" role="progressbar" aria-valuenow="107" aria-valuemax="182" aria-label="HP">
+                <div class="ev-bar ev-bar--hp ev-bar--hp-low" id="pyromancer-hp-bar" style="width:27%"></div>
+              </div>
+              <span class="ev-bar-label ev-bar-label--hp">107/182</span>
+            </div>
+            <div class="ev-bar-group ev-bar-group--mp">
+              <div class="ev-bar-track ev-bar-track--mp" role="progressbar" aria-valuenow="124" aria-valuemax="352" aria-label="MP">
+                <div class="ev-bar ev-bar--mp" style="width:35%"></div>
+              </div>
+              <span class="ev-bar-label ev-bar-label--mp">124/352</span>
+            </div>
+          </div>
+          <div class="ev-card__statuses" id="pyromancer-statuses">
+            <span class="ev-status-icon ev-status-icon--burn" title="Burn (2)">Burn</span>
+          </div>
+          <div class="ev-card__spell-rail" id="ev-rail-pyromancer" role="toolbar" aria-label="Pyromancer actions">
+            <!-- Slot 0: Basic Attack (fire) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="basic_attack" data-slot="0" aria-label="Basic Attack">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 27c-5-2-7-7-5-12 1 3 3 3 3 1 0-5 4-9 4-9s1 3 0 6c3-1 4-4 4-4s3 6 1 11c-1 3-4 5-7 7z"/>
+                <path d="M12 27l-2 3M20 27l2 3"/>
+              </svg>
+            </button>
+            <!-- Slot 1: Fireball (single-target, fire) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="fireball" data-slot="1" aria-label="Fireball — 22 MP">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 26c-4-2-6-6-4-10 1 2 3 2 3 0 0-4 4-8 4-8s4 6 4 9c0 4-3 7-7 9z"/>
+              </svg>
+            </button>
+            <!-- Slot 2: Inferno (AOE row) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="inferno" data-slot="2" aria-label="Inferno — 35 MP">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 26c-4-2-6-6-4-10 1 2 3 2 3 0 0-4 4-8 4-8s4 6 4 9c0 4-3 7-7 9z"/>
+                <circle cx="11" cy="29" r="1.5" fill="currentColor"/>
+                <circle cx="16" cy="29" r="1.5" fill="currentColor"/>
+                <circle cx="21" cy="29" r="1.5" fill="currentColor"/>
+              </svg>
+            </button>
+            <!-- Slot 3: Combustion (buff, debuff on enemies) -->
+            <button class="spell-icon spell-icon--not-my-turn" data-skill="combustion" data-slot="3" aria-label="Combustion — 18 MP">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 20v3h12v-3"/>
+                <ellipse cx="16" cy="14" rx="7" ry="7"/>
+                <circle cx="13" cy="14" r="1.5" fill="currentColor"/>
+                <circle cx="19" cy="14" r="1.5" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="spell-icon spell-icon--not-my-turn ev-spell-icon--item" data-skill="use_item" data-slot="item" aria-label="Use Item (0 remaining)" disabled>
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 6h6M12 10l-4 8c-1 2-1 4 0 6a6 6 0 0 0 10 2c2-2 2-5 0-8l-4-8"/>
+                <path d="M11 18c2-1 5 1 7-1"/>
+              </svg>
+              <span class="ev-item-count">0</span>
+            </button>
+            <button class="ev-skip-btn" data-skill="skip_turn" aria-label="End Turn">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 6h12M10 26h12M12 8v5l4 3-4 3v5M20 8v5l-4 3 4 3v5"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /preview-hero-row -->
+
+    <!-- COMPANION ROW -->
+    <div class="preview-companion-row ev-companion-row" role="list" aria-label="Companions">
+      <article class="ev-panel ev-companion-card" id="ev-companion-wardog" data-char-id="war_dog" data-state="inactive" role="listitem" aria-label="War Dog (Auto)">
+        <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-lozenge"/></svg>
+        <div class="ev-panel__body">
+          <div class="ev-companion-card__header">
+            <svg class="ev-companion-card__portrait" viewBox="0 0 36 36" fill="none" stroke="#3d3250" stroke-width="1.5" aria-hidden="true">
+              <ellipse cx="18" cy="18" rx="12" ry="10"/>
+              <circle cx="18" cy="16" r="5"/>
+            </svg>
+            <div>
+              <span class="ev-companion-card__name">War Dog</span>
+              <span class="ev-companion-card__ai-badge">AI</span>
+            </div>
+          </div>
+          <div class="ev-bar-track" role="progressbar" aria-valuenow="143" aria-valuemax="143" aria-label="War Dog HP">
+            <div class="ev-bar ev-bar--hp" style="width:100%"></div>
+          </div>
+          <div class="ev-card__statuses"></div>
+        </div>
+      </article>
+    </div>
+
+  </div><!-- /preview-cards-area -->
+
+  <!-- TOOLTIP CARD (right edge) -->
+  <aside class="ev-panel ev-panel--tooltip ev-tooltip-card" id="ev-tooltip-card" aria-live="polite" aria-label="Fireball spell details">
+    <svg class="ev-corner ev-corner--tl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--tr" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--bl" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <svg class="ev-corner ev-corner--br" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32"><use href="#corner-flourish"/></svg>
+    <!-- Inline icon -->
+    <svg class="ev-tooltip__skill-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path d="M16 26c-4-2-6-6-4-10 1 2 3 2 3 0 0-4 4-8 4-8s4 6 4 9c0 4-3 7-7 9z"/>
+    </svg>
+    <div class="ev-tooltip__name">Fireball</div>
+    <div class="ev-tooltip__subtitle">Columns</div>
+    <div class="ev-tooltip__description">
+      Deals 70% INT as Fire damage to all enemies in a column.
+    </div>
+    <div class="ev-tooltip__type-badge ev-tooltip__type-badge--fire">Fire</div>
+    <div class="ev-tooltip__cost-row">
+      <span>22 MP</span>
+      <span>CD: 3</span>
+    </div>
+  </aside>
+
+</div><!-- /preview-hud-section -->
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// STATE SELECTOR LOGIC
+// ══════════════════════════════════════════════════════════════
+const HERO_CARD_IDS = ['ev-card-fighter','ev-card-stormcaller','ev-card-paladin','ev-card-pyromancer'];
+
+const STATE_CONFIG = {
+  inactive: {
+    cardState: 'inactive',
+    // All spell icons: not-my-turn
+    iconState: 'not-my-turn',
+    statusExtra: null,
+  },
+  active: {
+    cardState: 'active',
+    // Fighter gets active — all others stay inactive in reality,
+    // but in preview we light up all cards together to show the style.
+    iconState: 'ready',
+    statusExtra: null,
+  },
+  resolving: {
+    cardState: 'resolving',
+    iconState: 'disabled',
+    statusExtra: null,
+  },
+  silenced: {
+    cardState: 'silenced',
+    // Magic icons get silenced overlay; basic attack stays enabled
+    iconState: 'ready',
+    applyMagicSilence: true,
+    statusExtra: {className: 'ev-status-icon ev-status-icon--silence', text: 'Silence'},
+  },
+  dead: {
+    cardState: 'dead',
+    iconState: 'disabled',
+    statusExtra: null,
+  },
+};
+
+let currentState = 'inactive';
+
+function setPreviewState(state) {
+  currentState = state;
+  const cfg = STATE_CONFIG[state];
+
+  // Update buttons
+  document.querySelectorAll('.state-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase().includes(state) ||
+      (state === 'inactive' && btn.textContent === 'Inactive'));
+  });
+
+  HERO_CARD_IDS.forEach(cardId => {
+    const card = document.getElementById(cardId);
+    if (!card) return;
+
+    // Card state attribute
+    card.dataset.state = cfg.cardState;
+
+    // Spell icons
+    card.querySelectorAll('.spell-icon').forEach(btn => {
+      // Clear all state classes
+      btn.classList.remove(
+        'spell-icon--enabled','spell-icon--not-my-turn','spell-icon--disabled',
+        'spell-icon--ready','spell-icon--silenced'
+      );
+
+      // Item slot never gets "ready" — it's a free action
+      const isItem = btn.dataset.skill === 'use_item';
+      // Cooldown stays if it was cooldown
+      const wasCooldown = btn.classList.contains('spell-icon--on-cooldown');
+      const wasNoMana   = btn.classList.contains('spell-icon--no-mana');
+
+      if (cfg.cardState === 'dead' || cfg.cardState === 'resolving') {
+        btn.classList.add('spell-icon--disabled');
+      } else if (cfg.cardState === 'inactive') {
+        if (!wasCooldown && !wasNoMana) {
+          btn.classList.add('spell-icon--not-my-turn');
+        }
+      } else if (cfg.cardState === 'active' || cfg.cardState === 'silenced') {
+        if (wasCooldown || wasNoMana) {
+          // Leave cooldown/no-mana state unchanged; just remove "not-my-turn"
+        } else if (isItem) {
+          btn.classList.add('spell-icon--enabled');
+        } else {
+          btn.classList.add('spell-icon--' + cfg.iconState);
+        }
+        // Silenced: apply silence class to magic icons
+        if (cfg.applyMagicSilence) {
+          // Approximate: slots 1-3 are magic for mage/paladin
+          const slot = parseInt(btn.dataset.slot);
+          if (!isNaN(slot) && slot >= 1 && slot <= 3 && btn.dataset.skill !== 'basic_attack') {
+            btn.classList.add('spell-icon--silenced');
+          }
+        }
+      }
+    });
+
+    // Stun overlay: show only when state triggers stun (demo: show on silenced)
+    let stun = card.querySelector('.ev-card__stun-overlay');
+    if (state === 'stunned') {
+      if (!stun) {
+        stun = document.createElement('div');
+        stun.className = 'ev-card__stun-overlay';
+        stun.innerHTML = '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="Stunned"><path d="M16 6l2.4 4.8L24 12l-4 3.9 1 5.5L16 19l-5 2.4 1-5.5L8 12l5.6-1.2z"/></svg>';
+        card.appendChild(stun);
+      }
+    } else if (stun) {
+      stun.remove();
+    }
+  });
+}
+
+// Wire state buttons properly
+document.querySelectorAll('.state-btn').forEach((btn, i) => {
+  const states = ['inactive','active','resolving','silenced','dead'];
+  btn.onclick = () => setPreviewState(states[i]);
+});
+
+// Initialize
+setPreviewState('inactive');
+</script>
+</body>
+</html>

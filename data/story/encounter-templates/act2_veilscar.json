@@ -1,0 +1,93 @@
+[
+  {
+    "id": "vs_veil_ritual_elite",
+    "act": 2,
+    "biomes": ["veilscar"],
+    "themeTags": ["cult", "ritual", "elite"],
+    "type": "elite",
+    "primaryRole": "caster",
+    "enemyComposition": [
+      { "role": "frontline", "count": 2, "enemyId": "veil_cultist" },
+      { "role": "caster", "count": 2, "enemyId": "veil_sorcerer" },
+      { "role": "boss", "count": 1, "enemyId": "veil_warden" }
+    ],
+    "budgetWeight": 1.4,
+    "baseWeight": 0.55,
+    "rewards": { "goldRange": [70, 130], "lootTier": 3 },
+    "preDialog": "pool:ambush#ambush_veil_ritual_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "vs_veilscar_border_arrival",
+    "act": 2,
+    "biomes": ["veilscar"],
+    "themeTags": ["arrival", "faction", "border"],
+    "type": "event",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.60,
+    "rewards": { "goldRange": [0, 0], "lootTier": 0 },
+    "preDialog": "pool:arrival#arrival_veilscar_border_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "vs_veil_shrine_redirect",
+    "act": 2,
+    "biomes": ["veilscar"],
+    "themeTags": ["shrine", "cult", "veil"],
+    "type": "shrine",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.40,
+    "rewards": { "goldRange": [0, 25], "lootTier": 1 },
+    "preDialog": "pool:shrine#shrine_veil_touched_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "vs_dream_lore",
+    "act": 2,
+    "biomes": ["veilscar"],
+    "themeTags": ["lore", "dream", "veil"],
+    "type": "lore",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.55,
+    "rewards": { "goldRange": [0, 15], "lootTier": 0 },
+    "preDialog": "pool:lore#lore_dream_fragment_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "vs_warden_patrol_combat",
+    "act": 2,
+    "biomes": ["veilscar"],
+    "themeTags": ["patrol", "faction", "combat"],
+    "type": "combat",
+    "primaryRole": "frontline",
+    "enemyComposition": [
+      { "role": "frontline", "count": 2, "enemyId": "veil_warden" },
+      { "role": "caster", "count": 1, "enemyId": "veil_sorcerer" }
+    ],
+    "budgetWeight": 1.2,
+    "baseWeight": 0.60,
+    "rewards": { "goldRange": [55, 100], "lootTier": 2 },
+    "preDialog": "pool:ambush#ambush_rift_warden_patrol_001",
+    "weatherCompatible": ["all"]
+  },
+  {
+    "id": "vs_veilscar_origin_lore",
+    "act": 2,
+    "biomes": ["veilscar"],
+    "themeTags": ["lore", "veil", "academic"],
+    "type": "lore",
+    "primaryRole": null,
+    "enemyComposition": [],
+    "budgetWeight": 0.0,
+    "baseWeight": 0.50,
+    "rewards": { "goldRange": [0, 10], "lootTier": 0 },
+    "preDialog": "pool:lore#lore_veilscar_origin_001",
+    "weatherCompatible": ["all"]
+  }
+]
