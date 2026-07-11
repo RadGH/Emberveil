@@ -246,7 +246,7 @@ export function nodeXYFromLane(node, regionWidth, regionHeight) {
 export function drawNode(ctx, x, y, type, stateInfo = {}, opts = {}) {
   const cfg = NODE_TYPE_CONFIG[type] || DEFAULT_CONFIG;
   const r = NODE_VISUAL_R;
-  const { selected, hovered, waypointState, visibility, overlay, state } = stateInfo;
+  const { selected, hovered, waypointState, visibility, overlay, state, recommended } = stateInfo;
 
   // Hidden nodes not drawn at all (§13.3: no draw on undiscovered-hidden).
   if (visibility === 'hidden') return;
@@ -289,6 +289,18 @@ export function drawNode(ctx, x, y, type, stateInfo = {}, opts = {}) {
     ctx.arc(x, y, r + 5, 0, Math.PI * 2);
     ctx.strokeStyle = 'rgba(240,192,64,0.55)';
     ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  // Director recommendation ring — the storyteller's suggested next node.
+  // Teal, drawn outside the node so it reads distinctly from the golden
+  // "selected" ring the player controls.
+  if (recommended && !selected) {
+    ctx.shadowBlur = 0;
+    ctx.beginPath();
+    ctx.arc(x, y, r + 6, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(72,209,204,0.85)';
+    ctx.lineWidth = 2.5;
     ctx.stroke();
   }
 

@@ -65,6 +65,7 @@ if (!isMainThread) {
           policy,
           maxNodes: job.maxNodes,
           recordCombatLogs: false,
+          immortalParty: job.immortalParty,
         });
         results.push({ ok: true, job, summary: stripLog(result) });
       } catch (err) {
@@ -99,10 +100,11 @@ async function main() {
       seedStart:   { type: 'string', default: '1' },
       storyteller: { type: 'string', default: 'chronicler' },
       difficulty:  { type: 'string', default: 'normal' },
-      policy:      { type: 'string', default: 'deterministic' },
+      policy:      { type: 'string', default: 'directorAware' },
       maxNodes:    { type: 'string', default: '250' },
       out:         { type: 'string', default: '/tmp/story-sim-out.json' },
       workers:     { type: 'string', default: String(Math.max(1, cpus().length - 1)) },
+      immortal:    { type: 'boolean', default: false },
     },
     allowPositionals: true,
   });
@@ -113,6 +115,7 @@ async function main() {
   const nWorkers   = Math.max(1, parseInt(values.workers, 10) || 1);
   const outPath    = values.out;
   const policyName = values.policy;
+  const immortal   = !!values.immortal;
 
   const storytellers = values.storyteller === 'all' ? ALL_STORYTELLERS : [values.storyteller];
   const difficulties = values.difficulty  === 'all' ? ALL_DIFFICULTIES  : [values.difficulty];
@@ -122,7 +125,7 @@ async function main() {
   for (let i = 0; i < seedCount; i++) {
     for (const storyteller of storytellers) {
       for (const difficulty of difficulties) {
-        jobs.push({ seed: seedStart + i, storyteller, difficulty, policy: policyName, maxNodes });
+        jobs.push({ seed: seedStart + i, storyteller, difficulty, policy: policyName, maxNodes, immortalParty: immortal });
       }
     }
   }

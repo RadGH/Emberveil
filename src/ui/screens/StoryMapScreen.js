@@ -23,6 +23,7 @@ import { createEl, removeEl, injectStyles } from '../../utils/dom.js';
 import { GameState } from '../../game/gameState.js';
 import { generateAct }        from '../../story/storyMapGen.js';
 import { buildIndexes, serializeMapSave, hydrateMapSave, computeNodeVisibility } from '../../story/storyMapGraph.js';
+import { stepDirector, scoreNodeForStoryteller, getStoryteller, pressureBand } from '../../story/storyDirector.js';
 import {
   nodeXYFromLane,
   drawNode,
@@ -558,6 +559,7 @@ export class StoryMapScreen {
 
     this._rebuildPosCache();
     this._rebuildVisibilityCache();
+    this._computeDirectorRecommendation();
     this._renderMap();
     this._refreshTabs();
     this._refreshDots();
@@ -1043,6 +1045,7 @@ export class StoryMapScreen {
         <span class="sms-drawer-badge">${stateStr}</span>
         ${node.type === 'boss' ? '<span class="sms-drawer-badge">BOSS</span>' : ''}
         ${wpState ? `<span class="sms-drawer-badge">Waypoint: ${wpState}</span>` : ''}
+        ${nodeId === this._recommendedNodeId ? '<span class="sms-drawer-badge" style="background:rgba(72,209,204,0.25);color:#7fe;">Storyteller’s path</span>' : ''}
       </div>
       <div class="sms-drawer-btns">
         <button type="button" class="sms-drawer-btn" id="sms-travel-btn">Travel</button>
@@ -1381,10 +1384,71 @@ export class StoryMapScreen {
     import('../../story/storyMode.js').then(({ storyMode }) => {
       storyMode.afterNodeResolved(gs, nodeId);
     }).catch(() => {});
+    // Recompute the storyteller's recommended next node so the map highlights
+    // the same route the headless director would choose.
+    this._computeDirectorRecommendation();
     // Persist save.
     import('../../engine/SaveManager.js').then(m => {
       m.SaveManager.saveCurrentGame(gs.currentSaveKey);
     }).catch(() => {});
+  }
+
+  /**
+   * Ask the Storyteller Director which reachable node it favors next, using the
+   * SAME scoreNodeForStoryteller function the headless sim uses. Stores the
+   * result in this._recommendedNodeId and refreshes the map so a teal ring
+   * marks the storyteller's suggested path.
+   *
+   * This does NOT force the player — travel remains manual. It only surfaces
+   * the director's intent so the storyteller choice has a visible effect.
+   */
+  _computeDirectorRecommendation() {
+    try {
+      const gs = GameState.get();
+      if (!gs?.story || !this._graph) { this._recommendedNodeId = null; return; }
+
+      const currentNodeId = gs.story.currentNodeId;
+      if (!currentNodeId) { this._recommendedNodeId = null; return; }
+
+      // Step the director to get the current intent (and profile/band stamp).
+      let intent = null;
+      try { intent = stepDirector(gs); } catch { intent = null; }
+      gs.story._lastDirectorIntent = intent;
+
+      const storyteller =
+        intent?._profile ||
+        getStoryteller(gs.story.storytellerId) ||
+        getStoryteller('chronicler');
+      const band = intent?._band || pressureBand(gs);
+
+      // Reachable frontier = open-edge neighbours of the current node that are
+      // not hidden and not yet visited.
+      const outgoing = this._graph.indexes?.outgoing || {};
+      const edges = outgoing[currentNodeId] || [];
+      const visitedSet = new Set(
+        Object.entries(this._graph.nodeSave || {})
+          .filter(([, s]) => s.state === 'visited' || s.state === 'cleared')
+          .map(([id]) => id)
+      );
+
+      let best = null, bestScore = -Infinity;
+      for (const edge of edges) {
+        const id = edge.to;
+        const node = this._graph.nodes[id];
+        if (!node) continue;
+        const save = this._graph.nodeSave?.[id] || {};
+        const vis = this._visibilityCache?.get(id) ?? save.visibility ?? 'visible';
+        if (vis === 'hidden') continue;
+        const score = scoreNodeForStoryteller(node, id, visitedSet, storyteller, { intent, band });
+        if (score > bestScore) { bestScore = score; best = id; }
+      }
+
+      this._recommendedNodeId = best;
+      // Redraw so the recommendation ring appears.
+      if (this._canvas) this._renderMap();
+    } catch {
+      this._recommendedNodeId = null;
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -1588,6 +1652,7 @@ export class StoryMapScreen {
         overlay:       save.overlay || null,
         selected:      nodeId === this._selectedId,
         hovered:       false,
+        recommended:   nodeId === this._recommendedNodeId,
       };
 
       drawNode(ctx, pos.x, pos.y, node.type, stateInfo);

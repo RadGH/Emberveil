@@ -26,6 +26,10 @@ import {
   shouldIronJudgeAmbush,
 } from './storyStorytellers.js';
 
+// Re-export so routing consumers (sim policy, live game) can resolve a profile
+// without a second import path.
+export { getStoryteller };
+
 // ---------------------------------------------------------------------------
 // Ring-buffer caps (per §7.3)
 // ---------------------------------------------------------------------------
@@ -66,6 +70,112 @@ const DIFFICULTY_PRESETS = {
 };
 
 export { DIFFICULTY_PRESETS };
+
+// ---------------------------------------------------------------------------
+// Node-type → theme affinity (routing source of truth)
+//
+// Map nodes carry a `type` but rarely carry themeTags. To let the storyteller
+// profile (preferredThemes) actually bias which map nodes get chosen, we map
+// each node type to the theme tags it embodies. A storyteller "wants" a node
+// type when any of that type's themes is in its preferredThemes list.
+// ---------------------------------------------------------------------------
+export const NODE_TYPE_THEMES = {
+  combat:   ['combat', 'ambush', 'siege', 'glory', 'judgment', 'punishment', 'trial', 'doom'],
+  elite:    ['combat', 'ambush', 'siege', 'glory', 'judgment', 'trial'],
+  boss:     ['combat', 'glory', 'judgment', 'siege', 'doom'],
+  dialog:   ['lore', 'investigation', 'faction', 'memory', 'mystery', 'surprise'],
+  lore:     ['lore', 'investigation', 'ancient', 'memory', 'hidden', 'discovery', 'prophecy'],
+  shrine:   ['omen', 'ash', 'prophecy', 'ancient', 'hidden', 'discovery', 'doom'],
+  event:    ['chaos', 'surprise', 'mystery', 'trick', 'omen', 'discovery'],
+  merchant: ['trade', 'faction', 'surprise'],
+  rest:     ['memory', 'discovery'],
+  town:     ['faction', 'trade', 'lore'],
+  hidden:   ['hidden', 'discovery', 'ancient', 'lore', 'mystery'],
+  trailhead: [],
+};
+
+// Node types the game treats as "combat" for combatFrequency bias.
+const COMBAT_NODE_TYPES = new Set(['combat', 'elite', 'boss']);
+
+/**
+ * scoreNodeForStoryteller — the single routing-bias score for a map node.
+ *
+ * Used by BOTH the headless sim (directorAware policy) and the live game
+ * (StoryMapScreen recommendation) so routing is identical in both.
+ *
+ * Combines four storyteller-driven terms into a positive score:
+ *   1. Novelty       — unvisited nodes preferred (keeps runs moving).
+ *   2. CombatBias    — combatFrequency pushes toward/away from fights.
+ *   3. ThemeAffinity — preferredThemes matching the node's themes.
+ *   4. IntentMatch   — the director's current intent.type (soft nudge).
+ *
+ * All terms are additive and bounded so nothing can drive the score negative
+ * (the flaw the roast called out). Result is always > 0.
+ *
+ * @param {object} node        — map node ({ type, biome, tags, themeTags })
+ * @param {string} nodeId
+ * @param {Set}    visitedSet
+ * @param {object} storyteller — profile from getStoryteller()
+ * @param {object} [ctx]       — { intent, band }
+ * @returns {number} score (>0)
+ */
+export function scoreNodeForStoryteller(node, nodeId, visitedSet, storyteller, ctx = {}) {
+  const st = storyteller || {};
+  const nodeType = node?.type || 'unknown';
+  const isCombat = COMBAT_NODE_TYPES.has(nodeType);
+
+  // Base so nothing is ever zero; keeps weighted sampling well-formed.
+  let score = 1;
+
+  // 1. Novelty — always prefer somewhere new.
+  if (visitedSet && !visitedSet.has(nodeId)) score += 8;
+
+  // 2. Combat-frequency bias. combatFrequency in [0.35, 0.7]. Center on 0.5:
+  //    warbringer(0.7) strongly favors combat; pilgrim(0.35) strongly avoids it.
+  const cf = typeof st.combatFrequency === 'number' ? st.combatFrequency : 0.5;
+  const combatPull = (cf - 0.5) * 40; // range roughly -6 .. +8
+  if (isCombat) {
+    score += 12 + combatPull;          // combat nodes: high base, scaled by cf
+  } else {
+    score += 8 - combatPull;           // non-combat: rewarded when cf is low
+  }
+
+  // 3. Theme affinity — does this node type embody a preferred theme?
+  const themes = new Set([
+    ...(NODE_TYPE_THEMES[nodeType] || []),
+    ...(Array.isArray(node?.themeTags) ? node.themeTags : []),
+    ...(Array.isArray(node?.tags) ? node.tags : []),
+  ]);
+  const preferred = Array.isArray(st.preferredThemes) ? st.preferredThemes : [];
+  let themeHits = 0;
+  for (const t of preferred) if (themes.has(t)) themeHits++;
+  // thematicConsistency scales how hard preferred themes pull.
+  const themeWeight = 6 * (0.4 + (st.thematicConsistency ?? 0.6));
+  score += themeHits * themeWeight;
+
+  // 4. Director intent nudge (soft — a fraction of the profile terms so the
+  //    profile, not one sampled intent, dominates routing).
+  const intent = ctx.intent;
+  if (intent) {
+    if (intent.type && intent.type === nodeType) score += 5;
+    const wantTags = new Set([
+      ...(Array.isArray(intent.themeTags) ? intent.themeTags : []),
+    ]);
+    for (const t of themes) if (wantTags.has(t)) score += 1.5;
+    // Iron Judge ambush / fallback-combat lean.
+    if (intent._ironJudgeAmbush && isCombat) score += 10;
+    if (intent._isFallback && isCombat) score += 2;
+  }
+
+  // Pressure band: urgent/crisis nudge toward combat, calm toward respite.
+  if (ctx.band === 'urgent' || ctx.band === 'crisis') {
+    if (isCombat) score += 4;
+  } else if (ctx.band === 'calm') {
+    if (nodeType === 'rest' || nodeType === 'shrine' || nodeType === 'lore') score += 2;
+  }
+
+  return Math.max(0.001, score);
+}
 
 // ---------------------------------------------------------------------------
 // Candidate registry — loaded lazily. In the sim we load encounter templates;
@@ -217,38 +327,71 @@ export function pressureBand(gs) {
 // Soft scoring (§7.2)
 // ---------------------------------------------------------------------------
 
+// Soft-score temperature: a floor multiplier so stacked penalties can dampen a
+// candidate but never annihilate it. Without this, three or four recency hits
+// drive s toward ~0 and every candidate ends up equally (in)eligible, making
+// the weighted sample arbitrary (the flaw the design roast flagged).
+const SOFT_FLOOR = 0.15;
+
+function _decayFactor(matchCount, ratePerHit) {
+  // Bounded decay: geometric but floored at SOFT_FLOOR so it never collapses.
+  const raw = Math.pow(ratePerHit, matchCount);
+  return SOFT_FLOOR + (1 - SOFT_FLOOR) * raw;
+}
+
 function _softScore(c, h, st) {
   let s = c.baseWeight;
   const nodeTypes    = h.nodeTypes    || [];
   const enemyFams    = h.enemyFamilies || [];
   const skillLabels  = h.skillLabels  || [];
 
-  // Node-type recency decay.
-  for (let i = 0; i < nodeTypes.length; i++) {
-    if (nodeTypes[i] === c.type) s *= Math.pow(0.5, i + 1);
-  }
+  // Node-type recency decay (variety), bounded.
+  let typeHits = 0;
+  for (let i = 0; i < nodeTypes.length; i++) if (nodeTypes[i] === c.type) typeHits++;
+  if (typeHits) s *= _decayFactor(typeHits, 0.6);
 
-  // Same-type streak penalty.
-  if ((h.sameTypeStreak || 0) >= 2 && c.type === h.lastType) s *= 0.05;
+  // Same-type streak penalty — bounded, not annihilating.
+  if ((h.sameTypeStreak || 0) >= 2 && c.type === h.lastType) s *= SOFT_FLOOR;
 
-  // Enemy-family recency decay.
+  // Enemy-family recency decay, bounded.
   if (c.enemyFamily) {
-    for (let i = 0; i < enemyFams.length; i++) {
-      if (enemyFams[i] === c.enemyFamily) s *= Math.pow(0.6, i + 1);
-    }
+    let famHits = 0;
+    for (let i = 0; i < enemyFams.length; i++) if (enemyFams[i] === c.enemyFamily) famHits++;
+    if (famHits) s *= _decayFactor(famHits, 0.65);
   }
 
-  // Skill-label variety decay.
+  // Skill-label variety decay, bounded by skillCheckVariety.
   if (c.primarySkill) {
-    const floor = Math.max(0.2, st.skillCheckVariety);
-    for (let i = 0; i < skillLabels.length; i++) {
-      if (skillLabels[i] === c.primarySkill) s *= Math.pow(floor, i + 1);
-    }
+    const rate = Math.max(0.3, st.skillCheckVariety ?? 0.5);
+    let skHits = 0;
+    for (let i = 0; i < skillLabels.length; i++) if (skillLabels[i] === c.primarySkill) skHits++;
+    if (skHits) s *= _decayFactor(skHits, rate);
   }
 
-  // Thematic consistency.
-  const themeMatch = Array.isArray(c.themeTags) && c.themeTags.some(t => st.preferredThemes.includes(t));
-  if (!themeMatch) s *= (1 - 0.5 * Math.max(0.2, st.thematicConsistency));
+  // Thematic bias — a REWARD for matching preferred themes (not just a penalty
+  // for missing), scaled by thematicConsistency. This is what makes different
+  // storytellers weight the same candidate pool differently.
+  const preferred = Array.isArray(st.preferredThemes) ? st.preferredThemes : [];
+  const nodeThemes = new Set([
+    ...(Array.isArray(c.themeTags) ? c.themeTags : []),
+    ...(NODE_TYPE_THEMES[c.type] || []),
+  ]);
+  let themeHits = 0;
+  for (const t of preferred) if (nodeThemes.has(t)) themeHits++;
+  const consistency = Math.max(0.2, st.thematicConsistency ?? 0.6);
+  if (themeHits > 0) {
+    s *= 1 + consistency * Math.min(themeHits, 3); // up to ~3x for strong match
+  } else {
+    s *= 1 - 0.4 * consistency; // mild penalty for off-theme
+  }
+
+  // Combat-frequency bias on the candidate itself.
+  const cf = typeof st.combatFrequency === 'number' ? st.combatFrequency : 0.5;
+  if (COMBAT_NODE_TYPES.has(c.type)) {
+    s *= 1 + (cf - 0.5) * 1.2;   // warbringer boosts combat, pilgrim damps it
+  } else {
+    s *= 1 - (cf - 0.5) * 1.2;
+  }
 
   return Math.max(0.001, s);
 }
@@ -484,7 +627,18 @@ export function getDirectorIntent(gs, opts = {}) {
 export function stepDirector(gs, opts = {}) {
   const result = getDirectorIntent(gs, opts);
   // rngState is already updated inside getDirectorIntent.
-  return result.intent;
+  const intent = result.intent || {};
+  // Stamp routing context onto the intent so the router (sim policy AND the
+  // live game) can bias node choice by the storyteller profile — the single
+  // source of truth for storyteller differentiation.
+  const storyteller = getStoryteller(gs.story.storytellerId) || getStoryteller('chronicler');
+  intent._profile = storyteller;
+  intent._storytellerId = storyteller?.id || gs.story.storytellerId || null;
+  intent._band = pressureBand(gs);
+  if (result._ironJudgeAmbush) intent._ironJudgeAmbush = true;
+  if (result._tricksterChaos) intent._tricksterChaos = true;
+  if (result._omenFired) intent._omenFired = true;
+  return intent;
 }
 
 // ---------------------------------------------------------------------------

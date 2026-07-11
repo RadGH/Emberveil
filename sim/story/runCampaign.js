@@ -20,6 +20,7 @@ import { recordTick, stepDirector, applyPressure, pressureBand } from '../../src
 import { trackWarbringerStreak } from '../../src/story/storyStorytellers.js';
 import { tickQuestConditions, ensureQuestStarted } from '../../src/story/storyQuestEngine.js';
 import { buildContentRegistry } from '../../src/story/storyContent.js';
+import { directorAwarePolicy } from './policies/directorAware.js';
 
 // Act-appropriate encounter pool used by the byte-parity sim combat picker.
 const ACT_ENCOUNTER_POOL = {
@@ -216,7 +217,8 @@ export async function runCampaign({
   seed = 1,
   storyteller = 'chronicler',
   difficulty = 'normal',
-  policy,
+  policy = directorAwarePolicy,  // director-aware routing is the default so the
+                                 // storyteller profile actually shapes the route
   partyTemplate,
   maxNodes = 250,
   recordCombatLogs = false,
