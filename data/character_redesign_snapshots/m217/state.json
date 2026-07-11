@@ -1,0 +1,1103 @@
+{
+  "schema": "pixellab_redesign_state/v1",
+  "updatedAt": "2026-04-23T04:58:09.492396+00:00",
+  "creditsUsedTotal": 5892,
+  "characters": {
+    "oracle": {
+      "spriteId": "oracle",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/oracle.json",
+      "candidateDir": "images/pixellab/oracle",
+      "originalSpritecookPrefix": "images/spritecook/oracle_",
+      "creditsUsed": 0,
+      "notes": "User success criterion: glowing white eyes MUST persist across all 7 frames."
+    },
+    "warrior": {
+      "spriteId": "warrior",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/warrior.json",
+      "candidateDir": "images/pixellab/warrior",
+      "originalSpritecookPrefix": "images/spritecook/warrior_",
+      "creditsUsed": 108,
+      "notes": "Classic frontline tank archetype. Longsword only \u2014 no shield, no variant weapons."
+    },
+    "fighter": {
+      "spriteId": "fighter",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/fighter.json",
+      "candidateDir": "images/pixellab/fighter",
+      "originalSpritecookPrefix": "images/spritecook/fighter_",
+      "creditsUsed": 168,
+      "notes": "Monk-adjacent melee specialist with quarterstaff."
+    },
+    "paladin": {
+      "spriteId": "paladin",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/paladin.json",
+      "candidateDir": "images/pixellab/paladin",
+      "originalSpritecookPrefix": "images/spritecook/paladin_",
+      "creditsUsed": 108,
+      "notes": "Holy knight. Warhammer + sunburst motif only."
+    },
+    "ranger": {
+      "spriteId": "ranger",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/ranger.json",
+      "candidateDir": "images/pixellab/ranger",
+      "originalSpritecookPrefix": "images/spritecook/ranger_",
+      "creditsUsed": 96,
+      "notes": "Forest archer. Longbow only."
+    },
+    "rogue": {
+      "spriteId": "rogue",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/rogue.json",
+      "candidateDir": "images/pixellab/rogue",
+      "originalSpritecookPrefix": "images/spritecook/rogue_",
+      "creditsUsed": 132,
+      "notes": "Dual-dagger stealth attacker. Hood up in all frames except KO."
+    },
+    "cleric": {
+      "spriteId": "cleric",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/cleric.json",
+      "candidateDir": "images/pixellab/cleric",
+      "originalSpritecookPrefix": "images/spritecook/cleric_",
+      "creditsUsed": 132,
+      "notes": "Healer archetype. White/gold robe, mace, holy symbol.",
+      "generatedAt": "2026-04-21T22:34:14Z"
+    },
+    "bard": {
+      "spriteId": "bard",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/bard.json",
+      "candidateDir": "images/pixellab/bard",
+      "originalSpritecookPrefix": "images/spritecook/bard_",
+      "creditsUsed": 144,
+      "notes": "Performer archetype. Lute primary, rapier secondary."
+    },
+    "mage": {
+      "spriteId": "mage",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/mage.json",
+      "candidateDir": "images/pixellab/mage",
+      "originalSpritecookPrefix": "images/spritecook/mage_",
+      "creditsUsed": 132,
+      "notes": "Arcane caster archetype. Blue/gold robe, orb-topped staff.",
+      "generatedAt": "2026-04-21T22:34:14Z"
+    },
+    "necromancer": {
+      "spriteId": "necromancer",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/necromancer.json",
+      "candidateDir": "images/pixellab/necromancer",
+      "originalSpritecookPrefix": "images/spritecook/necromancer_",
+      "creditsUsed": 132,
+      "notes": "Death caster archetype. Black robe, skull-topped staff.",
+      "generatedAt": "2026-04-21T22:34:14Z"
+    },
+    "warlock": {
+      "spriteId": "warlock",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/warlock.json",
+      "candidateDir": "images/pixellab/warlock",
+      "originalSpritecookPrefix": "images/spritecook/warlock_",
+      "creditsUsed": 132,
+      "notes": "Pact-caster archetype. Violet/crimson fel-fire motif + floating grimoire."
+    },
+    "demon_hunter": {
+      "spriteId": "demon_hunter",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/demon_hunter.json",
+      "candidateDir": "images/pixellab/demon_hunter",
+      "originalSpritecookPrefix": "images/spritecook/demon_hunter_",
+      "creditsUsed": 132,
+      "notes": "Blindfolded elf warrior with twin warglaives. Bare midriff, demon-hunter tattoos."
+    },
+    "scavenger": {
+      "spriteId": "scavenger",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/scavenger.json",
+      "candidateDir": "images/pixellab/scavenger",
+      "originalSpritecookPrefix": "images/spritecook/scavenger_",
+      "creditsUsed": 108,
+      "notes": "Ragtag wasteland survivor. Crossbow + patchwork leathers.",
+      "m217Note": "User-approved in M217 review batch."
+    },
+    "swashbuckler": {
+      "spriteId": "swashbuckler",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/swashbuckler.json",
+      "candidateDir": "images/pixellab/swashbuckler",
+      "originalSpritecookPrefix": "images/spritecook/swashbuckler_",
+      "creditsUsed": 120,
+      "notes": "Dashing pirate-duelist. Rapier + tricorn hat + crimson doublet.",
+      "m217Note": "M217 regen of south, east_block. Other poses remain pending_approval."
+    },
+    "dragon_knight": {
+      "spriteId": "dragon_knight",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/dragon_knight.json",
+      "candidateDir": "images/pixellab/dragon_knight",
+      "originalSpritecookPrefix": "images/spritecook/dragon_knight_",
+      "creditsUsed": 120,
+      "notes": "Heavy draconic plate + flaming greatsword.",
+      "m217Note": "User-approved in M217 review batch."
+    },
+    "pyromancer": {
+      "spriteId": "pyromancer",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/pyromancer.json",
+      "candidateDir": "images/pixellab/pyromancer",
+      "originalSpritecookPrefix": "images/spritecook/pyromancer_",
+      "creditsUsed": 108,
+      "notes": "Fire-palm caster. Zero held weapons \u2014 hands are the conduit."
+    },
+    "stormcaller": {
+      "spriteId": "stormcaller",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/stormcaller.json",
+      "candidateDir": "images/pixellab/stormcaller",
+      "originalSpritecookPrefix": "images/spritecook/stormcaller_",
+      "creditsUsed": 132,
+      "notes": "Lightning-palm caster. Zero held weapons."
+    },
+    "druid": {
+      "spriteId": "druid",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/druid.json",
+      "candidateDir": "images/pixellab/druid",
+      "originalSpritecookPrefix": "images/spritecook/druid_",
+      "creditsUsed": 132,
+      "notes": "Nature caster archetype. Green cloak, vine-wrapped staff.",
+      "generatedAt": "2026-04-21T22:34:14Z"
+    },
+    "tactician": {
+      "spriteId": "tactician",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/tactician.json",
+      "candidateDir": "images/pixellab/tactician",
+      "originalSpritecookPrefix": "images/spritecook/tactician_",
+      "creditsUsed": 120,
+      "notes": "Napoleonic officer archetype. Coat + epaulets + riding crop.",
+      "m217Note": "User-approved in M217. east_attack scale flagged too-large for future shrink.",
+      "m217FlaggedFrames": [
+        "east_attack"
+      ]
+    },
+    "chronomancer": {
+      "spriteId": "chronomancer",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/chronomancer.json",
+      "candidateDir": "images/pixellab/chronomancer",
+      "originalSpritecookPrefix": "images/spritecook/chronomancer_",
+      "creditsUsed": 108,
+      "notes": "Time-magic caster. Clock/hourglass/gear motifs + floating hair.",
+      "m217Note": "M217 regen of east, east_attack, east_spell, east_block. Other poses remain pending_approval."
+    },
+    "monk": {
+      "spriteId": "monk",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/monk.json",
+      "candidateDir": "images/pixellab/monk",
+      "originalSpritecookPrefix": "images/spritecook/monk_",
+      "creditsUsed": 96,
+      "notes": "Bare-handed martial artist. Zero weapons. Bald shaven head."
+    },
+    "shaman": {
+      "spriteId": "shaman",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/shaman.json",
+      "candidateDir": "images/pixellab/shaman",
+      "originalSpritecookPrefix": "images/spritecook/shaman_",
+      "creditsUsed": 96,
+      "notes": "Tribal spirit caster. Feathers/bones/paint + spirit-staff.",
+      "m217Note": "User-approved in M217 review batch."
+    },
+    "witch_hunter": {
+      "spriteId": "witch_hunter",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/witch_hunter.json",
+      "candidateDir": "images/pixellab/witch_hunter",
+      "originalSpritecookPrefix": "images/spritecook/witch_hunter_",
+      "creditsUsed": 108,
+      "notes": "Puritanical gun-and-saber inquisitor. Wide-brim hat always on except KO.",
+      "m217Note": "User-approved in M217. east_spell stretched too big \u2014 flagged for future shrink.",
+      "m217FlaggedFrames": [
+        "east_spell"
+      ]
+    },
+    "knight": {
+      "spriteId": "knight",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/knight.json",
+      "candidateDir": "images/pixellab/knight",
+      "originalSpritecookPrefix": "images/spritecook/knight_",
+      "creditsUsed": 108,
+      "notes": "Classic female knight. Longsword + kite-shield with silver stag on blue tabard."
+    },
+    "sorcerer": {
+      "spriteId": "sorcerer",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/sorcerer.json",
+      "candidateDir": "images/pixellab/sorcerer",
+      "originalSpritecookPrefix": "images/spritecook/sorcerer_",
+      "creditsUsed": 96,
+      "notes": "Crystal-orb caster, more refined than the archetypal Mage (no hat/beard).",
+      "m217Note": "User-approved in M217. east_spell adopted as CANONICAL SIZING REFERENCE for future character gens. south/east/east_attack/east_block flagged for future regen to match east_spell scale.",
+      "m217FlaggedFrames": [
+        "south",
+        "east",
+        "east_attack",
+        "east_block"
+      ]
+    },
+    "runesmith": {
+      "spriteId": "runesmith",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/runesmith.json",
+      "candidateDir": "images/pixellab/runesmith",
+      "originalSpritecookPrefix": "images/spritecook/runesmith_",
+      "creditsUsed": 108,
+      "notes": "Dwarf smith-caster. Rune-hammer + braided red beard + eye-patch.",
+      "m217Note": "M217 regen of east_attack. Other poses remain pending_approval."
+    },
+    "shadow_dancer": {
+      "spriteId": "shadow_dancer",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/shadow_dancer.json",
+      "candidateDir": "images/pixellab/shadow_dancer",
+      "originalSpritecookPrefix": "images/spritecook/shadow_dancer_",
+      "creditsUsed": 108,
+      "notes": "Violet-shadow elven duelist-dancer. Scimitar + silk wraps + shadow tattoos.",
+      "m217Note": "south + east regen approved."
+    },
+    "ranger_male": {
+      "spriteId": "ranger_male",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/ranger_male.json",
+      "candidateDir": "images/pixellab/ranger_male",
+      "originalSpritecookPrefix": "images/spritecook/ranger_male_",
+      "creditsUsed": 96,
+      "notes": "Ranger (Male) \u2014 companion variant"
+    },
+    "knight_male": {
+      "spriteId": "knight_male",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/knight_male.json",
+      "candidateDir": "images/pixellab/knight_male",
+      "originalSpritecookPrefix": "images/spritecook/knight_male_",
+      "creditsUsed": 96,
+      "notes": "Knight (Male) \u2014 companion variant"
+    },
+    "shadow_dancer_male": {
+      "spriteId": "shadow_dancer_male",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/shadow_dancer_male.json",
+      "candidateDir": "images/pixellab/shadow_dancer_male",
+      "originalSpritecookPrefix": "images/spritecook/shadow_dancer_male_",
+      "creditsUsed": 96,
+      "notes": "Shadow Dancer (Male) \u2014 companion variant",
+      "m217Note": "User-approved in M217 review batch."
+    },
+    "chronomancer_female": {
+      "spriteId": "chronomancer_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/chronomancer_female.json",
+      "candidateDir": "images/pixellab/chronomancer_female",
+      "originalSpritecookPrefix": "images/spritecook/chronomancer_female_",
+      "creditsUsed": 96,
+      "notes": "Chronomancer (Female) \u2014 companion variant",
+      "m217Note": "M217 regen of south. Other poses remain pending_approval."
+    },
+    "warrior_female": {
+      "spriteId": "warrior_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/warrior_female.json",
+      "candidateDir": "images/pixellab/warrior_female",
+      "originalSpritecookPrefix": "images/spritecook/warrior_female_",
+      "creditsUsed": 96,
+      "notes": "Warrior (Female) \u2014 gender variant"
+    },
+    "fighter_female": {
+      "spriteId": "fighter_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/fighter_female.json",
+      "candidateDir": "images/pixellab/fighter_female",
+      "originalSpritecookPrefix": "images/spritecook/fighter_female_",
+      "creditsUsed": 96,
+      "notes": "Fighter (Female) \u2014 gender variant"
+    },
+    "paladin_female": {
+      "spriteId": "paladin_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/paladin_female.json",
+      "candidateDir": "images/pixellab/paladin_female",
+      "originalSpritecookPrefix": "images/spritecook/paladin_female_",
+      "creditsUsed": 96,
+      "notes": "Paladin (Female) \u2014 gender variant"
+    },
+    "rogue_male": {
+      "spriteId": "rogue_male",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/rogue_male.json",
+      "candidateDir": "images/pixellab/rogue_male",
+      "originalSpritecookPrefix": "images/spritecook/rogue_male_",
+      "creditsUsed": 96,
+      "notes": "Rogue (Male) \u2014 gender variant"
+    },
+    "cleric_male": {
+      "spriteId": "cleric_male",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/cleric_male.json",
+      "candidateDir": "images/pixellab/cleric_male",
+      "originalSpritecookPrefix": "images/spritecook/cleric_male_",
+      "creditsUsed": 132,
+      "notes": "Cleric (Male) \u2014 gender variant",
+      "generatedAt": "2026-04-21T22:34:14Z"
+    },
+    "bard_female": {
+      "spriteId": "bard_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/bard_female.json",
+      "candidateDir": "images/pixellab/bard_female",
+      "originalSpritecookPrefix": "images/spritecook/bard_female_",
+      "creditsUsed": 132,
+      "notes": "Bard (Female) \u2014 gender variant"
+    },
+    "mage_female": {
+      "spriteId": "mage_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/mage_female.json",
+      "candidateDir": "images/pixellab/mage_female",
+      "originalSpritecookPrefix": "images/spritecook/mage_female_",
+      "creditsUsed": 144,
+      "notes": "Mage (Female) \u2014 gender variant",
+      "generatedAt": "2026-04-21T22:34:14Z"
+    },
+    "necromancer_female": {
+      "spriteId": "necromancer_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/necromancer_female.json",
+      "candidateDir": "images/pixellab/necromancer_female",
+      "originalSpritecookPrefix": "images/spritecook/necromancer_female_",
+      "creditsUsed": 132,
+      "notes": "Necromancer (Female) \u2014 gender variant",
+      "generatedAt": "2026-04-21T22:34:14Z"
+    },
+    "warlock_male": {
+      "spriteId": "warlock_male",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/warlock_male.json",
+      "candidateDir": "images/pixellab/warlock_male",
+      "originalSpritecookPrefix": "images/spritecook/warlock_male_",
+      "creditsUsed": 132,
+      "notes": "Warlock (Male) \u2014 gender variant"
+    },
+    "demon_hunter_female": {
+      "spriteId": "demon_hunter_female",
+      "status": "approved",
+      "referenceStatus": "reference_generated",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/demon_hunter_female.json",
+      "candidateDir": "images/pixellab/demon_hunter_female",
+      "originalSpritecookPrefix": "images/spritecook/demon_hunter_female_",
+      "creditsUsed": 96,
+      "notes": "Demon_Hunter (Female) \u2014 gender variant | east_attack: weapon not in hand \u2014 regenerate later."
+    },
+    "scavenger_female": {
+      "spriteId": "scavenger_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/scavenger_female.json",
+      "candidateDir": "images/pixellab/scavenger_female",
+      "originalSpritecookPrefix": "images/spritecook/scavenger_female_",
+      "creditsUsed": 96,
+      "notes": "Scavenger (Female) \u2014 gender variant",
+      "m217Note": "User-approved in M217 review batch."
+    },
+    "swashbuckler_female": {
+      "spriteId": "swashbuckler_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/swashbuckler_female.json",
+      "candidateDir": "images/pixellab/swashbuckler_female",
+      "originalSpritecookPrefix": "images/spritecook/swashbuckler_female_",
+      "creditsUsed": 96,
+      "notes": "Swashbuckler (Female) \u2014 gender variant",
+      "m217Note": "M217 regen of east, east_block. Other poses remain pending_approval."
+    },
+    "dragon_knight_male": {
+      "spriteId": "dragon_knight_male",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/dragon_knight_male.json",
+      "candidateDir": "images/pixellab/dragon_knight_male",
+      "originalSpritecookPrefix": "images/spritecook/dragon_knight_male_",
+      "creditsUsed": 96,
+      "notes": "Dragon_Knight (Male) \u2014 gender variant",
+      "m217Note": "south v2 approved.",
+      "m217SouthV2AssetId": "88618035-ccf0-400e-9961-d94d3ec87516"
+    },
+    "pyromancer_male": {
+      "spriteId": "pyromancer_male",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/pyromancer_male.json",
+      "candidateDir": "images/pixellab/pyromancer_male",
+      "originalSpritecookPrefix": "images/spritecook/pyromancer_male_",
+      "creditsUsed": 96,
+      "notes": "Pyromancer (Male) \u2014 gender variant"
+    },
+    "stormcaller_female": {
+      "spriteId": "stormcaller_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/stormcaller_female.json",
+      "candidateDir": "images/pixellab/stormcaller_female",
+      "originalSpritecookPrefix": "images/spritecook/stormcaller_female_",
+      "creditsUsed": 108,
+      "notes": "Stormcaller (Female) \u2014 gender variant"
+    },
+    "druid_male": {
+      "spriteId": "druid_male",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/druid_male.json",
+      "candidateDir": "images/pixellab/druid_male",
+      "originalSpritecookPrefix": "images/spritecook/druid_male_",
+      "creditsUsed": 144,
+      "notes": "Druid (Male) \u2014 gender variant",
+      "generatedAt": "2026-04-21T22:34:14Z"
+    },
+    "tactician_female": {
+      "spriteId": "tactician_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/tactician_female.json",
+      "candidateDir": "images/pixellab/tactician_female",
+      "originalSpritecookPrefix": "images/spritecook/tactician_female_",
+      "creditsUsed": 96,
+      "notes": "Tactician (Female) \u2014 gender variant",
+      "m217Note": "User-approved in M217 review batch."
+    },
+    "runesmith_female": {
+      "spriteId": "runesmith_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/runesmith_female.json",
+      "candidateDir": "images/pixellab/runesmith_female",
+      "originalSpritecookPrefix": "images/spritecook/runesmith_female_",
+      "creditsUsed": 96,
+      "notes": "Runesmith (Female) \u2014 gender variant",
+      "m217Note": "M217 regen of south. Other poses remain pending_approval."
+    },
+    "witch_hunter_female": {
+      "spriteId": "witch_hunter_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/witch_hunter_female.json",
+      "candidateDir": "images/pixellab/witch_hunter_female",
+      "originalSpritecookPrefix": "images/spritecook/witch_hunter_female_",
+      "creditsUsed": 96,
+      "notes": "Witch_Hunter (Female) \u2014 gender variant",
+      "m217Note": "User-approved in M217 review batch."
+    },
+    "monk_female": {
+      "spriteId": "monk_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/monk_female.json",
+      "candidateDir": "images/pixellab/monk_female",
+      "originalSpritecookPrefix": "images/spritecook/monk_female_",
+      "creditsUsed": 96,
+      "notes": "Monk (Female) \u2014 gender variant of monk"
+    },
+    "oracle_male": {
+      "spriteId": "oracle_male",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/oracle_male.json",
+      "candidateDir": "images/pixellab/oracle_male",
+      "originalSpritecookPrefix": "images/spritecook/oracle_male_",
+      "creditsUsed": 144,
+      "notes": "Oracle (Male) \u2014 gender variant of oracle",
+      "lastRegenAt": "2026-04-21T22:34:14Z"
+    },
+    "shaman_male": {
+      "spriteId": "shaman_male",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/shaman_male.json",
+      "candidateDir": "images/pixellab/shaman_male",
+      "originalSpritecookPrefix": "images/spritecook/shaman_male_",
+      "creditsUsed": 96,
+      "notes": "Shaman (Male) \u2014 gender variant of shaman",
+      "m217Note": "User-approved in M217 review batch."
+    },
+    "sorcerer_female": {
+      "spriteId": "sorcerer_female",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_spell": "approved",
+        "east_block": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/sorcerer_female.json",
+      "candidateDir": "images/pixellab/sorcerer_female",
+      "originalSpritecookPrefix": "images/spritecook/sorcerer_female_",
+      "creditsUsed": 96,
+      "notes": "Sorcerer (Female) \u2014 gender variant of sorcerer",
+      "m217Note": "User-approved in M217 review batch."
+    },
+    "war_dog": {
+      "spriteId": "war_dog",
+      "status": "approved",
+      "referenceStatus": "approved",
+      "framesStatus": {
+        "portrait": "approved",
+        "south": "approved",
+        "east": "approved",
+        "east_attack": "approved",
+        "east_ko": "approved"
+      },
+      "artDirectionPath": "data/character_redesign_snapshots/m217/art_direction/war_dog.json",
+      "candidateDir": "images/spritecook",
+      "originalSpritecookPrefix": "images/spritecook/war_dog_",
+      "creditsUsed": 72,
+      "poseSet": [
+        "portrait",
+        "south",
+        "east",
+        "east_attack",
+        "east_ko"
+      ],
+      "notes": "Companion dog \u2014 reduced 5-pose set (no east_spell, no east_block). Redesigned M216: replaced silly OpenAI 'bulldog in plate armor' original with muscular mastiff/pit-bull in studded leather collar, red bandana, leather chest strap. Old files backed up at images/_bg-removal-backup/war_dog_openai_armor/.",
+      "m216Note": "Flagged: east and east_ko have slight muzzle color drift \u2014 do NOT regen yet per user."
+    }
+  },
+  "lastUpdated": "2026-04-21T22:34:14Z",
+  "snapshotOf": "m217",
+  "snapshotTakenAt": "2026-04-23T04:58:09.494383+00:00"
+}
