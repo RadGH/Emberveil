@@ -61,7 +61,7 @@ export class AudioManager {
 
   _baseUrl() {
     try {
-      return (import.meta.env && import.meta.env.BASE_URL) || '/';
+      return (import.meta.env && __APP_BASE__) || '/';
     } catch (_) {
       return '/';
     }

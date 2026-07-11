@@ -63,7 +63,7 @@ export class DialogScreen {
 
   _render() {
     const bgKey = this.event.bg || 'dungeon';
-    const bgUrl = `${import.meta.env.BASE_URL}images/dialog_bg/${bgKey}.jpg`;
+    const bgUrl = `${__APP_BASE__}images/dialog_bg/${bgKey}.jpg`;
     // M399 — when the dialog event sets showPartyOnGrid, render the party
     // sprites on the left (east-facing) and the NPC sprite on the right
     // (mirrored) above the dialog panel — like a combat staging shot. Falls
@@ -645,7 +645,7 @@ export class DialogScreen {
       return `<div class="dlg-conv-tile dlg-conv-tile--hero" style="--idx:${idx}">
         <img class="dlg-conv-sprite" src="${getSpritePath(sprite, 'east')}"
              alt="${m.name}" loading="lazy"
-             onerror="this.onerror=null;this.src='${import.meta.env.BASE_URL}images/sprites/fallback_portrait.svg'">
+             onerror="this.onerror=null;this.src='${__APP_BASE__}images/sprites/fallback_portrait.svg'">
         <div class="dlg-conv-name">${m.name}</div>
       </div>`;
     };
@@ -659,7 +659,7 @@ export class DialogScreen {
             <img class="dlg-conv-sprite dlg-conv-sprite--mirror"
                  src="${getSpritePath(npcSprite, 'east')}"
                  alt="${this.event.npcName}" loading="lazy"
-                 onerror="this.onerror=null;this.src='${getSpritePath(npcSprite, 'south')}';this.onerror=function(){this.src='${import.meta.env.BASE_URL}images/sprites/fallback_portrait.svg'}">
+                 onerror="this.onerror=null;this.src='${getSpritePath(npcSprite, 'south')}';this.onerror=function(){this.src='${__APP_BASE__}images/sprites/fallback_portrait.svg'}">
             <div class="dlg-conv-name">${this.event.npcName}</div>
           </div>
         </div>

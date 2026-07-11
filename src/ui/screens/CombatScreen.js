@@ -239,7 +239,7 @@ let _combatBgManifest = null;
 let _combatBgManifestFetch = null;
 function _ensureCombatBgManifest() {
   if (_combatBgManifest || _combatBgManifestFetch) return;
-  const url = `${import.meta.env.BASE_URL}images/combat_bg/backgrounds.json`;
+  const url = `${__APP_BASE__}images/combat_bg/backgrounds.json`;
   _combatBgManifestFetch = fetch(url)
     .then(r => (r.ok ? r.json() : null))
     .then(j => { _combatBgManifest = j || {}; })
@@ -261,7 +261,7 @@ function _getCombatBgImage(zoneId) {
   for (let i = 0; i < zoneId.length; i++) seed = (seed * 31 + zoneId.charCodeAt(i)) | 0;
   const pick = entry.backgrounds[Math.abs(seed) % entry.backgrounds.length];
   const img = new Image();
-  img.src = `${import.meta.env.BASE_URL}images/combat_bg/${pick}`;
+  img.src = `${__APP_BASE__}images/combat_bg/${pick}`;
   _combatBgCache[zoneId] = { img, status: 'loading' };
   return null; // first draw returns null; subsequent draws hit the completed image
 }
@@ -269,7 +269,7 @@ function _getCombatBgImage(zoneId) {
 function _loadSprite(key) {
   if (_spriteCache[key]) return _spriteCache[key];
   const imgs = {};
-  const BASE = import.meta.env.BASE_URL;
+  const BASE = __APP_BASE__;
   const spritesBase = `${BASE}images/sprites/${key}`;
   // M484b — 'death' removed: there is no <id>_death.png file. The renderer
   // maps stance='death' → 'east_ko' at draw time (line ~7299), so preloading

@@ -16,7 +16,7 @@ let _fetch = null;
 
 function _ensure() {
   if (_data || _fetch) return;
-  const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) || '/';
+  const base = (typeof import.meta !== 'undefined' && import.meta.env && __APP_BASE__) || '/';
   _fetch = fetch(`${base}data/sprite_adjustments.json`)
     .then(r => (r.ok ? r.json() : null))
     .then(j => {

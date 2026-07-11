@@ -718,7 +718,7 @@ export class MapScreen {
           dragon_throne: 'images/dragon_expansion/dragon_throne_bg.jpg',
         };
         const rel = ZONE_BG_OVERRIDE[zoneId] || `images/map_bg/${zoneId}.jpg`;
-        img.src = `${import.meta.env.BASE_URL}${rel}`;
+        img.src = `${__APP_BASE__}${rel}`;
         img._zoneId = zoneId;
         img.onerror = () => { this._bgFailed.add(zoneId); this._bgImg = null; };
         this._bgImg = img;

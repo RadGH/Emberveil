@@ -23,7 +23,7 @@ import { getSpriteAdjustmentCss } from './spriteAdjustments.js';
 // ---------------------------------------------------------------------------
 let _manifest = null;
 let _manifestPromise = null;
-const _BASE = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/';
+const _BASE = (typeof import.meta !== 'undefined' && __APP_BASE__) || '/';
 
 /** Index appearances/companions/enemies/bosses by id → sprites map. */
 function _indexManifest(raw) {

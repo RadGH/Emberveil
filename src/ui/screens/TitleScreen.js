@@ -270,13 +270,13 @@ export class TitleScreen {
     });
     this._el.querySelector('#btn-website').addEventListener('click', () => {
       this.audio.playSfx('click');
-      const baseUrl = import.meta.env.BASE_URL || '/';
+      const baseUrl = __APP_BASE__ || '/';
       window.location.href = baseUrl;
     });
     // M330 — Privacy policy link (lives at <BASE_URL>/privacy.html).
     this._el.querySelector('#btn-privacy').addEventListener('click', () => {
       this.audio.playSfx('click');
-      const baseUrl = import.meta.env.BASE_URL || '/';
+      const baseUrl = __APP_BASE__ || '/';
       window.open(`${baseUrl.replace(/\/$/, '')}/privacy.html`, '_blank', 'noopener');
     });
 

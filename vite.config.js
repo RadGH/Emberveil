@@ -22,6 +22,11 @@ export default defineConfig({
   define: {
     __SUPABASE_URL__: JSON.stringify(SUPABASE_URL),
     __SUPABASE_PUBLISHABLE_KEY__: JSON.stringify(SUPABASE_PUBLISHABLE_KEY),
+    // Deploy base for runtime asset loads (`${__APP_BASE__}images/...`).
+    // We use our own global instead of import.meta.env.BASE_URL because Vite
+    // bakes that to "/" here, which 404s all sprites/data on a subpath deploy
+    // (GitHub Pages /Emberveil/). Src refs were migrated to __APP_BASE__.
+    __APP_BASE__: JSON.stringify(process.env.VITE_BASE || '/'),
   },
   build: {
     outDir: 'dist',
