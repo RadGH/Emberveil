@@ -1307,17 +1307,17 @@ function buildToolbar(m) {
   bar.innerHTML = '';
 
   const tabs = [
-    ['all',         'All',            m.totals.appearances + m.totals.companions + m.totals.enemies + m.totals.bosses + (m.totals.orphans || 0)],
-    ['classes',     'Classes',        (m.appearances || []).filter(function(a){return !a.npc && !a.deprecated;}).length],
-    ['npcs',        'NPCs',           (m.appearances || []).filter(function(a){return a.npc;}).length],
-    ['companions',  'Companions',     m.totals.companions],
-    ['enemies',     'Enemies',        m.totals.enemies],
-    ['bosses',      'Bosses',         m.totals.bosses],
-    ['backgrounds', 'Backgrounds',    DIALOG_BG_FILES.length + MAP_BG_FILES.length + COMBAT_BG_FILES.length],
-    ['ui',          'UI',             (m.ui || []).length],
-    ['particles',   'Particles',      (m.particles || []).length],
-    ['spells',      'Spells',         (m.spell_icons || []).length],
-    ['orphaned',    'Orphaned',       m.totals.orphans],
+    ['all',          'All',            m.totals.appearances + m.totals.companions + m.totals.enemies + m.totals.bosses + (m.totals.orphans || 0)],
+    ['classes',      'Classes',        (m.appearances || []).filter(function(a){return !a.npc && !a.deprecated;}).length],
+    ['npcs',         'NPCs',           (m.appearances || []).filter(function(a){return a.npc;}).length],
+    ['companions',   'Companions',     m.totals.companions],
+    ['enemies',      'Enemies',        m.totals.enemies],
+    ['bosses',       'Bosses',         m.totals.bosses],
+    ['backgrounds',  'Backgrounds',    DIALOG_BG_FILES.length + MAP_BG_FILES.length + COMBAT_BG_FILES.length],
+    ['ui',           'UI',             (m.ui || []).length],
+    ['particles',    'Particles',      (m.particles || []).length],
+    ['spells',       'Spells',         (m.spell_icons || []).length],
+    ['orphaned',     'Orphaned',       m.totals.orphans],
   ];
 
   for (var i = 0; i < tabs.length; i++) {
@@ -1361,9 +1361,9 @@ Promise.all([
 
   // Merge non-appearance content from images-manifest into apM
   if (imgM) {
-    apM.ui          = imgM.ui          || [];
-    apM.particles   = imgM.particles   || [];
-    apM.spell_icons = imgM.spell_icons || [];
+    apM.ui           = imgM.ui           || [];
+    apM.particles    = imgM.particles    || [];
+    apM.spell_icons  = imgM.spell_icons  || [];
   }
 
   // Attach class registry so renderClassesSection can sort by the canonical class order

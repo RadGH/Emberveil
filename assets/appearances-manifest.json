@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-18T20:33:48.073Z",
+  "generated": "2026-05-30T16:25:42.352Z",
   "spriteDirs": [
     "openai_v2",
     "spritecook",
@@ -4208,6 +4208,206 @@
       "name": "archfiend_malgrath_east_wound"
     },
     {
+      "file": "images/openai_v2/architect_fragment_east_attack.png",
+      "dir": "openai_v2",
+      "name": "architect_fragment_east_attack"
+    },
+    {
+      "file": "images/openai_v2/architect_fragment_east_block.png",
+      "dir": "openai_v2",
+      "name": "architect_fragment_east_block"
+    },
+    {
+      "file": "images/openai_v2/architect_fragment_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "architect_fragment_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/architect_fragment_east_ko.png",
+      "dir": "openai_v2",
+      "name": "architect_fragment_east_ko"
+    },
+    {
+      "file": "images/openai_v2/architect_fragment_east_spell.png",
+      "dir": "openai_v2",
+      "name": "architect_fragment_east_spell"
+    },
+    {
+      "file": "images/openai_v2/architect_fragment_east_wound.png",
+      "dir": "openai_v2",
+      "name": "architect_fragment_east_wound"
+    },
+    {
+      "file": "images/openai_v2/architect_fragment_east.png",
+      "dir": "openai_v2",
+      "name": "architect_fragment_east"
+    },
+    {
+      "file": "images/openai_v2/architect_fragment_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "architect_fragment_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/architect_fragment_portrait.png",
+      "dir": "openai_v2",
+      "name": "architect_fragment_portrait"
+    },
+    {
+      "file": "images/openai_v2/architect_fragment_south.png",
+      "dir": "openai_v2",
+      "name": "architect_fragment_south"
+    },
+    {
+      "file": "images/openai_v2/ash_cultist_east_attack.png",
+      "dir": "openai_v2",
+      "name": "ash_cultist_east_attack"
+    },
+    {
+      "file": "images/openai_v2/ash_cultist_east_block.png",
+      "dir": "openai_v2",
+      "name": "ash_cultist_east_block"
+    },
+    {
+      "file": "images/openai_v2/ash_cultist_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "ash_cultist_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/ash_cultist_east_ko.png",
+      "dir": "openai_v2",
+      "name": "ash_cultist_east_ko"
+    },
+    {
+      "file": "images/openai_v2/ash_cultist_east_spell.png",
+      "dir": "openai_v2",
+      "name": "ash_cultist_east_spell"
+    },
+    {
+      "file": "images/openai_v2/ash_cultist_east_wound.png",
+      "dir": "openai_v2",
+      "name": "ash_cultist_east_wound"
+    },
+    {
+      "file": "images/openai_v2/ash_cultist_east.png",
+      "dir": "openai_v2",
+      "name": "ash_cultist_east"
+    },
+    {
+      "file": "images/openai_v2/ash_cultist_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "ash_cultist_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/ash_cultist_portrait.png",
+      "dir": "openai_v2",
+      "name": "ash_cultist_portrait"
+    },
+    {
+      "file": "images/openai_v2/ash_cultist_south.png",
+      "dir": "openai_v2",
+      "name": "ash_cultist_south"
+    },
+    {
+      "file": "images/openai_v2/ash_golem_east_attack.png",
+      "dir": "openai_v2",
+      "name": "ash_golem_east_attack"
+    },
+    {
+      "file": "images/openai_v2/ash_golem_east_block.png",
+      "dir": "openai_v2",
+      "name": "ash_golem_east_block"
+    },
+    {
+      "file": "images/openai_v2/ash_golem_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "ash_golem_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/ash_golem_east_ko.png",
+      "dir": "openai_v2",
+      "name": "ash_golem_east_ko"
+    },
+    {
+      "file": "images/openai_v2/ash_golem_east_spell.png",
+      "dir": "openai_v2",
+      "name": "ash_golem_east_spell"
+    },
+    {
+      "file": "images/openai_v2/ash_golem_east_wound.png",
+      "dir": "openai_v2",
+      "name": "ash_golem_east_wound"
+    },
+    {
+      "file": "images/openai_v2/ash_golem_east.png",
+      "dir": "openai_v2",
+      "name": "ash_golem_east"
+    },
+    {
+      "file": "images/openai_v2/ash_golem_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "ash_golem_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/ash_golem_portrait.png",
+      "dir": "openai_v2",
+      "name": "ash_golem_portrait"
+    },
+    {
+      "file": "images/openai_v2/ash_golem_south.png",
+      "dir": "openai_v2",
+      "name": "ash_golem_south"
+    },
+    {
+      "file": "images/openai_v2/ash_ritualist_east_attack.png",
+      "dir": "openai_v2",
+      "name": "ash_ritualist_east_attack"
+    },
+    {
+      "file": "images/openai_v2/ash_ritualist_east_block.png",
+      "dir": "openai_v2",
+      "name": "ash_ritualist_east_block"
+    },
+    {
+      "file": "images/openai_v2/ash_ritualist_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "ash_ritualist_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/ash_ritualist_east_ko.png",
+      "dir": "openai_v2",
+      "name": "ash_ritualist_east_ko"
+    },
+    {
+      "file": "images/openai_v2/ash_ritualist_east_spell.png",
+      "dir": "openai_v2",
+      "name": "ash_ritualist_east_spell"
+    },
+    {
+      "file": "images/openai_v2/ash_ritualist_east_wound.png",
+      "dir": "openai_v2",
+      "name": "ash_ritualist_east_wound"
+    },
+    {
+      "file": "images/openai_v2/ash_ritualist_east.png",
+      "dir": "openai_v2",
+      "name": "ash_ritualist_east"
+    },
+    {
+      "file": "images/openai_v2/ash_ritualist_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "ash_ritualist_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/ash_ritualist_portrait.png",
+      "dir": "openai_v2",
+      "name": "ash_ritualist_portrait"
+    },
+    {
+      "file": "images/openai_v2/ash_ritualist_south.png",
+      "dir": "openai_v2",
+      "name": "ash_ritualist_south"
+    },
+    {
       "file": "images/openai_v2/ash_wraith_east_cheer.png",
       "dir": "openai_v2",
       "name": "ash_wraith_east_cheer"
@@ -4221,6 +4421,56 @@
       "file": "images/openai_v2/ash_wraith_openai_sheet.png",
       "dir": "openai_v2",
       "name": "ash_wraith_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/ashen_veil_herald_east_attack.png",
+      "dir": "openai_v2",
+      "name": "ashen_veil_herald_east_attack"
+    },
+    {
+      "file": "images/openai_v2/ashen_veil_herald_east_block.png",
+      "dir": "openai_v2",
+      "name": "ashen_veil_herald_east_block"
+    },
+    {
+      "file": "images/openai_v2/ashen_veil_herald_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "ashen_veil_herald_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/ashen_veil_herald_east_ko.png",
+      "dir": "openai_v2",
+      "name": "ashen_veil_herald_east_ko"
+    },
+    {
+      "file": "images/openai_v2/ashen_veil_herald_east_spell.png",
+      "dir": "openai_v2",
+      "name": "ashen_veil_herald_east_spell"
+    },
+    {
+      "file": "images/openai_v2/ashen_veil_herald_east_wound.png",
+      "dir": "openai_v2",
+      "name": "ashen_veil_herald_east_wound"
+    },
+    {
+      "file": "images/openai_v2/ashen_veil_herald_east.png",
+      "dir": "openai_v2",
+      "name": "ashen_veil_herald_east"
+    },
+    {
+      "file": "images/openai_v2/ashen_veil_herald_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "ashen_veil_herald_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/ashen_veil_herald_portrait.png",
+      "dir": "openai_v2",
+      "name": "ashen_veil_herald_portrait"
+    },
+    {
+      "file": "images/openai_v2/ashen_veil_herald_south.png",
+      "dir": "openai_v2",
+      "name": "ashen_veil_herald_south"
     },
     {
       "file": "images/openai_v2/bandit_captain_east_cheer.png",
@@ -4253,6 +4503,56 @@
       "name": "bandit_openai_sheet"
     },
     {
+      "file": "images/openai_v2/bog_witch_east_attack.png",
+      "dir": "openai_v2",
+      "name": "bog_witch_east_attack"
+    },
+    {
+      "file": "images/openai_v2/bog_witch_east_block.png",
+      "dir": "openai_v2",
+      "name": "bog_witch_east_block"
+    },
+    {
+      "file": "images/openai_v2/bog_witch_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "bog_witch_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/bog_witch_east_ko.png",
+      "dir": "openai_v2",
+      "name": "bog_witch_east_ko"
+    },
+    {
+      "file": "images/openai_v2/bog_witch_east_spell.png",
+      "dir": "openai_v2",
+      "name": "bog_witch_east_spell"
+    },
+    {
+      "file": "images/openai_v2/bog_witch_east_wound.png",
+      "dir": "openai_v2",
+      "name": "bog_witch_east_wound"
+    },
+    {
+      "file": "images/openai_v2/bog_witch_east.png",
+      "dir": "openai_v2",
+      "name": "bog_witch_east"
+    },
+    {
+      "file": "images/openai_v2/bog_witch_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "bog_witch_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/bog_witch_portrait.png",
+      "dir": "openai_v2",
+      "name": "bog_witch_portrait"
+    },
+    {
+      "file": "images/openai_v2/bog_witch_south.png",
+      "dir": "openai_v2",
+      "name": "bog_witch_south"
+    },
+    {
       "file": "images/openai_v2/bone_hound_east_cheer.png",
       "dir": "openai_v2",
       "name": "bone_hound_east_cheer"
@@ -4266,6 +4566,156 @@
       "file": "images/openai_v2/bone_hound_openai_sheet.png",
       "dir": "openai_v2",
       "name": "bone_hound_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/bone_reader_east_attack.png",
+      "dir": "openai_v2",
+      "name": "bone_reader_east_attack"
+    },
+    {
+      "file": "images/openai_v2/bone_reader_east_block.png",
+      "dir": "openai_v2",
+      "name": "bone_reader_east_block"
+    },
+    {
+      "file": "images/openai_v2/bone_reader_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "bone_reader_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/bone_reader_east_ko.png",
+      "dir": "openai_v2",
+      "name": "bone_reader_east_ko"
+    },
+    {
+      "file": "images/openai_v2/bone_reader_east_spell.png",
+      "dir": "openai_v2",
+      "name": "bone_reader_east_spell"
+    },
+    {
+      "file": "images/openai_v2/bone_reader_east_wound.png",
+      "dir": "openai_v2",
+      "name": "bone_reader_east_wound"
+    },
+    {
+      "file": "images/openai_v2/bone_reader_east.png",
+      "dir": "openai_v2",
+      "name": "bone_reader_east"
+    },
+    {
+      "file": "images/openai_v2/bone_reader_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "bone_reader_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/bone_reader_portrait.png",
+      "dir": "openai_v2",
+      "name": "bone_reader_portrait"
+    },
+    {
+      "file": "images/openai_v2/bone_reader_south.png",
+      "dir": "openai_v2",
+      "name": "bone_reader_south"
+    },
+    {
+      "file": "images/openai_v2/bone_revenant_east_attack.png",
+      "dir": "openai_v2",
+      "name": "bone_revenant_east_attack"
+    },
+    {
+      "file": "images/openai_v2/bone_revenant_east_block.png",
+      "dir": "openai_v2",
+      "name": "bone_revenant_east_block"
+    },
+    {
+      "file": "images/openai_v2/bone_revenant_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "bone_revenant_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/bone_revenant_east_ko.png",
+      "dir": "openai_v2",
+      "name": "bone_revenant_east_ko"
+    },
+    {
+      "file": "images/openai_v2/bone_revenant_east_spell.png",
+      "dir": "openai_v2",
+      "name": "bone_revenant_east_spell"
+    },
+    {
+      "file": "images/openai_v2/bone_revenant_east_wound.png",
+      "dir": "openai_v2",
+      "name": "bone_revenant_east_wound"
+    },
+    {
+      "file": "images/openai_v2/bone_revenant_east.png",
+      "dir": "openai_v2",
+      "name": "bone_revenant_east"
+    },
+    {
+      "file": "images/openai_v2/bone_revenant_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "bone_revenant_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/bone_revenant_portrait.png",
+      "dir": "openai_v2",
+      "name": "bone_revenant_portrait"
+    },
+    {
+      "file": "images/openai_v2/bone_revenant_south.png",
+      "dir": "openai_v2",
+      "name": "bone_revenant_south"
+    },
+    {
+      "file": "images/openai_v2/brightfall_innkeeper_east_attack.png",
+      "dir": "openai_v2",
+      "name": "brightfall_innkeeper_east_attack"
+    },
+    {
+      "file": "images/openai_v2/brightfall_innkeeper_east_block.png",
+      "dir": "openai_v2",
+      "name": "brightfall_innkeeper_east_block"
+    },
+    {
+      "file": "images/openai_v2/brightfall_innkeeper_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "brightfall_innkeeper_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/brightfall_innkeeper_east_ko.png",
+      "dir": "openai_v2",
+      "name": "brightfall_innkeeper_east_ko"
+    },
+    {
+      "file": "images/openai_v2/brightfall_innkeeper_east_spell.png",
+      "dir": "openai_v2",
+      "name": "brightfall_innkeeper_east_spell"
+    },
+    {
+      "file": "images/openai_v2/brightfall_innkeeper_east_wound.png",
+      "dir": "openai_v2",
+      "name": "brightfall_innkeeper_east_wound"
+    },
+    {
+      "file": "images/openai_v2/brightfall_innkeeper_east.png",
+      "dir": "openai_v2",
+      "name": "brightfall_innkeeper_east"
+    },
+    {
+      "file": "images/openai_v2/brightfall_innkeeper_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "brightfall_innkeeper_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/brightfall_innkeeper_portrait.png",
+      "dir": "openai_v2",
+      "name": "brightfall_innkeeper_portrait"
+    },
+    {
+      "file": "images/openai_v2/brightfall_innkeeper_south.png",
+      "dir": "openai_v2",
+      "name": "brightfall_innkeeper_south"
     },
     {
       "file": "images/openai_v2/bulwark_dorn_east_cheer.png",
@@ -4296,6 +4746,56 @@
       "file": "images/openai_v2/cinder_hound_openai_sheet.png",
       "dir": "openai_v2",
       "name": "cinder_hound_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/corpse_lantern_east_attack.png",
+      "dir": "openai_v2",
+      "name": "corpse_lantern_east_attack"
+    },
+    {
+      "file": "images/openai_v2/corpse_lantern_east_block.png",
+      "dir": "openai_v2",
+      "name": "corpse_lantern_east_block"
+    },
+    {
+      "file": "images/openai_v2/corpse_lantern_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "corpse_lantern_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/corpse_lantern_east_ko.png",
+      "dir": "openai_v2",
+      "name": "corpse_lantern_east_ko"
+    },
+    {
+      "file": "images/openai_v2/corpse_lantern_east_spell.png",
+      "dir": "openai_v2",
+      "name": "corpse_lantern_east_spell"
+    },
+    {
+      "file": "images/openai_v2/corpse_lantern_east_wound.png",
+      "dir": "openai_v2",
+      "name": "corpse_lantern_east_wound"
+    },
+    {
+      "file": "images/openai_v2/corpse_lantern_east.png",
+      "dir": "openai_v2",
+      "name": "corpse_lantern_east"
+    },
+    {
+      "file": "images/openai_v2/corpse_lantern_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "corpse_lantern_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/corpse_lantern_portrait.png",
+      "dir": "openai_v2",
+      "name": "corpse_lantern_portrait"
+    },
+    {
+      "file": "images/openai_v2/corpse_lantern_south.png",
+      "dir": "openai_v2",
+      "name": "corpse_lantern_south"
     },
     {
       "file": "images/openai_v2/corrupted_bear_east_cheer.png",
@@ -4353,6 +4853,56 @@
       "name": "crystal_golem_openai_sheet"
     },
     {
+      "file": "images/openai_v2/cultist_captain_east_attack.png",
+      "dir": "openai_v2",
+      "name": "cultist_captain_east_attack"
+    },
+    {
+      "file": "images/openai_v2/cultist_captain_east_block.png",
+      "dir": "openai_v2",
+      "name": "cultist_captain_east_block"
+    },
+    {
+      "file": "images/openai_v2/cultist_captain_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "cultist_captain_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/cultist_captain_east_ko.png",
+      "dir": "openai_v2",
+      "name": "cultist_captain_east_ko"
+    },
+    {
+      "file": "images/openai_v2/cultist_captain_east_spell.png",
+      "dir": "openai_v2",
+      "name": "cultist_captain_east_spell"
+    },
+    {
+      "file": "images/openai_v2/cultist_captain_east_wound.png",
+      "dir": "openai_v2",
+      "name": "cultist_captain_east_wound"
+    },
+    {
+      "file": "images/openai_v2/cultist_captain_east.png",
+      "dir": "openai_v2",
+      "name": "cultist_captain_east"
+    },
+    {
+      "file": "images/openai_v2/cultist_captain_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "cultist_captain_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/cultist_captain_portrait.png",
+      "dir": "openai_v2",
+      "name": "cultist_captain_portrait"
+    },
+    {
+      "file": "images/openai_v2/cultist_captain_south.png",
+      "dir": "openai_v2",
+      "name": "cultist_captain_south"
+    },
+    {
       "file": "images/openai_v2/demon_brute_east_cheer.png",
       "dir": "openai_v2",
       "name": "demon_brute_east_cheer"
@@ -4366,6 +4916,56 @@
       "file": "images/openai_v2/demon_brute_openai_sheet.png",
       "dir": "openai_v2",
       "name": "demon_brute_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/den_mother_ash_east_attack.png",
+      "dir": "openai_v2",
+      "name": "den_mother_ash_east_attack"
+    },
+    {
+      "file": "images/openai_v2/den_mother_ash_east_block.png",
+      "dir": "openai_v2",
+      "name": "den_mother_ash_east_block"
+    },
+    {
+      "file": "images/openai_v2/den_mother_ash_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "den_mother_ash_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/den_mother_ash_east_ko.png",
+      "dir": "openai_v2",
+      "name": "den_mother_ash_east_ko"
+    },
+    {
+      "file": "images/openai_v2/den_mother_ash_east_spell.png",
+      "dir": "openai_v2",
+      "name": "den_mother_ash_east_spell"
+    },
+    {
+      "file": "images/openai_v2/den_mother_ash_east_wound.png",
+      "dir": "openai_v2",
+      "name": "den_mother_ash_east_wound"
+    },
+    {
+      "file": "images/openai_v2/den_mother_ash_east.png",
+      "dir": "openai_v2",
+      "name": "den_mother_ash_east"
+    },
+    {
+      "file": "images/openai_v2/den_mother_ash_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "den_mother_ash_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/den_mother_ash_portrait.png",
+      "dir": "openai_v2",
+      "name": "den_mother_ash_portrait"
+    },
+    {
+      "file": "images/openai_v2/den_mother_ash_south.png",
+      "dir": "openai_v2",
+      "name": "den_mother_ash_south"
     },
     {
       "file": "images/openai_v2/dire_wolf_east_cheer.png",
@@ -4438,6 +5038,56 @@
       "name": "dragon_whelp_openai_sheet"
     },
     {
+      "file": "images/openai_v2/drowned_soldier_east_attack.png",
+      "dir": "openai_v2",
+      "name": "drowned_soldier_east_attack"
+    },
+    {
+      "file": "images/openai_v2/drowned_soldier_east_block.png",
+      "dir": "openai_v2",
+      "name": "drowned_soldier_east_block"
+    },
+    {
+      "file": "images/openai_v2/drowned_soldier_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "drowned_soldier_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/drowned_soldier_east_ko.png",
+      "dir": "openai_v2",
+      "name": "drowned_soldier_east_ko"
+    },
+    {
+      "file": "images/openai_v2/drowned_soldier_east_spell.png",
+      "dir": "openai_v2",
+      "name": "drowned_soldier_east_spell"
+    },
+    {
+      "file": "images/openai_v2/drowned_soldier_east_wound.png",
+      "dir": "openai_v2",
+      "name": "drowned_soldier_east_wound"
+    },
+    {
+      "file": "images/openai_v2/drowned_soldier_east.png",
+      "dir": "openai_v2",
+      "name": "drowned_soldier_east"
+    },
+    {
+      "file": "images/openai_v2/drowned_soldier_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "drowned_soldier_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/drowned_soldier_portrait.png",
+      "dir": "openai_v2",
+      "name": "drowned_soldier_portrait"
+    },
+    {
+      "file": "images/openai_v2/drowned_soldier_south.png",
+      "dir": "openai_v2",
+      "name": "drowned_soldier_south"
+    },
+    {
       "file": "images/openai_v2/echo_sovereign_east_cheer.png",
       "dir": "openai_v2",
       "name": "echo_sovereign_east_cheer"
@@ -4446,6 +5096,56 @@
       "file": "images/openai_v2/echo_sovereign_east_wound.png",
       "dir": "openai_v2",
       "name": "echo_sovereign_east_wound"
+    },
+    {
+      "file": "images/openai_v2/elderwood_hermit_east_attack.png",
+      "dir": "openai_v2",
+      "name": "elderwood_hermit_east_attack"
+    },
+    {
+      "file": "images/openai_v2/elderwood_hermit_east_block.png",
+      "dir": "openai_v2",
+      "name": "elderwood_hermit_east_block"
+    },
+    {
+      "file": "images/openai_v2/elderwood_hermit_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "elderwood_hermit_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/elderwood_hermit_east_ko.png",
+      "dir": "openai_v2",
+      "name": "elderwood_hermit_east_ko"
+    },
+    {
+      "file": "images/openai_v2/elderwood_hermit_east_spell.png",
+      "dir": "openai_v2",
+      "name": "elderwood_hermit_east_spell"
+    },
+    {
+      "file": "images/openai_v2/elderwood_hermit_east_wound.png",
+      "dir": "openai_v2",
+      "name": "elderwood_hermit_east_wound"
+    },
+    {
+      "file": "images/openai_v2/elderwood_hermit_east.png",
+      "dir": "openai_v2",
+      "name": "elderwood_hermit_east"
+    },
+    {
+      "file": "images/openai_v2/elderwood_hermit_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "elderwood_hermit_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/elderwood_hermit_portrait.png",
+      "dir": "openai_v2",
+      "name": "elderwood_hermit_portrait"
+    },
+    {
+      "file": "images/openai_v2/elderwood_hermit_south.png",
+      "dir": "openai_v2",
+      "name": "elderwood_hermit_south"
     },
     {
       "file": "images/openai_v2/ember_drake_east_cheer.png",
@@ -4463,6 +5163,56 @@
       "name": "ember_drake_openai_sheet"
     },
     {
+      "file": "images/openai_v2/ember_drake_small_east_attack.png",
+      "dir": "openai_v2",
+      "name": "ember_drake_small_east_attack"
+    },
+    {
+      "file": "images/openai_v2/ember_drake_small_east_block.png",
+      "dir": "openai_v2",
+      "name": "ember_drake_small_east_block"
+    },
+    {
+      "file": "images/openai_v2/ember_drake_small_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "ember_drake_small_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/ember_drake_small_east_ko.png",
+      "dir": "openai_v2",
+      "name": "ember_drake_small_east_ko"
+    },
+    {
+      "file": "images/openai_v2/ember_drake_small_east_spell.png",
+      "dir": "openai_v2",
+      "name": "ember_drake_small_east_spell"
+    },
+    {
+      "file": "images/openai_v2/ember_drake_small_east_wound.png",
+      "dir": "openai_v2",
+      "name": "ember_drake_small_east_wound"
+    },
+    {
+      "file": "images/openai_v2/ember_drake_small_east.png",
+      "dir": "openai_v2",
+      "name": "ember_drake_small_east"
+    },
+    {
+      "file": "images/openai_v2/ember_drake_small_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "ember_drake_small_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/ember_drake_small_portrait.png",
+      "dir": "openai_v2",
+      "name": "ember_drake_small_portrait"
+    },
+    {
+      "file": "images/openai_v2/ember_drake_small_south.png",
+      "dir": "openai_v2",
+      "name": "ember_drake_small_south"
+    },
+    {
       "file": "images/openai_v2/emberveil_sovereign_east_cheer.png",
       "dir": "openai_v2",
       "name": "emberveil_sovereign_east_cheer"
@@ -4471,6 +5221,56 @@
       "file": "images/openai_v2/emberveil_sovereign_east_wound.png",
       "dir": "openai_v2",
       "name": "emberveil_sovereign_east_wound"
+    },
+    {
+      "file": "images/openai_v2/faction_envoy_thornpact_east_attack.png",
+      "dir": "openai_v2",
+      "name": "faction_envoy_thornpact_east_attack"
+    },
+    {
+      "file": "images/openai_v2/faction_envoy_thornpact_east_block.png",
+      "dir": "openai_v2",
+      "name": "faction_envoy_thornpact_east_block"
+    },
+    {
+      "file": "images/openai_v2/faction_envoy_thornpact_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "faction_envoy_thornpact_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/faction_envoy_thornpact_east_ko.png",
+      "dir": "openai_v2",
+      "name": "faction_envoy_thornpact_east_ko"
+    },
+    {
+      "file": "images/openai_v2/faction_envoy_thornpact_east_spell.png",
+      "dir": "openai_v2",
+      "name": "faction_envoy_thornpact_east_spell"
+    },
+    {
+      "file": "images/openai_v2/faction_envoy_thornpact_east_wound.png",
+      "dir": "openai_v2",
+      "name": "faction_envoy_thornpact_east_wound"
+    },
+    {
+      "file": "images/openai_v2/faction_envoy_thornpact_east.png",
+      "dir": "openai_v2",
+      "name": "faction_envoy_thornpact_east"
+    },
+    {
+      "file": "images/openai_v2/faction_envoy_thornpact_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "faction_envoy_thornpact_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/faction_envoy_thornpact_portrait.png",
+      "dir": "openai_v2",
+      "name": "faction_envoy_thornpact_portrait"
+    },
+    {
+      "file": "images/openai_v2/faction_envoy_thornpact_south.png",
+      "dir": "openai_v2",
+      "name": "faction_envoy_thornpact_south"
     },
     {
       "file": "images/openai_v2/forest_owl_east_cheer.png",
@@ -4763,6 +5563,56 @@
       "name": "magnus_orre_openai_sheet"
     },
     {
+      "file": "images/openai_v2/merchant_unusual_east_attack.png",
+      "dir": "openai_v2",
+      "name": "merchant_unusual_east_attack"
+    },
+    {
+      "file": "images/openai_v2/merchant_unusual_east_block.png",
+      "dir": "openai_v2",
+      "name": "merchant_unusual_east_block"
+    },
+    {
+      "file": "images/openai_v2/merchant_unusual_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "merchant_unusual_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/merchant_unusual_east_ko.png",
+      "dir": "openai_v2",
+      "name": "merchant_unusual_east_ko"
+    },
+    {
+      "file": "images/openai_v2/merchant_unusual_east_spell.png",
+      "dir": "openai_v2",
+      "name": "merchant_unusual_east_spell"
+    },
+    {
+      "file": "images/openai_v2/merchant_unusual_east_wound.png",
+      "dir": "openai_v2",
+      "name": "merchant_unusual_east_wound"
+    },
+    {
+      "file": "images/openai_v2/merchant_unusual_east.png",
+      "dir": "openai_v2",
+      "name": "merchant_unusual_east"
+    },
+    {
+      "file": "images/openai_v2/merchant_unusual_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "merchant_unusual_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/merchant_unusual_portrait.png",
+      "dir": "openai_v2",
+      "name": "merchant_unusual_portrait"
+    },
+    {
+      "file": "images/openai_v2/merchant_unusual_south.png",
+      "dir": "openai_v2",
+      "name": "merchant_unusual_south"
+    },
+    {
       "file": "images/openai_v2/molten_golem_east_cheer.png",
       "dir": "openai_v2",
       "name": "molten_golem_east_cheer"
@@ -4943,6 +5793,56 @@
       "name": "pet_wolf_openai_sheet"
     },
     {
+      "file": "images/openai_v2/plague_herald_east_attack.png",
+      "dir": "openai_v2",
+      "name": "plague_herald_east_attack"
+    },
+    {
+      "file": "images/openai_v2/plague_herald_east_block.png",
+      "dir": "openai_v2",
+      "name": "plague_herald_east_block"
+    },
+    {
+      "file": "images/openai_v2/plague_herald_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "plague_herald_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/plague_herald_east_ko.png",
+      "dir": "openai_v2",
+      "name": "plague_herald_east_ko"
+    },
+    {
+      "file": "images/openai_v2/plague_herald_east_spell.png",
+      "dir": "openai_v2",
+      "name": "plague_herald_east_spell"
+    },
+    {
+      "file": "images/openai_v2/plague_herald_east_wound.png",
+      "dir": "openai_v2",
+      "name": "plague_herald_east_wound"
+    },
+    {
+      "file": "images/openai_v2/plague_herald_east.png",
+      "dir": "openai_v2",
+      "name": "plague_herald_east"
+    },
+    {
+      "file": "images/openai_v2/plague_herald_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "plague_herald_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/plague_herald_portrait.png",
+      "dir": "openai_v2",
+      "name": "plague_herald_portrait"
+    },
+    {
+      "file": "images/openai_v2/plague_herald_south.png",
+      "dir": "openai_v2",
+      "name": "plague_herald_south"
+    },
+    {
       "file": "images/openai_v2/primordial_elemental_east_cheer.png",
       "dir": "openai_v2",
       "name": "primordial_elemental_east_cheer"
@@ -4971,6 +5871,106 @@
       "file": "images/openai_v2/reality_shard_openai_sheet.png",
       "dir": "openai_v2",
       "name": "reality_shard_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/rift_warden_east_attack.png",
+      "dir": "openai_v2",
+      "name": "rift_warden_east_attack"
+    },
+    {
+      "file": "images/openai_v2/rift_warden_east_block.png",
+      "dir": "openai_v2",
+      "name": "rift_warden_east_block"
+    },
+    {
+      "file": "images/openai_v2/rift_warden_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "rift_warden_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/rift_warden_east_ko.png",
+      "dir": "openai_v2",
+      "name": "rift_warden_east_ko"
+    },
+    {
+      "file": "images/openai_v2/rift_warden_east_spell.png",
+      "dir": "openai_v2",
+      "name": "rift_warden_east_spell"
+    },
+    {
+      "file": "images/openai_v2/rift_warden_east_wound.png",
+      "dir": "openai_v2",
+      "name": "rift_warden_east_wound"
+    },
+    {
+      "file": "images/openai_v2/rift_warden_east.png",
+      "dir": "openai_v2",
+      "name": "rift_warden_east"
+    },
+    {
+      "file": "images/openai_v2/rift_warden_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "rift_warden_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/rift_warden_portrait.png",
+      "dir": "openai_v2",
+      "name": "rift_warden_portrait"
+    },
+    {
+      "file": "images/openai_v2/rift_warden_south.png",
+      "dir": "openai_v2",
+      "name": "rift_warden_south"
+    },
+    {
+      "file": "images/openai_v2/road_scout_npc_east_attack.png",
+      "dir": "openai_v2",
+      "name": "road_scout_npc_east_attack"
+    },
+    {
+      "file": "images/openai_v2/road_scout_npc_east_block.png",
+      "dir": "openai_v2",
+      "name": "road_scout_npc_east_block"
+    },
+    {
+      "file": "images/openai_v2/road_scout_npc_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "road_scout_npc_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/road_scout_npc_east_ko.png",
+      "dir": "openai_v2",
+      "name": "road_scout_npc_east_ko"
+    },
+    {
+      "file": "images/openai_v2/road_scout_npc_east_spell.png",
+      "dir": "openai_v2",
+      "name": "road_scout_npc_east_spell"
+    },
+    {
+      "file": "images/openai_v2/road_scout_npc_east_wound.png",
+      "dir": "openai_v2",
+      "name": "road_scout_npc_east_wound"
+    },
+    {
+      "file": "images/openai_v2/road_scout_npc_east.png",
+      "dir": "openai_v2",
+      "name": "road_scout_npc_east"
+    },
+    {
+      "file": "images/openai_v2/road_scout_npc_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "road_scout_npc_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/road_scout_npc_portrait.png",
+      "dir": "openai_v2",
+      "name": "road_scout_npc_portrait"
+    },
+    {
+      "file": "images/openai_v2/road_scout_npc_south.png",
+      "dir": "openai_v2",
+      "name": "road_scout_npc_south"
     },
     {
       "file": "images/openai_v2/shadow_cat_east_cheer.png",
@@ -5048,6 +6048,56 @@
       "name": "star_horror_openai_sheet"
     },
     {
+      "file": "images/openai_v2/stonehide_boar_east_attack.png",
+      "dir": "openai_v2",
+      "name": "stonehide_boar_east_attack"
+    },
+    {
+      "file": "images/openai_v2/stonehide_boar_east_block.png",
+      "dir": "openai_v2",
+      "name": "stonehide_boar_east_block"
+    },
+    {
+      "file": "images/openai_v2/stonehide_boar_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "stonehide_boar_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/stonehide_boar_east_ko.png",
+      "dir": "openai_v2",
+      "name": "stonehide_boar_east_ko"
+    },
+    {
+      "file": "images/openai_v2/stonehide_boar_east_spell.png",
+      "dir": "openai_v2",
+      "name": "stonehide_boar_east_spell"
+    },
+    {
+      "file": "images/openai_v2/stonehide_boar_east_wound.png",
+      "dir": "openai_v2",
+      "name": "stonehide_boar_east_wound"
+    },
+    {
+      "file": "images/openai_v2/stonehide_boar_east.png",
+      "dir": "openai_v2",
+      "name": "stonehide_boar_east"
+    },
+    {
+      "file": "images/openai_v2/stonehide_boar_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "stonehide_boar_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/stonehide_boar_portrait.png",
+      "dir": "openai_v2",
+      "name": "stonehide_boar_portrait"
+    },
+    {
+      "file": "images/openai_v2/stonehide_boar_south.png",
+      "dir": "openai_v2",
+      "name": "stonehide_boar_south"
+    },
+    {
       "file": "images/openai_v2/storm_dragon_east_cheer.png",
       "dir": "openai_v2",
       "name": "storm_dragon_east_cheer"
@@ -5073,6 +6123,56 @@
       "name": "storm_drake_openai_sheet"
     },
     {
+      "file": "images/openai_v2/storm_harpy_east_attack.png",
+      "dir": "openai_v2",
+      "name": "storm_harpy_east_attack"
+    },
+    {
+      "file": "images/openai_v2/storm_harpy_east_block.png",
+      "dir": "openai_v2",
+      "name": "storm_harpy_east_block"
+    },
+    {
+      "file": "images/openai_v2/storm_harpy_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "storm_harpy_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/storm_harpy_east_ko.png",
+      "dir": "openai_v2",
+      "name": "storm_harpy_east_ko"
+    },
+    {
+      "file": "images/openai_v2/storm_harpy_east_spell.png",
+      "dir": "openai_v2",
+      "name": "storm_harpy_east_spell"
+    },
+    {
+      "file": "images/openai_v2/storm_harpy_east_wound.png",
+      "dir": "openai_v2",
+      "name": "storm_harpy_east_wound"
+    },
+    {
+      "file": "images/openai_v2/storm_harpy_east.png",
+      "dir": "openai_v2",
+      "name": "storm_harpy_east"
+    },
+    {
+      "file": "images/openai_v2/storm_harpy_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "storm_harpy_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/storm_harpy_portrait.png",
+      "dir": "openai_v2",
+      "name": "storm_harpy_portrait"
+    },
+    {
+      "file": "images/openai_v2/storm_harpy_south.png",
+      "dir": "openai_v2",
+      "name": "storm_harpy_south"
+    },
+    {
       "file": "images/openai_v2/swamp_frog_east_cheer.png",
       "dir": "openai_v2",
       "name": "swamp_frog_east_cheer"
@@ -5086,6 +6186,56 @@
       "file": "images/openai_v2/swamp_frog_openai_sheet.png",
       "dir": "openai_v2",
       "name": "swamp_frog_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/swamp_guide_east_attack.png",
+      "dir": "openai_v2",
+      "name": "swamp_guide_east_attack"
+    },
+    {
+      "file": "images/openai_v2/swamp_guide_east_block.png",
+      "dir": "openai_v2",
+      "name": "swamp_guide_east_block"
+    },
+    {
+      "file": "images/openai_v2/swamp_guide_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "swamp_guide_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/swamp_guide_east_ko.png",
+      "dir": "openai_v2",
+      "name": "swamp_guide_east_ko"
+    },
+    {
+      "file": "images/openai_v2/swamp_guide_east_spell.png",
+      "dir": "openai_v2",
+      "name": "swamp_guide_east_spell"
+    },
+    {
+      "file": "images/openai_v2/swamp_guide_east_wound.png",
+      "dir": "openai_v2",
+      "name": "swamp_guide_east_wound"
+    },
+    {
+      "file": "images/openai_v2/swamp_guide_east.png",
+      "dir": "openai_v2",
+      "name": "swamp_guide_east"
+    },
+    {
+      "file": "images/openai_v2/swamp_guide_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "swamp_guide_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/swamp_guide_portrait.png",
+      "dir": "openai_v2",
+      "name": "swamp_guide_portrait"
+    },
+    {
+      "file": "images/openai_v2/swamp_guide_south.png",
+      "dir": "openai_v2",
+      "name": "swamp_guide_south"
     },
     {
       "file": "images/openai_v2/the_architect_east_cheer.png",
@@ -5143,6 +6293,106 @@
       "name": "vault_guardian_east_wound"
     },
     {
+      "file": "images/openai_v2/veil_champion_east_attack.png",
+      "dir": "openai_v2",
+      "name": "veil_champion_east_attack"
+    },
+    {
+      "file": "images/openai_v2/veil_champion_east_block.png",
+      "dir": "openai_v2",
+      "name": "veil_champion_east_block"
+    },
+    {
+      "file": "images/openai_v2/veil_champion_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "veil_champion_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/veil_champion_east_ko.png",
+      "dir": "openai_v2",
+      "name": "veil_champion_east_ko"
+    },
+    {
+      "file": "images/openai_v2/veil_champion_east_spell.png",
+      "dir": "openai_v2",
+      "name": "veil_champion_east_spell"
+    },
+    {
+      "file": "images/openai_v2/veil_champion_east_wound.png",
+      "dir": "openai_v2",
+      "name": "veil_champion_east_wound"
+    },
+    {
+      "file": "images/openai_v2/veil_champion_east.png",
+      "dir": "openai_v2",
+      "name": "veil_champion_east"
+    },
+    {
+      "file": "images/openai_v2/veil_champion_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "veil_champion_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/veil_champion_portrait.png",
+      "dir": "openai_v2",
+      "name": "veil_champion_portrait"
+    },
+    {
+      "file": "images/openai_v2/veil_champion_south.png",
+      "dir": "openai_v2",
+      "name": "veil_champion_south"
+    },
+    {
+      "file": "images/openai_v2/veil_convert_east_attack.png",
+      "dir": "openai_v2",
+      "name": "veil_convert_east_attack"
+    },
+    {
+      "file": "images/openai_v2/veil_convert_east_block.png",
+      "dir": "openai_v2",
+      "name": "veil_convert_east_block"
+    },
+    {
+      "file": "images/openai_v2/veil_convert_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "veil_convert_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/veil_convert_east_ko.png",
+      "dir": "openai_v2",
+      "name": "veil_convert_east_ko"
+    },
+    {
+      "file": "images/openai_v2/veil_convert_east_spell.png",
+      "dir": "openai_v2",
+      "name": "veil_convert_east_spell"
+    },
+    {
+      "file": "images/openai_v2/veil_convert_east_wound.png",
+      "dir": "openai_v2",
+      "name": "veil_convert_east_wound"
+    },
+    {
+      "file": "images/openai_v2/veil_convert_east.png",
+      "dir": "openai_v2",
+      "name": "veil_convert_east"
+    },
+    {
+      "file": "images/openai_v2/veil_convert_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "veil_convert_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/veil_convert_portrait.png",
+      "dir": "openai_v2",
+      "name": "veil_convert_portrait"
+    },
+    {
+      "file": "images/openai_v2/veil_convert_south.png",
+      "dir": "openai_v2",
+      "name": "veil_convert_south"
+    },
+    {
       "file": "images/openai_v2/veil_cultist_east_cheer.png",
       "dir": "openai_v2",
       "name": "veil_cultist_east_cheer"
@@ -5158,6 +6408,156 @@
       "name": "veil_cultist_openai_sheet"
     },
     {
+      "file": "images/openai_v2/veil_hulk_east_attack.png",
+      "dir": "openai_v2",
+      "name": "veil_hulk_east_attack"
+    },
+    {
+      "file": "images/openai_v2/veil_hulk_east_block.png",
+      "dir": "openai_v2",
+      "name": "veil_hulk_east_block"
+    },
+    {
+      "file": "images/openai_v2/veil_hulk_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "veil_hulk_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/veil_hulk_east_ko.png",
+      "dir": "openai_v2",
+      "name": "veil_hulk_east_ko"
+    },
+    {
+      "file": "images/openai_v2/veil_hulk_east_spell.png",
+      "dir": "openai_v2",
+      "name": "veil_hulk_east_spell"
+    },
+    {
+      "file": "images/openai_v2/veil_hulk_east_wound.png",
+      "dir": "openai_v2",
+      "name": "veil_hulk_east_wound"
+    },
+    {
+      "file": "images/openai_v2/veil_hulk_east.png",
+      "dir": "openai_v2",
+      "name": "veil_hulk_east"
+    },
+    {
+      "file": "images/openai_v2/veil_hulk_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "veil_hulk_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/veil_hulk_portrait.png",
+      "dir": "openai_v2",
+      "name": "veil_hulk_portrait"
+    },
+    {
+      "file": "images/openai_v2/veil_hulk_south.png",
+      "dir": "openai_v2",
+      "name": "veil_hulk_south"
+    },
+    {
+      "file": "images/openai_v2/veil_shade_east_attack.png",
+      "dir": "openai_v2",
+      "name": "veil_shade_east_attack"
+    },
+    {
+      "file": "images/openai_v2/veil_shade_east_block.png",
+      "dir": "openai_v2",
+      "name": "veil_shade_east_block"
+    },
+    {
+      "file": "images/openai_v2/veil_shade_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "veil_shade_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/veil_shade_east_ko.png",
+      "dir": "openai_v2",
+      "name": "veil_shade_east_ko"
+    },
+    {
+      "file": "images/openai_v2/veil_shade_east_spell.png",
+      "dir": "openai_v2",
+      "name": "veil_shade_east_spell"
+    },
+    {
+      "file": "images/openai_v2/veil_shade_east_wound.png",
+      "dir": "openai_v2",
+      "name": "veil_shade_east_wound"
+    },
+    {
+      "file": "images/openai_v2/veil_shade_east.png",
+      "dir": "openai_v2",
+      "name": "veil_shade_east"
+    },
+    {
+      "file": "images/openai_v2/veil_shade_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "veil_shade_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/veil_shade_portrait.png",
+      "dir": "openai_v2",
+      "name": "veil_shade_portrait"
+    },
+    {
+      "file": "images/openai_v2/veil_shade_south.png",
+      "dir": "openai_v2",
+      "name": "veil_shade_south"
+    },
+    {
+      "file": "images/openai_v2/veil_shrinekeeper_east_attack.png",
+      "dir": "openai_v2",
+      "name": "veil_shrinekeeper_east_attack"
+    },
+    {
+      "file": "images/openai_v2/veil_shrinekeeper_east_block.png",
+      "dir": "openai_v2",
+      "name": "veil_shrinekeeper_east_block"
+    },
+    {
+      "file": "images/openai_v2/veil_shrinekeeper_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "veil_shrinekeeper_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/veil_shrinekeeper_east_ko.png",
+      "dir": "openai_v2",
+      "name": "veil_shrinekeeper_east_ko"
+    },
+    {
+      "file": "images/openai_v2/veil_shrinekeeper_east_spell.png",
+      "dir": "openai_v2",
+      "name": "veil_shrinekeeper_east_spell"
+    },
+    {
+      "file": "images/openai_v2/veil_shrinekeeper_east_wound.png",
+      "dir": "openai_v2",
+      "name": "veil_shrinekeeper_east_wound"
+    },
+    {
+      "file": "images/openai_v2/veil_shrinekeeper_east.png",
+      "dir": "openai_v2",
+      "name": "veil_shrinekeeper_east"
+    },
+    {
+      "file": "images/openai_v2/veil_shrinekeeper_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "veil_shrinekeeper_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/veil_shrinekeeper_portrait.png",
+      "dir": "openai_v2",
+      "name": "veil_shrinekeeper_portrait"
+    },
+    {
+      "file": "images/openai_v2/veil_shrinekeeper_south.png",
+      "dir": "openai_v2",
+      "name": "veil_shrinekeeper_south"
+    },
+    {
       "file": "images/openai_v2/veil_sorcerer_east_cheer.png",
       "dir": "openai_v2",
       "name": "veil_sorcerer_east_cheer"
@@ -5171,6 +6571,56 @@
       "file": "images/openai_v2/veil_sorcerer_openai_sheet.png",
       "dir": "openai_v2",
       "name": "veil_sorcerer_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/veil_sprite_east_attack.png",
+      "dir": "openai_v2",
+      "name": "veil_sprite_east_attack"
+    },
+    {
+      "file": "images/openai_v2/veil_sprite_east_block.png",
+      "dir": "openai_v2",
+      "name": "veil_sprite_east_block"
+    },
+    {
+      "file": "images/openai_v2/veil_sprite_east_cheer.png",
+      "dir": "openai_v2",
+      "name": "veil_sprite_east_cheer"
+    },
+    {
+      "file": "images/openai_v2/veil_sprite_east_ko.png",
+      "dir": "openai_v2",
+      "name": "veil_sprite_east_ko"
+    },
+    {
+      "file": "images/openai_v2/veil_sprite_east_spell.png",
+      "dir": "openai_v2",
+      "name": "veil_sprite_east_spell"
+    },
+    {
+      "file": "images/openai_v2/veil_sprite_east_wound.png",
+      "dir": "openai_v2",
+      "name": "veil_sprite_east_wound"
+    },
+    {
+      "file": "images/openai_v2/veil_sprite_east.png",
+      "dir": "openai_v2",
+      "name": "veil_sprite_east"
+    },
+    {
+      "file": "images/openai_v2/veil_sprite_openai_sheet.png",
+      "dir": "openai_v2",
+      "name": "veil_sprite_openai_sheet"
+    },
+    {
+      "file": "images/openai_v2/veil_sprite_portrait.png",
+      "dir": "openai_v2",
+      "name": "veil_sprite_portrait"
+    },
+    {
+      "file": "images/openai_v2/veil_sprite_south.png",
+      "dir": "openai_v2",
+      "name": "veil_sprite_south"
     },
     {
       "file": "images/openai_v2/veil_warden_east_cheer.png",
@@ -9860,7 +11310,7 @@
     "companions": 35,
     "enemies": 33,
     "bosses": 12,
-    "orphans": 1104,
+    "orphans": 1394,
     "missing": 12
   }
 }
