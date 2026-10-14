@@ -1,5 +1,15 @@
 # CLAUDE.md
 
+> ## 🚀 Deploying (games.radgh.com (since 2026-10-14))
+>
+> This worktree (`~/claude/emberveil-rgs`, branch `rgs`) IS the live game at https://games.radgh.com/emberveil/.
+> 1. Commit here on `rgs`; push the branch with the HTTPS token (`~/claude/docs/emberveil.md` → "Credentials").
+> 2. `cd ~/claude/rads-game-server && tools/deploy.sh update emberveil` — the droplet clones `rgs` and builds it
+>    (`npm ci && VITE_BASE=./ npm run build`). Production: only when Radley asks. Never rsync `dist/` up (slow upload).
+> Full map: `~/claude/docs/rgs.md`. The `deploy-staging.sh` / `deploy-production.sh` / `deploy_pages.sh` steps below
+> describe the OLD hosts (GitHub Pages, Cloudways) and are not used for this branch.
+
+
 > ## ⚠️ Release layout changed 2026-04-26
 >
 > `game13_releases/milestone_N/` folders are gone. The current build lives
