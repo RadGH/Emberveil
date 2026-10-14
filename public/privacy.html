@@ -56,10 +56,10 @@
   <p>Without consent the telemetry client silently no-ops. Without sign-in, no row is ever written. These events are stored on our own game server, not shared with any third party.</p>
 
   <h2>4. Cloud saves & sign-in</h2>
-  <p>Cloud saves are a feature for signed-in users. They store an encrypted snapshot of your party, inventory, and run state on our game server under your account. Local saves are not cloud-synced unless you explicitly use <em>Save to cloud</em>. Sign-in is handled by our game server and uses the email you provide (or your Google account); your password is stored only as a one-way scrambled hash, never as the password itself.</p>
+  <p>Cloud saves are a feature for signed-in users. They store a snapshot of your party, inventory, and run state on our game server under your account. Local saves are not cloud-synced unless you explicitly use <em>Save to cloud</em>. Sign-in is handled by our game server and uses the email you provide (or your Google account); your password is stored only as a one-way scrambled hash, never as the password itself.</p>
   <ul>
     <li>Local saves: always work. Stored in <code>localStorage</code>. Never leave your browser.</li>
-    <li>Cloud saves: opt-in per save. Encrypted before upload. Removable via account deletion.</li>
+    <li>Cloud saves: opt-in per save. Sent over an encrypted (HTTPS) connection and visible only to your account. Removable via account deletion.</li>
   </ul>
 
   <h2>5. What we don't collect</h2>
