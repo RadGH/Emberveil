@@ -1,6 +1,9 @@
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
+  // vite.config.js defines __APP_BASE__ for the app; vitest reads only this
+  // file, so give tests the same global or modules that use it fail to load.
+  define: { __APP_BASE__: JSON.stringify('/') },
   test: {
     include: [
       'src/**/__tests__/**/*.test.js',
