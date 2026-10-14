@@ -43,8 +43,6 @@ export default [
         ...globals.browser,
         ...globals.es2023,
         // Vite build-time define() replacements (vite.config.js):
-        __SUPABASE_URL__: 'readonly',
-        __SUPABASE_PUBLISHABLE_KEY__: 'readonly',
         // dataLoader.js is isomorphic (browser + Node parity scripts) and
         // typeof-guards `process` — legitimate, not a bug.
         process: 'readonly',
