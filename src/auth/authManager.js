@@ -28,7 +28,7 @@ async function init() {
   if (initPromise) return initPromise;
   initPromise = (async () => {
     if (!supabaseConfigured) {
-      debug.auth('init: supabase not configured');
+      debug.auth('init: game server not configured');
       initialized = true;
       return;
     }
@@ -61,7 +61,7 @@ export const authManager = {
   },
 
   async signUp(email, password) {
-    if (!supabaseConfigured) return { error: new Error('Supabase not configured') };
+    if (!supabaseConfigured) return { error: new Error('Game server not configured') };
     const { data, error } = await supabase.auth.signUp({
       email, password,
       options: { emailRedirectTo: `${window.location.origin}${window.location.pathname}` },
@@ -71,14 +71,14 @@ export const authManager = {
   },
 
   async signIn(email, password) {
-    if (!supabaseConfigured) return { error: new Error('Supabase not configured') };
+    if (!supabaseConfigured) return { error: new Error('Game server not configured') };
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     debug.auth('signIn', { email, error: error?.message });
     return { data, error };
   },
 
   async signInWithGoogle() {
-    if (!supabaseConfigured) return { error: new Error('Supabase not configured') };
+    if (!supabaseConfigured) return { error: new Error('Game server not configured') };
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo: `${window.location.origin}${window.location.pathname}` },
@@ -88,14 +88,14 @@ export const authManager = {
   },
 
   async signOut() {
-    if (!supabaseConfigured) return { error: new Error('Supabase not configured') };
+    if (!supabaseConfigured) return { error: new Error('Game server not configured') };
     const { error } = await supabase.auth.signOut();
     debug.auth('signOut', { error: error?.message });
     return { error };
   },
 
   async resendConfirmation(email) {
-    if (!supabaseConfigured) return { error: new Error('Supabase not configured') };
+    if (!supabaseConfigured) return { error: new Error('Game server not configured') };
     const { error } = await supabase.auth.resend({
       type: 'signup', email,
       options: { emailRedirectTo: `${window.location.origin}${window.location.pathname}` },

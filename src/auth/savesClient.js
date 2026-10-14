@@ -10,7 +10,7 @@ export class SavesClientError extends Error {
 
 function requireClient() {
   if (!supabaseConfigured || !supabase) {
-    throw new SavesClientError('Supabase not configured.');
+    throw new SavesClientError('Game server not configured.');
   }
   return supabase;
 }

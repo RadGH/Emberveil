@@ -98,7 +98,7 @@ export const debug = {
           lines.push('session_user: (signed out)');
         }
       } else {
-        lines.push('supabase: not configured');
+        lines.push('game server: not configured');
       }
     } catch (e) {
       lines.push(`session_error: ${e.message}`);

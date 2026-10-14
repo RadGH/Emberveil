@@ -43,10 +43,10 @@ function renderSession(session) {
 }
 
 if (!supabaseConfigured) {
-  setStatus(configEl, 'Supabase not configured — missing keys at build time. Check assets/references/emberveil/supabase-*.txt and rebuild.', 'err');
+  setStatus(configEl, 'Game server not configured.', 'err');
   log('config missing — client not initialized');
 } else {
-  setStatus(configEl, 'Supabase client initialized.', 'ok');
+  setStatus(configEl, 'Game server client ready.', 'ok');
   log('config loaded');
 
   supabase.auth.getSession().then(({ data, error }) => {
