@@ -116,6 +116,13 @@ See `game.md` for the full game design document.
 - **Language:** JavaScript (no TypeScript)
 - **Port (dev):** 5213
 - **Lint:** ESLint
+- **Accounts + cloud saves:** our own game server, **rgs-api** (Supabase was
+  removed 2026-10). Contract: `~/claude/rads-game-server/docs/API.md`. The client
+  is `src/auth/rgs/client.js`, a small stand-in for the supabase-js calls the game
+  makes; `src/auth/supabaseClient.js` keeps the old export names (`supabase`,
+  `supabaseConfigured`) so nothing else changed. Server address = `VITE_RGS_API`
+  at build time, default `/api` on the same site. `supabase/migrations/` and
+  `docs/supabase-setup.md` are history only (the server uses the same columns).
 
 ## Commands
 

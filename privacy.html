@@ -51,12 +51,12 @@
   </ul>
   <p>IP anonymization is on by default (<code>anonymize_ip: true</code>). If consent is <em>not</em> granted, gtag.js is never loaded — no requests to Google's servers are made and no cookies are set.</p>
 
-  <h2>3. Internal telemetry (Supabase)</h2>
-  <p>If consent is granted <em>and</em> you are signed in to a Supabase account (optional), the game records a small set of gameplay events to <code>telemetry_events</code>: combat outcomes, screen visits, reward acceptance, and run-end stats. We use this to spot bugs and tune balance — never to identify users.</p>
-  <p>Without consent the telemetry client silently no-ops. Without sign-in, no row is ever written. You can review the schema at <code>public/docs/supabase-setup.md</code>.</p>
+  <h2>3. Internal telemetry (our game server)</h2>
+  <p>If consent is granted <em>and</em> you are signed in to a game account (optional), the game records a small set of gameplay events to <code>telemetry_events</code>: combat outcomes, screen visits, reward acceptance, and run-end stats. We use this to spot bugs and tune balance — never to identify users.</p>
+  <p>Without consent the telemetry client silently no-ops. Without sign-in, no row is ever written. These events are stored on our own game server, not shared with any third party.</p>
 
   <h2>4. Cloud saves & sign-in</h2>
-  <p>Cloud saves are a feature for signed-in users. They store an encrypted snapshot of your party, inventory, and run state in Supabase under your account. Local saves are not cloud-synced unless you explicitly use <em>Save to cloud</em>. Sign-in is via Supabase auth and uses the email you provide; we do not see your password.</p>
+  <p>Cloud saves are a feature for signed-in users. They store an encrypted snapshot of your party, inventory, and run state on our game server under your account. Local saves are not cloud-synced unless you explicitly use <em>Save to cloud</em>. Sign-in is handled by our game server and uses the email you provide (or your Google account); your password is stored only as a one-way scrambled hash, never as the password itself.</p>
   <ul>
     <li>Local saves: always work. Stored in <code>localStorage</code>. Never leave your browser.</li>
     <li>Cloud saves: opt-in per save. Encrypted before upload. Removable via account deletion.</li>

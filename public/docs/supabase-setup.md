@@ -1,3 +1,7 @@
+> **Obsolete (2026-10):** Supabase is no longer used. Accounts, cloud saves,
+> run stats and telemetry now go to our own game server (rgs-api). The table
+> columns below are still the ones it uses. See the repo's `CLAUDE.md`.
+
 # Supabase Setup — Cloud saves + run statistics
 
 This page is the single source of truth for the Supabase backend that powers
