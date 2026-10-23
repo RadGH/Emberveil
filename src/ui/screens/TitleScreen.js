@@ -307,7 +307,7 @@ export class TitleScreen {
       }
       card.style.display = '';
       if (u) {
-        const email = u.email || u.user_metadata?.email || 'Signed in';
+        const email = u.username || u.email || u.user_metadata?.email || 'Signed in';
         // M242: stack email and Sign-out vertically so the long email doesn't
         // crowd the button on narrow viewports.
         card.innerHTML = `
@@ -368,7 +368,8 @@ export class TitleScreen {
             <button type="button" id="auth-tab-signup" style="${tabCss(isSignup)}">Create Account</button>
           </div>
           <form id="auth-form" autocomplete="on" style="display:flex;flex-direction:column;gap:0.55rem">
-            <input type="email" id="auth-email" placeholder="Email" autocomplete="email" required style="${inputCss}">
+            <input type="${isSignup ? 'email' : 'text'}" id="auth-email" placeholder="${isSignup ? 'Email' : 'Username or email'}" autocomplete="${isSignup ? 'email' : 'username'}" required style="${inputCss}">
+            ${isSignup ? '' : `<div style="font-size:0.7rem;color:rgba(200,180,140,0.6)">Any games.radgh.com account works, including Thousandvale.</div>`}
             <input type="password" id="auth-pass" placeholder="Password" autocomplete="${isSignup?'new-password':'current-password'}" required minlength="6" style="${inputCss}">
             ${isSignup ? `<input type="password" id="auth-pass2" placeholder="Confirm password" autocomplete="new-password" required minlength="6" style="${inputCss}">` : ''}
             <div id="auth-msg" style="font-size:0.75rem;color:rgba(255,180,140,0.9);min-height:1rem"></div>

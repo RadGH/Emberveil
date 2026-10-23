@@ -402,7 +402,7 @@ export class SettingsScreen {
         <div class="setting-row" id="cloud-saves-row" style="${LOGIN_UI_DISABLED ? 'display:none' : ''}">
           <label class="setting-label">Cloud Account</label>
           <div id="cloud-signed-out" style="display:flex;flex-direction:column;gap:0.5rem">
-            <input type="email" id="cloud-email" placeholder="email" autocomplete="email" style="background:rgba(0,0,0,0.4);border:1px solid rgba(232,160,32,0.3);color:#e8d8c8;padding:0.5rem 0.7rem;border-radius:3px;font:inherit;font-size:0.8rem" />
+            <input type="text" id="cloud-email" placeholder="username or email" autocomplete="username" style="background:rgba(0,0,0,0.4);border:1px solid rgba(232,160,32,0.3);color:#e8d8c8;padding:0.5rem 0.7rem;border-radius:3px;font:inherit;font-size:0.8rem" />
             <input type="password" id="cloud-password" placeholder="password" autocomplete="current-password" style="background:rgba(0,0,0,0.4);border:1px solid rgba(232,160,32,0.3);color:#e8d8c8;padding:0.5rem 0.7rem;border-radius:3px;font:inherit;font-size:0.8rem" />
             <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
               <button type="button" id="cloud-signin-btn" style="flex:1;min-width:90px;background:rgba(232,160,32,0.25);border:1px solid rgba(232,160,32,0.6);color:#e8a020;padding:0.55rem 0.6rem;border-radius:3px;font-family:inherit;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer">Sign In</button>
@@ -692,7 +692,7 @@ export class SettingsScreen {
       if (u) {
         signedOutEl.style.display = 'none';
         signedInEl.style.display  = 'flex';
-        userInfoEl.textContent = `${u.email || u.id} (${u.app_metadata?.provider || 'email'})`;
+        userInfoEl.textContent = `${u.username || u.email || u.id} (${u.app_metadata?.provider || 'email'})`;
       } else {
         signedOutEl.style.display = 'flex';
         signedInEl.style.display  = 'none';
@@ -721,6 +721,7 @@ export class SettingsScreen {
       const email = this._el.querySelector('#cloud-email').value.trim();
       const pass  = this._el.querySelector('#cloud-password').value;
       if (!email || !pass) { setSigninStatus('Enter email and password.'); return; }
+      if (!email.includes('@')) { setSigninStatus('Use an email address to create an account here (or make a username account at games.radgh.com/account/).'); return; }
       setSigninStatus('Signing up…');
       const { data, error } = await authManager.signUp(email, pass);
       if (error) { setSigninStatus(`Error: ${error.message}`); return; }
